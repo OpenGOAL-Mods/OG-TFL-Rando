@@ -1056,6 +1056,7 @@
 
   ;; note : pc port added option to show every actor regardless
   (with-pc (if (not (-> *pc-settings* ps2-actor-vis?)) (return #t)))
+  (with-pc (if (-> *pc-settings* ps2-actor-vis?) (return #t))) ;; added so it's always on
 
   ;; check the vis bits!
   (let* (;; lwu v1, 388(a0)
@@ -2014,7 +2015,7 @@
     ((not (or (-> obj level0 inside-boxes?) (-> obj level1 inside-boxes?)))
      (when (or (-> obj level0 vis-info 0) (-> obj level1 vis-info 0))
        (if (= *cheat-mode* 'debug)
-           (format *stdcon* "~3Loutside of bsp~%~0L")
+           (format *stdcon* "")
            )
        )
      )

@@ -691,6 +691,29 @@
   (scene-player                 #x10c1)
   (play-credits                 #x10c2)
   (scrapbook                    #x10c3)
+  ;; CUSTOM LEVEL TEXTS
+  (crystalc-middle    #x10c4)
+  (crystalc-river     #x10c5)
+  (crystalc-ship      #x10c6)
+  (crystalc-shrooms   #x10c7)
+  (crystalc-buzzer    #x10c8)
+  (crystalc-level     #xa01);; CHANGED ID TO SEE THE LEVEL ONLY ONCE IN THE POPUP (<4096) xa00 and up seems to be free
+  (crescent-level     #xa10);; level name
+  (crescent-observatory #xa11);; tasks
+  (crescent-robot     #xa12)
+  (crescent-lava      #xa13)
+  (crescent-zoomer    #xa14)
+  (crescent-orange-ring #xa15)
+  (crescent-buzzer    #xa16)
+  (energy-bay-level   #xa20);; level name
+  (energy-bay-turbine1 #xa21)
+  (energy-bay-turbine2 #xa22)
+  (energy-bay-turbine3 #xa23)
+  (energy-bay-turbine4 #xa24)
+  (energy-bay-kill    #xa25)
+  (energy-bay-green-ring #xa26)
+  (energy-bay-buzzer #xa27)
+
   (default                      #x10d0)
   (flava-vi1-unused0            #x10d1)
   (flava-sage                   #x10d2)

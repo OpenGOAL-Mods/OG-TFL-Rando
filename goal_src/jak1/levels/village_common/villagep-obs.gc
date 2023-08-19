@@ -142,7 +142,7 @@
               (go-virtual active)
               )
           (if (and *cheat-mode* (cpad-pressed? 0 l3))
-              (set! (-> self max-slot) 4)
+              (set! (-> self max-slot) (- (-> *warp-info* length)1))
               )
           (let ((gp-0
                   (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))
@@ -198,6 +198,28 @@
     )
   )
 
+(define WarpLevelString "Placeholder for upcase method")
+
+;;Return #t if the first entries in *warp-info* are in the expected state
+(defun vanilla-warp-info? ()
+(if (not (string= (-> *warp-info* 0) "training-warp"))
+(return #f)
+)
+(if (not (string= (-> *warp-info* 1) "village1-warp"))
+(return #f)
+)
+(if (not (string= (-> *warp-info* 2) "village2-warp"))
+(return #f)
+)
+(if (not (string= (-> *warp-info* 3) "village3-warp"))
+(return #f)
+)
+(if (not (string= (-> *warp-info* 4) "citadel-warp"))
+(return #f)
+)
+
+#t)
+
 (defun print-level-name ((arg0 int) (arg1 font-context) (arg2 int) (arg3 int))
   (let ((s5-0 (if arg3
                   arg2
@@ -207,18 +229,68 @@
         )
     (+! (-> arg1 origin x) (the float s5-0))
     (let ((f30-0 (- 1.0 (* 0.0033333334 (the float arg2)))))
-      (print-game-text-scaled
+    ;;if not <4  and in the vanilla level order (Default levels do this!)
+    (if (and (vanilla-warp-info?) (< arg0 5) )
+    (begin
+        (print-game-text-scaled
         (lookup-text! *common-text* (the-as text-id (+ arg0 286)) #f)
         f30-0
         arg1
-        (the int (* 128.0 f30-0))
+        (the int (* 128.0 f30-0)))
+        )    
+    ;;if <4 (Its a custom level! sick lets see if it has a customname)
+    (begin
+    (if  (!= (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) customname) 0)
+    ;;It has a custom name cool! lets use that as the text in the warp menu!
+    (begin
+        (string-upcase  (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) customname) (the-as string WarpLevelString))
+        (print-game-text-scaled
+        WarpLevelString
+        f30-0
+        arg1
+        (the int (* 128.0 f30-0))))
         )
-      )
+    ;;It doesnt have a custom name :( lets default to the level code name VILLAGE1 ETC)
+    (if  (= (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) customname) 0)
+    (begin
+        (string-upcase  (symbol->string (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) name)) (the-as string WarpLevelString))
+        (print-game-text-scaled
+        WarpLevelString
+        f30-0
+        arg1
+        (the int (* 128.0 f30-0))))))
+        )
+
+        (if (not (vanilla-warp-info?))
+    
+    ;;if <4 and the first entries are not in the default expeceted order (Its a custom level! sick lets see if it has a customname)
+    (begin
+    (if  (!= (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) customname) 0)
+    ;;It has a custom name cool! lets use that as the text in the warp menu!
+    (begin
+        (string-upcase  (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) customname) (the-as string WarpLevelString))
+        (print-game-text-scaled
+        WarpLevelString
+        f30-0
+        arg1
+        (the int (* 128.0 f30-0))))
+        )
+    ;;It doesnt have a custom name :( lets default to the level code name VILLAGE1 ETC)
+    (if  (= (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) customname) 0)
+    (begin
+        (string-upcase  (symbol->string (-> (lookup-level-info (-> (get-continue-by-name *game-info* (-> *warp-info* (- arg0 0))) level)) name)) (the-as string WarpLevelString))
+        (print-game-text-scaled
+        WarpLevelString
+        f30-0
+        arg1
+        (the int (* 128.0 f30-0))))))
+        )
     (set! (-> arg1 origin x) (- (-> arg1 origin x) (the float s5-0)))
     )
   (set! (-> arg1 color) (font-color default))
   arg1
   )
+)
 
 (defstate active (warp-gate)
   :virtual #t
@@ -410,22 +482,23 @@
   (logior! (-> self mask) (process-mask actor-pause))
   (set! (-> self level) (-> self entity extra level name))
   (set! (-> self min-slot) 0)
-  (let ((v1-11 (-> self level)))
+  (let ((v1-11 (-> self level)))   
+  ;; CHECK SELF LEVEL TO NOT DISPLAY IT IN THE MENU, ADD NEW LEVELS AND MAKE SURE OF THE ORDER :   
     (set! (-> self level-slot) (cond
                                  ((= v1-11 'training)
                                   0
                                   )
                                  ((= v1-11 'village1)
-                                  1
-                                  )
-                                 ((= v1-11 'village2)
                                   2
                                   )
-                                 ((= v1-11 'village3)
+                                 ((= v1-11 'village2)
                                   3
                                   )
-                                 ((or (= v1-11 'citadel) (= v1-11 'lavatube))
+                                 ((= v1-11 'village3)
                                   4
+                                  )
+                                 ((or (= v1-11 'citadel) (= v1-11 'lavatube))
+                                  5
                                   )
                                  (else
                                    -1
@@ -433,18 +506,19 @@
                                  )
           )
     )
+  ;; CHECK WHICH TASK HAS BEEN CLOSED TO UNLOCK X SLOTS IN THE PORTAL MENU
   (set! (-> self max-slot) (cond
                              ((task-closed? (game-task village4-button) (task-status need-hint))
-                              4
+                              5
                               )
                              ((task-closed? (game-task village3-button) (task-status need-hint))
-                              3
+                              4
                               )
                              ((task-closed? (game-task village2-levitator) (task-status need-hint))
-                              2
+                              3
                               )
                              (else
-                               1
+                               2
                                )
                              )
         )

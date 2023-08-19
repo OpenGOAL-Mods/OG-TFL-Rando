@@ -1,0 +1,175 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+(import "goal_src/jak1/import/breakaway-right-ag.gc")
+(import "goal_src/jak1/import/breakaway-mid-ag.gc")
+(import "goal_src/jak1/import/breakaway-left-ag.gc")
+
+
+(deftype breakaway (process-drawable)
+  ((root-override collide-shape-moving :offset 112)
+   )
+  (:methods
+    (init! (_type_ res-lump int) none)
+    (go-idle (_type_) none)
+    )
+  (:states
+    breakaway-about-to-fall
+    breakaway-fall
+    breakaway-idle
+    )
+  )
+
+
+(defstate breakaway-idle (breakaway)
+  :event (behavior ((arg0 process) (arg1 int) (arg2 symbol) (arg3 event-message-block))
+    (case arg2
+      (('touch)
+       (send-event arg0 'no-look-around (seconds 1.5))
+       (go breakaway-about-to-fall)
+       )
+      )
+    )
+  :code (the-as (function none :behavior breakaway) anim-loop)
+  :post (the-as (function none :behavior breakaway) transform-post)
+  )
+
+(defun actor-wait-for-period ((arg0 time-frame))
+  (let ((s5-0 (-> *display* base-frame-counter)))
+    (while (< (- (-> *display* base-frame-counter) s5-0) arg0)
+      (suspend)
+      )
+    )
+  #f
+  )
+
+(defstate breakaway-about-to-fall (breakaway)
+  :code (behavior ()
+    (sound-play "falling-bones")
+    (launch-particles (-> *part-id-table* 281) (-> self root-override trans))              
+    (let ((gp-1 #f)
+          (s5-1 (-> *display* base-frame-counter))
+          )
+      (loop
+        (ja-no-eval :group! (ja-group) :num! (seek! (ja-aframe 15.0 0)) :frame-num (ja-aframe 1.0 0))
+        (until (ja-done? 0)
+          (when (and (not gp-1) (>= (- (-> *display* base-frame-counter) s5-1) (seconds 0.15)))
+            (set! gp-1 #t)
+            (send-to-next-and-prev (-> self link) 'touch)
+            )
+          (if (>= (- (-> *display* base-frame-counter) s5-1) (seconds 0.25))
+              (go breakaway-fall)
+              )
+          (suspend)
+          (ja :num! (seek! (ja-aframe 15.0 0)))
+          )
+        )
+      )
+    (none)
+    )
+  :post (the-as (function none :behavior breakaway) rider-post)
+  )
+
+(defstate breakaway-fall (breakaway)
+  :code (behavior ()
+    (let ((f30-0 0.0)
+          (f28-0 0.0)
+          (f26-0 (* 0.1 (- (-> *standard-dynamics* gravity-length))))
+          )
+      (ja-no-eval :group! (ja-group) :num! (seek! (ja-aframe 32.0 0) 0.4) :frame-num (ja-aframe 16.0 0))
+      (until (ja-done? 0)
+        (+! f30-0 (* f28-0 (-> *display* seconds-per-frame)))
+        (+! f28-0 (* f26-0 (-> *display* seconds-per-frame)))
+        (+! (-> self root-override trans y) f30-0)
+        (suspend)
+        (ja :num! (seek! (ja-aframe 32.0 0) 0.4))
+        )
+      )
+    (cleanup-for-death self)
+    (none)
+    )
+  :post (the-as (function none :behavior breakaway) rider-post)
+  )
+
+(defmethod init! breakaway ((obj breakaway) (arg0 res-lump) (arg1 int))
+  (set! (-> obj mask) (logior (process-mask platform) (-> obj mask)))
+  (let ((s4-0 (new 'process 'collide-shape-moving obj (collide-list-enum hit-by-player))))
+    (set! (-> s4-0 dynam) (copy *standard-dynamics* 'process))
+    (set! (-> s4-0 reaction) default-collision-reaction)
+    (set! (-> s4-0 no-reaction)
+          (the-as (function collide-shape-moving collide-shape-intersect vector vector none) nothing)
+          )
+    (alloc-riders s4-0 1)
+    (let ((s2-0 (new 'process 'collide-shape-prim-mesh s4-0 (the-as uint 0) (the-as uint 0))))
+      (set! (-> s2-0 prim-core collide-as) (collide-kind ground-object))
+      (set! (-> s2-0 collide-with) (collide-kind target))
+      (set! (-> s2-0 prim-core action) (collide-action solid))
+      (set! (-> s2-0 prim-core offense) (collide-offense indestructible))
+      (set! (-> s2-0 transform-index) arg1)
+      (set-vector! (-> s2-0 local-sphere) 8192.0 -4096.0 8192.0 16384.0)
+      (set-root-prim! s4-0 s2-0)
+      )
+    (set! (-> s4-0 nav-radius) (* 0.75 (-> s4-0 root-prim local-sphere w)))
+    (backup-collide-with-as s4-0)
+    (set! (-> obj root-override) s4-0)
+    )
+  (set! (-> obj link) (new 'process 'actor-link-info obj))
+  (process-drawable-from-entity! obj (the-as entity-actor arg0))
+  (none)
+  )
+
+(defmethod go-idle breakaway ((obj breakaway))
+  (go breakaway-idle)
+  (none)
+  )
+
+(deftype breakaway-right (breakaway)
+  ()
+  )
+
+
+(deftype breakaway-mid (breakaway)
+  ()
+  )
+
+
+(deftype breakaway-left (breakaway)
+  ()
+  )
+
+
+(defskelgroup *breakaway-right-sg* breakaway-right breakaway-right-lod0-jg breakaway-right-idle-ja
+              ((breakaway-right-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 7)
+              )
+
+(defskelgroup *breakaway-mid-sg* breakaway-mid breakaway-mid-lod0-jg breakaway-mid-idle-ja
+              ((breakaway-mid-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 7)
+              )
+
+(defskelgroup *breakaway-left-sg* breakaway-left breakaway-left-lod0-jg breakaway-left-idle-ja
+              ((breakaway-left-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 7)
+              )
+
+(defmethod init-from-entity! breakaway-right ((obj breakaway-right) (arg0 entity-actor))
+  (init! obj arg0 3)
+  (initialize-skeleton obj *breakaway-right-sg* '())
+  (go-idle obj)
+  (none)
+  )
+
+(defmethod init-from-entity! breakaway-mid ((obj breakaway-mid) (arg0 entity-actor))
+  (init! obj arg0 3)
+  (initialize-skeleton obj *breakaway-mid-sg* '())
+  (go-idle obj)
+  (none)
+  )
+
+(defmethod init-from-entity! breakaway-left ((obj breakaway-left) (arg0 entity-actor))
+  (init! obj arg0 3)
+  (initialize-skeleton obj *breakaway-left-sg* '())
+  (go-idle obj)
+  (none)
+  )

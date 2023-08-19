@@ -54,7 +54,7 @@ imgui.ini
 node_modules/
 
 # texture replacements
-texture_replacements/*
+# texture_replacements/*
 
 # generated cmake files
 svnrev.h

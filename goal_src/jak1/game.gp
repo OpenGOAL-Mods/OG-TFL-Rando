@@ -489,6 +489,8 @@
    "flut_common/flut-part.gc"
    "flut_common/flutflut.gc"
    "flut_common/target-flut.gc"
+
+   "tfl_common/super-collectables.gc"
    )
 
 
@@ -1642,6 +1644,25 @@
 ;; the DGO file
 (custom-level-cgo "TSZ.DGO" "test-zone/testzone.gd")
 
+(build-custom-level "test-zone3")
+;; the DGO file
+(custom-level-cgo "TZ3.DGO" "test-zone3/testzone3.gd")
+
+;; Crystal cave level :
+(build-custom-level "crystal-cave")
+;; the DGO file
+(custom-level-cgo "CRC.DGO" "crystal-cave/crystalc.gd")
+
+;; Crescent Top level :
+(build-custom-level "crescent-top")
+;; the DGO file
+(custom-level-cgo "CST.DGO" "crescent-top/crescent.gd")
+
+;; Energy Bay level :
+(build-custom-level "energy-bay")
+;; the DGO file
+(custom-level-cgo "ENB.DGO" "energy-bay/energybay.gd")
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
 ;;;;;;;;;;;;;;;;;;;;;
@@ -2090,6 +2111,27 @@
  "mods/mod-common-functions.gc"
  "mods/mod-custom-code.gc"
 )
+
+(goal-src-sequence
+ "levels/crystalc/"
+ :deps ("$OUT/obj/ticky.o")
+ "crystalc-obs.gc"
+ "crystalc-part.gc"
+ )
+
+(goal-src-sequence
+ "levels/crescent/"
+ :deps ("$OUT/obj/ticky.o")
+ "crescent-obs.gc"
+ "crescent-part.gc"
+ )
+
+(goal-src-sequence
+ "levels/energybay/"
+ :deps ("$OUT/obj/ticky.o")
+ "energybay-obs.gc"
+ "energybay-part.gc"
+ )
 
 (group-list "all-code"
   `(,@(reverse *all-gc*))

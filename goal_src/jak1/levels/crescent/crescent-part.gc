@@ -1,0 +1,6 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+(deftype crescent-part (part-spawner)
+  ()
+  )
