@@ -5,26 +5,29 @@
   ()
   )
 
+;; group-id range for crescent top : 850-899
+;; part-id range for crescent top : 3200-3399
+
 (defpartgroup group-crescent-butterflies
-  :id 127
+  :id 850
   :bounds (static-bspherem 0 0 0 30)
-  :parts ((sp-item 380 :fade-after (meters 120) :period (seconds 16.345) :length (seconds 0.017) :hour-mask #b111111100000000000111111 :binding 381)
-    (sp-item 380 :fade-after (meters 120) :period (seconds 22.125) :length (seconds 0.017) :hour-mask #b111111100000000000111111 :binding 381)
-    (sp-item 380 :fade-after (meters 120) :period (seconds 32.82) :length (seconds 0.017) :hour-mask #b111111100000000000111111 :binding 381)
-    (sp-item 381 :flags (start-dead launch-asap) :binding 382)
-    (sp-item 382 :flags (is-3d start-dead))
-    (sp-item 381 :flags (start-dead launch-asap) :binding 382)
-    (sp-item 382 :flags (is-3d start-dead))
-    (sp-item 381 :flags (start-dead launch-asap) :binding 382)
-    (sp-item 382 :flags (is-3d start-dead))
-    (sp-item 381 :flags (start-dead launch-asap) :binding 382)
-    (sp-item 382 :flags (is-3d start-dead))
-    (sp-item 381 :flags (start-dead launch-asap) :binding 382)
-    (sp-item 382 :flags (is-3d start-dead))
+  :parts ((sp-item 3200 :fade-after (meters 120) :period (seconds 16.345) :length (seconds 0.017) :hour-mask #b111111100000000000111111 :binding 3201)
+    (sp-item 3200 :fade-after (meters 120) :period (seconds 22.125) :length (seconds 0.017) :hour-mask #b111111100000000000111111 :binding 3201)
+    (sp-item 3200 :fade-after (meters 120) :period (seconds 32.82) :length (seconds 0.017) :hour-mask #b111111100000000000111111 :binding 3201)
+    (sp-item 3201 :flags (start-dead launch-asap) :binding 3202)
+    (sp-item 3202 :flags (is-3d start-dead))
+    (sp-item 3201 :flags (start-dead launch-asap) :binding 3202)
+    (sp-item 3202 :flags (is-3d start-dead))
+    (sp-item 3201 :flags (start-dead launch-asap) :binding 3202)
+    (sp-item 3202 :flags (is-3d start-dead))
+    (sp-item 3201 :flags (start-dead launch-asap) :binding 3202)
+    (sp-item 3202 :flags (is-3d start-dead))
+    (sp-item 3201 :flags (start-dead launch-asap) :binding 3202)
+    (sp-item 3202 :flags (is-3d start-dead))
     )
   )
 
-(defpart 380
+(defpart 3200
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
     (:num 1.0)
     (:x (meters 0) (meters 7.5))
@@ -38,20 +41,20 @@
     (:timer (seconds 20))
     (:flags (bit3))
     (:next-time (seconds 1.85))
-    (:next-launcher 383)
+    (:next-launcher 3203)
     (:rotate-y (degrees 0) (degrees 360))
     )
   )
 
-(defpart 383
-  :init-specs ((:accel-y (meters 0)) (:next-time (seconds 9) (seconds 4.997)) (:next-launcher 384))
+(defpart 3203
+  :init-specs ((:accel-y (meters 0)) (:next-time (seconds 9) (seconds 4.997)) (:next-launcher 3204))
   )
 
-(defpart 384
+(defpart 3204
   :init-specs ((:accel-y (meters 0.00033333333)))
   )
 
-(defpart 381
+(defpart 3201
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
     (:num 1.0)
     (:x (meters 0) (meters 16))
@@ -70,20 +73,20 @@
     (:timer (seconds 20))
     (:flags (bit3 bit7))
     (:next-time (seconds 0.5) (seconds 1.497))
-    (:next-launcher 385)
+    (:next-launcher 3205)
     )
   )
 
-(defpart 385
+(defpart 3205
   :init-specs ((:vel-x (meters -0.017777778) (meters 0.035555556))
     (:vel-y (meters -0.0074074077) (meters 0.0148148155))
     (:rotvel-z (degrees -0.2) (degrees 0.4))
     (:next-time (seconds 0.5) (seconds 1.497))
-    (:next-launcher 385)
+    (:next-launcher 3205)
     )
   )
 
-(defpart 382
+(defpart 3202
   :init-specs ((:texture (new 'static 'texture-id :index #x22 :page #x2))
     (:birth-func 'birth-func-copy-rot-color)
     (:num 2.0)
@@ -101,18 +104,18 @@
   )
 
 (defpartgroup group-crescent-hummingbird
-  :id 129
+  :id 851
   :bounds (static-bspherem 0 3 0 4)
-  :parts ((sp-item 390 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017) :hour-mask #b111111100000000000111111)
-    (sp-item 391 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
-    (sp-item 392 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
-    (sp-item 393 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
-    (sp-item 394 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
-    (sp-item 395 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
+  :parts ((sp-item 3206 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017) :hour-mask #b111111100000000000111111)
+    (sp-item 3207 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
+    (sp-item 3208 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
+    (sp-item 3209 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
+    (sp-item 3210 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
+    (sp-item 3211 :fade-after (meters 20) :flags (is-3d bit1) :period (seconds 20) :length (seconds 0.017))
     )
   )
 
-(defpart 390
+(defpart 3206
   :init-specs ((:texture (new 'static 'texture-id :index #x1b :page #x2))
     (:num 1.0)
     (:scale-x (meters 0.5))
@@ -128,15 +131,15 @@
     (:timer (seconds 2.75))
     (:flags (bit2 bit9 bit12 left-multiply-quat))
     (:next-time (seconds 0.017))
-    (:next-launcher 396)
+    (:next-launcher 3212)
     )
   )
 
-(defpart 396
-  :init-specs ((:scale-y (meters 0.5) (meters 0.1)) (:a 96.0 1 16.0) (:next-time (seconds 0.017)) (:next-launcher 396))
+(defpart 3212
+  :init-specs ((:scale-y (meters 0.5) (meters 0.1)) (:a 96.0 1 16.0) (:next-time (seconds 0.017)) (:next-launcher 3212))
   )
 
-(defpart 391
+(defpart 3207
   :init-specs ((:texture (new 'static 'texture-id :index #x1b :page #x2))
     (:num 1.0)
     (:scale-x (meters 0.5))
@@ -152,25 +155,25 @@
     (:timer (seconds 6))
     (:flags (bit9 bit12 left-multiply-quat))
     (:next-time (seconds 2.75))
-    (:next-launcher 397)
+    (:next-launcher 3213)
     )
   )
 
-(defpart 397
+(defpart 3213
   :init-specs ((:scale-y (meters 0.5) (meters 0.1))
     (:a 96.0 1 16.0)
     (:accel-x (meters 0.00066666666))
     (:accel-y (meters 0.00033333333))
     (:next-time (seconds 0.017))
-    (:next-launcher 398)
+    (:next-launcher 3214)
     )
   )
 
-(defpart 398
-  :init-specs ((:scale-y (meters 0.5) (meters 0.1)) (:a 96.0 1 16.0) (:next-time (seconds 0.017)) (:next-launcher 398))
+(defpart 3214
+  :init-specs ((:scale-y (meters 0.5) (meters 0.1)) (:a 96.0 1 16.0) (:next-time (seconds 0.017)) (:next-launcher 3214))
   )
 
-(defpart 392
+(defpart 3208
   :init-specs ((:texture (new 'static 'texture-id :index #x1c :page #x2))
     (:num 2.0)
     (:scale-x (meters 1))
@@ -188,21 +191,21 @@
     (:timer (seconds 2.75))
     (:flags (bit2 bit9 bit12))
     (:next-time (seconds 0.017))
-    (:next-launcher 399)
+    (:next-launcher 3215)
     )
   )
 
-(defpart 399
+(defpart 3215
   :init-specs ((:rot-x (degrees 135))
     (:rot-y (degrees 90))
     (:rot-z (degrees -70) (degrees 140))
     (:a 32.0 1 32.0)
     (:next-time (seconds 0.017))
-    (:next-launcher 399)
+    (:next-launcher 3215)
     )
   )
 
-(defpart 393
+(defpart 3209
   :init-specs ((:texture (new 'static 'texture-id :index #x1c :page #x2))
     (:num 2.0)
     (:scale-x (meters 1))
@@ -220,11 +223,11 @@
     (:timer (seconds 6))
     (:flags (bit9 bit12))
     (:next-time (seconds 2.75))
-    (:next-launcher 400)
+    (:next-launcher 3216)
     )
   )
 
-(defpart 400
+(defpart 3216
   :init-specs ((:rot-x (degrees 135))
     (:rot-y (degrees 90))
     (:rot-z (degrees -70) (degrees 140))
@@ -232,21 +235,21 @@
     (:accel-x (meters 0.00066666666))
     (:accel-y (meters 0.00033333333))
     (:next-time (seconds 0.017))
-    (:next-launcher 401)
+    (:next-launcher 3217)
     )
   )
 
-(defpart 401
+(defpart 3217
   :init-specs ((:rot-x (degrees 135))
     (:rot-y (degrees 90))
     (:rot-z (degrees -70) (degrees 140))
     (:a 32.0 1 32.0)
     (:next-time (seconds 0.017))
-    (:next-launcher 401)
+    (:next-launcher 3217)
     )
   )
 
-(defpart 394
+(defpart 3210
   :init-specs ((:texture (new 'static 'texture-id :index #x1c :page #x2))
     (:num 2.0)
     (:scale-x (meters 1))
@@ -263,21 +266,21 @@
     (:timer (seconds 2.75))
     (:flags (bit2 bit9 bit12))
     (:next-time (seconds 0.017))
-    (:next-launcher 402)
+    (:next-launcher 3218)
     )
   )
 
-(defpart 402
+(defpart 3218
   :init-specs ((:rot-x (degrees 45))
     (:rot-y (degrees -90))
     (:rot-z (degrees -70) (degrees 140))
     (:a 32.0 1 32.0)
     (:next-time (seconds 0.017))
-    (:next-launcher 402)
+    (:next-launcher 3218)
     )
   )
 
-(defpart 395
+(defpart 3211
   :init-specs ((:texture (new 'static 'texture-id :index #x1c :page #x2))
     (:num 2.0)
     (:scale-x (meters 1))
@@ -295,11 +298,11 @@
     (:timer (seconds 6))
     (:flags (bit9 bit12))
     (:next-time (seconds 2.75))
-    (:next-launcher 403)
+    (:next-launcher 3219)
     )
   )
 
-(defpart 403
+(defpart 3219
   :init-specs ((:rot-x (degrees 45))
     (:rot-y (degrees -90))
     (:rot-z (degrees -70) (degrees 140))
@@ -307,73 +310,73 @@
     (:accel-x (meters 0.00066666666))
     (:accel-y (meters 0.00033333333))
     (:next-time (seconds 0.017))
-    (:next-launcher 404)
+    (:next-launcher 3220)
     )
   )
 
-(defpart 404
+(defpart 3220
   :init-specs ((:rot-x (degrees 45))
     (:rot-y (degrees -90))
     (:rot-z (degrees -70) (degrees 140))
     (:a 32.0 1 32.0)
     (:next-time (seconds 0.017))
-    (:next-launcher 404)
+    (:next-launcher 3220)
     )
   )
 
 (defpartgroup group-crescent-seagulls
-  :id 132
+  :id 852
   :bounds (static-bspherem 0 8 0 45)
-  :parts ((sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 415 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 416)
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
-    (sp-item 416 :flags (start-dead launch-asap) :binding 417)
-    (sp-item 417 :flags (is-3d start-dead))
+  :parts ((sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3221 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 3222)
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
+    (sp-item 3222 :flags (start-dead launch-asap) :binding 3223)
+    (sp-item 3223 :flags (is-3d start-dead))
     )
   )
 
@@ -386,7 +389,7 @@
   (none)
   )
 
-(defpart 415
+(defpart 3221
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
     (:birth-func 'birth-func-random-next-time)
     (:num 1.0)
@@ -410,7 +413,7 @@
   (none)
   )
 
-(defpart 416
+(defpart 3222
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
     (:birth-func 'birth-func-copy-omega-to-z)
     (:num 1.0)
@@ -431,29 +434,29 @@
     (:flags (bit3 bit7))
     (:func 'sparticle-seagull-moon)
     (:next-time (seconds 0.665))
-    (:next-launcher 418)
+    (:next-launcher 3224)
     )
   )
 
-(defpart 418
+(defpart 3224
   :init-specs ((:scale-x (meters 8))
     (:scalevel-x (meters -0.08))
     (:timer (seconds 2))
     (:next-time (seconds 0.335))
-    (:next-launcher 419)
+    (:next-launcher 3225)
     )
   )
 
-(defpart 419
+(defpart 3225
   :init-specs ((:scale-x (meters 0))
     (:scalevel-x (meters -0.04))
     (:timer (seconds 2))
     (:next-time (seconds 0.665))
-    (:next-launcher 418)
+    (:next-launcher 3224)
     )
   )
 
-(defpart 417
+(defpart 3223
   :init-specs ((:texture (new 'static 'texture-id :index #x1c :page #x2))
     (:birth-func 'birth-func-copy2-rot-color)
     (:num 2.0)
@@ -466,15 +469,15 @@
   )
 
 (defpartgroup group-crescent-butterfly-sitting
-  :id 1330
+  :id 853
   :bounds (static-bspherem 0 0.2 0 0.5)
   :parts (
-    (sp-item 4200 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))
-    (sp-item 4210 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))
+    (sp-item 3226 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))
+    (sp-item 3227 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))
     )
   )
 
-(defpart 4200
+(defpart 3226
   :init-specs ((:texture (new 'static 'texture-id :index #x22 :page #x2))
     (:num 1.0)
     (:y (meters 0.05))
@@ -490,15 +493,15 @@
     (:timer (seconds 2))
     (:flags (bit2 bit9 bit12 left-multiply-quat))
     (:next-time (seconds 1))
-    (:next-launcher 4220)
+    (:next-launcher 3228)
     )
   )
 
-(defpart 4220
+(defpart 3228
   :init-specs ((:rotvel-x (degrees -0.31666666)))
   )
 
-(defpart 4210
+(defpart 3227
   :init-specs ((:texture (new 'static 'texture-id :index #x22 :page #x2))
     (:num 1.0)
     (:y (meters 0.05))
@@ -514,10 +517,10 @@
     (:timer (seconds 2))
     (:flags (bit2 bit9 bit12 left-multiply-quat))
     (:next-time (seconds 1))
-    (:next-launcher 4230)
+    (:next-launcher 3229)
     )
   )
 
-(defpart 4230
+(defpart 3229
   :init-specs ((:rotvel-x (degrees 0.31666666)))
   )

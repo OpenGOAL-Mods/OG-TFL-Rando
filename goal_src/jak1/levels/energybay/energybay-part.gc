@@ -4,3 +4,6 @@
 (deftype energybay-part (part-spawner)
   ()
   )
+
+;; group-id range for energy bay : 900-949
+;; part-id range for energy bay : 3400-3599
