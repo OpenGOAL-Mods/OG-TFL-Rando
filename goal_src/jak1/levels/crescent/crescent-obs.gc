@@ -1,2 +1,86 @@
 ;;-*-Lisp-*-
 (in-package goal)
+
+(import "goal_src/jak1/import/lavabase-ag.gc")
+(import "goal_src/jak1/import/lavafall-ag.gc")
+
+
+(deftype lavabase (process-drawable)
+  ()
+  :heap-base #x40
+  :method-count-assert 20
+  :size-assert         #xb0
+  :flag-assert         #x14004000b0
+  (:states
+    lavabase-idle
+    )
+  )
+
+
+(defskelgroup *lavabase-sg* lavabase lavabase-lod0-jg lavabase-idle-ja
+              ((lavabase-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 22)
+              :longest-edge (meters 9.4)
+              )
+
+(defstate lavabase-idle (lavabase)
+  :code (behavior ()
+    (loop
+      (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
+      (until (ja-done? 0)
+        (suspend)
+        (ja :num! (seek!))
+        )
+      )
+    (none)
+    )
+  :post (the-as (function none :behavior lavabase) ja-post)
+  )
+
+(defmethod init-from-entity! lavabase ((obj lavabase) (arg0 entity-actor))
+  (set! (-> obj root) (new 'process 'trsqv))
+  (process-drawable-from-entity! obj arg0)
+  (initialize-skeleton obj *lavabase-sg* '())
+  (go lavabase-idle)
+  (none)
+  )
+
+(deftype lavafall (process-drawable)
+  ()
+  :heap-base #x40
+  :method-count-assert 20
+  :size-assert         #xb0
+  :flag-assert         #x14004000b0
+  (:states
+    lavafall-idle
+    )
+  )
+
+
+(defskelgroup *lavafall-sg* lavafall lavafall-lod0-jg lavafall-idle-ja
+              ((lavafall-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 10 0 13)
+              :longest-edge (meters 5.4)
+              )
+
+(defstate lavafall-idle (lavafall)
+  :code (behavior ()
+    (loop
+      (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
+      (until (ja-done? 0)
+        (suspend)
+        (ja :num! (seek!))
+        )
+      )
+    (none)
+    )
+  :post (the-as (function none :behavior lavafall) ja-post)
+  )
+
+(defmethod init-from-entity! lavafall ((obj lavafall) (arg0 entity-actor))
+  (set! (-> obj root) (new 'process 'trsqv))
+  (process-drawable-from-entity! obj arg0)
+  (initialize-skeleton obj *lavafall-sg* '())
+  (go lavafall-idle)
+  (none)
+  )

@@ -1593,13 +1593,13 @@
           (set! s5-0 t0-0)
           )
          (else
-          (format
-           0
-           "ERROR: Soundbanks ~A, ~A and ~A all required~%"
-           gp-0
-           s5-0
-           t0-0
-           )
+          ;; (format 
+          ;;  0
+          ;;  "ERROR: Soundbanks ~A, ~A and ~A all required~%" ;; TFL note: commented this error message out as we have 3+ sound banks loaded at once
+          ;;  gp-0
+          ;;  s5-0
+          ;;  t0-0
+          ;;  )
           )
          )
         (set! s3-0 (cdr s3-0))

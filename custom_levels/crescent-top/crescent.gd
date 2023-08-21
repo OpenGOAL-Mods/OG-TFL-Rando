@@ -23,7 +23,7 @@
   ;; "blocking-plane.o" ; zoomer stuff
   ;; "ef-plane-ag.go" ; zoomer stuff
   ;; "racer-ag.go" ; zoomer stuff
-  ;; "crescent-obs.o"
-  ;; "crescent-part.o"
+  "crescent-obs.o"
+  "crescent-part.o"
     )
   )

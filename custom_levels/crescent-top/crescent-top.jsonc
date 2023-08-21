@@ -2325,8 +2325,228 @@
       }
     },
 
-    // OTHERS
+    // Particles
 
+    {
+      "trans": [-279.46, 199.37, 348.12], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-279.46, 199.37, 348.12, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-01",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-212.56, 250.42, 396.84], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-212.56, 250.42, 396.84, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-02",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-207.37, 227.71, 337.28], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-207.37, 227.71, 337.28, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-03",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-83.80, 230.08, 328.65], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-83.80, 230.08, 328.65, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-04",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-94.02, 242.98, 329.45], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-94.02, 242.98, 329.45, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-05",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-114.12, 256.29, 487.65], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-114.12, 256.29, 487.65, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-06",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-210.46, 216.07, 511.78], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-210.46, 216.07, 511.78, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-07",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-281.12, 198.69, 816.79], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-281.12, 198.69, 816.79, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-08",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [253.95, 266.41, 520.68], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [253.95, 266.41, 520.68, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-09",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-249.11, 215.73, 328.54], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-249.11, 215.73, 328.54, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-sitting-01",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-173.44, 251.15, 505.95], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-173.44, 251.15, 505.95, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-sitting-02",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-237.81, 205.41, 859.84], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-237.81, 205.41, 859.84, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-butterfly-sitting-03",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-234.62, 250.42, 401.25], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-234.62, 250.42, 401.25, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-hummingbird-01",
+        "art-name":"group-crescent-hummingbird",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [-202.74, 270.90, 630.78], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-202.74, 270.90, 630.78, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-hummingbird-02",
+        "art-name":"group-crescent-hummingbird",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [401.60, 300.06, 622.48], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [401.60, 300.06, 622.48, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-hummingbird-03",
+        "art-name":"group-crescent-hummingbird",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [71.41, 370.22, 364.74], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [71.41, 370.22, 364.74, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-part-seagulls-01",
+        "art-name":"group-crescent-seagulls",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+
+    // OTHERS
+    // {
+    //   "trans": [-172.12, 166.46, 675.27], // translation
+    //   "etype": "lavafall",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0, 0, 0, 1], // quaternion
+    //   "bsphere": [-172.12, 166.46, 675.27, 10], // bounding sphere
+    //   "lump": {
+    //     "name":"crescent-lavafall-01"
+    //   }
+    // },
     {
       "trans": [-250.41, 205.06, 291.89], // translation
       "etype": "eco",  // actor type
@@ -2485,6 +2705,15 @@
     }*/
   ],
   "ambients" : [
-    
+    {
+      "trans": [-207.03, 250.42, 414.21, 10.0],
+      "bsphere": [-207.03, 250.42, 414.21, 20.0],
+      "lump": {
+        "name": "crescent-amb-01-namepop",
+        "type": "'hint",
+        "text-id": ["int32", 2576],
+        "play-mode": "'notice"
+      }
+    }
   ]
 }

@@ -1129,6 +1129,15 @@
 
   ],
   "ambients" : [
-    
+    {
+      "trans": [516.6, 47.98, 683.27, 7.0],
+      "bsphere": [516.6, 47.98, 683.27, 7.0],
+      "lump": {
+        "name": "energy-bay-amb-01-namepop",
+        "type": "'hint",
+        "text-id": ["int32", 2592],
+        "play-mode": "'notice"
+      }
+    }
   ]
 }
