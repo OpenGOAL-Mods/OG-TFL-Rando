@@ -2770,7 +2770,7 @@
   (none)
   )
 
-;; CUSTOM LEVEL UPDATE-MOOD STUFF
+;; TFL note: CUSTOM LEVEL UPDATE-MOOD STUFF
 
 (defun update-mood-crystal-cave ((arg0 mood-context) (arg1 float) (arg2 int))
   (when (not (paused?))

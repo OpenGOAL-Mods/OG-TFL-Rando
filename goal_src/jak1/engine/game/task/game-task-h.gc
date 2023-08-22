@@ -127,7 +127,7 @@
   (plunger-lurker-hit 113)
   (leaving-misty 114)
   (assistant-village3 115)
-  ;; CUSTOM TASKS
+  ;; TFL note: CUSTOM TASKS (Also changed the max at the end)
   (dummy 116)
   ;; CRYSTAL CAVE
   (crystalc-middle 117)

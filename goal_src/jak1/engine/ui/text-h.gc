@@ -691,7 +691,7 @@
   (scene-player                 #x10c1)
   (play-credits                 #x10c2)
   (scrapbook                    #x10c3)
-  ;; CUSTOM LEVEL TEXTS
+  ;; TFL note: CUSTOM LEVEL TEXTS
   (crystalc-middle    #x10c4)
   (crystalc-river     #x10c5)
   (crystalc-ship      #x10c6)

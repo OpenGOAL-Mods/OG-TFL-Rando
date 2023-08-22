@@ -11,7 +11,7 @@
   (new 'static 'level-load-info
     :index 1
     :name 'training
-    :customname "GEYSER ROCK"
+    :customname "GEYSER ROCK" ;; TFL note: custom type for the portal name
     :visname 'training-vis
     :nickname 'tra
     :packages '(training)
@@ -115,7 +115,7 @@
   (new 'static 'level-load-info
     :index 2
     :name 'village1
-    :customname "GREEN SAGE'S HUT"
+    :customname "GREEN SAGE'S HUT" ;; TFL note: custom type for the portal name
     :visname 'village1-vis
     :nickname 'vi1
     :packages '(village1)
@@ -573,7 +573,7 @@
   (new 'static 'level-load-info
     :index 8
     :name 'village2
-    :customname "BLUE SAGE'S HUT"
+    :customname "BLUE SAGE'S HUT" ;; TFL note: custom type for the portal name
     :visname 'village2-vis
     :nickname 'vi2
     :packages '(village2)
@@ -1065,7 +1065,7 @@
   (new 'static 'level-load-info
     :index 14
     :name 'village3
-    :customname "RED SAGE'S HUT"
+    :customname "RED SAGE'S HUT" ;; TFL note: custom type for the portal name
     :visname 'village3-vis
     :nickname 'vi3
     :packages '(village3)
@@ -1544,7 +1544,7 @@
   (new 'static 'level-load-info
     :index 20
     :name 'citadel
-    :customname "GOL AND MAIA'S CITADEL"
+    :customname "GOL AND MAIA'S CITADEL" ;; TFL note: custom type for the portal name
     :visname 'citadel-vis
     :nickname 'cit
     :packages '(citadel)
@@ -1979,7 +1979,7 @@
 
 ;;;;;;;;; CUSTOM LEVELS
 (define test-zone (new 'static 'level-load-info
-                           :index 30
+                           :index 30 ;; TFL note: changed id from 26 to get it out of the way
                            :name 'test-zone
                            :visname 'test-zone-vis ;; name + -vis
                            :nickname 'tsz          ;; nickname
@@ -2017,10 +2017,11 @@
                            )
         )
 
+;; TFL note: custom level-info stuff start here
 (define crystal-cave (new 'static 'level-load-info
                            :index 24
                            :name 'crystal-cave
-                           :customname "???"
+                           :customname "???" ;; TFL note: custom type for the portal name
                            :custom-orb-count 150
                            :custom-buzzer-count 7
                            :visname 'crystal-cave-vis ;; name + -vis

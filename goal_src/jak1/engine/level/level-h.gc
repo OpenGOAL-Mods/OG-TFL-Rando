@@ -120,7 +120,7 @@
    (prev-level        basic      :offset-assert 104) ;; unused
    (next-level        basic      :offset-assert 108) ;; unused
    (wait-for-load     symbol     :offset-assert 112)
-   (customname string )
+   (customname string )  ;; TFL note: Added these 3 types for custom name in portal, orb count and buzzer count in custom levels
    (custom-orb-count int)
    (custom-buzzer-count int)
    )

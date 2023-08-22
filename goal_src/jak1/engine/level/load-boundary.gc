@@ -915,15 +915,15 @@
       (if (logtest? (-> s5-0 flags) (load-boundary-flags ignore-normal))
        "ignore-normal "
        ""
-       )
+       );; TFL note: adding the custom flags to the boundary list
       (if (logtest? (-> s5-0 flags) (load-boundary-flags ignore-racing))
        "ignore-racing "
        ""
-       )
+       );; TFL note: adding the custom flags to the boundary list
       (if (logtest? (-> s5-0 flags) (load-boundary-flags ignore-flut))
        "ignore-flut "
        ""
-       )
+       );; TFL note: adding the custom flags to the boundary list
       )
      (format
       gp-0
@@ -2147,7 +2147,7 @@
     )
   )
 
-;; returns the result of the (not function
+;; TFL note: function to check if the player is on foot (not on zoomer or flutflut)
 (defun on-foot? ()
   (not (or 
         (logtest? (-> *target* control root-prim prim-core action) (collide-action racer)) ; need to change when enum change
@@ -2155,12 +2155,12 @@
   )
 )
 
-;;returns the result of logtest
+;; TFL note: function to check if the player is on flutflut
 (defun on-flut? ()
   (logtest? (-> *target* control root-prim prim-core action) (collide-action flut)) ; need to change when enum change
 )
 
-;;returns the result of logtest
+;; TFL note: function to check if the player is on the zoomer
 (defun on-racer? ()
   (logtest? (-> *target* control root-prim prim-core action) (collide-action racer)) ; need to change when enum change
 )
@@ -2196,7 +2196,7 @@
         )
       )
     )
-  (let ((ignore-flags 0)) ;; Default the ignore flags to 0
+  (let ((ignore-flags 0)) ;; TFL note: Code to check if the ignore flag conditions are met
     (if (and (logtest? (-> arg0 flags) (load-boundary-flags ignore-normal)) (on-foot?)) 
         (set! ignore-flags 1) ;; set the ignore flag to 1 if the flag is present and you're on foot
     )
