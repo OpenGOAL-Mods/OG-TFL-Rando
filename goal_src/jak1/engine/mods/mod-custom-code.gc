@@ -128,7 +128,7 @@
       )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Checking water planes
+;; TFL note: Checking water planes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun print-water-vol-planes ((water water-vol))

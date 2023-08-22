@@ -142,7 +142,7 @@
               (go-virtual active)
               )
           (if (and *cheat-mode* (cpad-pressed? 0 l3))
-              (set! (-> self max-slot) (- (-> *warp-info* length)1))
+              (set! (-> self max-slot) (- (-> *warp-info* length)1)) ;; TFL note: Changing the max slot of warp gate to use the lenght of the array (default: 4)
               )
           (let ((gp-0
                   (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))
@@ -200,7 +200,7 @@
 
 (define WarpLevelString "Placeholder for upcase method")
 
-;;Return #t if the first entries in *warp-info* are in the expected state
+;; TFL note: Return #t if the first entries in *warp-info* are in the expected state
 (defun vanilla-warp-info? ()
 (if (not (string= (-> *warp-info* 0) "training-warp"))
 (return #f)
@@ -220,6 +220,7 @@
 
 #t)
 
+;; TFL note: lot of changes to get custom names to work in warp gates
 (defun print-level-name ((arg0 int) (arg1 font-context) (arg2 int) (arg3 int))
   (let ((s5-0 (if arg3
                   arg2
@@ -483,7 +484,7 @@
   (set! (-> self level) (-> self entity extra level name))
   (set! (-> self min-slot) 0)
   (let ((v1-11 (-> self level)))   
-  ;; CHECK SELF LEVEL TO NOT DISPLAY IT IN THE MENU, ADD NEW LEVELS AND MAKE SURE OF THE ORDER :   
+  ;; TFL note: CHECK SELF LEVEL TO NOT DISPLAY IT IN THE MENU, ADD NEW LEVELS AND MAKE SURE OF THE ORDER :   
     (set! (-> self level-slot) (cond
                                  ((= v1-11 'training)
                                   0

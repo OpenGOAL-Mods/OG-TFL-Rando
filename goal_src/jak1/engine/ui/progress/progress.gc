@@ -679,8 +679,7 @@
   (none)
   )
 
-;; TAGMORT
-;; manually set up game-counts
+;; TFL note: manually set up game-counts
 (define *game-counts* (the game-count-info (malloc 'global 10000)))
 (set! (-> *game-counts* type) game-count-info)
 (set! (-> *game-counts* length) (length *level-load-list*))

@@ -490,7 +490,7 @@
    "flut_common/flutflut.gc"
    "flut_common/target-flut.gc"
 
-   "tfl_common/super-collectables.gc"
+   "tfl_common/super-collectables.gc" ;; TFL note: building super-collectables.gc
    )
 
 
@@ -1648,19 +1648,18 @@
 ;; the DGO file
 (custom-level-cgo "TZ3.DGO" "test-zone3/testzone3.gd")
 
+;; TFL note: TFL level build files:
+
 ;; Crystal cave level :
 (build-custom-level "crystal-cave")
-;; the DGO file
 (custom-level-cgo "CRC.DGO" "crystal-cave/crystalc.gd")
 
 ;; Crescent Top level :
 (build-custom-level "crescent-top")
-;; the DGO file
 (custom-level-cgo "CST.DGO" "crescent-top/crescent.gd")
 
 ;; Energy Bay level :
 (build-custom-level "energy-bay")
-;; the DGO file
 (custom-level-cgo "ENB.DGO" "energy-bay/energybay.gd")
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -2111,6 +2110,8 @@
  "mods/mod-common-functions.gc"
  "mods/mod-custom-code.gc"
 )
+
+;; TFL note: Custom part and obs file for the levels
 
 (goal-src-sequence
  "levels/crystalc/"

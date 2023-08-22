@@ -1092,6 +1092,8 @@
   :bwd (checkpt "finalboss-start" #f)
   )
 
+;; TFL note: Added custom load-boundaries for custom levels:
+
 ;; these are the load boundaries to load in and display our custom level and checkpoints
 ;; the "top" field is the max of the boundary's y position, the "bot" field is the min.
 ;; the "points" field defines two points with x and z coordinates, respectively.

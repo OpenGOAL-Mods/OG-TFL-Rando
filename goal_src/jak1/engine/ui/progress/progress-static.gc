@@ -173,10 +173,10 @@
   (cave 13)
   (lavatube 14)
   (citadel 15)
-  (crystal-cave 16)
+  (crystal-cave 16) ;; TFL note: added the custom level to the level-task-data-index
   (crescent-top 17)
   (energy-bay 18)
-  (max 19)
+  (max 19) ;; TFL note: This also change the max enum
   )
 
 ;; maps level-info indices to the appropriate offset in *level-task-data*
@@ -205,7 +205,7 @@
     (level-task-data-index citadel) ;; finalboss?
     (level-task-data-index misty) ;; demo?
     (level-task-data-index misty) ;; intro?
-    (level-task-data-index crystal-cave) ;; Crystal cave ;24
+    (level-task-data-index crystal-cave) ;; TFL note: Crystal cave ;24
     (level-task-data-index crescent-top) ;; Crescent top ;25
     (level-task-data-index energy-bay) ;; Energy bay ;26
     )
@@ -1382,7 +1382,7 @@
                         )
                    )
               )
-          ;; the tasks for our custom level
+          ;; TFL note: the tasks for our custom level
           ;; since this is the 16th (starting from zero) entry in this array,
           ;; we have to add 16 as an entry to the *level-task-data-remap* array
           ;; - level-name-id is the text id of the level name string
@@ -1619,7 +1619,7 @@
          )
   )
 
-;; (define *game-counts* (the-as game-count-info #f))
+;; (define *game-counts* (the-as game-count-info #f)) ;; TFL note: Commented out as that's now set in progress.gc
 
 
 
