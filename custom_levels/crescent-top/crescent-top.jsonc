@@ -45,7 +45,8 @@
       "lump": {
         "name":"crescent-fuel-cell-02", //crescent-lava underground cell
         "eco-info": ["int32", 6, 124],
-        "movie-pos":["vector4m", [25.31, 180.89, 360.90, -120.0]]
+        "movie-pos":["vector4m", [25.31, 180.89, 360.90, -120.0]],
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -110,7 +111,8 @@
         "name":"crescent-crate-buzzer-04",
         "crate-type":"'iron",
         "eco-info": ["int32", 8, 196735], // to get SF task = game-task + (2^16 * buzzer-count)
-        "movie-pos": ["meters", 53.13, 199.15, 401.06]
+        "movie-pos": ["meters", 53.13, 199.15, 401.06],
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -404,7 +406,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [33.88, 186.74, 373.44, 10], // bounding sphere
       "lump": {
-        "name":"crescent-money-025"
+        "name":"crescent-money-025",
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -414,7 +417,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [32.98, 186.74, 369.75, 10], // bounding sphere
       "lump": {
-        "name":"crescent-money-026"
+        "name":"crescent-money-026",
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -424,7 +428,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [31.82, 193.98, 378.74, 10], // bounding sphere
       "lump": {
-        "name":"crescent-money-027"
+        "name":"crescent-money-027",
+        "light-index": ["int32", 1]
       }
     },
     {

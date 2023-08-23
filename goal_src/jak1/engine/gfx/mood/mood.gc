@@ -2982,7 +2982,7 @@
     )
   ;; CUSTOM LIGHT-INDEX FOR DIFFERENT ACTOR LIGHTING (see update-mood-jungleb) :
   
-  ;; TFL TO DO: undeground lighting "light-index": ["int32", 1]
+  ;; undeground lighting "light-index": ["int32", 1]
   (let ((s5-1 (-> arg0 light-group 1)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
     (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
     (let ((v1-34 (-> s5-1 dir2)))                                                   ;; KEY LIGHT DIRECTION
@@ -2991,25 +2991,31 @@
       (set! (-> v1-34 direction z) -0.3)
       (set! (-> v1-34 direction w) 1.0)
       )
-    (set-vector! (-> s5-1 dir2 color) 1.3 1.0 1.1 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (set-vector! (-> s5-1 dir2 color) -0.4 -0.6 -0.8 1.0)                              ;; COLOR OF THE KEY LIGHT
     (set! (-> s5-1 dir2 levels x) 1.0) 
-    (set-vector! (-> s5-1 ambi color) 0.3 0.4 0.3 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
+    (set-vector! (-> s5-1 ambi color) 0.3 0.1 0.0 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
     )
-
+  ;; TFL TO DO: near lava lighting index?
+  
   ;; CHECK JAK POSITION FOR INDEX-LIGHT
   (let ((light-zone (new 'stack-no-clear 'vector))
         (jak-pos (target-joint-pos))
         )
     0.0
 
-    ;; TFL TO DO: Underground position
-    (set-vector! light-zone (meters -170.91) (meters 128.38) (meters -47.12) 1.0)  ;; Position of the center of the sphere
+    ;; Underground position
+    (set-vector! light-zone (meters 58.23) (meters 106.43) (meters 406.68) 1.0)  ;; Position of the center of the sphere
     (let ((jak-distance (vector-vector-distance light-zone jak-pos))               ;; Calculate the distance between jak and center
-      (max-distance (meters 56.0))                                                 ;; Diameter of the "sphere"
-      (fade-distance (meters 30.0))                                                 ;; Fade distance on the edges
-      (index-strength 0.75)                                                        ;; How strong the light affect Jak
+      (max-distance (meters 135.0))                                                 ;; Diameter of the "sphere"
+      (fade-distance (meters 15.0))                                                 ;; Fade distance on the edges
+      (index-strength 0.8)                                                        ;; How strong the light affect Jak
+      (jak-in-y-range 0)                                                        ;; Used if the zone is within a closed cylinder
       )
-      (when (< jak-distance max-distance)                                          ;; When Jak is in the sphere
+      (if (and (<(-> jak-pos y) (meters 214.0))                                 ;; Check if Jak is within the height of the cylinder
+          (>(-> jak-pos y) (meters 150.0)))
+          (set! jak-in-y-range 1)
+          )
+      (when (and (< jak-distance max-distance) (= jak-in-y-range 1))                ;; When Jak is in the sphere
         (when (> jak-distance (- max-distance fade-distance))                      ;; When Jak is in the fade distance
           (set! index-strength 
             (- index-strength (* (- jak-distance (- max-distance fade-distance)) (/ index-strength fade-distance)))  ;; Math to fade the index-strength

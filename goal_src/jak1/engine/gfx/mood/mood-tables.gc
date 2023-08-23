@@ -2975,8 +2975,8 @@
 (define *crescent-top-mood-fog-table*
   (new 'static 'mood-fog-table :data (new 'static 'inline-array mood-fog 8
                                        (new 'static 'mood-fog
-                                         :fog-color (new 'static 'vector :x 160.0 :y 220.0 :z 180.0 :w 128.0)
-                                         :fog-dists (new 'static 'vector :x (meters 128.0) :y (meters 360.0) :z 255.0 :w 0.1)
+                                         :fog-color (new 'static 'vector :x 150.0 :y 200.0 :z 200.0 :w 128.0)
+                                         :fog-dists (new 'static 'vector :x (meters 150.0) :y (meters 1000.0) :z 255.0 :w 25.5)
                                          :erase-color (new 'static 'vector :w 128.0)
                                          )
                                        (new 'static 'mood-fog)
@@ -2994,9 +2994,9 @@
   (new 'static 'mood-lights-table :data (new 'static 'inline-array mood-lights 8
                                           (new 'static 'mood-lights
                                             :direction (new 'static 'vector :x -0.8 :y 0.9 :z -0.3)
-                                            :lgt-color (new 'static 'vector :x 1.25 :y 1.0 :z 1.1 :w 1.0) 
+                                            :lgt-color (new 'static 'vector :x 1.30 :y 1.1 :z 1.1 :w 1.0) 
                                             :prt-color (new 'static 'vector :w 1.0)
-                                            :amb-color (new 'static 'vector :x 0.15 :y 0.25 :z 0.15 :w 1.0) 
+                                            :amb-color (new 'static 'vector :x 0.30 :y 0.35 :z 0.30 :w 1.0) 
                                             :shadow (new 'static 'vector :x 0.8 :y -0.9 :z -0.3)
                                             )
                                           (new 'static 'mood-lights)
