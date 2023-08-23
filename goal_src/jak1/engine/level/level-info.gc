@@ -2145,8 +2145,8 @@
                            :sound-banks '(village1) ;; to get ambient sounds
                            :music-bank 'village1
                            :ambient-sounds '()
-                           :mood '*rolling-mood*
-                           :mood-func 'update-mood-rolling
+                           :mood '*crescent-top-mood*
+                           :mood-func 'update-mood-crescent-top
                            :ocean '*ocean-map-village1*
                            :sky #t
                            :continues '(

@@ -2970,3 +2970,56 @@
   0
   (none)
   )
+
+(defun update-mood-crescent-top ((arg0 mood-context) (arg1 float) (arg2 int))
+  (when (not (paused?))
+    (clear-mood-times arg0)
+    (set! (-> arg0 times 0 w) 1.0)
+    (update-mood-quick arg0 0 0 0 arg2)
+    (update-mood-itimes arg0)
+    ;;(update-mood-sky-texture arg0 arg1) ;; Break metalic effect for now because no textures
+    ;;(update-mood-palette arg0 arg1 arg2) ;; This update the actor lighting with time of day
+    )
+  ;; CUSTOM LIGHT-INDEX FOR DIFFERENT ACTOR LIGHTING (see update-mood-jungleb) :
+  
+  ;; TFL TO DO: undeground lighting "light-index": ["int32", 1]
+  (let ((s5-1 (-> arg0 light-group 1)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+    (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
+    (let ((v1-34 (-> s5-1 dir2)))                                                   ;; KEY LIGHT DIRECTION
+      (set! (-> v1-34 direction x) -0.8)
+      (set! (-> v1-34 direction y) 0.9)
+      (set! (-> v1-34 direction z) -0.3)
+      (set! (-> v1-34 direction w) 1.0)
+      )
+    (set-vector! (-> s5-1 dir2 color) 1.3 1.0 1.1 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (set! (-> s5-1 dir2 levels x) 1.0) 
+    (set-vector! (-> s5-1 ambi color) 0.3 0.4 0.3 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
+    )
+
+  ;; CHECK JAK POSITION FOR INDEX-LIGHT
+  (let ((light-zone (new 'stack-no-clear 'vector))
+        (jak-pos (target-joint-pos))
+        )
+    0.0
+
+    ;; TFL TO DO: Underground position
+    (set-vector! light-zone (meters -170.91) (meters 128.38) (meters -47.12) 1.0)  ;; Position of the center of the sphere
+    (let ((jak-distance (vector-vector-distance light-zone jak-pos))               ;; Calculate the distance between jak and center
+      (max-distance (meters 56.0))                                                 ;; Diameter of the "sphere"
+      (fade-distance (meters 30.0))                                                 ;; Fade distance on the edges
+      (index-strength 0.75)                                                        ;; How strong the light affect Jak
+      )
+      (when (< jak-distance max-distance)                                          ;; When Jak is in the sphere
+        (when (> jak-distance (- max-distance fade-distance))                      ;; When Jak is in the fade distance
+          (set! index-strength 
+            (- index-strength (* (- jak-distance (- max-distance fade-distance)) (/ index-strength fade-distance)))  ;; Math to fade the index-strength
+            )
+          )
+        (set-target-light-index 1)                                               ;; Index to change Jak's lighting
+        (set! (-> *time-of-day-context* target-interp) index-strength)           ;; Blend the index light onto jak
+        )
+      )
+    )
+  0
+  (none)
+  )
