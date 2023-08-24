@@ -3044,7 +3044,6 @@
       (lightgroup2 (-> arg0 light-group 2))
       (lightgroup3 (-> arg0 light-group 3))
       )
-      ;; (format 0 "jak distance: ~M~% " jak-distance)
       (if (and (<(-> jak-pos y) (meters 214.0))                                 ;; Check if Jak is within the height of the cylinder
           (>(-> jak-pos y) (meters 150.0)))
           (set! jak-in-y-range 1)
@@ -3064,22 +3063,17 @@
           (set! jak-in-lightzone 0)
           )
         )
-      ;(format 0 "jak-in-lightzone: ~D~% " jak-in-lightzone)
       (if (= jak-in-lightzone 1)
         (let ((jak-distance-in1 (vector-vector-distance light-zone-in1 jak-pos))               ;; Calculate the distance between jak and center
           (max-distance-in1 (meters 95.0))                                                 ;; Diameter of the "sphere"
           (fade-distance-in1 (meters 15.0))                                                 ;; Fade distance on the edges
-          (index-strength-in1 0.8)                                                        ;; How strong the light affect Jak
           )
-          ;(format 0 "before near check")
-          ;(format 0 "jak distance: ~M~% " jak-distance-in1)
-          (when (> jak-distance-in1 max-distance-in1)                ;; When Jak is out of the sphere
+          (when (> jak-distance-in1 max-distance-in1)                ;; When Jak is out of the sphere for the near lava lighting
             (cond 
               ((< jak-distance-in1 (+ max-distance-in1 fade-distance-in1))                      ;; When Jak is in the fade distance
-                (let ((fade-strenght-in1 (/ (- jak-distance-in1 max-distance-in1) fade-distance-in1))
+                (let ((fade-strenght-in1 (/ (- jak-distance-in1 max-distance-in1) fade-distance-in1)) ;; Set the fade strenght from 0.0 to 1.0 depending on whee in the fade-distance you are
                   )
-                  ;(format 0 "fade-strenght-in1: ~F~% " fade-strenght-in1)
-                  (set-vector! (-> lightgroup3 dir2 color)
+                  (set-vector! (-> lightgroup3 dir2 color) ;; set lg3 to a value inbetween lg1 and lg2 depending on the fade-strenght
                     (+ (-> lightgroup1 dir2 color x) (* (- (-> lightgroup2 dir2 color x) (-> lightgroup1 dir2 color x)) fade-strenght-in1))
                     (+ (-> lightgroup1 dir2 color y) (* (- (-> lightgroup2 dir2 color y) (-> lightgroup1 dir2 color y)) fade-strenght-in1))
                     (+ (-> lightgroup1 dir2 color z) (* (- (-> lightgroup2 dir2 color z) (-> lightgroup1 dir2 color z)) fade-strenght-in1))
@@ -3091,11 +3085,11 @@
                     (+ (-> lightgroup1 ambi color z) (* (- (-> lightgroup2 ambi color z) (-> lightgroup1 ambi color z)) fade-strenght-in1))
                     (+ (-> lightgroup1 ambi color w) (* (- (-> lightgroup2 ambi color w) (-> lightgroup1 ambi color w)) fade-strenght-in1))
                     )
-                  (set-target-light-index 3)
+                  (set-target-light-index 3) ;; if you're in the fade-distance, set it the inbetween index
                   )
                 )
               (else
-                (set-target-light-index 2)
+                (set-target-light-index 2) ;; if you're past the fade-distance, set it directly to the near lava index
                 )
               )
             (set! (-> *time-of-day-context* target-interp) index-strength)           ;; Blend the index light onto jak
