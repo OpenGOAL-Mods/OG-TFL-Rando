@@ -8,11 +8,11 @@
   (
   "static-screen.o"
   "crescent-top.go"
-  ;; "plat-ag.go"
-  ;; "orb-cache-top-ag.go"
-  ;; "race-ring-ag.go"
-  ;; "rolling-race-ring.o"
-  ;; "eichar-pole+0-ag.go"
+  "plat-ag.go"
+  "orb-cache-top-ag.go"
+  "race-ring-ag.go"
+  "rolling-race-ring.o"
+  "eichar-pole+0-ag.go"
   ;; "target-racer-h.o" ; zoomer stuff
   ;; "racer-part.o" ; zoomer stuff
   ;; "racer.o" ; zoomer stuff

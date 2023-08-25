@@ -45,7 +45,8 @@
       "lump": {
         "name":"crescent-fuel-cell-02", //crescent-lava underground cell
         "eco-info": ["int32", 6, 124],
-        "movie-pos":["vector4m", [25.31, 180.89, 360.90, -120.0]]
+        "movie-pos":["vector4m", [25.31, 180.89, 360.90, -120.0]],
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -110,7 +111,8 @@
         "name":"crescent-crate-buzzer-04",
         "crate-type":"'iron",
         "eco-info": ["int32", 8, 196735], // to get SF task = game-task + (2^16 * buzzer-count)
-        "movie-pos": ["meters", 53.13, 199.15, 401.06]
+        "movie-pos": ["meters", 53.13, 199.15, 401.06],
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -404,7 +406,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [33.88, 186.74, 373.44, 10], // bounding sphere
       "lump": {
-        "name":"crescent-money-025"
+        "name":"crescent-money-025",
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -414,7 +417,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [32.98, 186.74, 369.75, 10], // bounding sphere
       "lump": {
-        "name":"crescent-money-026"
+        "name":"crescent-money-026",
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -424,7 +428,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [31.82, 193.98, 378.74, 10], // bounding sphere
       "lump": {
-        "name":"crescent-money-027"
+        "name":"crescent-money-027",
+        "light-index": ["int32", 1]
       }
     },
     {
@@ -1656,7 +1661,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [65.93, 177.07, 461.29, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-01"
+        "name":"crescent-plat-01",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1666,7 +1672,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [53.88, 177.07, 470.04, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-02"
+        "name":"crescent-plat-02",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1676,7 +1683,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [41.69, 177.07, 461.11, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-03"
+        "name":"crescent-plat-03",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1686,7 +1694,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [6.36, 178.07, 470.62, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-04"
+        "name":"crescent-plat-04",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1696,7 +1705,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-5.70, 178.07, 456.87, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-05"
+        "name":"crescent-plat-05",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1706,7 +1716,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-5.70, 178.07, 439.52, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-06"
+        "name":"crescent-plat-06",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1716,7 +1727,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [7.47, 178.07, 400.26, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-07"
+        "name":"crescent-plat-07",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1726,7 +1738,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-5.52, 178.07, 387.26, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-08"
+        "name":"crescent-plat-08",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1736,7 +1749,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [7.47, 178.07, 374.26, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-09"
+        "name":"crescent-plat-09",
+        "light-index": ["int32", 2]
       }
     },
     {
@@ -1746,7 +1760,8 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [20.47, 178.07, 387.26, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-10"
+        "name":"crescent-plat-10",
+        "light-index": ["int32", 2]
       }
     },
     {
