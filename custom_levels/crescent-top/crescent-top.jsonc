@@ -1655,36 +1655,51 @@
       }
     },
     {
-      "trans": [65.93, 178.07, 461.29], // translation
+      "trans": [65.93, 180.07, 461.29], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [65.93, 177.07, 461.29, 10], // bounding sphere
+      "bsphere": [65.93, 180.07, 461.29, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-01",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [65.93, 180.07, 461.29, 1.0],
+          [65.93, 173.57, 461.29, 1.0]
+          ],
+        "sync": ["float", 5.0, 0.0]
       }
     },
     {
-      "trans": [53.88, 178.07, 470.04], // translation
+      "trans": [53.88, 173.57, 470.04], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [53.88, 177.07, 470.04, 10], // bounding sphere
+      "bsphere": [53.88, 173.57, 470.04, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-02",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [53.88, 173.57, 470.04, 1.0],
+          [53.88, 180.07, 470.04, 1.0]
+          ],
+        "sync": ["float", 5.0, 0.0]
       }
     },
     {
-      "trans": [41.69, 178.07, 461.11], // translation
+      "trans": [41.69, 180.07, 461.11], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [41.69, 177.07, 461.11, 10], // bounding sphere
+      "bsphere": [41.69, 180.07, 461.11, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-03",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [41.69, 180.07, 461.11, 1.0],
+          [41.69, 173.57, 461.11, 1.0]
+          ],
+        "sync": ["float", 5.0, 0.0]
       }
     },
     {
@@ -1695,29 +1710,74 @@
       "bsphere": [6.36, 178.07, 470.62, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-04",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [6.36, 178.07, 470.62, 1.0],
+          [13.40, 183.07, 460.61, 1.0],
+          [17.70, 178.07, 453.66, 1.0],
+          [13.40, 173.07, 460.61, 1.0],
+          [6.36, 178.07, 470.62, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 9.0, 0.0],
+        "options":["int32", 8]
       }
     },
     {
-      "trans": [-5.70, 178.07, 456.87], // translation
+      "trans": [-1.78, 178.07, 455.76], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-5.70, 178.07, 456.87, 10], // bounding sphere
+      "bsphere": [-1.78, 178.07, 455.76, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-05",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [-1.78, 178.07, 455.76, 1.0],
+          [4.94, 183.07, 451.38, 1.0],
+          [11.68, 178.07, 447.01, 1.0],
+          [4.94, 173.07, 451.38, 1.0],
+          [-1.78, 178.07, 455.76, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 9.0, 0.75],
+        "options":["int32", 8]
       }
     },
     {
-      "trans": [-5.70, 178.07, 439.52], // translation
+      "trans": [-7.06, 178.07, 441.15], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-5.70, 178.07, 439.52, 10], // bounding sphere
+      "bsphere": [-7.06, 178.07, 441.15, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-06",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [-7.06, 178.07, 441.15, 1.0],
+          [0.07, 183.07, 439.64, 1.0],
+          [7.22, 178.07, 438.14, 1.0],
+          [0.07, 173.07, 439.64, 1.0],
+          [-7.06, 178.07, 441.15, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 9.0, 0.50],
+        "options":["int32", 8]
       }
     },
     {
@@ -1728,7 +1788,26 @@
       "bsphere": [7.47, 178.07, 400.26, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-07",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [7.47, 178.07, 400.26, 1.0],
+          [-1.71, 183.07, 396.45, 1.0],
+          [-5.52, 178.07, 387.26, 1.0],
+          [-1.71, 173.07, 378.07, 1.0],
+          [7.47, 178.07, 374.26, 1.0],
+          [16.66, 183.07, 378.07, 1.0],
+          [20.47, 178.07, 387.26, 1.0],
+          [16.66, 173.07, 396.45, 1.0],
+          [7.47, 178.07, 400.26, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 20.0, 0.0],
+        "options":["int32", 8]
       }
     },
     {
@@ -1739,7 +1818,26 @@
       "bsphere": [-5.52, 178.07, 387.26, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-08",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [7.47, 178.07, 400.26, 1.0],
+          [-1.71, 183.07, 396.45, 1.0],
+          [-5.52, 178.07, 387.26, 1.0],
+          [-1.71, 173.07, 378.07, 1.0],
+          [7.47, 178.07, 374.26, 1.0],
+          [16.66, 183.07, 378.07, 1.0],
+          [20.47, 178.07, 387.26, 1.0],
+          [16.66, 173.07, 396.45, 1.0],
+          [7.47, 178.07, 400.26, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 20.0, 0.25],
+        "options":["int32", 8]
       }
     },
     {
@@ -1750,7 +1848,26 @@
       "bsphere": [7.47, 178.07, 374.26, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-09",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [7.47, 178.07, 400.26, 1.0],
+          [-1.71, 183.07, 396.45, 1.0],
+          [-5.52, 178.07, 387.26, 1.0],
+          [-1.71, 173.07, 378.07, 1.0],
+          [7.47, 178.07, 374.26, 1.0],
+          [16.66, 183.07, 378.07, 1.0],
+          [20.47, 178.07, 387.26, 1.0],
+          [16.66, 173.07, 396.45, 1.0],
+          [7.47, 178.07, 400.26, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 20.0, 0.50],
+        "options":["int32", 8]
       }
     },
     {
@@ -1761,27 +1878,41 @@
       "bsphere": [20.47, 178.07, 387.26, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-10",
-        "light-index": ["int32", 2]
+        "light-index": ["int32", 2],
+        "path":["vector4m",
+          [7.47, 178.07, 400.26, 1.0],
+          [-1.71, 183.07, 396.45, 1.0],
+          [-5.52, 178.07, 387.26, 1.0],
+          [-1.71, 173.07, 378.07, 1.0],
+          [7.47, 178.07, 374.26, 1.0],
+          [16.66, 183.07, 378.07, 1.0],
+          [20.47, 178.07, 387.26, 1.0],
+          [16.66, 173.07, 396.45, 1.0],
+          [7.47, 178.07, 400.26, 1.0]
+          ],
+        // "path-k":["float",
+        //   0.0, 0.0,
+        //   0.0, 0.0,
+        //   0.1, 0.3,
+        //   0.1, 0.3
+        // ],
+        "sync": ["float", 20.0, 0.75],
+        "options":["int32", 8]
       }
     },
     {
-      "trans": [-222.59, 235.03, 685.42], // translation
+      "trans": [-217.83, 231.88, 689.29], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-222.59, 235.03, 685.42, 10], // bounding sphere
+      "bsphere": [-217.83, 231.88, 689.29, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-11"
-      }
-    },
-    {
-      "trans": [-229.43, 241.47, 673.05], // translation
-      "etype": "plat",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-229.43, 241.47, 673.05, 10], // bounding sphere
-      "lump": {
-        "name":"crescent-plat-11bis"
+        "name":"crescent-plat-11",
+        "path":["vector4m",
+          [-217.83, 231.88, 689.29, 1.0],
+          [-234.07, 241.47, 670.68, 1.0]
+          ],
+        "sync": ["float", 6.0, 0.0]
       }
     },
     {
@@ -1791,27 +1922,43 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-235.80, 265.96, 627.54, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-12"
+        "name":"crescent-plat-12",
+        "path":["vector4m",
+          [-235.80, 265.96, 627.54, 1.0],
+          [-229.14, 263.69, 622.09, 1.0],
+          [-219.63, 261.69, 620.98, 1.0]
+          ],
+        "sync": ["float", 6.0, 0.0]
       }
     },
     {
-      "trans": [-218.06, 268.62, 620.02], // translation
+      "trans": [-209.87, 261.34, 622.53], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-218.06, 268.62, 620.02, 10], // bounding sphere
+      "bsphere": [-209.87, 261.34, 622.53, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-13"
+        "name":"crescent-plat-13",
+        "path":["vector4m",
+          [-209.87, 261.34, 622.53, 1.0],
+          [-209.87, 271.43, 622.53, 1.0]
+          ],
+        "sync": ["float", 6.0, 0.5]
       }
     },
     {
-      "trans": [-174.22, 261.29, 644.22], // translation
+      "trans": [-180.14, 2580.67, 642.84], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-174.22, 261.29, 644.22, 10], // bounding sphere
+      "bsphere": [-180.14, 258.67, 642.84, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-14"
+        "name":"crescent-plat-14",
+        "path":["vector4m",
+          [-180.14, 258.67, 642.84, 1.0],
+          [-165.72, 272.38, 646.72, 1.0]
+          ],
+        "sync": ["float", 6.0, 0.0]
       }
     },
     {
@@ -1825,13 +1972,18 @@
       }
     },
     {
-      "trans": [-2.31, 243.54, 378.09], // translation
+      "trans": [0.35, 243.54, 374.64], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-2.31, 243.54, 378.09, 10], // bounding sphere
+      "bsphere": [0.35, 243.54, 374.64, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-16"
+        "name":"crescent-plat-16",
+        "path":["vector4m",
+          [0.35, 243.54, 374.64, 1.0],
+          [-6.37, 243.54, 380.84, 1.0]
+          ],
+        "sync": ["float", 4.0, 0.0]
       }
     },
     {
@@ -1841,37 +1993,42 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [16.19, 243.54, 399.58, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-17"
+        "name":"crescent-plat-17",
+        "path":["vector4m",
+          [16.19, 243.54, 399.58, 1.0],
+          [23.30, 243.54, 408.11, 1.0]
+          ],
+        "sync": ["float", 4.0, 0.0]
       }
     },
     {
-      "trans": [23.30, 243.54, 408.11], // translation
+      "trans": [42.73, 244.21, 422.15], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [23.30, 243.54, 408.11, 10], // bounding sphere
+      "bsphere": [42.73, 244.21, 422.15, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-17bis"
+        "name":"crescent-plat-18",
+        "path":["vector4m",
+          [42.73, 244.21, 422.15, 1.0],
+          [36.41, 244.21, 428.90, 1.0]
+          ],
+        "sync": ["float", 4.0, 0.0]
       }
     },
     {
-      "trans": [39.50, 244.21, 425.52], // translation
+      "trans": [49.77, 244.21, 428.45], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [39.50, 244.21, 425.52, 10], // bounding sphere
+      "bsphere": [49.77, 244.21, 428.45, 10], // bounding sphere
       "lump": {
-        "name":"crescent-plat-18"
-      }
-    },
-    {
-      "trans": [46.54, 244.21, 431.83], // translation
-      "etype": "plat",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [46.54, 244.21, 431.83, 10], // bounding sphere
-      "lump": {
-        "name":"crescent-plat-19"
+        "name":"crescent-plat-19",
+        "path":["vector4m",
+          [49.77, 244.21, 428.45, 1.0],
+          [43.46, 244.21, 435.21, 1.0]
+          ],
+        "sync": ["float", 4.0, 0.5]
       }
     },
     {
