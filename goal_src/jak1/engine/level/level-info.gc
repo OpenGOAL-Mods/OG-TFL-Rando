@@ -2189,8 +2189,8 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'crystal-cave
-                                             :disp1 'display
+                                             :lev1 'maincave
+                                             :disp1 '#f
                                              )
                                              (new 'static 'continue-point
                                              :name "crescent-top-observatory"
