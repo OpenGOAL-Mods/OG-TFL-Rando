@@ -2811,7 +2811,57 @@
       "lump": {
         "name":"crystalc-warpmiddle-01"
       }
-    }/*,
+    },
+    // SUPER ECO CRYSTALS FOR TESTING
+    {
+      "trans": [-126.3, 95.0, -3.5], // translation
+      "etype": "super-eco-crystal",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-126.3, 95.0, -3.5, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-eco-crystal-01",
+        "eco-type": "'yellow",
+        "respawn-timer": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-122.3, 95.0, -3.5], // translation
+      "etype": "super-eco-crystal",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-122.3, 95.0, -3.5, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-eco-crystal-02",
+        "eco-type": "'red",
+        "respawn-timer": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-118.3, 95.0, -3.5], // translation
+      "etype": "super-eco-crystal",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-118.3, 95.0, -3.5, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-eco-crystal-03",
+        "eco-type": "'blue",
+        "respawn-timer": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-114.3, 95.0, -3.5], // translation
+      "etype": "super-eco-crystal",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-114.3, 95.0, -3.5, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-eco-crystal-04",
+        "eco-type": "'green",
+        "respawn-timer": ["int32", 2]
+      }
+    }
+    /*,
 
     ////////////////////////////
     // TEST ACTOR :
