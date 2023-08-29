@@ -2006,9 +2006,10 @@
                 :frame-num 0.0
                 )
     (until (ja-done? 0)
-      (when (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
-                 (>= (-> self fact-info-target eco-level) 1.0)
-                 )
+        ;; TFL note: added super eco case
+        (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+                       (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
+                   (>= (-> self fact-info-target eco-level) 1.0))
         (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 74)
         (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 153 (seconds 0.1))
         (level-hint-spawn
@@ -2101,12 +2102,21 @@
       )
     )
   :enter (behavior ()
-    (if (or (and (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
+    ;; TFL note: added super-eco-yellow case
+    (if (and (!= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow))
+             (or (and (= (-> self fact-info-target eco-type) (pickup-type eco-yellow)) (>= (-> self fact-info-target eco-level) 1.0))
+                 (< (- (-> *display* base-frame-counter) (-> self control unknown-dword82)) (seconds 1.5))
+               )
+          )
+        (go target-yellow-blast)
+        )
+    ;; TFL note: added super-eco-yellow case
+    (if (or (and (= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow))
                  (>= (-> self fact-info-target eco-level) 1.0)
                  )
-            (< (- (-> *display* base-frame-counter) (-> self control unknown-dword82)) (seconds 1.5))
+            ;; (< (- (current-time) (-> self control unknown-dword82)) (seconds 0.45))
             )
-        (go target-yellow-blast)
+        (go target-super-yellow-blast)
         )
     (set! (-> self state-time) (-> *display* base-frame-counter))
     (set! (-> self control unknown-uint20) (the-as uint 0))
@@ -2202,9 +2212,10 @@
             (-> self control transv)
             )
           )
-      (when (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
-                 (>= (-> self fact-info-target eco-level) 1.0)
-                 )
+        ;; TFL note: added super eco case
+        (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+                       (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
+                   (>= (-> self fact-info-target eco-level) 1.0))
         (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 23)
         (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 153 (seconds 0.1))
         (level-hint-spawn
@@ -2429,7 +2440,9 @@
       (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       )
-    (when (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
+    ;; TFL note: added super eco case
+    (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+                   (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                (>= (-> self fact-info-target eco-level) 1.0)
                )
       (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 70)
@@ -2593,7 +2606,9 @@
         (go target-attack-air 'uppercut)
         )
     (mod-var-jump #t #t (cpad-hold? (-> self control unknown-cpad-info00 number) x) (-> self control transv))
-    (when (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
+    ;; TFL note: added super eco case
+    (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+                   (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                (>= (-> self fact-info-target eco-level) 1.0)
                )
       (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 23)
@@ -2674,7 +2689,9 @@
       )
     )
   :enter (behavior ((arg0 float) (arg1 float) (arg2 float))
-    (if (and (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
+    ;; TFL note: added super-eco-yellow case
+    (if (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
+                 (= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow)))
              (>= (-> self fact-info-target eco-level) 1.0)
              )
         (go target-yellow-jump-blast)
@@ -2736,9 +2753,11 @@
         )
       (when gp-1
         (logior! (-> self control status) (cshape-moving-flags onsurf))
-        (when (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
-                   (>= (-> self fact-info-target eco-level) 1.0)
-                   )
+        ;; TFL note: added super eco case
+        (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+                       (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
+                  (>= (-> self fact-info-target eco-level) 1.0)
+                  )
           (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 255 (seconds 0.5))
           (effect-control-method-10 (-> self skel effect) 'group-red-eco-strike-ground (ja-frame-num 0) 0)
           (let ((s5-1 (process-spawn touch-tracker :init touch-tracker-init (-> self control trans) 4096.0 30 :to self)))
@@ -2763,9 +2782,10 @@
         (go target-flop-hit-ground gp-1)
         )
       )
-    (when (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
-               (>= (-> self fact-info-target eco-level) 1.0)
-               )
+      ;; TFL note: added super eco case
+      (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+                     (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
+                 (>= (-> self fact-info-target eco-level) 1.0))
       (effect-control-method-10
         (-> self skel effect)
         'group-red-eco-spinkick
@@ -2925,7 +2945,9 @@
           (go target-attack-air 'flop)
           )
       )
-    (when (and (and (= (-> self fact-info-target eco-type) (pickup-type eco-red))
+    ;; TFL note: added super eco case
+    (when (and (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-red))
+                        (= (-> self fact-info-target eco-type) (pickup-type super-eco-red)))
                     (>= (-> self fact-info-target eco-level) 1.0)
                     )
                (< (- (-> *display* base-frame-counter) (-> self state-time)) (seconds 0.25))

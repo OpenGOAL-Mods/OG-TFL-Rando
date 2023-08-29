@@ -688,7 +688,9 @@
   :event crate-standard-event-handler
   :trans (behavior ()
     (cond
-      ((not (send-event *target* 'query 'powerup (pickup-type eco-blue)))
+      ;; TFL note: added case for super-eco-blue
+      ((not (or (send-event *target* 'query 'powerup (pickup-type eco-blue))
+                (send-event *target* 'query 'powerup (pickup-type super-eco-blue))))
        (logior! (-> self mask) (process-mask sleep-code))
        (if (not (!= (-> self smush amp) 0.0))
            (go-virtual wait)
@@ -721,7 +723,11 @@
                      (a1-3 (-> (the-as collide-shape v1-6) root-prim prim-core))
                      (f30-0 (vector-vector-distance (the-as vector gp-2) (the-as vector a1-3)))
                      )
-                (when (and (< f30-0 (-> *FACT-bank* suck-suck-dist)) (!= (-> self defense) 'steel))
+                ;; TFL note: increased radius for super eco
+                (when (and (< f30-0 (if (send-event *target* 'query 'powerup (pickup-type super-eco-blue))
+                                      (* 1.5 (-> *FACT-bank* suck-suck-dist))
+                                      (-> *FACT-bank* suck-suck-dist)))
+                            (!= (-> self defense) 'steel))
                   (logior! (-> self fact options) (fact-options can-collect))
                   (go-virtual die #f 0)
                   )
@@ -1006,7 +1012,8 @@
   )
 
 (defmethod params-init crate ((obj crate) (arg0 entity))
-  (stack-size-set! (-> obj main-thread) 128)
+  ;; TFL note: increased stack from 128
+  (stack-size-set! (-> obj main-thread) 256)
   (logior! (-> obj mask) (process-mask crate))
   (let ((s4-0 (new 'process 'collide-shape-moving obj (collide-list-enum usually-hit-by-player))))
     (set! (-> s4-0 dynam) (copy *standard-dynamics* 'process))

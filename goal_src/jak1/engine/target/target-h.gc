@@ -155,6 +155,7 @@
     target-wheel
     (target-wheel-flip float float)
     target-yellow-blast
+    target-super-yellow-blast ;; TFL note: added state
     target-yellow-jump-blast
     )
   )

@@ -344,13 +344,18 @@
                 )
             (let ((f0-0 (vector-vector-distance (the-as vector s2-0) (the-as vector gp-2))))
               (cond
-                ((and arg3 (< f0-0 8192.0))
+                ;; TFL note: increased radius for super eco
+                ((and arg3 (< f0-0 (if (send-event *target* 'query 'powerup (pickup-type super-eco-blue)) (meters 8) (meters 2))))
                  (return #t)
                  )
                 ((begin
                    (set! arg0
                          (and (or (not arg2)
-                                  (or (< f0-0 (-> *FACT-bank* suck-suck-dist)) (logtest? (-> self flags) (collectable-flags suck)))
+                                  ;; TFL note: increased radius for super eco
+                                  (or (< f0-0 (if (send-event *target* 'query 'powerup (pickup-type super-eco-blue))
+                                                (* 2.0 (-> *FACT-bank* suck-suck-dist))
+                                                (-> *FACT-bank* suck-suck-dist)))
+                                      (logtest? (-> self flags) (collectable-flags suck)))
                                   )
                               arg0
                               )
