@@ -365,4 +365,5 @@
   "target-flut.o"
   "flut-saddle-ag.go"
   "eichar-flut+0-ag.go"
+  "super-eco-crystal.o" ;; TFL note: added
  ))

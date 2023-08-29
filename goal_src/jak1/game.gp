@@ -490,7 +490,7 @@
    "flut_common/flutflut.gc"
    "flut_common/target-flut.gc"
 
-   "tfl_common/super-collectables.gc" ;; TFL note: building super-collectables.gc
+   "tfl_common/super-eco-crystal.gc" ;; TFL note: added
    )
 
 
