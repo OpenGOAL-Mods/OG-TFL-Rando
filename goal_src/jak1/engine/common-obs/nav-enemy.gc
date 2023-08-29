@@ -6,6 +6,7 @@
 ;; dgos: GAME, COMMON, L1
 
 (declare-type battlecontroller process-drawable)
+(define-extern freeze (state nav-enemy))
 
 ;; DECOMP BEGINS
 
@@ -217,6 +218,12 @@
     (('go-wait-for-cue)
      (go-virtual nav-enemy-wait-for-cue)
      )
+    ;; TFL note: added case for eco-blue event
+    (('eco-blue)
+     (if (!= (-> self next-state name) 'freeze)
+       (go freeze)
+       )
+     )
     )
   (none)
   )
@@ -259,6 +266,32 @@ nav-enemy-default-event-handler
   (update-transforms! (-> self collide-info))
   0
   (none)
+  )
+
+;; TFL note: added freeze state
+(defstate freeze (nav-enemy)
+  :event (the (function process int symbol event-message-block object :behavior nav-enemy) nav-enemy-default-event-handler)
+  :enter (behavior ()
+    (set! (-> self state-time) (current-time))
+    (none)
+    )
+  :trans (behavior ()
+    (if (> (- (current-time) (-> self state-time)) (seconds 4))
+      (go-virtual nav-enemy-idle)
+      )
+    (none)
+    )
+  :code (behavior ()
+    (loop
+      (target-powerup-effect 'eco-blue)
+      (suspend)
+      )
+    (none)
+    )
+  :exit (behavior ()
+    (none)
+    )
+  :post nav-enemy-simple-post
   )
 
 (defmethod nav-enemy-method-40 nav-enemy ((obj nav-enemy))
