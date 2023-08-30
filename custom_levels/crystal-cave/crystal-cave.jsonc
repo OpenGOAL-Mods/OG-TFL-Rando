@@ -2862,11 +2862,11 @@
       }
     },
     {
-      "trans": [-224.47, 67.54, -112.5], // translation
+      "trans": [-193.79, 90.08, -11.57], // translation
       "etype": "super-eco-crystal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-224.47, 67.54, -112.5, 10], // bounding sphere
+      "bsphere": [-193.79, 90.08, -11.57, 10], // bounding sphere
       "lump": {
         "name": "crystalc-eco-crystal-05", // KUI notes: added one extra green crystal to test near the dark eco mushrooms
         "eco-type": "'green",

@@ -148,8 +148,8 @@
      (set-vector! (-> this color) SUPER_ECO_GREEN_R SUPER_ECO_GREEN_G SUPER_ECO_GREEN_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "green-eco-idle" :fo-max 15))
      ;; TFL TODO: ambient/explode particles
-     (set! (-> this ambient-part) 58)
-     (set! (-> this explode-part) 322)
+     (set! (-> this ambient-part) 950)
+     (set! (-> this explode-part) 951)
      )
     )
   (if (-> this sound-name)
