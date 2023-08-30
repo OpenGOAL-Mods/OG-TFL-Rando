@@ -1769,12 +1769,12 @@
            (flicker-amp (lerp-scale (- 1.0 0.25) (- 1.0 1.0)
                                      eco-time
                                      1.0 4.0))
-           (min-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (else 80.0)))
-           (min-g (cond (super-eco-blue? 64.0) (super-eco-yellow? 96.0) (super-eco-red? 32.0) (super-eco-green? 80.0)))
-           (min-b (cond (super-eco-blue? 80.0) (super-eco-green? 32.0) (else 0.0)))
-           (max-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (else 255.0)))
-           (max-g (cond (super-eco-blue? 128.0) (super-eco-yellow? 160.0) (super-eco-red? 96.0) (super-eco-green? 255.0)))
-           (max-b (cond (super-eco-blue? 255.0) (super-eco-green? 96.0) (else 0.0)))
+           (min-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (super-eco-yellow? 65.0) (super-eco-red? 60.0))) ;; Kui notes: Changed some colors
+           (min-g (cond (super-eco-blue? 40.0) (super-eco-yellow? 50.0) (super-eco-red? 10.0) (super-eco-green? 60.0)))
+           (min-b (cond (super-eco-blue? 60.0) (super-eco-green? 0.0) (else 0.0)))
+           (max-r (cond (super-eco-blue? 15.0) (super-eco-green? 25.0) (else 255.0)))
+           (max-g (cond (super-eco-blue? 100.0) (super-eco-yellow? 220.0) (super-eco-red? 40.0) (super-eco-green? 256.0)))
+           (max-b (cond (super-eco-blue? 255.0) (super-eco-green? 70.0) (super-eco-yellow? 30.0) (super-eco-red? 20.0)))
            (r (if (or super-eco-blue? super-eco-green?)
                 0
                 (if super-eco?
@@ -1849,12 +1849,12 @@
            (flicker-amp (lerp-scale (- 1.0 0.25) (- 1.0 1.0)
                                      eco-time
                                      1.0 4.0))
-           (min-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (else 80.0)))
-           (min-g (cond (super-eco-blue? 64.0) (super-eco-yellow? 96.0) (super-eco-red? 32.0) (super-eco-green? 80.0)))
-           (min-b (cond (super-eco-blue? 80.0) (super-eco-green? 32.0) (else 0.0)))
-           (max-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (else 255.0)))
-           (max-g (cond (super-eco-blue? 128.0) (super-eco-yellow? 160.0) (super-eco-red? 96.0) (super-eco-green? 255.0)))
-           (max-b (cond (super-eco-blue? 255.0) (super-eco-green? 96.0) (else 0.0)))
+           (min-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (super-eco-yellow? 65.0) (super-eco-red? 60.0))) ;; Kui notes: Changed some colors
+           (min-g (cond (super-eco-blue? 40.0) (super-eco-yellow? 50.0) (super-eco-red? 10.0) (super-eco-green? 60.0)))
+           (min-b (cond (super-eco-blue? 60.0) (super-eco-green? 0.0) (else 0.0)))
+           (max-r (cond (super-eco-blue? 15.0) (super-eco-green? 25.0) (else 255.0)))
+           (max-g (cond (super-eco-blue? 100.0) (super-eco-yellow? 220.0) (super-eco-red? 40.0) (super-eco-green? 256.0)))
+           (max-b (cond (super-eco-blue? 255.0) (super-eco-green? 70.0) (super-eco-yellow? 30.0) (super-eco-red? 20.0)))
            (r (if (or super-eco-blue? super-eco-green?)
                 0
                 (if super-eco?
@@ -1929,12 +1929,12 @@
            (flicker-amp (lerp-scale (- 1.0 0.25) (- 1.0 1.0)
                                      eco-time
                                      1.0 4.0))
-           (min-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (else 80.0)))
-           (min-g (cond (super-eco-blue? 64.0) (super-eco-yellow? 96.0) (super-eco-red? 32.0) (super-eco-green? 80.0)))
-           (min-b (cond (super-eco-blue? 80.0) (super-eco-green? 32.0) (else 0.0)))
-           (max-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (else 255.0)))
-           (max-g (cond (super-eco-blue? 128.0) (super-eco-yellow? 160.0) (super-eco-red? 96.0) (super-eco-green? 255.0)))
-           (max-b (cond (super-eco-blue? 255.0) (super-eco-green? 96.0) (else 0.0)))
+           (min-r (cond ((or super-eco-green? super-eco-blue?) 0.0) (super-eco-yellow? 65.0) (super-eco-red? 60.0))) ;; Kui notes: Changed some colors
+           (min-g (cond (super-eco-blue? 40.0) (super-eco-yellow? 50.0) (super-eco-red? 10.0) (super-eco-green? 60.0)))
+           (min-b (cond (super-eco-blue? 60.0) (super-eco-green? 0.0) (else 0.0)))
+           (max-r (cond (super-eco-blue? 15.0) (super-eco-green? 25.0) (else 255.0)))
+           (max-g (cond (super-eco-blue? 100.0) (super-eco-yellow? 220.0) (super-eco-red? 40.0) (super-eco-green? 256.0)))
+           (max-b (cond (super-eco-blue? 255.0) (super-eco-green? 70.0) (super-eco-yellow? 30.0) (super-eco-red? 20.0)))
            (r (if (or super-eco-blue? super-eco-green?)
                 0
                 (if super-eco?

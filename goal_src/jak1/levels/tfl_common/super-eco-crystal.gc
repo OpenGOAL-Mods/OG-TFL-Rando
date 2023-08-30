@@ -5,9 +5,9 @@
 
 ;; TFL TODO: particles for crystal explosion and idle state
 
-(defconstant SUPER_ECO_BLUE_R 0.0)
-(defconstant SUPER_ECO_BLUE_G (/ 96.0 256.0))
-(defconstant SUPER_ECO_BLUE_B (/ 192.0 256.0))
+(defconstant SUPER_ECO_BLUE_R 0.0) ;; KUI notes: edited some crystal colors so the purple is less visible
+(defconstant SUPER_ECO_BLUE_G 7.0)
+(defconstant SUPER_ECO_BLUE_B 16.0)
 
 (defconstant SUPER_ECO_YELLOW_R 3.0)
 (defconstant SUPER_ECO_YELLOW_G 8.0)
@@ -18,7 +18,7 @@
 (defconstant SUPER_ECO_RED_B 0.0)
 
 (defconstant SUPER_ECO_GREEN_R 0.0)
-(defconstant SUPER_ECO_GREEN_G 5.0)
+(defconstant SUPER_ECO_GREEN_G 30.0)
 (defconstant SUPER_ECO_GREEN_B (/ 96.0 256.0))
 
 (deftype super-eco-crystal (process-drawable)
