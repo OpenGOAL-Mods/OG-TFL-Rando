@@ -267,6 +267,7 @@
     )
   :trans (behavior ()
     (do-lighting! self)
+    (spawn (-> self part) (-> self cshape trans))
     (none)
     )
   :enter (behavior ()
@@ -290,7 +291,6 @@
           (update-transforms! (-> self cshape))
           )
         )
-      (spawn (-> self part) (-> self cshape trans))
       (suspend)
       )
     (none)
@@ -306,8 +306,11 @@
     (set! (-> self cshape trans quad) (-> self base quad))
     (clear-collide-with-as (-> self cshape))
     (give-powerup self)
-    (process-spawn joint-exploder
-                   *super-eco-crystal-explode-sg* 5 (new 'stack 'joint-exploder-tuning 0) *super-eco-crystal-exploder-params* :to self)
+    (let ((explode (the process-drawable (ppointer->process (process-spawn joint-exploder *super-eco-crystal-explode-sg* 5
+                                                              (new 'stack 'joint-exploder-tuning 0) *super-eco-crystal-exploder-params* :to self)))))
+      (set! (-> explode draw color-mult quad) (-> self draw color-mult quad))
+      (set! (-> explode draw color-emissive quad) (-> self draw color-emissive quad))
+      )
     (activate! *camera-smush-control* 819.2 37 210 1.0 0.995)
     (sound-play "crystal-explode")
     (suspend)
@@ -320,7 +323,7 @@
     (go super-eco-crystal-respawn)
     (none)
     )
-    :post super-eco-crystal-post
+  :post super-eco-crystal-post
   )
 
 (defstate super-eco-crystal-respawn (super-eco-crystal)
