@@ -126,7 +126,7 @@
     (('blue)
      (set-vector! (-> this color) SUPER_ECO_BLUE_R SUPER_ECO_BLUE_G SUPER_ECO_BLUE_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "blue-eco-idle" :fo-max 15))
-     ;; TFL TODO: ambient/explode particles
+     ;; Kui notes: particles done
      (set! (-> this ambient-part) 952)
      (set! (-> this explode-part) 953)
      )
@@ -134,8 +134,8 @@
      (set-vector! (-> this color) SUPER_ECO_YELLOW_R SUPER_ECO_YELLOW_G SUPER_ECO_YELLOW_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "yel-eco-idle" :fo-max 15))
      ;; TFL TODO: ambient/explode particles
-     (set! (-> this ambient-part) 56)
-     (set! (-> this explode-part) 322)
+     (set! (-> this ambient-part) 954)
+     (set! (-> this explode-part) 955)
      )
     (('red)
      (set-vector! (-> this color) SUPER_ECO_RED_R SUPER_ECO_RED_G SUPER_ECO_RED_B 0.0)
@@ -147,7 +147,7 @@
     (('green)
      (set-vector! (-> this color) SUPER_ECO_GREEN_R SUPER_ECO_GREEN_G SUPER_ECO_GREEN_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "green-eco-idle" :fo-max 15))
-     ;; TFL TODO: ambient/explode particles
+     ;; Kui notes: particles done
      (set! (-> this ambient-part) 950)
      (set! (-> this explode-part) 951)
      )
