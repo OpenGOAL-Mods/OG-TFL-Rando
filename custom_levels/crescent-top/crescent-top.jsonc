@@ -37,15 +37,15 @@
       }
     },
     {
-      "trans": [25.31, 183.89, 360.90], // translation
+      "trans": [25.52, 184.44, 361.89], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 124, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [25.31, 182.39, 360.90, 10], // bounding sphere
+      "bsphere": [25.52, 184.44, 361.89, 10], // bounding sphere
       "lump": {
         "name":"crescent-fuel-cell-02", //crescent-lava underground cell
         "eco-info": ["int32", 6, 124],
-        "movie-pos":["vector4m", [25.31, 180.89, 360.90, -120.0]],
+        "movie-pos":["vector4m", [25.52, 181.44, 361.89, -120.0]],
         "light-index": ["int32", 1]
       }
     },
@@ -1166,6 +1166,50 @@
       "bsphere": [-192.09, 266.16, 638.64, 10], // bounding sphere
       "lump": {
         "name":"crescent-money-100",
+        "options":["int32", 1024]
+      }
+    },
+    {
+      "trans": [61.27, 201.74, 377.92], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [61.27, 201.74, 377.92, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-101",
+        "options":["int32", 1024]
+      }
+    },
+    {
+      "trans": [58.78, 201.56, 375.25], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [58.78, 201.56, 375.25, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-102",
+        "options":["int32", 1024]
+      }
+    },
+    {
+      "trans": [58.79, 201.56, 379.76], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [58.79, 201.56, 379.76, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-103",
+        "options":["int32", 1024]
+      }
+    },
+    {
+      "trans": [56.91, 201.42, 377.33], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [56.91, 201.42, 377.33, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-104",
         "options":["int32", 1024]
       }
     },
@@ -2753,11 +2797,11 @@
       }
     },
     {
-      "trans": [67.83, 184.42, 393.70], // translation
+      "trans": [65.92, 189.17, 376.24], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [67.83, 184.42, 393.70, 10], // bounding sphere
+      "bsphere": [65.92, 189.17, 376.24, 10], // bounding sphere
       "lump": {
         "name":"crescent-eco-04",
         "eco-info": ["int32", 3, 1]
@@ -2863,7 +2907,32 @@
         "orb-cache-count":["int32", 6],
         "vis-dist":  ["meters", 200.0]
       }
-    }/*,
+    },
+    {
+      "trans": [92.48, 184.42, 359.15], // translation
+      "etype": "orb-cache-top",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.48, 184.42, 359.15, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-orb-cache-top-03",
+        "orb-cache-count":["int32", 5],
+        "vis-dist":  ["meters", 200.0]
+      }
+    },
+    {
+      "trans": [92.73, 184.42, 363.79], // translation
+      "etype": "orb-cache-top",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.73, 184.42, 363.79, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-orb-cache-top-04",
+        "orb-cache-count":["int32", 5],
+        "vis-dist":  ["meters", 200.0]
+      }
+    }
+    /*,
     {
       "trans": [-102.15, 229.91, 355.17], // translation
       "etype": "crate",  // actor type
