@@ -2270,7 +2270,7 @@
                            :bsp-mask #xffffffffffffffff
                            :bsphere (new 'static 'sphere :x (meters 740.01) :y (meters 9.37) :z (meters 696.20) :w (meters 1200.0))
                            :buzzer 127
-                           :bottom-height (meters -20.0) ;; 75.0
+                           :bottom-height (meters 50.0) ;; 75.0
                            :run-packages '()
                            :wait-for-load #t
                            )
