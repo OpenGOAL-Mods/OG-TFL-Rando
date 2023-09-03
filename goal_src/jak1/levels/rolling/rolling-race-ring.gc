@@ -602,6 +602,23 @@
               (set! v0-0 #t)
               (set! (-> self keep-part-track-alive) v0-0)
               )
+             ((= (-> self entity extra perm task) (game-task energy-bay-green-ring))  ;; TFL notes: added case for green rings energy-bay-green-ring
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                             part-tracker
+                                                             :init part-tracker-init
+                                                             (-> *part-group-id-table* 900) ;; particle defined in energybay-part.gc
+                                                             -1
+                                                             race-ring-green-set-particle-rotation-callback
+                                                             (-> self ppointer)
+                                                             #f
+                                                             (-> self root trans)
+                                                             :to self
+                                                             )
+                                                           )
+                    )
+              (set! v0-0 #t)
+              (set! (-> self keep-part-track-alive) v0-0)
+              )
              (else
                (set! (-> self part-track) (ppointer->handle (process-spawn
                                                               part-tracker
@@ -668,6 +685,21 @@
                                                      )
                 )
               )
+          ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; orange ring condition here energy-bay-green-ring
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 901) ;; particle defined in energybay-part.gc
+                                                       -1
+                                                       race-ring-green-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+                )
+              )
           (else (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -717,6 +749,21 @@
                                                        (-> *part-group-id-table* 856) ;; particle defined in crescent-part.gc
                                                        -1
                                                        race-ring-orange-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+              )
+            )
+        ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; green ring condition here energy-bay-green-ring
+          (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 902) ;; particle defined in energybay-part.gc
+                                                       -1
+                                                       race-ring-green-set-particle-rotation-callback
                                                        (-> self ppointer)
                                                        #f
                                                        (-> self root trans)
@@ -785,6 +832,22 @@
                                                       (-> *part-group-id-table* 854) ;; particle defined in crescent-part.gc
                                                       -1
                                                       race-ring-orange-set-particle-rotation-callback
+                                                      (-> self ppointer)
+                                                      #f
+                                                      (-> self root trans)
+                                                      :to self
+                                                      )
+                                                    )
+             )
+       (set! (-> self keep-part-track-alive) #t)
+       )
+      ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; TFL notes: added green ring condition energy-bay-green-ring
+       (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                      part-tracker
+                                                      :init part-tracker-init
+                                                      (-> *part-group-id-table* 900) ;; particle defined in energybay-part.gc
+                                                      -1
+                                                      race-ring-green-set-particle-rotation-callback
                                                       (-> self ppointer)
                                                       #f
                                                       (-> self root trans)
