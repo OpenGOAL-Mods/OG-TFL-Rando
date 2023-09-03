@@ -655,7 +655,7 @@
         )
       )
     (set! (-> self keep-part-track-alive) #f)
-    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added orange ring condition
+    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added new colors
               (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -670,7 +670,7 @@
                                                      )
                 )
               )
-          ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here crescent-orange-ring
+          ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here 
               (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -685,7 +685,7 @@
                                                      )
                 )
               )
-          ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; orange ring condition here energy-bay-green-ring
+          ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; green ring condition here 
               (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -727,7 +727,7 @@
           (deactivate a0-3)
           )
       )
-    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added orange ring condition
+    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added new colors
           (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -742,7 +742,7 @@
                                                      )
               )
             )
-        ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here crescent-orange-ring
+        ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here 
           (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -757,7 +757,7 @@
                                                      )
               )
             )
-        ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; green ring condition here energy-bay-green-ring
+        ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; green ring condition here 
           (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
@@ -825,7 +825,7 @@
              )
        (set! (-> self keep-part-track-alive) #t)
        )
-      ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; TFL notes: added orange ring condition crescent-orange-ring
+      ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; TFL notes: added orange ring condition 
        (set! (-> self part-track) (ppointer->handle (process-spawn
                                                       part-tracker
                                                       :init part-tracker-init
@@ -841,7 +841,7 @@
              )
        (set! (-> self keep-part-track-alive) #t)
        )
-      ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; TFL notes: added green ring condition energy-bay-green-ring
+      ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; TFL notes: added green ring condition 
        (set! (-> self part-track) (ppointer->handle (process-spawn
                                                       part-tracker
                                                       :init part-tracker-init
