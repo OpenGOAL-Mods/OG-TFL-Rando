@@ -9,6 +9,8 @@
   "static-screen.o"
   "energy-bay.go"
   "orb-cache-top-ag.go"
+  "race-ring-ag.go"
+  "rolling-race-ring.o"
   ;; "tpage-1313.go" ; water stuff
   ;; "tpage-1315.go" ; water stuff
   ;; "tpage-1314.go" ; water stuff
