@@ -585,6 +585,23 @@
               (set! v0-0 #t)
               (set! (-> self keep-part-track-alive) v0-0)
               )
+             ((= (-> self entity extra perm task) (game-task crescent-orange-ring))  ;; TFL notes: added case for orange rings crescent-orange-ring
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                             part-tracker
+                                                             :init part-tracker-init
+                                                             (-> *part-group-id-table* 854) ;; particle defined in crescent-part.gc
+                                                             -1
+                                                             race-ring-orange-set-particle-rotation-callback
+                                                             (-> self ppointer)
+                                                             #f
+                                                             (-> self root trans)
+                                                             :to self
+                                                             )
+                                                           )
+                    )
+              (set! v0-0 #t)
+              (set! (-> self keep-part-track-alive) v0-0)
+              )
              (else
                (set! (-> self part-track) (ppointer->handle (process-spawn
                                                               part-tracker
@@ -621,8 +638,8 @@
         )
       )
     (set! (-> self keep-part-track-alive) #f)
-    (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added orange ring condition
+              (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 461)
@@ -634,8 +651,24 @@
                                                        :to self
                                                        )
                                                      )
+                )
               )
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+          ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here crescent-orange-ring
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 855) ;; particle defined in crescent-part.gc
+                                                       -1
+                                                       race-ring-orange-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+                )
+              )
+          (else (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 458)
@@ -648,6 +681,7 @@
                                                        )
                                                      )
               )
+            )
         )
     (set! (-> self old-hips quad) (-> (target-pos 26) quad))
     (+! (-> self old-hips x) 1.0)
@@ -661,8 +695,8 @@
           (deactivate a0-3)
           )
       )
-    (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added orange ring condition
+          (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 462)
@@ -675,7 +709,23 @@
                                                        )
                                                      )
               )
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+            )
+        ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here crescent-orange-ring
+          (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 856) ;; particle defined in crescent-part.gc
+                                                       -1
+                                                       race-ring-orange-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+              )
+            )
+        (else (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 459)
@@ -687,8 +737,9 @@
                                                        :to self
                                                        )
                                                      )
-              )
-        )
+                )
+          )
+      )
     (cond
       ((first-ring? self)
        (logclear! (-> self mask) (process-mask actor-pause))
@@ -727,6 +778,22 @@
              )
        (set! (-> self keep-part-track-alive) #t)
        )
+      ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; TFL notes: added orange ring condition crescent-orange-ring
+       (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                      part-tracker
+                                                      :init part-tracker-init
+                                                      (-> *part-group-id-table* 854) ;; particle defined in crescent-part.gc
+                                                      -1
+                                                      race-ring-orange-set-particle-rotation-callback
+                                                      (-> self ppointer)
+                                                      #f
+                                                      (-> self root trans)
+                                                      :to self
+                                                      )
+                                                    )
+             )
+       (set! (-> self keep-part-track-alive) #t)
+       )
       (else
         (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
@@ -747,7 +814,7 @@
     (cond
       ((not (last-ring? self))
        )
-      ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
+      ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: not sure if this need to be changed
        (spool-push *art-control* "race-ring-second-anim" 0 self -99.0)
        )
       (else
@@ -802,7 +869,7 @@
               *entity-pool*
               (game-task none)
               )
-            (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
+            (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: probably don't need to add this either but maybe
                 (level-hint-spawn
                   (text-id rolling-ring-chase-2-hint)
                   "sksp0120"
@@ -849,7 +916,7 @@
                  (close-specific-task! (-> self entity extra perm task) (task-status need-reminder))
                  (logclear! (-> self draw status) (draw-status hidden))
                  (logior! (-> self draw status) (draw-status skip-bones))
-                 (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
+                 (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: probably the part that set where the cell end up
                      (ja-play-spooled-anim
                        (new 'static 'spool-anim :name "race-ring-second-anim" :index 4 :parts 2 :command-list '())
                        (the-as art-joint-anim #f)

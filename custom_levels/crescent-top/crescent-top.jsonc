@@ -2129,7 +2129,7 @@
     {
       "trans": [-118.49, 239.84, 362.23], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 58, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0.000, -0.594, 0.000, 0.804], // quaternion
       "bsphere": [-118.49, 239.84, 362.23, 10], // bounding sphere
       "lump": {
@@ -2142,7 +2142,7 @@
     {
       "trans": [-148.08, 244.20, 378.60], // translation -148.68, 244.2, 378.6
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0.000, 0.184, -0.000, 0.983], // quaternion 0, -0.184, 0, 0.963
       "bsphere": [-148.08, 244.20, 378.60, 10], // bounding sphere
       "lump": {
@@ -2156,7 +2156,7 @@
     {
       "trans": [-143.11, 228.08, 443.13], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.380, 0, 0.925], // quaternion
       "bsphere": [-143.11, 228.08, 443.13, 10], // bounding sphere
       "lump": {
@@ -2170,7 +2170,7 @@
     {
       "trans": [-193.87, 225.72, 452.61], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.731, 0, 0.682], // quaternion
       "bsphere": [-193.87, 225.72, 452.61, 10], // bounding sphere
       "lump": {
@@ -2184,7 +2184,7 @@
     {
       "trans": [-240.71, 219.57, 493.46], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.197, 0, 0.980], // quaternion
       "bsphere": [-240.71, 219.57, 493.46, 10], // bounding sphere
       "lump": {
@@ -2198,7 +2198,7 @@
     {
       "trans": [-250.26, 223.60, 555.88], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.250, 0, 0.968], // quaternion
       "bsphere": [-250.26, 223.60, 555.88, 10], // bounding sphere
       "lump": {
@@ -2212,7 +2212,7 @@
     {
       "trans": [-204.10, 207.44, 615.05], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.096, 0, 0.995], // quaternion
       "bsphere": [-204.10, 207.44, 615.05, 10], // bounding sphere
       "lump": {
@@ -2226,7 +2226,7 @@
     {
       "trans": [-236.79, 204.33, 680.59], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.333, 0, 0.943], // quaternion
       "bsphere": [-236.79, 204.33, 680.59, 10], // bounding sphere
       "lump": {
@@ -2240,7 +2240,7 @@
     {
       "trans": [-292.91, 203.95, 719.02], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.118, 0, 0.993], // quaternion
       "bsphere": [-292.91, 203.95, 719.02, 10], // bounding sphere
       "lump": {
@@ -2254,7 +2254,7 @@
     {
       "trans": [-237.10, 204.35, 811.13], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.177, 0, 0.886], // quaternion
       "bsphere": [-237.10, 204.35, 811.13, 10], // bounding sphere
       "lump": {
@@ -2268,7 +2268,7 @@
     {
       "trans": [-272.77, 204.10, 811.33], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.903, 0, -0.017], // quaternion
       "bsphere": [-272.77, 204.10, 811.33, 10], // bounding sphere
       "lump": {
@@ -2282,7 +2282,7 @@
     {
       "trans": [-251.84, 204.81, 730.28], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.901, 0, -0.060], // quaternion
       "bsphere": [-251.84, 204.81, 730.28, 10], // bounding sphere
       "lump": {
@@ -2296,7 +2296,7 @@
     {
       "trans": [-232.98, 234.18, 629.38], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.852, 0, -0.299], // quaternion
       "bsphere": [-232.98, 234.18, 629.38, 10], // bounding sphere
       "lump": {
@@ -2310,7 +2310,7 @@
     {
       "trans": [-181.25, 221.20, 493.90], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.852, 0, -0.299], // quaternion
       "bsphere": [-181.25, 221.20, 493.90, 10], // bounding sphere
       "lump": {
@@ -2324,7 +2324,7 @@
     {
       "trans": [-143.64, 230.29, 424.80], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.901, 0, -0.068], // quaternion
       "bsphere": [-143.64, 230.29, 424.80, 10], // bounding sphere
       "lump": {
@@ -2338,7 +2338,7 @@
     {
       "trans": [-129.71, 235.32, 325.13], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.819, 0, -0.381], // quaternion
       "bsphere": [-129.71, 235.32, 325.13, 10], // bounding sphere
       "lump": {
@@ -2352,7 +2352,7 @@
     {
       "trans": [-51.50, 245.61, 279.58], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.725, 0, -0.539], // quaternion
       "bsphere": [-51.50, 245.61, 279.58, 10], // bounding sphere
       "lump": {
@@ -2366,7 +2366,7 @@
     {
       "trans": [5.14, 254.19, 252.62], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.729, 0, -0.533], // quaternion
       "bsphere": [5.14, 254.19, 252.62, 10], // bounding sphere
       "lump": {
@@ -2380,7 +2380,7 @@
     {
       "trans": [86.91, 200.27, 236.96], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.624, 0, -0.653], // quaternion
       "bsphere": [86.91, 200.27, 236.96, 10], // bounding sphere
       "lump": {
@@ -2394,7 +2394,7 @@
     {
       "trans": [238.90, 241.32, 303.76], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.057, 0, -0.901], // quaternion
       "bsphere": [238.90, 241.32, 303.76, 10], // bounding sphere
       "lump": {
@@ -2408,7 +2408,7 @@
     {
       "trans": [225.55, 257.46, 423.31], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.197, 0, -0.882], // quaternion
       "bsphere": [225.55, 257.46, 423.31, 10], // bounding sphere
       "lump": {
@@ -2422,7 +2422,7 @@
     {
       "trans": [159.80, 245.06, 464.04], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.797, 0, -0.425], // quaternion
       "bsphere": [159.80, 245.06, 464.04, 10], // bounding sphere
       "lump": {
@@ -2436,7 +2436,7 @@
     {
       "trans": [98.67, 235.93, 401.43], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.885, 0, -0.181], // quaternion
       "bsphere": [98.67, 235.93, 401.43, 10], // bounding sphere
       "lump": {
@@ -2450,7 +2450,7 @@
     {
       "trans": [63.55, 245.04, 347.81], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.443, 0, 0.787], // quaternion
       "bsphere": [63.55, 245.04, 347.81, 10], // bounding sphere
       "lump": {
@@ -2464,7 +2464,7 @@
     {
       "trans": [32.87, 261.62, 303.70], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.815, 0, 0.390], // quaternion
       "bsphere": [32.87, 261.62, 303.70, 10], // bounding sphere
       "lump": {
@@ -2478,7 +2478,7 @@
     {
       "trans": [134.08, 287.12, 316.47], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.516, 0, 0.741], // quaternion
       "bsphere": [134.08, 287.12, 316.47, 10], // bounding sphere
       "lump": {
@@ -2492,7 +2492,7 @@
     {
       "trans": [207.57, 273.07, 341.89], // translation
       "etype": "race-ring",  // actor type
-      "game_task": 58, // associated game task (for powercells, etc)
+      "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.424, 0, 0.798], // quaternion
       "bsphere": [207.57, 273.07, 341.89, 10], // bounding sphere
       "lump": {
