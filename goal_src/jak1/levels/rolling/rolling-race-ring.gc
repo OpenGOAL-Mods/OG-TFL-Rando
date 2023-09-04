@@ -546,6 +546,38 @@
   (none)
   )
 
+(defun race-ring-orange-set-particle-rotation-callback ((arg0 part-tracker)) ;; TFL notes: added the function for orange rings
+  (let ((f0-0 (-> (the-as (pointer race-ring) (-> arg0 userdata)) 0 rot-y)))
+    (set! (-> *part-id-table* 3230 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3231 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3232 init-specs 4 initial-valuef) (+ -182.04445 f0-0))
+    (set! (-> *part-id-table* 3233 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3234 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3235 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3236 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3240 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3241 init-specs 4 initial-valuef) f0-0)
+    )
+  0
+  (none)
+  )
+
+(defun race-ring-green-set-particle-rotation-callback ((arg0 part-tracker)) ;; TFL notes: added the function for green rings
+  (let ((f0-0 (-> (the-as (pointer race-ring) (-> arg0 userdata)) 0 rot-y)))
+    (set! (-> *part-id-table* 3400 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3401 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3402 init-specs 4 initial-valuef) (+ -182.04445 f0-0))
+    (set! (-> *part-id-table* 3403 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3404 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3405 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3406 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3410 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3411 init-specs 4 initial-valuef) f0-0)
+    )
+  0
+  (none)
+  )
+
 (defskelgroup *race-ring-sg* race-ring race-ring-lod0-jg race-ring-race-ring-idle-ja
               ((race-ring-lod0-mg (meters 999999)))
               :bounds (static-spherem 0 0 0 4)
