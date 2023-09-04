@@ -1108,18 +1108,18 @@
 
 ;; CRYSTAL CAVE BOUNDARIES:
 
-(static-load-boundary :flags ()
-  :top (meters 117.77)  :bot (meters 77.84)
-  :points (  (meters -268.05) (meters 38.89)  (meters -295.40) (meters 0.44) (meters -325.45) (meters 2.75) )
-  :fwd (display crescent-top display-no-wait)
-  :bwd (display crescent-top #f)
-  )
+;; (static-load-boundary :flags ()
+;;   :top (meters 117.77)  :bot (meters 77.84)
+;;   :points (  (meters -268.05) (meters 38.89)  (meters -295.40) (meters 0.44) (meters -325.45) (meters 2.75) )
+;;   :fwd (display crescent-top display-no-wait)
+;;   :bwd (display crescent-top #f)
+;;   )
 
 (static-load-boundary :flags ()
   :top (meters 117.77)  :bot (meters 77.84)
   :points (  (meters -262.81) (meters 26.82)  (meters -290.15) (meters -11.62) (meters -332.01) (meters -12.9) )
-  :fwd (load crescent-top crystal-cave)
-  :bwd (load maincave crystal-cave )
+  :fwd (display crescent-top display-no-wait)
+  :bwd (display crescent-top #f)
   )
 
 (static-load-boundary :flags ()
@@ -1190,7 +1190,7 @@
 (static-load-boundary :flags () ; observatory side
   :top (meters 292.18)  :bot (meters 209.51)
   :points (  (meters -135.63) (meters 287.46)  (meters 34.55) (meters 528.97) )
-  :fwd (load crescent-top maincave) ;; remove when platforms are fixed
+  ;; :fwd (load crescent-top maincave) ;; remove when platforms are fixed
   :bwd (load crescent-top crystal-cave)
   )
 
@@ -1198,7 +1198,7 @@
   :top (meters 286.56)  :bot (meters 202.06)
   :points (  (meters -307.67) (meters 509.67)  (meters -126.76) (meters 639.09) )
   :fwd (load crescent-top crystal-cave)
-  :bwd (load crescent-top maincave) ;; open mines load whenever it exists
+  ;; :bwd (load crescent-top maincave) ;; open mines load whenever it exists
   )
 
 (static-load-boundary :flags ()

@@ -34,7 +34,9 @@
    // The base actor id for your custom level. If you have multiple levels this should be unique!
    "base_id": 30100,
 
-  //"ambients": [],
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Note: You will still have to add them to your level's .gd file.
+  "art_groups": ["plat-ag", "orb-cache-top-ag"],
 
   "actors" : [
         // CELLS
