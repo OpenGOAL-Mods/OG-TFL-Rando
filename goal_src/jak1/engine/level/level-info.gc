@@ -2045,7 +2045,7 @@
                                              :load-commands '()
                                              :vis-nick 'crc
                                              :lev0 'crescent-top
-                                             :disp0 '#f
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2060,7 +2060,7 @@
                                              :load-commands '()
                                              :vis-nick 'crc
                                              :lev0 'crescent-top
-                                             :disp0 '#f
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2074,7 +2074,7 @@
                                              :load-commands '()
                                              :vis-nick 'crc
                                              :lev0 'crescent-top
-                                             :disp0 '#f
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2088,7 +2088,7 @@
                                              :load-commands '()
                                              :vis-nick 'crc
                                              :lev0 'crescent-top
-                                             :disp0 '#f
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2102,7 +2102,7 @@
                                              :load-commands '()
                                              :vis-nick 'crc
                                              :lev0 'crescent-top
-                                             :disp0 '#f
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
