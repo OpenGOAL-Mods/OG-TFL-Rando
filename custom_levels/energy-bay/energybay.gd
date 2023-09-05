@@ -28,7 +28,7 @@
   ;; "racer-states.o" ; zoomer stuff
   ;; "collide-reaction-racer.o" ; zoomer stuff
   "eichar-racer+0-ag.go" ; zoomer stuff
-  "blocking-plane.o" ; zoomer stuff
+;;   "blocking-plane.o" ; zoomer stuff
   "ef-plane-ag.go" ; zoomer stuff
   "racer-ag.go" ; zoomer stuff
  ))
