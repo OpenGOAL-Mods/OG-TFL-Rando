@@ -7,7 +7,6 @@
 
 ;; DECOMP BEGINS
 
-(import "goal_src/jak1/import/race-ring-ag.gc")
 
 (deftype race-ring (process-drawable)
   ((rot-y                 float                 :offset-assert 176)
@@ -546,6 +545,38 @@
   (none)
   )
 
+(defun race-ring-orange-set-particle-rotation-callback ((arg0 part-tracker)) ;; TFL notes: added the function for orange rings
+  (let ((f0-0 (-> (the-as (pointer race-ring) (-> arg0 userdata)) 0 rot-y)))
+    (set! (-> *part-id-table* 3230 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3231 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3232 init-specs 4 initial-valuef) (+ -182.04445 f0-0))
+    (set! (-> *part-id-table* 3233 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3234 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3235 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3236 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3240 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3241 init-specs 4 initial-valuef) f0-0)
+    )
+  0
+  (none)
+  )
+
+(defun race-ring-green-set-particle-rotation-callback ((arg0 part-tracker)) ;; TFL notes: added the function for green rings
+  (let ((f0-0 (-> (the-as (pointer race-ring) (-> arg0 userdata)) 0 rot-y)))
+    (set! (-> *part-id-table* 3400 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3401 init-specs 15 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3402 init-specs 4 initial-valuef) (+ -182.04445 f0-0))
+    (set! (-> *part-id-table* 3403 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3404 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3405 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3406 init-specs 4 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3410 init-specs 17 initial-valuef) f0-0)
+    (set! (-> *part-id-table* 3411 init-specs 4 initial-valuef) f0-0)
+    )
+  0
+  (none)
+  )
+
 (defskelgroup *race-ring-sg* race-ring race-ring-lod0-jg race-ring-race-ring-idle-ja
               ((race-ring-lod0-mg (meters 999999)))
               :bounds (static-spherem 0 0 0 4)
@@ -575,6 +606,40 @@
                                                              (-> *part-group-id-table* 460)
                                                              -1
                                                              race-ring-blue-set-particle-rotation-callback
+                                                             (-> self ppointer)
+                                                             #f
+                                                             (-> self root trans)
+                                                             :to self
+                                                             )
+                                                           )
+                    )
+              (set! v0-0 #t)
+              (set! (-> self keep-part-track-alive) v0-0)
+              )
+             ((= (-> self entity extra perm task) (game-task crescent-orange-ring))  ;; TFL notes: added case for orange rings crescent-orange-ring
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                             part-tracker
+                                                             :init part-tracker-init
+                                                             (-> *part-group-id-table* 854) ;; particle defined in crescent-part.gc
+                                                             -1
+                                                             race-ring-orange-set-particle-rotation-callback
+                                                             (-> self ppointer)
+                                                             #f
+                                                             (-> self root trans)
+                                                             :to self
+                                                             )
+                                                           )
+                    )
+              (set! v0-0 #t)
+              (set! (-> self keep-part-track-alive) v0-0)
+              )
+             ((= (-> self entity extra perm task) (game-task energy-bay-green-ring))  ;; TFL notes: added case for green rings energy-bay-green-ring
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                             part-tracker
+                                                             :init part-tracker-init
+                                                             (-> *part-group-id-table* 900) ;; particle defined in energybay-part.gc
+                                                             -1
+                                                             race-ring-green-set-particle-rotation-callback
                                                              (-> self ppointer)
                                                              #f
                                                              (-> self root trans)
@@ -621,8 +686,8 @@
         )
       )
     (set! (-> self keep-part-track-alive) #f)
-    (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added new colors
+              (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 461)
@@ -634,8 +699,39 @@
                                                        :to self
                                                        )
                                                      )
+                )
               )
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+          ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here 
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 855) ;; particle defined in crescent-part.gc
+                                                       -1
+                                                       race-ring-orange-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+                )
+              )
+          ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; green ring condition here 
+              (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 901) ;; particle defined in energybay-part.gc
+                                                       -1
+                                                       race-ring-green-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+                )
+              )
+          (else (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 458)
@@ -648,6 +744,7 @@
                                                        )
                                                      )
               )
+            )
         )
     (set! (-> self old-hips quad) (-> (target-pos 26) quad))
     (+! (-> self old-hips x) 1.0)
@@ -661,8 +758,8 @@
           (deactivate a0-3)
           )
       )
-    (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+    (cond ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: switched to a cond and added new colors
+          (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 462)
@@ -675,7 +772,38 @@
                                                        )
                                                      )
               )
-        (set! (-> self part-track) (ppointer->handle (process-spawn
+            )
+        ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; orange ring condition here 
+          (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 856) ;; particle defined in crescent-part.gc
+                                                       -1
+                                                       race-ring-orange-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+              )
+            )
+        ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; green ring condition here 
+          (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                       part-tracker
+                                                       :init part-tracker-init
+                                                       (-> *part-group-id-table* 902) ;; particle defined in energybay-part.gc
+                                                       -1
+                                                       race-ring-green-set-particle-rotation-callback
+                                                       (-> self ppointer)
+                                                       #f
+                                                       (-> self root trans)
+                                                       :to self
+                                                       )
+                                                     )
+              )
+            )
+        (else (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
                                                        :init part-tracker-init
                                                        (-> *part-group-id-table* 459)
@@ -687,8 +815,9 @@
                                                        :to self
                                                        )
                                                      )
-              )
-        )
+                )
+          )
+      )
     (cond
       ((first-ring? self)
        (logclear! (-> self mask) (process-mask actor-pause))
@@ -727,6 +856,38 @@
              )
        (set! (-> self keep-part-track-alive) #t)
        )
+      ((= (-> self entity extra perm task) (game-task crescent-orange-ring)) ;; TFL notes: added orange ring condition 
+       (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                      part-tracker
+                                                      :init part-tracker-init
+                                                      (-> *part-group-id-table* 854) ;; particle defined in crescent-part.gc
+                                                      -1
+                                                      race-ring-orange-set-particle-rotation-callback
+                                                      (-> self ppointer)
+                                                      #f
+                                                      (-> self root trans)
+                                                      :to self
+                                                      )
+                                                    )
+             )
+       (set! (-> self keep-part-track-alive) #t)
+       )
+      ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; TFL notes: added green ring condition 
+       (set! (-> self part-track) (ppointer->handle (process-spawn
+                                                      part-tracker
+                                                      :init part-tracker-init
+                                                      (-> *part-group-id-table* 900) ;; particle defined in energybay-part.gc
+                                                      -1
+                                                      race-ring-green-set-particle-rotation-callback
+                                                      (-> self ppointer)
+                                                      #f
+                                                      (-> self root trans)
+                                                      :to self
+                                                      )
+                                                    )
+             )
+       (set! (-> self keep-part-track-alive) #t)
+       )
       (else
         (set! (-> self part-track) (ppointer->handle (process-spawn
                                                        part-tracker
@@ -747,7 +908,7 @@
     (cond
       ((not (last-ring? self))
        )
-      ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
+      ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: not sure if this need to be changed
        (spool-push *art-control* "race-ring-second-anim" 0 self -99.0)
        )
       (else
@@ -802,7 +963,7 @@
               *entity-pool*
               (game-task none)
               )
-            (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
+            (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: probably don't need to add this either but maybe
                 (level-hint-spawn
                   (text-id rolling-ring-chase-2-hint)
                   "sksp0120"
@@ -849,7 +1010,7 @@
                  (close-specific-task! (-> self entity extra perm task) (task-status need-reminder))
                  (logclear! (-> self draw status) (draw-status hidden))
                  (logior! (-> self draw status) (draw-status skip-bones))
-                 (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
+                 (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: probably the part that set where the cell end up
                      (ja-play-spooled-anim
                        (new 'static 'spool-anim :name "race-ring-second-anim" :index 4 :parts 2 :command-list '())
                        (the-as art-joint-anim #f)

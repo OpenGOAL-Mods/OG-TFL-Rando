@@ -2145,8 +2145,8 @@
                            :sound-banks '(village1) ;; to get ambient sounds
                            :music-bank 'village1
                            :ambient-sounds '()
-                           :mood '*rolling-mood*
-                           :mood-func 'update-mood-rolling
+                           :mood '*crescent-top-mood*
+                           :mood-func 'update-mood-crescent-top
                            :ocean '*ocean-map-village1*
                            :sky #t
                            :continues '(
@@ -2189,8 +2189,8 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'crystal-cave
-                                             :disp1 'display
+                                             :lev1 'maincave
+                                             :disp1 '#f
                                              )
                                              (new 'static 'continue-point
                                              :name "crescent-top-observatory"
@@ -2270,7 +2270,7 @@
                            :bsp-mask #xffffffffffffffff
                            :bsphere (new 'static 'sphere :x (meters 740.01) :y (meters 9.37) :z (meters 696.20) :w (meters 1200.0))
                            :buzzer 127
-                           :bottom-height (meters -20.0) ;; 75.0
+                           :bottom-height (meters 50.0) ;; 75.0
                            :run-packages '()
                            :wait-for-load #t
                            )

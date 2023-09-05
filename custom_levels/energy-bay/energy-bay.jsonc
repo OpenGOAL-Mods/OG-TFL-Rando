@@ -1047,6 +1047,37 @@
           }
         },
 
+        // RACE RINGS
+
+        {
+          "trans": [533.7, 47.864, 673.15], // translation
+          "etype": "race-ring",  // actor type
+          "game_task": 133, // associated game task (for powercells, etc)
+          "quat" : [0.000, -0.594, 0.000, 0.804], // quaternion
+          "bsphere": [533.7, 47.864, 673.15, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-race-ring-01-start",
+            "timeout":["float", 0.0],
+            "next-actor":"energy-bay-race-ring-02-end",
+            "alt-task":["int32", 128] // Only appear when 1st turbine task is complete
+          }
+        },    
+        {
+          "trans": [548.61, 47.86, 668.76], // translation
+          "etype": "race-ring",  // actor type
+          "game_task": 133, // associated game task (for powercells, etc)
+          "quat" : [0.000, -0.594, 0.000, 0.804], // quaternion
+          "bsphere": [548.61, 47.86, 668.76, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-race-ring-02-end",
+            "timeout":["float", 8.0],
+            "movie-pos":["vector4m", [556.6, 42.18, 651.8, 60.0]],
+            "alt-actor":"energy-bay-race-ring-01-start",
+            "prev-actor":"energy-bay-race-ring-01-start",
+            "options":["int32", 1024]
+          }
+        },
+
         // OTHERS
         {
           "trans": [611.67, 44.57, 557.13], // translation
