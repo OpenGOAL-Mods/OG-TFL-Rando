@@ -1,8 +1,6 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(import "goal_src/jak1/import/lavabase-ag.gc")
-(import "goal_src/jak1/import/lavafall-ag.gc")
 
 
 (deftype lavabase (process-drawable)
@@ -59,7 +57,7 @@
 
 (defskelgroup *lavafall-sg* lavafall lavafall-lod0-jg lavafall-idle-ja
               ((lavafall-lod0-mg (meters 999999)))
-              :bounds (static-spherem 0 10 0 13)
+              :bounds (static-spherem 0 50 0 53)
               :longest-edge (meters 5.4)
               )
 
