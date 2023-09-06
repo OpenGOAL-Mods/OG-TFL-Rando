@@ -36,7 +36,7 @@
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Note: You will still have to add them to your level's .gd file.
-  "art_groups": ["plat-ag", "orb-cache-top-ag"],
+  "art_groups": ["plat-ag", "orb-cache-top-ag", "sun-iris-door-ag"],
 
   "actors" : [
         // CELLS
@@ -1135,6 +1135,21 @@
             "name":"energy-bay-cache-top-01",
             "orb-cache-count":["int32", 10],
             "vis-dist":  ["meters", 200.0]
+          }
+        },
+        {
+          "trans": [455.97, 60.27, 652.48], // translation
+          "etype": "sun-iris-door",  // actor type
+          "game_task": 128, // associated game task (for powercells, etc) //TFL todo: switch to correct game task
+          "quat" : [0, -0.707, 0, 0.707], // quaternion
+          "bsphere": [455.97, 60.27, 652.48, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-iris-door-01",
+            "scale-factor":["float", 5.0],
+            "scale":["float", 5.0], // requires both scales to work
+            "proximity":["int32", 1],
+            "open-dist":["meters", 35.0],
+            "close-dist":["meters", 40.0]
           }
         },
         // WATER
