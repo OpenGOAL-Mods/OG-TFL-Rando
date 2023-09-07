@@ -30,7 +30,8 @@
                 "lavabase-ag",
                 "lavafall-ag", 
                 "hutlamp-ag",
-                "bounceytarp-ag"
+                "bounceytarp-ag",
+                "pusher-ag"
                   ],
 
   "actors" : [
@@ -2897,6 +2898,30 @@
       "lump": {
         "name":"crescent-hutlamp-05",
         "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-278.86, 202.44, 758.57], // translation
+      "etype": "pusher",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.984, 0, 0.177], // quaternion
+      "bsphere": [-278.86, 202.44, 758.57, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-pusher-01",
+        "scale":["float", 1.0],
+        "sync":["float", 2.0, 0.0]
+      }
+    },
+    {
+      "trans": [-252.04, 202.44, 748.59], // translation
+      "etype": "pusher",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.177, 0, -0.984], // quaternion
+      "bsphere": [-252.04, 202.44, 748.59, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-pusher-02",
+        "scale":["float", 1.0],
+        "sync":["float", 2.0, 0.5]
       }
     },
     // eco
