@@ -259,3 +259,38 @@
   (none)
   )
 
+(deftype villagec-lava (water-anim)
+  ()
+  :heap-base #x70
+  :method-count-assert 30
+  :size-assert         #xdc
+  :flag-assert         #x1e007000dc
+  )
+
+
+(define ripple-for-villagec-lava (new 'static 'ripple-wave-set
+                                   :count 2
+                                   :converted #f
+                                   :wave (new 'static 'inline-array ripple-wave 4
+                                     (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 1.5)
+                                     (new 'static 'ripple-wave :scale 40.0 :xdiv -2 :zdiv 2 :speed 0.9)
+                                     (new 'static 'ripple-wave)
+                                     (new 'static 'ripple-wave)
+                                     )
+                                   )
+        )
+
+(defmethod water-vol-method-22 villagec-lava ((obj villagec-lava))
+  (let ((t9-0 (method-of-type water-anim water-vol-method-22)))
+    (t9-0 obj)
+    )
+  (let ((v1-2 (new 'process 'ripple-control)))
+    (set! (-> obj draw ripple) v1-2)
+    (set! (-> v1-2 global-scale) 3072.0)
+    (set! (-> v1-2 waveform) ripple-for-villagec-lava)
+    )
+  (logclear! (-> obj flags) (water-flags wt23))
+  (logior! (-> obj flags) (water-flags wt25))
+  (set! (-> obj attack-event) 'lava)
+  (none)
+  )
