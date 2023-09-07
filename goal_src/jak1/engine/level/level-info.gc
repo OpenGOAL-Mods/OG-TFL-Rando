@@ -2204,7 +2204,7 @@
                                              :lev0 'crescent-top
                                              :disp0 'display
                                              :lev1 'crystal-cave
-                                             :disp1 'display
+                                             :disp1 '#f
                                              )
                                              (new 'static 'continue-point
                                              :name "crescent-top-underground"
@@ -2259,8 +2259,8 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'energy-bay
-                                             :disp1 'display
+                                             :lev1 'crystal-cave ;; TFL todo: switch to mines and display when it exists
+                                             :disp1 '#f
                                              )
                                           )
                            :tasks '(123 124 125 127)

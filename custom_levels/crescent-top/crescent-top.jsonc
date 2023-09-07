@@ -24,7 +24,14 @@
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Note: You will still have to add them to your level's .gd file.
-  "art_groups": ["plat-ag", "orb-cache-top-ag", "racer-ag", "lavabase-ag","lavafall-ag", "hutlamp-ag"],
+  "art_groups": ["plat-ag", 
+                "orb-cache-top-ag", 
+                "racer-ag", 
+                "lavabase-ag",
+                "lavafall-ag", 
+                "hutlamp-ag",
+                "bounceytarp-ag"
+                  ],
 
   "actors" : [
     // CELLS
@@ -2127,6 +2134,28 @@
       "bsphere": [-191.09, 261.29, 639.09, 10.0], // bounding sphere
       "lump": {
         "name":"crescent-swingpole-05"
+      }
+    },
+    {
+      "trans": [-21.88, 234.39, 358.86], // translation
+      "etype": "springbox",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0, -0.443, 0.0, 0.896], // quaternion - Along Z axis in Blender
+      "bsphere": [-21.88, 234.39, 358.86, 10.0], // bounding sphere
+      "lump": {
+        "name":"crescent-springbox-01",
+        "scale":["float", 0.8]
+      }
+    },
+    {
+      "trans": [78.48, 228.27, 448.18], // translation
+      "etype": "springbox",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0, -0.595, 0.0, 0.804], // quaternion - Along Z axis in Blender
+      "bsphere": [78.48, 228.27, 448.18, 10.0], // bounding sphere
+      "lump": {
+        "name":"crescent-springbox-02",
+        "scale":["float", 0.8]
       }
     },
     // RACE RINGS
