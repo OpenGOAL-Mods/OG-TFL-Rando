@@ -82,3 +82,80 @@
   (go lavafall-idle)
   (none)
   )
+
+
+(deftype cyclegen (structure) ;; cyclegen needed for the hutlamp
+  ((output float  :offset-assert   0)
+   (inc    float  :offset-assert   4)
+   )
+  :pack-me
+  :method-count-assert 9
+  :size-assert         #x8
+  :flag-assert         #x900000008
+  )
+
+
+(defun set-period ((arg0 cyclegen) (arg1 int))
+  (set! (-> arg0 inc) (/ 5.0 (the float arg1)))
+  )
+
+(defun update-clock ((arg0 cyclegen))
+  (let ((f0-1 (+ (-> arg0 output) (* (-> arg0 inc) (-> *display* time-adjust-ratio)))))
+    (set! (-> arg0 output) (- f0-1 (the float (the int f0-1))))
+    )
+  (-> arg0 output)
+  )
+
+(deftype hutlamp (process-drawable)
+  ((pivot joint-mod-set-local         :offset-assert 176)
+   (clock cyclegen            :inline :offset-assert 180)
+   )
+  :heap-base #x50
+  :method-count-assert 20
+  :size-assert         #xbc
+  :flag-assert         #x14005000bc
+  (:states
+    hutlamp-idle
+    )
+  )
+
+
+(defmethod relocate hutlamp ((obj hutlamp) (arg0 int))
+  (if (nonzero? (-> obj pivot))
+      (&+! (-> obj pivot) arg0)
+      )
+  (the-as
+    hutlamp
+    ((the-as (function process-drawable int process-drawable) (find-parent-method hutlamp 7)) obj arg0)
+    )
+  )
+
+(defskelgroup *hutlamp-sg* hutlamp hutlamp-lod0-jg hutlamp-idle-ja
+              ((hutlamp-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 1 0 1.2)
+              :longest-edge (meters 0.7)
+              )
+
+(defstate hutlamp-idle (hutlamp)
+  :code (behavior ()
+    (loop
+      (let ((f0-3 (* 1820.4445 (sin (* 65536.0 (update-clock (-> self clock)))))))
+        (quaternion-vector-angle! (-> self pivot transform quat) *x-vector* f0-3)
+        )
+      (suspend)
+      )
+    (none)
+    )
+  :post (the-as (function none :behavior hutlamp) ja-post)
+  )
+
+(defmethod init-from-entity! hutlamp ((obj hutlamp) (arg0 entity-actor))
+  (set! (-> obj root) (new 'process 'trsqv))
+  (process-drawable-from-entity! obj arg0)
+  (initialize-skeleton obj *hutlamp-sg* '())
+  (set! (-> obj pivot) (new 'process 'joint-mod-set-local obj 3 #f #t #f))
+  (set-period (-> obj clock) 900)
+  (set! (-> obj clock output) (rand-vu))
+  (go hutlamp-idle)
+  (none)
+  )

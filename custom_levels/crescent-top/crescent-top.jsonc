@@ -24,7 +24,7 @@
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Note: You will still have to add them to your level's .gd file.
-  "art_groups": ["plat-ag", "orb-cache-top-ag", "racer-ag", "lavabase-ag","lavafall-ag"],
+  "art_groups": ["plat-ag", "orb-cache-top-ag", "racer-ag", "lavabase-ag","lavafall-ag", "hutlamp-ag"],
 
   "actors" : [
     // CELLS
@@ -2816,6 +2816,62 @@
       }
     },
     {
+      "trans": [-250.12, 209.08, 292.37], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.225, 0, 0.974], // quaternion
+      "bsphere": [-250.12, 209.08, 292.37, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-01",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-252.79, 209.08, 278.33], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.060, 0, 0.998], // quaternion
+      "bsphere": [-252.79, 209.08, 278.33, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-02",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-240.65, 209.08, 266.02], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.706, 0, 0.708], // quaternion
+      "bsphere": [-240.65, 209.08, 266.02, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-03",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-221.81, 209.08, 275.11], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.933, 0, 0.360], // quaternion
+      "bsphere": [-221.81, 209.08, 275.11, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-04",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-242.1, 209.08, 302.42], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.398, 0, 0.917], // quaternion
+      "bsphere": [-242.1, 209.08, 302.42, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-05",
+        "scale":["float", 1.5]
+      }
+    },
+    // eco
+    {
       "trans": [-250.41, 205.06, 291.89], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2948,6 +3004,7 @@
         "vis-dist":  ["meters", 200.0]
       }
     },
+    // orb cache
     {
       "trans": [-239.35, 203.03, 279.71], // translation
       "etype": "orb-cache-top",  // actor type
