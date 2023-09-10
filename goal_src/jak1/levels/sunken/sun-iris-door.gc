@@ -329,8 +329,10 @@
     )
   (process-drawable-from-entity! obj arg0)
   (initialize-skeleton obj *sun-iris-door-sg* '())
-  (set! (-> obj close-dist) 49152.0)
-  (set! (-> obj open-dist) 40960.0)
+  ;;(set! (-> obj close-dist) 49152.0) ;; TFL notes: changed these two static values so they can be edited in the lump
+  (set! (-> obj close-dist) (res-lump-float (-> obj entity) 'close-dist :default 49152.0))
+  ;; (set! (-> obj open-dist) 40960.0)
+  (set! (-> obj open-dist) (res-lump-float (-> obj entity) 'open-dist :default 40960.0))
   (set! (-> obj timeout) (res-lump-float arg0 'timeout))
   (set! (-> obj proximity?) (nonzero? (res-lump-value arg0 'proximity uint128)))
   (set! (-> obj directional-proximity?) #f)

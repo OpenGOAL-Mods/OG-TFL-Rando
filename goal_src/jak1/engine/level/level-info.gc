@@ -2044,8 +2044,8 @@
                                              :camera-rot (new 'static 'array float 9 -0.0134 -0.0000 0.9999 -0.1257 0.9920 -0.0016 -0.9919 -0.1257 -0.0133)
                                              :load-commands '()
                                              :vis-nick 'crc
-                                             :lev0 'maincave
-                                             :disp0 '#f
+                                             :lev0 'crescent-top
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2059,8 +2059,8 @@
                                              :camera-rot (new 'static 'array float 9 5.8176 -0.3953 -0.0000 0.9185 -0.2369 0.9661 -0.1020 -0.8874 -0.2580 -0.3819)
                                              :load-commands '()
                                              :vis-nick 'crc
-                                             :lev0 'maincave
-                                             :disp0 '#f
+                                             :lev0 'crescent-top
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2073,8 +2073,8 @@
                                              :camera-rot (new 'static 'array float 9 0.3245 -0.0000 0.9458 -0.1371 0.9894 0.0470 -0.9358 -0.1449 0.3210)
                                              :load-commands '()
                                              :vis-nick 'crc
-                                             :lev0 'maincave
-                                             :disp0 '#f
+                                             :lev0 'crescent-top
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2087,8 +2087,8 @@
                                              :camera-rot (new 'static 'array float 9 0.1605 -0.0000 0.9870 -0.1198 0.9925 0.0194 -0.9797 -0.1214 0.1593)
                                              :load-commands '()
                                              :vis-nick 'crc
-                                             :lev0 'maincave
-                                             :disp0 '#f
+                                             :lev0 'crescent-top
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2101,8 +2101,8 @@
                                              :camera-rot (new 'static 'array float 9 0.4809 0.0000 -0.8767 0.1087 0.9922 0.0596 0.8699 -0.1240 0.4772)
                                              :load-commands '()
                                              :vis-nick 'crc
-                                             :lev0 'maincave
-                                             :disp0 '#f
+                                             :lev0 'crescent-top
+                                             :disp0 'display
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              )
@@ -2189,7 +2189,7 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'maincave
+                                             :lev1 'crystal-cave ;; TFL todo: change to mines later
                                              :disp1 '#f
                                              )
                                              (new 'static 'continue-point
@@ -2204,7 +2204,7 @@
                                              :lev0 'crescent-top
                                              :disp0 'display
                                              :lev1 'crystal-cave
-                                             :disp1 'display
+                                             :disp1 '#f
                                              )
                                              (new 'static 'continue-point
                                              :name "crescent-top-underground"
@@ -2217,7 +2217,7 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'maincave
+                                             :lev1 'energy-bay
                                              :disp1 '#f
                                              )
                                              (new 'static 'continue-point
@@ -2231,7 +2231,7 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'maincave
+                                             :lev1 'energy-bay
                                              :disp1 '#f
                                              )
                                              (new 'static 'continue-point
@@ -2259,8 +2259,8 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'energy-bay
-                                             :disp1 'display
+                                             :lev1 'crystal-cave ;; TFL todo: switch to mines and display when it exists
+                                             :disp1 '#f
                                              )
                                           )
                            :tasks '(123 124 125 127)
