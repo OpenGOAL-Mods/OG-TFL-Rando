@@ -22,6 +22,20 @@
   // The base actor id for your custom level. If you have multiple levels this should be unique!
   "base_id": 20100,
 
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Note: You will still have to add them to your level's .gd file.
+  "art_groups": ["plat-ag", 
+                "orb-cache-top-ag", 
+                "racer-ag", 
+                "lavabase-ag",
+                "lavafall-ag", 
+                "hutlamp-ag",
+                "bounceytarp-ag",
+                "pusher-ag",
+                "water-anim-village3-ag",
+                "plat-eco-ag"
+                  ],
+
   "actors" : [
     // CELLS
     {
@@ -59,6 +73,18 @@
         "name":"crescent-fuel-cell-03", //crescent-robot climb the robot cell
         "eco-info": ["int32", 6, 123],
         "movie-pos":["vector4m", [-159.87, 272.54, 648.33, 3.6]]
+      }
+    },
+    {
+      "trans": [52.27, 289.15, 392.0], // translation
+      "etype": "fuel-cell",  // actor type
+      "game_task": 122, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [52.27, 289.15, 392.0, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-fuel-cell-04", //crescent-observatory climb the observatory
+        "eco-info": ["int32", 6, 122],
+        "movie-pos":["vector4m", [52.27, 287.15, 392.0, 3.6]]
       }
     },
     // SCOUT FLIES
@@ -1213,6 +1239,176 @@
         "options":["int32", 1024]
       }
     },
+    {
+      "trans": [24.27, 181.39, 467.93], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [24.27, 181.39, 467.93, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-105",
+        "light-index":["int32", 2]
+      }
+    },
+    {
+      "trans": [24.76, 181.39, 465.61], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [24.76, 181.39, 465.61, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-106",
+        "light-index":["int32", 2]
+      }
+    },
+    {
+      "trans": [22.40, 181.39, 466.28], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [22.40, 181.39, 466.28, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-107",
+        "light-index":["int32", 2]
+      }
+    },
+    {
+      "trans": [-2.35, 181.39, 423.64], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-2.35, 181.39, 423.64, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-108",
+        "light-index":["int32", 2]
+      }
+    },
+    {
+      "trans": [0.13, 181.39, 423.03], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0.13, 181.39, 423.03, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-109",
+        "light-index":["int32", 2]
+      }
+    },
+    {
+      "trans": [-1.68, 181.39, 421.28], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-1.68, 181.39, 421.28, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-110",
+        "light-index":["int32", 2]
+      }
+    },
+    {
+      "trans": [95.37, 188.57, 422.71], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [95.37, 188.57, 422.71, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-111",
+        "light-index":["int32", 1]
+      }
+    },
+    {
+      "trans": [99.59, 189.22, 422.24], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [99.59, 189.22, 422.24, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-112",
+        "light-index":["int32", 1]
+      }
+    },
+    {
+      "trans": [104.23, 190.05, 421.92], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [104.23, 190.05, 421.92, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-113",
+        "light-index":["int32", 1]
+      }
+    },
+    {
+      "trans": [108.45, 190.86, 421.95], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [108.45, 190.86, 421.95, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-114",
+        "light-index":["int32", 1]
+      }
+    },
+    {
+      "trans": [64.96, 266.61, 299.26], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [64.96, 266.61, 299.26, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-115"
+      }
+    },
+    {
+      "trans": [71.93, 268.98, 300.52], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [71.93, 268.98, 300.52, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-116"
+      }
+    },
+    {
+      "trans": [78.61, 271.51, 301.9], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [78.61, 271.51, 301.9, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-117"
+      }
+    },
+    {
+      "trans": [85.31, 273.95, 303.56], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [85.31, 273.95, 303.56, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-118"
+      }
+    },
+    {
+      "trans": [91.98, 276.19, 304.94], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [91.98, 276.19, 304.94, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-119"
+      }
+    },
+    {
+      "trans": [99.16, 278.28, 306.98], // translation
+      "etype": "money",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [99.16, 278.28, 306.98, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-money-120"
+      }
+    },
     // CRATES
     {
       "trans": [-142.10, 240.08, 478.87], // translation
@@ -2006,16 +2202,6 @@
       }
     },
     {
-      "trans": [-159.87, 272.54, 648.33], // translation
-      "etype": "plat",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-159.87, 272.54, 648.33, 10], // bounding sphere
-      "lump": {
-        "name":"crescent-plat-15"
-      }
-    },
-    {
       "trans": [0.35, 243.54, 374.64], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2076,6 +2262,40 @@
       }
     },
     {
+      "trans": [-159.87, 272.54, 648.33], // translation
+      "etype": "plat-eco",  // actor type
+      "game_task": 4, // stay activated if set to 4
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-159.87, 272.54, 648.33, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-plat-eco-01",
+        "path":["vector4m",
+          [-159.87, 272.54, 648.33, 1.0],
+          [-189.69, 236.08, 650.69, 1.0],
+          [-227.37, 212.76, 641.29, 1.0]
+          ],
+        "sync": ["float", 10.0, 0.0],
+        "notice-dist":["meters", 2.5]
+      }
+    },
+    {
+      "trans": [56.06, 201.29, 411.79], // translation
+      "etype": "plat-eco",  // actor type
+      "game_task": 4, // stay activated if set to 4
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [56.06, 201.29, 411.79, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-plat-eco-02",
+        "path":["vector4m",
+          [56.06, 201.29, 411.79, 1.0],
+          [65.68, 185.79, 424.07, 1.0]
+          ],
+        "sync": ["float", 6.0, 0.0],
+        "notice-dist":["meters", 2.5],
+        "light-index":["int32", 1]
+      }
+    },
+    {
       "trans": [-227.29, 218.93, 649.43], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2123,6 +2343,28 @@
       "bsphere": [-191.09, 261.29, 639.09, 10.0], // bounding sphere
       "lump": {
         "name":"crescent-swingpole-05"
+      }
+    },
+    {
+      "trans": [-21.88, 234.39, 358.86], // translation
+      "etype": "springbox",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0, -0.443, 0.0, 0.896], // quaternion - Along Z axis in Blender
+      "bsphere": [-21.88, 234.39, 358.86, 10.0], // bounding sphere
+      "lump": {
+        "name":"crescent-springbox-01",
+        "scale":["float", 0.8]
+      }
+    },
+    {
+      "trans": [78.48, 228.27, 448.18], // translation
+      "etype": "springbox",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0, -0.595, 0.0, 0.804], // quaternion - Along Z axis in Blender
+      "bsphere": [78.48, 228.27, 448.18, 10.0], // bounding sphere
+      "lump": {
+        "name":"crescent-springbox-02",
+        "scale":["float", 0.8]
       }
     },
     // RACE RINGS
@@ -2753,16 +2995,194 @@
     },
 
     // OTHERS
-    // {
-    //   "trans": [-172.12, 166.46, 675.27], // translation
-    //   "etype": "lavafall",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0, 0, 0, 1], // quaternion
-    //   "bsphere": [-172.12, 166.46, 675.27, 10], // bounding sphere
-    //   "lump": {
-    //     "name":"crescent-lavafall-01"
-    //   }
-    // },
+    {
+      "trans": [22.51, 174.2, 436.62], // translation
+      "etype": "villagec-lava",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.947, 0, 0.322], // quaternion
+      "bsphere": [22.51, 174.2, 436.62, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lava-01",
+        // "water-height": ["float",  364640.0, 2048.0, 8192.0, 1048588.0 ], // camera height, ?, wadledept, flags
+        "look": ["int32", 35]
+      }
+    },
+    {
+      "trans": [-174.13, 108.94, 674.38], // translation
+      "etype": "lavafall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.545, 0, 0.838], // quaternion
+      "bsphere": [-174.13, 108.94, 674.38, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavafall-01",
+        "scale":["float", 4.0],
+        "texscroll-dist":  ["meters", 600.0],
+        "light-index": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-152.73, 54.58, 684.47], // translation
+      "etype": "lavafall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.657, 0, 0.754], // quaternion
+      "bsphere": [-152.73, 54.58, 684.47, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavafall-02",
+        "scale":["float", 3.6],
+        "texscroll-dist":  ["meters", 600.0],
+        "light-index": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-155.02, 54.60, 668.66], // translation
+      "etype": "lavafall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.777, 0, 0.630], // quaternion
+      "bsphere": [-155.02, 54.60, 668.66, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavafall-03",
+        "scale":["float", 3.6],
+        "texscroll-dist":  ["meters", 600.0],
+        "light-index": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-4.86, 174.2, 386.83], // translation
+      "etype": "lavafall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.703, 0, 0.711], // quaternion
+      "bsphere": [-4.86, 174.2, 386.83, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavafall-04",
+        "scale":["float", 1.16]
+      }
+    },
+    {
+      "trans": [-6.95, 173.71, 389.07], // translation
+      "etype": "lavafall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.373, 0, 0.928], // quaternion
+      "bsphere": [-6.95, 173.71, 389.07, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavafall-05",
+        "scale":["float", 1.16]
+      }
+    },
+    {
+      "trans": [-139.59, 56.61, 677.59], // translation
+      "etype": "lavabase",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.657, 0, 0.754], // quaternion
+      "bsphere": [-139.59, 56.61, 677.59, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavabase-01",
+        "scale":["float", 2.0],
+        "texscroll-dist":  ["meters", 600.0],
+        "light-index": ["int32", 2]
+      }
+    },
+    {
+      "trans": [-5.71, 175.2, 390.74], // translation
+      "etype": "lavabase",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.201, 0, 0.980], // quaternion
+      "bsphere": [-5.71, 175.2, 390.74, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavabase-02",
+        "scale":["float", 0.65]
+      }
+    },
+    {
+      "trans": [-5.70, 175.2, 380.97], // translation
+      "etype": "lavabase",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.982, 0, 0.189], // quaternion
+      "bsphere": [-5.70, 175.2, 380.97, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-lavabase-03",
+        "scale":["float", 0.65]
+      }
+    },
+    {
+      "trans": [-250.12, 209.08, 292.37], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.225, 0, 0.974], // quaternion
+      "bsphere": [-250.12, 209.08, 292.37, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-01",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-252.79, 209.08, 278.33], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.060, 0, 0.998], // quaternion
+      "bsphere": [-252.79, 209.08, 278.33, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-02",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-240.65, 209.08, 266.02], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.706, 0, 0.708], // quaternion
+      "bsphere": [-240.65, 209.08, 266.02, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-03",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-221.81, 209.08, 275.11], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.933, 0, 0.360], // quaternion
+      "bsphere": [-221.81, 209.08, 275.11, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-04",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-242.1, 209.08, 302.42], // translation
+      "etype": "hutlamp",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.398, 0, 0.917], // quaternion
+      "bsphere": [-242.1, 209.08, 302.42, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-hutlamp-05",
+        "scale":["float", 1.5]
+      }
+    },
+    {
+      "trans": [-278.86, 202.44, 758.57], // translation
+      "etype": "pusher",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.984, 0, 0.177], // quaternion
+      "bsphere": [-278.86, 202.44, 758.57, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-pusher-01",
+        "scale":["float", 1.0],
+        "sync":["float", 2.0, 0.0]
+      }
+    },
+    {
+      "trans": [-252.04, 202.44, 748.59], // translation
+      "etype": "pusher",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.177, 0, -0.984], // quaternion
+      "bsphere": [-252.04, 202.44, 748.59, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-pusher-02",
+        "scale":["float", 1.0],
+        "sync":["float", 2.0, 0.5]
+      }
+    },
+    // eco
     {
       "trans": [-250.41, 205.06, 291.89], // translation
       "etype": "eco",  // actor type
@@ -2815,7 +3235,7 @@
       "bsphere": [32.56, 198.16, 385.82, 10], // bounding sphere
       "lump": {
         "name":"crescent-eco-05",
-        "eco-info": ["int32", 3, 1]
+        "eco-info": ["int32", 3, 2]
       }
     },
     {
@@ -2885,6 +3305,17 @@
       }
     },
     {
+      "trans": [-157.64, 273.14, 647.05], // translation
+      "etype": "eco",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-157.64, 273.14, 647.05, 10], // bounding sphere
+      "lump": {
+        "name":"crescent-eco-12",
+        "eco-info": ["int32", 3, 1]
+      }
+    },
+    {
       "trans": [398.95, 300.19, 622.66], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2896,6 +3327,7 @@
         "vis-dist":  ["meters", 200.0]
       }
     },
+    // orb cache
     {
       "trans": [-239.35, 203.03, 279.71], // translation
       "etype": "orb-cache-top",  // actor type
@@ -2912,24 +3344,24 @@
       "trans": [92.48, 184.42, 359.15], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
+      "quat" : [0, 1.0, 0, -0.022], // quaternion
       "bsphere": [92.48, 184.42, 359.15, 10], // bounding sphere
       "lump": {
         "name":"crescent-orb-cache-top-03",
         "orb-cache-count":["int32", 5],
-        "vis-dist":  ["meters", 200.0]
+        "light-index":["int32",1]
       }
     },
     {
       "trans": [92.73, 184.42, 363.79], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
+      "quat" : [0, 0.024, 0, 1], // quaternion
       "bsphere": [92.73, 184.42, 363.79, 10], // bounding sphere
       "lump": {
         "name":"crescent-orb-cache-top-04",
         "orb-cache-count":["int32", 5],
-        "vis-dist":  ["meters", 200.0]
+        "light-index":["int32",1]
       }
     }
     /*,

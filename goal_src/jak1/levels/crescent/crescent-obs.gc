@@ -1,8 +1,6 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(import "goal_src/jak1/import/lavabase-ag.gc")
-(import "goal_src/jak1/import/lavafall-ag.gc")
 
 
 (deftype lavabase (process-drawable)
@@ -59,7 +57,7 @@
 
 (defskelgroup *lavafall-sg* lavafall lavafall-lod0-jg lavafall-idle-ja
               ((lavafall-lod0-mg (meters 999999)))
-              :bounds (static-spherem 0 10 0 13)
+              :bounds (static-spherem 0 50 0 53)
               :longest-edge (meters 5.4)
               )
 
@@ -82,5 +80,217 @@
   (process-drawable-from-entity! obj arg0)
   (initialize-skeleton obj *lavafall-sg* '())
   (go lavafall-idle)
+  (none)
+  )
+
+
+(deftype cyclegen (structure) ;; cyclegen needed for the hutlamp
+  ((output float  :offset-assert   0)
+   (inc    float  :offset-assert   4)
+   )
+  :pack-me
+  :method-count-assert 9
+  :size-assert         #x8
+  :flag-assert         #x900000008
+  )
+
+
+(defun set-period ((arg0 cyclegen) (arg1 int))
+  (set! (-> arg0 inc) (/ 5.0 (the float arg1)))
+  )
+
+(defun update-clock ((arg0 cyclegen))
+  (let ((f0-1 (+ (-> arg0 output) (* (-> arg0 inc) (-> *display* time-adjust-ratio)))))
+    (set! (-> arg0 output) (- f0-1 (the float (the int f0-1))))
+    )
+  (-> arg0 output)
+  )
+
+(deftype hutlamp (process-drawable)
+  ((pivot joint-mod-set-local         :offset-assert 176)
+   (clock cyclegen            :inline :offset-assert 180)
+   )
+  :heap-base #x50
+  :method-count-assert 20
+  :size-assert         #xbc
+  :flag-assert         #x14005000bc
+  (:states
+    hutlamp-idle
+    )
+  )
+
+
+(defmethod relocate hutlamp ((obj hutlamp) (arg0 int))
+  (if (nonzero? (-> obj pivot))
+      (&+! (-> obj pivot) arg0)
+      )
+  (the-as
+    hutlamp
+    ((the-as (function process-drawable int process-drawable) (find-parent-method hutlamp 7)) obj arg0)
+    )
+  )
+
+(defskelgroup *hutlamp-sg* hutlamp hutlamp-lod0-jg hutlamp-idle-ja
+              ((hutlamp-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 1 0 1.2)
+              :longest-edge (meters 0.7)
+              )
+
+(defstate hutlamp-idle (hutlamp)
+  :code (behavior ()
+    (loop
+      (let ((f0-3 (* 1820.4445 (sin (* 65536.0 (update-clock (-> self clock)))))))
+        (quaternion-vector-angle! (-> self pivot transform quat) *x-vector* f0-3)
+        )
+      (suspend)
+      )
+    (none)
+    )
+  :post (the-as (function none :behavior hutlamp) ja-post)
+  )
+
+(defmethod init-from-entity! hutlamp ((obj hutlamp) (arg0 entity-actor))
+  (set! (-> obj root) (new 'process 'trsqv))
+  (process-drawable-from-entity! obj arg0)
+  (initialize-skeleton obj *hutlamp-sg* '())
+  (set! (-> obj pivot) (new 'process 'joint-mod-set-local obj 3 #f #t #f))
+  (set-period (-> obj clock) 900)
+  (set! (-> obj clock output) (rand-vu))
+  (go hutlamp-idle)
+  (none)
+  )
+
+(deftype pusher-base (process-drawable)
+  ((root-override collide-shape-moving  :offset        112)
+   (max-frame     float                 :offset-assert 176)
+   )
+  :heap-base #x50
+  :method-count-assert 20
+  :size-assert         #xb4
+  :flag-assert         #x14005000b4
+  )
+
+
+(deftype pusher (pusher-base)
+  ((sync sync-info-paused :inline :offset-assert 180)
+   (cyl  cylinder         :inline :offset-assert 208)
+   )
+  :heap-base #x90
+  :method-count-assert 20
+  :size-assert         #xf8
+  :flag-assert         #x14009000f8
+  (:states
+    pusher-idle
+    )
+  )
+
+(defskelgroup *pusher-sg* pusher pusher-lod0-jg pusher-idle-ja
+              ((pusher-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 10)
+              )
+
+(defbehavior pusher-base-init pusher-base ()
+  (logior! (-> self mask) (process-mask enemy platform))
+  (let ((gp-0 (new 'process 'collide-shape-moving self (collide-list-enum hit-by-others))))
+    (set! (-> gp-0 dynam) (copy *standard-dynamics* 'process))
+    (set! (-> gp-0 reaction) default-collision-reaction)
+    (set! (-> gp-0 no-reaction)
+          (the-as (function collide-shape-moving collide-shape-intersect vector vector none) nothing)
+          )
+    (let ((s5-0 (new 'process 'collide-shape-prim-group gp-0 (the-as uint 1) 0)))
+      (set! (-> s5-0 prim-core collide-as) (collide-kind ground-object))
+      (set! (-> s5-0 collide-with) (collide-kind target))
+      (set! (-> s5-0 prim-core action) (collide-action solid rider-plat-sticky))
+      (set! (-> s5-0 transform-index) 0)
+      (set-vector! (-> s5-0 local-sphere) -8192.0 0.0 0.0 40960.0)
+      (set-root-prim! gp-0 s5-0)
+      (let ((s4-0 (new 'process 'collide-shape-prim-mesh gp-0 (the-as uint 0) (the-as uint 0))))
+        (set! (-> s4-0 prim-core collide-as) (collide-kind ground-object))
+        (set! (-> s4-0 collide-with) (collide-kind target))
+        (set! (-> s4-0 prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> s4-0 prim-core offense) (collide-offense indestructible))
+        (set! (-> s4-0 transform-index) 4)
+        (set-vector! (-> s4-0 local-sphere) 8192.0 0.0 0.0 28672.0)
+        (append-prim s5-0 s4-0)
+        )
+      )
+    (set! (-> gp-0 nav-radius) (* 0.75 (-> gp-0 root-prim local-sphere w)))
+    (backup-collide-with-as gp-0)
+    (set! (-> self root-override) gp-0)
+    gp-0
+    )
+  )
+
+(defstate pusher-idle (pusher)
+  :trans (the-as (function none :behavior pusher) rider-trans)
+  :code (behavior ()
+    (loop
+      (let ((f0-0 -1.0))
+        (when (and *target* *camera*)
+          (let ((gp-0 (new 'stack-no-clear 'vector)))
+            (vector-! gp-0 (target-pos 0) (camera-pos))
+            (set! f0-0 (ray-capsule-intersect (-> self cyl) (camera-pos) gp-0))
+            )
+          )
+        (if (< f0-0 0.0)
+            (ja :num! (seek! (get-current-value-with-mirror (-> self sync) (-> self max-frame))))
+            (ja :num! (seek! 0.0))
+            )
+        )
+      (suspend)
+      )
+    (none)
+    )
+  :post (the-as (function none :behavior pusher) rider-post)
+  )
+
+(defmethod init-from-entity! pusher ((obj pusher) (arg0 entity-actor))
+  (pusher-base-init)
+  (process-drawable-from-entity! obj arg0)
+  (initialize-skeleton obj *pusher-sg* '())
+  (load-params! (-> obj sync) obj (the-as uint 1500) 0.0 0.15 0.15)
+  (set! (-> obj max-frame) (res-lump-float arg0 'max-frame :default (the float (ja-num-frames 0))))
+  (set! (-> obj cyl origin quad) (-> obj root-override trans quad))
+  (vector-x-quaternion! (-> obj cyl axis) (-> obj root-override quat))
+  (vector-negate! (-> obj cyl axis) (-> obj cyl axis))
+  (set! (-> obj cyl length) 36864.0)
+  (set! (-> obj cyl radius) 20480.0)
+  (go pusher-idle)
+  (none)
+  )
+
+(deftype villagec-lava (water-anim)
+  ()
+  :heap-base #x70
+  :method-count-assert 30
+  :size-assert         #xdc
+  :flag-assert         #x1e007000dc
+  )
+
+
+(define ripple-for-villagec-lava (new 'static 'ripple-wave-set
+                                   :count 2
+                                   :converted #f
+                                   :wave (new 'static 'inline-array ripple-wave 4
+                                     (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 1.5)
+                                     (new 'static 'ripple-wave :scale 40.0 :xdiv -2 :zdiv 2 :speed 0.9)
+                                     (new 'static 'ripple-wave)
+                                     (new 'static 'ripple-wave)
+                                     )
+                                   )
+        )
+
+(defmethod water-vol-method-22 villagec-lava ((obj villagec-lava))
+  (let ((t9-0 (method-of-type water-anim water-vol-method-22)))
+    (t9-0 obj)
+    )
+  (let ((v1-2 (new 'process 'ripple-control)))
+    (set! (-> obj draw ripple) v1-2)
+    (set! (-> v1-2 global-scale) 3072.0)
+    (set! (-> v1-2 waveform) ripple-for-villagec-lava)
+    )
+  (logclear! (-> obj flags) (water-flags wt23))
+  (logior! (-> obj flags) (water-flags wt25))
+  (set! (-> obj attack-event) 'lava)
   (none)
   )
