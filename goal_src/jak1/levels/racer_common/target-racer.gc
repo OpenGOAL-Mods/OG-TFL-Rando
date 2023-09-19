@@ -298,7 +298,7 @@
           (cond
             ;; TFL note: added super eco case
             ((and (not (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
-                                (= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow)))
+                                (target-powerup? super-eco-yellow))
                             (>= (-> self fact-info-target eco-level) 1.0)
                             )
                        )

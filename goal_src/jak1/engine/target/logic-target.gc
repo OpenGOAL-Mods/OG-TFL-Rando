@@ -21,8 +21,7 @@
     (+! (-> self control unknown-surface01 transv-max) 20480.0)
     )
   ;; TFL note: added super-eco-blue case
-  (when (and (= (-> self fact-info-target eco-type) (pickup-type super-eco-blue))
-             (>= (-> self fact-info-target eco-level) 1.0))
+  (when (target-powerup? super-eco-blue)
     (+! (-> self control unknown-surface01 target-speed) (meters 10))
     (+! (-> self control unknown-surface01 transv-max) (meters 10))
     )

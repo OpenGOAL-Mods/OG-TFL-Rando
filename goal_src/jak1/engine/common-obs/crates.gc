@@ -495,6 +495,15 @@
              (go-virtual die #f (the-as int s5-0))
              )
             (else
+              ;; TFL note: added super eco case
+              (if (and (target-powerup? super-eco-red)
+                       (or (= (-> arg3 param 1) 'punch)
+                           (= (-> arg3 param 1) 'flip)
+                           (= (-> arg3 param 1) 'flop-down)
+                           (= (-> arg3 param 1) 'spin)
+                           (= (-> arg3 param 1) 'spin-air)))
+                (go-virtual die #f (the int s5-0))
+                )
               (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root-override trans y) (-> self base y)))
                 (if (not (and (!= *kernel-boot-message* 'play) (= (-> *setting-control* current language) (language-enum japanese)))
                          )
@@ -549,6 +558,17 @@
              (go-virtual die #f (the-as int s5-0))
              )
             (else
+              ;; TFL note: added super eco case
+              (if (and (target-powerup? super-eco-red)
+                       (or (= (-> arg3 param 1) 'punch)
+                           (= (-> arg3 param 1) 'flip)
+                           (= (-> arg3 param 1) 'flop)
+                           (= (-> arg3 param 1) 'flop-down)
+                           (= (-> arg3 param 1) 'spin)
+                           (= (-> arg3 param 1) 'spin-air)
+                           (= (-> arg3 param 1) 'uppercut)))
+                (go-virtual die #f (the int s5-0))
+                )
               (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root-override trans y) (-> self base y)))
                 (level-hint-spawn
                   (text-id sidekick-hint-crate-steel)

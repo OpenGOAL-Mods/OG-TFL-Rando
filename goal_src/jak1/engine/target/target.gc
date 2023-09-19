@@ -2007,7 +2007,7 @@
                 )
     (until (ja-done? 0)
         ;; TFL note: added super eco case
-        (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+        (when (and (or (target-powerup? super-eco-red)
                        (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                    (>= (-> self fact-info-target eco-level) 1.0))
         (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 74)
@@ -2103,7 +2103,7 @@
     )
   :enter (behavior ()
     ;; TFL note: added super-eco-yellow case
-    (if (and (!= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow))
+    (if (and (not (target-powerup? super-eco-yellow))
              (or (and (= (-> self fact-info-target eco-type) (pickup-type eco-yellow)) (>= (-> self fact-info-target eco-level) 1.0))
                  (< (- (-> *display* base-frame-counter) (-> self control unknown-dword82)) (seconds 1.5))
                )
@@ -2111,9 +2111,7 @@
         (go target-yellow-blast)
         )
     ;; TFL note: added super-eco-yellow case
-    (if (or (and (= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow))
-                 (>= (-> self fact-info-target eco-level) 1.0)
-                 )
+    (if (or (target-powerup? super-eco-yellow)
             ;; (< (- (current-time) (-> self control unknown-dword82)) (seconds 0.45))
             )
         (go target-super-yellow-blast)
@@ -2127,6 +2125,28 @@
     (set! (-> *run-attack-mods* turnvv) 655360.0)
     (target-start-attack)
     (target-danger-set! 'punch #f)
+    ;; TFL note: added super eco case
+    ;; TFL TODO finish this
+    (when (target-powerup? super-eco-red)
+      (let ((ttracker (process-spawn touch-tracker :init touch-tracker-init (-> self control trans) 4096.0 30 :to self)))
+        (send-event (ppointer->process ttracker) 'event 'attack 'punch)
+        (send-event
+          (ppointer->process ttracker)
+          'function
+          (lambda ((t target)) (let ((radius (seek
+                                                (-> t control root-prim local-sphere w)
+                                                (the-as float 28672.0)
+                                                (* 286720.0 DISPLAY_FPS_RATIO 0.016666668) ;; changed for high fps
+                                                )
+                                            )
+                                          )
+                                    (set! (-> t control root-prim local-sphere w) radius)
+                                    radius
+                                    )
+                  )
+          )
+        )
+      )
     (if (or (< (fabs (-> self control unknown-float62)) 0.3) (< 0.3 (fabs (-> self control unknown-float61))))
         (set! (-> self control unknown-float81) 1.0)
         )
@@ -2213,7 +2233,7 @@
             )
           )
         ;; TFL note: added super eco case
-        (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+        (when (and (or (target-powerup? super-eco-red)
                        (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                    (>= (-> self fact-info-target eco-level) 1.0))
         (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 23)
@@ -2441,7 +2461,7 @@
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       )
     ;; TFL note: added super eco case
-    (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+    (when (and (or (target-powerup? super-eco-red)
                    (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                (>= (-> self fact-info-target eco-level) 1.0)
                )
@@ -2607,7 +2627,7 @@
         )
     (mod-var-jump #t #t (cpad-hold? (-> self control unknown-cpad-info00 number) x) (-> self control transv))
     ;; TFL note: added super eco case
-    (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+    (when (and (or (target-powerup? super-eco-red)
                    (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                (>= (-> self fact-info-target eco-level) 1.0)
                )
@@ -2691,7 +2711,7 @@
   :enter (behavior ((arg0 float) (arg1 float) (arg2 float))
     ;; TFL note: added super-eco-yellow case
     (if (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
-                 (= (-> self fact-info-target eco-type) (pickup-type super-eco-yellow)))
+                 (target-powerup? super-eco-yellow))
              (>= (-> self fact-info-target eco-level) 1.0)
              )
         (go target-yellow-jump-blast)
@@ -2754,7 +2774,7 @@
       (when gp-1
         (logior! (-> self control status) (cshape-moving-flags onsurf))
         ;; TFL note: added super eco case
-        (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+        (when (and (or (target-powerup? super-eco-red)
                        (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                   (>= (-> self fact-info-target eco-level) 1.0)
                   )
@@ -2783,7 +2803,7 @@
         )
       )
       ;; TFL note: added super eco case
-      (when (and (or (= (-> self fact-info-target eco-type) (pickup-type super-eco-red))
+      (when (and (or (target-powerup? super-eco-red)
                      (= (-> self fact-info-target eco-type) (pickup-type eco-red)))
                  (>= (-> self fact-info-target eco-level) 1.0))
       (effect-control-method-10
@@ -2947,7 +2967,7 @@
       )
     ;; TFL note: added super eco case
     (when (and (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-red))
-                        (= (-> self fact-info-target eco-type) (pickup-type super-eco-red)))
+                        (target-powerup? super-eco-red))
                     (>= (-> self fact-info-target eco-level) 1.0)
                     )
                (< (- (-> *display* base-frame-counter) (-> self state-time)) (seconds 0.25))

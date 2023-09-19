@@ -1,10 +1,6 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(import "goal_src/jak1/import/dark-crystal-ag.gc")
-
-;; TFL TODO: particles for crystal explosion and idle state
-
 (defconstant SUPER_ECO_BLUE_R 0.0) ;; KUI notes: edited some crystal colors so the purple is less visible
 (defconstant SUPER_ECO_BLUE_G 7.0)
 (defconstant SUPER_ECO_BLUE_B 16.0)
@@ -240,10 +236,7 @@
   )
 
 (defbehavior should-draw? super-eco-crystal ()
-  (if (!= (-> self next-state name) 'super-eco-crystal-idle)
-    #f
-    #t
-    )
+  (= (-> self next-state name) 'super-eco-crystal-idle)
   )
 
 (defbehavior super-eco-crystal-post super-eco-crystal ()
