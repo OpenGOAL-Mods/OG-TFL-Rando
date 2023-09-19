@@ -196,7 +196,6 @@
 
 (defpart 704 ;; Edit particles to some electric stuff
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
-  :bounds (static-spherem 0 0 0 40)
     (:num 1.0)
     (:scale-x (meters 2))
     (:rot-z (degrees -180) (degrees 360))
@@ -219,7 +218,6 @@
 
 (defpart 705
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
-  :bounds (static-spherem 0 0 0 40)
     (:num 1.0)
     (:scale-x (meters 2))
     (:rot-z (degrees -180) (degrees 360))
