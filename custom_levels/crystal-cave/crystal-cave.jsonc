@@ -2806,7 +2806,32 @@
       "lump": {
         "name":"crystalc-warpmiddle-01"
       }
-    }/*,
+    },
+    ////////////////////////////
+    // CUSTOM ACTORS :
+    ////////////////////////////
+    {
+      "trans": [-155.65, 87.97, -131.07], // translation
+      "etype": "electric-arc",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-155.65, 87.97, -131.07, 10], // bounding sphere
+      "lump": {
+        "name":"crystalc-electric-arc-01",
+        "path":["vector4m",
+          [-169.1, 92.24, -122.2, 1.0],
+          [-162.5, 102.4, -140.4, 1.0],
+          [-150.0, 102.1, -122.0, 1.0]
+          ],
+        "cycle-speed":["float", 4.0, 0.75, 2.0],
+        "visvol": ["vector4m",
+          [-172.73, 83.48, -147.66, 1.0],
+          [-139.78, 116.43, -114.71, 1.0]
+          ]
+      }
+    }
+
+    /*,
 
     ////////////////////////////
     // TEST ACTOR :
