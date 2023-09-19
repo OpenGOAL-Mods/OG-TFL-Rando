@@ -174,6 +174,12 @@
   (none)
   )
 
+(defskelgroup *electric-arc-sg* money money-lod0-jg money-idle-ja
+              ((money-lod0-mg (meters 20)) (money-lod1-mg (meters 40)) (money-lod2-mg (meters 999999)))
+              :bounds (static-spherem 0 3 0 4)
+              :texture-level 2
+              )
+
 (deftype electric-arc (process-drawable)
   ((root-override      collide-shape           :offset        112)
    (shove-up           float                   :offset-assert 176)
@@ -390,6 +396,8 @@
     (set! (-> obj root-override) s4-0)
     )
   (process-drawable-from-entity! obj arg0)
+  (initialize-skeleton obj *money-sg* '())
+  ;; (logior! (-> obj draw status) (draw-status hidden))
   (let ((v1-42 (new 'process 'path-control obj 'path 0.0)))
     (set! (-> obj path) v1-42)
     (logior! (-> v1-42 flags) (path-control-flag display draw-line draw-point draw-text))
