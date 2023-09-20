@@ -20,6 +20,10 @@
 (define-extern target-send-attack (function process uint touching-shapes-entry int int symbol :behavior target))
 (define-extern target-bonk-event-handler (function process int symbol event-message-block object :behavior target))
 
+;; TFL note: added constants
+(defconstant SUPER_ECO_RED_SPIN_UP (meters 25))
+(defconstant SUPER_ECO_RED_SPIN_DOWN (meters 30))
+
 ;; DECOMP BEGINS
 
 (defbehavior target-falling-anim target ((arg0 time-frame) (arg1 time-frame))
@@ -2379,7 +2383,8 @@
              )
            (let* ((f0-4 (vector-length gp-1))
                   (f1-2 f0-4)
-                  (f2-0 33775.48)
+                  ;; TFL note: added super eco case
+                  (f2-0 (if (target-powerup? super-eco-red) SUPER_ECO_RED_SPIN_DOWN 33775.48))
                   )
              (vector+!
                (-> self control transv)
@@ -2413,7 +2418,8 @@
                 )
               (let* ((f0-9 (vector-length gp-2))
                      (f1-11 f0-9)
-                     (f2-7 (+ 1024.0 (sqrtf (* 245760.0 (+ 2048.0 f30-0)))))
+                     ;; TFL note: added super eco case
+                     (f2-7 (if (target-powerup? super-eco-red) SUPER_ECO_RED_SPIN_UP (+ 1024.0 (sqrtf (* 245760.0 (+ 2048.0 f30-0))))))
                      )
                 (vector+!
                   (-> self control transv)
