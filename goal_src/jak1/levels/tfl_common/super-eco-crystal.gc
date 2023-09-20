@@ -261,6 +261,7 @@
   :trans (behavior ()
     (do-lighting! self)
     (spawn (-> self part) (-> self cshape trans))
+    (update! (-> self sound))
     (none)
     )
   :enter (behavior ()
