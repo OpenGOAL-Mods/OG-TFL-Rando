@@ -317,6 +317,9 @@
     (go super-eco-crystal-respawn)
     (none)
     )
+  :enter (behavior ()
+    (stop! (-> self sound))
+    )
   :post super-eco-crystal-post
   )
 
