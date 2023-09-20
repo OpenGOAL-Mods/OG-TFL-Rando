@@ -2823,11 +2823,7 @@
           [-162.5, 102.4, -140.4, 1.0],
           [-150.0, 102.1, -122.0, 1.0]
           ],
-        "cycle-speed":["float", 4.0, 0.75, 2.0],
-        "visvol": ["vector4m",
-          [-172.73, 83.48, -147.66, 1.0],
-          [-139.78, 116.43, -114.71, 1.0]
-          ]
+        "cycle-speed":["float", 5.5, 0.0, 4.0]
       }
     }
 
@@ -2938,7 +2934,7 @@
       "name": "crystalc-amb-08-oracle-sleep",
       "type": "'sound",
       "effect-name":"'oracle-sleep",
-      "effect-param": ["float", 11.0, 40.0, 50.0, 350.0],  // ??, ??, ??, Max Radius
+      "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
   },
