@@ -509,8 +509,7 @@
 
 (defbehavior target-powerup-process target ()
   ;; TFL note: added to reset color and max eco pill count
-  ;; (set! (-> self draw color-mult quad) (-> (new 'static 'vector :x 1.0 :y 1.0 :z 1.0 :w 1.0) quad))
-  (set! (-> self draw color-emissive quad) (-> (new 'static 'vector :x 0.0 :y 0.0 :z 0.0 :w 0.0) quad))
+  (vector-copy! (-> self draw color-emissive) (new 'static 'vector :x 0.0 :y 0.0 :z 0.0 :w 0.0))
   (set! (-> self fact-info-target eco-pill-max) 50.0)
   (water-control-method-10 (-> self water))
   (when (not *weather-off*)
@@ -744,7 +743,7 @@
                            (lerp-clamp min-green max-green (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))
                            0.0
                            1.0)
-          (set! (-> self draw color-emissive quad) (-> clr quad))
+          (vector-copy! (-> self draw color-emissive) clr)
           ;; (format *stdcon* "flicker-speed ~f flicker-amp ~f g~f b~f eco ~f~%" flicker-speed flicker-amp (-> clr y) (-> clr z) eco)
           )
        )
@@ -789,7 +788,7 @@
                              (lerp-clamp min-green max-green (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))
                              0.0
                              1.0)
-            (set! (-> self draw color-emissive quad) (-> clr quad))
+            (vector-copy! (-> self draw color-emissive) clr)
             ;; (format *stdcon* "flicker-speed ~f flicker-amp ~f g~f b~f eco ~f~%" flicker-speed flicker-amp (-> clr y) (-> clr z) eco)
             )
           )
@@ -845,7 +844,7 @@
                            (lerp-clamp min-green max-green (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))
                            (+ 0.2 (lerp-clamp min-blue max-blue (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0))))))
                            1.0)
-          (set! (-> self draw color-emissive quad) (-> clr quad))
+          (vector-copy! (-> self draw color-emissive) clr)
           ;; (format *stdcon* "flicker-speed ~f flicker-amp ~f g~f b~f eco ~f~%" flicker-speed flicker-amp (-> clr y) (-> clr z) eco)
           )
        )
@@ -882,7 +881,7 @@
                            (lerp-clamp min-green max-green (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))
                            (+ 0.2 (lerp-clamp min-blue max-blue (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0))))))
                            1.0)
-          (set! (-> self draw color-emissive quad) (-> clr quad))
+          (vector-copy! (-> self draw color-emissive) clr)
           ;; (format *stdcon* "flicker-speed ~f flicker-amp ~f g~f b~f eco ~f~%" flicker-speed flicker-amp (-> clr y) (-> clr z) eco)
           )
        )
