@@ -16,4 +16,5 @@
   "racer-ag.go" ; zoomer stuff
   "sun-iris-door.o"
   "sun-iris-door-ag.go"
+  "shortcut-boulder-ag.go"
  ))

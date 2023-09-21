@@ -38,7 +38,8 @@
   // Note: You will still have to add them to your level's .gd file.
   "art_groups": ["plat-ag", 
                 "orb-cache-top-ag", 
-                "sun-iris-door-ag"],
+                "sun-iris-door-ag",
+                "shortcut-boulder-ag"],
 
   "actors" : [
         // CELLS
@@ -1152,6 +1153,17 @@
             "proximity":["int32", 1],
             "open-dist":["meters", 35.0],
             "close-dist":["meters", 40.0]
+          }
+        },
+        {
+          "trans": [561.81, 2.4, 761.0], // translation
+          "etype": "breakable-boulder",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [561.81, 2.4, 761.0, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-boulder-test-01",
+            "vis-dist":  ["meters", 200.0]
           }
         },
         // WATER
