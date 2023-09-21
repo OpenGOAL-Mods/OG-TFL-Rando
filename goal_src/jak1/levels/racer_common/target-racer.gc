@@ -5,6 +5,12 @@
 ;; name in dgo: target-racer
 ;; dgos: FIC, LAV, MIS, OGR, ROL
 
+;; TFL note: added constants
+(defconstant SUPER_ECO_RED_BOOST_COOLDOWN (seconds 2))
+(defconstant SUPER_ECO_RED_BOOST_SPEED (meters 45))
+(defconstant SUPER_ECO_RED_BOOST_DURATION (seconds 0.5))
+(defconstant SUPER_ECO_RED_BOOST_RADIUS (meters 3.5))
+
 ;; DECOMP BEGINS
 
 (define *racer-mods* (new 'static 'surface
@@ -1173,7 +1179,7 @@
         (if (and (not (target-powerup? super-eco-red))
                  (>= (- (current-time) (-> self racer super-red-boost-time)) (seconds 2)))
           (+ (-> self control unknown-surface01 transv-max) (-> self racer boost-output) (-> self racer hill-boost))
-          (meters 45)
+          SUPER_ECO_RED_BOOST_SPEED
           )
         )
   (let ((gp-0 (the int (-> *display* time-ratio))))
@@ -1457,28 +1463,45 @@
     (set! (-> *racer-shadow-control* settings shadow-dir quad) v1-240)
     )
   ;; TFL note: added super red eco boost attack
-  (when (and (>= (- (current-time) (-> self racer super-red-boost-time)) (seconds 2))
+  (when (and (not (nmember (-> self next-state name) '(target-racing-get-off target-racing-get-on)))
+             (time-elapsed? (-> self racer super-red-boost-time) SUPER_ECO_RED_BOOST_COOLDOWN)
              (target-powerup? super-eco-red)
              (cpad-pressed? 0 circle)
              )
     (sound-play "zoom-boost")
-    (set! (-> self racer super-red-boost-time) (current-time))
+    (set-time! (-> self racer super-red-boost-time))
+    ;; TFL TODO try to smooth out the speed gain at lower speeds
     (let ((dir (-> *target* control unknown-matrix01 vector 2)))
       (set-vector! (-> self control transv)
-                   (* (-> dir x) (meters 45))
+                   (* (-> dir x) SUPER_ECO_RED_BOOST_SPEED)
                    (-> self control transv y)
-                   (* (-> dir z) (meters 45))
+                   (* (-> dir z) SUPER_ECO_RED_BOOST_SPEED)
                    1.0)
       )
     (effect-control-method-10 (-> self skel effect) 'group-red-eco-strike-ground (ja-frame-num 0) 0)
-    (let ((ttracker (process-spawn touch-tracker :init touch-tracker-init (-> self control trans) 4096.0 30 :to self)))
-      (send-event (ppointer->process ttracker) 'event 'attack 'racer-boost)
-      (send-event
-        (ppointer->process ttracker)
-        'function
-        (lambda ((t target)) (let ((rad (seek (-> t control root-prim local-sphere w) (meters 10) (* (meters 100) DISPLAY_FPS_RATIO 0.016666668))))
-                                  (set! (-> t control root-prim local-sphere w) rad)
-                                  rad))
+    (let ((ttracker (process-spawn touch-tracker :init touch-tracker-init (-> self control trans) 4096.0 SUPER_ECO_RED_BOOST_DURATION :to self)))
+      (send-event (ppointer->process ttracker) 'event 'attack 'racer-red-boost)
+      (send-event (ppointer->process ttracker) 'exit
+        (lambda :behavior touch-tracker ()
+          (let ((vec (-> self root-override trans)))
+            (vector-matrix*! vec (new 'static 'vector :y (meters 5) :z (meters 10) :w 1.0) (-> *target* control unknown-matrix01))
+            (vector-float*! vec vec 0.5)
+            (vector+! vec vec (-> *target* control trans))
+            )
+          (< (- (current-time) (-> self state-time)) (-> self duration))
+          )
+        )
+      (send-event (ppointer->process ttracker) 'eval
+        (lambda :behavior touch-tracker ()
+          ;; TFL TODO check what stuff we want to collide with
+          (set! (-> self root-override root-prim collide-with) (collide-kind cak-1 cak-2 cak-3 wall-object))
+          (none)
+          )
+        )
+      (send-event (ppointer->process ttracker) 'function
+        (lambda ((t target))
+          (set! (-> t control root-prim local-sphere w) SUPER_ECO_RED_BOOST_RADIUS)
+          )
         )
       )
     )
