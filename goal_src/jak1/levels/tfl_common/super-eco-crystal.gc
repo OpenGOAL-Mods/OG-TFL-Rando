@@ -93,7 +93,7 @@
       (set! (-> prim-mesh prim-core action) (collide-action solid))
       (set! (-> prim-mesh prim-core offense) (collide-offense touch))
       (set! (-> prim-mesh transform-index) 0)
-      (set-vector! (-> prim-mesh local-sphere) 0.0 (meters 1.7) 0.0 (meters 3.8))
+      (set-vector! (-> prim-mesh local-sphere) 0.0 (meters 1.7) 0.0 (meters 2))
       (set-root-prim! cshape prim-mesh)
       )
     (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
