@@ -2866,7 +2866,8 @@
       "lump": {
         "name": "crystalc-eco-crystal-05", // KUI notes: added one extra green crystal to test near the dark eco mushrooms
         "eco-type": "'red",
-        "respawn-timer": ["int32", 2]
+        "respawn-timer": ["int32", 2],
+        "options":["int32", 8192]
       }
     }
     /*,
