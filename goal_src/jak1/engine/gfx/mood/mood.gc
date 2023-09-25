@@ -2772,6 +2772,9 @@
 
 ;; TFL note: CUSTOM LEVEL UPDATE-MOOD STUFF
 
+(define *crystalc-ship-dir2* (new 'static 'rgbaf :r 1.5 :g 0.0 :b 1.2 :a 1.0))
+(define *crystalc-ship-ambi* (new 'static 'rgbaf :r 0.2 :g 0.2 :b 0.7 :a 1.0))
+
 (defun update-mood-crystal-cave ((arg0 mood-context) (arg1 float) (arg2 int))
   (when (not (paused?))
     (clear-mood-times arg0)
@@ -2834,9 +2837,9 @@
       (set! (-> v1-34 direction z) -0.3)
       (set! (-> v1-34 direction w) 1.0)
       )
-    (set-vector! (-> s5-4 dir2 color) 1.5 0.0 1.2 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (vector-copy! (-> s5-4 dir2 color) *crystalc-ship-dir2*)                              ;; COLOR OF THE KEY LIGHT
     (set! (-> s5-4 dir2 levels x) 1.0) 
-    (set-vector! (-> s5-4 ambi color) 0.2 0.2 0.7 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
+    (vector-copy! (-> s5-4 ambi color) *crystalc-ship-ambi*)                              ;; COLOR OF THE AMBIANT LIGHT
     )
 
   ;; YELLOW (trusters) "light-index": ["int32", 5]

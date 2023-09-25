@@ -2806,7 +2806,28 @@
       "lump": {
         "name":"crystalc-warpmiddle-01"
       }
-    }/*,
+    },
+    ////////////////////////////
+    // CUSTOM ACTORS :
+    ////////////////////////////
+    {
+      "trans": [-155.65, 87.97, -131.07], // translation
+      "etype": "electric-arc",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-155.65, 87.97, -131.07, 10], // bounding sphere
+      "lump": {
+        "name":"crystalc-electric-arc-01",
+        "path":["vector4m",
+          [-169.1, 92.24, -122.2, 1.0],
+          [-162.5, 102.4, -140.4, 1.0],
+          [-150.0, 102.1, -122.0, 1.0]
+          ],
+        "cycle-speed":["float", 5.5, 0.0, 4.0]
+      }
+    }
+
+    /*,
 
     ////////////////////////////
     // TEST ACTOR :
@@ -2913,7 +2934,7 @@
       "name": "crystalc-amb-08-oracle-sleep",
       "type": "'sound",
       "effect-name":"'oracle-sleep",
-      "effect-param": ["float", 11.0, 40.0, 50.0, 350.0],  // ??, ??, ??, Max Radius
+      "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
   },
