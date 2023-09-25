@@ -17,5 +17,6 @@
   "crescent-obs.o"
   "crescent-part.o"
   "bouncer.o" ; springbox
+  "wall-plat.o" ; moving in and out of the wall
     )
   )

@@ -1141,18 +1141,19 @@
           }
         },
         {
-          "trans": [455.97, 60.27, 652.48], // translation
+          "trans": [455.97, 53.04, 652.48], // translation
           "etype": "sun-iris-door",  // actor type
           "game_task": 128, // associated game task (for powercells, etc) //TFL todo: switch to correct game task
           "quat" : [0, -0.707, 0, 0.707], // quaternion
-          "bsphere": [455.97, 60.27, 652.48, 10], // bounding sphere
+          "bsphere": [455.97, 53.04, 652.48, 10], // bounding sphere
           "lump": {
             "name":"energy-bay-iris-door-01",
-            "scale-factor":["float", 5.0],
-            "scale":["float", 5.0], // requires both scales to work
+            "scale-factor":["float", 3.0],
+            "scale":["float", 3.0], // requires both scales to work
             "proximity":["int32", 1],
             "open-dist":["meters", 35.0],
-            "close-dist":["meters", 40.0]
+            "close-dist":["meters", 40.0],
+            "light-index":["int32", 1]
           }
         },
         {
