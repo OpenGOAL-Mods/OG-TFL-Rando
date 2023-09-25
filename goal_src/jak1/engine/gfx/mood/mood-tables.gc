@@ -2976,7 +2976,7 @@
   (new 'static 'mood-fog-table :data (new 'static 'inline-array mood-fog 8
                                        (new 'static 'mood-fog
                                          :fog-color (new 'static 'vector :x 150.0 :y 200.0 :z 200.0 :w 128.0)
-                                         :fog-dists (new 'static 'vector :x (meters 150.0) :y (meters 1000.0) :z 255.0 :w 25.5)
+                                         :fog-dists (new 'static 'vector :x (meters 100.0) :y (meters 3000.0) :z 255.0 :w 25.5)
                                          :erase-color (new 'static 'vector :w 128.0)
                                          )
                                        (new 'static 'mood-fog)
