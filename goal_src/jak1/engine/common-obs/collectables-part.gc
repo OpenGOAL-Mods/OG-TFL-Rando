@@ -2431,9 +2431,6 @@
 ;; group-id range for custom collectables : 950-999
 ;; part-id range for custom collectables : 3600-3799
 
-;; TFL TODO: Super eco inside crystals (yellow/red)
-;; TFL TODO: Super eco crystals explode (yellow/red)
-
 (defpartgroup group-eco-super-green-crystal
   :id 950
   :bounds (static-bspherem 0 5 0 5)

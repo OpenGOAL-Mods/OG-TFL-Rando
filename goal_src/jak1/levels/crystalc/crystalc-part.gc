@@ -1,6 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
+;; name: crystalc-part.gc
+
 (deftype crystalc-part (part-spawner)
   ()
   )
@@ -136,7 +138,7 @@
     )
   )
 
-(defpartgroup group-crystalc-bad-ground-01
+(defpartgroup group-crystalc-bad-ground
   :id 801                                                                        ;; NEEDS TO BE UNIQUE
   :flags (always-draw)
   :bounds (static-bspherem 0 12 0 12)
@@ -146,11 +148,11 @@
 
 (defpart 3006
   :init-specs ((:texture (new 'static 'texture-id :index #x19 :page #x2))
-    (:num 1.5)                                                       ;; Particles quantity
-    (:x (meters -35) (meters 70) 1.0)                               ;; Random Start pos between 2pt  
-    (:y (meters 0) (meters 5) 1.0)                                  ;; Start height
-    (:z (meters -45) (meters 90) 1.0)                               ;; Random Start pos between 2pt 
-    (:scale-x (meters 12))                                             ;; X Scaling of the particle texture
+    (:num 0.1 0.05)                                                       ;; Particles quantity
+    (:x (meters -10) (meters 20) 1.0)                               ;; Random Start pos between 2pt  
+    (:y (meters -2) (meters 2) 1.0)                                  ;; Start height
+    (:z (meters -10) (meters 20) 1.0)                               ;; Random Start pos between 2pt 
+    (:scale-x (meters 8) (meters 3))                                             ;; X Scaling of the particle texture
     (:rot-z (degrees 0.0) (degrees 360.0) 1.0)                     ;; Starting random rotation
     (:scale-y :copy scale-x)                                          ;; Copy X scaling to Y
     (:r 120.0)                                                         ;; Red lighting (64.0 to 192.0)

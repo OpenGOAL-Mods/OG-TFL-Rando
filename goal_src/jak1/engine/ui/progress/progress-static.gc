@@ -1395,7 +1395,7 @@
           (new 'static 'level-tasks-info
               :level-name-id (text-id crystalc-level)
               :text-group-index 1
-              :nb-of-tasks 5
+              :nb-of-tasks 6
               :buzzer-task-index 4
               :task-info
               (new 'static 'array task-info-data 8
@@ -1446,6 +1446,16 @@
                              (text-id crystalc-buzzer)
                              (text-id crystalc-buzzer)
                              (text-id crystalc-buzzer)
+                             (text-id zero)
+                             )
+                        )
+                    (new 'static 'task-info-data
+                        :task-id (game-task crystalc-hidden)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id crystalc-hidden)
+                             (text-id crystalc-hidden)
+                             (text-id crystalc-hidden)
                              (text-id zero)
                              )
                         )

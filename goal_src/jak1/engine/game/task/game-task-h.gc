@@ -150,5 +150,6 @@
   (energy-bay-kill 132)
   (energy-bay-green-ring 133)
   (energy-bay-buzzer 134)
-  (max 135) ;;change max to last +1
+  (crystalc-hidden 135)
+  (max 136) ;;change max to last +1
   )
