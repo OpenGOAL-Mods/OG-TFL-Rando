@@ -1960,7 +1960,9 @@
                       )
                     )
               )
-          (if (and (< (-> *TARGET-bank* fall-far) f0-1)
+          ;; TFL note: added super eco case
+          (if (and (not (target-powerup? super-eco-green))
+                   (< (-> *TARGET-bank* fall-far) f0-1)
                    (not (logtest? (-> self control status) (cshape-moving-flags on-water)))
                    )
               (go target-hit-ground-hard f0-1)
@@ -2985,7 +2987,9 @@
                   )
                 )
           )
-      (if (< (-> *TARGET-bank* fall-far) f0-1)
+      ;; TFL note: added super eco case
+      (if (and (not (target-powerup? super-eco-green))
+               (< (-> *TARGET-bank* fall-far) f0-1))
           (go target-hit-ground-hard f0-1)
           )
       )
