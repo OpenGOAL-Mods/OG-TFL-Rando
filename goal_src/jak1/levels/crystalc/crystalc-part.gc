@@ -935,3 +935,147 @@
     (:rotate-y (degrees 0.0) (degrees 360.0) 1.0)
     )
   )
+
+(defpartgroup group-crystalc-fireflies
+  :id 818
+  :bounds (static-bspherem 0 0 0 12)
+  :parts (
+    (sp-item 3039 :fade-after (meters 100) :falloff-to (meters 100) :binding 3040)
+    (sp-item 3040 :flags (start-dead))
+    (sp-item 3040 :flags (start-dead))
+    (sp-item 3040 :flags (start-dead))
+    (sp-item 3040 :flags (start-dead))
+    (sp-item 3040 :flags (start-dead))
+    (sp-item 3040 :flags (start-dead))
+    (sp-item 3040 :flags (start-dead))
+    )
+  )
+
+
+(defpart 3039 ;; main fireflies
+  :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2)) ;; (new 'static 'texture-id :index #x4 :page #x2)
+    (:num 0.005 0.02)
+    (:x (meters -4) (meters 8))
+    (:y (meters -3) (meters 6))
+    (:z (meters -4) (meters 8))
+    (:scale-x (meters 0.4) (meters 0.05))
+    (:scale-y :copy scale-x)
+    (:r 256.0)
+    (:g 128.0 32.0)
+    (:a 128.0)
+    (:vel-x (meters -0.005) (meters 0.015))
+    (:vel-y (meters -0.005) (meters 0.015))
+    (:vel-z (meters -0.005) (meters 0.015))
+    (:accel-x (meters -0.0003) (meters 0.0006))
+    (:accel-y (meters -0.0004) (meters 0.0008))
+    (:accel-z (meters -0.0003) (meters 0.0006))
+    (:timer (seconds 1.2) (seconds 1.3))
+    (:flags (bit2 bit3))
+    (:next-time (seconds 0.1) (seconds 0.3))
+    (:next-launcher 3041)
+    (:conerot-x (degrees 0) (degrees 360))
+    (:conerot-y (degrees 0) (degrees 360))
+    (:conerot-z (degrees 0) (degrees 360))
+    (:rotate-y (degrees -180))
+    )
+  )
+
+(defpart 3040 ;; trail fireflies
+  :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2)) ;;(new 'static 'texture-id :index #xf :page #x2)
+    (:num 0.01 0.09)
+    (:scale-x (meters 0.5) (meters 0.4))
+    (:scale-y :copy scale-x)
+    (:r 200.0)
+    (:g 128.0 64.0)
+    (:a 64.0 32.0)
+    (:scalevel-x (meters -0.0005))
+    (:scalevel-y :copy scalevel-x)
+    (:fade-g -0.5 0.3)
+    (:fade-a -0.15 0.08)
+    (:timer (seconds 0.8) (seconds 0.6))
+    (:flags (bit0 bit3))
+    (:rotate-y (degrees 45))
+    )
+  )
+
+(defpart 3041
+  :init-specs (
+    (:scale-x (meters 0.4) (meters 0.5))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    (:next-time (seconds 0.1) (seconds 0.2))
+    (:next-launcher 3042)
+    )
+  )
+
+(defpart 3042
+  :init-specs (
+    (:scale-x (meters 0.4) (meters 0.6))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    (:next-time (seconds 0.1) (seconds 0.2))
+    (:next-launcher 3043)
+    )
+  )
+
+(defpart 3043
+  :init-specs (
+    (:scale-x (meters 0.4) (meters 0.5))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    (:next-time (seconds 0.1) (seconds 0.3))
+    (:next-launcher 3044)
+    )
+  )
+
+(defpart 3044
+  :init-specs (
+    (:scale-x (meters 0.3) (meters 0.5))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    (:next-time (seconds 0.1) (seconds 0.3))
+    (:next-launcher 3045)
+    )
+  )
+
+(defpart 3045
+  :init-specs (
+    (:scale-x (meters 0.3) (meters 0.4))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    (:next-time (seconds 0.1) (seconds 0.3))
+    (:next-launcher 3046)
+    )
+  )
+
+(defpart 3046
+  :init-specs (
+    (:scale-x (meters 0.3) (meters 0.3))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    (:next-time (seconds 0.1) (seconds 0.3))
+    (:next-launcher 3047)
+    )
+  )
+
+(defpart 3047
+  :init-specs (
+    (:scale-x (meters 0.2) (meters 0.3))
+    (:scale-y :copy scale-x)
+    (:accel-x (meters -0.0002) (meters 0.0004))
+    (:accel-y (meters -0.0003) (meters 0.0006))
+    (:accel-z (meters -0.0002) (meters 0.0004))
+    )
+  )

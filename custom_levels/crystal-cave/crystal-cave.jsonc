@@ -2895,6 +2895,105 @@
         "cycle-speed": ["float", -1.0, 0.0]
       }
     },
+    {
+      "trans": [-307.84, 80.30, -94.60], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-307.84, 80.30, -94.60, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-01",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-309.55, 75.18, -137.95], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-309.55, 75.18, -137.95, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-02",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-345.84, 111.97, -62.97], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-345.84, 111.97, -62.97, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-03",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-303.27, 87.04, -157.72], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-303.27, 87.04, -157.72, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-04",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-145.51, 109.87, -51.44], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-145.51, 109.87, -51.44, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-05",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-86.76, 110.63, -30.10], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-86.76, 110.63, -30.10, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-06",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-130.79, 111.59, 33.29], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-130.79, 111.59, 33.29, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-07",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-219.65, 123.24, 13.21], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-219.65, 123.24, 13.21, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-08",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
+    {
+      "trans": [-320.73, 105.82, 7.96], // translation  
+      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "game_task": 1, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-320.73, 105.82, 7.96, 10.0], // bounding sphere
+      "lump": {
+        "name":"crystalc-fireflies-09",
+        "art-name":"group-crystalc-fireflies"
+      }
+    },
     // other particles : fireflies from citadel's sage cages or the muse or green eco-pill
 
     // ###########################################################################
