@@ -1079,7 +1079,7 @@
   )
 ;; electric-arc particles 3039+
 
-(defpart 3039 ;; main arc - fog
+(defpart 3048 ;; main arc - fog
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
     (:num 15.0 5.0)
     (:x (meters -6.21) (meters 6))
@@ -1103,7 +1103,7 @@
     )
   )
 
-(defpart 3040 ;; left arc - fog
+(defpart 3049 ;; left arc - fog
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
     (:num 8.0 5.0)
     (:x (meters -8.21) (meters 2))
@@ -1128,7 +1128,7 @@
     )
   )
 
-(defpart 3041 ;; right arc - fog
+(defpart 3050 ;; right arc - fog
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
     (:num 7.0 5.0)
     (:x (meters -1.5) (meters 4))
@@ -1153,7 +1153,7 @@
     )
   )
 
-(defpart 3042 ;; main arc - small arcs
+(defpart 3051 ;; main arc - small arcs
   :init-specs ((:texture (new 'static 'texture-id :index #x1f :page #x2))
     (:num 15.0 5.0)
     (:x (meters -8) (meters 10) 1.0)
@@ -1174,7 +1174,7 @@
     )
   )
 
-(defpart 3043 ;; left arc - small arcs 1
+(defpart 3052 ;; left arc - small arcs 1
   :init-specs ((:texture (new 'static 'texture-id :index #x1f :page #x2))
     (:num 5.0 3.0)
     (:x (meters -11) (meters 5) 1.0)
@@ -1195,7 +1195,7 @@
     )
   )
 
-(defpart 3044 ;; left arc - small arcs 2
+(defpart 3053 ;; left arc - small arcs 2
   :init-specs ((:texture (new 'static 'texture-id :index #x1f :page #x2))
     (:num 5.0 3.0)
     (:x (meters -15.5) (meters 5) 1.0)
@@ -1216,7 +1216,7 @@
     )
   )
 
-(defpart 3045 ;; right arc - small arcs 1
+(defpart 3054 ;; right arc - small arcs 1
   :init-specs ((:texture (new 'static 'texture-id :index #x1f :page #x2))
     (:num 5.0 3.0)
     (:x (meters 2) (meters 6) 1.0)

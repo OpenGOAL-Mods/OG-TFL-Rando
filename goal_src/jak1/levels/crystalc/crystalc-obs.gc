@@ -1,6 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
+;; name: crystalc-obs.gc
+
 (deftype breakaway (process-drawable)
   ((root-override collide-shape-moving :offset 112)
    )
@@ -241,13 +243,13 @@
       (cond
         ((< gp-0 a0-1)
          (when (sphere-in-view-frustum? (the sphere (-> self cshape root-prim prim-core)))
-           (launch-particles (-> *part-id-table* 3039) (the-as vector (-> self launch-pos))) ;; Moved to crystalc-part.gc
-           (launch-particles (-> *part-id-table* 3040) (the-as vector (-> self launch-pos)))
-           (launch-particles (-> *part-id-table* 3041) (the-as vector (-> self launch-pos)))
-           (launch-particles (-> *part-id-table* 3042) (the-as vector (-> self launch-pos)))
-           (launch-particles (-> *part-id-table* 3043) (the-as vector (-> self launch-pos)))
-           (launch-particles (-> *part-id-table* 3044) (the-as vector (-> self launch-pos)))
-           (launch-particles (-> *part-id-table* 3045) (the-as vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3048) (the-as vector (-> self launch-pos))) ;; Moved to crystalc-part.gc
+           (launch-particles (-> *part-id-table* 3049) (the-as vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3050) (the-as vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3051) (the-as vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3052) (the-as vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3053) (the-as vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3054) (the-as vector (-> self launch-pos)))
            )
          (awhen (level-get *level* 'crystal-cave)
            (set-vector! *crystalc-ship-dir2* 0.3 0.4 1.6 1.0)
