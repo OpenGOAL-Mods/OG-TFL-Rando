@@ -256,7 +256,7 @@
            (set-vector! *crystalc-ship-ambi* 0.1 0.3 0.6 1.0)
            )
          (update! (-> self sound))
-         (update-vol! (-> self sound) 1500)
+         (update-vol! (-> self sound) 160)
          (cond ((-> self should-play-sound?)
             (set! (-> self should-play-sound?) #f)
             ;; (update-vol! (-> self sound) 1500)
