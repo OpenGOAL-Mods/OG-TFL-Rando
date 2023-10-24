@@ -254,7 +254,7 @@
 ;; breakable boulder parts
 
 (defpartgroup group-breakable-boulder-explosion
-  :id 902
+  :id 903
   :duration (seconds 1)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)

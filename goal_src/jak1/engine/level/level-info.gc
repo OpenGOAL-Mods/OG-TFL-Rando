@@ -2324,7 +2324,7 @@
                                              (new 'static 'continue-point
                                              :name "energy-bay-test"
                                              :level 'energy-bay
-                                             :trans (new 'static 'vector :x (meters 922.32) :y (meters 44.43) :z (meters 662.58) :w 1.0)
+                                             :trans (new 'static 'vector :x (meters 707.81) :y (meters 0.64) :z (meters 980.26) :w 1.0)
                                              :quat (new 'static 'quaternion  :x 0.0 :y 0.2418 :z 0.0 :w 0.9703)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
                                              :camera-rot (new 'static 'array float 9 0.9756 0.0000 -0.2193 0.0310 0.9899 0.1379 0.2171 -0.1413 0.9658)

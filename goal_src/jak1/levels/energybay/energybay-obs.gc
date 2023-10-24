@@ -13,7 +13,7 @@
 
 (defskelgroup *breakable-boulder-whole-sg* shortcut-boulder shortcut-boulder-whole-lod0-jg shortcut-boulder-idle-ja
               ((shortcut-boulder-whole-lod0-mg (meters 999999)))
-              :bounds (static-spherem 0 5.5 0 7.5)
+              :bounds (static-spherem 0 5.5 0 15.0)
               )
 
 (defskelgroup *breakable-boulder-broken-sg* shortcut-boulder shortcut-boulder-broken-lod0-jg shortcut-boulder-idle-ja
@@ -29,7 +29,7 @@
   :code (behavior ()
     (process-entity-status! self (entity-perm-status complete) #t)
     (lods-assign! (-> self draw) (-> self broken-look))
-    (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 902) -1 #f #f #f (-> self cshape trans)
+    (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 903) -1 #f #f #f (-> self cshape trans)
       :to *entity-pool*
       )
     (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)

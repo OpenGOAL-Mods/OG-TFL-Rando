@@ -2430,6 +2430,7 @@
 ;; TFL notes: Custom particles for collectables
 ;; group-id range for custom collectables : 950-999
 ;; part-id range for custom collectables : 3600-3799
+;; super-eco-crystal particles here
 
 (defpartgroup group-eco-super-green-crystal
   :id 950
@@ -3804,7 +3805,7 @@
 
 (defpart 3659
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
-    ;; (:num 2.0)
+    (:num 2.0)
     (:y (meters 0) (meters 1))
     (:scale-x (meters 0.3))
     (:rot-z (degrees 0) (degrees 180))
