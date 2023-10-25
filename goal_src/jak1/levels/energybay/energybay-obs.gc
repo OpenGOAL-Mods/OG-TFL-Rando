@@ -83,3 +83,204 @@
   (go breakable-boulder-idle)
   (none)
   )
+
+(deftype mistycam (process-hidden)
+  ()
+  :method-count-assert 15
+  :size-assert         #x70
+  :flag-assert         #xf00000070
+  )
+
+
+(defskelgroup *mistycam-sg* mistycam mistycam-lod0-jg mistycam-anim-ja
+              ((mistycam-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 20)
+              )
+
+(defun mistycam-spawn ()
+  (with-pp
+    (let ((gp-0 (entity-actor-lookup (-> pp entity) 'alt-actor 0)))
+      (when gp-0
+        (let* ((gp-1
+                 (ppointer->handle (process-spawn
+                                     pov-camera
+                                     (-> gp-0 extra trans)
+                                     *mistycam-sg*
+                                     (new 'static 'spool-anim :name "mistycam-cannon" :index 5 :parts 1 :command-list '())
+                                     0
+                                     #f
+                                     '()
+                                     :to pp
+                                     )
+                                   )
+                 )
+               (s5-2 (ppointer->handle
+                       (process-spawn fuel-cell :init fuel-cell-init-as-clone gp-1 (-> pp entity extra perm task) :to pp)
+                       )
+                     )
+               )
+          (let ((v1-13 (handle->process gp-1)))
+            (if v1-13
+                (set! (-> (the-as pov-camera v1-13) notify-handle) (the-as handle s5-2))
+                )
+            )
+          (while (handle->process gp-1)
+            (suspend)
+            )
+          (send-event (handle->process s5-2) 'stop-cloning)
+          )
+        )
+      )
+    0
+    (none)
+    )
+  )
+
+;; (deftype misty-battlecontroller (battlecontroller)
+;;   ()
+;;   :heap-base #x210
+;;   :method-count-assert 29
+;;   :size-assert         #x27c
+;;   :flag-assert         #x1d0210027c
+;;   )
+
+
+;; (defstate battlecontroller-play-intro-camera (misty-battlecontroller)
+;;   :virtual #t
+;;   :code (behavior ()
+;;     (let ((gp-1 (ppointer->handle
+;;                   (process-spawn pov-camera (-> self root trans) *mistycam-sg* "lurkerattack" 0 #f '() :to self)
+;;                   )
+;;                 )
+;;           )
+;;       (while (handle->process (the-as handle gp-1))
+;;         (suspend)
+;;         )
+;;       )
+;;     (go-virtual battlecontroller-active)
+;;     (none)
+;;     )
+;;   )
+
+;; (defmethod battlecontroller-method-27 misty-battlecontroller ((obj misty-battlecontroller))
+;;   ((the-as (function battlecontroller none) (find-parent-method misty-battlecontroller 27)) obj)
+;;   (set! (-> obj misty-ambush-collision-hack) #t)
+;;   0
+;;   (none)
+;;   )
+
+(defun-debug misty-cam-restore ()
+  (let ((a0-0 (new-stack-vector0))
+        (a1-0 (new-stack-matrix0))
+        )
+    (set! (-> a0-0 x) -711702.3)
+    (set! (-> a0-0 y) 268833.34)
+    (set! (-> a0-0 z) 4193524.2)
+    (set! (-> a0-0 w) 1.0)
+    (set! (-> a1-0 vector 0 x) -0.6991)
+    (set! (-> a1-0 vector 0 y) 0.0)
+    (set! (-> a1-0 vector 0 z) -0.7149)
+    (set! (-> a1-0 vector 0 w) 0.0)
+    (set! (-> a1-0 vector 1 x) 0.3474)
+    (set! (-> a1-0 vector 1 y) 0.8739)
+    (set! (-> a1-0 vector 1 z) -0.3398)
+    (set! (-> a1-0 vector 1 w) 0.0)
+    (set! (-> a1-0 vector 2 x) 0.6248)
+    (set! (-> a1-0 vector 2 y) -0.486)
+    (set! (-> a1-0 vector 2 z) -0.611)
+    (set! (-> a1-0 vector 2 w) 0.0)
+    (set! (-> a1-0 vector 3 x) 0.0)
+    (set! (-> a1-0 vector 3 y) 0.0)
+    (set! (-> a1-0 vector 3 z) 0.0)
+    (set! (-> a1-0 vector 3 w) 1.0)
+    (debug-set-camera-pos-rot! a0-0 a1-0)
+    )
+  (send-event *camera* 'set-fov 11650.845)
+  (clear *camera-old-level*)
+  (format *camera-old-level* "energy-bay")
+  (set! *camera-old-cpu* 6867)
+  (set! *camera-old-vu* #x4b0f)
+  (set! *camera-old-tfrag-bytes* #x1ec490)
+  (clear *camera-old-stat-string-tfrag*)
+  (clear *camera-old-stat-string-tfrag-near*)
+  (clear *camera-old-stat-string-total*)
+  (let ((v0-7 #t))
+    (set! *display-camera-old-stats* v0-7)
+    v0-7
+    )
+  )
+
+(deftype balloon-fuelcell (process-drawable)
+  ((play-cutscene? symbol  :offset-assert 176)
+   )
+  :heap-base #x50
+  :method-count-assert 20
+  :size-assert         #xb4
+  :flag-assert         #x14005000b4
+  (:states
+    balloon-fuelcell-die
+    balloon-fuelcell-idle
+    balloon-fuelcell-spawn
+    )
+  )
+
+
+(defstate balloon-fuelcell-idle (balloon-fuelcell)
+  :event (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
+    (case event-type
+      (('task-complete)
+       (set! (-> self play-cutscene?) #t)
+       (process-entity-status! self (entity-perm-status complete) #t)
+       (go balloon-fuelcell-spawn)
+       )
+      )
+    )
+  :code (the-as (function none :behavior balloon-fuelcell) anim-loop)
+  )
+
+(defstate balloon-fuelcell-spawn (balloon-fuelcell)
+  :event (the-as
+    (function process int symbol event-message-block object :behavior balloon-fuelcell)
+    process-drawable-fuel-cell-handler
+    )
+  :code (behavior ()
+    (process-drawable-birth-fuel-cell (the-as entity #f) (the-as vector #f) #f)
+    (when (and *target* (-> self play-cutscene?))
+      (ambient-hint-spawn "gamcam02" (the-as vector #f) *entity-pool* 'camera)
+      (let ((gp-1
+              (ppointer->handle
+                (process-spawn pov-camera (-> self root trans) *mistycam-sg* "mistycam-balloon-fuel-cell" 0 #f '() :to self)
+                )
+              )
+            )
+        (while (handle->process (the-as handle gp-1))
+          (suspend)
+          )
+        )
+      )
+    (while (-> self child)
+      (suspend)
+      )
+    (go balloon-fuelcell-die)
+    (none)
+    )
+  )
+
+(defstate balloon-fuelcell-die (balloon-fuelcell)
+  :code (behavior ()
+    (cleanup-for-death self)
+    (none)
+    )
+  )
+
+(defmethod init-from-entity! balloon-fuelcell ((obj balloon-fuelcell) (arg0 entity-actor))
+  (set! (-> obj root) (new 'process 'trsqv))
+  (process-drawable-from-entity! obj arg0)
+  (logclear! (-> obj mask) (process-mask actor-pause))
+  (set! (-> obj play-cutscene?) #f)
+  (if (and (-> obj entity) (logtest? (-> obj entity extra perm status) (entity-perm-status complete)))
+      (go balloon-fuelcell-spawn)
+      (go balloon-fuelcell-idle)
+      )
+  (none)
+  )

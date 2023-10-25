@@ -18,5 +18,19 @@
   "crescent-part.o"
   "bouncer.o" ; springbox
   "wall-plat.o" ; moving in and out of the wall
+  "plat-ag.go" 
+  "orb-cache-top-ag.go" 
+  "lavabase-ag.go"
+  "lavafall-ag.go" 
+  "hutlamp-ag.go"
+  "bounceytarp-ag.go"
+  "pusher-ag.go"
+  "water-anim-village3-ag.go"
+  "plat-eco-ag.go"
+  "wall-plat-ag.go"
+  "chainmine-ag.go"
+  "bladeassm-ag.go"
+  "towertop-ag.go"
+  "mayorgears-ag.go"
     )
   )
