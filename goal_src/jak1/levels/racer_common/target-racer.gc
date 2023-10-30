@@ -1192,7 +1192,7 @@
             (vector-float*! vec vec 0.5)
             (vector+! vec vec (-> *target* control trans))
             (let ((tail (vector<-cspace! (new-stack-vector0) (-> *target* manipy 0 node-list data 7))))
-              (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 3)
+              (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 958) ;; Defined in collectables-part.gc
                 -1 #f #f #f tail :to *entity-pool*)
               )
             )
