@@ -107,10 +107,11 @@
    (scrape-sound-id     sound-id              :offset-assert 556)
    (heat-sound-time     time-frame            :offset-assert 560)
    (super-red-boost-time time-frame           :offset-assert 568) ;; TFL note: added field
+   (super-red-boost?    symbol)
    )
   :method-count-assert 9
-  :size-assert         #x240
-  :flag-assert         #x900000240
+  ;; :size-assert         #x240
+  ;; :flag-assert         #x900000240
   )
 
 
