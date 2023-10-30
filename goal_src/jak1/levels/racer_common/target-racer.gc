@@ -1183,7 +1183,6 @@
     (sound-play "zoom-boost")
     (set-time! (-> self racer super-red-boost-time))
     (true! (-> self racer super-red-boost?))
-    (effect-control-method-10 (-> self skel effect) 'group-red-eco-strike-ground (ja-frame-num 0) 0)
     (let ((ttracker (process-spawn touch-tracker :init touch-tracker-init (-> self control trans) 4096.0 SUPER_ECO_RED_BOOST_DURATION :to self)))
       (send-event (ppointer->process ttracker) 'event 'attack 'racer-red-boost)
       (send-event (ppointer->process ttracker) 'exit
@@ -1192,6 +1191,10 @@
             (vector-matrix*! vec (new 'static 'vector :y (meters 5) :z (meters 10) :w 1.0) (-> *target* control unknown-matrix01))
             (vector-float*! vec vec 0.5)
             (vector+! vec vec (-> *target* control trans))
+            (let ((tail (vector<-cspace! (new-stack-vector0) (-> *target* manipy 0 node-list data 7))))
+              (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 3)
+                -1 #f #f #f tail :to *entity-pool*)
+              )
             )
           (< (- (current-time) (-> self state-time)) (-> self duration))
           )
