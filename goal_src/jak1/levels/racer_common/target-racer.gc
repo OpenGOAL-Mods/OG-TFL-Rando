@@ -11,7 +11,6 @@
 (defconstant SUPER_ECO_RED_BOOST_DURATION (seconds 1))
 (defconstant SUPER_ECO_RED_BOOST_RADIUS (meters 3.5))
 (defconstant SUPER_ECO_RED_BOOST_RAMP_UP (seconds 0.5))
-(defconstant SUPER_ECO_RED_BOOST_ADD (meters 15))
 
 ;; DECOMP BEGINS
 
@@ -1178,7 +1177,7 @@
   (when (and (not (nmember (-> self next-state name) '(target-racing-get-off target-racing-get-on)))
              (time-elapsed? (-> self racer super-red-boost-time) SUPER_ECO_RED_BOOST_COOLDOWN)
              (target-powerup? super-eco-red)
-             (cpad-pressed? 0 circle)
+             (cpad-hold? 0 circle)
              )
     (sound-play "zoom-boost")
     (set-time! (-> self racer super-red-boost-time))
@@ -1196,7 +1195,7 @@
                 -1 #f #f #f tail :to *entity-pool*)
               )
             )
-          (< (- (current-time) (-> self state-time)) (-> self duration))
+          (not (time-elapsed? (-> self state-time) (-> self duration)))
           )
         )
       (send-event (ppointer->process ttracker) 'eval
@@ -1216,7 +1215,6 @@
   (if (time-elapsed? (-> self racer super-red-boost-time) SUPER_ECO_RED_BOOST_DURATION)
     (false! (-> self racer super-red-boost?))
     )
-  ;; TFL TODO try to smooth out the speed gain at lower speeds
   (if (-> self racer super-red-boost?)
     (let ((dir (-> *target* control unknown-matrix01 vector 2))
           (time-boosting (- (current-time) (-> self racer super-red-boost-time)))
@@ -1230,11 +1228,11 @@
           (* (-> dir z) SUPER_ECO_RED_BOOST_SPEED)
           1.0)
           (vector-lerp! (-> self control transv) (-> self control transv) wish-vel 0.1)
-          (format 0 "ramp up time-boosting ~D " time-boosting)
+          ;; (format 0 "ramp up time-boosting ~D " time-boosting)
           (let ((xz-vel (new-stack-vector0))
             (y-vel (vector-dot (-> *target* control dynam gravity-normal) (-> *target* control transv))))
             (vector-! xz-vel (-> *target* control transv) (vector-float*! xz-vel (-> *target* control dynam gravity-normal) y-vel))
-            (format 0 "xz-vel: ~f~%" (/ (vector-length xz-vel) 4096.0))
+            ;; (format 0 "xz-vel: ~f~%" (/ (vector-length xz-vel) 4096.0))
             )
           )
         (else
@@ -1243,11 +1241,11 @@
           (-> self control transv y)
           (* (-> dir z) SUPER_ECO_RED_BOOST_SPEED)
           1.0)
-          (format 0 "full boost ")
+          ;; (format 0 "full boost ")
           (let ((xz-vel (new-stack-vector0))
             (y-vel (vector-dot (-> *target* control dynam gravity-normal) (-> *target* control transv))))
             (vector-! xz-vel (-> *target* control transv) (vector-float*! xz-vel (-> *target* control dynam gravity-normal) y-vel))
-            (format 0 "xz-vel: ~f~%" (/ (vector-length xz-vel) 4096.0))
+            ;; (format 0 "xz-vel: ~f~%" (/ (vector-length xz-vel) 4096.0))
             )
           )
         )
@@ -1261,7 +1259,7 @@
   (set! (-> self racer transv-max)
         ;; TFL note: added super eco case
         (if (and (not (target-powerup? super-eco-red))
-                 (>= (- (current-time) (-> self racer super-red-boost-time)) (seconds 2)))
+                 (time-elapsed? (-> self racer super-red-boost-time) SUPER_ECO_RED_BOOST_COOLDOWN))
           (+ (-> self control unknown-surface01 transv-max) (-> self racer boost-output) (-> self racer hill-boost))
           SUPER_ECO_RED_BOOST_SPEED
           )
