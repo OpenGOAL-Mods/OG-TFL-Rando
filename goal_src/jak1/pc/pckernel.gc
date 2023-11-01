@@ -57,19 +57,19 @@
   ;; first check for cheat inputs.
   (when (and (cpad-hold? 0 l2) (cpad-hold? 0 l1) (cpad-hold? 0 r2) (cpad-hold? 0 r1))
     (pc-check-cheat-code (-> *pc-cheat-temp* 0) 0 spirit :extra (x)
-          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-green))
+          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-green super-eco-blue super-eco-red super-eco-yellow super-eco-green))
           (pc-cheat-toggle-and-tune (-> obj cheats) eco-blue))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 1) 0 spirit :extra (circle)
-          (logclear! (-> obj cheats) (pc-cheats eco-blue eco-yellow eco-green))
+          (logclear! (-> obj cheats) (pc-cheats eco-blue eco-yellow eco-green super-eco-blue super-eco-red super-eco-yellow super-eco-green))
           (pc-cheat-toggle-and-tune (-> obj cheats) eco-red))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 2) 0 spirit :extra (triangle)
-          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-blue))
+          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-blue super-eco-blue super-eco-red super-eco-yellow super-eco-green))
           (pc-cheat-toggle-and-tune (-> obj cheats) eco-green))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 3) 0 spirit :extra (square)
-          (logclear! (-> obj cheats) (pc-cheats eco-red eco-blue eco-green))
+          (logclear! (-> obj cheats) (pc-cheats eco-red eco-blue eco-green super-eco-blue super-eco-red super-eco-yellow super-eco-green))
           (pc-cheat-toggle-and-tune (-> obj cheats) eco-yellow))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 4) 0 undead
@@ -92,19 +92,19 @@
 
     ;; TFL note: added super eco cheats
     (pc-check-cheat-code (-> *pc-cheat-temp* 18) 0 spirit :extra (x x)
-          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-green))
+          (logclear! (-> obj cheats) (pc-cheats eco-blue eco-red eco-yellow eco-green super-eco-red super-eco-yellow super-eco-green))
           (pc-cheat-toggle-and-tune (-> obj cheats) super-eco-blue))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 19) 0 spirit :extra (circle circle)
-          (logclear! (-> obj cheats) (pc-cheats eco-blue eco-yellow eco-green))
-          (pc-cheat-toggle-and-tune (-> obj cheats) eco-red))
+          (logclear! (-> obj cheats) (pc-cheats eco-blue eco-red eco-yellow eco-green super-eco-blue super-eco-yellow super-eco-green))
+          (pc-cheat-toggle-and-tune (-> obj cheats) super-eco-red))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 20) 0 spirit :extra (triangle triangle)
-          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-blue))
-          (pc-cheat-toggle-and-tune (-> obj cheats) eco-green))
+          (logclear! (-> obj cheats) (pc-cheats eco-red eco-yellow eco-green eco-blue super-eco-red super-eco-yellow super-eco-blue))
+          (pc-cheat-toggle-and-tune (-> obj cheats) super-eco-green))
 
     (pc-check-cheat-code (-> *pc-cheat-temp* 21) 0 spirit :extra (square square)
-          (logclear! (-> obj cheats) (pc-cheats eco-red eco-blue eco-green))
+          (logclear! (-> obj cheats) (pc-cheats eco-red eco-blue eco-green eco-yellow super-eco-red super-eco-blue super-eco-green))
           (pc-cheat-toggle-and-tune (-> obj cheats) super-eco-yellow))
     )
 
@@ -166,14 +166,12 @@
             (send-event *target* 'get-pickup (pickup-type super-eco-green) (-> *FACT-bank* eco-full-inc))
             )
          )
-        ;; red eco!
         ((pc-cheats? (-> obj cheats) super-eco-red)
          (when (or (= (-> *target* fact-info-target eco-type) (pickup-type super-eco-red))
                    (<= (-> *target* fact-info-target eco-level) 0.0))
             (send-event *target* 'get-pickup (pickup-type super-eco-red) (-> *FACT-bank* eco-full-inc))
             )
          )
-        ;; blue eco!
         ((pc-cheats? (-> obj cheats) super-eco-blue)
          (when (or (= (-> *target* fact-info-target eco-type) (pickup-type super-eco-blue))
                    (<= (-> *target* fact-info-target eco-level) 0.0))
@@ -184,7 +182,6 @@
             (send-event *target* 'boost (-> *FACT-bank* eco-single-inc))
             )
          )
-        ;; yellow eco!
         ((pc-cheats? (-> obj cheats) super-eco-yellow)
          (when (or (= (-> *target* fact-info-target eco-type) (pickup-type super-eco-yellow))
                    (<= (-> *target* fact-info-target eco-level) 0.0))
