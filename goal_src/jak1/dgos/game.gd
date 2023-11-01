@@ -345,13 +345,14 @@
   "plat-eco.o"
   "ropebridge.o"
   "ticky.o"
-  "hud-classes-pc.o" ;; added
   "mod-settings.o" ;; added
   "mod-common-functions.o" ;; added
   "mod-custom-code.o" ;; added
   ;; keep zoomer stuff loaded
   "target-racer-h.o"
   "racer-part.o"
+  ;; TFL note: moved
+  "hud-classes-pc.o" ;; added
   "racer.o"
   "target-racer.o"
   "racer-states.o"
