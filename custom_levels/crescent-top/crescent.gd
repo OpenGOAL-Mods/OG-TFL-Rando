@@ -9,6 +9,7 @@
   "static-screen.o"
   "crescent-top.go"
   "rolling-race-ring.o"
+  "race-ring-ag.go"
   "eichar-pole+0-ag.go"
   "eichar-racer+0-ag.go" ; zoomer stuff
   "blocking-plane.o" ; zoomer stuff

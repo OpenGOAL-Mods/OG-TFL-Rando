@@ -6,9 +6,9 @@
 ;; dgos: FIC, LAV, MIS, OGR, ROL
 
 ;; TFL note: added constants
-(defconstant SUPER_ECO_RED_BOOST_COOLDOWN (seconds 2))
+(defconstant SUPER_ECO_RED_BOOST_COOLDOWN (seconds 2.5))
 (defconstant SUPER_ECO_RED_BOOST_SPEED (meters 45))
-(defconstant SUPER_ECO_RED_BOOST_DURATION (seconds 1))
+(defconstant SUPER_ECO_RED_BOOST_DURATION (seconds 0.8))
 (defconstant SUPER_ECO_RED_BOOST_RADIUS (meters 3.5))
 (defconstant SUPER_ECO_RED_BOOST_RAMP_UP (seconds 0.5))
 
