@@ -864,7 +864,6 @@
        (set! (-> self fact-info-target health) 3.0)
        (set! (-> self fact-info-target eco-pill-max) 100.0)
        (set! (-> self fact-info-target eco-pill) 100.0)
-       (logior! (-> self state-flags) (state-flags invuln-powerup))
        (let* ((eco (/ (the float (- (-> *target* fact-info-target eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact-info-target eco-pickup-time))))
                                   (the float (-> *FACT-bank* eco-full-timeout))))
               (flicker-speed (lerp-scale 0.5 0.0
