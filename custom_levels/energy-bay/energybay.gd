@@ -21,6 +21,5 @@
   "shortcut-boulder-ag.go"
   "dark-crystal-ag.go"
   "balloonlurker-ag.go"
-  "rolling-race-ring.o"
   "race-ring-ag.go"
  ))
