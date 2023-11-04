@@ -22,4 +22,5 @@
   "dark-crystal-ag.go"
   "balloonlurker-ag.go"
   "race-ring-ag.go"
+  "mistycam-ag.go"
  ))
