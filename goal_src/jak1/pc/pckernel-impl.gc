@@ -20,7 +20,8 @@
 
 
 ;; cheats
-(defconstant PC_CHEAT_MAX 18) ;; number of cheats
+;; TFL note: increased number of cheats
+(defconstant PC_CHEAT_MAX 22) ;; number of cheats
 (defenum pc-cheats
   :bitfield #t
   :type uint64
@@ -28,6 +29,11 @@
   (eco-red)
   (eco-blue)
   (eco-yellow)
+  ;; TFL note: added super eco
+  (super-eco-green)
+  (super-eco-red)
+  (super-eco-blue)
+  (super-eco-yellow)
   (invinc)
   (sidekick-blue)
   (tunes)

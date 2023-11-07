@@ -2855,6 +2855,20 @@
     (set! (-> s5-5 dir2 levels x) 1.0) 
     (set-vector! (-> s5-5 ambi color) 0.6 0.6 0.2 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
     )
+  
+  ;; DARK GREEN (breakaway) "light-index": ["int32", 6]
+  (let ((s5-6 (-> arg0 light-group 6)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+    (quad-copy! (the-as pointer s5-6) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
+    (let ((v1-36 (-> s5-6 dir2)))                                                   ;; KEY LIGHT DIRECTION
+      (set! (-> v1-36 direction x) -0.8)
+      (set! (-> v1-36 direction y) 0.9)
+      (set! (-> v1-36 direction z) -0.3)
+      (set! (-> v1-36 direction w) 1.0)
+      )
+    (set-vector! (-> s5-6 dir2 color) -0.6 -0.2 -0.5 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (set! (-> s5-6 dir2 levels x) 1.0) 
+    (set-vector! (-> s5-6 ambi color) -0.3 -0.1 -0.2 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
+    )
 
   ;; CHECK JAK POSITION FOR INDEX-LIGHT
   (let ((light-zone (new 'stack-no-clear 'vector))
@@ -3003,10 +3017,10 @@
   (let ((s5-1 (-> arg0 light-group 2)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
     (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
     (let ((v1-34 (-> s5-1 dir2)))                                                   ;; KEY LIGHT DIRECTION
-      (set! (-> v1-34 direction x) -0.8)
-      (set! (-> v1-34 direction y) 0.9)
-      (set! (-> v1-34 direction z) -0.3)
-      (set! (-> v1-34 direction w) 1.0)
+      (set! (-> v1-34 direction x) 0.052)
+      (set! (-> v1-34 direction y) 0.392)
+      (set! (-> v1-34 direction z) 0.095)
+      (set! (-> v1-34 direction w) 0.913)
       )
     (set-vector! (-> s5-1 dir2 color) 2.8 0.8 0.2 1.0)                              ;; COLOR OF THE KEY LIGHT
     (set! (-> s5-1 dir2 levels x) 1.0) 
@@ -3025,6 +3039,20 @@
     (set-vector! (-> s5-1 dir2 color) 2.8 0.8 0.2 1.0)                              ;; COLOR OF THE KEY LIGHT
     (set! (-> s5-1 dir2 levels x) 1.0) 
     (set-vector! (-> s5-1 ambi color) 0.8 0.3 0.2 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
+    )
+  
+  ;; boulder "recolor" "light-index": ["int32", 4]
+  (let ((s5-1 (-> arg0 light-group 4)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+    (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
+    (let ((v1-34 (-> s5-1 dir2)))                                                   ;; KEY LIGHT DIRECTION
+      (set! (-> v1-34 direction x) -0.8)
+      (set! (-> v1-34 direction y) 0.9)
+      (set! (-> v1-34 direction z) -0.3)
+      (set! (-> v1-34 direction w) 1.0)
+      )
+    (set-vector! (-> s5-1 dir2 color) 0.10 0.35 0.55 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (set! (-> s5-1 dir2 levels x) 1.0) 
+    (set-vector! (-> s5-1 ambi color) -0.15 0.15 0.35 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
     )
 
   ;; CHECK JAK POSITION FOR INDEX-LIGHT

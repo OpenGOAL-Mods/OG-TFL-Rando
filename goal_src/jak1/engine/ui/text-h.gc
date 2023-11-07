@@ -698,6 +698,7 @@
   (crystalc-shrooms   #x10c7)
   (crystalc-buzzer    #x10c8)
   (crystalc-level     #xa01);; CHANGED ID TO SEE THE LEVEL ONLY ONCE IN THE POPUP (<4096) xa00 and up seems to be free
+  (crystalc-hidden     #xa02)
   (crescent-level     #xa10);; level name
   (crescent-observatory #xa11);; tasks
   (crescent-robot     #xa12)

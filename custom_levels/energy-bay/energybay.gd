@@ -15,5 +15,12 @@
   "ef-plane-ag.go" ; zoomer stuff
   "racer-ag.go" ; zoomer stuff
   "sun-iris-door.o"
+  "balloonlurker.o"
+  "orb-cache-top-ag.go" 
   "sun-iris-door-ag.go"
+  "shortcut-boulder-ag.go"
+  "dark-crystal-ag.go"
+  "balloonlurker-ag.go"
+  "race-ring-ag.go"
+  "mistycam-ag.go"
  ))

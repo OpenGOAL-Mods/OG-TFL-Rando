@@ -1007,7 +1007,7 @@
         (new 'process 'fact-info-enemy obj (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc))
         )
   (set! (-> obj water-y) (-> obj root-overlay trans y))
-  (set! (-> obj path) (new 'process 'path-control obj 'path 0.0))
+  (set! (-> obj path) (new 'process 'curve-control obj 'path -1000000000.0)) ;; TFL note: Changed from path-control to use path-k
   (logior! (-> obj path flags) (path-control-flag display draw-line draw-point draw-text))
   (set! (-> obj link) (new 'process 'actor-link-info obj))
   (balloonlurker-find-nearest-path-point)

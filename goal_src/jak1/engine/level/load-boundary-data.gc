@@ -1148,6 +1148,15 @@
 
 (static-load-boundary :flags (player )
   ;;     y top                y bottom
+  :top (meters 113.98)  :bot (meters 81.53)
+  ;;          point 0 x        point 0 z      point 1 x        point 1 z
+  :points (  (meters -171.88) (meters -109.6)  (meters -155.9) (meters -63.43) (meters -87.76) (meters -74.59))
+  :fwd (checkpt "crystal-cave-river" #f)
+  :bwd (checkpt "crystal-cave-river" #f)
+  )
+
+(static-load-boundary :flags (player )
+  ;;     y top                y bottom
   :top (meters 98.87)  :bot (meters 72.62)
   ;;          point 0 x        point 0 z      point 1 x        point 1 z
   :points (  (meters -214.99) (meters -65.94)  (meters -203.57) (meters -127.6) )

@@ -106,10 +106,9 @@
    (stuck-count         int32                 :offset-assert 552)
    (scrape-sound-id     sound-id              :offset-assert 556)
    (heat-sound-time     time-frame            :offset-assert 560)
+   (super-red-boost-time time-frame) ;; TFL note: added fields
+   (super-red-boost? symbol)
    )
-  :method-count-assert 9
-  :size-assert         #x238
-  :flag-assert         #x900000238
   )
 
 

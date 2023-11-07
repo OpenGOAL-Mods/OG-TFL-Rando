@@ -60,6 +60,11 @@
   (eco-pill)
   (buzzer)
   (eco-pill-random)
+  ;; TFL note: added values for super eco
+  (super-eco-yellow)
+  (super-eco-red)
+  (super-eco-blue)
+  (super-eco-green)
   )
 
 (defun pickup-type->string ((arg0 pickup-type))

@@ -2079,6 +2079,20 @@
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
+                                             :name "crystal-cave-river"
+                                             :level 'crystal-cave
+                                             :trans (new 'static 'vector :x (meters -132.60) :y (meters 90.00) :z (meters -79.22) :w 1.0)
+                                             :quat (new 'static 'quaternion :x 0.0 :y 0.9876 :z 0.0 :w -0.1564)
+                                             :camera-trans (new 'static 'vector :x (meters -125.11) :y (meters 95.15) :z (meters -69.22) :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 -0.8011 -0.0000 0.5984 -0.0727 0.9925 -0.0973 -0.5940 -0.1215 -0.7951)
+                                             :load-commands '()
+                                             :vis-nick 'crc
+                                             :lev0 'crescent-top
+                                             :disp0 'display
+                                             :lev1 'crystal-cave
+                                             :disp1 'display
+                                             )
+                                             (new 'static 'continue-point
                                              :name "crystal-cave-bad-shrooms"
                                              :level 'crystal-cave
                                              :trans (new 'static 'vector :x (meters -206.08) :y (meters 73.61) :z (meters -109.63) :w 1.0)
@@ -2288,8 +2302,8 @@
                            :sound-banks '(village1) ;; to get ambient sounds
                            :music-bank 'village1
                            :ambient-sounds '()
-                           :mood '*rolling-mood*
-                           :mood-func 'update-mood-rolling
+                           :mood '*crescent-top-mood*
+                           :mood-func 'update-mood-crescent-top
                            :ocean '*ocean-map-village1*
                            :sky #t
                            :continues '(
@@ -2310,13 +2324,13 @@
                                              (new 'static 'continue-point
                                              :name "energy-bay-test"
                                              :level 'energy-bay
-                                             :trans (new 'static 'vector :x (meters 922.32) :y (meters 44.43) :z (meters 662.58) :w 1.0)
+                                             :trans (new 'static 'vector :x (meters 747.62) :y (meters 5.11) :z (meters 967.22) :w 1.0)
                                              :quat (new 'static 'quaternion  :x 0.0 :y 0.2418 :z 0.0 :w 0.9703)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
                                              :camera-rot (new 'static 'array float 9 0.9756 0.0000 -0.2193 0.0310 0.9899 0.1379 0.2171 -0.1413 0.9658)
                                              :load-commands '()
                                              :vis-nick 'enb
-                                             :lev0 'crescent-top
+                                             :lev0 'test-zone3
                                              :disp0 'display
                                              :lev1 'energy-bay
                                              :disp1 'display

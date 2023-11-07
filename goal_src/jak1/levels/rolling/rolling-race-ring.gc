@@ -911,6 +911,9 @@
       ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: not sure if this need to be changed
        (spool-push *art-control* "race-ring-second-anim" 0 self -99.0)
        )
+      ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; TFL notes: added cond for enb race rings
+       (spool-push *art-control* "race-ring-second-anim" 0 self -99.0)
+       )
       (else
         (spool-push *art-control* "race-ring-anim" 0 self -99.0)
         )
@@ -1010,19 +1013,31 @@
                  (close-specific-task! (-> self entity extra perm task) (task-status need-reminder))
                  (logclear! (-> self draw status) (draw-status hidden))
                  (logior! (-> self draw status) (draw-status skip-bones))
-                 (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: probably the part that set where the cell end up
+                 (cond 
+                    ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2)) ;; TFL notes: probably the part that set where the cell end up
                      (ja-play-spooled-anim
                        (new 'static 'spool-anim :name "race-ring-second-anim" :index 4 :parts 2 :command-list '())
                        (the-as art-joint-anim #f)
                        (the-as art-joint-anim #f)
                        (the-as (function process-drawable symbol) false-func)
                        )
+                      )
+                    ((= (-> self entity extra perm task) (game-task energy-bay-green-ring)) ;; TFL notes: probably the part that set where the cell end up
                      (ja-play-spooled-anim
+                       (new 'static 'spool-anim :name "race-ring-second-anim" :index 4 :parts 2 :command-list '())
+                       (the-as art-joint-anim #f)
+                       (the-as art-joint-anim #f)
+                       (the-as (function process-drawable symbol) false-func)
+                       )
+                      )
+                    (else
+                      (ja-play-spooled-anim
                        (new 'static 'spool-anim :name "race-ring-anim" :index 3 :parts 2 :command-list '())
                        (the-as art-joint-anim #f)
                        (the-as art-joint-anim #f)
                        (the-as (function process-drawable symbol) false-func)
                        )
+                      )
                      )
                  (logclear! (-> self draw status) (draw-status skip-bones))
                  (logior! (-> self draw status) (draw-status hidden))
@@ -1197,6 +1212,70 @@
      )
     )
   (set! (-> obj event-hook) (-> race-ring-idle event))
+  (go race-ring-idle)
+  (none)
+  )
+
+;; TFL note: added custom type for race rings to not rotate by themselves
+
+(deftype tfl-race-ring (race-ring)
+  ()
+  )
+
+(defmethod init-from-entity! tfl-race-ring ((this tfl-race-ring) (entity entity-actor))
+  (if (not (entity-actor-lookup entity 'next-actor 0))
+      (stack-size-set! (-> this main-thread) 512)
+      )
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this entity)
+  (initialize-skeleton this *race-ring-sg* '())
+  (set! (-> this root pause-adjust-distance) 122880.0)
+  (set! (-> this link) (new 'process 'actor-link-info this))
+  (set! (-> this part-track) (the handle #f))
+  (set! (-> this alt-actor) (entity-actor-lookup entity 'alt-actor 0))
+  (logior! (-> this draw status) (draw-status hidden))
+  (set! (-> this sound)
+        (new 'process 'ambient-sound (static-sound-spec "loop-racering" :fo-max 40) (-> this root trans))
+        )
+  (let ((timeout (res-lump-float entity 'timeout)))
+    (set! (-> this timeout) (the time-frame (the int (* (seconds 1) timeout))))
+    )
+  (set! (-> this rot-y) (res-lump-float entity 'rot-y :default (degrees 0)))
+  (set-vector! (-> this cyl axis) (cos (-> this rot-y)) 0.0 (- (sin (-> this rot-y))) 1.0)
+  (vector+float*! (the vector (-> this cyl)) (-> this root trans) (-> this cyl axis) -2048.0)
+  (set! (-> this cyl radius) 24576.0)
+  (set! (-> this cyl length) 4096.0)
+  (cond
+    ((and (first-ring? this)
+          (!= (get-task-status (-> this entity extra perm task)) (task-status invalid))
+          (!= (get-task-status (-> this entity extra perm task)) 7)
+          )
+     (set! (-> this alt-task) (res-lump-value (-> this entity) 'alt-task uint))
+     (if (or (= (-> this alt-task) 0) (= (get-task-status (the game-task (-> this alt-task))) (task-status invalid)))
+         (go race-ring-active)
+         (go race-ring-wait)
+         )
+     )
+    ((and (last-ring? this) (= (get-task-status (-> this entity extra perm task)) (task-status need-resolution)))
+     (let ((s5-2 (new 'stack-no-clear 'vector)))
+       (logclear! (-> this draw status) (draw-status hidden))
+       (ja-post)
+       (vector<-cspace! s5-2 (-> this node-list data 5))
+       (logior! (-> this draw status) (draw-status hidden))
+       (birth-pickup-at-point
+         s5-2
+         (pickup-type fuel-cell)
+         (the float (-> this entity extra perm task))
+         #f
+         this
+         (the fact-info #f)
+         )
+       )
+     )
+    ((and (last-ring? this) (!= (get-task-status (-> this entity extra perm task)) (task-status invalid)))
+     )
+    )
+  (set! (-> this event-hook) (-> race-ring-idle event))
   (go race-ring-idle)
   (none)
   )
