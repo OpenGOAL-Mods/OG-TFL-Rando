@@ -498,7 +498,7 @@
                            (= (-> arg3 param 1) 'spin-air)))
                 (go-virtual die #f (the int s5-0))
                 )
-              (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root-override trans y) (-> self base y)))
+              (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root trans y) (-> self base y)))
                 (if (not (and (!= *kernel-boot-message* 'play) (= (-> *setting-control* current language) (language-enum japanese)))
                          )
                     (level-hint-spawn (text-id training-ironcrate) "sagevb36" (the-as entity #f) *entity-pool* (game-task none))
@@ -563,7 +563,7 @@
                            (= (-> arg3 param 1) 'uppercut)))
                 (go-virtual die #f (the int s5-0))
                 )
-              (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root-override trans y) (-> self base y)))
+              (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root trans y) (-> self base y)))
                 (level-hint-spawn
                   (text-id sidekick-hint-crate-steel)
                   "sksp0006"
@@ -1012,11 +1012,11 @@
   (none)
   )
 
-(defmethod params-init crate ((obj crate) (arg0 entity))
+(defmethod params-init crate ((this crate) (arg0 entity))
   ;; TFL note: increased stack from 128
-  (stack-size-set! (-> obj main-thread) 256)
-  (logior! (-> obj mask) (process-mask crate))
-  (let ((s4-0 (new 'process 'collide-shape-moving obj (collide-list-enum usually-hit-by-player))))
+  (stack-size-set! (-> this main-thread) 256)
+  (logior! (-> this mask) (process-mask crate))
+  (let ((s4-0 (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
     (set! (-> s4-0 dynam) (copy *standard-dynamics* 'process))
     (set! (-> s4-0 reaction) default-collision-reaction)
     (set! (-> s4-0 no-reaction)

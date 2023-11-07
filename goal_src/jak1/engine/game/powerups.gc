@@ -505,7 +505,7 @@
 (defbehavior target-powerup-process target ()
   ;; TFL note: added to reset color and max eco pill count
   (vector-copy! (-> self draw color-emissive) (new 'static 'vector :x 0.0 :y 0.0 :z 0.0 :w 0.0))
-  (set! (-> self fact-info-target eco-pill-max) 50.0)
+  (set! (-> self fact eco-pill-max) 50.0)
   (water-control-method-10 (-> self water))
   (when (not *weather-off*)
     (case (-> self current-level name)
@@ -748,7 +748,7 @@
                              )
            )
          )
-       (let* ((eco (/ (the float (- (-> *target* fact-info-target eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact-info-target eco-pickup-time))))
+       (let* ((eco (/ (the float (- (-> *target* fact eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact eco-pickup-time))))
                                   (the float (-> *FACT-bank* eco-full-timeout))))
               (flicker-speed (lerp-scale 0.5 0.0
                                          eco
@@ -793,7 +793,7 @@
                              )
            )
          )
-       (let* ((eco (/ (the float (- (-> *target* fact-info-target eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact-info-target eco-pickup-time))))
+       (let* ((eco (/ (the float (- (-> *target* fact eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact eco-pickup-time))))
                                   (the float (-> *FACT-bank* eco-full-timeout))))
               (flicker-speed (lerp-scale 0.5 0.0
                                          eco
@@ -849,7 +849,7 @@
                            )
          )
        (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 1 (seconds 0.1))
-       (let* ((eco (/ (the float (- (-> *target* fact-info-target eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact-info-target eco-pickup-time))))
+       (let* ((eco (/ (the float (- (-> *target* fact eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact eco-pickup-time))))
                                   (the float (-> *FACT-bank* eco-full-timeout))))
               (flicker-speed (lerp-scale 0.5 0.0
                                          eco
@@ -882,10 +882,10 @@
            (launch-particles (-> *part-id-table* 279) (vector<-cspace! (new 'stack-no-clear 'vector) (-> self node-list data v1-188)))
            )
          )
-       (set! (-> self fact-info-target health) 3.0)
-       (set! (-> self fact-info-target eco-pill-max) 100.0)
-       (set! (-> self fact-info-target eco-pill) 100.0)
-       (let* ((eco (/ (the float (- (-> *target* fact-info-target eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact-info-target eco-pickup-time))))
+       (set! (-> self fact health) 3.0)
+       (set! (-> self fact eco-pill-max) 100.0)
+       (set! (-> self fact eco-pill) 100.0)
+       (let* ((eco (/ (the float (- (-> *target* fact eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact eco-pickup-time))))
                                   (the float (-> *FACT-bank* eco-full-timeout))))
               (flicker-speed (lerp-scale 0.5 0.0
                                          eco

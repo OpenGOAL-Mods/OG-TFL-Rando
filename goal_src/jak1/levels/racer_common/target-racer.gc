@@ -295,9 +295,9 @@
     (set! f0-13
           (cond
             ;; TFL note: added super eco case
-            ((and (not (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-yellow))
+            ((and (not (and (or (= (-> self fact eco-type) (pickup-type eco-yellow))
                                 (target-powerup? super-eco-yellow))
-                            (>= (-> self fact-info-target eco-level) 1.0)
+                            (>= (-> self fact eco-level) 1.0)
                             )
                        )
                   (cpad-hold? (-> self control unknown-cpad-info00 number) square)
@@ -1181,7 +1181,7 @@
       (send-event (ppointer->process ttracker) 'event 'attack 'racer-red-boost)
       (send-event (ppointer->process ttracker) 'exit
         (lambda :behavior touch-tracker ()
-          (let ((vec (-> self root-override trans)))
+          (let ((vec (-> self root trans)))
             (vector-matrix*! vec (new 'static 'vector :y (meters 5) :z (meters 10) :w 1.0) (-> *target* control unknown-matrix01))
             (vector-float*! vec vec 0.5)
             (vector+! vec vec (-> *target* control trans))
@@ -1196,7 +1196,7 @@
       (send-event (ppointer->process ttracker) 'eval
         (lambda :behavior touch-tracker ()
           ;; TFL TODO check what stuff we want to collide with
-          (set! (-> self root-override root-prim collide-with) (collide-kind cak-1 cak-2 cak-3 wall-object))
+          (set! (-> self root root-prim collide-with) (collide-kind cak-1 cak-2 cak-3 wall-object))
           (none)
           )
         )

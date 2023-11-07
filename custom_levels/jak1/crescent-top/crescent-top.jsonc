@@ -11,7 +11,7 @@
   // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
   // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
   // only have 1.
-  "gltf_file": "custom_levels/crescent-top/crescent-top.glb",
+  "gltf_file": "custom_levels/jak1/crescent-top/crescent-top.glb",
   "automatic_wall_detection": true,
   "automatic_wall_angle": 45.0,
 

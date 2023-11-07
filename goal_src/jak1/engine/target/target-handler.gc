@@ -316,9 +316,9 @@
            (and (logtest? (-> arg1 mask) (attack-mask mode))
                 (= (-> arg1 mode) 'darkeco)
                 ;; TFL note: added super eco case
-                (and (and (or (= (-> self fact-info-target eco-type) (pickup-type eco-red))
+                (and (and (or (= (-> self fact eco-type) (pickup-type eco-red))
                               (target-powerup? super-eco-red))
-                          (>= (-> self fact-info-target eco-level) 1.0)
+                          (>= (-> self fact eco-level) 1.0)
                           )
                      (logtest? (state-flags dangerous flop-hit-ground) (-> self state-flags))
                      )

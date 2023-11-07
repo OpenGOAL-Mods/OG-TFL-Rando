@@ -1874,7 +1874,7 @@
           )
         )
       ;; TFL note: added case for super eco
-      (if (and (and *target* (>= 32768.0 (vector-vector-distance (-> self root-override trans) (-> *target* control trans))))
+      (if (and (and *target* (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                (not (or (send-event *target* 'query 'powerup (pickup-type eco-blue)) (send-event *target* 'query 'powerup (pickup-type super-eco-blue))))
                )
           (level-hint-spawn
@@ -1919,7 +1919,7 @@
     )
   :trans (behavior ()
     (if (or (or (not *target*) (< (-> self active-distance)
-                                  (vector-vector-distance (-> self root-override trans) (-> *target* control trans))
+                                  (vector-vector-distance (-> self root trans) (-> *target* control trans))
                                   )
                 )
             ;; TFL note: added super eco case

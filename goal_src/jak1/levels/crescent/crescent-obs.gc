@@ -5,10 +5,6 @@
 
 (deftype lavabase (process-drawable)
   ()
-  :heap-base #x40
-  :method-count-assert 20
-  :size-assert         #xb0
-  :flag-assert         #x14004000b0
   (:states
     lavabase-idle
     )
@@ -45,10 +41,6 @@
 
 (deftype lavafall (process-drawable)
   ()
-  :heap-base #x40
-  :method-count-assert 20
-  :size-assert         #xb0
-  :flag-assert         #x14004000b0
   (:states
     lavafall-idle
     )
@@ -85,15 +77,11 @@
 
 
 (deftype cyclegen (structure) ;; cyclegen needed for the hutlamp
-  ((output float  :offset-assert   0)
-   (inc    float  :offset-assert   4)
+  ((output  float)
+   (inc     float)
    )
   :pack-me
-  :method-count-assert 9
-  :size-assert         #x8
-  :flag-assert         #x900000008
   )
-
 
 (defun set-period ((arg0 cyclegen) (arg1 int))
   (set! (-> arg0 inc) (/ 5.0 (the float arg1)))
@@ -107,13 +95,9 @@
   )
 
 (deftype hutlamp (process-drawable)
-  ((pivot joint-mod-set-local         :offset-assert 176)
-   (clock cyclegen            :inline :offset-assert 180)
+  ((pivot  joint-mod-set-local)
+   (clock  cyclegen  :inline)
    )
-  :heap-base #x50
-  :method-count-assert 20
-  :size-assert         #xbc
-  :flag-assert         #x14005000bc
   (:states
     hutlamp-idle
     )
@@ -161,24 +145,16 @@
   )
 
 (deftype pusher-base (process-drawable)
-  ((root-override collide-shape-moving  :offset        112)
-   (max-frame     float                 :offset-assert 176)
+  ((root       collide-shape-moving :override)
+   (max-frame  float)
    )
-  :heap-base #x50
-  :method-count-assert 20
-  :size-assert         #xb4
-  :flag-assert         #x14005000b4
   )
 
 
 (deftype pusher (pusher-base)
-  ((sync sync-info-paused :inline :offset-assert 180)
-   (cyl  cylinder         :inline :offset-assert 208)
+  ((sync  sync-info-paused  :inline)
+   (cyl   cylinder          :inline)
    )
-  :heap-base #x90
-  :method-count-assert 20
-  :size-assert         #xf8
-  :flag-assert         #x14009000f8
   (:states
     pusher-idle
     )
@@ -216,7 +192,7 @@
       )
     (set! (-> gp-0 nav-radius) (* 0.75 (-> gp-0 root-prim local-sphere w)))
     (backup-collide-with-as gp-0)
-    (set! (-> self root-override) gp-0)
+    (set! (-> self root) gp-0)
     gp-0
     )
   )
@@ -250,8 +226,8 @@
   (initialize-skeleton obj *pusher-sg* '())
   (load-params! (-> obj sync) obj (the-as uint 1500) 0.0 0.15 0.15)
   (set! (-> obj max-frame) (res-lump-float arg0 'max-frame :default (the float (ja-num-frames 0))))
-  (set! (-> obj cyl origin quad) (-> obj root-override trans quad))
-  (vector-x-quaternion! (-> obj cyl axis) (-> obj root-override quat))
+  (set! (-> obj cyl origin quad) (-> obj root trans quad))
+  (vector-x-quaternion! (-> obj cyl axis) (-> obj root quat))
   (vector-negate! (-> obj cyl axis) (-> obj cyl axis))
   (set! (-> obj cyl length) 36864.0)
   (set! (-> obj cyl radius) 20480.0)
@@ -261,10 +237,6 @@
 
 (deftype villagec-lava (water-anim)
   ()
-  :heap-base #x70
-  :method-count-assert 30
-  :size-assert         #xdc
-  :flag-assert         #x1e007000dc
   )
 
 
@@ -296,15 +268,11 @@
   )
 
 (deftype chainmine (process-drawable)
-  ((root-override collide-shape-moving  :offset 112)
+  ((root  collide-shape-moving :override)
    )
-  :heap-base #x40
-  :method-count-assert 22
-  :size-assert         #xb0
-  :flag-assert         #x16004000b0
-  (:methods
-    (die () _type_ :state 20)
-    (idle () _type_ :state 21)
+  (:state-methods
+    die
+    idle
     )
   )
 
@@ -447,11 +415,11 @@
   :virtual #t
   :code (behavior ()
     (ja-channel-set! 0)
-    (clear-collide-with-as (-> self root-override))
+    (clear-collide-with-as (-> self root))
     (ja-post)
     (sound-play "dcrate-break")
     (let ((gp-1 (new 'stack-no-clear 'vector)))
-      (set! (-> gp-1 quad) (-> self root-override trans quad))
+      (set! (-> gp-1 quad) (-> self root trans quad))
       (+! (-> gp-1 y) -73728.0)
       (process-spawn
         part-tracker
@@ -521,25 +489,21 @@
       )
     (set! (-> s4-0 nav-radius) (* 0.75 (-> s4-0 root-prim local-sphere w)))
     (backup-collide-with-as s4-0)
-    (set! (-> obj root-override) s4-0)
+    (set! (-> obj root) s4-0)
     )
   (process-drawable-from-entity! obj arg0)
   (initialize-skeleton obj *chainmine-sg* '())
   (set! (-> obj sound)
-        (new 'process 'ambient-sound (static-sound-spec "lava-mine-chain" :fo-max 30) (-> obj root-override trans))
+        (new 'process 'ambient-sound (static-sound-spec "lava-mine-chain" :fo-max 30) (-> obj root trans))
         )
   (go (method-of-object obj idle))
   (none)
   )
 
 (deftype bladeassm (process-drawable)
-  ((root-override collide-shape-moving  :offset        112)
-   (angle         float                 :offset-assert 176)
+  ((root   collide-shape-moving :override)
+   (angle  float)
    )
-  :heap-base #x50
-  :method-count-assert 20
-  :size-assert         #xb4
-  :flag-assert         #x14005000b4
   (:states
     bladeassm-idle
     )
@@ -590,7 +554,7 @@
       )
     (set! (-> s4-0 nav-radius) (* 0.75 (-> s4-0 root-prim local-sphere w)))
     (backup-collide-with-as s4-0)
-    (set! (-> obj root-override) s4-0)
+    (set! (-> obj root) s4-0)
     )
   (process-drawable-from-entity! obj arg0)
   (initialize-skeleton obj *bladeassm-sg* '())
@@ -603,19 +567,15 @@
   )
 
 (deftype caveflamepots (process-drawable)
-  ((root-override      collide-shape           :offset        112)
-   (shove-up           float                   :offset-assert 176)
-   (cycle-speed        int32                   :offset-assert 180)
-   (cycle-pause        int32                   :offset-assert 184)
-   (cycle-offset       uint32                  :offset-assert 188)
-   (was-deadly?        symbol                  :offset-assert 192)
-   (should-play-sound? symbol                  :offset-assert 196)
-   (launch-pos         vector        2 :inline :offset-assert 208)
+  ((root                collide-shape :override)
+   (shove-up            float)
+   (cycle-speed         int32)
+   (cycle-pause         int32)
+   (cycle-offset        uint32)
+   (was-deadly?         symbol)
+   (should-play-sound?  symbol)
+   (launch-pos          vector         2 :inline)
    )
-  :heap-base #x80
-  :method-count-assert 20
-  :size-assert         #xf0
-  :flag-assert         #x14008000f0
   (:states
     caveflamepots-active
     )
@@ -659,7 +619,7 @@
                 (collide-action)
                 )
            (let ((s4-0 (new 'stack 'attack-info)))
-             (calc-shove-up (-> self root-override) s4-0 (-> self shove-up))
+             (calc-shove-up (-> self root) s4-0 (-> self shove-up))
              (if (or (= (-> *target* control unknown-surface00 mode) 'air)
                      (>= (+ (-> *display* base-frame-counter) (seconds -0.2)) (-> *target* control unknown-dword11))
                      (< 0.75 (-> *target* control poly-normal y))
@@ -696,7 +656,7 @@
            )
       (cond
         ((< gp-0 a0-1)
-         (when (sphere-in-view-frustum? (the-as sphere (-> self root-override root-prim prim-core)))
+         (when (sphere-in-view-frustum? (the-as sphere (-> self root root-prim prim-core)))
            (launch-particles (-> *part-id-table* 704) (the-as vector (-> self launch-pos)))
            )
          (when (-> self should-play-sound?)
@@ -707,26 +667,26 @@
            ((< gp-0 30)
             (when (-> self was-deadly?)
               (set! (-> self was-deadly?) #f)
-              (clear-collide-with-as (-> self root-override))
+              (clear-collide-with-as (-> self root))
               )
             )
            (else
              (when (not (-> self was-deadly?))
                (set! (-> self was-deadly?) #t)
-               (restore-collide-with-as (-> self root-override))
+               (restore-collide-with-as (-> self root))
                )
              )
            )
          (when (and (not (-> self was-deadly?)) (< 60 gp-0))
            (set! (-> self was-deadly?) #t)
-           (restore-collide-with-as (-> self root-override))
+           (restore-collide-with-as (-> self root))
            )
          )
         (else
           (set! (-> self should-play-sound?) #t)
           (when (-> self was-deadly?)
             (set! (-> self was-deadly?) #f)
-            (clear-collide-with-as (-> self root-override))
+            (clear-collide-with-as (-> self root))
             )
           )
         )
@@ -774,7 +734,7 @@
       )
     (set! (-> s4-0 nav-radius) (* 0.75 (-> s4-0 root-prim local-sphere w)))
     (backup-collide-with-as s4-0)
-    (set! (-> obj root-override) s4-0)
+    (set! (-> obj root) s4-0)
     )
   (process-drawable-from-entity! obj arg0)
   (let ((v1-42 (new 'process 'path-control obj 'path 0.0)))
@@ -786,10 +746,10 @@
     )
   (let ((f0-23 (res-lump-float arg0 'rotoffset)))
     (if (!= f0-23 0.0)
-        (quaternion-rotate-y! (-> obj root-override quat) (-> obj root-override quat) f0-23)
+        (quaternion-rotate-y! (-> obj root quat) (-> obj root quat) f0-23)
         )
     )
-  (let ((f30-0 (quaternion-y-angle (-> obj root-override quat))))
+  (let ((f30-0 (quaternion-y-angle (-> obj root quat))))
     (let ((s4-1 (-> obj launch-pos)))
       (let ((v1-53 s4-1))
         (set! (-> v1-53 0 x) 0.0)
@@ -798,14 +758,14 @@
         (set! (-> v1-53 0 w) 1.0)
         )
       (vector-rotate-around-y! (the-as vector s4-1) (the-as vector s4-1) f30-0)
-      (vector+! (the-as vector s4-1) (the-as vector s4-1) (-> obj root-override trans))
+      (vector+! (the-as vector s4-1) (the-as vector s4-1) (-> obj root trans))
       )
     (let ((s4-2 (the-as object (&-> obj stack 112))))
       (set-vector! (the-as vector s4-2) -6144.0 0.0 0.0 1.0)
       (vector-rotate-around-y! (the-as vector s4-2) (the-as vector s4-2) f30-0)
-      (vector+! (the-as vector s4-2) (the-as vector s4-2) (-> obj root-override trans))
+      (vector+! (the-as vector s4-2) (the-as vector s4-2) (-> obj root trans))
       )
-    (let ((s4-3 (-> obj root-override root-prim)))
+    (let ((s4-3 (-> obj root root-prim)))
       (dotimes (s3-1 (-> (the-as collide-shape-prim-group s4-3) num-prims))
         (let ((a1-19 (-> (the-as collide-shape-prim-group s4-3) prims s3-1 local-sphere)))
           (vector-rotate-around-y! a1-19 a1-19 f30-0)
@@ -813,7 +773,7 @@
         )
       )
     )
-  (update-transforms! (-> obj root-override))
+  (update-transforms! (-> obj root))
   (let ((f30-1 300.0))
     (set! sv-16 (new 'static 'res-tag))
     (let ((v1-70 (res-lump-data arg0 'cycle-speed (pointer float) :tag-ptr (& sv-16))))
@@ -857,12 +817,8 @@
   )
 
 (deftype towertop (process-drawable)
-  ((root-override trsq  :offset 112)
+  ((root-override  trsq  :overlay-at root)
    )
-  :heap-base #x40
-  :method-count-assert 20
-  :size-assert         #xb0
-  :flag-assert         #x14004000b0
   (:states
     towertop-idle
     )
@@ -890,7 +846,7 @@
 
 (defmethod init-from-entity! towertop ((obj towertop) (arg0 entity-actor))
   (logior! (-> obj mask) (process-mask ambient))
-  (set! (-> obj root-override) (new 'process 'trsq))
+  (set! (-> obj root) (new 'process 'trsq))
   (process-drawable-from-entity! obj arg0)
   (logclear! (-> obj mask) (process-mask actor-pause))
   (initialize-skeleton obj *towertop-sg* '())
@@ -899,12 +855,8 @@
   )
 
 (deftype mayorgears (process-drawable)
-  ((alt-actor entity-actor  :offset-assert 176)
+  ((alt-actor  entity-actor)
    )
-  :heap-base #x50
-  :method-count-assert 20
-  :size-assert         #xb4
-  :flag-assert         #x14005000b4
   (:states
     mayorgears-idle
     )
