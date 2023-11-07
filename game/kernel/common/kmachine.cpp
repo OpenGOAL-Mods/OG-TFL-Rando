@@ -13,6 +13,7 @@
 #include "common/log/log.h"
 #include "common/symbols.h"
 #include "common/util/FileUtil.h"
+#include "common/util/FontUtils.h"
 #include "common/util/Timer.h"
 #include "common/util/string_util.h"
 
@@ -112,65 +113,182 @@ u64 CPadOpen(u64 cpad_info, s32 pad_number) {
 
 
 
-void playMP3(u32 filePathu32, u32 volume)
+
+
+// Define a vector to store references to the active music instances.
+std::vector<std::pair<sf::Music*, std::string>> activeMusics;
+
+// Index to store the main music in the vector.
+const size_t MAIN_MUSIC_INDEX = 0;
+
+// Function to stop all currently playing sounds.
+void stopAllSounds()
 {
- 
-
-    // Spawn a new thread to play the music.
-    std::thread thread([=]() {
-    std::string filePath = Ptr<String>(filePathu32).c()->data();
-    std::cout << "Playing MP3: " << filePath << std::endl;
-
-    sf::Music music;
-    if (!music.openFromFile(filePath))
+    for (auto& pair : activeMusics)
     {
-        std::cout << "Failed to load: " << filePath << std::endl;
-        return;
+        pair.first->stop();
     }
-        music.setVolume(volume);
-        music.play();
-        while (music.getStatus() == sf::Music::Playing)
+    activeMusics.clear();
+}
+
+// Function to get the names of currently playing files.
+std::vector<std::string> getPlayingFileNames()
+{
+    std::vector<std::string> playingFileNames;
+    for (const auto& pair : activeMusics)
+    {
+        playingFileNames.push_back(pair.second);
+    }
+    return playingFileNames;
+}
+
+std::mutex activeMusicsMutex;  // Mutex to synchronize access to activeMusics
+
+void playMP3(u32 filePathu32, u32 volume) {
+    std::thread thread([=]() {
+        std::string filePath = Ptr<String>(filePathu32).c()->data();
+        std::cout << "Playing MP3: " << filePath << std::endl;
+
+        sf::Music* music = new sf::Music;
+        if (!music->openFromFile(filePath)) {
+            std::cout << "Failed to load: " << filePath << std::endl;
+            delete music;
+            return;
+        }
+        music->setVolume(volume);
+        music->play();
+
         {
+            std::lock_guard<std::mutex> lock(activeMusicsMutex);
+            activeMusics.push_back(std::make_pair(music, filePath));
+        }
+
+        while (music->getStatus() == sf::Music::Playing) {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
 
-        music.stop();
+        {
+            std::lock_guard<std::mutex> lock(activeMusicsMutex);
+            activeMusics.erase(std::remove_if(activeMusics.begin(), activeMusics.end(),
+                [music](const auto& pair) { return pair.first == music; }), activeMusics.end());
+        }
+
+        delete music;
     });
 
-    // Detach the thread so it can run independently.
     thread.detach();
 }
 
-// void playMP3(u32 filePathu32, u32 volume)
-// {
 
-//     std::string filePath = Ptr<String>(filePathu32).c()->data();
-//     std::cout << "Playing MP3: " << filePath << std::endl;
-//     sf::Music music;
+// Declare a mutex for synchronizing access to mainMusicInstance
+std::mutex mainMusicMutex;
 
-//     std::ifstream file(filePath);
-//     if (!file)
-//     {
-//         std::cout << "Invalid file path: " << filePath << std::endl;
-//         return;
-//     }
+// Define a structure to hold music data
+struct MusicData {
+    sf::Music* music;
+    std::string filePath;
+    u32 volume;
+    bool isPaused; // Added flag to track pause/resume state
+};
 
-//     if (!music.openFromFile(filePath))
-//     {
-//         printf("Failed to load: %s\n", filePath.c_str());
-//         std::cout << "Failed to load: " << filePath << std::endl;
-//         return;
-//     }
+// Define a vector to hold the music instances
+std::vector<MusicData> musicInstances;
+std::string mainMusicFilePath; // Global variable to store the main music file path
 
-//     music.setVolume(volume);
-//     music.play();
+// Function to stop the Main Music.
+void stopMainMusic() {
+  std::cout << "Trying to stop Main Music: " << mainMusicFilePath << std::endl;
+    auto it = musicInstances.begin();
+    while (it != musicInstances.end()) {
+        std::cout << "Looking for Main Music: " << mainMusicFilePath << std::endl;
+        if (it->filePath == mainMusicFilePath) {
+          std::cout << "FOUND!!! Main Music: " << mainMusicFilePath << std::endl;
+            it->music->stop();
+            delete it->music;
+            it = musicInstances.erase(it);  // 'erase' will automatically move to the next element
+        } else {
+            ++it;
+        }
+    }
+}
 
-//     while (music.getStatus() == sf::Music::Playing)
-//     {
-//         sf::sleep(sf::milliseconds(100));
-//        sf::sleep(sf::milliseconds(100));
-//     }
-// }
+// Function to play the Main Music.
+void playMainMusic(u32 filePathu32, u32 volume) {
+    std::string filePath = Ptr<String>(filePathu32).c()->data();
+    std::cout << "Playing Main Music: " << filePath << std::endl;
+    mainMusicFilePath = filePath;
+    //stopMainMusic();
+    // Stop and clean up any existing music instances for this file path
+    for (auto it = musicInstances.begin(); it != musicInstances.end();) {
+        if (it->filePath == filePath) {
+            it->music->stop();
+            delete it->music;
+            it = musicInstances.erase(it);
+        } else {
+            ++it;
+        }
+    }
+
+    // Create a new instance of sf::Music for the new Main Music.
+    sf::Music* mainMusic = new sf::Music;
+    if (!mainMusic->openFromFile(filePath))
+    {
+        std::cout << "Failed to load: " << filePath << std::endl;
+        delete mainMusic;
+        return;
+    }
+    mainMusic->setVolume(volume);
+    // Set looping to true to make the track loop
+    mainMusic->setLoop(true);
+
+    mainMusic->play();
+
+    // Store the Main Music instance in the vector.
+    MusicData musicData = { mainMusic, filePath, volume, false }; // Initialize isPaused to false
+    musicInstances.push_back(musicData);
+}
+
+
+
+void pauseMainMusic() {
+    mainMusicMutex.lock();
+    for (auto& musicData : musicInstances) {
+        if (musicData.music && !musicData.isPaused) {
+            if (musicData.music->getStatus() == sf::SoundSource::Playing) {
+                musicData.music->pause();
+                musicData.isPaused = true;
+            }
+        }
+    }
+    mainMusicMutex.unlock();
+}
+
+void resumeMainMusic() {
+    mainMusicMutex.lock();
+    for (auto& musicData : musicInstances) {
+        if (musicData.music && musicData.isPaused) {
+            if (musicData.music->getStatus() == sf::SoundSource::Paused) {
+                musicData.music->play();
+                musicData.isPaused = false;
+            }
+        }
+    }
+    mainMusicMutex.unlock();
+}
+
+
+
+// Function to change the volume of the Main Music.
+void changeMainMusicVolume(u32 volume) {
+    mainMusicMutex.lock();
+    for (auto& musicData : musicInstances) {
+        if (musicData.music) {
+            musicData.music->setVolume(volume);
+            musicData.volume = volume;
+        }
+    }
+    mainMusicMutex.unlock();
+}
 
 
 /*!
@@ -517,15 +635,24 @@ u64 pc_get_mips2c(u32 name) {
   return Mips2C::gLinkedFunctionTable.get(n);
 }
 
-u64 pc_get_display_name(u32 id) {
+u64 pc_get_display_name(u32 id, u32 str_dest_ptr) {
   std::string name = "";
   if (Display::GetMainDisplay()) {
     name = Display::GetMainDisplay()->get_display_manager()->get_connected_display_name(id);
   }
   if (name.empty()) {
-    return s7.offset;
+    return bool_to_symbol(false);
   }
-  return g_pc_port_funcs.make_string_from_c(str_util::to_upper(name).c_str());
+  if (g_game_version == GameVersion::Jak1) {
+    // The Jak 1 font has only caps
+    name = str_util::to_upper(name).c_str();
+  }
+  // Encode the string to the game font
+  const auto encoded_name = get_font_bank_from_game_version(g_game_version)
+                                ->convert_utf8_to_game(str_util::titlize(name).c_str());
+  strcpy(Ptr<String>(str_dest_ptr).c()->data(), encoded_name.c_str());
+  strcpy(Ptr<String>(str_dest_ptr).c()->data(), str_util::titlize(encoded_name).c_str());
+  return bool_to_symbol(true);
 }
 
 u32 pc_get_display_mode() {
@@ -661,21 +788,32 @@ void pc_get_resolution(u32 id, u32 w_ptr, u32 h_ptr) {
   }
 }
 
-u64 pc_get_controller_name(u32 id) {
+u64 pc_get_controller_name(u32 id, u32 str_dest_ptr) {
   std::string name = "";
   if (Display::GetMainDisplay()) {
     name = Display::GetMainDisplay()->get_input_manager()->get_controller_name(id);
   }
   if (name.empty()) {
-    return s7.offset;
+    return bool_to_symbol(false);
   }
-  return g_pc_port_funcs.make_string_from_c(str_util::to_upper(name).c_str());
+
+  if (g_game_version == GameVersion::Jak1) {
+    // The Jak 1 font has only caps
+    name = str_util::to_upper(name).c_str();
+  }
+  // Encode the string to the game font
+  const auto encoded_name = get_font_bank_from_game_version(g_game_version)
+                                ->convert_utf8_to_game(str_util::titlize(name).c_str());
+  strcpy(Ptr<String>(str_dest_ptr).c()->data(), encoded_name.c_str());
+  strcpy(Ptr<String>(str_dest_ptr).c()->data(), str_util::titlize(encoded_name).c_str());
+  return bool_to_symbol(true);
 }
 
-u64 pc_get_current_bind(s32 bind_assignment_info) {
+u64 pc_get_current_bind(s32 bind_assignment_info, u32 str_dest_ptr) {
   if (!Display::GetMainDisplay()) {
     // TODO - return something that lets the runtime use a translatable string if unknown
-    return g_pc_port_funcs.make_string_from_c(str_util::to_upper("unknown").c_str());
+    strcpy(Ptr<String>(str_dest_ptr).c()->data(), str_util::to_upper("unknown").c_str());
+    return bool_to_symbol(true);
   }
 
   auto info = bind_assignment_info ? Ptr<BindAssignmentInfo>(bind_assignment_info).c() : NULL;
@@ -689,12 +827,21 @@ u64 pc_get_current_bind(s32 bind_assignment_info) {
     auto name = Display::GetMainDisplay()->get_input_manager()->get_current_bind(
         port, (InputDeviceType)device_type, for_button, input_idx, analog_min_range);
     if (name.empty()) {
-      return s7.offset;
+      return bool_to_symbol(false);
     }
-    return g_pc_port_funcs.make_string_from_c(str_util::to_upper(name).c_str());
+    if (g_game_version == GameVersion::Jak1) {
+      // The Jak 1 font has only caps
+      name = str_util::to_upper(name).c_str();
+    }
+    // Encode the string to the game font
+    const auto encoded_name = get_font_bank_from_game_version(g_game_version)
+                                  ->convert_utf8_to_game(str_util::titlize(name).c_str());
+    strcpy(Ptr<String>(str_dest_ptr).c()->data(), encoded_name.c_str());
+    return bool_to_symbol(true);
   }
   // TODO - return something that lets the runtime use a translatable string if unknown
-  return g_pc_port_funcs.make_string_from_c(str_util::to_upper("unknown").c_str());
+  strcpy(Ptr<String>(str_dest_ptr).c()->data(), str_util::to_upper("unknown").c_str());
+  return bool_to_symbol(true);
 }
 
 u64 pc_get_controller_count() {
@@ -834,7 +981,7 @@ void pc_renderer_tree_set_lod(Gfx::RendererTreeType tree, int lod) {
   }
 }
 
-void pc_set_collision_mask(GfxGlobalSettings::CollisionRendererMode mode, int mask, u32 symptr) {
+void pc_set_collision_mask(GfxGlobalSettings::CollisionRendererMode mode, s64 mask, u32 symptr) {
   if (symbol_to_bool(symptr)) {
     Gfx::CollisionRendererSetMask(mode, mask);
   } else {
@@ -842,7 +989,7 @@ void pc_set_collision_mask(GfxGlobalSettings::CollisionRendererMode mode, int ma
   }
 }
 
-u32 pc_get_collision_mask(GfxGlobalSettings::CollisionRendererMode mode, int mask) {
+u32 pc_get_collision_mask(GfxGlobalSettings::CollisionRendererMode mode, s64 mask) {
   return Gfx::CollisionRendererGetMask(mode, mask) ? s7.offset + true_symbol_offset(g_game_version)
                                                    : s7.offset;
 }
@@ -896,6 +1043,14 @@ void pc_prof(u32 name, ProfNode::Kind kind) {
 std::mt19937 extra_random_generator;
 u32 pc_rand() {
   return (u32)extra_random_generator();
+}
+
+void pc_treat_pad0_as_pad1(u32 symptr) {
+  Gfx::g_debug_settings.treat_pad0_as_pad1 = symbol_to_bool(symptr);
+}
+
+u32 pc_is_imgui_visible() {
+  return bool_to_symbol(Gfx::g_debug_settings.show_imgui);
 }
 
 /// Initializes all functions that are common across all game versions
@@ -979,13 +1134,27 @@ void init_common_pc_port_functions(
   // Return the current OS as a symbol. Actually returns what it was compiled for!
   make_func_symbol_func("pc-get-os", (void*)pc_get_os);
   make_func_symbol_func("pc-get-unix-timestamp", (void*)pc_get_unix_timestamp);
+  make_func_symbol_func("pc-treat-pad0-as-pad1", (void*)pc_treat_pad0_as_pad1);
+  make_func_symbol_func("pc-is-imgui-visible?", (void*)pc_is_imgui_visible);
 
   // file related functions
   make_func_symbol_func("pc-filepath-exists?", (void*)pc_filepath_exists);
   make_func_symbol_func("pc-mkdir-file-path", (void*)pc_mkdir_filepath);
 
   //Play sound file
-  make_func_symbol_func("play-rand-sound", (void*)playMP3);  
+  make_func_symbol_func("play-sound-file", (void*)playMP3);  
+
+  //Stop sound file
+  make_func_symbol_func("stop-sound-file", (void*)stopAllSounds);  
+
+  //Main music stuff
+  make_func_symbol_func("play-main-music", (void*)playMainMusic);
+  make_func_symbol_func("pause-main-music", (void*)pauseMainMusic);
+  make_func_symbol_func("stop-main-music", (void*)stopMainMusic);
+  make_func_symbol_func("resume-main-music", (void*)resumeMainMusic);
+
+  make_func_symbol_func("main-music-volume", (void*)changeMainMusicVolume);
+
   // discord rich presence
   make_func_symbol_func("pc-discord-rpc-set", (void*)set_discord_rpc);
 
