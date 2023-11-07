@@ -510,8 +510,6 @@
 (defbehavior target-powerup-process target ()
   ;; TFL note: added to reset color and max eco pill count
   (vector-copy! (-> self draw color-emissive) (new 'static 'vector :x 0.0 :y 0.0 :z 0.0 :w 0.0))
-  ;; TFL note: added to fix invuln not getting reset after picking up other eco with super green eco active
-  (logclear! (-> self state-flags) (state-flags invuln-powerup))
   (set! (-> self fact-info-target eco-pill-max) 50.0)
   (water-control-method-10 (-> self water))
   (when (not *weather-off*)
