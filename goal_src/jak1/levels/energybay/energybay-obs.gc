@@ -2,7 +2,7 @@
 (in-package goal)
 
 (deftype breakable-boulder (process-drawable)
-  ((cshape collide-shape :offset 112)
+  ((cshape collide-shape :overlay-at root)
    (broken-look lod-set :inline)
    )
   (:states
@@ -61,7 +61,7 @@
     )
   )
 
-(defmethod init-from-entity! breakable-boulder ((this breakable-boulder) (entity entity-actor))
+(defmethod init-from-entity! ((this breakable-boulder) (entity entity-actor))
   (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-others))))
     (let ((prim-mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
       (set! (-> prim-mesh prim-core collide-as) (collide-kind wall-object))
@@ -191,7 +191,7 @@
     )
   )
 
-(defmethod init-from-entity! balloon-fuelcell ((this balloon-fuelcell) (entity entity-actor))
+(defmethod init-from-entity! ((this balloon-fuelcell) (entity entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
   (process-drawable-from-entity! this entity)
   (logclear! (-> this mask) (process-mask actor-pause))

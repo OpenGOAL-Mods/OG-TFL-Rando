@@ -18,7 +18,7 @@
 (defconstant SUPER_ECO_GREEN_B (/ 96.0 256.0))
 
 (deftype super-eco-crystal (process-drawable)
-  ((cshape collide-shape :offset 112)
+  ((cshape collide-shape :overlay-at root)
    (birth-time time-frame)
    (base vector :inline)
    (old-base vector :inline)
@@ -77,17 +77,17 @@
   )
 
 ;; (defmethod deactivate super-eco-crystal ((this super-eco-crystal))
-;;   ((method-of-type process-drawable deactivate) this)
+;;   (call-parent-method this)
 ;;   (none)
 ;;   )
 
-;; (defmethod relocate super-eco-crystal ((this super-eco-crystal) (off int))
-;;   (the super-eco-crystal ((the (function process-drawable int none) (find-parent-method super-eco-crystal 7)) this off))
+;; (defmethod relocate ((this super-eco-crystal) (off int))
+;;   (call-parent-method this off)
 ;;   )
 
-(defmethod init-collision! super-eco-crystal ((this super-eco-crystal))
+(defmethod init-collision! ((this super-eco-crystal))
   (let ((cshape (new 'process 'collide-shape this (collide-list-enum usually-hit-by-player))))
-    (let ((prim-mesh (new 'process 'collide-shape-prim-mesh cshape (the-as uint 0) (the-as uint 0))))
+    (let ((prim-mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
       (set! (-> prim-mesh prim-core collide-as) (collide-kind wall-object))
       (set! (-> prim-mesh collide-with) (collide-kind target))
       (set! (-> prim-mesh prim-core action) (collide-action solid))
@@ -223,7 +223,7 @@
   (none)
   )
 
-(defmethod give-powerup super-eco-crystal ((this super-eco-crystal))
+(defmethod give-powerup ((this super-eco-crystal))
   (case (-> this eco-type)
     (('blue)
      (send-event *target* 'get-pickup (pickup-type super-eco-blue) (-> *FACT-bank* eco-full-inc))
@@ -241,7 +241,7 @@
   (none)
   )
 
-(defmethod respawn-blocked? super-eco-crystal ((this super-eco-crystal))
+(defmethod respawn-blocked? ((this super-eco-crystal))
   (restore-collide-with-as (-> this cshape))
   (let ((overlap (new 'stack 'overlaps-others-params)))
     (set! (-> overlap options) (the uint 0))
@@ -254,7 +254,7 @@
     #f
   )
 
-(defmethod do-lighting! super-eco-crystal ((this super-eco-crystal))
+(defmethod do-lighting! ((this super-eco-crystal))
   (let* ((eco-type (-> this eco-type))
          (flicker-speed 0.75)
          (flicker-amp 1.5)
@@ -335,7 +335,7 @@
     )
   :code (behavior ()
     (loop
-      (quaternion-rotate-y! (-> self cshape quat) (-> self cshape quat) (* (degrees 45) (-> *display* seconds-per-frame)))
+      (quaternion-rotate-y! (-> self cshape quat) (-> self cshape quat) (* (degrees 45) (seconds-per-frame)))
       (let ((bob (-> self bob-amount)))
         (when (< 0.0 bob)
           (set! (-> self cshape trans y)
@@ -387,7 +387,7 @@
 (defstate super-eco-crystal-respawn (super-eco-crystal)
   :code (behavior ()
     (set! (-> self state-time) (current-time))
-    (until (and (>= (- (current-time) (-> self state-time)) (-> self respawn-timer))
+    (until (and (time-elapsed? (-> self state-time) (-> self respawn-timer))
                 (not (respawn-blocked? self)))
       (suspend)
       )
