@@ -36,14 +36,31 @@
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Note: You will still have to add them to your level's .gd file.
-  "art_groups": ["plat-ag", 
-                 "orb-cache-top-ag", 
-                 "spiderwebs-ag", 
-                 "breakaway-left-ag", 
-                 "breakaway-mid-ag", 
-                 "breakaway-right-ag",
-                 "dark-crystal-ag"
-                  ],
+  "art_groups": [
+    "plat-ag",
+    "orb-cache-top-ag",
+    "spiderwebs-ag",
+    "breakaway-left-ag",
+    "breakaway-mid-ag",
+    "breakaway-right-ag",
+    "dark-crystal-ag"
+   ],
+
+   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
+   // which is not in the common level files and has no art group associated with it.
+   // To get a list of all the textures, you can extract all of the game's textures
+   // by setting "save_texture_pngs" to true in the decompiler config.
+   "textures": [
+    // all textures required for the zoomer HUD
+    // "zoomerhud",
+    // "zoomerhud-dial",
+    // "zoomerhud-main-02",
+    // "zoomerhud-main-03",
+    // "zoomerhud-pieslice",
+    // "zoomerhud-heatbg-01",
+    // "zoomerhud-main-03arrow",
+    // "zoomerhud-main-03knob"
+  ],
 
   "actors" : [
     // TEST actor 

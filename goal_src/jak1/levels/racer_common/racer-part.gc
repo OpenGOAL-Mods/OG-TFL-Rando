@@ -1109,15 +1109,16 @@
     )
   )
 
+;; TFL note: added constant
+(defconstant SUPER_ECO_RED_BOOST_COOLDOWN (seconds 2.2))
+
 ;; TFL note: added racer boost hud particle
 (defun part-hud-racer-red-boost-glow-func ((system sparticle-system) (info sparticle-cpuinfo) (mat matrix))
-  (mlet ((SUPER_ECO_RED_BOOST_COOLDOWN (seconds 2)))
-    (when (nonzero? (-> *target* racer))
-      (let* ((last-boost-time (-> *target* racer super-red-boost-time)))
-        (when (not (time-elapsed? last-boost-time SUPER_ECO_RED_BOOST_COOLDOWN))
-          (set! (-> mat vector 2 x) (* (the float (- (current-time) last-boost-time)) (/ 128.0 (the float SUPER_ECO_RED_BOOST_COOLDOWN))))
-          (set! (-> mat vector 2 w) (* (the float (- (current-time) last-boost-time)) (/ 192.0 (the float SUPER_ECO_RED_BOOST_COOLDOWN))))
-          )
+  (when (nonzero? (-> *target* racer))
+    (let ((last-boost-time (-> *target* racer super-red-boost-time)))
+      (when (not (time-elapsed? last-boost-time SUPER_ECO_RED_BOOST_COOLDOWN))
+        (set! (-> mat vector 2 x) (* (the float (- (current-time) last-boost-time)) (/ 128.0 (the float SUPER_ECO_RED_BOOST_COOLDOWN))))
+        (set! (-> mat vector 2 w) (* (the float (- (current-time) last-boost-time)) (/ 192.0 (the float SUPER_ECO_RED_BOOST_COOLDOWN))))
         )
       )
     )
