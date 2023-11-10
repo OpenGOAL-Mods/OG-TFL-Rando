@@ -2625,6 +2625,19 @@
             "look": ["int32", 36],
             "vis-dist":  ["meters", 200.0]
           }
+        },
+
+        {
+          "trans": [516.6, 47.98, 683.27], // translation
+          "etype": "tfl-hint",  // actor type                               // TEST ACTOR //
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion 
+          "bsphere": [516.6, 47.98, 683.27, 200.0], // bounding sphere
+          "lump": {
+            "name": "energy-bay-tfl-hint-00",
+            "filename": "DS017.wav",
+            "radius": ["meters", 2.0]
+          }
         }
 
   ],

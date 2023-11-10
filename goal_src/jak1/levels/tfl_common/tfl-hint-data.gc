@@ -1,0 +1,71 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+(deftype tfl-hint-data (structure)
+  ((file-name string) ;; file name
+   (alt-names (array string)) ;; alternate files to play, picked at random
+   (text-id text-id) ;; used to mark the hint as seen
+   (voicebox? symbol) ;; whether to spawn the voicebox for this hint
+   (interrupt? symbol) ;; can this hint be interrupted by another one?
+   (repeat? symbol) ;; whether to repeat the hint
+   (repeat-delay time-frame) ;; how long to wait before repeating
+   (task-mode symbol) ;; only play if the hint's task is in this state ('closed, 'need-resolution, etc.)
+   (force-playback? symbol) ;; play regardless of play-hints setting
+   (target-mode symbol) ;; only play if jak is in a specific mode (#f to ignore)
+   (close-task game-task) ;; close this specific task after playing the hint ((game-task none) to ignore)
+   )
+  )
+
+(defmacro static-hint-data (&key file-name
+                            &key (alt-names (new 'static 'boxed-array :type string))
+                            &key (text-id (text-id zero))
+                            &key (voicebox? #f)
+                            &key (interrupt? #f)
+                            &key (repeat? #f)
+                            &key (repeat-delay (seconds 0))
+                            &key (task-mode 'none)
+                            &key (force-playback? #f)
+                            &key (target-mode #f)
+                            &key (close-task (game-task none)))
+  `(new 'static 'tfl-hint-data
+     :file-name ,file-name
+     :alt-names ,alt-names
+     :text-id ,text-id
+     :voicebox? ,voicebox?
+     :interrupt? ,interrupt?
+     :repeat? ,repeat?
+     :repeat-delay ,repeat-delay
+     :task-mode ,task-mode
+     :force-playback? ,force-playback?
+     :target-mode ,target-mode
+     :close-task ,close-task
+     )
+  )
+
+(define *tfl-hints* (new 'static 'boxed-array :type tfl-hint-data
+                            (new 'static 'tfl-hint-data
+                              :file-name "tfl001"
+                              :alt-names (new 'static 'boxed-array :type string
+                                "tflalt001"
+                                "tflalt002"
+                                )
+                              :text-id (text-id press-to-talk-to-sage)
+                              :voicebox? #f
+                              :interrupt? #t
+                              :repeat? #t
+                              :repeat-delay (seconds 120)
+                              :task-mode 'closed
+                              :force-playback? #t
+                              :target-mode #f
+                              :close-task (game-task none)
+                              )
+                            (static-hint-data
+                              :file-name "DS017.wav"
+                              :text-id (text-id press-to-talk)
+                              :voicebox? #t
+                              :repeat? #t
+                              :repeat-delay (seconds 6)
+                              :force-playback? #t
+                              )
+                            )
+  )

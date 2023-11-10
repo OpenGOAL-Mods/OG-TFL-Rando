@@ -889,6 +889,8 @@
     (let ((new-dproc (process-spawn-function process display-loop :name 'display
                                                                   :from *4k-dead-pool* :to *display-pool*)))
       (set! *dproc* (the process (ppointer->process new-dproc)))
+      ;; TFL note: added music player
+      (process-spawn tfl-music-player)
       )
     (cond
       ((or (level-get-with-status *level* 'loaded)

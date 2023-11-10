@@ -246,6 +246,8 @@
   "target-util.o"
   "target-part.o"
   "collide-reaction-target.o"
+  ;; TFL note: added
+  "tfl-music-player.o"
   "logic-target.o"
   "sidekick.o"
   "voicebox.o"
@@ -366,5 +368,8 @@
   "target-flut.o"
   "flut-saddle-ag.go"
   "eichar-flut+0-ag.go"
-  "super-eco-crystal.o" ;; TFL note: added
+  ;; TFL note: added
+  "super-eco-crystal.o"
+  "tfl-hint-data.o"
+  "tfl-hint.o"
  ))

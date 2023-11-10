@@ -392,6 +392,10 @@
 (define-extern main-music-volume (function int none))
 ;;main music end
 
+;; TFL note: added
+(define-extern play-tfl-hint (function string float symbol symbol))
+(define-extern play-tfl-music (function string float symbol))
+
 (define-extern play-sound-file (function string int none))
 (define-extern stop-sound-file (function none))
 (define-extern pc-filepath-exists? (function string symbol))

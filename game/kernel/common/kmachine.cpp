@@ -24,6 +24,7 @@
 #include "game/kernel/common/kernel_types.h"
 #include "game/kernel/common/kprint.h"
 #include "game/kernel/common/kscheme.h"
+#include "game/kernel/jak1/kscheme.h"
 #include "game/mips2c/mips2c_table.h"
 #include "game/sce/libcdvd_ee.h"
 #include "game/sce/libpad.h"
@@ -179,6 +180,202 @@ void playMP3(u32 filePathu32, u32 volume) {
     thread.detach();
 }
 
+// TFL note: added
+std::vector<std::pair<sf::Music*, std::string>> g_tfl_hints;
+std::mutex g_tfl_hints_mtx;
+bool g_interrupt_hint = false;
+
+void stop_tfl_hint() {
+  for (auto& pair : g_tfl_hints) {
+    pair.first->stop();
+  }
+  // jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
+  g_tfl_hints.clear();
+}
+
+std::vector<std::string> tfl_get_current_hint() {
+  std::vector<std::string> playing;
+  for (const auto& pair : g_tfl_hints) {
+    playing.push_back(pair.second);
+  }
+  return playing;
+}
+
+u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
+  auto hint_is_playing = jak1::intern_from_c("*tfl-hint-playing?*")->value == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+  if (hint_is_playing && interrupt == offset_of_s7()) {
+    printf("TFL hint is already playing!\n");
+    return offset_of_s7();
+  }
+
+  if (hint_is_playing && interrupt == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+    // auto current_hint = tfl_get_current_hint();
+    printf("Interrupting TFL hint\n");
+    stop_tfl_hint();
+  }
+
+  std::thread hint_thread([=]() {
+    auto name_str = std::string(Ptr<String>(file_name)->data());
+    auto path = (file_util::get_jak_project_dir() / "custom_sound" / "jak1" / "tfl" / "hints" / name_str).string();
+    printf("Playing hint: %s\n", name_str.c_str());
+
+    auto* hint = new sf::Music;
+    if (!hint->openFromFile(std::filesystem::path(path))) {
+      printf("Failed to load: %s\n", path.c_str());
+      delete hint;
+      return;
+    }
+    float vol;
+    memcpy(&vol, &volume, 4);
+    hint->setVolume(vol);
+    hint->play();
+    jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+
+    {
+      std::lock_guard<std::mutex> lock(g_tfl_hints_mtx);
+      g_tfl_hints.emplace_back(hint, path.c_str());
+    }
+
+    auto paused_func = [](sf::Music* hint) {
+      while (hint->getStatus() == sf::Music::Paused) {
+        auto pause = jak1::call_goal_function_by_name("paused?");
+        if (pause == offset_of_s7()) {
+          hint->play();
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      }
+    };
+
+    auto play_func = [&hint, &paused_func]() {
+      while (hint->getStatus() == sf::Music::Playing) {
+        auto paused = jak1::call_goal_function_by_name("paused?");
+        if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+          hint->pause();
+          paused_func(hint);
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      }
+    };
+
+    play_func();
+
+    {
+      std::lock_guard<std::mutex> lock(g_tfl_hints_mtx);
+      g_tfl_hints.erase(std::remove_if(g_tfl_hints.begin(), g_tfl_hints.end(),
+                                        [hint](const auto& pair) { return pair.first == hint; }),
+                         g_tfl_hints.end());
+    }
+
+    jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
+    delete hint;
+  });
+
+  hint_thread.detach();
+  return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+}
+
+sf::Music* g_tfl_music;
+
+void stop_tfl_music() {
+  if (g_tfl_music) {
+    auto lerp = [](float a, float b, float t) {
+      return a + t * (b - a);
+    };
+    float time_elapsed = 1.f;
+    float start = g_tfl_music->getVolume();
+    float end = 0.f;
+    float val = start;
+    while (val >= 0.01f) {
+      val = lerp(start, end, 1.0f - time_elapsed);
+      g_tfl_music->setVolume(val);
+      // printf("Fading out music volume: %f\n", val);
+      time_elapsed -= 0.01f;
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    g_tfl_music->stop();
+    jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
+    // delete g_tfl_music;
+  }
+}
+
+u32 play_tfl_music(u32 file_name, u32 volume) {
+  auto music_is_playing = jak1::intern_from_c("*tfl-music-playing?*")->value == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+  if (music_is_playing) {
+    printf("TFL music is already playing!\n");
+    return offset_of_s7();
+  }
+
+  std::thread music_thread([=]() {
+    auto name_str = std::string(Ptr<String>(file_name)->data()).append(".mp3");
+    auto path = (file_util::get_jak_project_dir() / "custom_sound" / "jak1" / "tfl" / "music" / name_str).string();
+
+    auto* music = new sf::Music;
+    if (!music->openFromFile(std::filesystem::path(path))) {
+      printf("Failed to load music: %s\n", path.c_str());
+      delete music;
+      return;
+    }
+    float vol;
+    memcpy(&vol, &volume, 4);
+    printf("Playing music: %s (volume %f)\n", name_str.c_str(), vol);
+    music->setVolume(0.f);
+    music->setLoop(true);
+    music->play();
+    jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+    g_tfl_music = music;
+    auto lerp = [](float a, float b, float t) {
+      return a + t * (b - a);
+    };
+    float time_elapsed = 0.f;
+    float start = 0.f;
+    float end = vol;
+    float val = start;
+    while (val < vol) {
+      val = lerp(start, end, time_elapsed);
+      g_tfl_music->setVolume(val);
+      // printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
+      time_elapsed += 0.01f;
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
+    auto paused_func = [](sf::Music* music) {
+      while (music->getStatus() == sf::Music::Paused) {
+        auto pause = jak1::call_goal_function_by_name("paused?");
+        if (pause == offset_of_s7()) {
+          music->play();
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      }
+    };
+
+    auto play_func = [&music, &paused_func]() {
+      while (music->getStatus() == sf::Music::Playing) {
+        auto stop = jak1::intern_from_c("*tfl-music-stop*")->value;
+        if (stop == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+          jak1::intern_from_c("*tfl-music-stop*")->value = offset_of_s7();
+          stop_tfl_music();
+          // delete g_tfl_music;
+          // std::terminate();
+        }
+        float vol;
+        auto volume = jak1::call_goal_function_by_name("tfl-music-player-volume");
+        memcpy(&vol, &volume, 4);
+        music->setVolume(vol);
+        auto paused = jak1::call_goal_function_by_name("paused?");
+        if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+          music->pause();
+          paused_func(music);
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      }
+    };
+
+    play_func();
+  });
+
+  music_thread.detach();
+  return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+}
 
 // Declare a mutex for synchronizing access to mainMusicInstance
 std::mutex mainMusicMutex;
@@ -1154,6 +1351,10 @@ void init_common_pc_port_functions(
   make_func_symbol_func("resume-main-music", (void*)resumeMainMusic);
 
   make_func_symbol_func("main-music-volume", (void*)changeMainMusicVolume);
+
+  // TFL note: added
+  make_func_symbol_func("play-tfl-hint", (void*)play_tfl_hint);
+  make_func_symbol_func("play-tfl-music", (void*)play_tfl_music);
 
   // discord rich presence
   make_func_symbol_func("pc-discord-rpc-set", (void*)set_discord_rpc);
