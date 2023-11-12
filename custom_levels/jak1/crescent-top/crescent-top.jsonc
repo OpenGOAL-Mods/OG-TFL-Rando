@@ -3331,6 +3331,43 @@
         "index": ["int32", 2]
       }
     },
+    // energy-bay racers to avoid the crash
+    {
+      "trans": [603.44, 3.02, 670.49], // translation
+      "etype": "racer",  // actor type
+      "game_task": 128, // associated game task TO SPAWN THE ZOOMER
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [603.44, 3.02, 670.49, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-racer-01",
+        "index": ["int32", 2],
+        "rotoffset": ["meters", -1.5555]
+      }
+    },
+    {
+      "trans": [734.74, 1.99, 966.33], // translation
+      "etype": "racer",  // actor type
+      "game_task": 128, // associated game task TO SPAWN THE ZOOMER
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [734.74, 1.99, 966.33, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-racer-02",
+        "index": ["int32", 2],
+        "rotoffset": ["meters", 2.2222]
+      }
+    },
+    {
+      "trans": [856.95, 74.58, 772.22], // translation
+      "etype": "racer",  // actor type
+      "game_task": 128, // associated game task TO SPAWN THE ZOOMER
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [856.95, 74.58, 772.22, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-racer-03",
+        "index": ["int32", 2],
+        "rotoffset": ["meters", -1.5111]
+      }
+    },
 
     // Particles
     {

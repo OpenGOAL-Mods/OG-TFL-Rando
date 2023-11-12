@@ -714,7 +714,7 @@
   (energy-bay-kill    #xa25)
   (energy-bay-green-ring #xa26)
   (energy-bay-buzzer #xa27)
-
+  ;; TFL Hint IDs so they only play once. Use up from #xb00
   (default                      #x10d0)
   (flava-vi1-unused0            #x10d1)
   (flava-sage                   #x10d2)
