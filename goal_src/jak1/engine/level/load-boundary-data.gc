@@ -1342,6 +1342,27 @@
   :fwd (checkpt "energy-bay-start" #f)
   )
 
+(static-load-boundary :flags (player)
+  :top (meters 89.62)  :bot (meters -8.0)
+  :points ((meters 759.51) (meters 456.53)  (meters 749.31) (meters 665.53)  (meters 686.79) (meters 743.46)  (meters 476.77) (meters 839.4))
+  :fwd (checkpt "energy-bay-start" #f)
+  :bwd (checkpt "energy-bay-start" #f)
+  )
+
+(static-load-boundary :flags (player)
+  :top (meters 59.87)  :bot (meters 18.39)
+  :points ((meters 850.04) (meters 571.08)  (meters 827.37) (meters 594.41))
+  :fwd (checkpt "energy-bay-turbine1" #f)
+  :bwd (checkpt "energy-bay-turbine1" #f)
+  )
+
+(static-load-boundary :flags (player)
+  :top (meters 56.20)  :bot (meters -18.28)
+  :points ((meters 751.14) (meters 993.66)  (meters 779.29) (meters 953.22))
+  :fwd (checkpt "energy-bay-turbine3" #f)
+  :bwd (checkpt "energy-bay-turbine3" #f)
+  )
+
 ;; CRASH TEST TEST-ZONE3
 (static-load-boundary :flags ()
   :top (meters 13.0)  :bot (meters -17.0)
