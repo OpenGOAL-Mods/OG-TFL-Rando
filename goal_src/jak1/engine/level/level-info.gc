@@ -2156,7 +2156,7 @@
                            :visname 'crescent-top-vis ;; name + -vis
                            :nickname 'cst          ;; nickname
                            :packages '(village1)
-                           :sound-banks '(village1) ;; to get ambient sounds
+                           :sound-banks '(village1 rolling) ;; to get ambient sounds and zoomer sfx
                            :music-bank #f
                            :ambient-sounds '()
                            :mood '*crescent-top-mood*
