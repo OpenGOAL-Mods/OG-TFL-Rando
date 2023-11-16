@@ -2294,7 +2294,7 @@
                            :index 26
                            :name 'energy-bay
                            :customname "Energy Bay"
-                           :custom-orb-count 150
+                           :custom-orb-count 200
                            :custom-buzzer-count 7
                            :visname 'energy-bay-vis ;; name + -vis
                            :nickname 'enb          ;; nickname

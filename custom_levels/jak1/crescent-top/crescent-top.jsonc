@@ -3306,7 +3306,8 @@
       "bsphere": [-191.63, 227.06, 402.98, 10], // bounding sphere
       "lump": {
         "name":"crescent-racer-01",
-        "index": ["int32", 2]
+        "index": ["int32", 2],
+        "rotoffset": ["meters", 3.3333]
       }
     },
     {
@@ -3317,7 +3318,8 @@
       "bsphere": [166.73, 206.69, 430.91, 10], // bounding sphere
       "lump": {
         "name":"crescent-racer-02",
-        "index": ["int32", 2]
+        "index": ["int32", 2],
+        "rotoffset": ["meters", 3.5555]
       }
     },
     {
@@ -3328,7 +3330,8 @@
       "bsphere": [-364.37, 195.32, 642.8, 10], // bounding sphere
       "lump": {
         "name":"crescent-racer-03",
-        "index": ["int32", 2]
+        "index": ["int32", 2],
+        "rotoffset": ["meters", 5.7777]
       }
     },
     // energy-bay racers to avoid the crash
@@ -3367,10 +3370,10 @@
         "index": ["int32", 2],
         "rotoffset": ["meters", -1.5111]
       }
-    },
+    }
 
     // Particles
-    {
+    ,{
       "trans": [-221.07, 229.85, 233.35], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5033,10 +5036,10 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
+    }
 
     // OTHERS
-    {
+    ,{
       "trans": [22.51, 174.2, 436.62], // translation
       "etype": "villagec-lava",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
