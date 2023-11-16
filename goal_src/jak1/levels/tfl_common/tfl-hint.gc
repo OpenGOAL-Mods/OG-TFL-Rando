@@ -1,19 +1,19 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(defconstant TFL_HINT_DEBUG #t)
+(defglobalconstant TFL_HINT_DEBUG *debug-segment*)
 
 (deftype tfl-hint (process-drawable)
   ((sound-to-play string)
    (sphere sphere :inline)
    (last-time time-frame)
    (voicebox handle)
-   (task game-task)
+   (interrupted? symbol)
    (hint-data tfl-hint-data)
    )
   (:methods
     (debug-draw (_type_) none)
-    (debug-print (_type_) none)
+    (debug-print (_type_ int) string)
     (get-hint-data (_type_) tfl-hint-data)
     (get-sphere-color (_type_) rgba)
     (target-in-sphere? (_type_) symbol)
@@ -25,12 +25,20 @@
     tfl-hint-idle
     tfl-hint-play
     tfl-hint-wait
-    tfl-hint-exit
     )
+  )
+
+(defmacro hint-debug (&rest body)
+  `(#if TFL_HINT_DEBUG (begin ,@body) (empty))
+  )
+
+(defmacro print-bit-enum (enum val buf)
+  `(begin (bit-enum->string ,enum ,val (clear ,buf)) ,buf)
   )
 
 (define *tfl-hint-playing?* #f)
 (define *tfl-hint-semaphore* (the (pointer tfl-hint) #f))
+(define *tfl-hint-string* (new 'debug 'string 128 (the string #f)))
 
 (defun get-tfl-hint ()
   (the tfl-hint (ppointer->process *tfl-hint-semaphore*))
@@ -46,7 +54,7 @@
 
 (defmethod get-hint-data ((this tfl-hint))
   (dotimes (i (-> *tfl-hints* length))
-    ;; (format #t "get-hint-data: item ~D ~S~%" i (-> *tfl-hints* i file-name))
+    ;; (hint-debug (format 0 "get-hint-data: item ~D ~S~%" i (-> *tfl-hints* i file-name)))
     (if (string= (-> this sound-to-play) (-> *tfl-hints* i file-name))
       (return (the tfl-hint-data (-> *tfl-hints* i)))
       )
@@ -65,10 +73,14 @@
 
 (defmethod get-sphere-color ((this tfl-hint))
   (cond
-    ((= (-> this next-state name) 'tfl-hint-wait) *color-yellow*)
-    ((and (target-in-sphere? this) (not (= (get-tfl-hint) this))) *color-magenta*)
-    ((and (target-in-sphere? this) (seen-text? *game-info* (-> this hint-data text-id)) (not (-> this hint-data repeat?))) *color-gray*)
+    ;; green: this hint is currently playing
     ((= (get-tfl-hint) this) *color-green*)
+    ;; yellow: this hint is repeatable and currently on its cooldown
+    ((= (-> this next-state name) 'tfl-hint-wait) *color-yellow*)
+    ;; gray: jak is in range of this non-repeatable hint and it has already been seen
+    ((and (target-in-sphere? this) (seen-text? *game-info* (-> this hint-data text-id)) (not (-> this hint-data repeat?))) *color-gray*)
+    ;; cyan: jak is in range of this hint and it is inactive (another hint is playing, play hints and forced playback are off, etc.)
+    ((and (target-in-sphere? this) (not (= (get-tfl-hint) this))) *color-cyan*)
     (else *color-red*)
     )
   )
@@ -93,6 +105,15 @@
     )
   )
 
+;; (defmacro enum<-name (enum name)
+;;   `(case ,name
+;;     ,@(apply (lambda (x)
+;;                ,@((,(car x)) (,enum ,(cdr x)))
+;;                ) `(get-enum-vals ,enum))
+;;     )
+;;   )
+
+;; TODO turn into macro
 (defun pickup-type<-name ((name symbol))
   (case name
     (('eco-blue) (pickup-type eco-blue))
@@ -109,7 +130,7 @@
 
 (defmethod check-target-mode ((this tfl-hint))
   (let ((p (-> this hint-data target-mode)))
-    (if (!= '() p)
+    (if (not (null? p))
       (case (car p)
         (('mode)
           (= (send-event *target* 'query 'mode) (cadr p))
@@ -118,7 +139,7 @@
           (the symbol (send-event *target* 'query 'powerup (pickup-type<-name (the symbol (cadr p)))))
           )
         (('anim)
-          (anim-playing? *target* (symbol->string (cadr p)) (the int (cddr p)))
+          (anim-playing? *target* (symbol->string (cadr p)) (the int (caddr p)))
           )
         )
       #t
@@ -126,43 +147,86 @@
     )
   )
 
+(defmethod debug-print ((this tfl-hint) (line int))
+  (case line
+    ((0)
+     (format (clear *tfl-hint-string*) "id ~S seen? ~A"
+       (text-id->string (-> this hint-data text-id)) (seen-text? *game-info* (-> this hint-data text-id))
+       )
+     )
+    ((1)
+     (format (clear *tfl-hint-string*) "task ~S cstage ~S"
+       (game-task->string (-> this hint-data task)) (task-status->string (-> this hint-data task-status))
+       )
+     )
+    ((2)
+     (format (clear *tfl-hint-string*) "close-task ~S cstage ~S"
+       (game-task->string (-> this hint-data close-task)) (task-status->string (-> this hint-data close-task-status))
+       )
+     )
+    ((3)
+     (format (clear *tfl-hint-string*) "repeat? ~A interrupt? ~A force? ~A"
+       (-> this hint-data repeat?) (-> this hint-data interrupt?) (-> this hint-data force-playback?)
+       )
+     )
+    ((4)
+     (format (clear *tfl-hint-string*) "mode ~A" (-> this hint-data target-mode))
+     )
+    ((5)
+     (format (clear *tfl-hint-string*) "~,,2es" (- (-> this hint-data repeat-delay) (- (current-time) (-> this last-time))))
+     )
+    (else (clear *tfl-hint-string*))
+    )
+  *tfl-hint-string*
+  )
+
 (defmethod debug-draw ((this tfl-hint))
-  (if (>= (meters 50) (vector-vector-distance (target-pos 0) (-> this root trans)))
-    (add-debug-text-sphere
-      #t
-      (bucket-id debug-no-zbuf)
-      (-> this sphere)
-      (-> this sphere r)
-      (string-format "~S id ~X (seen ~A) (task ~D)"
-        (-> this hint-data file-name) (-> this hint-data text-id) (seen-text? *game-info* (-> this hint-data text-id)) (-> this task))
-      (get-sphere-color this)
+  (when (< (vector-vector-distance (target-pos 0) (-> this root trans)) (meters 50))
+    (let ((y (new 'stack 'vector2h))
+          (y-inc (lambda ((y vector2h)) (+! (-> y y) 8) y)))
+      (add-debug-sphere #t (bucket-id debug-no-zbuf) (-> this sphere) (-> this sphere r) (get-sphere-color this))
+      (add-debug-text-3d #t (bucket-id debug-no-zbuf) (the string (-> this name)) (-> this sphere) (font-color white) y)
+      (add-debug-text-3d #t (bucket-id debug-no-zbuf) (debug-print this 0) (-> this sphere) (font-color white) (y-inc y))
+      (if (> (-> this hint-data task) (game-task none))
+        (add-debug-text-3d #t (bucket-id debug-no-zbuf) (debug-print this 1) (-> this sphere) (font-color white) (y-inc y))
+        )
+      (if (> (-> this hint-data close-task) (game-task none))
+        (add-debug-text-3d #t (bucket-id debug-no-zbuf) (debug-print this 2) (-> this sphere) (font-color white) (y-inc y))
+        )
+      (add-debug-text-3d #t (bucket-id debug-no-zbuf) (debug-print this 3) (-> this sphere) (font-color white) (y-inc y))
+      (if (not (null? (-> this hint-data target-mode)))
+        (add-debug-text-3d #t (bucket-id debug-no-zbuf) (debug-print this 4) (-> this sphere) (font-color white) (y-inc y))
+        )
+      (if (and (-> this hint-data repeat?) (not (time-elapsed? (-> this last-time) (-> this hint-data repeat-delay))))
+        (add-debug-text-3d #t (bucket-id debug-no-zbuf) (debug-print this 5) (-> this sphere) (font-color white) (y-inc y))
+        )
       )
     )
   (none)
   )
 
-;; (and (> (-> self task) (game-task none)) (> (-> self hint-data task-status) (task-status invalid)))
 (defmethod valid-task? ((this tfl-hint))
   ;; we have a task associated. check if we have a valid task-status as well.
-  (if (!= (-> this hint-data task-status) (task-status invalid))
-    (= (get-task-status (-> this task)) (-> this hint-data task-status)) ;; we have a valid task-status. check if the task is on that cstage.
+  (if (!= (-> this hint-data task-status) (task-status unknown))
+    (= (get-task-status (-> this hint-data task)) (-> this hint-data task-status)) ;; we have a valid task-status. check if the task is on that cstage.
     #f
     )
   )
 
 (defmethod can-play? ((this tfl-hint))
-  (let ((seen? (seen-text? *game-info* (-> this hint-data text-id)))
-        (hint (get-tfl-hint)))
+  (let ((seen? (seen-text? *game-info* (-> this hint-data text-id))) (hint (get-tfl-hint)))
          ;; we are not playing a hint ourselves and there is either no other hint or the current hint can be interrupted 
     (and (and (not (= hint this)) (or (not hint) (-> hint hint-data interrupt?)))
          ;; if we have a task associated, check our task-status and only play then, if task-status is invalid, just play if task is open
-         (if (> (-> this task) (game-task none))
-           (if (valid-task? this)
-             #t
-             (not (task-complete? *game-info* (-> this task)))
-             )
-           #t
+         (if (> (-> this hint-data task) (game-task none))
+           (valid-task? this)
+           (not (task-complete? *game-info* (-> this hint-data task)))
            )
+         ;; not in a movie
+         (not (movie?))
+         ;; play hints or forced playback are enabled
+         (or (-> *setting-control* current play-hints) (-> this hint-data force-playback?))
+         ;; check for special condition
          (check-target-mode this)
          ;; either hint was not yet seen or it was seen, can be repeated and the delay has passed
          (or (not seen?) (and seen? (-> this hint-data repeat?) (time-elapsed? (-> this last-time) (-> this hint-data repeat-delay))))
@@ -176,10 +240,10 @@
   (vector-copy! (-> this root trans) (-> ent extra trans))
   (vector-identity! (-> this root scale))
   (set! (-> this sound-to-play) (aif (res-lump-struct ent 'filename string :time -1000000000.0) it (the string #f)))
-  (set! (-> this task) (-> ent task))
   (set! (-> this hint-data) (get-hint-data this))
   (sphere<-vector+r! (-> this sphere) (-> this root trans) (res-lump-float ent 'radius :default (meters 2.5)))
   (set! (-> this voicebox) (the handle #f))
+  (false! (-> this interrupted?))
   (if (or (not (-> this hint-data)) (not (-> this sound-to-play)))
     (go process-drawable-art-error "no hint data")
     (go tfl-hint-idle)
@@ -187,16 +251,16 @@
   (none)
   )
 
-(defbehavior tfl-hint-init-by-other tfl-hint ((sound string) (pos vector) (r float) (task game-task))
+(defbehavior tfl-hint-init-by-other tfl-hint ((sound string) (pos vector) (r float))
   (set! (-> self root) (new 'process 'trsqv))
   (logior! (-> self mask) (process-mask actor-pause))
   (vector-copy! (-> self root trans) pos)
   (vector-identity! (-> self root scale))
   (set! (-> self sound-to-play) sound)
-  (set! (-> self task) task)
   (set! (-> self hint-data) (get-hint-data self))
   (sphere<-vector+r! (-> self sphere) pos r)
   (set! (-> self voicebox) (the handle #f))
+  (false! (-> self interrupted?))
   (if (or (not (-> self hint-data)) (not (-> self sound-to-play)))
     (go process-drawable-art-error "no hint data")
     (go tfl-hint-idle)
@@ -206,20 +270,28 @@
 
 
 (defbehavior tfl-hint-post tfl-hint ()
-  (if TFL_HINT_DEBUG
-    (debug-draw self)
-    )
+  (hint-debug (debug-draw self))
   (none)
   )
 
 (defbehavior tfl-hint-event-handler tfl-hint ((proc process) (argc int) (message symbol) (block event-message-block))
   (case message
     (('exit 'die)
-      (go tfl-hint-exit)
+      (deactivate self)
       )
     (('interrupt)
-     (if (-> self hint-data interrupt?)
-       (go tfl-hint-idle)
+     (let ((hint (get-tfl-hint)))
+       (when (and hint (-> self hint-data interrupt?))
+         (true! (-> self interrupted?))
+         (hint-debug (format 0 "EVENT interrupt ~A~%" (-> self name)))
+         (if (not (-> self hint-data repeat?))
+           (go tfl-hint-idle)
+           )
+         (when (-> self hint-data repeat?)
+           (set-time! (-> self last-time))
+           (go tfl-hint-wait)
+           )
+         )
        )
      )
     )
@@ -231,13 +303,9 @@
   )
 
 (defstate tfl-hint-idle (tfl-hint)
-  ;; :enter (behavior ()
-  ;;   (if (and (-> self hint-data repeat?) (not (time-elapsed? (-> self last-time) (-> self hint-data repeat-delay))))
-  ;;     (go tfl-hint-wait)
-  ;;     )
-  ;;   )
   :trans (behavior ()
-    (if (and (target-in-sphere? self) (can-play? self))
+    (when (and (target-in-sphere? self) (can-play? self))
+      (hint-debug (format 0 "TRANS tfl-hint-idle playing ~A~%" (-> self name)))
       (go tfl-hint-play)
       )
     )
@@ -246,8 +314,10 @@
 
 (defstate tfl-hint-wait (tfl-hint)
   :trans (behavior ()
-    (if TFL_HINT_DEBUG
-      (format *stdcon* "hint ~A: waiting for delay ~D~%" (-> self name) (- (-> self hint-data repeat-delay) (- (current-time) (-> self last-time))))
+    (hint-debug
+      (format *stdcon* "hint ~A: waiting for delay ~,,2es~%" (-> self name)
+        (- (-> self hint-data repeat-delay) (- (current-time) (-> self last-time)))
+        )
       )
     (when (time-elapsed? (-> self last-time) (-> self hint-data repeat-delay))
       (go tfl-hint-idle)
@@ -258,70 +328,90 @@
 
 (defstate tfl-hint-play (tfl-hint)
   :enter (behavior ()
-    (if (> (-> self hint-data text-id) (text-id zero))
-      (mark-text-as-seen *game-info* (-> self hint-data text-id))
-      )
-    (if (> (-> self hint-data close-task) (game-task none))
-      (close-specific-task! (-> self hint-data close-task) (task-status need-resolution))
-      )
-    (if (and (> (-> self task) (game-task none)) (not (task-complete? *game-info* (-> self task))))
-      (go tfl-hint-idle)
-      )
     (let ((hint (get-tfl-hint)))
       ;; no hint is playing
-      (if (not hint)
+      (when (not hint)
+        (hint-debug (format 0 "ENTER tfl-hint-play setting semaphore ~A~%" self))
         (set! *tfl-hint-semaphore* (the (pointer tfl-hint) (process->ppointer self)))
         )
-      ;; hint is playing and cannot be interrupted
-      (if (and hint (not (-> hint hint-data interrupt?)))
-        (go tfl-hint-idle)
-        )
-      ;; (if (and hint *tfl-hint-playing?* (not (-> hint hint-data interrupt?)))
-      ;;   (go tfl-hint-idle)
-      ;;   )
       ;; hint is playing and can be interrupted
-      (if (and hint *tfl-hint-playing?* (not (-> hint hint-data interrupt?)))
+      (when (and hint *tfl-hint-playing?* (-> hint hint-data interrupt?))
+        (hint-debug (format 0 "ENTER tfl-hint-play interrupting hint ~A~%" hint))
         (send-event hint 'interrupt)
         )
       )
     )
   :code (behavior ()
     (when (and (or (-> self hint-data force-playback?) (-> *setting-control* current play-hints)) (< 0.0 (-> *setting-control* current dialog-volume)))
-      (if (-> self hint-data voicebox?)
+      (hint-debug (format 0 "CODE tfl-hint-play start ~A~%" self))
+      (when (> (-> self hint-data text-id) (text-id zero))
+        (hint-debug (format 0 "CODE tfl-hint-play marking as seen ~A~%" (-> self name)))
+        (mark-text-as-seen *game-info* (-> self hint-data text-id))
+        )
+      (when (-> self hint-data voicebox?)
+        (hint-debug (format 0 "CODE tfl-hint-play spawning communicator~%"))
         (aif *target* (set! (-> self voicebox) (ppointer->handle (voicebox-spawn it (target-pos 0)))))
         )
       (while (handle->process (-> *game-info* auto-save-proc))
+        (hint-debug (format 0 "CODE tfl-hint-play auto-save suspend~%"))
         (suspend)
         )
       (while (not *sound-player-enable*)
+        (hint-debug (format 0 "CODE tfl-hint-play sound-player suspend~%"))
         (suspend)
         )
-      (set-time! (-> self last-time))
-      (play-tfl-hint (-> self hint-data file-name) (-> *setting-control* current dialog-volume) (-> self hint-data interrupt?))
-      (dotimes (i 2) (suspend))
+      (play-tfl-hint (-> self hint-data file-name)
+        (-> *setting-control* current dialog-volume)
+        ;; (if (and (get-tfl-hint) (!= (get-tfl-hint) self) (-> (get-tfl-hint) hint-data interrupt?))
+        ;;   #t
+        ;;   #f
+        ;;   )
+        (-> (get-tfl-hint) hint-data interrupt?)
+        )
+      (hint-debug (format 0 "CODE tfl-hint-play starting playback~%"))
+      (dotimes (i 7) (suspend))
+      ;; small hacks for interruptable hints
+      (set! *tfl-hint-semaphore* (the (pointer tfl-hint) (process->ppointer self)))
+      (true! *tfl-hint-playing?*)
+      ;; (hint-debug (format 0 "CODE tfl-hint-play *tfl-hint-playing?* ~A~%" *tfl-hint-playing?*))
       (add-setting! 'music-volume 'rel (-> *setting-control* current music-volume-movie) 0)
       (add-setting! 'sfx-volume 'rel (-> *setting-control* current sfx-volume-movie) 0)
       (add-setting! 'dialog-volume 'rel (-> *setting-control* current dialog-volume-hint) 0)
       (while *tfl-hint-playing?*
+        ;; (hint-debug (format 0 "CODE tfl-hint-play playing~%"))
         (suspend)
         )
-      (if (-> self hint-data repeat?)
+      (set-time! (-> self last-time))
+      (hint-debug (format 0 "CODE tfl-hint-play last-time set ~D~%") (-> self last-time))
+      (when (> (-> self hint-data close-task) (game-task none))
+        (hint-debug (format 0 "CODE tfl-hint-play closing task ~D~%" (-> self hint-data close-task)))
+        (close-specific-task! (-> self hint-data close-task) (-> self hint-data close-task-status))
+        )
+      (when (-> self hint-data repeat?)
+        (hint-debug (format 0 "CODE tfl-hint-play going to wait~%"))
         (go tfl-hint-wait)
+        )
+      )
+    (hint-debug
+      (format 0 "CODE tfl-hint-play going idle (playback forced? ~A play-hints ~A)~%"
+        (-> self hint-data force-playback?) (-> *setting-control* current play-hints)
         )
       )
     (go tfl-hint-idle)
     )
   :exit (behavior ()
+    (hint-debug (format 0 "EXIT tfl-hint-play start ~A~%" self))
     (remove-setting! 'music-volume)
     (remove-setting! 'sfx-volume)
     (remove-setting! 'dialog-volume)
-    (when (= (get-tfl-hint) self)
+    (when (not (-> self interrupted?))
+      (hint-debug (format 0 "EXIT tfl-hint-play resetting semaphore~%"))
       (set! *tfl-hint-semaphore* (the (pointer tfl-hint) #f))
+      )
+    (when (-> self interrupted?)
+      (hint-debug (format 0 "EXIT tfl-hint-play interrupted~%"))
+      (false! (-> self interrupted?))
       )
     (send-event (handle->process (-> self voicebox)) 'die)
     )
-  )
-
-(defstate tfl-hint-exit (tfl-hint)
-  :code (behavior () (deactivate self))
   )
