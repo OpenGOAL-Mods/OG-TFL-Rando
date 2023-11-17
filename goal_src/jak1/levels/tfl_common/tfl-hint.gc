@@ -34,10 +34,6 @@
   `(#if TFL_HINT_DEBUG (begin ,@body) (empty))
   )
 
-(defmacro print-bit-enum (enum val buf)
-  `(begin (bit-enum->string ,enum ,val (clear ,buf)) ,buf)
-  )
-
 (define *tfl-hint-playing?* #f)
 (define *tfl-hint-semaphore* (the (pointer tfl-hint) #f))
 (define *tfl-hint-string* (new 'debug 'string 128 (the string #f)))
