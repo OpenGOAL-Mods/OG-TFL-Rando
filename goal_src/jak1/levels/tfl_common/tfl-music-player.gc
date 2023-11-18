@@ -94,7 +94,7 @@
   (let ((level (aif (level-get-target-inside *level*) (-> it name) #f)))
     (format *stdcon* "tfl-music-player:~%cur-lev ~A~%level ~A~%playing? ~A~%state: ~A stop: ~A~%"
       level (-> self level) *tfl-music-playing?* (-> self state name) *tfl-music-stop*)
-    (when (and *target* level (!= (-> self level) level))
+    (when (and (!= (-> self level) level))
       (set-level! self)
       (stop! self)
       )
@@ -109,7 +109,7 @@
 (defstate tfl-music-player-idle (tfl-music-player)
   :code sleep-code
   :trans (behavior ()
-    (when (and *target* (!= (-> *target* next-state name) 'target-continue) (-> self level) (tfl-level-has-music? (-> self level)))
+    (when (and (-> self level) (tfl-level-has-music? (-> self level)))
       (go tfl-music-player-playing)
       )
     )
