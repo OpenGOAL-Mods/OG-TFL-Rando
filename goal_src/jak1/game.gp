@@ -2126,7 +2126,6 @@
  :deps ("$OUT/obj/ticky.o")
  "crystalc-obs.gc"
  "crystalc-part.gc"
- "digging-lurker.gc"
  )
 
 (goal-src-sequence
