@@ -5602,27 +5602,27 @@
       }
     }
     ,{
-      "trans": [433.56, 266.96, 683.24], // translation
+      "trans": [433.56, 262.96, 683.24], // translation
       "etype": "tfl-hint",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
-      "bsphere": [433.56, 266.96, 683.24, 10.0], // bounding sphere
+      "bsphere": [433.56, 262.96, 683.24, 10.0], // bounding sphere
       "lump": {
         "name": "crescent-tfl-hint-04-daxPad",
         "filename": "crescent-tfl-hint-04-daxPad.wav",
-        "radius": ["meters", 12.0]
+        "radius": ["meters", 15.0]
       }
     }
     ,{
-      "trans": [459.17, 279.45, 683.24], // translation
+      "trans": [438.2, 282.06, 683.24], // translation
       "etype": "tfl-hint",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
-      "bsphere": [459.17, 279.45, 683.24, 10.0], // bounding sphere
+      "bsphere": [438.2, 282.06, 683.24, 10.0], // bounding sphere
       "lump": {
         "name": "crescent-tfl-hint-05-daxScream",
         "filename": "crescent-tfl-hint-05-daxScream.wav",
-        "radius": ["meters", 10.0]
+        "radius": ["meters", 12.0]
       }
     }
     ,{

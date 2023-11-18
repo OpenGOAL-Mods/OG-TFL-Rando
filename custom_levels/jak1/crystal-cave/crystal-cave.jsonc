@@ -3363,11 +3363,11 @@
     }
     // Hints
     ,{
-      "trans": [-0.92, 98.96, 9.31], // translation
+      "trans": [-2.34, 98.96, 11.32], // translation
       "etype": "tfl-hint",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
-      "bsphere": [-0.92, 98.96, 9.31, 10.0], // bounding sphere
+      "bsphere": [-2.34, 98.96, 11.32, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-tfl-hint-01-daxPortal",
         "filename": "crystalc-tfl-hint-01-daxPortal.wav",
@@ -3387,15 +3387,15 @@
       }
     }
     ,{
-      "trans": [-206.97, 73.59, -117.03], // translation
+      "trans": [-224.6, 65.52, -113.9], // translation
       "etype": "tfl-hint",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
-      "bsphere": [-206.97, 73.59, -117.03, 10.0], // bounding sphere
+      "bsphere": [-224.6, 65.52, -113.9, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-tfl-hint-03-daxSeeGreen",
         "filename": "crystalc-tfl-hint-03-daxSeeGreen.wav",
-        "radius": ["meters", 10.0]
+        "radius": ["meters", 20.0]
       }
     }
     ,{

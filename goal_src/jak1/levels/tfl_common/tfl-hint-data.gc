@@ -107,30 +107,22 @@ examples:
                             (static-hint-data
                               :file-name "crystalc-tfl-hint-01-daxPortal.wav"
                               :text-id (text-id crystalc-tfl-hint-01-daxPortal)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crystalc-tfl-hint-02-daxShip.wav"
                               :text-id (text-id crystalc-tfl-hint-02-daxShip)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crystalc-tfl-hint-03-daxSeeGreen.wav"
                               :text-id (text-id crystalc-tfl-hint-03-daxSeeGreen)
-                              :voicebox? #f
                               :interrupt? #t
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crystalc-tfl-hint-04-daxUseGreen.wav"
                               :text-id (text-id crystalc-tfl-hint-04-daxUseGreen)
-                              :voicebox? #f
-                              :repeat? #f
                               :target-mode '(powerup super-eco-green)
                               :force-playback? #t
                               )
@@ -139,8 +131,6 @@ examples:
                               :text-id (text-id crystalc-tfl-hint-05-daxSeeGondola)
                               :task (game-task crystalc-gondola)
                               :task-status (task-status need-hint)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
@@ -148,66 +138,50 @@ examples:
                               :text-id (text-id crystalc-tfl-hint-06-daxUseGondola)
                               :task (game-task crystalc-gondola)
                               :task-status (task-status invalid)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-01-daxStart.wav"
                               :text-id (text-id crescent-tfl-hint-01-daxStart)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-02-daxHouse.wav"
                               :text-id (text-id crescent-tfl-hint-02-daxHouse)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-03-daxPlushie.wav"
                               :text-id (text-id crescent-tfl-hint-03-daxPlushie)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-04-daxPad.wav"
                               :text-id (text-id crescent-tfl-hint-04-daxPad)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               :interrupt? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-05-daxScream.wav"
                               :text-id (text-id crescent-tfl-hint-05-daxScream)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
-                              :target-mode '(anim target-duck-high-jump-jump #f)
+                              :target-mode '(anim eichar-launch-jump #f)
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-06-daxRobot.wav"
                               :text-id (text-id crescent-tfl-hint-06-daxRobot)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-07-SamosConnect.wav"
                               :text-id (text-id crescent-tfl-hint-07-SamosConnect)
                               :voicebox? #t
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-08-SamosInfused.wav"
                               :text-id (text-id crescent-tfl-hint-08-SamosInfused)
                               :voicebox? #t
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
@@ -216,14 +190,12 @@ examples:
                               :task (game-task energy-bay-turbine1)
                               :task-status (task-status need-hint)
                               :voicebox? #t
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "crescent-tfl-hint-12-KeiraControl.wav"
                               :text-id (text-id crescent-tfl-hint-12-KeiraControl)
                               :voicebox? #t
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
@@ -232,7 +204,6 @@ examples:
                               :task (game-task energy-bay-turbine1)
                               :task-status (task-status need-hint)
                               :voicebox? #t
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
@@ -240,8 +211,6 @@ examples:
                               :text-id (text-id energy-bay-tfl-hint-01-daxTurbine1)
                               :task (game-task energy-bay-turbine1)
                               :task-status (task-status invalid)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
@@ -249,8 +218,6 @@ examples:
                               :text-id (text-id energy-bay-tfl-hint-02-daxClosed)
                               :task (game-task energy-bay-turbine4)
                               :task-status (task-status need-hint)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
@@ -258,15 +225,12 @@ examples:
                               :text-id (text-id energy-bay-tfl-hint-03-daxTurbine4)
                               :task (game-task energy-bay-turbine4)
                               :task-status (task-status invalid)
-                              :voicebox? #f
-                              :repeat? #f
                               :force-playback? #t
                               )
                             (static-hint-data
                               :file-name "energy-bay-tfl-hint-04-SamosCrystal.wav"
                               :text-id (text-id energy-bay-tfl-hint-04-SamosCrystal)
-                              :voicebox? #f
-                              :repeat? #f
+                              :voicebox? #t
                               :force-playback? #t
                               )
                             )
