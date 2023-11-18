@@ -69,42 +69,6 @@ examples:
 
 (define *tfl-hints* (new 'static 'boxed-array :type tfl-hint-data
                             (static-hint-data
-                              :file-name "JAK070.wav"
-                              :text-id (text-id press-to-trade-money-oracle)
-                              )
-                            (static-hint-data
-                              :file-name "JAK071.wav"
-                              :text-id (text-id press-to-talk-to-assistant)
-                              :repeat? #t
-                              :target-mode '(anim eichar-attack-from-jump-loop #f)
-                              )
-                            (static-hint-data
-                              :file-name "JAK072.wav"
-                              :text-id (text-id press-to-talk-to-sage)
-                              :repeat? #t
-                              :target-mode '(anim eichar-launch-jump-loop #f)
-                              )
-                            (static-hint-data
-                              :file-name "JAK073.wav"
-                              :text-id (text-id press-to-trade-money)
-                              :task (game-task energy-bay-turbine1)
-                              :task-status (task-status invalid)
-                              :force-playback? #t
-                              :close-task (game-task energy-bay-turbine2)
-                              :close-task-status (task-status need-introduction)
-                              )
-                            (static-hint-data
-                              :file-name "DS017.wav"
-                              :text-id (text-id press-to-talk)
-                              :voicebox? #t
-                              :interrupt? #t
-                              :repeat? #t
-                              :repeat-delay (seconds 6)
-                              :target-mode '(anim eichar-attack-uppercut #f)
-                              :force-playback? #t
-                              )
-                              ;; Kuit notes: "actual" hints start here:
-                            (static-hint-data
                               :file-name "crystalc-tfl-hint-01-daxPortal.wav"
                               :text-id (text-id crystalc-tfl-hint-01-daxPortal)
                               :force-playback? #t
