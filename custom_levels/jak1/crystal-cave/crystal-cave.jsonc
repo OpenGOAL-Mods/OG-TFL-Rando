@@ -2886,7 +2886,7 @@
     },
     {
       "trans": [-136.16, 92.11, -101.96], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-136.16, 92.11, -101.96, 10.0], // bounding sphere
@@ -2900,7 +2900,7 @@
     },
     {
       "trans": [-184.9, 89.51, -111.42], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-184.9, 89.51, -111.42, 10.0], // bounding sphere
@@ -2914,7 +2914,7 @@
     },
     {
       "trans": [-307.84, 80.30, -94.60], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-307.84, 80.30, -94.60, 10.0], // bounding sphere
@@ -2925,7 +2925,7 @@
     },
     {
       "trans": [-309.55, 75.18, -137.95], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-309.55, 75.18, -137.95, 10.0], // bounding sphere
@@ -2936,7 +2936,7 @@
     },
     {
       "trans": [-345.84, 111.97, -62.97], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-345.84, 111.97, -62.97, 10.0], // bounding sphere
@@ -2947,7 +2947,7 @@
     },
     {
       "trans": [-303.27, 87.04, -157.72], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-303.27, 87.04, -157.72, 10.0], // bounding sphere
@@ -2958,7 +2958,7 @@
     },
     {
       "trans": [-145.51, 109.87, -51.44], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-145.51, 109.87, -51.44, 10.0], // bounding sphere
@@ -2969,7 +2969,7 @@
     },
     {
       "trans": [-86.76, 110.63, -30.10], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-86.76, 110.63, -30.10, 10.0], // bounding sphere
@@ -2980,7 +2980,7 @@
     },
     {
       "trans": [-130.79, 111.59, 33.29], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-130.79, 111.59, 33.29, 10.0], // bounding sphere
@@ -2991,7 +2991,7 @@
     },
     {
       "trans": [-219.65, 123.24, 13.21], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-219.65, 123.24, 13.21, 10.0], // bounding sphere
@@ -3002,7 +3002,7 @@
     },
     {
       "trans": [-320.73, 105.82, 7.96], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
+      "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
       "bsphere": [-320.73, 105.82, 7.96, 10.0], // bounding sphere
@@ -3045,7 +3045,7 @@
 
         {
           "trans": [-96.3990, 88.0923, 4.2067], // translation
-          "etype": "water-anim",  // actor type                               // TEST ACTOR //
+          "etype": "water-anim",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0, 0, 0, 1], // quaternion 
           "bsphere": [-96.3990, 88.0923, 4.2067, 200.0], // bounding sphere
@@ -3066,7 +3066,7 @@
         },
         {
           "trans": [-134.93, 86.85, -80.87], // translation
-          "etype": "water-anim",  // actor type                               // TEST ACTOR //
+          "etype": "water-anim",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0, 0, 0, 1], // quaternion 
           "bsphere": [-134.93, 86.85, -80.87, 200.0], // bounding sphere
@@ -3087,7 +3087,7 @@
         },
         {
           "trans": [-158.0, 86.85, -75.19], // translation
-          "etype": "water-anim",  // actor type                               // TEST ACTOR //
+          "etype": "water-anim",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0, 0, 0, 1], // quaternion 
           "bsphere": [-158.0, 86.85, -75.19, 200.0], // bounding sphere
@@ -3108,7 +3108,7 @@
         },
         {
           "trans": [-180.43, 88.70, -73.21], // translation
-          "etype": "water-anim",  // actor type                               // TEST ACTOR //
+          "etype": "water-anim",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0, 0, 0, 1], // quaternion 
           "bsphere": [-180.43, 88.70, -73.21, 200.0], // bounding sphere
@@ -3129,7 +3129,7 @@
         },
         {
           "trans": [-194.64, 94.74, -63.78], // translation
-          "etype": "water-anim",  // actor type                               // TEST ACTOR //
+          "etype": "water-anim",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0, 0, 0, 1], // quaternion 
           "bsphere": [-194.64, 94.74, -63.78, 200.0], // bounding sphere
@@ -3361,29 +3361,79 @@
         "cycle-speed":["float", 5.5, 0.0, 4.0]
       }
     }
-
-    /*,
-
-    ////////////////////////////
-    // TEST ACTOR :
-    ////////////////////////////
-
-    {
-      "trans": [-66.0, 95.0, 15.0], // translation  
-      "etype": "crystalc-part",  // actor type                               // TEST ACTOR //
-      "game_task": 1, // associated game task (for powercells, etc)
+    // Hints
+    ,{
+      "trans": [-0.92, 98.96, 9.31], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
-      "bsphere": [-66.0, 95.0, 15.0, 10.0], // bounding sphere
+      "bsphere": [-0.92, 98.96, 9.31, 10.0], // bounding sphere
       "lump": {
-        "name":"crystalc-test-actor",
-        "effect-name":"waterfall",
-        "art-name":"group-part-misty-torch",
-        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "name": "crystalc-tfl-hint-01-daxPortal",
+        "filename": "crystalc-tfl-hint-01-daxPortal.wav",
+        "radius": ["meters", 7.0]
       }
     }
-
-    */
+    ,{
+      "trans": [-159.63, 92.27, -112.21], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-159.63, 92.27, -112.21, 10.0], // bounding sphere
+      "lump": {
+        "name": "crystalc-tfl-hint-02-daxShip",
+        "filename": "crystalc-tfl-hint-02-daxShip.wav",
+        "radius": ["meters", 8.0]
+      }
+    }
+    ,{
+      "trans": [-206.97, 73.59, -117.03], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-206.97, 73.59, -117.03, 10.0], // bounding sphere
+      "lump": {
+        "name": "crystalc-tfl-hint-03-daxSeeGreen",
+        "filename": "crystalc-tfl-hint-03-daxSeeGreen.wav",
+        "radius": ["meters", 10.0]
+      }
+    }
+    ,{
+      "trans": [-224.6, 65.52, -113.9], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-224.6, 65.52, -113.9, 10.0], // bounding sphere
+      "lump": {
+        "name": "crystalc-tfl-hint-04-daxUseGreen",
+        "filename": "crystalc-tfl-hint-04-daxUseGreen.wav",
+        "radius": ["meters", 10.0]
+      }
+    }
+    ,{
+      "trans": [-301.09, 95.14, 37.05], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-301.09, 95.14, 37.05, 10.0], // bounding sphere
+      "lump": {
+        "name": "crystalc-tfl-hint-05-daxSeeGondola",
+        "filename": "crystalc-tfl-hint-05-daxSeeGondola.wav",
+        "radius": ["meters", 15.0]
+      }
+    }
+    ,{
+      "trans": [-301.09, 95.14, 37.05], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-301.09, 95.14, 37.05, 10.0], // bounding sphere
+      "lump": {
+        "name": "crystalc-tfl-hint-06-daxUseGondola",
+        "filename": "crystalc-tfl-hint-06-daxUseGondola.wav",
+        "radius": ["meters", 6.0]
+      }
+    }
   ],
 "ambients" : [
   {
