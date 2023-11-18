@@ -1985,7 +1985,8 @@
  "gfx/hw/video.gc"
  )
 
-(goal-src "engine/game/main.gc" "pckernel" "video")
+;; TFL note: added dep
+(goal-src "engine/game/main.gc" "pckernel" "video" "tfl-music-player")
 
 (goal-src-sequence
  ;; prefix
