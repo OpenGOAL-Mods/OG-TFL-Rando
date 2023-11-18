@@ -222,6 +222,7 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     auto* hint = new sf::Music;
     if (!hint->openFromFile(std::filesystem::path(path))) {
       printf("Failed to load: %s\n", path.c_str());
+      jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
       delete hint;
       return;
     }
@@ -238,6 +239,10 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
 
     auto paused_func = [](sf::Music* hint) {
       while (hint->getStatus() == sf::Music::Paused) {
+        if (MasterExit != RuntimeExitStatus::RUNNING) {
+          stop_tfl_hint();
+          return;
+        }
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
           hint->play();
@@ -350,6 +355,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
 
     auto play_func = [&music, &paused_func]() {
       while (music->getStatus() == sf::Music::Playing) {
+        if (MasterExit != RuntimeExitStatus::RUNNING) {
+          stop_tfl_music();
+          return;
+        }
         auto stop = jak1::intern_from_c("*tfl-music-stop*")->value;
         if (stop == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
           jak1::intern_from_c("*tfl-music-stop*")->value = offset_of_s7();
