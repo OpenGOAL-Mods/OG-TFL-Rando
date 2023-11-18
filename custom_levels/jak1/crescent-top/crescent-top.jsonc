@@ -5564,18 +5564,176 @@
         "light-index":["int32",1]
       }
     }
-    /*,
-    {
-      "trans": [-102.15, 229.91, 355.17], // translation
-      "etype": "crate",  // actor type
+    // Hints
+    ,{
+      "trans": [-278.76, 207.28, 285.73], // translation
+      "etype": "tfl-hint",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-102.15, 229.91, 355.17, 10], // bounding sphere
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-278.76, 207.28, 285.73, 10.0], // bounding sphere
       "lump": {
-        "name":"crescent-money-TESTACTOR",
-        "eco-info": ["int32", 3, 1]
+        "name": "crescent-tfl-hint-01-daxStart",
+        "filename": "crescent-tfl-hint-01-daxStart.wav",
+        "radius": ["meters", 15.0]
       }
-    }*/
+    }
+    ,{
+      "trans": [-242.23, 202.82, 293.66], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-242.23, 202.82, 293.66, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-02-daxHouse",
+        "filename": "crescent-tfl-hint-02-daxHouse.wav",
+        "radius": ["meters", 6.0]
+      }
+    }
+    ,{
+      "trans": [-220.89, 223.44, 306.44], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-220.89, 223.44, 306.44, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-03-daxPlushie",
+        "filename": "crescent-tfl-hint-03-daxPlushie.wav",
+        "radius": ["meters", 7.0]
+      }
+    }
+    ,{
+      "trans": [433.56, 262.96, 683.24], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [433.56, 262.96, 683.24, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-04-daxPad",
+        "filename": "crescent-tfl-hint-04-daxPad.wav",
+        "radius": ["meters", 15.0]
+      }
+    }
+    ,{
+      "trans": [438.2, 282.06, 683.24], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [438.2, 282.06, 683.24, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-05-daxScream",
+        "filename": "crescent-tfl-hint-05-daxScream.wav",
+        "radius": ["meters", 12.0]
+      }
+    }
+    ,{
+      "trans": [-224.62, 248.95, 656.82], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-224.62, 248.95, 656.82, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-06-daxRobot",
+        "filename": "crescent-tfl-hint-06-daxRobot.wav",
+        "radius": ["meters", 10.0]
+      }
+    }
+    ,{
+      "trans": [-225.88, 246.26, 400.17], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-225.88, 246.26, 400.17, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-07-SamosConnect",
+        "filename": "crescent-tfl-hint-07-SamosConnect.wav",
+        "radius": ["meters", 10.0]
+      }
+    }
+    ,{
+      "trans": [320.6, 169.86, 394.91], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [320.6, 169.86, 394.91, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-08-SamosInfused",
+        "filename": "crescent-tfl-hint-08-SamosInfused.wav",
+        "radius": ["meters", 15.0]
+      }
+    }
+    ,{
+      "trans": [-191.05, 227.03, 403.06], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-191.05, 227.03, 403.06, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-09-KeiraZoomer",
+        "filename": "crescent-tfl-hint-09-KeiraZoomer.wav",
+        "radius": ["meters", 15.0]
+      }
+    }
+    ,{
+      "trans": [166.75, 207.0, 430.89], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [166.75, 207.0, 430.89, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-10-KeiraZoomer2",
+        "filename": "crescent-tfl-hint-09-KeiraZoomer.wav",
+        "radius": ["meters", 15.0]
+      }
+    }
+    ,{
+      "trans": [-364.22, 195.57, 642.93], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [-364.22, 195.57, 642.93, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-11-KeiraZoomer3",
+        "filename": "crescent-tfl-hint-09-KeiraZoomer.wav",
+        "radius": ["meters", 15.0]
+      }
+    }
+    ,{
+      "trans": [65.16, 184.42, 370.12], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [65.16, 184.42, 370.12, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-12-KeiraControl",
+        "filename": "crescent-tfl-hint-12-KeiraControl.wav",
+        "radius": ["meters", 20.0]
+      }
+    }
+    ,{
+      "trans": [136.06, 233.94, 428.81], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [136.06, 233.94, 428.81, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-13-KeiraCable",
+        "filename": "crescent-tfl-hint-13-KeiraCable.wav",
+        "radius": ["meters", 20.0]
+      }
+    }
+    ,{
+      "trans": [271.62, 244.21, 409.39], // translation
+      "etype": "tfl-hint",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion 
+      "bsphere": [271.62, 244.21, 409.39, 10.0], // bounding sphere
+      "lump": {
+        "name": "crescent-tfl-hint-14-KeiraCable2",
+        "filename": "crescent-tfl-hint-13-KeiraCable.wav",
+        "radius": ["meters", 25.0]
+      }
+    }
+    
   ],
   "ambients" : [
     {

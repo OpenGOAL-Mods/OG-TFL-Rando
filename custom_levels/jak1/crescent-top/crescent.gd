@@ -7,7 +7,6 @@
 ("CST.DGO"
   (
   "static-screen.o"
-  "crescent-top.go"
   "rolling-race-ring.o"
   "race-ring-ag.go"
   "eichar-pole+0-ag.go"
@@ -33,5 +32,6 @@
   "bladeassm-ag.go"
   "towertop-ag.go"
   "mayorgears-ag.go"
+  "crescent-top.go"
     )
   )

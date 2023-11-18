@@ -2028,7 +2028,7 @@
                            :nickname 'crc          ;; nickname
                            :packages '(maincave)
                            :sound-banks '(maincave misty) ;; maincave to get ambient sounds, misty for the breakaways
-                           :music-bank 'maincave
+                           :music-bank #f
                            :ambient-sounds '()
                            :mood '*crystal-cave-mood*
                            :mood-func 'update-mood-crystal-cave
@@ -2156,8 +2156,8 @@
                            :visname 'crescent-top-vis ;; name + -vis
                            :nickname 'cst          ;; nickname
                            :packages '(village1)
-                           :sound-banks '(village1) ;; to get ambient sounds
-                           :music-bank 'village1
+                           :sound-banks '(village1 rolling) ;; to get ambient sounds and zoomer sfx
+                           :music-bank #f
                            :ambient-sounds '()
                            :mood '*crescent-top-mood*
                            :mood-func 'update-mood-crescent-top

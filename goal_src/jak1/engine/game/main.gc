@@ -572,6 +572,8 @@
     ;; collide dma
     (suspend)
 
+    ;; TFL note: added music player
+    (process-spawn tfl-music-player)
 
     (while *run*
    

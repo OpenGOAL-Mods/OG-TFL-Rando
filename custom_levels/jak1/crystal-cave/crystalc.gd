@@ -7,7 +7,6 @@
 ("CRC.DGO"
   (
   "static-screen.o"
-  "crystal-cave.go"
   "eichar-pole+0-ag.go"
   "target-ice.o"
   "eichar-ice+0-ag.go"
@@ -28,5 +27,6 @@
   "plat-ag.go" 
   "orb-cache-top-ag.go" 
   "spiderwebs-ag.go"
+  "crystal-cave.go"
     )
   )

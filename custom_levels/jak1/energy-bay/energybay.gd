@@ -7,7 +7,6 @@
 ("ENB.DGO"
  (
   "static-screen.o"
-  "energy-bay.go"
   "water-anim-training-ag.go" ; water stuff
   "energybay-obs.o"
   "energybay-part.o"
@@ -23,4 +22,5 @@
   "balloonlurker-ag.go"
   "race-ring-ag.go"
   "mistycam-ag.go"
+  "energy-bay.go"
  ))

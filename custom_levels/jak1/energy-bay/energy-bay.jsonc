@@ -3198,6 +3198,67 @@
             "vis-dist":  ["meters", 200.0]
           }
         }
+        // HINTS
+        ,{
+          "trans": [516.6, 47.98, 683.27], // translation
+          "etype": "tfl-hint",  // actor type                               // TEST ACTOR //
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion 
+          "bsphere": [516.6, 47.98, 683.27, 200.0], // bounding sphere
+          "lump": {
+            "name": "energy-bay-tfl-hint-00",
+            "filename": "DS017.wav",
+            "radius": ["meters", 2.0]
+          }
+        }
+        ,{
+          "trans": [868.35, 68.71, 682.37], // translation
+          "etype": "tfl-hint",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion 
+          "bsphere": [868.35, 68.71, 682.37, 10.0], // bounding sphere
+          "lump": {
+            "name": "energy-bay-tfl-hint-01-daxTurbine1",
+            "filename": "energy-bay-tfl-hint-01-daxTurbine1.wav",
+            "radius": ["meters", 10.0]
+          }
+        }
+        ,{
+          "trans": [450.39, 43.92, 651.66], // translation
+          "etype": "tfl-hint",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion 
+          "bsphere": [450.39, 43.92, 651.66, 10.0], // bounding sphere
+          "lump": {
+            "name": "energy-bay-tfl-hint-02-daxClosed",
+            "filename": "energy-bay-tfl-hint-02-daxClosed.wav",
+            "radius": ["meters", 20.0]
+          }
+        }
+        ,{
+          "trans": [758.21, 24.34, 771.5], // translation
+          "etype": "tfl-hint",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion 
+          "bsphere": [758.21, 24.34, 771.5, 10.0], // bounding sphere
+          "lump": {
+            "name": "energy-bay-tfl-hint-03-daxTurbine4",
+            "filename": "energy-bay-tfl-hint-03-daxTurbine4.wav",
+            "radius": ["meters", 15.0]
+          }
+        }
+        ,{
+          "trans": [748.51, 5.11, 959.91], // translation
+          "etype": "tfl-hint",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion 
+          "bsphere": [748.51, 5.11, 959.91, 10.0], // bounding sphere
+          "lump": {
+            "name": "energy-bay-tfl-hint-04-SamosCrystal",
+            "filename": "energy-bay-tfl-hint-04-SamosCrystal.wav",
+            "radius": ["meters", 10.0]
+          }
+        }
         // PARTICLES   
     ,{
       "trans": [485.58, 55.73, 786.36], // translation
