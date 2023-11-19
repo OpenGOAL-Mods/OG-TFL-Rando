@@ -2320,7 +2320,7 @@
     },
     {
       "trans": [65.93, 180.07, 461.29], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [65.93, 180.07, 461.29, 10], // bounding sphere
@@ -2331,12 +2331,14 @@
           [65.93, 180.07, 461.29, 1.0],
           [65.93, 173.57, 461.29, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 5.0, 0.0]
       }
     },
     {
       "trans": [53.88, 173.57, 470.04], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [53.88, 173.57, 470.04, 10], // bounding sphere
@@ -2347,12 +2349,14 @@
           [53.88, 173.57, 470.04, 1.0],
           [53.88, 180.07, 470.04, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 5.0, 0.0]
       }
     },
     {
       "trans": [41.69, 180.07, 461.11], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [41.69, 180.07, 461.11, 10], // bounding sphere
@@ -2363,12 +2367,14 @@
           [41.69, 180.07, 461.11, 1.0],
           [41.69, 173.57, 461.11, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 5.0, 0.0]
       }
     },
     {
       "trans": [7.69, 177.69, 466.67], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [7.69, 177.69, 466.67, 10], // bounding sphere
@@ -2386,13 +2392,15 @@
           [9.06, 174.51, 465.07, 1.0],
           [7.69, 177.69, 466.67, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 9.0, 0.0],
         "options":["int32", 8]
       }
     },
     {
       "trans": [-2.53, 177.69, 456.98], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-2.53, 177.69, 456.98, 10], // bounding sphere
@@ -2410,13 +2418,15 @@
         [-0.94, 174.51, 455.59, 1.0],
         [-2.53, 177.69, 456.98, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 9.0, 0.75],
         "options":["int32", 8]
       }
     },
     {
       "trans": [-10.24, 177.69, 441.52], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-10.24, 177.69, 441.52, 10], // bounding sphere
@@ -2434,13 +2444,15 @@
         [-8.20, 174.51, 440.98, 1.0],
         [-10.24, 177.69, 441.52, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 9.0, 0.50],
         "options":["int32", 8]
       }
     },
     {
       "trans": [7.47, 178.07, 400.26], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [7.47, 178.07, 400.26, 10], // bounding sphere
@@ -2458,6 +2470,8 @@
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         // "path-k":["float",
         //   0.0, 0.0,
         //   0.0, 0.0,
@@ -2470,7 +2484,7 @@
     },
     {
       "trans": [-5.52, 178.07, 387.26], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-5.52, 178.07, 387.26, 10], // bounding sphere
@@ -2494,13 +2508,15 @@
         //   0.1, 0.3,
         //   0.1, 0.3
         // ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 20.0, 0.25],
         "options":["int32", 8]
       }
     },
     {
       "trans": [7.47, 178.07, 374.26], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [7.47, 178.07, 374.26, 10], // bounding sphere
@@ -2518,6 +2534,8 @@
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
           ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         // "path-k":["float",
         //   0.0, 0.0,
         //   0.0, 0.0,
@@ -2530,7 +2548,7 @@
     },
     {
       "trans": [20.47, 178.07, 387.26], // translation
-      "etype": "plat",  // actor type
+      "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [20.47, 178.07, 387.26, 10], // bounding sphere
@@ -2554,6 +2572,8 @@
         //   0.1, 0.3,
         //   0.1, 0.3
         // ],
+        "part-height": ["meters", 174.2],
+        "part-range": ["meters", 0.5],
         "sync": ["float", 20.0, 0.75],
         "options":["int32", 8]
       }
