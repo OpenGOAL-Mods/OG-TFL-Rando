@@ -978,9 +978,13 @@
           ;;     )
           ;;   )
           (when in-range?
-            (if sink?
-              (spawn (-> self sink-part) (-> self root trans))
-              (spawn (-> self emerge-part) (-> self root trans))
+            (let ((part-pos (new-stack-vector0)))
+              (vector-copy! part-pos (-> self root trans))
+              (set! (-> part-pos y) (-> self part-spawn-height))
+              (if sink?
+                (spawn (-> self sink-part) part-pos)
+                (spawn (-> self emerge-part) part-pos)
+                )
               )
             )
           )
