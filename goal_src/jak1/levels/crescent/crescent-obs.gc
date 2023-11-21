@@ -944,47 +944,50 @@
     (sound-stop (-> self sound-id))
     )
   :trans (behavior ()
-    (let ((old-path-pos (-> self path-pos)))
-      (set! (-> self path-pos) (if (logtest? (-> self fact options) (fact-options wrap-phase))
-                                  (get-current-phase (-> self sync))
-                                  (get-current-phase-with-mirror (-> self sync))
-                                  )
-            )
-      (let ((sink? (< (- old-path-pos (-> self path-pos)) 0.0)))
-        (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
-        (if (< (vector-vector-distance (-> self root trans) (ear-trans)) (meters 20))
-            (sound-play "eco-plat-hover" :id (-> self sound-id) :position (the symbol (-> self root trans)))
-            )
-        (let* ((y (-> self root trans y))
-               (half (/ (-> self part-range) 2.0))
-               (emerge-y (- (- (-> self part-spawn-height) half) y))
-               (sink-y (+ (-> self part-spawn-height) half))
-               (in-range?
-                 (if sink?
-                   (< (- y sink-y) half)
-                   (and (< emerge-y half) (< (- y (-> self part-spawn-height)) half))
-                   )
+    (set! (-> self path-pos) (if (logtest? (-> self fact options) (fact-options wrap-phase))
+                                (get-current-phase (-> self sync))
+                                (get-current-phase-with-mirror (-> self sync))
+                                )
+          )
+    (let ((old-y (-> self basetrans y)))
+      (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
+      (if (< (vector-vector-distance (-> self root trans) (ear-trans)) (meters 20))
+          (sound-play "eco-plat-hover" :id (-> self sound-id) :position (the symbol (-> self root trans)))
+          )
+      (let* ((new-y (-> self basetrans y))
+             (sink? (> (- old-y new-y) 0.0))
+             (y (-> self root trans y))
+             (half (/ (-> self part-range) 2.0))
+             (emerge-y (- (- (-> self part-spawn-height) half) y))
+             (sink-y (+ (-> self part-spawn-height) half))
+             (in-range?
+               (if sink?
+                 (< (- y sink-y) half)
+                 (and (< emerge-y half) (< (- y (-> self part-spawn-height)) half))
                  )
                )
-          ;; (when (string= (the string (-> self name)) "crescent-plat-01")
-          ;;   (format *stdcon* "plat y ~m~%sink? ~A~%in-range? ~A~%old-path-pos ~f~%path-pos ~f~%dist ~m~%"
-          ;;     y sink? in-range? old-path-pos (-> self path-pos)
-          ;;     (- y (-> self part-spawn-height))
-          ;;     )
-          ;;   (format *stdcon* "half ~m~%dist sink ~m~%dist emerge ~m~%"
-          ;;     half
-          ;;     (- y (+ (-> self part-spawn-height) half))
-          ;;     (- (- (-> self part-spawn-height) half) y)
-          ;;     )
-          ;;   )
-          (when in-range?
-            (let ((part-pos (new-stack-vector0)))
-              (vector-copy! part-pos (-> self root trans))
-              (set! (-> part-pos y) (-> self part-spawn-height))
-              (if sink?
-                (spawn (-> self sink-part) part-pos)
-                (spawn (-> self emerge-part) part-pos)
-                )
+             )
+        ;; (when (string= (the string (-> self name)) "crescent-plat-10")
+        ;;   (format *stdcon* "plat y ~m~%sink? ~A~%in-range? ~A~%dist ~m~%"
+        ;;     y sink? in-range?
+        ;;     (- y (-> self part-spawn-height))
+        ;;     )
+        ;;   (format *stdcon* "half ~m~%dist sink ~m~%dist emerge ~m~%old y ~f~%new y ~f~%delta ~f"
+        ;;     half
+        ;;     (- y (+ (-> self part-spawn-height) half))
+        ;;     (- (- (-> self part-spawn-height) half) y)
+        ;;     old-y
+        ;;     new-y
+        ;;     (- old-y new-y)
+        ;;     )
+        ;;   )
+        (when in-range?
+          (let ((part-pos (new-stack-vector0)))
+            (vector-copy! part-pos (-> self root trans))
+            (set! (-> part-pos y) (-> self part-spawn-height))
+            (if sink?
+              (spawn (-> self sink-part) part-pos)
+              (spawn (-> self emerge-part) part-pos)
               )
             )
           )

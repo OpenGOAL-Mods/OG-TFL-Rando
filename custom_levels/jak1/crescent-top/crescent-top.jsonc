@@ -2332,7 +2332,7 @@
           [65.93, 173.57, 461.29, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 5.0, 0.0]
       }
     },
@@ -2350,7 +2350,7 @@
           [53.88, 180.07, 470.04, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 5.0, 0.0]
       }
     },
@@ -2368,7 +2368,7 @@
           [41.69, 173.57, 461.11, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 5.0, 0.0]
       }
     },
@@ -2393,7 +2393,7 @@
           [7.69, 177.69, 466.67, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 9.0, 0.0],
         "options":["int32", 8]
       }
@@ -2419,7 +2419,7 @@
         [-2.53, 177.69, 456.98, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 9.0, 0.75],
         "options":["int32", 8]
       }
@@ -2445,7 +2445,7 @@
         [-10.24, 177.69, 441.52, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 9.0, 0.50],
         "options":["int32", 8]
       }
@@ -2471,7 +2471,7 @@
           [7.47, 178.07, 400.26, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         // "path-k":["float",
         //   0.0, 0.0,
         //   0.0, 0.0,
@@ -2509,7 +2509,7 @@
         //   0.1, 0.3
         // ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 20.0, 0.25],
         "options":["int32", 8]
       }
@@ -2535,7 +2535,7 @@
           [7.47, 178.07, 400.26, 1.0]
           ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         // "path-k":["float",
         //   0.0, 0.0,
         //   0.0, 0.0,
@@ -2573,7 +2573,7 @@
         //   0.1, 0.3
         // ],
         "part-height": ["meters", 174.2],
-        "part-range": ["meters", 0.5],
+        "part-range": ["meters", 2.0],
         "sync": ["float", 20.0, 0.75],
         "options":["int32", 8]
       }
