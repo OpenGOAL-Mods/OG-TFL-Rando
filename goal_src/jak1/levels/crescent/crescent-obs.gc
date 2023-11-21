@@ -876,7 +876,8 @@
   ((sink-part sparticle-launch-control)
    (emerge-part sparticle-launch-control)
    ;; (sink-sound sound-id)
-   (part-spawn-height float)
+   (part-sink-spawn-height float)
+   (part-emerge-spawn-height float)
    (part-range float)
    )
   )
@@ -897,9 +898,10 @@
   (set! (-> this path) (new 'process 'curve-control this 'path -1000000000.0))
   (logior! (-> this path flags) (path-control-flag display draw-line draw-point draw-text))
   (set! (-> this sound-id) (new-sound-id))
-  (set! (-> this sink-part) (create-launch-control (-> *part-group-id-table* 62) this))
-  (set! (-> this emerge-part) (create-launch-control (-> *part-group-id-table* 44) this))
-  (set! (-> this part-spawn-height) (res-lump-float (-> this entity) 'part-height :default 0.0))
+  (set! (-> this sink-part) (create-launch-control (-> *part-group-id-table* 870) this))
+  (set! (-> this emerge-part) (create-launch-control (-> *part-group-id-table* 871) this))
+  (set! (-> this part-sink-spawn-height) (res-lump-float (-> this entity) 'part-height :default 0.0))
+  (set! (-> this part-emerge-spawn-height) (res-lump-float (-> this entity) 'part-emerge-height :default 0.0))
   (set! (-> this part-range) (res-lump-float (-> this entity) 'part-range :default 0.0))
   (cond
     ((logtest? (-> this path flags) (path-control-flag not-found))
@@ -958,24 +960,24 @@
              (sink? (> (- old-y new-y) 0.0))
              (y (-> self root trans y))
              (half (/ (-> self part-range) 2.0))
-             (emerge-y (- (- (-> self part-spawn-height) half) y))
-             (sink-y (+ (-> self part-spawn-height) half))
+             (emerge-y (- (- (-> self part-emerge-spawn-height) half) y))
+             (sink-y (+ (-> self part-sink-spawn-height) half))
              (in-range?
                (if sink?
                  (< (- y sink-y) half)
-                 (and (< emerge-y half) (< (- y (-> self part-spawn-height)) half))
+                 (and (< emerge-y half) (< (- y (-> self part-sink-spawn-height)) half))
                  )
                )
              )
         ;; (when (string= (the string (-> self name)) "crescent-plat-10")
         ;;   (format *stdcon* "plat y ~m~%sink? ~A~%in-range? ~A~%dist ~m~%"
         ;;     y sink? in-range?
-        ;;     (- y (-> self part-spawn-height))
+        ;;     (- y (-> self part-sink-spawn-height))
         ;;     )
         ;;   (format *stdcon* "half ~m~%dist sink ~m~%dist emerge ~m~%old y ~f~%new y ~f~%delta ~f"
         ;;     half
-        ;;     (- y (+ (-> self part-spawn-height) half))
-        ;;     (- (- (-> self part-spawn-height) half) y)
+        ;;     (- y (+ (-> self part-sink-spawn-height) half))
+        ;;     (- (- (-> self part-sink-spawn-height) half) y)
         ;;     old-y
         ;;     new-y
         ;;     (- old-y new-y)
@@ -984,10 +986,10 @@
         (when in-range?
           (let ((part-pos (new-stack-vector0)))
             (vector-copy! part-pos (-> self root trans))
-            (set! (-> part-pos y) (-> self part-spawn-height))
+            (set! (-> part-pos y) (-> self part-sink-spawn-height))
             (if sink?
               (spawn (-> self sink-part) part-pos)
-              (spawn (-> self emerge-part) part-pos)
+              (spawn (-> self emerge-part) (-> self root trans))
               )
             )
           )

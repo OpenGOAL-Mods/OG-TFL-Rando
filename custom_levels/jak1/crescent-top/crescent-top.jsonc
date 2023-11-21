@@ -2331,8 +2331,9 @@
           [65.93, 180.07, 461.29, 1.0],
           [65.93, 173.57, 461.29, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 5.0, 0.0]
       }
     },
@@ -2349,8 +2350,9 @@
           [53.88, 173.57, 470.04, 1.0],
           [53.88, 180.07, 470.04, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 5.0, 0.0]
       }
     },
@@ -2367,8 +2369,9 @@
           [41.69, 180.07, 461.11, 1.0],
           [41.69, 173.57, 461.11, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 5.0, 0.0]
       }
     },
@@ -2392,8 +2395,9 @@
           [9.06, 174.51, 465.07, 1.0],
           [7.69, 177.69, 466.67, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 9.0, 0.0],
         "options":["int32", 8]
       }
@@ -2418,8 +2422,9 @@
         [-0.94, 174.51, 455.59, 1.0],
         [-2.53, 177.69, 456.98, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 9.0, 0.75],
         "options":["int32", 8]
       }
@@ -2444,8 +2449,9 @@
         [-8.20, 174.51, 440.98, 1.0],
         [-10.24, 177.69, 441.52, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 9.0, 0.50],
         "options":["int32", 8]
       }
@@ -2470,8 +2476,9 @@
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         // "path-k":["float",
         //   0.0, 0.0,
         //   0.0, 0.0,
@@ -2508,8 +2515,9 @@
         //   0.1, 0.3,
         //   0.1, 0.3
         // ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 20.0, 0.25],
         "options":["int32", 8]
       }
@@ -2534,8 +2542,9 @@
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
           ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         // "path-k":["float",
         //   0.0, 0.0,
         //   0.0, 0.0,
@@ -2572,8 +2581,9 @@
         //   0.1, 0.3,
         //   0.1, 0.3
         // ],
-        "part-height": ["meters", 174.2],
-        "part-range": ["meters", 2.0],
+        "part-height": ["meters", 175.8],
+        "part-range": ["meters", 0.30],
+        "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 20.0, 0.75],
         "options":["int32", 8]
       }
