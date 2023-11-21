@@ -2,6 +2,7 @@
 (in-package goal)
 
 (defglobalconstant TFL_HINT_DEBUG *debug-segment*)
+(define *display-tfl-hint-marks* #f)
 
 (deftype tfl-hint (process-drawable)
   ((sound-to-play string)
@@ -282,7 +283,7 @@
 
 
 (defbehavior tfl-hint-post tfl-hint ()
-  (hint-debug (debug-draw self))
+  (if *display-tfl-hint-marks* (debug-draw self))
   (none)
   )
 
