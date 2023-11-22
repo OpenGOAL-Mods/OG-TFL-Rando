@@ -216,6 +216,13 @@
     )
 )
 
+(defmethod relocate ((this enb-turbine) (off int))
+  (if (nonzero? (-> this part2))
+      (&+! (-> this part2) off)
+      )
+  (call-parent-method this off)
+  )
+
 (defmethod deactivate ((this enb-turbine))
   (if (nonzero? (-> this part2))
       (kill-and-free-particles (-> this part2))
@@ -228,9 +235,8 @@
   :trans (behavior ()
     (cond
       ((= (get-task-status (-> self entity extra perm task)) (task-status invalid))
-        ;; (set! (-> self part2) (create-launch-control (-> *part-group-id-table* 906) self))
         (spawn (-> self part2) (-> self root-override trans))
-        (format 0 "energy-bay-turbine1 closed")
+        ;; (format 0 "energy-bay-turbine1 closed")
         )
       (else
         ;; (format 0 "energy-bay-turbine1 not closed")

@@ -3624,35 +3624,32 @@
     }
     ,{
       "trans": [496.41, 78.97, 861.58], // translation
-      "etype": "energybay-part",  // actor type
+      "etype": "enb-turbine",  // actor type
       "game_task": 129, // associated game task (for powercells, etc)
       "quat" : [0, -0.994, 0, 0.109], // quaternion
       "bsphere": [496.41, 78.97, 861.58, 10], // bounding sphere
       "lump": {
-        "name":"energy-bay-turbine-02",
-        "art-name":"group-enb-activated-turbine" // TFL todo: remove and switch to correct etype when it's functional
+        "name":"energy-bay-turbine-02"
       }
     }
     ,{
       "trans": [866.71, 75.09, 937.9], // translation
-      "etype": "energybay-part",  // actor type
-      "game_task": 129, // associated game task (for powercells, etc)
+      "etype": "enb-turbine",  // actor type
+      "game_task": 130, // associated game task (for powercells, etc)
       "quat" : [0, -0.561, 0, 0.828], // quaternion
       "bsphere": [866.71, 75.09, 937.9, 10], // bounding sphere
       "lump": {
-        "name":"energy-bay-turbine-03",
-        "art-name":"group-enb-activated-turbine" // TFL todo: remove and switch to correct etype when it's functional
+        "name":"energy-bay-turbine-03"
       }
     }
     ,{
       "trans": [744.14, 26.52, 759.8], // translation
-      "etype": "energybay-part",  // actor type
-      "game_task": 129, // associated game task (for powercells, etc)
+      "etype": "enb-turbine",  // actor type
+      "game_task": 131, // associated game task (for powercells, etc)
       "quat" : [0, -0.945, 0, -0.326], // quaternion
       "bsphere": [744.14, 26.52, 759.8, 10], // bounding sphere
       "lump": {
-        "name":"energy-bay-turbine-04",
-        "art-name":"group-enb-activated-turbine" // TFL todo: remove and switch to correct etype when it's functional
+        "name":"energy-bay-turbine-04"
       }
     }
 
