@@ -25,6 +25,7 @@
   "breakaway-mid-ag.go"
   "breakaway-right-ag.go"
   "plat-ag.go" 
+  "flutflut-plat-large-ag.go"
   "orb-cache-top-ag.go" 
   "spiderwebs-ag.go"
   "crystal-cave.go"

@@ -3360,7 +3360,29 @@
           ],
         "cycle-speed":["float", 5.5, 0.0, 4.0]
       }
+    },
+
+    {
+      "trans": [-301, 95.57, 34.84], // translation
+      "etype": "crc-gondola",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-301, 95.57, 34.84, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-gondola-00",
+        "path":
+          ["vector4m",
+            [-301, 95.57, 34.84, 1.0],
+            [-305.91, 99.74, 86.12, 1.0],
+            [-310.74, 119.2, 143, 1.0],
+            [-319.19, 150.7, 202.08, 1.0],
+            [-291.9, 199, 267.32, 1.0],
+            [-268.76, 212.91, 312.15, 1.0]
+          ],
+        "path-k": ["float", 0, 0, 0, 0, 1, 2, 3, 3, 3, 3]
+      }
     }
+
     // Hints
     ,{
       "trans": [-2.34, 98.96, 11.32], // translation
