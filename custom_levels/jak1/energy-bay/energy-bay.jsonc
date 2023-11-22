@@ -3614,13 +3614,12 @@
     // Activated turbine parts
     ,{
       "trans": [884.35, 68.70, 686.8], // translation
-      "etype": "energybay-part",  // actor type
+      "etype": "enb-turbine",  // actor type
       "game_task": 128, // associated game task (for powercells, etc)
       "quat" : [0, -0.294, 0, 0.956], // quaternion
       "bsphere": [884.35, 68.70, 686.8, 10], // bounding sphere
       "lump": {
-        "name":"energy-bay-turbine-01",
-        "art-name":"group-enb-activated-turbine" // TFL todo: remove and switch to correct etype when it's functional
+        "name":"energy-bay-turbine-01"
       }
     }
     ,{
