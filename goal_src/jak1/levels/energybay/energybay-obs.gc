@@ -202,3 +202,60 @@
       )
   (none)
   )
+
+(deftype enb-turbine (process-drawable)
+  ((sync sync-info :inline)
+   (blade-normal vector :inline)
+   (orig-quat quaternion :inline)
+   (part2 sparticle-launch-control)
+   )
+  (:states
+    enb-turbine-idle
+    )
+)
+
+(defmethod relocate ((this enb-turbine) (off int))
+  (if (nonzero? (-> this part2))
+      (&+! (-> this part2) off)
+      )
+  (call-parent-method this off)
+  )
+
+(defmethod deactivate ((this enb-turbine))
+  (if (nonzero? (-> this part2))
+      (kill-and-free-particles (-> this part2))
+      )
+  ((method-of-type process-drawable deactivate) this)
+  (none)
+  )
+
+(defstate enb-turbine-idle (enb-turbine)
+  :trans (behavior ()
+    (cond
+      ((= (get-task-status (-> self entity extra perm task)) (task-status invalid))
+       (spawn (-> self part2) (-> self root trans))
+       (update! (-> self sound))
+       (update-vol! (-> self sound) 150)
+       )
+      (else
+       (update! (-> self sound))
+       (update-vol! (-> self sound) 1)
+       )
+      )
+    )
+  :code anim-loop
+  :post ja-post
+  )
+
+(defmethod init-from-entity! ((this enb-turbine) (ent entity-actor))
+  (logior! (-> this mask) (process-mask ambient))
+  (load-params! (-> this sync) this (the uint 4800) 0.0 0.15 0.15)
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this ent)
+  (logclear! (-> this mask) (process-mask actor-pause))
+  (quaternion-copy! (-> this orig-quat) (-> this root quat))
+  (set! (-> this part2) (create-launch-control (-> *part-group-id-table* 906) this))
+  (set! (-> this sound) (new 'process 'ambient-sound (static-sound-spec "blue-eco-idle" :fo-min 30 :fo-max 100 :volume 150) (-> this root trans)))
+  (go enb-turbine-idle)
+  (none)
+  )
