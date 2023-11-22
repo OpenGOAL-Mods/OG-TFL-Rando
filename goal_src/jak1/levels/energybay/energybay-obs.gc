@@ -210,6 +210,7 @@
     (blade-normal   vector      :inline)
     (orig-quat      quaternion  :inline)
     (part2          sparticle-launch-control)
+    (cshape         collide-shape :overlay-at root)
     )
   (:states
     enb-turbine-idle
@@ -236,10 +237,12 @@
     (cond
       ((= (get-task-status (-> self entity extra perm task)) (task-status invalid))
         (spawn (-> self part2) (-> self root-override trans))
-        ;; (format 0 "energy-bay-turbine1 closed")
+        (update! (-> self sound))
+        (update-vol! (-> self sound) 150)
         )
       (else
-        ;; (format 0 "energy-bay-turbine1 not closed")
+        (update! (-> self sound))
+        (update-vol! (-> self sound) 1)
       )
       )
     )
@@ -255,6 +258,7 @@
   (logclear! (-> this mask) (process-mask actor-pause))
   (quaternion-copy! (-> this orig-quat) (-> this root-override quat))
   (set! (-> this part2) (create-launch-control (-> *part-group-id-table* 906) this))
+  (set! (-> this sound) (new 'process 'ambient-sound (static-sound-spec "blue-eco-idle" :fo-min 30 :fo-max 100 :volume 150) (-> this cshape trans)))
   (go enb-turbine-idle)
   (none)
   )
