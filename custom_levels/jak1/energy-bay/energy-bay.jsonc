@@ -3389,6 +3389,227 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
+    },
+    {
+      "trans": [749.89, 40.34, 520.21], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [749.89, 40.34, 520.21, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-05",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [906.86, 36.79, 611.25], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [906.86, 36.79, 611.25, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-06",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [858.67, 42.34, 642.05], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [858.67, 42.34, 642.05, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-07",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [903.87, 70.95, 702.34], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [903.87, 70.95, 702.34, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-08",
+        "art-name":"group-crescent-butterflies",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [623.13, 33.38, 580.04], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [623.13, 33.38, 580.04, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-01",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [640.26, 59.08, 542.53], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [640.26, 59.08, 542.53, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-02",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [793.15, 20.76, 503.85], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [793.15, 20.76, 503.85, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-03",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [868.72, 42.40, 654.26], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [868.72, 42.40, 654.26, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-04",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [860.88, 75.507, 776.39], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [860.88, 75.507, 776.39, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-05",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [784.61, 67.46, 906.38], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [784.61, 67.46, 906.38, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-06",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [529.72, 74.37, 839.47], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [529.72, 74.37, 839.47, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-butterfly-sitting-07",
+        "art-name":"group-crescent-butterfly-sitting",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [781.03, 87.12, 820.69], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [781.03, 87.12, 820.69, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-birds-01",
+        "art-name":"group-crescent-birds",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [584.96, 48.97, 1098.8], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [584.96, 48.97, 1098.8, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-birds-02",
+        "art-name":"group-crescent-birds",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [687.4, 75.29, 551.2], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [687.4, 75.29, 551.2, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-birds-03",
+        "art-name":"group-crescent-birds",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [944.07, 102.31, 689.54], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [944.07, 102.31, 689.54, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-birds-04",
+        "art-name":"group-crescent-birds",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [946.58, 88.55, 642.37], // translation
+      "etype": "crescent-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [946.58, 88.55, 642.37, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-birds-05",
+        "art-name":"group-crescent-birds",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    },
+    {
+      "trans": [994.22, 0, 670.8], // translation
+      "etype": "energybay-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [994.22, 0, 670.8, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-part-waterfall-01",
+        "art-name":"group-enb-waterfall-01",
+        "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
     }
 
   ],
