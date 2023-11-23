@@ -5728,11 +5728,11 @@
       }
     }
     ,{
-      "trans": [65.16, 184.42, 370.12], // translation
+      "trans": [65.16, 179.62, 370.12], // translation
       "etype": "tfl-hint",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion 
-      "bsphere": [65.16, 184.42, 370.12, 10.0], // bounding sphere
+      "bsphere": [65.16, 179.62, 370.12, 10.0], // bounding sphere
       "lump": {
         "name": "crescent-tfl-hint-12-KeiraControl",
         "filename": "crescent-tfl-hint-12-KeiraControl.wav",
@@ -5774,6 +5774,259 @@
         "type": "'hint",
         "text-id": ["int32", 2576],
         "play-mode": "'notice"
+      }
+    }
+    ,{
+      "trans": [55.83, 186.71, 459.82, 40],
+      "bsphere": [55.83, 186.71, 459.82, 40],
+      "lump": {
+        "name": "crescent-amb-02-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 40.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [10.74, 184.88, 446.47, 40],
+      "bsphere": [10.74, 184.88, 446.47, 40],
+      "lump": {
+        "name": "crescent-amb-03-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 40.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [17.13, 180.89, 383.45, 40],
+      "bsphere": [17.13, 180.89, 383.45, 40],
+      "lump": {
+        "name": "crescent-amb-04-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 40.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-217.06, 206.37, 661.98, 50],
+      "bsphere": [-217.06, 206.37, 661.98, 50],
+      "lump": {
+        "name": "crescent-amb-05-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 50.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-253.33, 234.14, 336.16, 100],
+      "bsphere": [-253.33, 234.14, 336.16, 100],
+      "lump": {
+        "name": "crescent-amb-06-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-106.31, 267.55, 390.31, 100],
+      "bsphere": [-106.31, 267.55, 390.31, 100],
+      "lump": {
+        "name": "crescent-amb-07-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-159.67, 267.55, 524.43, 100],
+      "bsphere": [-159.67, 267.55, 524.43, 100],
+      "lump": {
+        "name": "crescent-amb-08-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 100.0, 12.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-268.08, 239.85, 632.34, 100],
+      "bsphere": [-268.08, 239.85, 632.34, 100],
+      "lump": {
+        "name": "crescent-amb-09-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [98.47, 289.57, 434.77, 100],
+      "bsphere": [-98.47, 289.57, 434.77, 100],
+      "lump": {
+        "name": "crescent-amb-10-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [380.64, 306.43, 555.91, 100],
+      "bsphere": [380.64, 306.43, 555.91, 100],
+      "lump": {
+        "name": "crescent-amb-11-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [66.41, 190.36, 376.81, 30],
+      "bsphere": [66.41, 190.36, 376.81, 30],
+      "lump": {
+        "name": "crescent-amb-12-ecoroom1",
+        "type": "'sound",
+        "effect-name":"'ecoroom1",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 80.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [49.36, 187.01, 390.57, 8],
+      "bsphere": [49.36, 187.01, 390.57, 8],
+      "lump": {
+        "name": "crescent-amb-13-warpgate-loop",
+        "type": "'sound",
+        "effect-name":"'warpgate-loop",
+        "effect-param": ["float", 11.0, 100.0, 12.0, 20.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [61.33, 186.96, 356.82, 8],
+      "bsphere": [61.33, 186.96, 356.82, 8],
+      "lump": {
+        "name": "crescent-amb-14-warpgate-loop",
+        "type": "'sound",
+        "effect-name":"'warpgate-loop",
+        "effect-param": ["float", 11.0, 100.0, 12.0, 20.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-234.37, 205.03, 285.28, 5],
+      "bsphere": [-234.37, 205.03, 285.28, 5],
+      "lump": {
+        "name": "crescent-amb-15-warpgate-loop",
+        "type": "'sound",
+        "effect-name":"'warpgate-loop",
+        "effect-param": ["float", 11.0, 20.0, 12.0, 5.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-228.6, 202.9, 293.16, 7],
+      "bsphere": [-228.6, 202.9, 293.16, 7],
+      "lump": {
+        "name": "crescent-amb-16-miners-fire",
+        "type": "'sound",
+        "effect-name":"'miners-fire",
+        "effect-param": ["float", 11.0, 100.0, 12.0, 15.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [327.72, 180.41, 382.82, 50],
+      "bsphere": [327.72, 180.41, 382.82, 100],
+      "lump": {
+        "name": "crescent-amb-17-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [311.49, 162.72, 438.74, 50],
+      "bsphere": [311.49, 162.72, 438.74, 100],
+      "lump": {
+        "name": "crescent-amb-18-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [317.18, 138.98, 497.36, 50],
+      "bsphere": [317.18, 138.98, 497.36, 100],
+      "lump": {
+        "name": "crescent-amb-19-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [342.83, 110.06, 551.71, 50],
+      "bsphere": [342.83, 110.06, 551.71, 100],
+      "lump": {
+        "name": "crescent-amb-20-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [371.84, 89.72, 598.64, 50],
+      "bsphere": [371.84, 89.72, 598.64, 100],
+      "lump": {
+        "name": "crescent-amb-21-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [422.07, 57.70, 644.94, 50],
+      "bsphere": [422.07, 57.70, 644.94, 100],
+      "lump": {
+        "name": "crescent-amb-22-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [-226.54, 255.51, 649.36, 15],
+      "bsphere": [-226.54, 255.51, 649.36, 15],
+      "lump": {
+        "name": "crescent-amb-23-warpgate-loop",
+        "type": "'sound",
+        "effect-name":"'warpgate-loop",
+        "effect-param": ["float", 11.0, 100.0, 12.0, 50.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [60.69, 289.52, 373.19, 10],
+      "bsphere": [60.69, 289.52, 373.19, 10],
+      "lump": {
+        "name": "crescent-amb-23-warpgate-loop",
+        "type": "'sound",
+        "effect-name":"'warpgate-loop",
+        "effect-param": ["float", 11.0, 100.0, 12.0, 20.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
       }
     }
   ]
