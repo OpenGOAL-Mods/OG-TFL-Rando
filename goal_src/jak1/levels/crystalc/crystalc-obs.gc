@@ -500,8 +500,8 @@
    )
   )
 
-(defskelgroup *crc-gondola-sg* flutflut-plat-large flutflut-plat-large-lod0-jg flutflut-plat-large-idle-ja
-              ((flutflut-plat-large-lod0-mg (meters 999999)))
+(defskelgroup *crc-gondola-sg* flutflut-plat-med flutflut-plat-med-lod0-jg flutflut-plat-med-idle-ja
+              ((flutflut-plat-med-lod0-mg (meters 999999)))
               :bounds (static-spherem 0 0 0 9)
               )
 
@@ -513,7 +513,7 @@
   (set! (-> this force-dest) -1.0)
   (set! (-> this targ-dest) -1.0)
   (set! (-> this dest) 0.0)
-  (set! (-> this speed) 0.1)
+  (set! (-> this speed) 0.08)
   (logclear! (-> this mask) (process-mask actor-pause))
   (process-entity-status! this (entity-perm-status bit-3) #t)
   (none)
@@ -543,7 +543,7 @@
        (set! (-> self force-dest) (the float (-> block param 0)))
        )
       (('ridden)
-       (let ((idle? (or (<= (-> self path-pos) 0.0) (= 0.99 (-> self path-pos))))
+       (let ((idle? (or (<= (-> self path-pos) 0.0) (= 0.9999 (-> self path-pos))))
              (fnt (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))))
          (when (and (can-ride-gondola?)
                     (hud-hidden?)
@@ -557,8 +557,8 @@
            (when (and (cpad-pressed? 0 circle) (process-grab? *target*))
              (cpad-clear! 0 circle)
              (set! (-> self targ-dest) (cond
-                               ((= (-> self path-pos) 0.0) (set! (-> self force-dest) -1.0) 0.99)
-                               ((= (-> self path-pos) 0.99) 0.0)
+                               ((= (-> self path-pos) 0.0) (set! (-> self force-dest) -1.0) 0.9999)
+                               ((= (-> self path-pos) 0.9999) 0.0)
                                (else (-> self targ-dest))
                                )
                              )
@@ -600,7 +600,7 @@
                0.0
                )
               (else
-                0.99
+                0.9999
                 )
               )
             )
@@ -615,7 +615,7 @@
                               (= *target* (handle->process (-> self root riders rider 0 rider-handle))))))
       (when (and target-rider?
                  (= (send-event *target* 'query 'mode) 'target-grab)
-                 (or (<= (-> self path-pos) 0.0) (= 0.99 (-> self path-pos))))
+                 (or (<= (-> self path-pos) 0.0) (= 0.9999 (-> self path-pos))))
         (process-release? *target*)
         )
       )
