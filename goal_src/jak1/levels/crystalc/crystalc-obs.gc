@@ -608,7 +608,21 @@
     (if (= (-> self state-time) (current-time))
         (set! (-> self path-pos) (-> self dest))
         )
-    (seek! (-> self path-pos) (-> self dest) (* (-> self speed) (seconds-per-frame)))
+    (seek! (-> self path-pos) (-> self dest) ;; Set the speed of the platform along the path, hack to slow down the start
+      (* (-> self speed) 
+        (cond 
+          ((< (-> self path-pos) 0.05) 
+            (* (seconds-per-frame) 0.30) 
+            )
+          ((< (-> self path-pos) 0.20) 
+            (* (seconds-per-frame) (lerp 0.30 1.0 (/ (- (-> self path-pos) 0.05) 0.15))) 
+            )
+          (else
+            (seconds-per-frame)
+            )
+          )
+        )
+      )
     (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
     (plat-trans)
     (let ((target-rider? (and (nonzero? (-> self root riders num-riders))
