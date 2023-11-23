@@ -578,7 +578,7 @@
     (process-entity-status! self (entity-perm-status complete) #t)
     )
   :trans (behavior ()
-    (when (can-ride-gondola?)
+    (when (and (not (task-closed? (game-task crystalc-gondola) (task-status need-resolution))) (can-ride-gondola?))
       (close-specific-task! (game-task crystalc-gondola) (task-status need-resolution))
       )
     (let ((path-fwd-step (eval-path-curve! (-> self path) (new-stack-vector0) 0.0 'interp))
