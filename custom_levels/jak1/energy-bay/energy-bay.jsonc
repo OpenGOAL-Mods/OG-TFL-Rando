@@ -176,16 +176,16 @@
           }
         },
         {
-          "trans": [755.38, 63.42, 918.65], // translation
+          "trans": [755.47, 63.43, 918.45], // translation
           "etype": "crate",  // actor type
           "game_task": 134, // associated game task (for powercells, etc)
           "quat" : [0.0, 0.345, 0.0, 0.939], // quaternion
-          "bsphere": [755.38, 63.42, 918.65, 10], // bounding sphere
+          "bsphere": [755.47, 63.43, 918.45, 10], // bounding sphere
           "lump": {
             "name":"energy-bay-buzzer-05",
             "crate-type":"'iron",
             "eco-info": ["int32", 8, 262278], // to get SF task = game-task + (2^16 * buzzer-count)
-            "movie-pos": ["meters", 755.38, 63.42, 918.65]
+            "movie-pos": ["meters", 755.47, 63.43, 918.45]
           }
         },
         {
