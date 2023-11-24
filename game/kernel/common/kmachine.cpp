@@ -311,12 +311,20 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
   }
 
   std::thread music_thread([=]() {
-    auto name_str = std::string(Ptr<String>(file_name)->data()).append(".mp3");
-    auto path = (file_util::get_jak_project_dir() / "custom_sound" / "jak1" / "tfl" / "music" / name_str).string();
+    auto name_str = std::string(Ptr<String>(file_name)->data());
+    std::string file;
+    auto music_dir = file_util::get_jak_project_dir() / "custom_sound" / "jak1" / "tfl" / "music";
+    for (const auto& entry : fs::directory_iterator(music_dir)) {
+      // printf("Checking file %s\n",entry.path().string().c_str());
+      if (entry.is_regular_file() && entry.path().stem().string() == name_str) {
+        file = entry.path().string();
+        break;
+      }
+    }
 
     auto* music = new sf::Music;
-    if (!music->openFromFile(std::filesystem::path(path))) {
-      printf("Failed to load music: %s\n", path.c_str());
+    if (!music->openFromFile(std::filesystem::path(file))) {
+      printf("Failed to load music: %s\n", file.c_str());
       delete music;
       return;
     }
