@@ -44,6 +44,7 @@
     "breakaway-mid-ag",
     "breakaway-right-ag",
     "dark-crystal-ag"
+    // ,"flutflut-plat-med-ag" // Keep commented out for release
    ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -3360,7 +3361,33 @@
           ],
         "cycle-speed":["float", 5.5, 0.0, 4.0]
       }
+    },
+
+    {
+      "trans": [-301, 95.57, 34.84], // translation
+      "etype": "crc-gondola",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-301, 95.57, 34.84, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-gondola-00",
+        "path":
+          ["vector4m",
+            [-301.18, 95.14, 37.34, 1.0],
+            [-306.14, 98.56, 91.20, 1.0],
+            [-311.58, 114.67, 141.55, 1.0],
+            [-315.26, 131.73, 176.59, 1.0],
+            [-316.79, 151.83, 210.92, 1.0],
+            [-302.53, 195.88, 243.14, 1.0],
+            [-283.21, 214.57, 285.21, 1.0],
+            [-273.74, 212.73, 302.45, 1.0],
+            [-264.26, 212.73, 318.91, 1.0]
+          ],
+        "path-k": ["float", 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 6, 6, 6],
+        "scale":["float", 0.9]
+      }
     }
+
     // Hints
     ,{
       "trans": [-2.34, 98.96, 11.32], // translation
