@@ -95,7 +95,7 @@
           "lump": {
             "name":"energy-bay-fuel-cell-03", // energy-bay-turbine3
             "eco-info": ["int32", 6, 130],
-            "movie-pos":["vector4m", [859.96, 72.58, 919.67, 4.24]]
+            "movie-pos":["vector4m", [859.96, 72.318, 919.67, 4.24]]
           }
         },
         {
