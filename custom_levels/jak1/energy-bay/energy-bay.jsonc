@@ -1821,11 +1821,11 @@
           }
         },
         {
-          "trans": [818.66, 74.28, 924.3], // translation
+          "trans": [818.66, 74.00, 924.3], // translation
           "etype": "crate",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0, -0.618, 0, -0.786], // quaternion
-          "bsphere": [818.66, 74.28, 924.3, 10], // bounding sphere
+          "bsphere": [818.66, 74.00, 924.3, 10], // bounding sphere
           "lump": {
             "name":"energy-bay-crate-steel-19",
             "crate-type":"'steel",
@@ -2074,33 +2074,33 @@
           }
         },
         {
-          "trans": [775.36, 68.97, 866.76], // translation
+          "trans": [775.36, 68.68, 866.76], // translation
           "etype": "crate",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0.033, 0.879, 0.060, 0.472], // quaternion
-          "bsphere": [775.36, 68.97, 866.76, 10], // bounding sphere
+          "bsphere": [775.36, 68.68, 866.76, 10], // bounding sphere
           "lump": {
             "name":"energy-bay-crate-wood-18",
             "crate-type":"'wood"
           }
         },
         {
-          "trans": [779.22, 69.29, 864.12], // translation
+          "trans": [779.22, 69.00, 864.12], // translation
           "etype": "crate",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [0.038, 0.888, 0.059, 0.454], // quaternion
-          "bsphere": [779.22, 69.29, 864.12, 10], // bounding sphere
+          "bsphere": [779.22, 69.00, 864.12, 10], // bounding sphere
           "lump": {
             "name":"energy-bay-crate-wood-19",
             "crate-type":"'wood"
           }
         },
         {
-          "trans": [827.44, 70.85, 926.92], // translation
+          "trans": [827.44, 70.58, 926.92], // translation
           "etype": "crate",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
           "quat" : [-0.007, 0.963, 0.003, 0.270], // quaternion
-          "bsphere": [827.44, 70.85, 926.92, 10], // bounding sphere
+          "bsphere": [827.44, 70.58, 926.92, 10], // bounding sphere
           "lump": {
             "name":"energy-bay-crate-wood-20",
             "crate-type":"'wood"
