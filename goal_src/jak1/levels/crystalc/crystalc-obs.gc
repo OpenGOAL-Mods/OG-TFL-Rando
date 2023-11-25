@@ -628,7 +628,7 @@
     (let ((target-rider? (and (nonzero? (-> self root riders num-riders))
                               (= *target* (handle->process (-> self root riders rider 0 rider-handle))))))
       (when (and target-rider?
-                 (= (send-event *target* 'query 'mode) 'target-grab)
+                 (nmember (the basic (send-event *target* 'query 'mode)) '(target-grab target-racing-grab))
                  (or (<= (-> self path-pos) 0.0) (= 0.9999 (-> self path-pos))))
         (process-release? *target*)
         )
