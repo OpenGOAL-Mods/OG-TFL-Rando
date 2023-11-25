@@ -281,8 +281,13 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
 
 sf::Music* g_tfl_music;
 
-void stop_tfl_music() {
+void stop_tfl_music(bool force) {
   if (g_tfl_music) {
+    if (force) {
+      g_tfl_music->stop();
+      jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
+      return;
+    }
     auto lerp = [](float a, float b, float t) {
       return a + t * (b - a);
     };
@@ -364,13 +369,13 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     auto play_func = [&music, &paused_func]() {
       while (music->getStatus() == sf::Music::Playing) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
-          stop_tfl_music();
+          stop_tfl_music(true);
           return;
         }
         auto stop = jak1::intern_from_c("*tfl-music-stop*")->value;
         if (stop == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
           jak1::intern_from_c("*tfl-music-stop*")->value = offset_of_s7();
-          stop_tfl_music();
+          stop_tfl_music(false);
           // delete g_tfl_music;
           // std::terminate();
         }
