@@ -1,7 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(defconstant SUPER_ECO_BLUE_R 0.0) ;; KUI notes: edited some crystal colors so the purple is less visible
+(defconstant SUPER_ECO_BLUE_R 0.0)
 (defconstant SUPER_ECO_BLUE_G 7.0)
 (defconstant SUPER_ECO_BLUE_B 16.0)
 
@@ -105,13 +105,11 @@
 
 (defbehavior super-eco-crystal-init-by-other super-eco-crystal ((pos vector) (eco-type symbol) (respawn-time int))
   (init-collision! self)
-  (logior! (-> self mask) (process-mask actor-pause))
+  (logior! (-> self mask) (process-mask pause attackable))
   (vector-copy! (-> self cshape trans) pos)
   (quaternion-identity! (-> self cshape quat))
   (vector-identity! (-> self cshape scale))
   (initialize-skeleton self *super-eco-crystal-sg* '())
-  (logior! (-> self mask) (process-mask attackable))
-  (set! (-> self mask) (logior (process-mask enemy) (-> self mask)))
   (set! (-> self eco-type) (aif eco-type it 'blue))
   (set! (-> self respawn-timer) (aif respawn-time (seconds it) (seconds 20)))
   (set! (-> self bob-amount) 1024.0)
@@ -124,28 +122,24 @@
     (('blue)
      (set-vector! (-> self color) SUPER_ECO_BLUE_R SUPER_ECO_BLUE_G SUPER_ECO_BLUE_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "blue-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> self ambient-part) 952)
      (set! (-> self explode-part) 953)
      )
     (('yellow)
      (set-vector! (-> self color) SUPER_ECO_YELLOW_R SUPER_ECO_YELLOW_G SUPER_ECO_YELLOW_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "yel-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> self ambient-part) 954)
      (set! (-> self explode-part) 955)
      )
     (('red)
      (set-vector! (-> self color) SUPER_ECO_RED_R SUPER_ECO_RED_G SUPER_ECO_RED_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "red-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> self ambient-part) 956)
      (set! (-> self explode-part) 957)
      )
     (('green)
      (set-vector! (-> self color) SUPER_ECO_GREEN_R SUPER_ECO_GREEN_G SUPER_ECO_GREEN_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "green-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> self ambient-part) 950)
      (set! (-> self explode-part) 951)
      )
@@ -168,8 +162,7 @@
   (init-collision! this)
   (process-drawable-from-entity! this entity)
   (initialize-skeleton this *super-eco-crystal-sg* '())
-  (logior! (-> this mask) (process-mask attackable))
-  (set! (-> this mask) (logior (process-mask enemy) (-> this mask)))
+  (logior! (-> this mask) (process-mask pause attackable))
   ;; default to super blue eco and 20 second respawn
   (set! (-> this eco-type) (aif (res-lump-struct (-> this entity) 'eco-type symbol :time -1000000000.0) it 'blue))
   (set! (-> this respawn-timer) (aif (res-lump-value (-> this entity) 'respawn-timer int32 :time -1000000000.0) (seconds it) (seconds 20)))
@@ -183,28 +176,24 @@
     (('blue)
      (set-vector! (-> this color) SUPER_ECO_BLUE_R SUPER_ECO_BLUE_G SUPER_ECO_BLUE_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "blue-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> this ambient-part) 952)
      (set! (-> this explode-part) 953)
      )
     (('yellow)
      (set-vector! (-> this color) SUPER_ECO_YELLOW_R SUPER_ECO_YELLOW_G SUPER_ECO_YELLOW_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "yel-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> this ambient-part) 954)
      (set! (-> this explode-part) 955)
      )
     (('red)
      (set-vector! (-> this color) SUPER_ECO_RED_R SUPER_ECO_RED_G SUPER_ECO_RED_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "red-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> this ambient-part) 956)
      (set! (-> this explode-part) 957)
      )
     (('green)
      (set-vector! (-> this color) SUPER_ECO_GREEN_R SUPER_ECO_GREEN_G SUPER_ECO_GREEN_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "green-eco-idle" :fo-max 15))
-     ;; Kui notes: particles done
      (set! (-> this ambient-part) 950)
      (set! (-> this explode-part) 951)
      )
@@ -309,6 +298,8 @@
   (none)
   )
 
+(defstatehandler super-eco-crystal :post super-eco-crystal-post)
+
 (defstate super-eco-crystal-idle (super-eco-crystal)
   :event (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
     (case event-type
@@ -323,15 +314,13 @@
     (do-lighting! self)
     (spawn (-> self part) (-> self cshape trans))
     (update! (-> self sound))
-    (none)
     )
   :enter (behavior ()
     (ja-channel-push! 1 0)
     (let ((jcontrol (-> self skel root-channel 0)))
-      (joint-control-channel-group-eval! jcontrol (the art-joint-anim (-> self draw art-group data 2)) num-func-identity)
+      (joint-control-channel-group-eval! jcontrol (the art-joint-anim dark-crystal-idle-ja) num-func-identity)
       (set! (-> jcontrol frame-num) 0.0)
       )
-    (none)
     )
   :code (behavior ()
     (loop
@@ -348,15 +337,12 @@
         )
       (suspend)
       )
-    (none)
     )
-  :post super-eco-crystal-post
   )
 
 (defstate super-eco-crystal-break (super-eco-crystal)
   :code (behavior ()
     (set! (-> self state-time) (current-time))
-    (logclear! (-> self mask) (process-mask actor-pause))
     (vector-copy! (-> self base) (-> self old-base))
     (vector-copy! (-> self cshape trans) (-> self base))
     (clear-collide-with-as (-> self cshape))
@@ -376,12 +362,8 @@
       (suspend)
       )
     (go super-eco-crystal-respawn)
-    (none)
     )
-  :enter (behavior ()
-    (stop! (-> self sound))
-    )
-  :post super-eco-crystal-post
+  :enter (behavior () (stop! (-> self sound)))
   )
 
 (defstate super-eco-crystal-respawn (super-eco-crystal)
@@ -392,7 +374,5 @@
       (suspend)
       )
     (go super-eco-crystal-idle)
-    (none)
     )
-  :post super-eco-crystal-post
   )
