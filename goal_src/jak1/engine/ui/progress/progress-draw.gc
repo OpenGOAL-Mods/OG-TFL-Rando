@@ -718,7 +718,8 @@
              (let ((v1-57 arg0))
                (set! (-> v1-57 scale) 0.6)
                )
-             (if (and (< (-> s3-3 file s1-0 level-index) (length *level-task-data-remap*))
+             ;; TFL note: changed this less to less equal
+             (if (and (<= (-> s3-3 file s1-0 level-index) (length *level-task-data-remap*))
                       (> (-> s3-3 file s1-0 level-index) 0)
                       )
                  (print-game-text
