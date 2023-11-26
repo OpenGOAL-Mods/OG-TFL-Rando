@@ -210,11 +210,11 @@
       }
     },
     {
-      "trans": [-252.87, 72.31, -86.30], // translation
+      "trans": [-252.87, 72.12, -86.30], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-252.87, 72.31, -86.30, 10], // bounding sphere
+      "bsphere": [-252.87, 72.12, -86.30, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-buzzer-05",
         "crate-type":"'iron",
@@ -284,11 +284,11 @@
       }
     },
     {
-      "trans": [-300.81, 98.43, -13.17], // translation
+      "trans": [-300.81, 98.24, -13.17], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, -0.201, 0, 0.980], // quaternion
-      "bsphere": [-300.81, 98.43, -13.17, 10], // bounding sphere
+      "quat" : [-0.027, -0.201, -0.030, 0.979], // quaternion
+      "bsphere": [-300.81, 98.24, -13.17, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-steel-03",
         "crate-type":"'steel",
@@ -299,7 +299,7 @@
       "trans": [-295.12, 102.79, -43.84], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, -0.203, 0, 0.979], // quaternion
+      "quat" : [-0.005, -0.202, 0.025, 0.979], // quaternion
       "bsphere": [-295.12, 102.79, -43.84, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-steel-04",
@@ -308,11 +308,11 @@
       }
     },
     {
-      "trans": [-287, 110.34, -34.40], // translation
+      "trans": [-287, 110.32, -34.40], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, -0.195, 0, 0.981], // quaternion
-      "bsphere": [-287, 110.34, -34.40, 10], // bounding sphere
+      "bsphere": [-287, 110.32, -34.40, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-steel-05",
         "crate-type":"'steel",
@@ -335,7 +335,7 @@
       "trans": [-257.66, 98.10, -124.24], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.066, -0.157, 0.011, 0.985], // quaternion
+      "quat" : [0.098, -0.157, 0.016, 0.983], // quaternion
       "bsphere": [-257.66, 98.10, -124.24, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-steel-07",
@@ -358,11 +358,11 @@
       }
     },
     {
-      "trans": [-352.05, 67.09, -106.97], // translation
+      "trans": [-352.05, 67.07, -106.97], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-352.05, 67.09, -106.97, 10], // bounding sphere
+      "quat" : [-0.068, 0.002, 0.036, 0.997], // quaternion
+      "bsphere": [-352.05, 67.07, -106.97, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-steel-09",
         "crate-type":"'steel",
@@ -383,7 +383,7 @@
       "trans": [-96.93, 93.11, 2.70], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [-0, 0.122, -0, 0.993], // quaternion
+      "quat" : [-0.054, 0.146, -0.036, 0.987], // quaternion
       "bsphere": [-96.93, 93.11, 2.70, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-wood-01",
@@ -392,11 +392,11 @@
       }
     },
     {
-      "trans": [-152.51, 104.33, -49.72], // translation
+      "trans": [-152.51, 104.28, -49.72], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [-0, -0.663, -0, 0.748], // quaternion
-      "bsphere": [-152.51, 104.33, -49.72, 10], // bounding sphere
+      "bsphere": [-152.51, 104.28, -49.72, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-wood-02",
         "crate-type":"'wood",
@@ -416,11 +416,11 @@
       }
     },
     {
-      "trans": [-71.92, 93.20, 15.38], // translation
+      "trans": [-71.92, 93.13, 15.38], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [-0.058, 0.796, -0.061, 0.599], // quaternion
-      "bsphere": [-71.92, 93.20, 15.38, 10], // bounding sphere
+      "quat" : [-0.061, 0.796, -0.004, 0.600], // quaternion
+      "bsphere": [-71.92, 93.13, 15.38, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-wood-04",
         "crate-type":"'wood"
@@ -484,11 +484,11 @@
       }
     },
     {
-      "trans": [-253.08, 87.96, -110.63], // translation
+      "trans": [-253.08, 87.95, -110.63], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.045, 0.610, 0.103, 0.785], // quaternion
-      "bsphere": [-253.08, 87.96, -110.63, 10], // bounding sphere
+      "quat" : [0.053, 0.609, 0.113, 0.783], // quaternion
+      "bsphere": [-253.08, 87.95, -110.63, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-wood-10", // green eco blob
         "crate-type":"'wood",
@@ -572,7 +572,7 @@
       "trans": [-301.09, 91.36, -69.01], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [-0.034, 0.194, -0.010, 0.980], // quaternion
+      "quat" : [-0.051, 0.194, -0.007, 0.980], // quaternion
       "bsphere": [-301.09, 69.01, 91.36, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-wood-17", 
