@@ -596,7 +596,10 @@
      (when (>= amount 0.0)
        ;; update small eco count
        (set-time! (-> this eco-pill-pickup-time))
-       (seek! (-> this eco-pill) (-> this eco-pill-max) amount)
+       ;; TFL note: don't seek towards max if we have more than the max (i.e. picked up super green eco)
+       (if (not (> (-> this eco-pill) (-> this eco-pill-max)))
+         (seek! (-> this eco-pill) (-> this eco-pill-max) amount)
+         )
 
        ;; increment big health if needed
        (when (and (>= (-> this eco-pill) (-> *FACT-bank* eco-pill-max-default)) (< (-> this health) (-> this health-max)))
