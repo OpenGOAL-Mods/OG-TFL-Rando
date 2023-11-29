@@ -227,6 +227,8 @@
          (or (-> *setting-control* current play-hints) (-> this hint-data force-playback?))
          ;; check for special condition
          (check-target-mode this)
+         ;; volume >0
+         (< 0.0 (-> *setting-control* current dialog-volume))
          ;; either hint was not yet seen or it was seen, can be repeated and the delay has passed
          (or (not seen?) (and seen? (-> this hint-data repeat?) (time-elapsed? (-> this last-time) (-> this hint-data repeat-delay))))
          )
