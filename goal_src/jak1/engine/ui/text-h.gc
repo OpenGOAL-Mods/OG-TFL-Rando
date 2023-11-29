@@ -715,6 +715,7 @@
   (energy-bay-kill    #xa25)
   (energy-bay-green-ring #xa26)
   (energy-bay-buzzer #xa27)
+  (crystalc-gondola-need-cells #xa28)
   ;; TFL Hint IDs so they only play once. Use up from #xb00
   (crystalc-tfl-hint-01-daxPortal #xb00)
   (crystalc-tfl-hint-02-daxShip #xb01)
