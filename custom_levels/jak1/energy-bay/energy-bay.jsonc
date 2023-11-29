@@ -3665,5 +3665,71 @@
         "play-mode": "'notice"
       }
     }
+    ,{
+      "trans": [495.72, 64.14, 791.9, 40],
+      "bsphere": [495.72, 64.14, 791.9, 40],
+      "lump": {
+        "name": "energy-bay-amb-02-lava-loop",
+        "type": "'sound",
+        "effect-name":"'lava-loop",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 40.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [992.51, 4, 674.07, 70.0],
+      "bsphere": [992.51, 4, 674.07, 70],
+      "lump": {
+        "name": "energy-bay-amb-03-waterfall",
+        "type": "'sound",
+        "effect-name":"'waterfall",
+        "effect-param": ["float", 11.0, 40.0, 50.0, 70.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [883.02, 50.99, 646.28, 100],
+      "bsphere": [883.02, 50.99, 646.28, 100],
+      "lump": {
+        "name": "energy-bay-amb-04-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [801.96, 95.24, 911.3, 100],
+      "bsphere": [801.96, 95.24, 911.3, 100],
+      "lump": {
+        "name": "energy-bay-amb-05-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [721.22, 65.31, 934.4, 100],
+      "bsphere": [721.22, 65.31, 934.4, 100],
+      "lump": {
+        "name": "energy-bay-amb-06-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
+    ,{
+      "trans": [621.35, 50.74, 596.23, 100],
+      "bsphere": [621.35, 50.74, 596.23, 100],
+      "lump": {
+        "name": "energy-bay-amb-07-ogre-amb",
+        "type": "'sound",
+        "effect-name":"'ogre-amb",
+        "effect-param": ["float", 11.0, 400.0, 50.0, 300.0],  // ??, ??, ??, Max Radius
+        "cycle-speed": ["float", -1.0, 0.0]
+      }
+    }
   ]
 }
