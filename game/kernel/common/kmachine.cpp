@@ -216,7 +216,7 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
 
   std::thread hint_thread([=]() {
     auto name_str = std::string(Ptr<String>(file_name)->data());
-    auto path = (file_util::get_jak_project_dir() / "custom_sound" / "jak1" / "tfl" / "hints" / name_str).string();
+    auto path = (file_util::get_jak_project_dir() / "custom_levels" / "custom_sound" / "jak1" / "tfl" / "hints" / name_str).string();
     printf("Playing hint: %s\n", name_str.c_str());
 
     auto* hint = new sf::Music;
@@ -318,7 +318,7 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
   std::thread music_thread([=]() {
     auto name_str = std::string(Ptr<String>(file_name)->data());
     std::string file;
-    auto music_dir = file_util::get_jak_project_dir() / "custom_sound" / "jak1" / "tfl" / "music";
+    auto music_dir = file_util::get_jak_project_dir() / "custom_levels" / "custom_sound" / "jak1" / "tfl" / "music";
     for (const auto& entry : fs::directory_iterator(music_dir)) {
       // printf("Checking file %s\n",entry.path().string().c_str());
       if (entry.is_regular_file() && entry.path().stem().string() == name_str) {
