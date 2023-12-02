@@ -1,7 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(define *tfl-music-player-info* (new 'static 'boxed-array :type string "crystal-cave" "crescent-top"))
+(define *tfl-music-player-info* (new 'static 'boxed-array :type string "crystal-cave" "crescent-top" "energy-bay"))
 (define *tfl-music-playing?* #f)
 (define *tfl-music-stop* #f)
 

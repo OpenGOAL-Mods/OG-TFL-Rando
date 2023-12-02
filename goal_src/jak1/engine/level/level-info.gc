@@ -2300,7 +2300,7 @@
                            :nickname 'enb          ;; nickname
                            :packages '(village1)
                            :sound-banks '(village1) ;; to get ambient sounds
-                           :music-bank 'village1
+                           :music-bank #f
                            :ambient-sounds '()
                            :mood '*crescent-top-mood*
                            :mood-func 'update-mood-crescent-top
