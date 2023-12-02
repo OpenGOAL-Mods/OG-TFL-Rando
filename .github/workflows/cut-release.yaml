@@ -22,11 +22,15 @@ jobs:
     uses: open-goal/mod-bundling-tools/.github/workflows/mod-bundler.yml@v1
     with:
       semverBump: ${{ inputs.bump }}
-      metadataName: "Test Mod Bundle"
-      metadataDescription: "This is a test mod bundle. 2"
+      metadataName: "TFL"
+      metadataDescription: "Jak and Daxter: The Forgotten Lands - Chapter 2"
       metadataSupportedGames: "jak1"
-      metadataAuthors: "barg,vaser"
-      metadataTags: "rng,gameplay-mod"
-      metadataWebsiteUrl: "https://www.example.com/this/is/optional"
+      metadataAuthors: "kuitar"
+      metadataTags: "beta,custom-level,texture-mod"
+      metadataWebsiteUrl: "https://github.com/Kuitar5/the-forgotten-lands"
+      skipMacOS: true
+      toolingBinaryDir: "out/build/Release/bin"
+      gameAssetsDir: "./game/assets"
+      copyEntireBinaryDir: true
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
