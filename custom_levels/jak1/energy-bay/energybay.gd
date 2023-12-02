@@ -22,5 +22,8 @@
   "balloonlurker-ag.go"
   "race-ring-ag.go"
   "mistycam-ag.go"
+  "lurkerworm.o"
+  "lurkerworm-ag.go"
+  "twister.o"
   "energy-bay.go"
  ))

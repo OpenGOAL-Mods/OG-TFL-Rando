@@ -41,7 +41,8 @@
     "sun-iris-door-ag",
     "shortcut-boulder-ag",
     "dark-crystal-ag",
-    "balloonlurker-ag"
+    "balloonlurker-ag",
+    "lurkerworm-ag"
     ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -3049,7 +3050,72 @@
             "path-actor":"energy-bay-balloonlurker-04"
           }
         },
-
+        {
+          "trans": [561.08, 8.16, 892.56], // translation
+          "etype": "lurkerworm",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [561.08, 8.16, 892.56, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-lurkerworm-01"
+            ,"scale":["float", 1.5]
+          }
+        },
+        {
+          "trans": [617.72, 3.10, 966.53], // translation
+          "etype": "lurkerworm",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [617.72, 3.10, 966.53, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-lurkerworm-02"
+            ,"scale":["float", 1.5]
+          }
+        },
+        {
+          "trans": [528.75, 2.71, 965.31], // translation
+          "etype": "lurkerworm",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [528.75, 2.71, 965.31, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-lurkerworm-03"
+            ,"scale":["float", 1.5]
+          }
+        },
+        {
+          "trans": [725.08, 10.67, 518.45], // translation
+          "etype": "lurkerworm",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [725.08, 10.67, 518.45, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-lurkerworm-04"
+            ,"scale":["float", 1.5]
+          }
+        },
+        {
+          "trans": [856.24, 2.76, 594.71], // translation
+          "etype": "lurkerworm",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [856.24, 2.76, 594.71, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-lurkerworm-05"
+            ,"scale":["float", 1.5]
+          }
+        },
+        {
+          "trans": [783.81, 4.45, 529.64], // translation
+          "etype": "lurkerworm",  // actor type
+          "game_task": 0, // associated game task (for powercells, etc)
+          "quat" : [0, 0, 0, 1], // quaternion
+          "bsphere": [783.81, 4.45, 529.64, 10], // bounding sphere
+          "lump": {
+            "name":"energy-bay-lurkerworm-06"
+            ,"scale":["float", 1.5]
+          }
+        },
         // OTHER
         {
           "trans": [646.54, 48.05, 557.63], // translation
