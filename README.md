@@ -1,9 +1,16 @@
 # The Forgotten Lands
 
 # USE THE MOD LAUNCHER TO HAVE AUTO UPDATES
-Link : [opengoal-mod-launcher](https://opengoal-unofficial-mods.github.io/download.html).
+Link : [OpenGOAL Mod Launcher](https://jakmods.dev/#download).
 
-One level is playable so far :
+The Forgotten Lands is a new adventure with a new story and levels for you to explore. 
+
+To get to the custom levels, simply start a new game and beat Geyser Rock
+
+
+
+# The rest of this README will cover features in the mod. Stop here if you don't wish to be spoiled!
+
 
 ## Crystal Cave
 This is the first level being added, here's the list of current features and incoming ones.
@@ -19,26 +26,43 @@ This is the first level being added, here's the list of current features and inc
  - Warp to level
  - Working menu and tasks
  - Working checkpoints and load boundaries
- - Jak's mood set per positions
+ - Jak dynamic lighting
  - Water volumes (functional)
  - Ambient sounds
  - Level name pop-up
+ - Platform paths
+ - Common actors textures
+ - Custom Music
+ - Custom Hints
+ - Custom Actors
+  - Gondola
+  - Electric arc
+  - Super green crystal
 
 **Incoming features:**
-- [Tools required] Platform paths 
 - [Tools required] Water (Visual)
-- [Tools required] Common actors textures
 - [Tools required] Enemies
 - [Tools required] Alpha textures
 - [Tools required] Metallic textures
 - [Tools required] Working sky
-- Custom Music
-- Music Flava
-- Custom Actors
-  - ???
-  - ???
-  - ???
 
+## Crescent Top
+Second level in the mod
+
+**Current features:**
+ - Everything also in Crystal Cave
+ - Custom ring challenge
+ - Emerging and sinking platforms particles
+ - Working Zoomers
+
+## Energy Bay
+Third level in the mod
+
+**Current features:**
+ - Everything also in Crystal Cave and Crescent Top
+ - Custom Actors
+  - Super red crystal
+  - Breakable boulder
 
 Forked from OpenGoal-Mod-Base :
 # OpenGoal-Mod-Base
