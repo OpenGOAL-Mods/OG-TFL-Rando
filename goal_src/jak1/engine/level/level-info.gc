@@ -2363,6 +2363,51 @@
                            )
         )
 
+(define open-mines (new 'static 'level-load-info
+                           :index 27
+                           :name 'open-mines
+                           :customname "Open Mines"
+                           :custom-orb-count 150
+                           :custom-buzzer-count 7
+                           :visname 'open-mines-vis ;; name + -vis
+                           :nickname 'opm          ;; nickname
+                           :packages '(village1)
+                           :sound-banks '(village1) ;; to get ambient sounds
+                           :music-bank #f
+                           :ambient-sounds '()
+                           :mood '*crescent-top-mood*
+                           :mood-func 'update-mood-crescent-top
+                           :ocean '*ocean-map-village1*
+                           :sky #t
+                           :continues '(
+                                            (new 'static 'continue-point
+                                             :name "open-mines-start"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -395.72) :y (meters 176.37) :z (meters 725.4) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y -0.087 :z 0.0 :w 0.996)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 0.3927 0.0000 -0.9196 0.1617 0.9844 0.0691 0.9052 -0.1759 0.3866)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-top
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
+                                          )
+                           :tasks '(128 134)
+                           :priority 100
+                           :load-commands '()
+                           :alt-load-commands '()
+                           :bsp-mask #xffffffffffffffff
+                           :bsphere (new 'static 'sphere :x (meters 42.27) :y (meters 240.03) :z (meters 636.27) :w (meters 700.0))
+                           :buzzer 134
+                           :bottom-height (meters 80.0)
+                           :run-packages '()
+                           :wait-for-load #t
+                           )
+        )
+
 (define test-zone3 (new 'static 'level-load-info
                            :index 31
                            :name 'test-zone3
@@ -2407,3 +2452,4 @@
 (cons! *level-load-list* 'crystal-cave)
 (cons! *level-load-list* 'crescent-top)
 (cons! *level-load-list* 'energy-bay)
+(cons! *level-load-list* 'open-mines)

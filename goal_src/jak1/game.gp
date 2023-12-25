@@ -1665,6 +1665,10 @@
 (build-custom-level "energy-bay")
 (custom-level-cgo "ENB.DGO" "energy-bay/energybay.gd")
 
+;; Open Mines level :
+(build-custom-level "open-mines")
+(custom-level-cgo "OPM.DGO" "open-mines/openmines.gd")
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
 ;;;;;;;;;;;;;;;;;;;;;
