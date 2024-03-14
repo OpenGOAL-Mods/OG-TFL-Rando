@@ -2146,6 +2146,12 @@
  "energybay-part.gc"
  )
 
+(goal-src-sequence
+ "levels/mines/"
+ :deps ("$OUT/obj/ticky.o")
+ "mines-obs.gc"
+ )
+
 (group-list "all-code"
   `(,@(reverse *all-gc*))
   )
