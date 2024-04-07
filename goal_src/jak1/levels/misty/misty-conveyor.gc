@@ -78,7 +78,7 @@
 (deftype keg (process-drawable)
   ((root                 collide-shape-moving :override)
    (sync-offset          float)
-   (keg-behavior         int8)
+   (keg-behavior         int32) ;; TFL note: changed from int8 to get lump to work
    (path-position        vector                :inline)
    (shadow-enable-plane  vector                :inline)
    (smush                smush-control         :inline)
@@ -225,7 +225,7 @@
         (let ((f28-0 (the float (+ (-> (the-as keg-conveyor-paddle (-> self parent 0)) path curve num-cverts) -1))))
           0.0
           (let ((f26-1 (- 1.0 (get-current-phase (-> (the-as keg-conveyor-paddle (-> self parent 0)) sync))))
-                (f24-0 102379.1)
+                (f24-0 (res-lump-float (-> self entity) 'keg-jump :default 102379.1)) ;; TFL note: added res lump for the height of jump
                 )
             (/ 1.0 f24-0)
             (let ((f22-0 1.0)
@@ -337,7 +337,7 @@
                   )
                 )
           (s5-0 (new-stack-vector0))
-          (f30-0 61440.0)
+          (f30-0 (res-lump-float (-> self entity) 'keg-chute-speed :default 61440.0)) ;; TFL note: added res lump for the end speed
           (f28-0 0.0)
           (f26-0 (- (-> *standard-dynamics* gravity-length)))
           )
@@ -345,7 +345,7 @@
         (logior! (-> v1-10 settings flags) (shadow-flags disable-draw))
         )
       0
-      (clear-collide-with-as (-> self root))
+      ;; (clear-collide-with-as (-> self root)) ;; TFL note: commented out so the collision still happen while falling
       (vector-normalize! gp-0 1.0)
       (set-time! (-> self state-time))
       (loop
@@ -435,7 +435,7 @@
   (process-spawn keg arg0 1 :to arg0)
   )
 
-(define *keg-conveyor-keg-spawn-table* (new 'static 'boxed-array :type int8 1 2 1 1 2 1))
+;; (define *keg-conveyor-keg-spawn-table* (new 'static 'boxed-array :type int8 1 2 1 1 2 1)) ;; TFL note: commented out, array made in the code directly
 
 (defstate keg-conveyor-idle (keg-conveyor)
   :code (behavior ()
@@ -448,16 +448,20 @@
   :post ja-post
   )
 
-(defstate keg-conveyor-paddle-idle (keg-conveyor-paddle)
+(defstate keg-conveyor-paddle-idle (keg-conveyor-paddle) ;; TFL note: lots of changes to put create the spawn-table res-lump
   :code (behavior ()
-    (let ((f30-0 57.0)
-          (gp-0 0)
-          (s5-0 (length *keg-conveyor-keg-spawn-table*))
-          )
+    (let* ((f30-0 57.0) ;; Default 57.0
+       (gp-0 0)
+       (table-tag (new 'static 'res-tag))
+       (default-table (new 'static 'array int32 6 1 2 1 1 2 1))
+       (spawn-table (res-lump-data (-> self entity) 'spawn-table (pointer int32) :tag-ptr (& table-tag)))
+       (table (aif spawn-table it default-table))
+       (len (if spawn-table (-> table-tag elt-count) 6))
+       )
       (loop
         (let ((s4-0 #f))
-          (when (or (not *target*) (< 102400.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
-            (let ((v1-10 (-> *keg-conveyor-keg-spawn-table* gp-0)))
+          (when (or (not *target*) (< (res-lump-float (-> self entity) 'safe-dist :default 102400.0) (vector-vector-distance (-> self root trans) (-> *target* control trans)))) ;; TFL note: Added res-lump value
+            (let ((v1-10 (-> table gp-0)))
               (cond
                 ((zero? v1-10)
                  (nothing)
@@ -475,7 +479,7 @@
               )
             )
           (+! gp-0 1)
-          (if (>= gp-0 s5-0)
+          (if (>= gp-0 len)
               (set! gp-0 0)
               )
           (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
@@ -502,7 +506,7 @@
                 )
               )
             (suspend)
-            (ja :num! (seek!))
+            (ja :num! (seek! max (res-lump-float (-> self entity) 'keg-frequency :default 1.0)))
             )
           )
         )
@@ -537,7 +541,7 @@
   (set! (-> self root quat vec quad) (-> arg0 root quat vec quad))
   (set! (-> self root scale quad) (-> arg0 root scale quad))
   (initialize-skeleton self *keg-conveyor-paddle-sg* '())
-  (setup-params! (-> self sync) (the-as uint 4800) 0.0 0.15 0.15)
+  (setup-params! (-> self sync) (the-as uint (* (res-lump-value (-> self entity)'keg-lenght uint128 :default (the-as uint128 16)) 300)) 0.0 0.15 0.15)
   (logclear! (-> self mask) (process-mask actor-pause enemy))
   (set! (-> self object-on-paddle) (the-as (pointer bouncing-float) #f))
   (go keg-conveyor-paddle-idle)

@@ -152,5 +152,12 @@
   (energy-bay-buzzer 134)
   (crystalc-hidden 135)
   (crystalc-gondola 136)
-  (max 137) ;;change max to last +1
+  (open-mines-device1 137)
+  (open-mines-device2 138)
+  (open-mines-device3 139)
+  (open-mines-ambush 140)
+  (open-mines-excavator 141)
+  (open-mines-hole 142)
+  (open-mines-buzzer 143)
+  (max 144) ;;change max to last +1
   )

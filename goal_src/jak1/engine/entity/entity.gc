@@ -1883,4 +1883,19 @@
     )
   )
 
+(defmethod inspect ((this entity))
+  (call-parent-method this)
+  (format #t "~Ttrans: ~`vector`P~%" (-> this trans))
+  (format #t "~Taid:   ~A~%" (-> this aid))
+  this
+  )
 
+(defmethod inspect ((this entity-actor))
+  (call-parent-method this)
+  (format #t "~Tnav-mesh: ~A~%" (-> this nav-mesh))
+  (format #t "~Tetype:    ~A~%" (-> this etype))
+  (format #t "~Ttask:     ~d~%" (-> this task))
+  (format #t "~Tvis-id:   ~d~%" (-> this vis-id-signed))
+  (format #t "~Tquat:     ~`vector`P~%" (-> this quat))
+  this
+  )
