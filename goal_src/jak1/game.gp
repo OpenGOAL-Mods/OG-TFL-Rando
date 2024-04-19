@@ -2150,6 +2150,7 @@
  "levels/mines/"
  :deps ("$OUT/obj/ticky.o")
  "mines-obs.gc"
+ "mines-part.gc"
  )
 
 (group-list "all-code"

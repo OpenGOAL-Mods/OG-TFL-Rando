@@ -17,6 +17,7 @@
   "keg-ag.go"
   "keg-conveyor-ag.go"
   "keg-conveyor-paddle-ag.go"
+  "mines-part.o"
   "mines-obs.o"
   "open-mines.go"
  ))

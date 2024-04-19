@@ -1255,7 +1255,7 @@
        (logclear! (-> self mask) (process-mask actor-pause))
        (go tfl-drop-plat-drop)
        )
-      (('touch 'attack)
+      (('touch) ;; TFL note: removed 'attack so they only drop on touch
        (send-event *target* 'no-look-around (seconds 1))
        (send-event (ppointer->process (-> self parent)) 'player-stepped (-> self color))
        #f
