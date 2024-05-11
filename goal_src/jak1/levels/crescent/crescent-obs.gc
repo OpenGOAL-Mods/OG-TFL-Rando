@@ -853,8 +853,8 @@
 (defstate mayorgears-idle (mayorgears)
   :code (behavior ()
     (loop
-      (ja :num! (loop!))
-      (ja :num! (loop! 0.0))
+      (ja :num! (loop! (res-lump-float (-> self entity) 'rotation-speed :default 1.00)))
+      ;; (ja :num! (loop! 0.0))
       (suspend)
       )
     (none)

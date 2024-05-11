@@ -2408,6 +2408,20 @@
                                              :lev1 'open-mines
                                              :disp1 'display
                                              )
+                                             (new 'static 'continue-point
+                                             :name "open-mines-kegs"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -501.63) :y (meters 143.61) :z (meters 976.05) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y -0.0476 :z 0.0 :w 0.9988)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 0.9786 0.0000 0.2053 -0.0249 0.9926 0.1187 -0.2037 -0.1213 0.9714)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-top
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
                                           )
                            :tasks '(137 138 139 140 141 142 143)
                            :priority 100

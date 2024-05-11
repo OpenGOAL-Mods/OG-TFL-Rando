@@ -232,8 +232,8 @@
             (/ 1.0 f24-0)
             (/ 1.0 f24-1) ;; TFL note: Adding for new bounces
             (/ 1.0 f24-2)
-            (let ((f22-0 1.0)
-                  (f20-0 2.5)
+            (let ((f22-0 (res-lump-float (-> self entity) 'jump-before-smush :default 1.0)) ;; Jump height before smush
+                  (f20-0 (res-lump-float (-> self entity) 'smush-vector :default 2.5)) ;;TFL note: added res lump for Smush distance in vector
                   )
               (set! sv-48 0.0)
               (set! sv-64 0.0)
