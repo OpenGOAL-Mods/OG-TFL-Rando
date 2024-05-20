@@ -173,8 +173,8 @@
   (cave 13)
   (lavatube 14)
   (citadel 15)
-  (crystal-cave 16) ;; TFL note: added the custom level to the level-task-data-index
-  (crescent-top 17)
+  (crystal-ca 16) ;; TFL note: added the custom level to the level-task-data-index
+  (crescent-t 17)
   (energy-bay 18)
   (open-mines 19)
   (max 20) ;; TFL note: This also change the max enum
@@ -206,8 +206,8 @@
     (level-task-data-index citadel) ;; finalboss?
     (level-task-data-index misty) ;; demo?
     (level-task-data-index misty) ;; intro?
-    (level-task-data-index crystal-cave) ;; TFL note: Crystal cave ;24
-    (level-task-data-index crescent-top) ;; Crescent top ;25
+    (level-task-data-index crystal-ca) ;; TFL note: Crystal cave ;24
+    (level-task-data-index crescent-t) ;; Crescent top ;25
     (level-task-data-index energy-bay) ;; Energy bay ;26
     (level-task-data-index open-mines) ;; Open Mines ;27
     )
