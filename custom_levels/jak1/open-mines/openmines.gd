@@ -19,6 +19,7 @@
   "citb-firehose-ag.go"
   "generic-button-ag.go"
   "cavecrusher-ag.go"
+  "caveelevator-ag.go"
   "misty-conveyor.o"
   "mines-part.o"
   "mines-obs.o"
