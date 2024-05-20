@@ -53,7 +53,8 @@
     "citb-firehose-ag",
     "generic-button-ag",
     "mayorgears-ag",
-    "cavecrusher-ag"
+    "cavecrusher-ag",
+    "caveelevator-ag"
   ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -77,24 +78,24 @@
 {
   "trans": [-424.58, 139.16, 807.61], // translation
   "etype": "fuel-cell",  // actor type
-  "game_task": 1, // associated game task (for powercells, etc)
+  "game_task": 137, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
   "bsphere": [-424.58, 139.16, 807.61, 10], // bounding sphere
   "lump": {
-    "name":"open-mines-fuel-cell-01", // 
-    "eco-info": ["int32", 6, 1],
+    "name":"open-mines-fuel-cell-01", // open-mines-drop-
+    "eco-info": ["int32", 6, 137],
     "movie-pos":["vector4m", [-424.58, 137.66, 807.61, 4.0]]
   }
 }
 ,{
   "trans": [-596.54, 143.58, 1072.2], // translation
   "etype": "fuel-cell",  // actor type
-  "game_task": 1, // associated game task (for powercells, etc)
+  "game_task": 138, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
   "bsphere": [-596.54, 143.58, 1072.2, 10], // bounding sphere
   "lump": {
-    "name":"open-mines-fuel-cell-02", // 
-    "eco-info": ["int32", 6, 1],
+    "name":"open-mines-fuel-cell-02", // open-mines-kegs
+    "eco-info": ["int32", 6, 138],
     "movie-pos":["vector4m", [-596.54, 141.58, 1072.2, 8.755]]
   }
 }
@@ -102,53 +103,66 @@
 ,{
   "trans": [-493.93, 165.5, 850.43], // translation
   "etype": "crate",  // actor type
-  "game_task": 1, // associated game task (for powercells, etc)
+  "game_task": 143, // associated game task (for powercells, etc)
   "quat" : [0.037, 0.242, -0.002, 0.969], // quaternion
   "bsphere": [-493.93, 165.5, 850.43, 10], // bounding sphere
   "lump": {
     "name":"open-mines-buzzer-01",
     "crate-type":"'iron",
-    "eco-info": ["int32", 8, 1], // to get SF task = game-task + (2^16 * buzzer-count)
+    "eco-info": ["int32", 8, 143], // to get SF task = game-task + (2^16 * buzzer-count)
     "movie-pos": ["meters", -493.93, 165.5, 850.43]
   }
 }
 ,{
   "trans": [-492.52, 150.96, 912.97], // translation
   "etype": "crate",  // actor type
-  "game_task": 1, // associated game task (for powercells, etc)
+  "game_task": 143, // associated game task (for powercells, etc)
   "quat" : [0.027, 0.068, -0.033, 0.997], // quaternion
   "bsphere": [-492.52, 150.96, 912.97, 10], // bounding sphere
   "lump": {
     "name":"open-mines-buzzer-02",
     "crate-type":"'iron",
-    "eco-info": ["int32", 8, 1], // to get SF task = game-task + (2^16 * buzzer-count)
+    "eco-info": ["int32", 8, 65679], // to get SF task = game-task + (2^16 * buzzer-count)
     "movie-pos": ["meters", -492.52, 150.96, 912.97]
   }
 }
 ,{
   "trans": [-516.92, 147.75, 974.07], // translation
   "etype": "crate",  // actor type
-  "game_task": 1, // associated game task (for powercells, etc)
+  "game_task": 143, // associated game task (for powercells, etc)
   "quat" : [0.049, 0.434, 0.024, 0.899], // quaternion
   "bsphere": [-516.92, 147.75, 974.07, 10], // bounding sphere
   "lump": {
     "name":"open-mines-buzzer-03",
     "crate-type":"'iron",
-    "eco-info": ["int32", 8, 1], // to get SF task = game-task + (2^16 * buzzer-count)
+    "eco-info": ["int32", 8, 131215], // to get SF task = game-task + (2^16 * buzzer-count)
     "movie-pos": ["meters", -516.92, 147.75, 974.07]
   }
 }
 ,{
   "trans": [-501.05, 152.62, 1064.4], // translation
   "etype": "crate",  // actor type
-  "game_task": 1, // associated game task (for powercells, etc)
+  "game_task": 143, // associated game task (for powercells, etc)
   "quat" : [0.044, 0.744, -0.046, 0.666], // quaternion
   "bsphere": [-501.05, 152.62, 1064.4, 10], // bounding sphere
   "lump": {
     "name":"open-mines-buzzer-04",
     "crate-type":"'iron",
-    "eco-info": ["int32", 8, 1], // to get SF task = game-task + (2^16 * buzzer-count)
+    "eco-info": ["int32", 8, 196751], // to get SF task = game-task + (2^16 * buzzer-count)
     "movie-pos": ["meters", -501.05, 152.62, 1064.4]
+  }
+}
+,{
+  "trans": [-441.52, 132.65, 977.47], // translation
+  "etype": "crate",  // actor type
+  "game_task": 143, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-441.52, 132.65, 977.47, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-buzzer-05",
+    "crate-type":"'iron",
+    "eco-info": ["int32", 8, 262287], // to get SF task = game-task + (2^16 * buzzer-count)
+    "movie-pos": ["meters", -441.52, 132.65, 977.47]
   }
 }
 ,{
@@ -964,6 +978,18 @@
     ,"stepped-time":["float", 0.8]
   }
 }
+,{
+  "trans": [-441.79, 120.47, 982.7], // translation
+  "etype": "caveelevator",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-441.79, 120.47, 982.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-caveelevator-01",
+    "mode":["uint32", 2],
+    "sync":["float", 12.0, 0.0]
+  }
+}
 // ECO
 ,{
   "trans": [-496.81, 153.24, 915.06], // translation
@@ -989,22 +1015,22 @@
   }
 }
 ,{
-  "trans": [-373.76, 180.49, 768.72], // translation
+  "trans": [-373.69, 180.56, 769.1], // translation
   "etype": "ecovent",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-373.76, 180.49, 768.72, 10], // bounding sphere
+  "bsphere": [-373.69, 180.56, 769.1, 10], // bounding sphere
   "lump": {
     "name":"open-mines-ecovent-01-blue",
     "eco-info": ["int32", 3, 1]
   }
 }
 ,{
-  "trans": [-524.81, 141.58, 995.13], // translation
+  "trans": [-525.19, 141.79, 993.86], // translation
   "etype": "ecovent",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-524.81, 141.58, 995.13, 10], // bounding sphere
+  "bsphere": [-525.19, 141.79, 993.86, 10], // bounding sphere
   "lump": {
     "name":"open-mines-ecovent-02-green",
     "eco-info": ["int32", 4, 1]
@@ -1412,6 +1438,126 @@
   "bsphere": [-552.8, 147.86, 1006.4, 10], // bounding sphere
   "lump": {
     "name":"open-mines-mayorgear-02",
+    "scale":["float", 0.35],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-601.06, 146.06, 1021.3], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.655, -0.110, 0.097, -0.741], // Left Anti Clock-wise
+  "bsphere": [-601.06, 146.06, 1021.3, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-03",
+    "scale":["float", 0.40],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-598.92, 147.86, 1020.4], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.035, 0.642, -0.748, -0.162], // Left Clock-wise
+  "bsphere": [-598.92, 147.86, 1020.4, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-04",
+    "scale":["float", 0.35],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-573.07, 146.06, 1028.5], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.655, -0.110, 0.097, -0.741], // Left Anti Clock-wise
+  "bsphere": [-573.07, 146.06, 1028.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-05",
+    "scale":["float", 0.40],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-570.93, 147.89, 1027.6], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.035, 0.642, -0.748, -0.162], // Left Clock-wise
+  "bsphere": [-570.93, 147.89, 1027.6, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-06",
+    "scale":["float", 0.35],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-545.33, 146.06, 1029.5], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0.097, -0.741, 0.655, 0.110], // Left Anti Clock-wise
+  "bsphere": [-545.33, 146.06, 1029.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-07",
+    "scale":["float", 0.40],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-547.47, 147.86, 1030.4], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.748, -0.162, 0.035, -0.642], // Left Clock-wise
+  "bsphere": [-547.47, 147.86, 1030.4, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-08",
+    "scale":["float", 0.35],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-642.41, 146.06, 1058.9], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0.097, -0.741, 0.655, 0.110], // Left Anti Clock-wise
+  "bsphere": [-642.41, 146.06, 1058.9, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-09",
+    "scale":["float", 0.40],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-644.55, 147.86, 1059.8], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.748, -0.162, 0.035, -0.642], // Left Clock-wise
+  "bsphere": [-644.55, 147.86, 1059.8, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-10",
+    "scale":["float", 0.35],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-564.36, 146.06, 1050.9], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0.097, -0.741, 0.655, 0.110], // Left Anti Clock-wise
+  "bsphere": [-564.36, 146.06, 1050.9, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-11",
+    "scale":["float", 0.40],
+    "rotation-speed":["float", 0.60]
+  }
+}
+,{
+  "trans": [-566.5, 147.86, 1051.8], // translation
+  "etype": "mayorgears",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [-0.748, -0.162, 0.035, -0.642], // Left Clock-wise
+  "bsphere": [-566.5, 147.86, 1051.8, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mayorgear-12",
     "scale":["float", 0.35],
     "rotation-speed":["float", 0.60]
   }

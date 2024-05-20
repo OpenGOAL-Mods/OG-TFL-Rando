@@ -5,18 +5,18 @@
   ()
   )
 
-;; group-id range for energy bay : 950-1000
-;; part-id range for energy bay : 3600-3799
+;; group-id range for energy bay : 1000-1049
+;; part-id range for energy bay : 3800-3999
 
 ;; custom green race ring color
 
 (defpartgroup group-mines-smoke
-  :id 950
+  :id 1000
   :bounds (static-bspherem 0 0 0 6)
-  :parts ((sp-item 3600 :fade-after (meters 80) :falloff-to (meters 80)))
+  :parts ((sp-item 3800 :fade-after (meters 80) :falloff-to (meters 80)))
   )
 
-(defpart 3600
+(defpart 3800
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
     (:num 0.05 0.2)
     (:x (meters -3) (meters 6))
@@ -47,7 +47,7 @@
     )
   )
 
-(defpart 3601
+(defpart 3801
   :init-specs ((:texture (new 'static 'texture-id :index #x29 :page #x2))
     (:birth-func 'birth-func-set-quat)
     (:num 1.0)
@@ -65,13 +65,13 @@
   )
 
 (defpartgroup group-tfl-firehose-blast-smoke
-  :id 951
+  :id 1001
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -8 0 8)
-  :parts ((sp-item 3602) (sp-item 3603))
+  :parts ((sp-item 3802) (sp-item 3803))
   )
 
-(defpart 3602
+(defpart 3802
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
     (:num 4.0)
     (:x (meters 0) (meters 2))
@@ -89,7 +89,7 @@
     )
   )
 
-(defpart 3603
+(defpart 3803
   :init-specs ((:texture (new 'static 'texture-id :index #xf :page #x2))
     (:num 1.0 8.0)
     (:x (meters 0) (meters 2.5))
@@ -113,24 +113,24 @@
     (:userdata -409600.0)
     (:func 'check-drop-level-firehose-pops)
     (:next-time (seconds 0.4) (seconds 1.997))
-    (:next-launcher 3604)
+    (:next-launcher 3804)
     (:conerot-x (degrees 70) (degrees 10))
     (:conerot-y (degrees -1440) (degrees 2880))
     (:rotate-y (degrees 0) (degrees 360))
     )
   )
 
-(defpart 3604
+(defpart 3804
   :init-specs ((:userdata 409600.0))
   )
 
 (defpartgroup group-mines-smokeVent-left
-  :id 952
+  :id 1002
   :bounds (static-bspherem 0 0 0 6)
-  :parts ((sp-item 3605 :fade-after (meters 80) :falloff-to (meters 80)))
+  :parts ((sp-item 3805 :fade-after (meters 80) :falloff-to (meters 80)))
   )
 
-(defpart 3605
+(defpart 3805
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
     (:num 0.05 0.15)
     (:x (meters -1) (meters 2))
@@ -162,12 +162,12 @@
   )
 
 (defpartgroup group-mines-smokeVent-right
-  :id 953
+  :id 1003
   :bounds (static-bspherem 0 0 0 6)
-  :parts ((sp-item 3606 :fade-after (meters 80) :falloff-to (meters 80)))
+  :parts ((sp-item 3806 :fade-after (meters 80) :falloff-to (meters 80)))
   )
 
-(defpart 3606
+(defpart 3806
   :init-specs ((:texture (new 'static 'texture-id :page #x2))
     (:num 0.05 0.15)
     (:x (meters -1) (meters 2))
