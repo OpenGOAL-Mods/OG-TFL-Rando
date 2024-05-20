@@ -78,7 +78,7 @@
 (deftype keg (process-drawable)
   ((root                 collide-shape-moving :override)
    (sync-offset          float)
-   (keg-behavior         int8)
+   (keg-behavior         int32) ;; TFL note: changed from int8 to get lump to work
    (path-position        vector                :inline)
    (shadow-enable-plane  vector                :inline)
    (smush                smush-control         :inline)
@@ -143,7 +143,7 @@
 
 (defbehavior keg-post keg ()
   (cond
-    ((= (-> self keg-behavior) 1)
+    ((>= (-> self keg-behavior) 1) ;; TFL note: added > for the new bouncing kegs
      )
     (else
       (if (< (vector-vector-distance (-> self root trans) (ear-trans)) 163840.0)
@@ -225,11 +225,15 @@
         (let ((f28-0 (the float (+ (-> (the-as keg-conveyor-paddle (-> self parent 0)) path curve num-cverts) -1))))
           0.0
           (let ((f26-1 (- 1.0 (get-current-phase (-> (the-as keg-conveyor-paddle (-> self parent 0)) sync))))
-                (f24-0 102379.1)
+                (f24-0 (res-lump-float (-> self entity) 'keg-jump-2 :default 102379.1)) ;; TFL note: added res lump for the height of jump and adding for new bounces
+                (f24-1 (res-lump-float (-> self entity) 'keg-jump-3 :default 61440.0))
+                (f24-2 (res-lump-float (-> self entity) 'keg-jump-4 :default 143360.0))
                 )
             (/ 1.0 f24-0)
-            (let ((f22-0 1.0)
-                  (f20-0 2.5)
+            (/ 1.0 f24-1) ;; TFL note: Adding for new bounces
+            (/ 1.0 f24-2)
+            (let ((f22-0 (res-lump-float (-> self entity) 'jump-before-smush :default 1.0)) ;; Jump height before smush
+                  (f20-0 (res-lump-float (-> self entity) 'smush-vector :default 2.5)) ;;TFL note: added res lump for Smush distance in vector
                   )
               (set! sv-48 0.0)
               (set! sv-64 0.0)
@@ -252,7 +256,7 @@
                 (path-control-method-12 (-> (the-as keg-conveyor-paddle (-> self parent 0)) path) gp-0 sv-112)
                 (seek-toward-heading-vec! (-> self root) gp-0 131072.0 (seconds 0.1))
                 (set! (-> self root trans quad) (-> self path-position quad))
-                (when (= (-> self keg-behavior) 1)
+                (when (>= (-> self keg-behavior) 1) ;; TFL note: Added > for the new bounces
                   (cond
                     ((>= (vector4-dot (camera-pos) (-> self shadow-enable-plane)) 0.0)
                      (let ((v1-32 (-> self draw shadow-ctrl)))
@@ -286,14 +290,27 @@
                   (let ((f0-32 (- f28-0 sv-112)))
                     (if (< f0-32 f20-0)
                         (set! f22-0 (/ f0-32 f20-0))
-                        )
                     )
+                  )
                   (set! sv-64 (+ sv-64 (* sv-80 (seconds-per-frame))))
                   (set! sv-48 (+ sv-48 (* sv-64 (seconds-per-frame))))
                   (when (< sv-48 0.0)
                     (set! sv-48 0.0)
                     (activate! (-> self smush) -0.15 90 150 1.0 1.0)
-                    (set! sv-64 f24-0)
+                    (cond ;; TFL note: added conditions for the new bounces
+                      ((= (-> self keg-behavior) 1)
+                        (set! sv-64 f24-0)
+                        )
+                      ((= (-> self keg-behavior) 2)
+                        (set! sv-64 f24-1)
+                        )
+                      ((= (-> self keg-behavior) 3)
+                        (set! sv-64 f24-2)
+                        )
+                      (else
+                        (set! sv-64 f24-0)
+                        )
+                      )
                     (sound-play "barrel-bounce" :vol 80)
                     (process-spawn
                       part-tracker
@@ -337,7 +354,7 @@
                   )
                 )
           (s5-0 (new-stack-vector0))
-          (f30-0 61440.0)
+          (f30-0 (res-lump-float (-> self entity) 'keg-chute-speed :default 61440.0)) ;; TFL note: added res lump for the end speed
           (f28-0 0.0)
           (f26-0 (- (-> *standard-dynamics* gravity-length)))
           )
@@ -345,7 +362,11 @@
         (logior! (-> v1-10 settings flags) (shadow-flags disable-draw))
         )
       0
-      (clear-collide-with-as (-> self root))
+      (let ((collision-in-chute (res-lump-value (-> self entity)'collision-in-chute uint128 :default (the-as uint128 0)))) ;; TFL note: Adding res-lump to turn on/off collision in the chute
+        (if (= collision-in-chute 0)
+          (clear-collide-with-as (-> self root))
+          )
+      )
       (vector-normalize! gp-0 1.0)
       (set-time! (-> self state-time))
       (loop
@@ -435,7 +456,15 @@
   (process-spawn keg arg0 1 :to arg0)
   )
 
-(define *keg-conveyor-keg-spawn-table* (new 'static 'boxed-array :type int8 1 2 1 1 2 1))
+(defun keg-conveyor-spawn-bouncing-keg-3 ((arg0 keg-conveyor)) ;; TFL note: added functions for the new bounces
+  (process-spawn keg arg0 2 :to arg0)
+  )
+
+(defun keg-conveyor-spawn-bouncing-keg-4 ((arg0 keg-conveyor))
+  (process-spawn keg arg0 3 :to arg0)
+  )
+
+;; (define *keg-conveyor-keg-spawn-table* (new 'static 'boxed-array :type int8 1 2 1 1 2 1)) ;; TFL note: commented out, array made in the code directly
 
 (defstate keg-conveyor-idle (keg-conveyor)
   :code (behavior ()
@@ -448,16 +477,20 @@
   :post ja-post
   )
 
-(defstate keg-conveyor-paddle-idle (keg-conveyor-paddle)
+(defstate keg-conveyor-paddle-idle (keg-conveyor-paddle) ;; TFL note: lots of changes to put create the spawn-table res-lump
   :code (behavior ()
-    (let ((f30-0 57.0)
-          (gp-0 0)
-          (s5-0 (length *keg-conveyor-keg-spawn-table*))
-          )
+    (let* ((f30-0 57.0) ;; Default 57.0
+       (gp-0 0)
+       (table-tag (new 'static 'res-tag))
+       (default-table (new 'static 'array int32 6 1 2 1 1 2 1))
+       (spawn-table (res-lump-data (-> self entity) 'spawn-table (pointer int32) :tag-ptr (& table-tag)))
+       (table (aif spawn-table it default-table))
+       (len (if spawn-table (-> table-tag elt-count) 6))
+       )
       (loop
         (let ((s4-0 #f))
-          (when (or (not *target*) (< 102400.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
-            (let ((v1-10 (-> *keg-conveyor-keg-spawn-table* gp-0)))
+          (when (or (not *target*) (< (res-lump-float (-> self entity) 'safe-dist :default 102400.0) (vector-vector-distance (-> self root trans) (-> *target* control trans)))) ;; TFL note: Added res-lump value
+            (let ((v1-10 (-> table gp-0)))
               (cond
                 ((zero? v1-10)
                  (nothing)
@@ -468,6 +501,12 @@
                 ((= v1-10 2)
                  (keg-conveyor-spawn-bouncing-keg (the-as keg-conveyor self))
                  )
+                ((= v1-10 3) ;; TFL note: added conditions for the new bounces
+                 (keg-conveyor-spawn-bouncing-keg-3 (the-as keg-conveyor self))
+                 )
+                ((= v1-10 4)
+                 (keg-conveyor-spawn-bouncing-keg-4 (the-as keg-conveyor self))
+                 )
                 (else
                   (nothing)
                   )
@@ -475,7 +514,7 @@
               )
             )
           (+! gp-0 1)
-          (if (>= gp-0 s5-0)
+          (if (>= gp-0 len)
               (set! gp-0 0)
               )
           (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
@@ -502,7 +541,7 @@
                 )
               )
             (suspend)
-            (ja :num! (seek!))
+            (ja :num! (seek! max (res-lump-float (-> self entity) 'keg-frequency :default 1.0))) ;; TFL note: added res lump for the speed of the animation
             )
           )
         )
@@ -537,7 +576,7 @@
   (set! (-> self root quat vec quad) (-> arg0 root quat vec quad))
   (set! (-> self root scale quad) (-> arg0 root scale quad))
   (initialize-skeleton self *keg-conveyor-paddle-sg* '())
-  (setup-params! (-> self sync) (the-as uint 4800) 0.0 0.15 0.15)
+  (setup-params! (-> self sync) (the-as uint (* (res-lump-value (-> self entity)'keg-duration uint128 :default (the-as uint128 16)) 300)) 0.0 0.15 0.15) ;; TFL note: Added res-lump for the duration of the travel/speed
   (logclear! (-> self mask) (process-mask actor-pause enemy))
   (set! (-> self object-on-paddle) (the-as (pointer bouncing-float) #f))
   (go keg-conveyor-paddle-idle)

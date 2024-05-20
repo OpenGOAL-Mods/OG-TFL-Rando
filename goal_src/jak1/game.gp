@@ -1665,6 +1665,10 @@
 (build-custom-level "energy-bay")
 (custom-level-cgo "ENB.DGO" "energy-bay/energybay.gd")
 
+;; Open Mines level :
+(build-custom-level "open-mines")
+(custom-level-cgo "OPM.DGO" "open-mines/openmines.gd")
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
 ;;;;;;;;;;;;;;;;;;;;;
@@ -2140,6 +2144,13 @@
  :deps ("$OUT/obj/ticky.o")
  "energybay-obs.gc"
  "energybay-part.gc"
+ )
+
+(goal-src-sequence
+ "levels/mines/"
+ :deps ("$OUT/obj/ticky.o")
+ "mines-obs.gc"
+ "mines-part.gc"
  )
 
 (group-list "all-code"

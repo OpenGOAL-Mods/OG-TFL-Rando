@@ -2134,7 +2134,7 @@
                                              :lev1 'crystal-cave
                                              :disp1 'display
                                              ))
-                           :tasks '(117 118 119 120 121)
+                           :tasks '(117 118 119 120 121 135)
                            :priority 100
                            :load-commands '()
                            :alt-load-commands '()
@@ -2203,8 +2203,8 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'crystal-cave ;; TFL todo: change to mines later
-                                             :disp1 '#f
+                                             :lev1 'open-mines 
+                                             :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crescent-top-observatory"
@@ -2273,16 +2273,16 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-top
                                              :disp0 'display
-                                             :lev1 'crystal-cave ;; TFL todo: switch to mines and display when it exists
-                                             :disp1 '#f
+                                             :lev1 'open-mines 
+                                             :disp1 'display
                                              )
                                           )
-                           :tasks '(123 124 125 127)
+                           :tasks '(122 123 124 125 127)
                            :priority 100
                            :load-commands '()
                            :alt-load-commands '()
                            :bsp-mask #xffffffffffffffff
-                           :bsphere (new 'static 'sphere :x (meters 740.01) :y (meters 9.37) :z (meters 696.20) :w (meters 1200.0))
+                           :bsphere (new 'static 'sphere :x (meters 740.01) :y (meters 9.37) :z (meters 696.20) :w (meters 1000.0))
                            :buzzer 127
                            :bottom-height (meters 50.0) ;; 75.0
                            :run-packages '()
@@ -2350,14 +2350,87 @@
                                              :disp1 'display
                                              )
                                           )
-                           :tasks '(128 134)
+                           :tasks '(128 129 130 131 132 133 134)
                            :priority 100
                            :load-commands '()
                            :alt-load-commands '()
                            :bsp-mask #xffffffffffffffff
-                           :bsphere (new 'static 'sphere :x (meters 42.27) :y (meters 240.03) :z (meters 636.27) :w (meters 700.0))
+                           :bsphere (new 'static 'sphere :x (meters 740.01) :y (meters 9.37) :z (meters 696.2) :w (meters 700.0))
                            :buzzer 134
                            :bottom-height (meters -20.0)
+                           :run-packages '()
+                           :wait-for-load #t
+                           )
+        )
+
+(define open-mines (new 'static 'level-load-info
+                           :index 27
+                           :name 'open-mines
+                           :customname "Open Mines"
+                           :custom-orb-count 150
+                           :custom-buzzer-count 7
+                           :visname 'open-mines-vis ;; name + -vis
+                           :nickname 'opm          ;; nickname
+                           :packages '(village1)
+                           :sound-banks '(village1) ;; to get ambient sounds
+                           :music-bank #f
+                           :ambient-sounds '()
+                           :mood '*open-mines-mood*
+                           :mood-func 'update-mood-crescent-top
+                           :ocean '*ocean-map-village1*
+                           :sky #t
+                           :continues '(
+                                            (new 'static 'continue-point
+                                             :name "open-mines-start"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -397.22) :y (meters 176.14) :z (meters 730.49) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y -0.0476 :z 0.0 :w 0.9988)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 0.9786 0.0000 0.2053 -0.0249 0.9926 0.1187 -0.2037 -0.1213 0.9714)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-top
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
+                                             (new 'static 'continue-point
+                                             :name "open-mines-drop-plat"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -414.2893) :y (meters 127.9319) :z (meters 861.0662) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y 0.9951 :z 0.0 :w -0.0987)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 -0.9997 0.0000 0.0226 -0.0030 0.9910 -0.1335 -0.0224 -0.1335 -0.9907)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-top
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
+                                             (new 'static 'continue-point
+                                             :name "open-mines-kegs"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -501.63) :y (meters 143.61) :z (meters 976.05) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y -0.0476 :z 0.0 :w 0.9988)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 0.9786 0.0000 0.2053 -0.0249 0.9926 0.1187 -0.2037 -0.1213 0.9714)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-top
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
+                                          )
+                           :tasks '(137 138 139 140 141 142 143)
+                           :priority 100
+                           :load-commands '()
+                           :alt-load-commands '()
+                           :bsp-mask #xffffffffffffffff
+                           :bsphere (new 'static 'sphere :x (meters -728.157) :y (meters 142.26) :z (meters 1186.1) :w (meters 500.0))
+                           :buzzer 0
+                           :bottom-height (meters 60.0)
                            :run-packages '()
                            :wait-for-load #t
                            )
@@ -2407,3 +2480,4 @@
 (cons! *level-load-list* 'crystal-cave)
 (cons! *level-load-list* 'crescent-top)
 (cons! *level-load-list* 'energy-bay)
+(cons! *level-load-list* 'open-mines)

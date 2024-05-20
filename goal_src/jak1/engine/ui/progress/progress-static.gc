@@ -176,7 +176,8 @@
   (crystal-cave 16) ;; TFL note: added the custom level to the level-task-data-index
   (crescent-top 17)
   (energy-bay 18)
-  (max 19) ;; TFL note: This also change the max enum
+  (open-mines 19)
+  (max 20) ;; TFL note: This also change the max enum
   )
 
 ;; maps level-info indices to the appropriate offset in *level-task-data*
@@ -208,6 +209,7 @@
     (level-task-data-index crystal-cave) ;; TFL note: Crystal cave ;24
     (level-task-data-index crescent-top) ;; Crescent top ;25
     (level-task-data-index energy-bay) ;; Energy bay ;26
+    (level-task-data-index open-mines) ;; Open Mines ;27
     )
   )
 
@@ -1606,6 +1608,86 @@
                              (text-id energy-bay-buzzer)
                              (text-id energy-bay-buzzer)
                              (text-id energy-bay-buzzer)
+                             (text-id zero)
+                             )
+                        )
+                   )
+               )
+               ;; OPEN MINES LEVEL TASK INFO
+               (new 'static 'level-tasks-info
+              :level-name-id (text-id open-mines-level)
+              :text-group-index 1
+              :nb-of-tasks 7
+              :buzzer-task-index 6
+              :task-info
+              (new 'static 'array task-info-data 8
+                   (new 'static 'task-info-data
+                        :task-id (game-task open-mines-drop-plat)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-drop-plat)
+                             (text-id open-mines-drop-plat)
+                             (text-id open-mines-drop-plat)
+                             (text-id zero)
+                             )
+                        )
+                   (new 'static 'task-info-data
+                        :task-id (game-task open-mines-kegs)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-kegs)
+                             (text-id open-mines-kegs)
+                             (text-id open-mines-kegs)
+                             (text-id zero)
+                             )
+                        )
+                   (new 'static 'task-info-data
+                        :task-id (game-task open-mines-minecarts)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-minecarts)
+                             (text-id open-mines-minecarts)
+                             (text-id open-mines-minecarts)
+                             (text-id zero)
+                             )
+                        )
+                    (new 'static 'task-info-data
+                        :task-id (game-task open-mines-ambush)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-ambush)
+                             (text-id open-mines-ambush)
+                             (text-id open-mines-ambush)
+                             (text-id zero)
+                             )
+                        )
+                    (new 'static 'task-info-data
+                        :task-id (game-task open-mines-excavator)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-excavator)
+                             (text-id open-mines-excavator)
+                             (text-id open-mines-excavator)
+                             (text-id zero)
+                             )
+                        )
+                    (new 'static 'task-info-data
+                        :task-id (game-task open-mines-hole)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-hole)
+                             (text-id open-mines-hole)
+                             (text-id open-mines-hole)
+                             (text-id zero)
+                             )
+                        )
+                    (new 'static 'task-info-data
+                        :task-id (game-task open-mines-buzzer)
+                        :task-name
+                        (new 'static 'array text-id 4
+                             (text-id open-mines-buzzer)
+                             (text-id open-mines-buzzer)
+                             (text-id open-mines-buzzer)
                              (text-id zero)
                              )
                         )

@@ -716,6 +716,14 @@
   (energy-bay-green-ring #xa26)
   (energy-bay-buzzer #xa27)
   (crystalc-gondola-need-cells #xa28)
+  (open-mines-level #xa30);; level name
+  (open-mines-drop-plat #xa31)
+  (open-mines-kegs #xa32)
+  (open-mines-minecarts #xa33)
+  (open-mines-ambush #xa34)
+  (open-mines-excavator #xa35)
+  (open-mines-hole #xa36)
+  (open-mines-buzzer #xa37)
   ;; TFL Hint IDs so they only play once. Use up from #xb00
   (crystalc-tfl-hint-01-daxPortal #xb00)
   (crystalc-tfl-hint-02-daxShip #xb01)

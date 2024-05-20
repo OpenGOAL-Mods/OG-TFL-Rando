@@ -1199,7 +1199,6 @@
 (static-load-boundary :flags () ; observatory side
   :top (meters 292.18)  :bot (meters 209.51)
   :points (  (meters -135.63) (meters 287.46)  (meters 34.55) (meters 528.97) )
-  ;; :fwd (load crescent-top maincave) ;; remove when platforms are fixed
   :bwd (load crescent-top crystal-cave)
   )
 
@@ -1207,14 +1206,13 @@
   :top (meters 286.56)  :bot (meters 202.06)
   :points (  (meters -307.67) (meters 509.67)  (meters -126.76) (meters 639.09) )
   :fwd (load crescent-top crystal-cave)
-  ;; :bwd (load crescent-top maincave) ;; open mines load whenever it exists
+  :bwd (load crescent-top open-mines) ;; open mines load whenever it exists
   )
 
 (static-load-boundary :flags ()
   :top (meters 302.75)  :bot (meters 126.82)
   :points (  (meters 359.44) (meters 365.73)  (meters 235.99) (meters 546.72) )
   :fwd (load crescent-top energy-bay)
-  ;:bwd (load crescent-top maincave) ;; remove when platforms are fixed
   )
 
 (static-load-boundary :flags ()
@@ -1230,13 +1228,6 @@
   :fwd (display energy-bay display-no-wait)
   :bwd (display energy-bay #f)
   )
-
-;; (static-load-boundary :flags () ;; Display for open-mines whenever it exists
-;;   :top (meters 267.92)  :bot (meters 193.83)
-;;   :points (  (meters -307.23) (meters 568.9)  (meters -294.03) (meters 615.05)  (meters -325.2) (meters 669.78))
-;;   :fwd (display open-mines display-no-wait)
-;;   :bwd (display open-mines #f)
-;;   )
 
 (static-load-boundary :flags (closed )
   :top (meters 168.12)  :bot (meters 168.12)
@@ -1375,6 +1366,54 @@
   :points ((meters 751.14) (meters 993.66)  (meters 779.29) (meters 953.22))
   :fwd (checkpt "energy-bay-turbine3" #f)
   :bwd (checkpt "energy-bay-turbine3" #f)
+  )
+
+;; OPEN MINES BOUNDARIES
+(static-load-boundary :flags ()
+  :top (meters 280.84)  :bot (meters 193.6)
+  :points ((meters -323.22)(meters 575.11)  (meters -308.96)(meters 622.25)  (meters -235.51)(meters 606.32)  (meters -150.62)(meters 634.92))
+  :fwd (display open-mines #f)
+  :bwd (display open-mines display-no-wait)
+  )
+
+(static-load-boundary :flags ()
+  :top (meters 221.87)  :bot (meters 169.16)
+  :points ((meters -353.43)(meters 707.24)  (meters -425.45)(meters 699.96))
+  :fwd (vis opm #f)
+  )
+
+(static-load-boundary :flags ()
+  :top (meters 229.07)  :bot (meters 176.36)
+  :points ((meters -347.64)(meters 679.13)  (meters -414.42)(meters 651.18))
+  :bwd (vis cst #f)
+  )
+
+(static-load-boundary :flags (player)
+  :top (meters 204.39)  :bot (meters 164.81)
+  :points ((meters -437.38) (meters 727.02)  (meters -405.97) (meters 777.42)  (meters -318.97) (meters 790.67))
+  :fwd (checkpt "open-mines-start" #f)
+  :bwd (checkpt "open-mines-start" #f)
+  )
+
+(static-load-boundary :flags (player)
+  :top (meters 186.51)  :bot (meters 146.94)
+  :points ((meters -353.59) (meters 895.72)  (meters -403.96) (meters 888.45)  (meters -469.71) (meters 902.1))
+  :fwd (checkpt "open-mines-start" #f)
+  :bwd (checkpt "open-mines-start" #f)
+  )
+
+(static-load-boundary :flags (player)
+  :top (meters 165.18)  :bot (meters 125.6)
+  :points ((meters -393.86) (meters 856.52)  (meters -440.79) (meters 857.06)  (meters -439.89) (meters 838.64))
+  :fwd (checkpt "open-mines-drop-plat" #f)
+  :bwd (checkpt "open-mines-drop-plat" #f)
+  )
+
+(static-load-boundary :flags (player)
+  :top (meters 170.48)  :bot (meters 130.9)
+  :points ((meters -548.95) (meters 972.46)  (meters -508.89) (meters 982.1)  (meters -488.03) (meters 1003.5))
+  :fwd (checkpt "open-mines-kegs" #f)
+  :bwd (checkpt "open-mines-kegs" #f)
   )
 
 ;; CRASH TEST TEST-ZONE3
