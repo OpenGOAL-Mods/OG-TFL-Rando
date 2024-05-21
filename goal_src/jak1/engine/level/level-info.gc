@@ -2018,13 +2018,13 @@
         )
 
 ;; TFL note: custom level-info stuff start here
-(define crystal-cave (new 'static 'level-load-info
+(define crystal-ca (new 'static 'level-load-info
                            :index 24
-                           :name 'crystal-cave
+                           :name 'crystal-ca
                            :customname "???" ;; TFL note: custom type for the portal name
                            :custom-orb-count 150
                            :custom-buzzer-count 7
-                           :visname 'crystal-cave-vis ;; name + -vis
+                           :visname 'crystal-ca-vis ;; name + -vis
                            :nickname 'crc          ;; nickname
                            :packages '(maincave)
                            :sound-banks '(maincave misty) ;; maincave to get ambient sounds, misty for the breakaways
@@ -2037,7 +2037,7 @@
                            :continues '(
                                             (new 'static 'continue-point
                                              :name "crystal-cave-start"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :trans (new 'static 'vector :x (meters -51.23) :y (meters 93.12) :z (meters 15.18) :w 1.0)
                                              :quat (new 'static 'quaternion  :x 0.0 :y -0.707 :z 0.0 :w 0.707)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
@@ -2046,12 +2046,12 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crystal-cave-warp"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :flags (continue-flags warp)
                                              :trans (new 'static 'vector :x (meters 0.37) :y (meters 99.55) :z (meters 2.92) :w 1.0)
                                              :quat (new 'static 'quaternion  :x 0.0 :y -0.0568 :z 0.0 :w -0.9983)
@@ -2061,12 +2061,12 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crystal-cave-void-entry"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :trans (new 'static 'vector :x (meters -186.34) :y (meters 88.49) :z (meters -9.55) :w 1.0)
                                              :quat (new 'static 'quaternion :x 0.0 :y -0.612 :z 0.0 :w 0.791)
                                              :camera-trans (new 'static 'vector :x (meters -179.77) :y (meters 92.48) :z (meters -11.25) :w 1.0)
@@ -2075,12 +2075,12 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crystal-cave-river"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :trans (new 'static 'vector :x (meters -132.60) :y (meters 90.00) :z (meters -79.22) :w 1.0)
                                              :quat (new 'static 'quaternion :x 0.0 :y 0.9876 :z 0.0 :w -0.1564)
                                              :camera-trans (new 'static 'vector :x (meters -125.11) :y (meters 95.15) :z (meters -69.22) :w 1.0)
@@ -2089,12 +2089,12 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crystal-cave-bad-shrooms"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :trans (new 'static 'vector :x (meters -206.08) :y (meters 73.61) :z (meters -109.63) :w 1.0)
                                              :quat (new 'static 'quaternion :x 0.0 :y -0.735 :z 0.0 :w 0.678)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
@@ -2103,12 +2103,12 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crystal-cave-void-end"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :trans (new 'static 'vector :x (meters -327.51) :y (meters 96.61) :z (meters -43.80) :w 1.0)
                                              :quat (new 'static 'quaternion :x 0.0 :y 0.411 :z 0.0 :w 0.912)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
@@ -2117,12 +2117,12 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
                                              :name "crystal-cave-gondola"
-                                             :level 'crystal-cave
+                                             :level 'crystal-ca
                                              :trans (new 'static 'vector :x (meters -299.91) :y (meters 93.58) :z (meters 23.47) :w 1.0)
                                              :quat (new 'static 'quaternion :x 0.0 :y 0.411 :z 0.0 :w 0.912)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
@@ -2131,7 +2131,7 @@
                                              :vis-nick 'crc
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              ))
                            :tasks '(117 118 119 120 121 135)
@@ -2175,7 +2175,7 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
@@ -2189,7 +2189,7 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 'display
                                              )
                                              (new 'static 'continue-point
@@ -2217,7 +2217,7 @@
                                              :vis-nick 'cst
                                              :lev0 'crescent-t
                                              :disp0 'display
-                                             :lev1 'crystal-cave
+                                             :lev1 'crystal-ca
                                              :disp1 '#f
                                              )
                                              (new 'static 'continue-point
@@ -2477,7 +2477,7 @@
 
 (cons! *level-load-list* 'test-zone)
 (cons! *level-load-list* 'test-zone3)
-(cons! *level-load-list* 'crystal-cave)
+(cons! *level-load-list* 'crystal-ca)
 (cons! *level-load-list* 'crescent-t)
 (cons! *level-load-list* 'energy-bay)
 (cons! *level-load-list* 'open-mines)

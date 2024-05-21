@@ -992,11 +992,11 @@
 }
 // ECO
 ,{
-  "trans": [-496.81, 153.24, 915.06], // translation
+  "trans": [-496.96, 153.03, 915.51], // translation
   "etype": "orb-cache-top",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
-  "quat" : [0.008, -0.214, -0.021, 0.976], // quaternion
-  "bsphere": [-496.81, 153.24, 915.06, 10], // bounding sphere
+  "quat" : [0.016, 0.658, 0.033, 0.752], // quaternion
+  "bsphere": [-496.96, 153.03, 915.51, 10], // bounding sphere
   "lump": {
     "name":"open-mines-orb-cache-top-01",
     "orb-cache-count":["int32", 12],
