@@ -448,6 +448,7 @@
         "name":"crystalc-crate-wood-06",
         "crate-type":"'wood",
         "light-index": ["int32", 1]
+        ,"nav-mesh-actor":["uint32", 40001]
       }
     },
     {
@@ -460,6 +461,7 @@
         "name":"crystalc-crate-wood-07",
         "crate-type":"'wood",
         "light-index": ["int32", 1]
+        ,"nav-mesh-actor":["uint32", 40001]
       }
     },
     {
@@ -3173,7 +3175,7 @@
             [-157.47, 89.72, -9.16]
           ],
         "nav-mesh-sphere": ["vector4m", // You can define spheres that will be added to the navmesh of the enemy. Enemies of the navmesh will avoid these spheres - like they avoid each other.
-          [-161.3, 90.47, 4.83, 1.5]
+          [-180.91, 89.52, -1.94, 2.0]
           ]
       }
     }

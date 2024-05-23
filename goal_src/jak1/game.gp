@@ -2003,6 +2003,7 @@
  "collide/collide-cache.gc"
  "entity/relocate.gc"
  "debug/memory-usage.gc"
+ "mods/tfl-nav-mesh.gc" ;; TFL note: nav mesh setup (needs to be before enity.gc)
  "entity/entity.gc"
  "geometry/path.gc"
  "geometry/vol.gc"
@@ -2113,7 +2114,6 @@
 (goal-src "pc/debug/pc-debug-methods.gc" "pc-debug-common")
 (goal-src "engine/mods/input-display.gc")
 (goal-src "engine/mods/orb-placer.gc")
-(goal-src "engine/mods/tfl-nav-mesh.gc") ;; TFL note: nav mesh setup
 
 
 (goal-src-sequence
