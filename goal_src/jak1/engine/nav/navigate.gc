@@ -2791,19 +2791,15 @@
         (format 0 "#### NEW LOOP: #### ~%")
         (until s0-0
           (setup-portal arg0 (-> s2-0 next-poly) arg2 s2-0)
-          ;; TFL note: added a limit to the number of loops here
           (format 0 "choose-travel-portal-vertex loop: ~D ~%" next-poly-loop)
           (set! next-poly-loop (+ next-poly-loop 1))
-          (if(>= next-poly-loop 8)
-            (set! s1-0 0)
-            (set! s0-0 #t)
-            )
           (cond
-            ((-> s2-0 next-poly)
+            ((and (-> s2-0 next-poly) (!= (-> arg0 custom-hacky?) #t)) ;; TFL note: Skip this for custom nav-mesh for now
              (let ((v1-18 0))
                (dotimes (a0-2 2)
                  (if (< 0.0 (+ (* f30-0 (-> s2-0 vertex a0-2 x)) (* f28-0 (-> s2-0 vertex a0-2 z)) f26-0))
                      (+! v1-18 1)
+                     (format 0 "Let v-18 loop: ~D v-18 value: ~D ~%" next-poly-loop v1-18)
                      )
                  )
                (when (= v1-18 2)

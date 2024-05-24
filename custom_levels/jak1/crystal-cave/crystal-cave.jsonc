@@ -3168,13 +3168,13 @@
         "idle-distance": ["meters", 80.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 20.0],
-        "path": ["vector3m", // I am pretty sure game will crash if there is no path for an enemy. So just add one. You can use "path-actor" if you want to use another actor's path.
+        "path": ["vector3m", 
             [-157.47, 89.72, -9.16],
             [-165.32, 90.50, -6.63],
             [-157.35, 90.43, -3.02],
             [-157.47, 89.72, -9.16]
           ],
-        "nav-mesh-sphere": ["vector4m", // You can define spheres that will be added to the navmesh of the enemy. Enemies of the navmesh will avoid these spheres - like they avoid each other.
+        "nav-mesh-sphere": ["vector4m",
           [-180.91, 89.52, -1.94, 2.0]
           ]
       }
