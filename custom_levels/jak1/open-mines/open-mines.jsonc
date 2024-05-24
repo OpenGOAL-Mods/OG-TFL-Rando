@@ -54,7 +54,9 @@
     "generic-button-ag",
     "mayorgears-ag",
     "cavecrusher-ag",
-    "caveelevator-ag"
+    "caveelevator-ag",
+    "babak-ag",
+    "bonelurker-ag"
   ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -1035,6 +1037,104 @@
     "name":"open-mines-ecovent-02-green",
     "eco-info": ["int32", 4, 1]
   }
+}
+// ENEMIES
+// ,{
+//   "aid": 40002,
+//   "trans": [-433.11, 104.7, 1030.3],
+//   "etype": "babak",
+//   "game_task": 0,
+//   "quat" : [0, 0, 0, 1],
+//   "bsphere": [-433.11, 104.7, 1030.3, 10],
+//   "lump": {
+//     "name": "open-mines-babak-01",
+//     "vis-dist": ["meters", 200.0],
+//     "cam-notice-dist": ["meters", 30.0],
+//     "idle-distance": ["meters", 80.0],
+//     "cam-vert": ["meters", 8.0],
+//     "cam-horz": ["meters", 20.0],
+//     "path": ["vector3m", 
+//         [-426.71, 104.81, 1029.1],
+//         [-438.08, 103.95, 1039.2],
+//         [-435.74, 105.34, 1022.2],
+//         [-426.71, 104.81, 1029.1]
+//       ],
+//     "nav-mesh-sphere": ["vector4m",
+//       [-437.2, 112.6, 995.9, 2.0]
+//       ]
+//   }
+// }
+,{
+  "aid":40002,
+  "trans": [-433.11, 104.7, 1030.3],
+  "etype": "mines-battlecontroller",
+  "quat": [0.0, 0.0, 0.0, 1.0],
+  "game_task": 25,
+  "bsphere": [-433.11, 104.7, 1030.3, 10.0],
+  "lump": {
+    "delay": ["float", 0.10],
+    "eco-info": ["int32", 9, 4],
+    "final-pickup": 7,
+    "lurker-type": ["symbol", "babak","bonelurker"],
+    "max-pickup-count": ["int32", 20, 20],
+    "mode": 0,
+    "name": "open-mines-battlecontroller-01",
+    "num-lurkers": ["int32", 12, 35],
+    "options": 131072,
+    "path": ["vector3m", 
+        [-426.71, 104.81, 1029.1],
+        [-438.08, 103.95, 1039.2],
+        [-435.74, 105.34, 1022.2],
+        [-426.71, 104.81, 1029.1]
+      ],
+    "patha": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathb": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathc": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathd": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathe": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathf": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathg": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "pathh": ["vector3m", 
+    [-426.71, 104.81, 1029.1],
+    [-438.08, 103.95, 1039.2],
+    [-435.74, 105.34, 1022.2]
+      ],
+    "percent": ["float", 0.92, 0.08],
+    "pickup-percent": ["float", 0.20, 1.0],
+    "pickup-type": ["int32", 2, 2]
+    ,"play-mode": "'sidekick"
+    // ,"sound-name": "sksp0069"
+    ,"text-id": 675
+    // ,"trigger-actor": [5251, 5252, 12534]
+  } 
 }
 // LIQUID
 ,{
