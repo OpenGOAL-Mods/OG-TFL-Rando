@@ -76,7 +76,7 @@
       (set! (-> this nav-mesh)
         (new 'static 'nav-mesh
         :custom-hacky? #t
-        :bounds (new 'static 'sphere :x (meters -157.47) :y (meters 89.72) :z (meters -9.16) :w (meters 50.0))
+        :bounds (new 'static 'sphere :x (meters -157.47) :y (meters 89.72) :z (meters -9.16) :w (meters 100.0))
         :origin (new 'static 'vector :x (meters -157.47) :y (meters 89.72) :z (meters -9.16) :w 1.0000)
         :vertex-count 14
         :vertex (new 'static 'inline-array nav-vertex 14

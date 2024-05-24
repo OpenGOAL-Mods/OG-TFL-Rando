@@ -24,10 +24,12 @@
   "babak-ag.go"
   "bonelurker-ag.go"
   "mistycam-ag.go"
+  "green-eco-lurker-ag.go"
   "misty-conveyor.o"
   "mines-part.o"
   "battlecontroller.o"
   "mines-obs.o"
   "bonelurker.o"
+  "green-eco-lurker.o"
   "open-mines.go" 
  ))

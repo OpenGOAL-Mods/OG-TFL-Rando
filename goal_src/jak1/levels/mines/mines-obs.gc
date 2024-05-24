@@ -2485,12 +2485,6 @@
     )
   )
 
-(defmethod battlecontroller-method-27 ((this mines-battlecontroller))
-  (call-parent-method this)
-  (set! (-> this misty-ambush-collision-hack) #t)
-  0
-  (none)
-  )
 
 (defun-debug misty-cam-restore ()
   (let ((a0-0 (new-stack-vector0))
