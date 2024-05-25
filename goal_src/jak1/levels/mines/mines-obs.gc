@@ -2466,3 +2466,11 @@
     (go-virtual battlecontroller-active)
     )
   )
+
+(defstate battlecontroller-die (mines-battlecontroller)
+  :virtual #t
+  :code (behavior ()
+    (process-entity-status! self (entity-perm-status complete) #t)
+    ((-> (method-of-type battlecontroller battlecontroller-die) code))
+    )
+  )
