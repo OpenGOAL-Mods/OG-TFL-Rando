@@ -2415,114 +2415,54 @@
   (none)
   )
 
-(deftype mistycam (process-hidden)
-  ()
-  )
-
-
-(defskelgroup *mistycam-sg* mistycam mistycam-lod0-jg mistycam-anim-ja
-              ((mistycam-lod0-mg (meters 999999)))
-              :bounds (static-spherem 0 0 0 20)
+(defskelgroup *training-cam-sg* trainingcam trainingcam-lod0-jg -1
+              ((trainingcam-lod0-mg (meters 999999)))
+              :bounds (static-spherem 0 0 0 80)
               )
 
-(defun mistycam-spawn ()
-  (with-pp
-    (let ((gp-0 (entity-actor-lookup (-> pp entity) 'alt-actor 0)))
-      (when gp-0
-        (let* ((gp-1
-                 (ppointer->handle (process-spawn
-                                     pov-camera
-                                     (-> gp-0 extra trans)
-                                     *mistycam-sg*
-                                     (new 'static 'spool-anim :name "mistycam-cannon" :index 5 :parts 1 :command-list '())
-                                     0
-                                     #f
-                                     '()
-                                     :to pp
-                                     )
-                                   )
-                 )
-               (s5-2 (ppointer->handle
-                       (process-spawn fuel-cell :init fuel-cell-init-as-clone gp-1 (-> pp entity extra perm task) :to pp)
-                       )
-                     )
-               )
-          (let ((v1-13 (handle->process gp-1)))
-            (if v1-13
-                (set! (-> (the-as pov-camera v1-13) notify-handle) (the-as handle s5-2))
-                )
-            )
-          (while (handle->process gp-1)
-            (suspend)
-            )
-          (send-event (handle->process s5-2) 'stop-cloning)
-          )
-        )
-      )
-    0
-    (none)
+(deftype training-cam (process)
+  ((root        trsq)
+   (range       meters)
+   (index       int32)
+   (state-time  time-frame)
+   )
+  (:state-methods
+    idle
     )
+  )
+
+(defmethod relocate ((this training-cam) (arg0 int))
+  (if (nonzero? (-> this root))
+      (&+! (-> this root) arg0)
+      )
+  (the-as training-cam ((method-of-type process relocate) this arg0))
   )
 
 (deftype mines-battlecontroller (battlecontroller)
   ()
   )
 
-
 (defstate battlecontroller-play-intro-camera (mines-battlecontroller)
   :virtual #t
   :code (behavior ()
     (let ((gp-1 (ppointer->handle
-                  (process-spawn pov-camera (-> self root trans) *mistycam-sg* "lurkerattack" 0 #f '() :to self)
+                  (process-spawn pov-camera (-> self root trans) *training-cam-sg* "ecoventcam" 5 #f '() :to self)
                   )
-                )
+            )
           )
+      ;; TFL note: Sending an event to change the camera animation speed:
+      ;; (while (!= (-> (handle->process gp-1) next-state name) 'pov-camera-playing)
+      ;;   (format 0 "pov-camera state: ~A ~%" (-> (handle->process gp-1) state name))
+      ;;   (format 0 "pov-camera next-state: ~A ~%" (-> (handle->process gp-1) next-state name))
+      ;;   (suspend)
+      ;;   )
+      (while (!= (-> (handle->process gp-1) next-state name) 'pov-camera-startup) (suspend))
+      (send-event (handle->process gp-1) 'cam-speed)
+      (format 0 "cam-speed event sent ~%")
       (while (handle->process (the-as handle gp-1))
         (suspend)
         )
       )
     (go-virtual battlecontroller-active)
-    )
-  )
-
-
-(defun-debug misty-cam-restore ()
-  (let ((a0-0 (new-stack-vector0))
-        (a1-0 (new-stack-matrix0))
-        )
-    (set! (-> a0-0 x) -711702.3)
-    (set! (-> a0-0 y) 268833.34)
-    (set! (-> a0-0 z) 4193524.2)
-    (set! (-> a0-0 w) 1.0)
-    (set! (-> a1-0 vector 0 x) -0.6991)
-    (set! (-> a1-0 vector 0 y) 0.0)
-    (set! (-> a1-0 vector 0 z) -0.7149)
-    (set! (-> a1-0 vector 0 w) 0.0)
-    (set! (-> a1-0 vector 1 x) 0.3474)
-    (set! (-> a1-0 vector 1 y) 0.8739)
-    (set! (-> a1-0 vector 1 z) -0.3398)
-    (set! (-> a1-0 vector 1 w) 0.0)
-    (set! (-> a1-0 vector 2 x) 0.6248)
-    (set! (-> a1-0 vector 2 y) -0.486)
-    (set! (-> a1-0 vector 2 z) -0.611)
-    (set! (-> a1-0 vector 2 w) 0.0)
-    (set! (-> a1-0 vector 3 x) 0.0)
-    (set! (-> a1-0 vector 3 y) 0.0)
-    (set! (-> a1-0 vector 3 z) 0.0)
-    (set! (-> a1-0 vector 3 w) 1.0)
-    (debug-set-camera-pos-rot! a0-0 a1-0)
-    )
-  (send-event *camera* 'set-fov 11650.845)
-  (clear *camera-old-level*)
-  (format *camera-old-level* "misty")
-  (set! *camera-old-cpu* 6867)
-  (set! *camera-old-vu* #x4b0f)
-  (set! *camera-old-tfrag-bytes* #x1ec490)
-  (clear *camera-old-stat-string-tfrag*)
-  (clear *camera-old-stat-string-tfrag-near*)
-  (clear *camera-old-stat-string-total*)
-  (let ((v0-7 #t))
-    (set! *display-camera-old-stats* v0-7)
-    v0-7
     )
   )

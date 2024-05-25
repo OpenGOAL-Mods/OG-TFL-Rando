@@ -603,7 +603,7 @@ battlecontroller-default-event-handler
         )
   (set! (-> this path) (new 'process 'path-control this 'path 0.0))
   (logior! (-> this path flags) (path-control-flag display draw-line draw-point draw-text))
-  (set! (-> this activate-distance) 122880.0)
+  (set! (-> this activate-distance) (res-lump-float (-> this entity) 'activate-distance :default 122880.0)) ;; TFL note: added res lump for the active distance
   (let ((s5-0 0))
     (let* ((s4-0 '(patha pathb pathc pathd pathe pathf pathg pathh))
            (s2-0 (car s4-0))

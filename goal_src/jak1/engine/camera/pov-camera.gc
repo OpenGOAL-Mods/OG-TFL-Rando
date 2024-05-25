@@ -30,6 +30,13 @@
 
 (defstate pov-camera-startup (pov-camera)
   :virtual #t
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block)) ;; TFL note: to remove
+    (case message
+       (('cam-speed)
+        (format 0 "cam-speed event received in pov-startup ~%")
+       )
+      )
+    )
   :code (behavior ()
     (go-virtual pov-camera-start-playing)
     )
@@ -37,6 +44,13 @@
 
 (defstate pov-camera-start-playing (pov-camera)
   :virtual #t
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block)) ;; TFL note: to remove
+    (case message
+       (('cam-speed)
+        (format 0 "cam-speed event received in pov-start-playing ~%")
+       )
+      )
+    )
   :code (behavior ()
     (logclear! (-> self mask) (process-mask actor-pause))
     (while (not (target-grabbed? self))
@@ -86,6 +100,9 @@
              )
          )
        )
+       (('cam-speed) ;; TFL note: event sent to change the speed
+        (format 0 "cam-speed event received in pov-camera-playing ~%")
+       )
       )
     )
   :enter (behavior ()
@@ -110,7 +127,7 @@
        (until (ja-done? 0)
          (check-for-abort self)
          (suspend)
-         (ja :num! (seek!))
+         (ja :num! (seek!)) ;; TFL note: pov-camera speed
          )
        )
       ((= (-> self anim-name type) spool-anim)

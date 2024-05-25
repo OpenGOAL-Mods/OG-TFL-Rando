@@ -23,7 +23,7 @@
   "mayorgears-ag.go"
   "babak-ag.go"
   "bonelurker-ag.go"
-  "mistycam-ag.go"
+  "trainingcam-ag.go"
   "green-eco-lurker-ag.go"
   "misty-conveyor.o"
   "mines-part.o"
