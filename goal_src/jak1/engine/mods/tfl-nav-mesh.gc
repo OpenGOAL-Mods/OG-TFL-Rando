@@ -78,25 +78,25 @@
         :custom-hacky? #t
         :bounds (new 'static 'sphere :x (meters -157.47) :y (meters 89.72) :z (meters -9.16) :w (meters 100.0))
         :origin (new 'static 'vector :x (meters -157.47) :y (meters 89.72) :z (meters -9.16) :w 1.0000)
-        :vertex-count 14
-        :vertex (new 'static 'inline-array nav-vertex 14
+        :vertex-count 6
+        :vertex (new 'static 'inline-array nav-vertex 6
                 (new 'static 'nav-vertex :x (meters -2.44) :y (meters -1.56) :z (meters -12.36) :w 1.0000) ;;0
                 (new 'static 'nav-vertex :x (meters 13.31) :y (meters -2.66) :z (meters -15.23) :w 1.0000)
                 (new 'static 'nav-vertex :x (meters 19.02) :y (meters 0.31) :z (meters 8.73) :w 1.0000)
                 (new 'static 'nav-vertex :x (meters -2.22) :y (meters 1.19) :z (meters 16.19) :w 1.0000)
                 (new 'static 'nav-vertex :x (meters -29.33) :y (meters 0.41) :z (meters 9.52) :w 1.0000)
                 (new 'static 'nav-vertex :x (meters -18.46) :y (meters -1.91) :z (meters -19.23) :w 1.0000) ;;5
-                (new 'static 'nav-vertex :x (meters -42.05) :y (meters -1.64) :z (meters -8.40) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters 26.68) :y (meters -2.05) :z (meters -6.89) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters -32.67) :y (meters -3.36) :z (meters -29.71) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters 14.98) :y (meters 1.54) :z (meters 13.53) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters -21.81) :y (meters -3.53) :z (meters -29.84) :w 1.0000) ;;a
-                (new 'static 'nav-vertex :x (meters 32.27) :y (meters 1.17) :z (meters 14.17) :w 1.0000) ;;b
-                (new 'static 'nav-vertex :x (meters 25.71) :y (meters 3.33) :z (meters 28.56) :w 1.0000) ;;c
-                (new 'static 'nav-vertex :x (meters 43.25) :y (meters 3.43) :z (meters 32.62) :w 1.0000) ;;d
+                ;; (new 'static 'nav-vertex :x (meters -42.05) :y (meters -1.64) :z (meters -8.40) :w 1.0000)
+                ;; (new 'static 'nav-vertex :x (meters 26.68) :y (meters -2.05) :z (meters -6.89) :w 1.0000)
+                ;; (new 'static 'nav-vertex :x (meters -32.67) :y (meters -3.36) :z (meters -29.71) :w 1.0000)
+                ;; (new 'static 'nav-vertex :x (meters 14.98) :y (meters 1.54) :z (meters 13.53) :w 1.0000)
+                ;; (new 'static 'nav-vertex :x (meters -21.81) :y (meters -3.53) :z (meters -29.84) :w 1.0000) ;;a
+                ;; (new 'static 'nav-vertex :x (meters 32.27) :y (meters 1.17) :z (meters 14.17) :w 1.0000) ;;b
+                ;; (new 'static 'nav-vertex :x (meters 25.71) :y (meters 3.33) :z (meters 28.56) :w 1.0000) ;;c
+                ;; (new 'static 'nav-vertex :x (meters 43.25) :y (meters 3.43) :z (meters 32.62) :w 1.0000) ;;d
         )
-        :poly-count 11
-        :poly (new 'static 'inline-array nav-poly 11
+        :poly-count 4
+        :poly (new 'static 'inline-array nav-poly 4
                 (new 'static 'nav-poly
                 :id #x0
                 :vertex (new 'static 'array uint8 3 #x0 #x3 #x2)
@@ -121,48 +121,48 @@
                 :adj-poly (new 'static 'array uint8 3 #x0 #x5 #xff)
                 :pat 0
                 )
-                (new 'static 'nav-poly
-                :id #x4
-                :vertex (new 'static 'array uint8 3 #x5 #x6 #x4)
-                :adj-poly (new 'static 'array uint8 3 #x6 #xff #x1)
-                :pat 0
-                )
-                (new 'static 'nav-poly
-                :id #x5
-                :vertex (new 'static 'array uint8 3 #x1 #x2 #x7)
-                :adj-poly (new 'static 'array uint8 3 #x3 #xff #xff)
-                :pat 0
-                )
-                (new 'static 'nav-poly
-                :id #x6
-                :vertex (new 'static 'array uint8 3 #x5 #x8 #x6)
-                :adj-poly (new 'static 'array uint8 3 #x8 #xff #x4)
-                :pat 0
-                )
-                (new 'static 'nav-poly
-                :id #x7
-                :vertex (new 'static 'array uint8 3 #x2 #x3 #x9)
-                :adj-poly (new 'static 'array uint8 3 #x0 #xff #x9)
-                :pat 0
-                )
-                (new 'static 'nav-poly
-                :id #x8
-                :vertex (new 'static 'array uint8 3 #x5 #xa #x8)
-                :adj-poly (new 'static 'array uint8 3 #xff #xff #x6)
-                :pat 0
-                )
-                (new 'static 'nav-poly
-                :id #x9
-                :vertex (new 'static 'array uint8 3 #x2 #x9 #xb)
-                :adj-poly (new 'static 'array uint8 3 #x7 #xa #xff)
-                :pat 0
-                )
-                (new 'static 'nav-poly
-                :id #xa
-                :vertex (new 'static 'array uint8 3 #xb #x9 #xc)
-                :adj-poly (new 'static 'array uint8 3 #x9 #xff #xff)
-                :pat 0
-                )
+                ;; (new 'static 'nav-poly
+                ;; :id #x4
+                ;; :vertex (new 'static 'array uint8 3 #x5 #x6 #x4)
+                ;; :adj-poly (new 'static 'array uint8 3 #x6 #xff #x1)
+                ;; :pat 0
+                ;; )
+                ;; (new 'static 'nav-poly
+                ;; :id #x5
+                ;; :vertex (new 'static 'array uint8 3 #x1 #x2 #x7)
+                ;; :adj-poly (new 'static 'array uint8 3 #x3 #xff #xff)
+                ;; :pat 0
+                ;; )
+                ;; (new 'static 'nav-poly
+                ;; :id #x6
+                ;; :vertex (new 'static 'array uint8 3 #x5 #x8 #x6)
+                ;; :adj-poly (new 'static 'array uint8 3 #x8 #xff #x4)
+                ;; :pat 0
+                ;; )
+                ;; (new 'static 'nav-poly
+                ;; :id #x7
+                ;; :vertex (new 'static 'array uint8 3 #x2 #x3 #x9)
+                ;; :adj-poly (new 'static 'array uint8 3 #x0 #xff #x9)
+                ;; :pat 0
+                ;; )
+                ;; (new 'static 'nav-poly
+                ;; :id #x8
+                ;; :vertex (new 'static 'array uint8 3 #x5 #xa #x8)
+                ;; :adj-poly (new 'static 'array uint8 3 #xff #xff #x6)
+                ;; :pat 0
+                ;; )
+                ;; (new 'static 'nav-poly
+                ;; :id #x9
+                ;; :vertex (new 'static 'array uint8 3 #x2 #x9 #xb)
+                ;; :adj-poly (new 'static 'array uint8 3 #x7 #xa #xff)
+                ;; :pat 0
+                ;; )
+                ;; (new 'static 'nav-poly
+                ;; :id #xa
+                ;; :vertex (new 'static 'array uint8 3 #xb #x9 #xc)
+                ;; :adj-poly (new 'static 'array uint8 3 #x9 #xff #xff)
+                ;; :pat 0
+                ;; )
                 ;; (new 'static 'nav-poly
                 ;; :id #xb
                 ;; :vertex (new 'static 'array uint8 3 #xd #xb #xc)

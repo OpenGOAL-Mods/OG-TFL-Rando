@@ -2768,7 +2768,7 @@
     0.0
     (let ((s2-0 (new 'stack-no-clear 'nav-route-portal))
           (s1-0 0)
-          (next-poly-loop 1) ;; TFL note: added a limit to the number of loops
+          (next-poly-loop 1) ;; TFL note: added a limit to the number of loops (to remove)
           )
       (let* ((s0-0 #f)
              (f2-2 f0-1)
@@ -2788,18 +2788,18 @@
         (set! (-> s2-0 vertex 0) (-> arg1 vertex 0))
         (set! (-> s2-0 vertex 1) (-> arg1 vertex 1))
         (set! (-> s2-0 next-poly) (-> arg1 next-poly))
-        (format 0 "#### NEW LOOP: #### ~%")
+        ;; (format 0 "#### NEW LOOP: #### ~%")
         (until s0-0
           (setup-portal arg0 (-> s2-0 next-poly) arg2 s2-0)
-          (format 0 "choose-travel-portal-vertex loop: ~D ~%" next-poly-loop)
+          ;; (format 0 "choose-travel-portal-vertex loop: ~D ~%" next-poly-loop)
           (set! next-poly-loop (+ next-poly-loop 1))
           (cond
-            ((and (-> s2-0 next-poly) (!= (-> arg0 custom-hacky?) #t)) ;; TFL note: Skip this for custom nav-mesh for now
+            ((and (-> s2-0 next-poly) (!= (-> arg0 custom-hacky?) #t)) ;; TFL note: Skip this for custom nav-mesh for now (to remove)
              (let ((v1-18 0))
                (dotimes (a0-2 2)
                  (if (< 0.0 (+ (* f30-0 (-> s2-0 vertex a0-2 x)) (* f28-0 (-> s2-0 vertex a0-2 z)) f26-0))
                      (+! v1-18 1)
-                     (format 0 "Let v-18 loop: ~D v-18 value: ~D ~%" next-poly-loop v1-18)
+                    ;;  (format 0 "Let v-18 loop: ~D v-18 value: ~D ~%" next-poly-loop v1-18)
                      )
                  )
                (when (= v1-18 2)
