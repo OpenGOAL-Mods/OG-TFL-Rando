@@ -1163,9 +1163,10 @@
 
 (defmethod smush-update! ((this crate))
   (let ((f0-0 (update! (-> this smush))))
-    (set! (-> this root scale x) (+ 1.0 (* -0.5 f0-0)))
-    (set! (-> this root scale y) (+ 1.0 f0-0))
-    (set! (-> this root scale z) (+ 1.0 (* -0.5 f0-0)))
+    ;; TFL note: multiplying these by the scale res-lump for it to work
+    (set! (-> this root scale x) (* (+ 1.0 (* -0.5 f0-0)) (res-lump-float (-> this entity) 'scale :default 1.0)))
+    (set! (-> this root scale y) (* (+ 1.0 f0-0) (res-lump-float (-> this entity) 'scale :default 1.0)))
+    (set! (-> this root scale z) (* (+ 1.0 (* -0.5 f0-0)) (res-lump-float (-> this entity) 'scale :default 1.0)))
     )
   0
   (none)

@@ -2446,7 +2446,7 @@
   :virtual #t
   :code (behavior ()
     (let ((gp-1 (ppointer->handle
-                  (process-spawn pov-camera (-> self root trans) *training-cam-sg* "ecoventcam" 5 #f '() :to self)
+                  (process-spawn pov-camera (static-vectorm -419.82 115.0 1037.7) *training-cam-sg* "ecoventcam" 5 #f '() :to self) ;; TFL note: changed from (-> self root trans)
                   )
             )
           )
