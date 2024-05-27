@@ -63,3 +63,10 @@
    (joint-num  int32)
    )
   )
+
+;; TFL note: added
+(deftype tfl-yellow-shot (projectile)
+  ((blast-radius float)
+   (explode-part sparticle-launch-control)
+   )
+  )

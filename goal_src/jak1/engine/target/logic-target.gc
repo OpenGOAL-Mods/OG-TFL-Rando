@@ -2037,6 +2037,11 @@
   (set! (-> self manipy) (the-as (pointer manipy) #f))
   (set! (-> self event-hook) target-generic-event-handler)
   (set! (-> self current-level) #f)
+  ;; TFL note: added super eco stuff
+  (set! (-> self super-yellow-charge-loop)
+    (new 'process 'ambient-sound (static-sound-spec "bfg-buzz" :fo-max 80) (-> self control trans))
+    )
+  (set! (-> self super-yellow-charge-part) (create-launch-control (-> *part-group-id-table* 959) self))
   (level-setup)
   (go target-continue arg0)
   (none)
