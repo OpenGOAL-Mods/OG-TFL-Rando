@@ -61,7 +61,11 @@
       (set! (-> a1-1 param 0) (the-as uint 'powerup))
       (set! (-> a1-1 param 1) (the-as uint 2))
       (cond
-        ((or (send-event-function *target* a1-1) (= (-> arg1 param 1) 'explode))
+        ((or 
+          (send-event-function *target* a1-1)
+          (= (-> arg1 param 1) 'explode)
+          (= (-> arg0 type symbol) 'tfl-yellow-shot)  ;; TFL note: added condition for charged super yellow eco shot
+          )
          (logclear! (-> this mask) (process-mask actor-pause))
          (go (method-of-object this nav-enemy-die))
          'die
