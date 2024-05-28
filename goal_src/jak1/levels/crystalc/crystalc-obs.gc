@@ -244,7 +244,7 @@
            (launch-particles (-> *part-id-table* 3053) (the vector (-> self launch-pos)))
            (launch-particles (-> *part-id-table* 3054) (the vector (-> self launch-pos)))
            )
-         (awhen (level-get *level* 'crystal-cave)
+         (awhen (level-get *level* 'crystal-ca)
            (set-vector! *crystalc-ship-dir2* 0.3 0.4 1.6 1.0)
            (set-vector! *crystalc-ship-ambi* 0.1 0.3 0.6 1.0)
            )
@@ -277,7 +277,7 @@
         (else
           (set! (-> self should-play-sound?) #t)
           (update-vol! (-> self sound) 1)
-         (awhen (level-get *level* 'crystal-cave)
+         (awhen (level-get *level* 'crystal-ca)
            (set-vector! *crystalc-ship-dir2* 1.5 0.0 1.2 1.0)
            (set-vector! *crystalc-ship-ambi* 0.2 0.2 0.7 1.0)
            )
