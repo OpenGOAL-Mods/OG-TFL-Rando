@@ -7,6 +7,9 @@
 
 (declare-type first-person-hud process)
 
+;; TFL note: added
+(define-extern target-super-yellow-charged (function symbol object :behavior target))
+(defun-extern target-super-yellow-part-reset none)
 
 
 ;; DECOMP BEGINS
@@ -552,6 +555,36 @@
             )
           )
         (set-time! (-> self control unknown-dword82))
+        )
+      ;; TFL note: added
+      (when (and (or (cpad-hold? (-> self control unknown-cpad-info00 number) r2)
+                     (cpad-hold? (-> self control unknown-cpad-info00 number) circle)
+                     (cpad-hold? (-> self control unknown-cpad-info00 number) square)
+                     )
+                 (target-powerup? super-eco-yellow)
+                 (time-elapsed? (-> self control super-yellow-fp-last-fire-time) (seconds 0.1))
+                 (not *pause-lock*)
+                 )
+        (let ((vel (vector-float*!
+                      (new-stack-vector0)
+                      (-> *math-camera* inv-camera-rot vector 2)
+                      (-> *TARGET-bank* yellow-projectile-speed)
+                      )
+                    )
+              (fwd (vector-float*! (new-stack-vector0) (-> *math-camera* inv-camera-rot vector 2) (meters 2)))
+              (pos (new-stack-vector0))
+              )
+          (vector+float*! fwd fwd (-> *math-camera* inv-camera-rot vector 1) -2048.0)
+          (vector-copy! pos fwd)
+          ; (.mov.vf vf6 vf0 :mask #b1000)
+          ; (.lvf vf4 (&-> (camera-pos) quad))
+          ; (.lvf vf5 (&-> fwd quad))
+          ; (.add.vf vf6 vf4 vf5 :mask #b111)
+          ; (.svf (&-> pos quad) vf6)
+          (vector+! pos (camera-pos) fwd)
+          (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) pos vel 56 (the handle #f) :to self)
+          )
+        (set-time! (-> self control super-yellow-fp-last-fire-time))
         )
       (when (cpad-pressed? (-> self control unknown-cpad-info00 number) triangle)
         (logclear!
@@ -1413,7 +1446,7 @@
   (none)
   )
 
-(defbehavior target-super-yellow-uncharged target ((charge-time time-frame))
+(defbehavior target-super-yellow-uncharged target ((charge-time time-frame) (jumping? symbol))
   (ja-channel-push! 1 (seconds 0.075))
   (ja-no-eval :group! eichar-yellow-running-blast-ja
               :num! (seek! (ja-aframe 1.0 0))
@@ -1434,7 +1467,7 @@
     (when (target-powerup? super-eco-yellow)
       (if (>= charge-time (seconds 0.5))
         (process-spawn tfl-yellow-shot :init tfl-yellow-shot-init-by-other (-> self entity) hand dir charge-time :to self)
-        (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) hand dir 16 (the handle #f) :to self)
+        (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) hand dir (if jumping? 16 25) (the handle #f) :to self)
         )
       )
     )
@@ -1462,7 +1495,7 @@
       (ja-no-eval :group! ja-group :num! (seek! running-start-loop-frame 0.25))
       )
     (while (cpad-hold? 0 square)
-      (let* ((hand (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node eichar-lod0-jg sk_rhand)))
+      (let* ((hand (vector<-cspace! (new-stack-vector0) (joint-node eichar-lod0-jg sk_rhand)))
              (forward-dir (vector-z-quaternion! (new-stack-vector0) (-> self control quat)))
              (forward (vector-float*! (new-stack-vector0) forward-dir (meters 60)))
              (part-dir-ground (vector-float*! (new-stack-vector0) forward-dir (meters 1.5)))
@@ -1553,7 +1586,7 @@
     (false! (-> self control super-yellow-charge-loop))
     (target-super-yellow-part-reset)
     (if (not (time-elapsed? (-> self control super-yellow-charge-time) SUPER_YELLOW_MAX_CHARGE_TIME))
-      (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)))
+      (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)) jumping?)
       )
     )
   )
@@ -1613,7 +1646,7 @@
        (target-super-yellow-charged #f)
        )
       (else
-       (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)))
+       (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)) #f)
        )
       )
     (if (logtest? (-> self control status) (cshape-moving-flags onsurf))
@@ -1727,8 +1760,8 @@
             )
           )
         )
-       (ja :num! (seek!))
-       (target-super-yellow-uncharged (seconds 0.05))
+      (ja :num! (seek!))
+      (target-super-yellow-uncharged (seconds 0.05) #t)
       (ja-no-eval :group! eichar-yellow-jumping-blast-ja :num! (seek!) :frame-num (ja-frame-num 0))
       (until (ja-done? 0)
         (suspend)
