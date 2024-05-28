@@ -1391,8 +1391,6 @@
   )
 
 ;; TFL note: added
-(defglobalconstant SUPER_YELLOW_MAX_CHARGE_TIME (seconds 1.6))
-
 (defun target-super-yellow-part-reset ()
   (set! (-> *part-id-table* 3664 init-specs 2 initial-valuef) (meters 0.15))
   (set! (-> *part-id-table* 3664 init-specs 5 initial-valuef) (meters 0.25))
@@ -1434,11 +1432,9 @@
     (set! (-> dir y) 0.0)
     (vector-normalize! dir (-> *TARGET-bank* yellow-projectile-speed))
     (when (target-powerup? super-eco-yellow)
-      (let ((charge-ratio (/ (the float (- (current-time) charge-time)) SUPER_YELLOW_MAX_CHARGE_TIME)))
-        (if (>= charge-ratio 0.75)
-          (process-spawn tfl-yellow-shot :init tfl-yellow-shot-init-by-other (-> self entity) hand dir 25 (the handle #f) #f :to self)
-          (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) hand dir 25 (the handle #f) :to self)
-          )
+      (if (>= charge-time (seconds 0.5))
+        (process-spawn tfl-yellow-shot :init tfl-yellow-shot-init-by-other (-> self entity) hand dir charge-time :to self)
+        (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) hand dir 25 (the handle #f) :to self)
         )
       )
     )
@@ -1521,7 +1517,7 @@
           (cpad-clear! 0 square)
           (stop! (-> self super-yellow-charge-loop))
           (sound-play "bfg-fire")
-          (process-spawn tfl-yellow-shot :init tfl-yellow-shot-init-by-other (-> self entity) hand forward 25 (the handle #f) #t :to self)
+          (process-spawn tfl-yellow-shot :init tfl-yellow-shot-init-by-other (-> self entity) hand forward SUPER_YELLOW_MAX_CHARGE_TIME :to self)
           (send-event self 'shove #f
             (static-attack-info (
                 (shove-up (meters 1.0))
@@ -1538,7 +1534,7 @@
     (false! (-> self control super-yellow-charge-loop))
     (target-super-yellow-part-reset)
     (if (not (time-elapsed? (-> self control super-yellow-charge-time) SUPER_YELLOW_MAX_CHARGE_TIME))
-      (target-super-yellow-uncharged (-> self control super-yellow-charge-time))
+      (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)))
       )
     )
   )
@@ -1598,7 +1594,7 @@
        (target-super-yellow-charged #f)
        )
       (else
-       (target-super-yellow-uncharged (-> self control super-yellow-charge-time))
+       (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)))
        )
       )
     (if (logtest? (-> self control status) (cshape-moving-flags onsurf))

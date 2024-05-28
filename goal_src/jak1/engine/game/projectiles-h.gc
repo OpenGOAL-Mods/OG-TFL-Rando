@@ -69,7 +69,9 @@
   ((blast-radius float)
    (explode-part sparticle-launch-control)
    (fully-charged? symbol)
+   (charged-time time-frame)
    )
   )
 
-(define-extern tfl-yellow-shot-init-by-other (function entity-actor vector vector uint handle symbol none :behavior tfl-yellow-shot))
+(defglobalconstant SUPER_YELLOW_MAX_CHARGE_TIME (seconds 1.6))
+(define-extern tfl-yellow-shot-init-by-other (function entity-actor vector vector time-frame none :behavior tfl-yellow-shot))
