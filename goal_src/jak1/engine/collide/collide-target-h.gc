@@ -193,6 +193,7 @@
    (super-yellow-scatter-last-fire-time time-frame)
    (super-yellow-scatter-count int32)
    (super-yellow-charge-loop   symbol)
+   (super-yellow-fp-last-fire-time time-frame)
    )
   )
 
