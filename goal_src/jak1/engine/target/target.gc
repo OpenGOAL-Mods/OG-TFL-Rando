@@ -2335,7 +2335,7 @@
       (vector-normalize! dir (-> *TARGET-bank* yellow-projectile-speed))
       (set-time! (-> self control super-yellow-scatter-last-fire-time))
       (1+! (-> self control super-yellow-scatter-count))
-      (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) pos dir 25 (the handle #f) :to self)
+      (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) pos dir 16 (the handle #f) :to self)
       )
     )
   )
