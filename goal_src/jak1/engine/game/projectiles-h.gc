@@ -68,5 +68,8 @@
 (deftype tfl-yellow-shot (projectile)
   ((blast-radius float)
    (explode-part sparticle-launch-control)
+   (fully-charged? symbol)
    )
   )
+
+(define-extern tfl-yellow-shot-init-by-other (function entity-actor vector vector uint handle symbol none :behavior tfl-yellow-shot))
