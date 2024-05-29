@@ -2430,7 +2430,7 @@
     (ja-no-eval :group! trainingcam-ecoventcam-ja :num! (seek!) :frame-num 0.0)
     (until (ja-done? 0)
       (suspend)
-      (ja :num! (seek! max 0.5))
+      (ja :num! (seek! max 2.0))
       )
     (go-virtual pov-camera-done-playing)
     )

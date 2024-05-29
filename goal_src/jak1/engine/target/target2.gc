@@ -562,7 +562,7 @@
                      (cpad-hold? (-> self control unknown-cpad-info00 number) square)
                      )
                  (target-powerup? super-eco-yellow)
-                 (time-elapsed? (-> self control super-yellow-fp-last-fire-time) (seconds 0.1))
+                 (time-elapsed? (-> self control super-yellow-fp-last-fire-time) (seconds 0.25))
                  (not *pause-lock*)
                  )
         (let ((vel (vector-float*!
