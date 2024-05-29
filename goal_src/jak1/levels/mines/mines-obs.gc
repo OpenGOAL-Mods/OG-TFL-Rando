@@ -2415,27 +2415,25 @@
   (none)
   )
 
+(deftype minescam (pov-camera)
+  ()
+  )
+
 (defskelgroup *training-cam-sg* trainingcam trainingcam-lod0-jg -1
               ((trainingcam-lod0-mg (meters 999999)))
               :bounds (static-spherem 0 0 0 80)
               )
 
-(deftype training-cam (process)
-  ((root        trsq)
-   (range       meters)
-   (index       int32)
-   (state-time  time-frame)
-   )
-  (:state-methods
-    idle
-    )
-  )
-
-(defmethod relocate ((this training-cam) (arg0 int))
-  (if (nonzero? (-> this root))
-      (&+! (-> this root) arg0)
+(defstate pov-camera-playing (minescam)
+  :virtual #t
+  :code (behavior ()
+    (ja-no-eval :group! trainingcam-ecoventcam-ja :num! (seek!) :frame-num 0.0)
+    (until (ja-done? 0)
+      (suspend)
+      (ja :num! (seek! max 0.5))
       )
-  (the-as training-cam ((method-of-type process relocate) this arg0))
+    (go-virtual pov-camera-done-playing)
+    )
   )
 
 (deftype mines-battlecontroller (battlecontroller)
@@ -2445,21 +2443,20 @@
 (defstate battlecontroller-play-intro-camera (mines-battlecontroller)
   :virtual #t
   :code (behavior ()
-    (let ((gp-1 (ppointer->handle
-                  (process-spawn pov-camera (static-vectorm -419.82 115.0 1037.7) *training-cam-sg* "ecoventcam" 5 #f '() :to self) ;; TFL note: changed from (-> self root trans)
+    (let ((cam (ppointer->handle
+                  (process-spawn minescam :init pov-camera-init-by-other
+                    (static-vectorm -419.82 115.0 1037.7) ;; TFL note: changed from (-> self root trans)
+                    *training-cam-sg*
+                    "ecoventcam"
+                    5
+                    #f
+                    '()
+                    :to self
+                    )
                   )
             )
           )
-      ;; TFL note: Sending an event to change the camera animation speed:
-      ;; (while (!= (-> (handle->process gp-1) next-state name) 'pov-camera-playing)
-      ;;   (format 0 "pov-camera state: ~A ~%" (-> (handle->process gp-1) state name))
-      ;;   (format 0 "pov-camera next-state: ~A ~%" (-> (handle->process gp-1) next-state name))
-      ;;   (suspend)
-      ;;   )
-      (while (!= (-> (handle->process gp-1) next-state name) 'pov-camera-startup) (suspend))
-      (send-event (handle->process gp-1) 'cam-speed)
-      (format 0 "cam-speed event sent ~%")
-      (while (handle->process (the-as handle gp-1))
+      (while (handle->process cam)
         (suspend)
         )
       )

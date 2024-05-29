@@ -1459,7 +1459,7 @@
     (suspend)
     (ja :num! (seek! (ja-aframe 1.0 0)))
     )
-  (let ((hand (vector<-cspace! (new 'stack-no-clear 'vector) (-> self node-list data 23)))
+  (let ((hand (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node eichar-lod0-jg sk_rhand)))
         (dir (vector-z-quaternion! (new 'stack-no-clear 'vector) (-> self control quat)))
         )
     (set! (-> dir y) 0.0)
