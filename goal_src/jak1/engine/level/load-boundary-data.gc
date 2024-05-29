@@ -1416,28 +1416,6 @@
   :bwd (checkpt "open-mines-kegs" #f)
   )
 
-;; CRASH TEST TEST-ZONE3
-(static-load-boundary :flags ()
-  :top (meters 13.0)  :bot (meters -17.0)
-  :points (  (meters -22.0) (meters 16.0) (meters 8.0) (meters 16.0) )
-  :bwd (load test-zone test-zone3)
-  :fwd (load test-zone village1)
-  )
-
-(static-load-boundary :flags ()
-  :top (meters 13.0)  :bot (meters -17.0)
-  :points (  (meters -22.0) (meters 21.0) (meters 8.0) (meters 21.0) )
-  :bwd (display test-zone display)
-  :fwd (display test-zone3 display)
-  )
-
-(static-load-boundary :flags ()
-  :top (meters 13.0)  :bot (meters -17.0)
-  :points (  (meters -22.0) (meters 1.0) (meters 8.0) (meters 1.0) )
-  :bwd (display test-zone display)
-  :fwd (display village1 display)
-  )
-
 ))
 
 (doarray (i *static-load-boundary-list*)
