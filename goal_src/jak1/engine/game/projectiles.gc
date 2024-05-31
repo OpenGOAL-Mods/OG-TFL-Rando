@@ -1306,7 +1306,7 @@
                         (the vector shot-core)
                         probe
                         40.96
-                        (collide-kind background)
+                        (collide-kind background ground-object)
                         self
                         tri
                         (new 'static 'pat-surface :noentity #x1)
@@ -1335,7 +1335,7 @@
     (let ((prim (-> self root root-prim)))
       (set! (-> prim local-sphere w) (-> self blast-radius))
       (set! (-> prim prim-core world-sphere w) (-> self blast-radius))
-      (set! (-> prim collide-with) (collide-kind cak-2 cak-3 target crate enemy wall-object))
+      (set! (-> prim collide-with) (collide-kind ground-object cak-2 cak-3 target crate enemy wall-object))
       (set! (-> prim prim-core collide-as) (collide-kind enemy))
       )
     (update-transforms! (-> self root))
