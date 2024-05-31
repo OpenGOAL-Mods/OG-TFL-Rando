@@ -58,7 +58,8 @@
     "babak-ag",
     "bonelurker-ag",
     "dark-crystal-ag",
-    "silostep-ag"
+    "silostep-ag",
+    "citb-generator-ag"
   ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -1064,31 +1065,6 @@
   }
 }
 // ENEMIES
-// ,{
-//   "aid": 40002,
-//   "trans": [-433.11, 104.7, 1030.3],
-//   "etype": "babak",
-//   "game_task": 0,
-//   "quat" : [0, 0, 0, 1],
-//   "bsphere": [-433.11, 104.7, 1030.3, 10],
-//   "lump": {
-//     "name": "open-mines-babak-01",
-//     "vis-dist": ["meters", 200.0],
-//     "cam-notice-dist": ["meters", 30.0],
-//     "idle-distance": ["meters", 80.0],
-//     "cam-vert": ["meters", 8.0],
-//     "cam-horz": ["meters", 20.0],
-//     "path": ["vector3m", 
-//         [-426.71, 104.81, 1029.1],
-//         [-438.08, 103.95, 1039.2],
-//         [-435.74, 105.34, 1022.2],
-//         [-426.71, 104.81, 1029.1]
-//       ],
-//     "nav-mesh-sphere": ["vector4m",
-//       [-437.2, 112.6, 995.9, 2.0]
-//       ]
-//   }
-// }
 ,{
   "aid":40002,
   "trans": [-431.83, 104.63, 1040.8],
@@ -1097,8 +1073,8 @@
   "game_task": 140,
   "bsphere": [-431.83, 104.63, 1040.8, 10.0],
   "lump": {
-    "activate-distance":["meters", 4.5],
-    "delay": ["float", 0.10],
+    "activate-distance":["meters", 6.0],
+    "delay": ["float", 0.05],
     "eco-info": ["int32", 9, 2],
     "lurker-type": ["type", "babak","bonelurker"],
     "percent": ["float", 0.75, 0.25],
@@ -1183,78 +1159,72 @@
 }
 ,{
   "trans": [-402.83, 105.1, 1025.0], // translation
-  "etype": "barrel",  // actor type
+  "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
   "bsphere": [-402.83, 105.1, 1025.0, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-01",
-    "crate-type":"'barrel",
     "state-actor":"open-mines-battlecontroller-01",
     "scale":["float", 4.0]
   }
 }
 ,{
   "trans": [-403.88, 103.61, 1043.9], // translation
-  "etype": "crate",  // actor type
+  "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
   "bsphere": [-403.88, 103.61, 1043.9, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-02",
-    "crate-type":"'barrel",
     "state-actor":"open-mines-battlecontroller-01",
     "scale":["float", 4.0]
   }
 }
 ,{
   "trans": [-411.49, 102.28, 1059.3], // translation
-  "etype": "crate",  // actor type
+  "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
   "bsphere": [-411.49, 102.28, 1059.3, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-03",
-    "crate-type":"'barrel",
     "state-actor":"open-mines-battlecontroller-01",
     "scale":["float", 4.0]
   }
 }
 ,{
   "trans": [-449.22, 102.2, 1061.3], // translation
-  "etype": "crate",  // actor type
+  "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
   "bsphere": [-449.22, 102.2, 1061.3, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-04",
-    "crate-type":"'barrel",
     "state-actor":"open-mines-battlecontroller-01",
     "scale":["float", 4.0]
   }
 }
 ,{
   "trans": [-457.13, 103.07, 1048.4], // translation
-  "etype": "crate",  // actor type
+  "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
   "bsphere": [-457.13, 103.07, 1048.4, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-05",
-    "crate-type":"'barrel",
     "state-actor":"open-mines-battlecontroller-01",
     "scale":["float", 4.0]
   }
 }
 ,{
   "trans": [-461.63, 105.07, 1028.2], // translation
-  "etype": "crate",  // actor type
+  "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
   "bsphere": [-461.63, 105.07, 1028.2, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-06",
-    "crate-type":"'barrel",
     "state-actor":"open-mines-battlecontroller-01",
     "scale":["float", 4.0]
   }

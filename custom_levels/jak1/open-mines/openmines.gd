@@ -26,6 +26,7 @@
   "trainingcam-ag.go"
   "dark-crystal-ag.go"
   "silostep-ag.go"
+  "citb-generator-ag.go"
   "misty-conveyor.o"
   "mines-part.o"
   "battlecontroller.o"
