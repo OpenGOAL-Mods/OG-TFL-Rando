@@ -48,30 +48,32 @@
   )
 
 (defbehavior misty-camera-view silostep ()
-  (set! (-> self cam-tracker)
-        (ppointer->handle (process-spawn
-                            camera-tracker
-                            :init camera-tracker-init
-                            (lambda :behavior camera-tracker
-                              ()
-                              (while (not (process-grab? *target*))
-                                (suspend)
-                                )
-                              (camera-change-to "camera-160" 150 #f)
-                              (let ((gp-0 (current-time)))
-                                (until (time-elapsed? gp-0 (seconds 3))
+    (if (not (res-lump-struct (-> self entity) 'ignore-cam symbol)) ;;TFL note: Added res-lump to allow camera to be ignored
+      (set! (-> self cam-tracker)
+          (ppointer->handle (process-spawn
+                              camera-tracker
+                              :init camera-tracker-init
+                              (lambda :behavior camera-tracker
+                                ()
+                                (while (not (process-grab? *target*))
                                   (suspend)
                                   )
+                                (camera-change-to "camera-160" 150 #f)
+                                (let ((gp-0 (current-time)))
+                                  (until (time-elapsed? gp-0 (seconds 3))
+                                    (suspend)
+                                    )
+                                  )
+                                (while (not (process-release? (handle->process (-> self grab-target))))
+                                  (suspend)
+                                  )
+                                (camera-change-to (the-as string 'base) 150 #f)
+                                (none)
                                 )
-                              (while (not (process-release? (handle->process (-> self grab-target))))
-                                (suspend)
-                                )
-                              (camera-change-to (the-as string 'base) 150 #f)
-                              (none)
+                              :to self
                               )
-                            :to self
                             )
-                          )
+          )
         )
   (none)
   )

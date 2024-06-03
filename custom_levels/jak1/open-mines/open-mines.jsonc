@@ -1238,6 +1238,7 @@
   "lump": {
     "name":"open-mines-silostep-01",
     "scale":["float", 1.0],
+    "ignore-cam":["symbol", "#t"],
     "distance":["float", 0.4],
     "next-actor":"open-mines-silostep-02"
   }
@@ -1251,6 +1252,7 @@
   "lump": {
     "name":"open-mines-silostep-02",
     "scale":["float", 1.0],
+    "ignore-cam":["symbol", "#t"],
     "distance":["float", 0.7],
     "prev-actor":"open-mines-silostep-01",
     "next-actor":"open-mines-silostep-03"
@@ -1265,6 +1267,7 @@
   "lump": {
     "name":"open-mines-silostep-03",
     "scale":["float", 1.0],
+    "ignore-cam":["symbol", "#t"],
     "distance":["float", 1.0],
     "prev-actor":"open-mines-silostep-02"
   }
