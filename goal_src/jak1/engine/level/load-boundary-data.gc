@@ -1416,6 +1416,13 @@
   :bwd (checkpt "open-mines-kegs" #f)
   )
 
+(static-load-boundary :flags (closed player)
+  :top (meters 124.2)  :bot (meters 124.2)
+  :points ((meters -491.28)(meters 974.86)  (meters -411.55)(meters 961.56)  (meters -386.25)(meters 1064.9)  (meters -473.96)(meters 1078.1))
+  :fwd (checkpt "open-mines-ambush" #f)
+  :bwd (checkpt "open-mines-ambush" #f)
+  )
+
 ;; CRASH TEST TEST-ZONE3
 (static-load-boundary :flags ()
   :top (meters 13.0)  :bot (meters -17.0)

@@ -2422,6 +2422,20 @@
                                              :lev1 'open-mines
                                              :disp1 'display
                                              )
+                                             (new 'static 'continue-point
+                                             :name "open-mines-ambush"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -456.15) :y (meters 119.97) :z (meters 997.47) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y 0.3696 :z 0.0 :w 0.9291)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 0.7264 0.0000 -0.6872 0.0839 0.9925 0.0887 0.6821 -0.1221 0.7209)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-t
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
                                           )
                            :tasks '(137 138 139 140 141 142 143)
                            :priority 100
