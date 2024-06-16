@@ -1306,7 +1306,7 @@
                         (the vector shot-core)
                         probe
                         40.96
-                        (collide-kind background ground-object)
+                        (collide-kind ground-object)
                         self
                         tri
                         (new 'static 'pat-surface :noentity #x1)

@@ -1417,10 +1417,25 @@
   )
 
 (static-load-boundary :flags (closed player)
-  :top (meters 124.2)  :bot (meters 124.2)
-  :points ((meters -491.28)(meters 974.86)  (meters -411.55)(meters 961.56)  (meters -386.25)(meters 1064.9)  (meters -473.96)(meters 1078.1))
+  :top (meters 120.48)  :bot (meters 120.48)
+  :points ((meters -491.28)(meters 974.86)  
+  (meters -411.55)(meters 961.56)  
+  (meters -384.06)(meters 1051.0)  
+  (meters -401.68)(meters 1054.7)
+  (meters -408.12)(meters 1015.6)
+  (meters -442.31)(meters 1007.6)  
+  (meters -456.82)(meters 1017.0)  
+  (meters -452.50)(meters 1067.2) 
+  (meters -466.50)(meters 1073.6))
   :fwd (checkpt "open-mines-ambush" #f)
   :bwd (checkpt "open-mines-ambush" #f)
+  )
+
+(static-load-boundary :flags (closed player)
+  :top (meters 141.74)  :bot (meters 141.74)
+  :points ((meters -436.64)(meters 1049.3)  (meters -435.94)(meters 1062.7)  (meters -422.5)(meters 1062.0)  (meters -423.2)(meters 1048.6))
+  :fwd (checkpt "open-mines-excavator" #f)
+  :bwd (checkpt "open-mines-excavator" #f)
   )
 
 ;; CRASH TEST TEST-ZONE3

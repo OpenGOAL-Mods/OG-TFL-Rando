@@ -5350,12 +5350,12 @@
     },
     {
       "trans": [12.85, 174.21, 452.66], // translation
-      "etype": "caveflamepots",  // actor type
+      "etype": "crescentflamepots",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [12.85, 174.21, 452.66, 10], // bounding sphere
       "lump": {
-        "name":"crescent-caveflamepots-01",
+        "name":"crescent-crescentflamepots-01",
         "cycle-speed":["float", 5.0, 0.6, 3.0],
         "path":["vector4m",
           [18.57, 174.21, 457.83 , 1.0],
@@ -5366,12 +5366,12 @@
     },
     {
       "trans": [-2.17, 174.21, 448.19], // translation
-      "etype": "caveflamepots",  // actor type
+      "etype": "crescentflamepots",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-2.17, 174.21, 448.19, 10], // bounding sphere
       "lump": {
-        "name":"crescent-caveflamepots-02",
+        "name":"crescent-crescentflamepots-02",
         "cycle-speed":["float", 5.0, 0.0, 3.0],
         "path":["vector4m",
           [-4.25, 174.21, 455.42, 1.0],

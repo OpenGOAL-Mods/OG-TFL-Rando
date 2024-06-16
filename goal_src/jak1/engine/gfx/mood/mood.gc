@@ -3069,3 +3069,45 @@
   0
   (none)
   )
+
+(defun update-mood-open-mines ((arg0 mood-context) (arg1 float) (arg2 int))
+  (when (not (paused?))
+    (clear-mood-times arg0)
+    (set! (-> arg0 times 0 w) 1.0)
+    (update-mood-quick arg0 0 0 0 arg2)
+    (update-mood-itimes arg0)
+    ;;(update-mood-sky-texture arg0 arg1) ;; Break metalic effect for now because no textures
+    ;;(update-mood-palette arg0 arg1 arg2) ;; This update the actor lighting with time of day
+    )
+  ;; CUSTOM LIGHT-INDEX FOR DIFFERENT ACTOR LIGHTING (see update-mood-jungleb) :
+  
+  ;; green spawner Left lighting "light-index": ["int32", 1]
+  (let ((s5-1 (-> arg0 light-group 1)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+    (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
+    (let ((v1-34 (-> s5-1 dir2)))                                                   ;; KEY LIGHT DIRECTION
+      (set! (-> v1-34 direction x) -0.8)
+      (set! (-> v1-34 direction y) 0.9)
+      (set! (-> v1-34 direction z) -0.3)
+      (set! (-> v1-34 direction w) 1.0)
+      )
+    (set-vector! (-> s5-1 dir2 color) 0.0 0.2 0.0 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (set! (-> s5-1 dir2 levels x) 1.0) 
+    (set-vector! (-> s5-1 ambi color) -0.2 0.1 -0.05 1.0)                              ;; COLOR OF THE AMBIANT LIGHT
+    )
+
+  ;; green spawner Right lighting "light-index": ["int32", 2]
+  (let ((s5-1 (-> arg0 light-group 2)))                                             ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+    (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12)    ;; idk?
+    (let ((v1-34 (-> s5-1 dir2)))                                                   ;; KEY LIGHT DIRECTION
+      (set! (-> v1-34 direction x) 0.72)
+      (set! (-> v1-34 direction y) 0.60)
+      (set! (-> v1-34 direction z) -0.38)
+      (set! (-> v1-34 direction w) 1.0)
+      )
+    (set-vector! (-> s5-1 dir2 color) 0.3 0.6 0.3 1.0)                              ;; COLOR OF THE KEY LIGHT
+    (set! (-> s5-1 dir2 levels x) 1.0) 
+    (set-vector! (-> s5-1 ambi color) -0.2 0.1 -0.05 1.0)                               ;; COLOR OF THE AMBIANT LIGHT
+    )
+  0
+  (none)
+  )

@@ -203,15 +203,15 @@
         :origin (new 'static 'vector :x (meters -431.53) :y (meters 104.7) :z (meters 1035.2) :w 1.0000)
         :vertex-count 10
         :vertex (new 'static 'inline-array nav-vertex 10
-                (new 'static 'nav-vertex :x (meters -33.34) :y (meters 2.45) :z (meters -15.02) :w 1.0000) ;; 0
+                (new 'static 'nav-vertex :x (meters -29.96) :y (meters 1.97) :z (meters -21.39) :w 1.0000) ;; 0
                 (new 'static 'nav-vertex :x (meters 21.33) :y (meters 2.91) :z (meters -28.68) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters -28.08) :y (meters 0.74) :z (meters 0.13) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters 28.04) :y (meters 1.23) :z (meters -12.77) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters -24.34) :y (meters -1.05) :z (meters 19.93) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters 27.37) :y (meters -0.16) :z (meters 1.82) :w 1.0000)  ;; 5
-                (new 'static 'nav-vertex :x (meters -12.23) :y (meters -2.56) :z (meters 32.41) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters 12.39) :y (meters -2.76) :z (meters 32.35) :w 1.0000)
-                (new 'static 'nav-vertex :x (meters 26.02) :y (meters -1.48) :z (meters 18.14) :w 1.0000)
+                (new 'static 'nav-vertex :x (meters -27.4) :y (meters 0.85) :z (meters -12.74) :w 1.0000)
+                (new 'static 'nav-vertex :x (meters 27.03) :y (meters 1.10) :z (meters -20.05) :w 1.0000)
+                (new 'static 'nav-vertex :x (meters -24.07) :y (meters -1.48) :z (meters 12.64) :w 1.0000)
+                (new 'static 'nav-vertex :x (meters 27.64) :y (meters -0.28) :z (meters -1.70) :w 1.0000)  ;; 5
+                (new 'static 'nav-vertex :x (meters -14.44) :y (meters -2.19) :z (meters 27.46) :w 1.0000)
+                (new 'static 'nav-vertex :x (meters 17.18) :y (meters -2.06) :z (meters 23.39) :w 1.0000)
+                (new 'static 'nav-vertex :x (meters 24.65) :y (meters -1.53) :z (meters 13.84) :w 1.0000)
                 (new 'static 'nav-vertex :x (meters -13.47) :y (meters 3.31) :z (meters -37.22) :w 1.0000)  ;; 9
         )
         :poly-count 8

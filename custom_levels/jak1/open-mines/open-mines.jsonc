@@ -59,7 +59,10 @@
     "bonelurker-ag",
     "dark-crystal-ag",
     "silostep-ag",
-    "citb-generator-ag"
+    "citb-generator-ag",
+    "lurkerm-piston-ag",
+    "citb-disc-ag",
+    "citb-hose-ag"
   ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -826,6 +829,106 @@
     "name":"open-mines-money-056"
   }
 }
+,{
+  "trans": [-472.52, 126.97, 1018.7], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-472.52, 126.97, 1018.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-057"
+  }
+}
+,{
+  "trans": [-471.43, 128.4, 1012.5], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-471.43, 128.4, 1012.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-058"
+  }
+}
+,{
+  "trans": [-470.43, 129.94, 1006.5], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-470.43, 129.94, 1006.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-059"
+  }
+}
+,{
+  "trans": [-467.19, 131.93, 991.57], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-467.19, 131.93, 991.57, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-060"
+  }
+}
+,{
+  "trans": [-462.75, 131.93, 989.98], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-462.75, 131.93, 989.98, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-061"
+  }
+}
+,{
+  "trans": [-458.44, 131.93, 991.55], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-458.44, 131.93, 991.55, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-062"
+  }
+}
+,{
+  "trans": [-456.48, 131.93, 995.46], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-456.48, 131.93, 995.46, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-063"
+  }
+}
+,{
+  "trans": [-415.77, 129.97, 999.46], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-415.77, 129.97, 999.46, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-064"
+  }
+}
+,{
+  "trans": [-415.77, 132.47, 999.46], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-415.77, 132.47, 999.46, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-065"
+  }
+}
+,{
+  "trans": [-415.77, 134.97, 999.46], // translation
+  "etype": "money",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-415.77, 134.97, 999.46, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-money-066"
+  }
+}
 // MOVEMENT / PLATS
 ,{
   "trans": [-424.64, 139.66, 812.34], // translation
@@ -938,14 +1041,14 @@
   }
 }
 ,{
-  "trans": [-431.29, 102.17, 1061.1], // translation
+  "trans": [-429.07, 102.76, 1056.8], // translation
   "etype": "launcher",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-431.29, 102.17, 1061.1, 10], // bounding sphere
+  "bsphere": [-429.07, 102.76, 1056.8, 10], // bounding sphere
   "lump": {
     "name":"open-mines-launcher-01",
-    "spring-height": ["meters", 60.0]
+    "spring-height": ["meters", 55.0]
   }
 }
 ,{
@@ -995,15 +1098,115 @@
   }
 }
 ,{
-  "trans": [-441.79, 120.47, 982.7], // translation
+  "trans": [-441.55, 120.47, 982.7], // translation
   "etype": "caveelevator",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-441.79, 120.47, 982.7, 10], // bounding sphere
+  "bsphere": [-441.55, 120.47, 982.7, 10], // bounding sphere
   "lump": {
     "name":"open-mines-caveelevator-01",
     "mode":["uint32", 2],
     "sync":["float", 12.0, 0.0]
+  }
+}
+,{
+  "trans": [-472.52, 119.97, 1018.7], // translation
+  "etype": "lurkerm-piston",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-472.52, 119.97, 1018.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-lurkerm-piston-01",
+    "height-info":["meters", -1.5, 3.0],
+    "alt-actor": "mines-battlecontroller-01",
+    "sync":["float", 3.0, 0.0]
+  }
+}
+,{
+  "trans": [-471.43, 119.9, 1012.5], // translation
+  "etype": "lurkerm-piston",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-471.43, 119.9, 1012.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-lurkerm-piston-02",
+    "height-info":["meters", 0.0, 3.0],
+    "alt-actor": "mines-battlecontroller-01",
+    "sync":["float", 3.0, 0.5]
+  }
+}
+,{
+  "trans": [-470.43, 119.94, 1006.5], // translation
+  "etype": "lurkerm-piston",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-470.43, 119.94, 1006.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-lurkerm-piston-03",
+    "height-info":["meters", 1.5, 3.0],
+    "alt-actor": "mines-battlecontroller-01",
+    "sync":["float", 3.0, 0.0]
+  }
+}
+,{
+  "trans": [-425.2, 119.97, 988.19], // translation
+  "etype": "lurkerm-piston",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-425.2, 119.97, 988.19, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-lurkerm-piston-04",
+    "height-info":["meters", -1.5, 3.0],
+    "alt-actor": "mines-battlecontroller-01",
+    "sync":["float", 3.0, 0.0]
+  }
+}
+,{
+  "trans": [-420.17, 119.97, 993.46], // translation
+  "etype": "lurkerm-piston",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-420.17, 119.97, 993.46, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-lurkerm-piston-05",
+    "height-info":["meters", 0.0, 3.0],
+    "alt-actor": "mines-battlecontroller-01",
+    "sync":["float", 3.0, 0.5]
+  }
+}
+,{
+  "trans": [-415.77, 119.97, 999.46], // translation
+  "etype": "lurkerm-piston",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-415.77, 119.97, 999.46, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-lurkerm-piston-06",
+    "height-info":["meters", 1.5, 3.0],
+    "alt-actor": "mines-battlecontroller-01",
+    "sync":["float", 3.0, 0.0]
+  }
+}
+,{
+  "trans": [-462.78, 129.92, 996.31], // translation
+  "etype": "citb-disc-a",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-462.78, 129.92, 996.31, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-citb-disc-a-01",
+    "sync":["float", 9.0, 0.0]
+  }
+}
+,{
+  "trans": [-462.78, 129.92, 996.31], // translation
+  "etype": "citb-disc-a",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
+  "bsphere": [-462.78, 129.92, 996.31, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-citb-disc-a-01b",
+    "sync":["float", 9.0, 0.5]
   }
 }
 // ECO
@@ -1053,27 +1256,27 @@
   }
 }
 ,{
-  "trans": [-431.83, 105.63, 1040.8], // translation
+  "trans": [-430.79, 108.25, 1035.6], // translation
   "etype": "super-eco-crystal",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-431.83, 105.63, 1040.8, 10], // bounding sphere
+  "bsphere": [-430.79, 108.25, 1035.6, 10], // bounding sphere
   "lump": {
     "name": "open-mines-eco-crystal-01-yellow",
     "eco-type": "'yellow",
-    "respawn-timer": ["int32", 12]
+    "respawn-timer": ["int32", 13]
   }
 }
 // ENEMIES
 ,{
   "aid":40002,
-  "trans": [-431.83, 104.63, 1040.8],
+  "trans": [-430.79, 102.75, 1035.6],
   "etype": "mines-battlecontroller",
   "quat": [0.0, 0.0, 0.0, 1.0],
   "game_task": 140,
-  "bsphere": [-431.83, 104.63, 1040.8, 10.0],
+  "bsphere": [-430.79, 102.75, 1035.6, 10.0],
   "lump": {
-    "activate-distance":["meters", 6.0],
+    "activate-distance":["meters", 7.5],
     "delay": ["float", 0.05],
     "eco-info": ["int32", 9, 2],
     "lurker-type": ["type", "babak","bonelurker"],
@@ -1097,10 +1300,16 @@
     "alt-actor":["string",
     "open-mines-silostep-01",
     "open-mines-silostep-02",
-    "open-mines-silostep-03"
+    "open-mines-silostep-03",
+    "open-mines-lurkerm-piston-01",
+    "open-mines-lurkerm-piston-02",
+    "open-mines-lurkerm-piston-03",
+    "open-mines-lurkerm-piston-04",
+    "open-mines-lurkerm-piston-05",
+    "open-mines-lurkerm-piston-06"
     ],
     "movie-mask": 495,
-    "movie-pos":["vector4m", [-431.29, 102.17, 1061.1, 8.0]],
+    "movie-pos":["vector4m", [-429.07, 102.76, 1056.8, 8.0]],
     "path": ["vector3m", 
         [-423.05, 106.67, 1015.6],
         [-421.78, 103.86, 1050.6],
@@ -1108,35 +1317,38 @@
         [-449.27, 106.26, 1017.0],
         [-423.05, 106.67, 1015.6]
       ],
+    "nav-mesh-sphere": ["vector4m",
+        [-430.78, 104.25, 1035.5, 1.5]
+      ],
     "patha": ["vector3m", 
-    [-395.92, 106.88, 1024.8],
-    [-401.67, 113.9, 1024.5],
-    [-408.58, 105.71, 1025.6]
+    [-396.63, 106.68, 1025.1],
+    [-401.98, 113.9, 1025.0],
+    [-412.28, 105.1, 1025.1]
       ],
     "pathb": ["vector3m", 
-    [-398.32, 102.72, 1045.1],
-    [-402.5, 112.72, 1044.3],
-    [-409.47, 104.05, 1043.1]
+    [-398.34, 103.66, 1043.7],
+    [-403.09, 112.9, 1042.6],
+    [-412.6, 103.9, 1039.9]
       ],
     "pathc": ["vector3m", 
-    [-406.51, 101.48, 1063.5],
-    [-409.62, 111.48, 1060.6],
-    [-415.05, 102.98, 1056.5]
+    [-407.04, 102.53, 1061.7],
+    [-411.1, 111.9, 1057.7],
+    [-418.45, 102.83, 1050.4]
       ],
     "pathd": ["vector3m", 
-    [-453.64, 101.39, 1066.6],
-    [-450.92, 111.39, 1063.4],
-    [-447.59, 103.29, 1057.1]
+    [-453.86, 102.43, 1066.0],
+    [-449.32, 111.9, 1061.5],
+    [-442.89, 102.8, 1054.7]
       ],
     "pathe": ["vector3m", 
-    [-463.43, 102.35, 1050.0],
-    [-459.26, 112.35, 1049.2],
-    [-454.88, 104.34, 1047.1]
+    [-461.61, 102.91, 1047.8],
+    [-458.04, 111.9, 1046.8],
+    [-449.53, 103.41, 1044.6]
       ],
     "pathf": ["vector3m", 
-    [-467.99, 103.63, 1030.1],
-    [-463.88, 113.63, 1029.0],
-    [-459.93, 105.22, 1025.9]
+    [-466.52, 105.02, 1029.5],
+    [-461.03, 112.9, 1029.5],
+    [-451.88, 104.75, 1029.4]
       ],
     "play-mode": "'sidekick",
     // ,"sound-name": "sksp0069"
@@ -1145,11 +1357,11 @@
   } 
 }
 ,{
-  "trans": [-431.63, 105.14, 1050.7], // translation
+  "trans": [-430.06, 105.06, 1046.6], // translation
   "etype": "pickup-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-431.63, 105.14, 1050.7, 10], // bounding sphere
+  "bsphere": [-430.06, 105.06, 1046.6, 10], // bounding sphere
   "lump": {
     "name":"open-mines-pickup-spawner-01",
     "eco-info": ["int32", 3, 1],
@@ -1158,75 +1370,429 @@
   }
 }
 ,{
-  "trans": [-402.83, 105.1, 1025.0], // translation
+  "trans": [-401.8, 108.48, 1024.99], // translation
   "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
   "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-402.83, 105.1, 1025.0, 10], // bounding sphere
+  "bsphere": [-401.8, 108.48, 1024.99, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-01",
     "state-actor":"open-mines-battlecontroller-01",
-    "scale":["float", 4.0]
+    "alt-actor":["string",
+    "open-mines-mines-hose-01",
+    "open-mines-mines-hose-02",
+    "open-mines-mines-hose-03",
+    "open-mines-mines-hose-04"
+    ],
+    "scale":["float", 1.5],
+    "light-index": ["int32", 1]
   }
 }
 ,{
-  "trans": [-403.88, 103.61, 1043.9], // translation
+  "trans": [-402.95, 107.48, 1042.6], // translation
   "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
-  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-403.88, 103.61, 1043.9, 10], // bounding sphere
+  "quat" : [0.0, -0.131, 0.0, 0.991], // quaternion
+  "bsphere": [-402.95, 107.48, 1042.6, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-02",
     "state-actor":"open-mines-battlecontroller-01",
-    "scale":["float", 4.0]
+    "alt-actor":["string",
+    "open-mines-mines-hose-05",
+    "open-mines-mines-hose-06",
+    "open-mines-mines-hose-07",
+    "open-mines-mines-hose-08"
+    ],
+    "scale":["float", 1.5],
+    "light-index": ["int32", 1]
   }
 }
 ,{
-  "trans": [-411.49, 102.28, 1059.3], // translation
+  "trans": [-410.97, 106.48, 1057.8], // translation
   "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
-  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-411.49, 102.28, 1059.3, 10], // bounding sphere
+  "quat" : [0.0, -0.383, 0.0, 0.924], // quaternion
+  "bsphere": [-410.97, 106.48, 1057.8, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-03",
     "state-actor":"open-mines-battlecontroller-01",
-    "scale":["float", 4.0]
+    "alt-actor":["string",
+    "open-mines-mines-hose-09",
+    "open-mines-mines-hose-10",
+    "open-mines-mines-hose-11",
+    "open-mines-mines-hose-12"
+    ],
+    "scale":["float", 1.5],
+    "light-index": ["int32", 1]
   }
 }
 ,{
-  "trans": [-449.22, 102.2, 1061.3], // translation
+  "trans": [-449.45, 106.48, 1061.6], // translation
   "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
-  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-449.22, 102.2, 1061.3, 10], // bounding sphere
+  "quat" : [0.0, -0.924, 0.0, 0.383], // quaternion
+  "bsphere": [-449.45, 106.48, 1061.6, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-04",
     "state-actor":"open-mines-battlecontroller-01",
-    "scale":["float", 4.0]
+    "alt-actor":["string",
+    "open-mines-mines-hose-13",
+    "open-mines-mines-hose-14",
+    "open-mines-mines-hose-15",
+    "open-mines-mines-hose-16"
+    ],
+    "scale":["float", 1.5],
+    "light-index": ["int32", 2]
   }
 }
 ,{
-  "trans": [-457.13, 103.07, 1048.4], // translation
+  "trans": [-458.19, 106.48, 1046.8], // translation
   "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
-  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-457.13, 103.07, 1048.4, 10], // bounding sphere
+  "quat" : [0.0, -0.991, 0.0, 0.131], // quaternion
+  "bsphere": [-458.19, 106.48, 1046.8, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-05",
     "state-actor":"open-mines-battlecontroller-01",
-    "scale":["float", 4.0]
+    "alt-actor":["string",
+    "open-mines-mines-hose-17",
+    "open-mines-mines-hose-18",
+    "open-mines-mines-hose-19",
+    "open-mines-mines-hose-20"
+    ],
+    "scale":["float", 1.5],
+    "light-index": ["int32", 2]
   }
 }
 ,{
-  "trans": [-461.63, 105.07, 1028.2], // translation
+  "trans": [-461.2, 107.48, 1029.5], // translation
   "etype": "battle-spawner",  // actor type
   "game_task": 140, // associated game task (for powercells, etc)
-  "quat" : [0.0, 0.0, 0.0, 1.0], // quaternion
-  "bsphere": [-461.63, 105.07, 1028.2, 10], // bounding sphere
+  "quat" : [0.0, -1.0, 0.0, 0.0], // quaternion
+  "bsphere": [-461.2, 107.48, 1029.5, 10], // bounding sphere
   "lump": {
     "name":"open-mines-battlespawner-06",
     "state-actor":"open-mines-battlecontroller-01",
-    "scale":["float", 4.0]
+    "alt-actor":["string",
+    "open-mines-mines-hose-21",
+    "open-mines-mines-hose-22",
+    "open-mines-mines-hose-23",
+    "open-mines-mines-hose-24"
+    ],
+    "scale":["float", 1.5],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-400.9, 109.63, 1026.8], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.500, 0.0, 0.866], // quaternion
+  "bsphere": [-400.9, 109.63, 1026.8, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-01",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-400.9, 109.63, 1026.8], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.500, 0.0, 0.866, 0.0], // quaternion
+  "bsphere": [-400.9, 109.63, 1026.8, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-02",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-400.9, 109.63, 1023.2], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.866, 0.0, 0.500], // quaternion
+  "bsphere": [-400.9, 109.63, 1023.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-03",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-400.9, 109.63, 1023.2], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.866, 0.0, 0.500, 0.0], // quaternion
+  "bsphere": [-400.9, 109.63, 1023.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-04",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-402.54, 108.63, 1044.6], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.609, 0.0, 0.793], // quaternion
+  "bsphere": [-402.54, 108.63, 1044.6, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-05",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-402.54, 108.63, 1044.6], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.609, 0.0, 0.793, 0.0], // quaternion
+  "bsphere": [-402.54, 108.63, 1044.6, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-06",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-401.61, 108.63, 1041.1], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.924, 0.0, 0.383], // quaternion
+  "bsphere": [-401.61, 108.63, 1041.1, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-07",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-401.61, 108.63, 1041.1], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.924, 0.0, 0.383, 0.0], // quaternion
+  "bsphere": [-401.61, 108.63, 1041.1, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-08",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-411.61, 107.63, 1059.7], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.793, 0.0, 0.609], // quaternion
+  "bsphere": [-411.61, 107.63, 1059.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-09",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-411.61, 107.63, 1059.7], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.793, 0.0, 0.609, 0.0], // quaternion
+  "bsphere": [-411.61, 107.63, 1059.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-10",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-409.06, 107.63, 1057.2], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.991, 0.0, 0.131], // quaternion
+  "bsphere": [-409.06, 107.63, 1057.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-11",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-409.06, 107.63, 1057.2], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.991, 0.0, 0.131, 0.0], // quaternion
+  "bsphere": [-409.06, 107.63, 1057.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-12",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 1]
+  }
+}
+,{
+  "trans": [-451.36, 107.63, 1060.98], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.991, 0.0, -0.131], // quaternion
+  "bsphere": [-451.36, 107.63, 1060.98, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-13",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-451.36, 107.63, 1060.98], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.991, 0.0, -0.131, 0.0], // quaternion
+  "bsphere": [-451.36, 107.63, 1060.98, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-14",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-448.82, 107.63, 1063.5], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.793, 0.0, -0.609], // quaternion
+  "bsphere": [-448.82, 107.63, 1063.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-15",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-448.82, 107.63, 1063.5], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.793, 0.0, -0.609, 0.0], // quaternion
+  "bsphere": [-448.82, 107.63, 1063.5, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-16",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-459.52, 107.63, 1045.3], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.924, 0.0, -0.383], // quaternion
+  "bsphere": [-459.52, 107.63, 1045.3, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-17",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-459.52, 107.63, 1045.3], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.924, 0.0, -0.383, 0.0], // quaternion
+  "bsphere": [-459.52, 107.63, 1045.3, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-18",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-458.59, 107.63, 1048.8], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.609, 0.0, -0.793], // quaternion
+  "bsphere": [-458.59, 107.63, 1048.8, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-19",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-458.59, 107.63, 1048.8], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.609, 0.0, -0.793, 0.0], // quaternion
+  "bsphere": [-458.59, 107.63, 1048.8, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-20",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-462.1, 108.63, 1027.7], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.866, 0.0, -0.500], // quaternion
+  "bsphere": [-462.1, 108.63, 1027.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-21",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-462.1, 108.63, 1027.7], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.866, 0.0, -0.500, 0.0], // quaternion
+  "bsphere": [-462.1, 108.63, 1027.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-22",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-462.1, 108.63, 1031.3], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [0.0, -0.500, 0.0, -0.866], // quaternion
+  "bsphere": [-462.1, 108.63, 1031.3, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-23",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
+  }
+}
+,{
+  "trans": [-462.1, 108.63, 1031.3], // translation
+  "etype": "mines-hose",  // actor type
+  "game_task": 140, // associated game task (for powercells, etc)
+  "quat" : [-0.500, 0.0, -0.866, 0.0], // quaternion
+  "bsphere": [-462.1, 108.63, 1031.3, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-hose-24",
+    "state-actor":"open-mines-battlecontroller-01",
+    "scale":["float", 0.35],
+    "light-index": ["int32", 2]
   }
 }
 ,{
@@ -1641,19 +2207,57 @@
     ,"next-actor":"open-mines-tfl-firehose-08"
   }
 }
-// ,{
-//   "trans": [-643.75, 161.68, 1041.1], // translation
-//   "etype": "tfl-firehose",  // actor type
-//   "game_task": 0, // associated game task (for powercells, etc)
-//   "quat" : [0, 0, 0, 1], // quaternion
-//   "bsphere": [-643.75, 161.68, 1041.1, 10], // bounding sphere
-//   "lump": {
-//     "name":"open-mines-tfl-firehose-08",
-//     "scale": ["float", 1.0],
-//     "idle-distance": ["meters", 150.0], // Default: 70.0
-//     "prev-actor":"open-mines-tfl-firehose-07"
-//   }
-// }
+,{
+  "trans": [-424.98, 103.48, 1019.4], // translation
+  "etype": "minesflamepots",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-424.98, 103.48, 1019.4, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-minesflamepots-01",
+    "cycle-speed":["float", 7.0, 0.0, 5.0],
+    "path":["vector4m",
+      [-429.73, 105.51, 1017.7 , 1.0],
+      [-422.94, 105.73, 1014.5 , 1.0],
+      [-419.63, 105.43, 1021.2 , 1.0],
+      [-426.81, 105.11, 1025.0 , 1.0]
+    ]
+  }
+}
+,{
+  "trans": [-418.51, 101.3, 1045.6], // translation
+  "etype": "minesflamepots",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-418.51, 101.3, 1045.6, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-minesflamepots-02",
+    "cycle-speed":["float", 7.0, 0.33, 5.0],
+    "path":["vector4m",
+      [-424.72, 103.04, 1045.6 , 1.0],
+      [-418.41, 103.73, 1039.8 , 1.0],
+      [-412.19, 103.54, 1045.4 , 1.0],
+      [-418.41, 102.78, 1051.3 , 1.0]
+    ]
+  }
+}
+,{
+  "trans": [-445.08, 101.96, 1039.2], // translation
+  "etype": "minesflamepots",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-445.08, 101.96, 1039.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-minesflamepots-03",
+    "cycle-speed":["float", 7.0, 0.66, 5.0],
+    "path":["vector4m",
+      [-451.05, 103.85, 1040.4 , 1.0],
+      [-449.21, 104.43, 1033.2 , 1.0],
+      [-439.22, 104.03, 1038.1 , 1.0],
+      [-444.48, 103.45, 1045.2 , 1.0]
+    ]
+  }
+}
 ,{
   "trans": [-554.94, 146.06, 1007.3], // translation
   "etype": "mayorgears",  // actor type
@@ -1799,6 +2403,45 @@
   }
 }
 /// PARTICLES
+,{
+  "trans": [-424.98, 104.48, 1019.4], // translation
+  "etype": "mines-part",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-424.98, 104.48, 1019.4, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-smokeVent-ground-01",
+    "art-name":"group-mines-smokeVent-ground",
+    "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+    "cycle-speed": ["float", -1.0, 0.0]
+  }
+}
+,{
+  "trans": [-418.45, 102.33, 1045.7], // translation
+  "etype": "mines-part",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-418.45, 102.33, 1045.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-smokeVent-ground-02",
+    "art-name":"group-mines-smokeVent-ground",
+    "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+    "cycle-speed": ["float", -1.0, 0.0]
+  }
+}
+,{
+  "trans": [-445.15, 103.01, 1039.2], // translation
+  "etype": "mines-part",  // actor type
+  "game_task": 0, // associated game task (for powercells, etc)
+  "quat" : [0, 0, 0, 1], // quaternion
+  "bsphere": [-445.15, 103.01, 1039.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-smokeVent-ground-03",
+    "art-name":"group-mines-smokeVent-ground",
+    "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+    "cycle-speed": ["float", -1.0, 0.0]
+  }
+}
 ,{
   "trans": [-504.1, 173.01, 830.77], // translation
   "etype": "mines-part",  // actor type

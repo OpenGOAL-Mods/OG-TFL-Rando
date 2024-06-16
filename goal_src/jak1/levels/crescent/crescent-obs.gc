@@ -552,7 +552,7 @@
   (none)
   )
 
-(deftype caveflamepots (process-drawable)
+(deftype crescentflamepots (process-drawable)
   ((root                collide-shape :override)
    (shove-up            float)
    (cycle-speed         int32)
@@ -563,35 +563,11 @@
    (launch-pos          vector         2 :inline)
    )
   (:states
-    caveflamepots-active
+    crescentflamepots-active
     )
   )
 
-(defpart 704
-  :init-specs ((:texture (new 'static 'texture-id :page #x2))
-    (:num 1.0)
-    (:x (meters -1.2) (meters 2.4))
-    (:z (meters -1.2) (meters 2.4))
-    (:scale-x (meters 4))
-    (:rot-z (degrees -180) (degrees 360))
-    (:scale-y :copy scale-x)
-    (:r 128.0)
-    (:g 128.0)
-    (:b 0.0)
-    (:a 128.0)
-    (:vel-y (meters 0.06) (meters 0.015))
-    (:scalevel-x (meters -0.0039999997))
-    (:rotvel-z (degrees -1.8) (degrees 1.8))
-    (:scalevel-y :copy scalevel-x)
-    (:fade-g -0.8)
-    (:fade-a -0.55333335)
-    (:accel-y (meters -0.0006))
-    (:timer (seconds 16.68))
-    (:flags (bit2 bit3))
-    )
-  )
-
-(defstate caveflamepots-active (caveflamepots)
+(defstate crescentflamepots-active (crescentflamepots)
   :event (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
     (case event-type
       (('touch 'attack)
@@ -641,7 +617,7 @@
       (cond
         ((< gp-0 a0-1)
          (when (sphere-in-view-frustum? (the sphere (-> self root root-prim prim-core)))
-           (launch-particles (-> *part-id-table* 704) (the vector (-> self launch-pos)))
+           (launch-particles (-> *part-id-table* 3303) (the vector (-> self launch-pos)))
            )
          (when (-> self should-play-sound?)
            (set! (-> self should-play-sound?) #f)
@@ -686,7 +662,7 @@
     )
   )
 
-(defmethod init-from-entity! ((this caveflamepots) (arg0 entity-actor))
+(defmethod init-from-entity! ((this crescentflamepots) (arg0 entity-actor))
   (local-vars (sv-16 res-tag) (sv-32 res-tag) (sv-48 res-tag))
   (set! (-> this was-deadly?) #f)
   (set! (-> this should-play-sound?) #f)
@@ -796,7 +772,7 @@
             )
       )
     )
-  (go caveflamepots-active)
+  (go crescentflamepots-active)
   (none)
   )
 

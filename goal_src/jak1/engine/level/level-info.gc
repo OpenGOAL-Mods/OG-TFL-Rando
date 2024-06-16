@@ -2376,7 +2376,7 @@
                            :music-bank #f
                            :ambient-sounds '()
                            :mood '*open-mines-mood*
-                           :mood-func 'update-mood-crescent-top
+                           :mood-func 'update-mood-open-mines
                            :ocean '*ocean-map-village1*
                            :sky #t
                            :continues '(
@@ -2425,10 +2425,24 @@
                                              (new 'static 'continue-point
                                              :name "open-mines-ambush"
                                              :level 'open-mines
-                                             :trans (new 'static 'vector :x (meters -456.15) :y (meters 119.97) :z (meters 997.47) :w 1.0)
+                                             :trans (new 'static 'vector :x (meters -450.7912) :y (meters 119.9726) :z (meters 995.6315) :w 1.0)
                                              :quat (new 'static 'quaternion  :x 0.0 :y 0.3696 :z 0.0 :w 0.9291)
                                              :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
-                                             :camera-rot (new 'static 'array float 9 0.7264 0.0000 -0.6872 0.0839 0.9925 0.0887 0.6821 -0.1221 0.7209)
+                                             :camera-rot (new 'static 'array float 9 0.8817 0.0000 -0.4718 0.0568 0.9927 0.1062 0.4683 -0.1204 0.8752)
+                                             :load-commands '()
+                                             :vis-nick 'opm
+                                             :lev0 'crescent-t
+                                             :disp0 'display
+                                             :lev1 'open-mines
+                                             :disp1 'display
+                                             )
+                                             (new 'static 'continue-point
+                                             :name "open-mines-excavator"
+                                             :level 'open-mines
+                                             :trans (new 'static 'vector :x (meters -429.1280) :y (meters 146.5304) :z (meters 1061.1166) :w 1.0)
+                                             :quat (new 'static 'quaternion  :x 0.0 :y -0.0634 :z 0.0 :w -0.9979)
+                                             :camera-trans (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+                                             :camera-rot (new 'static 'array float 9 0.9997 0.0000 -0.0226 0.0031 0.9904 0.1377 0.0224 -0.1378 0.9902)
                                              :load-commands '()
                                              :vis-nick 'opm
                                              :lev0 'crescent-t
