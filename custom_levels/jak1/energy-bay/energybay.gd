@@ -26,6 +26,9 @@
   "lurkerworm-ag.go"
   "lurkerpuppy.o"
   "lurkerpuppy-ag.go"
+  "bully.o"
+  "bully-ag.go"
+  "sharkey-ag.go"
   "twister.o"
   "energy-bay.go"
  ))
