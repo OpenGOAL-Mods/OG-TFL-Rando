@@ -3155,7 +3155,6 @@
 
     // ENEMIES
     ,{
-      "aid": 40001,
       "trans": [-157.47, 89.72, -9.16],
       "etype": "babak",
       "game_task": 0,
@@ -3176,7 +3175,8 @@
           ],
         "nav-mesh-sphere": ["vector4m",
           [-180.91, 89.52, -1.94, 2.0]
-          ]
+          ],
+        "custom-nav": ["symbol", "crystalc-start"]
       }
     }
 

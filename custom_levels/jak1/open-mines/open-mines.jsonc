@@ -1269,7 +1269,6 @@
 }
 // ENEMIES
 ,{
-  "aid":40002,
   "trans": [-430.79, 102.75, 1035.6],
   "etype": "mines-battlecontroller",
   "quat": [0.0, 0.0, 0.0, 1.0],
@@ -1352,8 +1351,9 @@
       ],
     "play-mode": "'sidekick",
     // ,"sound-name": "sksp0069"
-    "text-id": 675
+    "text-id": 675,
     // ,"trigger-actor": [5251, 5252, 12534]
+    "custom-nav": ["symbol", "mines-ambush"]
   } 
 }
 ,{
