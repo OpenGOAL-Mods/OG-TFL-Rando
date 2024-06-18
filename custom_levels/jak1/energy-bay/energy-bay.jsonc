@@ -42,7 +42,8 @@
     "shortcut-boulder-ag",
     "dark-crystal-ag",
     "balloonlurker-ag",
-    "lurkerworm-ag"
+    "lurkerworm-ag",
+    "lurkerpuppy-ag"
     ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -3115,9 +3116,53 @@
             "name":"energy-bay-lurkerworm-06"
             ,"scale":["float", 1.5]
           }
-        },
+        }
+        ,{
+          "aid": 40003,
+          "trans": [889.69, 39.16, 630.57],
+          "etype": "lurkerpuppy",
+          "game_task": 0,
+          "quat" : [0, 0, 0, 1],
+          "bsphere": [889.69, 39.16, 630.57, 10],
+          "lump": {
+            "name": "energy-bay-lurkerpuppy-01",
+            "vis-dist": ["meters", 200.0],
+            "cam-notice-dist": ["meters", 30.0],
+            "idle-distance": ["meters", 80.0],
+            "cam-vert": ["meters", 8.0],
+            "cam-horz": ["meters", 20.0],
+            "path": ["vector3m", 
+                [895.93, 40.00, 635.00],
+                [882.34, 40.50, 637.56],
+                [889.54, 37.99, 622.97],
+                [895.93, 40.00, 635.00]
+              ]
+          }
+        }
+        ,{
+          "trans": [911.86, 43.28, 642.57],
+          "etype": "lurkerpuppy",
+          "game_task": 0,
+          "quat" : [0, 0, 0, 1],
+          "bsphere": [911.86, 43.28, 642.57, 10],
+          "lump": {
+            "name": "energy-bay-lurkerpuppy-02",
+            "vis-dist": ["meters", 200.0],
+            "cam-notice-dist": ["meters", 30.0],
+            "idle-distance": ["meters", 80.0],
+            "cam-vert": ["meters", 8.0],
+            "cam-horz": ["meters", 20.0],
+            "nav-mesh-actor": "energy-bay-lurkerpuppy-01",
+            "path": ["vector3m", 
+                [905.85, 42.46, 647.52],
+                [911.98, 42.82, 631.63],
+                [917.92, 43.36, 650.09],
+                [905.85, 42.46, 647.52]
+              ]
+          }
+        }
         // OTHER
-        {
+        ,{
           "trans": [646.54, 48.05, 557.63], // translation
           "etype": "orb-cache-top",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
