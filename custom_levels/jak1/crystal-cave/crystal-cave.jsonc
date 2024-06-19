@@ -262,6 +262,552 @@
         "water-height": ["float", 355768.72, 0.0, 0.0]
       }
     }
+    ,{
+      "trans": [-333.09, 69.65, -98.53],
+      "etype": "tfl-cave-trap",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-333.09, 69.65, -98.53, 10],
+      "lump": {
+        "name": "crystalc-cave-trap-01",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path": ["vector3m", 
+            [-326.25, 75.40, -74.37],
+            [-335.29, 67.56, -113.56],
+            [-309.87, 62.27, -126.6],
+            [-324.91, 67.58, -107.03],
+            [-325.86, 69.85, -97.10],
+            [-312.59, 71.67, -85.85],
+            [-326.25, 75.40, -74.37]
+          ],
+        "nav-mesh-sphere": ["vector4m",
+          [-320.88, 64.37, -134.83, 2.0],
+          [-311.87, 62.17, -139.63, 2.0],
+          [-304.56, 62.36, -145.07, 1.5]
+          ],
+        "alt-actor":["string", 
+        "crystalc-spider-vent-01",
+        "crystalc-spider-egg-01",
+        "crystalc-spider-egg-02",
+        "crystalc-spider-egg-03",
+        "crystalc-spider-egg-04",
+        "crystalc-spider-egg-05",
+        "crystalc-spider-egg-06",
+        "crystalc-spider-egg-07",
+        "crystalc-spider-egg-08",
+        "crystalc-spider-egg-09",
+        "crystalc-spider-egg-10",
+        "crystalc-spider-egg-11",
+        "crystalc-spider-egg-12",
+        "crystalc-spider-egg-13",
+        "crystalc-spider-egg-14",
+        "crystalc-spider-egg-15",
+        "crystalc-spider-egg-16",
+        "crystalc-spider-egg-17",
+        "crystalc-spider-egg-18",
+        "crystalc-spider-egg-19",
+        "crystalc-spider-egg-20",
+        "crystalc-spider-egg-21",
+        "crystalc-spider-egg-22",
+        "crystalc-spider-egg-23",
+        "crystalc-spider-egg-24",
+        "crystalc-spider-egg-25"
+          ],
+        "nav-max-users": 20,
+        "custom-nav": ["symbol", "crystalc-spider"]
+        ,"light-index": ["int32", 2]
+      }
+    }
+    // ,{
+    //   "trans": [-356.09, 64.82, -122.17],
+    //   "etype": "spider-vent",
+    //   "game_task": 0,
+    //   "quat" : [0, 0, 0, 1],
+    //   "bsphere": [-356.09, 64.82, -122.17, 10],
+    //   "lump": {
+    //     "name": "crystalc-spider-vent-01"
+    //     ,"light-index": ["int32", 2]
+    //   }
+    // }
+    ,{
+      "trans": [-330.4, 70.51, -93.56],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-330.4, 70.51, -93.56, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-01",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-321.25, 70.83, -92.03],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-321.25, 70.83, -92.03, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-02",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-338.17, 66.87, -121.09],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-338.17, 66.87, -121.09, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-03",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-316.44, 62.92, -133.28],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-316.44, 62.92, -133.28, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-04",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-320.27, 64.30, -124.83],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-320.27, 64.30, -124.83, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-05",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-310.12, 62.78, -123.17],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-310.12, 62.78, -123.17, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-06",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-307.22, 61.66, -132.17],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-307.22, 61.66, -132.17, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-07",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-310.98, 64.06, -146.05],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-310.98, 64.06, -146.05, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-08",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-321.88, 65.79, -143.94],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-321.88, 65.79, -143.94, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-09",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-300.37, 62.19, -141.41],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-300.37, 62.19, -141.41, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-10",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-325.95, 68.66, 102.62],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-325.95, 68.66, 102.62, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-11",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-310.72, 70.97, -88.87],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-310.72, 70.97, -88.87, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-12",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-320.21, 72.6, -83.30],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-320.21, 72.6, -83.30, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-13",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-332.06, 74.88, -75.84],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-332.06, 74.88, -75.84, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-14",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-318.07, 75.76, -72.07],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-318.07, 75.76, -72.07, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-15",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-304.65, 71.46, -83.69],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-304.65, 71.46, -83.69, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-16",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-309.99, 64.31, -111.48],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-309.99, 64.31, -111.48, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-17",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-316.66, 63.55, -119.12],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-316.66, 63.55, -119.12, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-18",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-326.55, 65.68, -116.56],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-326.55, 65.68, -116.56, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-19",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-313.68, 61.95, -127.92],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-313.68, 61.95, -127.92, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-20",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-330.82, 71.47, -86.78],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-330.82, 71.47, -86.78, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-21",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-322.52, 74.03, -78.32],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-322.52, 74.03, -78.32, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-22",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-359.0, 66.58, -108.01],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-359.0, 66.58, -108.01, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-23",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-356.21, 65.64, -116.4],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-356.21, 65.64, -116.4, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-24",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
+    ,{
+      "trans": [-316.45, 71.06, -88.32],
+      "etype": "spider-egg",
+      "game_task": 0,
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [-316.45, 71.06, -88.32, 10],
+      "lump": {
+        "name": "crystalc-spider-egg-25",
+        "vis-dist": ["meters", 200.0],
+        "cam-notice-dist": ["meters", 30.0],
+        "idle-distance": ["meters", 80.0],
+        "cam-vert": ["meters", 8.0],
+        "cam-horz": ["meters", 20.0],
+        "path-actor": "crystalc-cave-trap-01",
+        "nav-mesh-actor": "crystalc-cave-trap-01",
+        "alt-actor":"crystalc-cave-trap-01"
+        ,"light-index": ["int32", 2]
+      }
+    }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################

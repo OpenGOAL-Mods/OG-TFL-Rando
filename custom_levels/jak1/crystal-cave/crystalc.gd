@@ -38,6 +38,7 @@
   "baby-spider-ag.go"
   "spider-egg.o"
   "spider-egg-ag.go"
+  "mother-spider-egg.o"
   "crystal-cave.go"
     )
   )
