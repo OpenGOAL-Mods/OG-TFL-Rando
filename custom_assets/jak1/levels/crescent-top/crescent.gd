@@ -18,10 +18,10 @@
   "crescent-part.o"
   "bouncer.o" ; springbox
   "wall-plat.o" ; moving in and out of the wall
-  "plat-ag.go" 
-  "orb-cache-top-ag.go" 
+  "plat-ag.go"
+  "orb-cache-top-ag.go"
   "lavabase-ag.go"
-  "lavafall-ag.go" 
+  "lavafall-ag.go"
   "hutlamp-ag.go"
   "bounceytarp-ag.go"
   "pusher-ag.go"

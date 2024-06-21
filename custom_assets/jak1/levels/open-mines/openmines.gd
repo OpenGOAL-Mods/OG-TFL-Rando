@@ -36,5 +36,5 @@
   "bonelurker.o"
   "misty-warehouse.o"
   "mines-obs.o"
-  "open-mines.go" 
+  "open-mines.go"
  ))
