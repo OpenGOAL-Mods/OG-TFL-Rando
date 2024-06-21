@@ -1355,11 +1355,11 @@
                                               (if (< eco-time 0.2) a3-0 g)
                                               (if (< eco-time 0.2) t0-0 b)
                                               arg2)))
-  (let ((f0-3 (-> *hud-parts* power 0 scale-blue))) (set! (-> arg2 init-pos x) f0-3) (set! (-> arg2 pos x) f0-3))
+  (let ((f0-3 (-> *hud-parts* power 0 scale-blue))) (set! (-> arg2 vector 0 w) f0-3) (set! (-> arg2 vector 1 w) f0-3))
   0
   (none))
 
-(defun part-hud-eco-timer-02-func ((arg0 basic) (arg1 basic) (arg2 hud-particle))
+(defun part-hud-eco-timer-02-func ((arg0 sparticle-system) (arg1 sparticle-cpuinfo) (arg2 matrix))
   (let ((f0-2 (/ (the float
                       (the-as uint
                               (- (-> *target* fact eco-timeout)
@@ -1438,11 +1438,11 @@
                                               (if (< eco-time 0.2) a3-0 g)
                                               (if (< eco-time 0.2) t0-0 b)
                                               arg2)))
-  (let ((f0-3 (-> *hud-parts* power 0 scale-blue))) (set! (-> arg2 init-pos x) f0-3) (set! (-> arg2 pos x) f0-3))
+  (let ((f0-3 (-> *hud-parts* power 0 scale-blue))) (set! (-> arg2 vector 0 w) f0-3) (set! (-> arg2 vector 1 w) f0-3))
   0
   (none))
 
-(defun part-hud-eco-timer-03-func ((arg0 basic) (arg1 basic) (arg2 hud-particle))
+(defun part-hud-eco-timer-03-func ((arg0 sparticle-system) (arg1 sparticle-cpuinfo) (arg2 matrix))
   (let ((f0-2 (/ (the float
                       (the-as uint
                               (- (-> *target* fact eco-timeout)
@@ -1521,17 +1521,17 @@
                                               (if (< eco-time 0.2) a3-0 g)
                                               (if (< eco-time 0.2) t0-0 b)
                                               arg2)))
-  (let ((f0-3 (-> *hud-parts* power 0 scale-blue))) (set! (-> arg2 init-pos x) f0-3) (set! (-> arg2 pos x) f0-3))
+  (let ((f0-3 (-> *hud-parts* power 0 scale-blue))) (set! (-> arg2 vector 0 w) f0-3) (set! (-> arg2 vector 1 w) f0-3))
   0
   (none))
 
-(defun part-hud-eco-timer-backing-func ((arg0 basic) (arg1 basic) (arg2 hud-particle))
-  (let ((f0-0 (-> *hud-parts* power 0 scale-backing))) (set! (-> arg2 init-pos x) f0-0) (set! (-> arg2 pos x) f0-0))
+(defun part-hud-eco-timer-backing-func ((arg0 sparticle-system) (arg1 sparticle-cpuinfo) (arg2 matrix))
+  (let ((f0-0 (-> *hud-parts* power 0 scale-backing))) (set! (-> arg2 vector 0 w) f0-0) (set! (-> arg2 vector 1 w) f0-0))
   0
   (none))
 
-(defun part-hud-eco-timer-func ((arg0 basic) (arg1 basic) (arg2 hud-particle))
-  (let ((f0-0 (-> *hud-parts* power 0 scale-timer))) (set! (-> arg2 init-pos x) f0-0) (set! (-> arg2 pos x) f0-0))
+(defun part-hud-eco-timer-func ((arg0 sparticle-system) (arg1 sparticle-cpuinfo) (arg2 matrix))
+  (let ((f0-0 (-> *hud-parts* power 0 scale-timer))) (set! (-> arg2 vector 0 w) f0-0) (set! (-> arg2 vector 1 w) f0-0))
   0
   (none))
 

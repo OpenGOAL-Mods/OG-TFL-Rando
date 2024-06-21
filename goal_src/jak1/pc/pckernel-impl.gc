@@ -15,37 +15,6 @@
 ;;;; types and enums
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; cheats
-;; TFL note: increased number of cheats
-(defconstant PC_CHEAT_MAX 22) ;; number of cheats
-
-(defenum pc-cheats
-  :bitfield #t
-  :type uint64
-  (eco-green)
-  (eco-red)
-  (eco-blue)
-  (eco-yellow)
-  ;; TFL note: added super eco
-  (super-eco-green)
-  (super-eco-red)
-  (super-eco-blue)
-  (super-eco-yellow)
-  (invinc)
-  (sidekick-blue)
-  (tunes)
-  (sky)
-  (mirror)
-  (big-head)
-  (small-head)
-  (big-fist)
-  (no-tex)
-  (hard-rats)
-  (hero-mode)
-  (huge-head)
-  (big-head-npc)
-  (oh-my-goodness))
-
 ;; pc enum for languages. this is the game's languages + custom ones.
 (defenum pc-language
   :type uint16
