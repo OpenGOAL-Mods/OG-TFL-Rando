@@ -2122,7 +2122,7 @@
  "mods/mod-debug.gc"
 )
 
-;; TFL note: Custom part and obs file for the levels
+;; TFL note: Custom part and obs files for the levels
 
 (goal-src-sequence
  "levels/crystalc/"
