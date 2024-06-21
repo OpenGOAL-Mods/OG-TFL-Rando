@@ -1416,6 +1416,7 @@
   :bwd (checkpt "open-mines-kegs" #f)
   )
 
+
 (static-load-boundary :flags (closed player)
   :top (meters 120.48)  :bot (meters 120.48)
   :points ((meters -491.28)(meters 974.86)  

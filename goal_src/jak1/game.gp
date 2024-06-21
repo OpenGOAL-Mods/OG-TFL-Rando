@@ -1647,10 +1647,6 @@
 ;; the DGO file
 (custom-level-cgo "TSZ.DGO" "test-zone/testzone.gd")
 
-(build-custom-level "test-zone3")
-;; the DGO file
-(custom-level-cgo "TZ3.DGO" "test-zone3/testzone3.gd")
-
 ;; TFL note: TFL level build files:
 
 ;; Crystal cave level :
