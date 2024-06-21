@@ -1,9 +1,9 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(bundles "MAI.DGO")
+(require "levels/maincave/cavecrystal-light.gc")
+(require "levels/snow/snow-ram-boss.gc")
 
-;; name: baby-spider.gc
-;; name in dgo: baby-spider
-;; dgos: L1, MAI, MAINCAVE
 ;; note: changed for high fps
 
 (declare-type cave-trap process-drawable)
@@ -548,7 +548,7 @@ baby-spider-default-event-handler
   (go (method-of-object this nav-enemy-idle))
   (none))
 
-(deftype tfl-baby-spider (baby-spider) ()) ;; TFL note: Added type so it doesn't crash outside of spidercave
+(deftype tfl-baby-spider (baby-spider) ()) ;; TFL note: Added type so it doesn't crash outside of Spider Cave
 
 (defbehavior tfl-baby-spider-init-by-other tfl-baby-spider ((arg0 tfl-baby-spider) (arg1 vector) (arg2 vector) (arg3 baby-spider-spawn-params))
   (set! (-> self event-death) (-> arg3 event-death))

@@ -1,9 +1,9 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: progress-static.gc
-;; name in dgo: progress-static
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/ui/progress/progress-h.gc")
+(require "engine/ui/text-h.gc")
+(require "engine/game/task/game-task-h.gc")
 
 ;; This file contains the layouts for all of the menus.
 
@@ -281,8 +281,7 @@
   (crescent-t 17)
   (energy-bay 18)
   (open-mines 19)
-  (max 20) ;; TFL note: This also change the max enum
-  )
+  (max))
 
 ;; maps level-info indices to the appropriate offset in *level-task-data*
 (define *level-task-data-remap*

@@ -1,9 +1,11 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: villagep-obs.gc
-;; name in dgo: villagep-obs
-;; dgos: CIT, L1, VI1, VI2, VI3, VILLAGEP
+(bundles "CIT.DGO" "VI1.DGO" "VI2.DGO" "VI3.DGO")
+(require "engine/entity/ambient.gc")
+(require "engine/game/task/task-control.gc")
+(require "engine/target/target.gc")
+(require "engine/camera/pov-camera-h.gc")
+(require "engine/common-obs/basebutton.gc")
 
 ;; DECOMP BEGINS
 
@@ -93,7 +95,7 @@
                      (time-elapsed? (-> self state-time) (seconds 0.1)))
             (if (and (cpad-pressed? 0 circle) (process-grab? *target*)) (go-virtual active))
             (if (and *cheat-mode* (cpad-pressed? 0 l3))
-              (set! (-> self max-slot) (- (-> *warp-info* length) 1)) ;; TFL note: Changing the max slot of warp gate to use the lenght of the array (default: 4)
+              (set! (-> self max-slot) (- (-> *warp-info* length) 1)) ;; TFL note: Changing the max slot of warp gate to use the length of the array (default 4)
               )
             (let ((gp-0 (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))))
               (let ((v1-53 gp-0)) (set! (-> v1-53 width) (the float 440)))
@@ -292,7 +294,7 @@
   (set! (-> self level) (-> self entity extra level name))
   (set! (-> self min-slot) 0)
   (let ((v1-11 (-> self level)))
-    ;; TFL note: CHECK SELF LEVEL TO NOT DISPLAY IT IN THE MENU, ADD NEW LEVELS AND MAKE SURE OF THE ORDER :   
+    ;; TFL note: CHECK SELF LEVEL TO NOT DISPLAY IT IN THE MENU, ADD NEW LEVELS AND MAKE SURE OF THE ORDER
     (set! (-> self level-slot)
           (cond
             ((= v1-11 'training) 0)

@@ -1,10 +1,10 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: navigate-h.gc
-;; name in dgo: navigate-h
-;; dgos: GAME, ENGINE
-
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/entity/actor-link-h.gc")
+(require "engine/draw/drawable-h.gc")
+(require "engine/game/main-h.gc")
+(require "engine/collide/collide-shape-h.gc")
 (declare-type nav-mesh basic)
 
 (declare-type nav-node structure)

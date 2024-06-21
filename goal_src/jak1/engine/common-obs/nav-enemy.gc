@@ -1,10 +1,11 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: nav-enemy.gc
-;; name in dgo: nav-enemy
-;; dgos: GAME, COMMON, L1
-
+(bundles "GAME.CGO")
+(require "engine/nav/navigate.gc")
+(require "engine/common-obs/process-taskable.gc")
+(require "engine/anim/aligner.gc")
+(require "engine/geometry/path.gc")
+(require "engine/common-obs/nav-enemy-h.gc")
 (declare-type battlecontroller process-drawable)
 
 (define-extern freeze (state nav-enemy))
@@ -144,8 +145,7 @@
     (('cue-patrol) (go-virtual nav-enemy-patrol))
     (('go-wait-for-cue) (go-virtual nav-enemy-wait-for-cue))
     ;; TFL note: added case for eco-blue event
-    (('eco-blue) (if (!= (-> self next-state name) 'freeze) (go freeze))))
-  (none))
+    (('eco-blue) (if (!= (-> self next-state name) 'freeze) (go freeze)))))
 
 (defbehavior nav-enemy-jump-event-handler nav-enemy ((arg0 process) (arg1 int) (arg2 symbol) (arg3 event-message-block))
   (case arg2

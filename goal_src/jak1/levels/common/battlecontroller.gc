@@ -1,9 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: battlecontroller.gc
-;; name in dgo: battlecontroller
-;; dgos: CIT, L1, MIS, SWA
+(bundles "CIT.DGO" "MIS.DGO" "SWA.DGO")
+(require "engine/common-obs/babak.gc")
 
 ;; DECOMP BEGINS
 
@@ -237,6 +235,7 @@ battlecontroller-default-event-handler
   (battlecontroller-off)
   (none))
 
+;; TFL note: Added post handler
 (defbehavior battlecontroller-post battlecontroller ()
   (if *display-path-marks*
     (dotimes (i (-> self spawner-count))

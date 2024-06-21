@@ -1,9 +1,15 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: level.gc
-;; name in dgo: level
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/engine/engines.gc")
+(require "engine/level/load-boundary.gc")
+(require "engine/gfx/tie/tie-h.gc")
+(require "engine/gfx/mood/mood-h.gc")
+(require "engine/level/level-info.gc")
+(require "engine/level/bsp.gc")
+(require "engine/gfx/sprite/sparticle/sparticle.gc")
+(require "engine/load/ramdisk.gc")
+(require "engine/gfx/tfrag/tfrag.gc")
 
 ;; DECOMP BEGINS
 
@@ -700,10 +706,9 @@
 (defmethod is-object-visible? ((this level) (arg0 int))
   "Is arg0 visible? Note that this will return #f if the visibility data is not loaded."
   ;; og:preserve-this pc port added option to show every actor regardless
-  (with-pc
-    (if (not (-> *pc-settings* ps2-actor-vis?)) (return #t)))
-  (with-pc
-    (if (-> *pc-settings* ps2-actor-vis?) (return #t))) ;; TFL note: added so all actors it's always on
+  ; (with-pc
+  ;   (if (not (-> *pc-settings* ps2-actor-vis?)) (return #t)))
+  (return #t) ;; TFL note: Always show all
   ;; check the vis bits!
   (let* (;; lwu v1, 388(a0)
          (vis-data (-> this vis-bits))
@@ -1024,7 +1029,7 @@
                 ((not gp-0) (set! gp-0 t0-0))
                 ((not s5-0) (set! s5-0 t0-0))
                 (else
-                 ;; (format 
+                 ;; (format
                  ;;  0
                  ;;  "ERROR: Soundbanks ~A, ~A and ~A all required~%" ;; TFL note: commented this error message out as we have 3+ sound banks loaded at once
                  ;;  gp-0
@@ -1277,7 +1282,7 @@
     ((not (or (-> this level0 inside-boxes?) (-> this level1 inside-boxes?)))
      (when (or (-> this level0 vis-info 0) (-> this level1 vis-info 0))
        (if (= *cheat-mode* 'debug)
-         (format *stdcon* "") ;; TFL note: removed the outside of bsp message as it'd just always show in custom levels
+         (empty) ;; TFL note: removed the outside of bsp message as it'd just always show in custom levels
          )))
     (else
      ;; we are in at least one bsp.

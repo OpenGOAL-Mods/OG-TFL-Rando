@@ -1,5 +1,12 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/common-obs/generic-obs.gc")
+(require "engine/physics/trajectory.gc")
+(require "engine/collide/collide-cache.gc")
+(require "pc/pckernel.gc")
+(require "engine/common-obs/collectables-part.gc")
+(require "engine/entity/entity.gc")
 
 ;; name: collectables.gc
 ;; name in dgo: collectables
@@ -12,6 +19,8 @@
 (define-extern runs-on-cell-pickup (function symbol none))
 
 (define-extern runs-on-eco-pickup (function pickup-type process-tree none))
+
+(define-extern orb-placer-list-maintenace (function symbol none))
 
 (declare-type vent process-drawable)
 
@@ -731,8 +740,6 @@
         (with-pc
           (if (-> *pc-settings* money-starburst?) (spawn (-> self part) (-> self root root-prim world-sphere))))
         (suspend))))
-
-(define-extern orb-placer-list-maintenace (function symbol none))
 
 (defstate pickup (money)
   :virtual #t

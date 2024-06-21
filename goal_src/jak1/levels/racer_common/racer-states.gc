@@ -1,10 +1,12 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: racer-states-FIC-LAV-MIS-OGR-ROL.gc
-;; name in dgo: racer-states
-;; dgos: FIC, LAV, MIS, OGR, ROL
-
+(bundles "FIC.DGO" "LAV.DGO" "MIS.DGO" "OGR.DGO" "ROL.DGO")
+(require "levels/racer_common/target-racer.gc")
+(require "engine/common-obs/babak.gc")
+(require "engine/target/target.gc")
+(require "levels/racer_common/racer-part.gc")
+(require "engine/common-obs/water.gc")
+(require "engine/anim/joint-exploder.gc")
 (define-extern *race-track-surface* surface)
 
 ;; DECOMP BEGINS
@@ -622,6 +624,7 @@
       (target-timed-invulnerable-off self)
       (logior! (-> self state-flags) (state-flags dying))
       (case (-> self attack-info mode)
+        ;; TFL note: Added 'deadlyup
         (('explode 'darkeco 'heat 'death 'deadly 'deadlyup 'balloonlurker)
          ((-> target-racing-start exit))
          (send-event (ppointer->process (-> self manipy)) 'anim-mode 'loop)

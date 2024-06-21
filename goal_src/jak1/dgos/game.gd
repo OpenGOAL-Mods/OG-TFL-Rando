@@ -30,6 +30,7 @@
   "dma-buffer.o"
   "dma-bucket.o"
   "dma-disasm.o"
+  "pc-cheats.o" ;; added
   "pckernel-h.o" ;; added
   "pckernel-impl.o" ;; added
   "pc-debug-common.o" ;; added
@@ -202,7 +203,7 @@
   "speedruns.o" ;; added
   "pckernel-common.o" ;; added
   "pckernel.o" ;; added
-  "input-display.o" ;;added
+  "input-display.o" ;; mod-base-change added
   "mood-tables.o"
   "mood.o"
   "weather-part.o"
@@ -347,7 +348,7 @@
   "plat-eco.o"
   "ropebridge.o"
   "ticky.o"
-  "mod-settings.o" ;; added
+  "mod-settings.o" ;; added mod-base-change
   "mod-common-functions.o" ;; added
   "orb-placer.o" ;; added
   "mod-custom-code.o" ;; added
@@ -372,6 +373,7 @@
   "eichar-flut+0-ag.go"
   ;; keep blocking-plane stuff loaded
   "blocking-plane.o"
+  "blocking-plane-modded.o"
   "ef-plane-ag.go"
   ;; TFL note: added
   "super-eco-crystal.o"

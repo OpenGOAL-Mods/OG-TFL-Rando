@@ -1,10 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: misty-warehouse.gc
-;; name in dgo: misty-warehouse
-;; dgos: L1, MIS
-
+(bundles "MIS.DGO")
+(require "engine/game/task/task-control.gc")
+(require "engine/common-obs/baseplat.gc")
 (declare-type silostep process-drawable)
 
 ;; DECOMP BEGINS
@@ -39,7 +37,7 @@
   :post ja-post)
 
 (defbehavior misty-camera-view silostep ()
-  (if (not (res-lump-struct (-> self entity) 'ignore-cam symbol)) ;;TFL note: Added res-lump to allow camera to be ignored
+  (if (not (res-lump-struct (-> self entity) 'ignore-cam symbol)) ;; TFL note: Added res-lump to allow camera to be ignored
     (set! (-> self cam-tracker)
           (ppointer->handle (process-spawn camera-tracker
                                            :init

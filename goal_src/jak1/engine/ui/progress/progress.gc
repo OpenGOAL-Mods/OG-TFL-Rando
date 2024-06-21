@@ -1,9 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: progress.gc
-;; name in dgo: progress
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/ui/progress/progress-draw.gc")
+(require "engine/ui/progress/progress-part.gc")
 
 ;; DECOMP BEGINS
 

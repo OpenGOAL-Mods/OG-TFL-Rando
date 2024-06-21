@@ -1,10 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: cave-trap.gc
-;; name in dgo: cave-trap
-;; dgos: L1, ROB
-
+(bundles "ROB.DGO")
+(require "levels/maincave/baby-spider.gc")
 (declare-type spider-egg process-drawable)
 
 ;; DECOMP BEGINS
@@ -204,7 +201,7 @@
   (go cave-trap-idle)
   (none))
 
-(deftype tfl-cave-trap (cave-trap) ()) ;; TFL note: Added type so it doesn't crash outside of spidercave
+(deftype tfl-cave-trap (cave-trap) ()) ;; TFL note: Added type so it doesn't crash outside of Spider Cave
 
 (defmethod cave-trap-method-20 ((this tfl-cave-trap))
   (set-time! (-> this last-spawn-time))

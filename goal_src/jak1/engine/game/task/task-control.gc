@@ -1,9 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: task-control.gc
-;; name in dgo: task-control
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/game/game-info.gc")
+(require "engine/game/task/game-task-h.gc")
 
 ;; DECOMP BEGINS
 

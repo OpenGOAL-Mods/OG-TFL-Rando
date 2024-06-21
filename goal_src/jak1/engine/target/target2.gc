@@ -1,10 +1,9 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: target2.gc
-;; name in dgo: target2
-;; dgos: GAME, ENGINE
-
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/game/projectiles-h.gc")
+(require "engine/common-obs/generic-obs.gc")
+(require "engine/target/target.gc")
 (declare-type first-person-hud process)
 
 ;; TFL note: added

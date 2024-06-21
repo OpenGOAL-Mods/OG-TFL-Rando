@@ -1,9 +1,10 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: navigate.gc
-;; name in dgo: navigate
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/collide/collide-func.gc")
+(require "engine/nav/navigate-h.gc")
+(require "engine/math/transformq.gc")
+(require "engine/debug/debug.gc")
 
 ;; og:preserve-this added this to avoid a bug where enemies with NaN positions end up inside the nav mesh.
 ;; it's not clear yet why the enemies have NaN positions, but nothing else seems to go wrong if we

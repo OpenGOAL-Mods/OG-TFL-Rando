@@ -153,10 +153,21 @@
     )
   )
 
-(defun custom-level-cgo (output-name desc-file-name)
-  "Add a CGO with the given output name (in $OUT/iso) and input name (in custom_levels/jak1/)"
+(defun custom-actor-cgo (output-name desc-file-name)
+  "Add a CGO with the given output name (in $OUT/iso) and input name (in custom_assets/jak1/models/)"
   (let ((out-name (string-append "$OUT/iso/" output-name)))
-    (defstep :in (string-append "custom_levels/jak1/" desc-file-name)
+    (defstep :in (string-append "custom_assets/jak1/models/" desc-file-name)
+      :tool 'dgo
+      :out `(,out-name)
+      )
+    (set! *all-cgos* (cons out-name *all-cgos*))
+    )
+  )
+
+(defun custom-level-cgo (output-name desc-file-name)
+  "Add a CGO with the given output name (in $OUT/iso) and input name (in custom_assets/jak1/levels/)"
+  (let ((out-name (string-append "$OUT/iso/" output-name)))
+    (defstep :in (string-append "custom_assets/jak1/levels/" desc-file-name)
       :tool 'dgo
       :out `(,out-name)
       )
@@ -208,11 +219,16 @@
   )
 
 (defmacro build-custom-level (name)
-  (let* ((path (string-append "custom_levels/jak1/" name "/" name ".jsonc")))
+  (let* ((path (string-append "custom_assets/jak1/levels/" name "/" name ".jsonc")))
     `(defstep :in ,path
               :tool 'build-level
               :out '(,(string-append "$OUT/obj/" name ".go")))))
 
+(defmacro build-actor (name &key (gen-mesh #f))
+  (let* ((path (string-append "custom_assets/jak1/models/" name ".glb")))
+    `(defstep :in '(,path ,(symbol->string gen-mesh))
+              :tool 'build-actor
+              :out '(,(string-append "$OUT/obj/" name "-ag.go")))))
 
 (defun copy-iso-file (name subdir ext)
   (let* ((path (string-append "$ISO/" subdir name ext))
@@ -476,6 +492,7 @@
    "village_common/oracle.gc"
 
    "common/blocking-plane.gc"
+   "common/blocking-plane-modded.gc" ;; mod-base-change
    "common/launcherdoor.gc"
    "common/battlecontroller.gc"
 
@@ -1641,29 +1658,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Set up the build system to build the level geometry
-;; this path is relative to the custom_levels/jak1 folder
+;; this path is relative to the custom_assets/jak1/levels/ folder
 ;; it should point to the .jsonc file that specifies the level.
 (build-custom-level "test-zone")
 ;; the DGO file
 (custom-level-cgo "TSZ.DGO" "test-zone/testzone.gd")
 
-;; TFL note: TFL level build files:
-
-;; Crystal cave level :
+;; TFL note: TFL level build files
+;; Crystal Cave
 (build-custom-level "crystal-cave")
 (custom-level-cgo "CRC.DGO" "crystal-cave/crystalc.gd")
 
-;; Crescent Top level :
+;; Crescent Top
 (build-custom-level "crescent-top")
 (custom-level-cgo "CST.DGO" "crescent-top/crescent.gd")
 
-;; Energy Bay level :
+;; Energy Bay
 (build-custom-level "energy-bay")
 (custom-level-cgo "ENB.DGO" "energy-bay/energybay.gd")
 
-;; Open Mines level :
+;; Open Mines
 (build-custom-level "open-mines")
 (custom-level-cgo "OPM.DGO" "open-mines/openmines.gd")
+
+;; generate the art group for a custom actor.
+;; requires a .glb model file in custom_assets/jak1/models
+;; to also generate a collide-mesh, add :gen-mesh #t
+(build-actor "test-actor" :gen-mesh #t)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -1719,7 +1740,7 @@
  )
 
 
-(goal-src "engine/ps2/pad.gc" "pckernel-h")
+(goal-src "engine/ps2/pad.gc" "pckernel-h" "pc-cheats")
 
 (goal-src-sequence
  ;; prefix
@@ -1750,7 +1771,7 @@
  :deps
  ("$OUT/obj/display.o"
   "$OUT/obj/decomp-h.o")
- 
+
  "engine/connect.gc"
  "ui/text-h.gc"
  "game/settings-h.gc"
@@ -1999,7 +2020,7 @@
  "collide/collide-cache.gc"
  "entity/relocate.gc"
  "debug/memory-usage.gc"
- "mods/tfl-nav-mesh.gc" ;; TFL note: nav mesh setup (needs to be before enity.gc)
+ "mods/tfl-nav-mesh.gc" ;; TFL note: nav mesh setup (needs to be before entity.gc)
  "entity/entity.gc"
  "geometry/path.gc"
  "geometry/vol.gc"
@@ -2095,8 +2116,9 @@
 (goal-src "pc/features/autosplit-h.gc")
 (goal-src "pc/features/autosplit.gc" "autosplit-h" "task-control-h" "progress-static")
 (goal-src "pc/features/speedruns.gc" "speedruns-h" "autosplit-h")
+(goal-src "pc/pc-cheats.gc" "dma-buffer")
 (goal-src "pc/pckernel-h.gc" "dma-buffer")
-(goal-src "pc/pckernel-impl.gc" "pckernel-h")
+(goal-src "pc/pckernel-impl.gc" "pckernel-h" "pc-cheats")
 (goal-src "pc/util/pc-anim-util.gc" "target-h")
 (goal-src "pc/pckernel-common.gc" "pckernel-impl" "pc-anim-util" "settings" "video" "target-h" "autosplit-h" "speedruns-h")
 (goal-src "pc/pckernel.gc" "pckernel-common")
@@ -2108,6 +2130,7 @@
 (goal-src "pc/debug/default-menu-pc.gc" "anim-tester-x" "part-tester" "entity-debug")
 (goal-src "pc/debug/pc-debug-common.gc" "pckernel-impl" "entity-h" "game-info-h" "level-h" "settings-h" "gsound-h" "target-util")
 (goal-src "pc/debug/pc-debug-methods.gc" "pc-debug-common")
+
 (goal-src "engine/mods/input-display.gc")
 (goal-src "engine/mods/orb-placer.gc")
 
@@ -2151,6 +2174,8 @@
  "mines-obs.gc"
  "mines-part.gc"
  )
+
+(goal-src "levels/test-zone/test-zone-obs.gc" "process-drawable")
 
 (group-list "all-code"
   `(,@(reverse *all-gc*))

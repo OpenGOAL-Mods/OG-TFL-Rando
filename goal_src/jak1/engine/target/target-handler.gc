@@ -1,9 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: target-handler.gc
-;; name in dgo: target-handler
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
+(require "engine/target/logic-target.gc")
 
 ;; TFL note: changed behavior type to process-drawable
 (define-extern target-powerup-effect (function symbol none :behavior process-drawable))
