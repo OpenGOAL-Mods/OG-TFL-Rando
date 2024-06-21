@@ -1999,6 +1999,7 @@
  "collide/collide-cache.gc"
  "entity/relocate.gc"
  "debug/memory-usage.gc"
+ "mods/tfl-nav-mesh.gc" ;; TFL note: nav mesh setup (needs to be before enity.gc)
  "entity/entity.gc"
  "geometry/path.gc"
  "geometry/vol.gc"

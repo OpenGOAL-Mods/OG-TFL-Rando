@@ -369,6 +369,21 @@ battlecontroller-default-event-handler
   (none)
   )
 
+(defbehavior battlecontroller-post battlecontroller ()
+  (if *display-path-marks*
+    (dotimes (i (-> self spawner-count))
+      (let* ((spawner (-> self spawner-array i))
+            (path (-> spawner path))
+            )
+        (debug-draw path)
+        )
+      )
+    )
+  (none)
+  )
+
+(defstatehandler battlecontroller :post battlecontroller-post)
+
 (defstate battlecontroller-idle (battlecontroller)
   :virtual #t
   :event battlecontroller-default-event-handler
@@ -399,7 +414,6 @@ battlecontroller-default-event-handler
       (suspend)
       )
     )
-  :post #f
   )
 
 (defstate battlecontroller-play-intro-camera (battlecontroller)
@@ -467,7 +481,6 @@ battlecontroller-default-event-handler
       (suspend)
       )
     )
-  :post #f
   )
 
 (defbehavior battlecontroller-special-contents? battlecontroller ()
@@ -566,7 +579,6 @@ battlecontroller-default-event-handler
       )
     (process-entity-status! self (entity-perm-status dead) #t)
     )
-  :post #f
   )
 
 (defmethod relocate ((this battlecontroller) (arg0 int))
@@ -603,7 +615,7 @@ battlecontroller-default-event-handler
         )
   (set! (-> this path) (new 'process 'path-control this 'path 0.0))
   (logior! (-> this path flags) (path-control-flag display draw-line draw-point draw-text))
-  (set! (-> this activate-distance) 122880.0)
+  (set! (-> this activate-distance) (res-lump-float (-> this entity) 'activate-distance :default 122880.0)) ;; TFL note: added res lump for the active distance
   (let ((s5-0 0))
     (let* ((s4-0 '(patha pathb pathc pathd pathe pathf pathg pathh))
            (s2-0 (car s4-0))

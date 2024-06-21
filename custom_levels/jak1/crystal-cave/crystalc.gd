@@ -28,6 +28,17 @@
   "flutflut-plat-med-ag.go"
   "orb-cache-top-ag.go" 
   "spiderwebs-ag.go"
+  "ice-cube.o"
+  "ice-cube-ag.go"
+  "ice-cube-break-ag.go"
+  "junglefish.o"
+  "junglefish-ag.go"
+  "cave-trap.o"
+  "baby-spider.o"
+  "baby-spider-ag.go"
+  "spider-egg.o"
+  "spider-egg-ag.go"
+  "mother-spider-egg.o"
   "crystal-cave.go"
     )
   )

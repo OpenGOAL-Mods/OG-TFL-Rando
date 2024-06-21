@@ -249,7 +249,11 @@
         )
        ((= (-> arg0 type) target)
         (cond
-          ((= (-> arg3 param 1) 'flop)
+          ((or (= (-> arg3 param 1) 'flop) 
+              (and (target-powerup? super-eco-red);; TFL note: added case for super-eco-red
+                (symbol-member? (-> arg3 param 1) 
+                '(punch flip flop flop-down spin spin-air uppercut)))  
+              )
            (go bully-die)
            (return #t)
            v0-0

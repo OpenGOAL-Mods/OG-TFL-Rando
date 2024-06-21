@@ -24,6 +24,13 @@
   "mistycam-ag.go"
   "lurkerworm.o"
   "lurkerworm-ag.go"
+  "lurkerpuppy.o"
+  "lurkerpuppy-ag.go"
+  "bully.o"
+  "bully-ag.go"
+  "sharkey-ag.go"
+  "lurkercrab.o"
+  "lurkercrab-ag.go"
   "twister.o"
   "energy-bay.go"
  ))

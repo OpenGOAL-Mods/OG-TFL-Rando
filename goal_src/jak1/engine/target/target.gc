@@ -2326,6 +2326,20 @@
   :post target-post
   )
 
+;; TFL note: added
+(defbehavior target-super-yellow-scatter target ()
+  (when (and (< (-> self control super-yellow-scatter-count) 5) (time-elapsed? (-> self control super-yellow-scatter-last-fire-time) (seconds 0.1)))
+    (let ((pos (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node eichar-lod0-jg LbigToe)))
+          (dir (vector-z-quaternion! (new-stack-vector0) (-> self control quat)))
+          )
+      (vector-normalize! dir (-> *TARGET-bank* yellow-projectile-speed))
+      (set-time! (-> self control super-yellow-scatter-last-fire-time))
+      (1+! (-> self control super-yellow-scatter-count))
+      (process-spawn projectile-yellow :init projectile-init-by-other (-> self entity) pos dir 16 (the handle #f) :to self)
+      )
+    )
+  )
+
 (defstate target-attack-air (target)
   :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
     (let ((v0-0 (target-bonk-event-handler proc argc message block)))
@@ -2341,6 +2355,9 @@
       )
     )
   :enter (behavior ((arg0 symbol))
+    ;; TFL note: added
+    (set! (-> self control super-yellow-scatter-count) 0)
+    (set! (-> self control super-yellow-scatter-last-fire-time) 0)
     (set-time! (-> self state-time))
     (logclear! (-> self control status) (cshape-moving-flags onsurf onground tsurf))
     (target-start-attack)
@@ -2409,6 +2426,9 @@
     (set! (-> self control unknown-vector52 quad) (-> self control trans quad))
     )
   :exit (behavior ()
+    ;; TFL note: added
+    (set! (-> self control super-yellow-scatter-count) 0)
+    (set! (-> self control super-yellow-scatter-last-fire-time) 0)
     (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
     (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
     ((-> target-attack exit))
@@ -2433,7 +2453,7 @@
       (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       )
-    ;; TFL note: added super eco case
+    ;; TFL note: added super eco cases
     (when (and (or (target-powerup? super-eco-red)
                    (= (-> self fact eco-type) (pickup-type eco-red)))
                (>= (-> self fact eco-level) 1.0)
@@ -2447,6 +2467,9 @@
         *entity-pool*
         (game-task none)
         )
+      )
+    (if (target-powerup? super-eco-yellow)
+      (target-super-yellow-scatter)
       )
     )
   :code (behavior ((arg0 symbol))
@@ -2674,10 +2697,10 @@
     )
   :enter (behavior ((arg0 float) (arg1 float) (arg2 float))
     ;; TFL note: added super-eco-yellow case
-    (if (and (or (= (-> self fact eco-type) (pickup-type eco-yellow))
-                 (target-powerup? super-eco-yellow))
-             (>= (-> self fact eco-level) 1.0)
-             )
+    (if (target-powerup? super-eco-yellow)
+        (go target-super-yellow-jump-blast)
+        )
+    (if (target-powerup? eco-yellow)
         (go target-yellow-jump-blast)
         )
     (if (= arg2 0.0)

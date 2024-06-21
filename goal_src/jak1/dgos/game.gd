@@ -377,4 +377,5 @@
   "super-eco-crystal.o"
   "tfl-hint-data.o"
   "tfl-hint.o"
+  "tfl-nav-mesh.o"
  ))

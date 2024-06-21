@@ -1416,6 +1416,51 @@
   :bwd (checkpt "open-mines-kegs" #f)
   )
 
+
+(static-load-boundary :flags (closed player)
+  :top (meters 120.48)  :bot (meters 120.48)
+  :points ((meters -491.28)(meters 974.86)  
+  (meters -411.55)(meters 961.56)  
+  (meters -384.06)(meters 1051.0)  
+  (meters -401.68)(meters 1054.7)
+  (meters -408.12)(meters 1015.6)
+  (meters -442.31)(meters 1007.6)  
+  (meters -456.82)(meters 1017.0)  
+  (meters -452.50)(meters 1067.2) 
+  (meters -466.50)(meters 1073.6))
+  :fwd (checkpt "open-mines-ambush" #f)
+  :bwd (checkpt "open-mines-ambush" #f)
+  )
+
+(static-load-boundary :flags (closed player)
+  :top (meters 141.74)  :bot (meters 141.74)
+  :points ((meters -436.64)(meters 1049.3)  (meters -435.94)(meters 1062.7)  (meters -422.5)(meters 1062.0)  (meters -423.2)(meters 1048.6))
+  :fwd (checkpt "open-mines-excavator" #f)
+  :bwd (checkpt "open-mines-excavator" #f)
+  )
+
+;; CRASH TEST TEST-ZONE3
+(static-load-boundary :flags ()
+  :top (meters 13.0)  :bot (meters -17.0)
+  :points (  (meters -22.0) (meters 16.0) (meters 8.0) (meters 16.0) )
+  :bwd (load test-zone test-zone3)
+  :fwd (load test-zone village1)
+  )
+
+(static-load-boundary :flags ()
+  :top (meters 13.0)  :bot (meters -17.0)
+  :points (  (meters -22.0) (meters 21.0) (meters 8.0) (meters 21.0) )
+  :bwd (display test-zone display)
+  :fwd (display test-zone3 display)
+  )
+
+(static-load-boundary :flags ()
+  :top (meters 13.0)  :bot (meters -17.0)
+  :points (  (meters -22.0) (meters 1.0) (meters 8.0) (meters 1.0) )
+  :bwd (display test-zone display)
+  :fwd (display village1 display)
+  )
+
 ))
 
 (doarray (i *static-load-boundary-list*)

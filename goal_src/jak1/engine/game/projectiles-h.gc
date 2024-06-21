@@ -63,3 +63,15 @@
    (joint-num  int32)
    )
   )
+
+;; TFL note: added
+(deftype tfl-yellow-shot (projectile)
+  ((blast-radius float)
+   (explode-part sparticle-launch-control)
+   (fully-charged? symbol)
+   (charged-time time-frame)
+   )
+  )
+
+(defglobalconstant SUPER_YELLOW_MAX_CHARGE_TIME (seconds 1.6))
+(define-extern tfl-yellow-shot-init-by-other (function entity-actor vector vector time-frame none :behavior tfl-yellow-shot))
