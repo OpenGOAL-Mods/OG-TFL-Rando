@@ -29,6 +29,8 @@
   "bully.o"
   "bully-ag.go"
   "sharkey-ag.go"
+  "lurkercrab.o"
+  "lurkercrab-ag.go"
   "twister.o"
   "energy-bay.go"
  ))
