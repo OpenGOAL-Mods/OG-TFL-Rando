@@ -5,7 +5,7 @@
 ;; name in dgo: tfl-nav-mesh
 
 ;; List of custom nav-meshes for TFL
-;; TFL note: nav mesh setup 
+;; TFL note: nav mesh setup
 
 ;; Command to copy nav-mesh: (inspect (-> (the-as entity-actor (entity-by-name "ENTITY-NAME")) nav-mesh))
 
