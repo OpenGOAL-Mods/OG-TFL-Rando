@@ -250,9 +250,9 @@ bool g_interrupt_hint = false;
 void stop_tfl_hint() {
   for (auto& pair : g_tfl_hints) {
     ma_sound_stop(pair.first);
-    ma_sound_uninit(pair.first);
-    delete pair.first;
-    pair.first = nullptr;
+    // ma_sound_uninit(pair.first);
+    // delete pair.first;
+    // pair.first = nullptr;
   }
   // jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
   g_tfl_hints.clear();
@@ -319,7 +319,7 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     };
 
     auto play_func = [&hint, &paused_func]() {
-      while (ma_sound_is_playing(hint)) {
+      while (ma_sound_is_playing(hint) && !ma_sound_at_end(hint)) {
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
           // hint->pause();
@@ -339,8 +339,12 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
                          g_tfl_hints.end());
     }
 
-    jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
+    ma_sound_stop(hint);
+    ma_sound_uninit(hint);
     delete hint;
+    hint = nullptr;
+
+    jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
   });
 
   hint_thread.detach();
