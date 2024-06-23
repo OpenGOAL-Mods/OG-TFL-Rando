@@ -202,3 +202,71 @@
         (new 'process 'ambient-sound (static-sound-spec "blue-eco-idle" :fo-min 30 :fo-max 100 :volume 150) (-> this root trans)))
   (go enb-turbine-idle)
   (none))
+
+(defskelgroup *village2cam-sg*
+  village2cam
+  village2cam-lod0-jg
+  -1
+  ((village2cam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 10))
+
+(def-art-elt turbineblade-ag turbineblade-lod0-jg 0)
+(def-art-elt turbineblade-ag turbineblade-lod0-mg 1)
+(def-art-elt turbineblade-ag turbineblade-idle-ja 2)
+
+(defskelgroup *turbineblade-sg* turbineblade turbineblade-lod0-jg turbineblade-idle-ja
+              ((turbineblade-lod0-mg (meters 9999999)))
+              :bounds (static-spherem 0 0 0 30)
+              )
+
+(deftype turbineblade (process-drawable) ()
+  (:methods 
+    (init-collision! (_type_) none))
+  (:states (turbineblade-spinning symbol)
+    turbineblade-idle))
+
+(defmethod init-from-entity! ((this turbineblade) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv)) ;; allocate root
+  (process-drawable-from-entity! this e) ;; read position and rotation from entity
+  (initialize-skeleton this *turbineblade-sg* '()) ;; set up draw-control
+  (cond
+    ((task-complete? *game-info* (-> this entity extra perm task)) (go turbineblade-spinning #t))
+    (else (go turbineblade-idle)))
+  (none))
+
+(defstate turbineblade-idle (turbineblade)
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (case message
+        (('notify)
+         (case (-> block param 0)
+           (('pickup)
+            (if (type-type? (-> proc type) fuel-cell) (save-reminder (get-task-control (-> self entity extra perm task)) 1 0)))))))
+  :trans
+    (behavior ()
+      (if (and (not (-> self child)) (task-complete? *game-info* (-> self entity extra perm task))) 
+        (go turbineblade-spinning #f)))
+  :code (behavior ()
+    (loop 
+      (suspend))
+    )
+  :post ja-post ;; run the transform-post handler which updates our root transform every frame
+  )
+
+(defstate turbineblade-spinning (turbineblade)
+  :code
+    (behavior ((arg0 symbol))
+      (when (not arg0)
+        (if (= (-> self entity extra perm task) (game-task energy-bay-turbine1))
+            (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() ))
+        (save-reminder (get-task-control (-> self entity extra perm task)) 2 0)
+        )
+      (process-entity-status! self (entity-perm-status complete) #t)
+      (let ((a0-20 (-> self entity))) (if (and a0-20 (= self (-> a0-20 extra process))) (entity-task-complete-on a0-20)))
+      (loop
+        (quaternion-rotate-x! (-> self root quat) (-> self root quat) (* (degrees -60) (seconds-per-frame)))
+        (suspend))
+      (logior! (-> self mask) (process-mask sleep))
+      (suspend)
+      0)
+  :post ja-post)

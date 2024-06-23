@@ -32,5 +32,7 @@
   "lurkercrab.o"
   "lurkercrab-ag.go"
   "twister.o"
+  "turbineblade-ag.go"
+  "sunkencam-ag.go"
   "energy-bay.go"
  ))

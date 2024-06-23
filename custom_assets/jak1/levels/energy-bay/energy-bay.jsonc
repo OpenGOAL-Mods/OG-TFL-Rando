@@ -49,6 +49,12 @@
     "lurkercrab-ag"
     ],
 
+  // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+    "turbineblade"
+    ],
+
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -4162,7 +4168,46 @@
         "name":"energy-bay-turbine-04"
       }
     }
-
+    ,{
+      "trans": [877.53, 106.45, 682.17], // translation
+      "etype": "turbineblade",  // actor type
+      "game_task": 128, // associated game task (for powercells, etc)
+      "quat" : [0, -0.294, 0, 0.956], // quaternion
+      "bsphere": [877.53, 106.45, 682.17, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-turbineblade-01"
+      }
+    }
+    ,{
+      "trans": [504.46, 116.71, 859.8], // translation
+      "etype": "turbineblade",  // actor type
+      "game_task": 129, // associated game task (for powercells, etc)
+      "quat" : [0, -0.994, 0, 0.109], // quaternion
+      "bsphere": [504.46, 116.71, 859.8, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-turbineblade-02"
+      }
+    }
+    ,{
+      "trans": [863.67, 112.84, 930.24], // translation
+      "etype": "turbineblade",  // actor type
+      "game_task": 130, // associated game task (for powercells, etc)
+      "quat" : [0, -0.561, 0, 0.828], // quaternion
+      "bsphere": [863.67, 112.84, 930.24, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-turbineblade-03"
+      }
+    }
+    ,{
+      "trans": [750.63, 64.26, 764.89], // translation
+      "etype": "turbineblade",  // actor type
+      "game_task": 131, // associated game task (for powercells, etc)
+      "quat" : [0, -0.945, 0, -0.326], // quaternion
+      "bsphere": [750.63, 64.26, 764.89, 10], // bounding sphere
+      "lump": {
+        "name":"energy-bay-turbineblade-04"
+      }
+    }
   ],
   "ambients" : [
     {
