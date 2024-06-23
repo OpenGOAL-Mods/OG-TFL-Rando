@@ -1,9 +1,6 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-;; name: game-task-h.gc
-;; name in dgo: game-task-h
-;; dgos: GAME, ENGINE
+(bundles "ENGINE.CGO" "GAME.CGO")
 
 ;; this file has no code.
 
@@ -159,5 +156,4 @@
   (open-mines-excavator 141)
   (open-mines-hole 142)
   (open-mines-buzzer 143)
-  (max 144) ;;change max to last +1
-  )
+  (max))

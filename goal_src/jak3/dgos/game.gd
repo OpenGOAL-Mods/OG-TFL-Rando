@@ -30,6 +30,7 @@
   "dma-buffer.o"
   "dma-bucket.o"
   "dma-disasm.o"
+  "pc-cheats.o" ;; added
   "pckernel-h.o" ;; added
   "pckernel-impl.o" ;; added
   "pc-debug-common.o" ;; added
@@ -445,6 +446,7 @@
   "airlock.o"
   "water-anim.o"
   "blocking-plane.o"
+  "blocking-plane-modded.o"
   "idle-control.o"
   "proc-focusable-spawner.o"
   "enemy-h.o"
@@ -470,4 +472,5 @@
   "ragdoll-test.o"
   "debris.o"
   "shield-sphere.o"
+  "entity-debug.o" ;; added
  ))
