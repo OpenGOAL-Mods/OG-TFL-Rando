@@ -5,6 +5,7 @@
 ("OPM.DGO"
  ("static-screen.o"
   "plat-ag.go"
+  "orb-cache-top-ag.go"
   "mis-bone-bridge-ag.go"
   "mis-bone-platform-ag.go"
   "water-anim-maincave-ag.go"

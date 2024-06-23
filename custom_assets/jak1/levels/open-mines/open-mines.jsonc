@@ -62,7 +62,8 @@
     "citb-generator-ag",
     "lurkerm-piston-ag",
     "citb-disc-ag",
-    "citb-hose-ag"
+    "citb-hose-ag",
+    "orb-cache-top-ag"
   ],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
