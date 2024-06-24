@@ -210,6 +210,20 @@
   ((village2cam-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 10))
 
+(defskelgroup *village-cam-sg*
+  village-cam
+  village-cam-lod0-jg
+  -1
+  ((village-cam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 80))
+
+(defskelgroup *village1cam-sg*
+  village1cam
+  village1cam-lod0-jg
+  village1cam-anim-ja
+  ((village1cam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 4))
+
 (def-art-elt turbineblade-ag turbineblade-lod0-jg 0)
 (def-art-elt turbineblade-ag turbineblade-lod0-mg 1)
 (def-art-elt turbineblade-ag turbineblade-idle-ja 2)
@@ -257,8 +271,22 @@
   :code
     (behavior ((arg0 symbol))
       (when (not arg0)
-        (if (= (-> self entity extra perm task) (game-task energy-bay-turbine1))
-            (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() ))
+        (let ((jak-pos (target-joint-pos))
+            (turbine-pos (new 'stack-no-clear 'vector)))
+            (vector-copy! turbine-pos (-> self root trans))
+            (let ((jak-dist (vector-vector-distance jak-pos turbine-pos)))
+              (when (< jak-dist (meters 50))
+              (if (= (-> self entity extra perm task) (game-task energy-bay-turbine1))
+                (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() ))
+              (when (-> *setting-control* current play-hints)
+                (if (= (-> self entity extra perm task) (game-task energy-bay-turbine2))
+                  (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() ))
+                (if (= (-> self entity extra perm task) (game-task energy-bay-turbine3))
+                  (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() ))
+                (if (= (-> self entity extra perm task) (game-task energy-bay-turbine4))
+                  (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() ))))
+               )
+            )
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0)
         )
       (process-entity-status! self (entity-perm-status complete) #t)
