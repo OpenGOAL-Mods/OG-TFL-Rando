@@ -167,7 +167,8 @@
    (orig-quat    quaternion :inline)
    (part2        sparticle-launch-control))
   (:states
-   enb-turbine-idle))
+   enb-turbine-idle
+   enb-turbine-activated))
 
 (defmethod relocate ((this enb-turbine) (off int))
   (if (nonzero? (-> this part2)) (&+! (-> this part2) off))
@@ -181,12 +182,23 @@
 (defstate enb-turbine-idle (enb-turbine)
   :trans
     (behavior ()
+      (update! (-> self sound))
+      (update-vol! (-> self sound) 1)
+      
+      )
+  :code
+    (behavior ()
       (cond
-        ((= (get-task-status (-> self entity extra perm task)) (task-status invalid))
-         (spawn (-> self part2) (-> self root trans))
-         (update! (-> self sound))
-         (update-vol! (-> self sound) 150))
-        (else (update! (-> self sound)) (update-vol! (-> self sound) 1))))
+        ((task-complete? *game-info* (-> self entity extra perm task)) (format 0 "before suspend ~%")  (suspend-for (seconds 5)) (format 0 "after suspend ~%")(go enb-turbine-activated))
+        (else (anim-loop))))
+  :post ja-post)
+
+(defstate enb-turbine-activated (enb-turbine)
+  :trans
+    (behavior ()
+          (spawn (-> self part2) (-> self root trans))
+          (update! (-> self sound))
+          (update-vol! (-> self sound) 150))
   :code anim-loop
   :post ja-post)
 
@@ -200,7 +212,9 @@
   (set! (-> this part2) (create-launch-control (-> *part-group-id-table* 906) this))
   (set! (-> this sound)
         (new 'process 'ambient-sound (static-sound-spec "blue-eco-idle" :fo-min 30 :fo-max 100 :volume 150) (-> this root trans)))
-  (go enb-turbine-idle)
+  (cond
+    ((= (get-task-status (-> this entity extra perm task)) (task-status invalid)) (go enb-turbine-activated))
+    (else (go enb-turbine-idle)))
   (none))
 
 (defskelgroup *village2cam-sg*
@@ -277,6 +291,7 @@
             ((and hints? (= task (game-task energy-bay-turbine4)))
               (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
+      (suspend-for (seconds 0.5))
       (process-entity-status! self (entity-perm-status complete) #t)
       (let ((ent (-> self entity))) (if (and ent (= self (-> ent extra process))) (entity-task-complete-on ent)))
       (loop
