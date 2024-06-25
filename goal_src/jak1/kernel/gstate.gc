@@ -107,9 +107,10 @@ It type checks the arguments for the entry function.
 (seval
   (define *defstate-type-stack* '()))
 
+;; TFL note: added 'event case
 (desfun def-state-check-behavior (beh-form beh-type)
   "check if code block is an anonymous behavior. needed for anonymous behaviors on defstate."
-  (when (and (pair? beh-form) (eq? (first beh-form) 'behavior))
+  (when (and (pair? beh-form) (or (eq? (first beh-form) 'behavior) (eq? (first beh-form) 'event)))
     (push! *defstate-type-stack* beh-type)))
 
 (defmacro clear-def-state-stack ()
@@ -215,6 +216,15 @@ It type checks the arguments for the entry function.
     (pop! *defstate-type-stack*)
     `(lambda :behavior ,behavior-type
       ,bindings
+      ,@body)))
+
+;; TFL note: added
+(defmacro event (&rest body)
+  "Define an event handler for a process state. This may only be used inside a defstate!"
+  (let ((behavior-type (first *defstate-type-stack*)))
+    (pop! *defstate-type-stack*)
+    `(lambda :behavior ,behavior-type
+      ((proc process) (argc int) (message symbol) (block event-message-block))
       ,@body)))
 
 ;; set the default handler functions for a process's state handlers
