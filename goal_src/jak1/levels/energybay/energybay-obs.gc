@@ -244,13 +244,20 @@
   (initialize-skeleton this *turbineblade-sg* '())
   (cond
     ((task-complete? *game-info* (-> this entity extra perm task)) (go turbineblade-spinning #t))
-    (else (go turbineblade-idle)))
+    (else 
+      (birth-pickup-at-point (res-lump-struct (-> this entity) 'movie-pos vector)
+                            (pickup-type fuel-cell)
+                            (the float (-> this entity extra perm task))
+                            #f
+                            this
+                            (the-as fact-info #f))
+      (go turbineblade-idle)))
   (none))
 
 (defstate turbineblade-idle (turbineblade)
   :trans
     (behavior ()
-      (if (task-complete? *game-info* (-> self entity extra perm task)) (go turbineblade-spinning #f)))
+      (if (and (not (-> self child)) (task-complete? *game-info* (-> self entity extra perm task))) (go turbineblade-spinning #f)))
   :code anim-loop
   :post ja-post)
 
@@ -258,21 +265,17 @@
   :code
     (behavior ((task-complete? symbol))
       (when (not task-complete?)
-        (let ((jak-pos (target-pos 0))
-              (turbine-pos (-> self root trans)))
-          (let ((jak-dist (vector-vector-distance jak-pos turbine-pos)))
-            (when (< jak-dist (meters 50))
-              (let ((task (-> self entity extra perm task))
-                    (hints? (-> *setting-control* current play-hints)))
-                (cond
-                  ((= task (game-task energy-bay-turbine1))
-                   (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '()))
-                  ((and hints? (= task (game-task energy-bay-turbine2)))
-                   (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '()))
-                  ((and hints? (= task (game-task energy-bay-turbine3)))
-                   (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '()))
-                  ((and hints? (= task (game-task energy-bay-turbine4)))
-                   (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '())))))))
+        (let ((task (-> self entity extra perm task))
+              (hints? (-> *setting-control* current play-hints)))
+          (cond
+            ((= task (game-task energy-bay-turbine1))
+              (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine2)))
+              (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine3)))
+              (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine4)))
+              (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
       (process-entity-status! self (entity-perm-status complete) #t)
       (let ((ent (-> self entity))) (if (and ent (= self (-> ent extra process))) (entity-task-complete-on ent)))
