@@ -1,0 +1,269 @@
+;;-*-Lisp-*-
+(in-package goal)
+(defpartgroup group-super-red-bomb-body
+  :id 963
+  :duration (seconds 3)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts ((sp-item 3709) (sp-item 3710) (sp-item 3711)))
+
+(defpart 3710
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x3 :page #x2))
+   (:num 1.0)
+   (:y (meters 1))
+   (:scale-x (meters 2) (meters 0.4))
+   (:scale-y :copy scale-x)
+   (:r 128.0 128.0)
+   (:g 0.0 64.0)
+   (:b 0.0)
+   (:a 128.0)
+   (:vel-y (meters 0))
+   (:timer (seconds 0.017))
+   (:flags (bit2))))
+
+(defpart 3711
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 1.0)
+   (:y (meters 1))
+   (:scale-x (meters 6) (meters 0.8))
+   (:scale-y :copy scale-x)
+   (:r 128.0 128.0)
+   (:g 0.0 64.0)
+   (:b 0.0)
+   (:a 128.0)
+   (:vel-y (meters 0))
+   (:timer (seconds 0.017))
+   (:flags (bit2))))
+
+(defpart 3709
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x3 :page #x2))
+   (:num 8.0)
+   (:y (meters 1))
+   (:scale-x (meters 0.6))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 128.0 128.0)
+   (:g 64.0 64.0)
+   (:b 0.0)
+   (:a 128.0)
+   (:vel-y (meters 0))
+   (:rotvel-z (degrees -1.2) (degrees 2.4))
+   (:fade-g -4.266667)
+   (:fade-a -0.42666668)
+   (:timer (seconds 0.035))
+   (:flags (bit2))
+   (:conerot-x (degrees 0) (degrees 1440))
+   (:conerot-y (degrees 0) (degrees 1440))
+   (:conerot-radius (meters 1))))
+
+(defpartgroup group-super-red-bomb-warning
+  :id 964
+  :duration (seconds 3)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts ((sp-item 3712) (sp-item 3713) (sp-item 3714 :period (seconds 0.15) :length (seconds 0.017))))
+
+(defpart 3714
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x12 :page #x2))
+   (:num 1.0)
+   (:y (meters 1))
+   (:scale-x (meters 10) (meters 5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 255.0)
+   (:g 128.0)
+   (:b 0.0)
+   (:a 128.0)
+   (:scalevel-x (meters -0.06666667))
+   (:rotvel-z (degrees 0.8))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-g -2.1333334)
+   (:fade-a -2.1333334)
+   (:timer (seconds 0.15))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.25))))
+
+(defpart 3712
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 1.0 8.0)
+   (:y (meters 1))
+   (:scale-x (meters 2) (meters 4))
+   (:rot-x 4)
+   (:rot-z (degrees -720) (degrees 1440))
+   (:scale-y (meters 0.2) (meters 0.1))
+   (:r 192.0 64.0)
+   (:g 192.0 64.0)
+   (:b 128.0)
+   (:a 32.0 64.0)
+   (:scalevel-x (meters 0.08))
+   (:fade-r 0.0)
+   (:fade-g -6.4)
+   (:fade-b -4.266667)
+   (:fade-a -1.6)
+   (:timer (seconds 0.2))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 3713
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x3 :page #x2))
+   (:num 2.0 16.0)
+   (:y (meters 1))
+   (:scale-x (meters 0.4) (meters 0.2))
+   (:scale-y :copy scale-x)
+   (:r 128.0 128.0)
+   (:g 64.0 64.0)
+   (:b 0.0)
+   (:a 32.0 96.0)
+   (:vel-y (meters 0.026666667) (meters 0.026666667))
+   (:scalevel-x (meters -0.0016666667))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-g -2.1333334)
+   (:accel-y (meters -0.00033333333) (meters -0.00033333333))
+   (:friction 0.95)
+   (:timer (seconds 0.1) (seconds 0.097))
+   (:flags (bit0 bit2 bit14))
+   (:conerot-x (degrees -180) (degrees 720))
+   (:conerot-y (degrees 0) (degrees 1440))
+   (:conerot-radius (meters 1))))
+
+(defskelgroup *redring-sg*
+  redring
+  redring-lod0-jg
+  redring-idle-ja
+  ((redring-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 40))
+
+(defconstant SUPER_RED_BOMB_FUSE_TIME (seconds 2))
+
+(defconstant SUPER_RED_BOMB_FIZZLE_TIME (seconds 4))
+
+(defconstant SUPER_RED_BOMB_EXPLODE_RADIUS (meters 4))
+
+(deftype super-red-bomb (process-drawable)
+  ((root              collide-shape :override)
+   (wait-time         time-frame)
+   (fuse-start-time   time-frame)
+   (fizzle-start-time time-frame)
+   (fuse-part         sparticle-launch-control)
+   (explode-part      sparticle-launch-control)
+   (fizzle-part       sparticle-launch-control))
+  (:methods
+   (init-collision! (_type_) none))
+  (:state-methods
+   wait-for-fuse
+   fizzle
+   fuse
+   explode
+   die))
+
+(defmethod init-collision! ((this super-red-bomb))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (let ((sphere (new 'process 'collide-shape-prim-sphere cshape (the uint 0))))
+      (set! (-> sphere prim-core collide-as) (collide-kind powerup))
+      (set! (-> sphere collide-with) (collide-kind target))
+      (set-vector! (-> sphere local-sphere) 0.0 0.0 0.0 (meters 2))
+      (set-root-prim! cshape sphere))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape))
+  (none))
+
+(defbehavior super-red-bomb-init-by-other super-red-bomb ((pos vector))
+  ; (logior! (-> self mask) (process-mask enemy))
+  (init-collision! self)
+  ; (initialize-skeleton self *redring-sg* '())
+  (vector-copy! (-> self root trans) pos)
+  (quaternion-identity! (-> self root quat))
+  (vector-identity! (-> self root scale))
+  (set-part! self 963)
+  (set-part! self :part fuse-part 964)
+  (go-virtual wait-for-fuse))
+
+(defbehavior super-red-bomb-post super-red-bomb ()
+  (format *stdcon* "red-bomb ~A~%" (-> self next-state name))
+  (if (< (- (current-time) (-> self wait-time)) (seconds 4))
+    (format *stdcon* "red-bomb wait time ~,,2es~%" (- (seconds 4) (- (current-time) (-> self wait-time)))))
+  (format *stdcon* "red-bomb ~A~%" (-> self root))
+  (transform-post)
+  (none))
+
+(defstatehandler super-red-bomb :post super-red-bomb-post)
+
+(defstate wait-for-fuse (super-red-bomb)
+  :virtual #t
+  :event
+    (event (case message
+             (('attack) (if (and (time-elapsed? (-> self wait-time) (seconds 0.5)) (= (-> proc type) target)) (go-virtual fuse)))))
+  :trans
+    (behavior ()
+      (spawn (-> self part) (-> self root trans)))
+  :code
+    (behavior ()
+      (set-time! (-> self fizzle-start-time))
+      (set-time! (-> self wait-time))
+      (until (time-elapsed? (-> self fizzle-start-time) SUPER_RED_BOMB_FIZZLE_TIME)
+        (suspend))
+      (go-virtual fizzle)))
+
+(defstate fizzle (super-red-bomb)
+  :virtual #t
+  :trans
+    (behavior ()
+      (suspend-for (seconds 1)
+                   ; (spawn (-> self fizzle-part) (-> self root trans))
+                   )
+      (go-virtual die))
+  :code anim-loop)
+
+(defstate fuse (super-red-bomb)
+  :virtual #t
+  :trans
+    (behavior ()
+      (spawn (-> self part) (-> self root trans))
+      (when (time-elapsed? (-> self fuse-start-time) SUPER_RED_BOMB_FUSE_TIME)
+        (go-virtual explode)))
+  :code
+    (behavior ()
+      (set-time! (-> self fuse-start-time))
+      (set! (-> self fizzle-start-time) 0)
+      (until (time-elapsed? (-> self fuse-start-time) SUPER_RED_BOMB_FUSE_TIME)
+        (spawn (-> self fuse-part) (-> self root trans))
+        (suspend))))
+
+(defstate explode (super-red-bomb)
+  :virtual #t
+  :code
+    (behavior ()
+      (when (< (vector-vector-distance (target-pos 0) (-> self root trans)) SUPER_RED_BOMB_EXPLODE_RADIUS)
+        (let ((dir (vector-! (new-stack-vector0) (-> *target* control trans) (-> self root trans))))
+          (send-event *target*
+                      'shove
+                      #f
+                      (static-attack-info ((shove-back (meters 10)) (shove-up (meters 13)) (angle 'jump) (vector dir) (control 1.0))))
+          ; (if (or (= (-> *target* control unknown-surface00 mode) 'air)
+          ;         (>= (+ (-> *display* base-frame-counter) (seconds -0.2)) (-> *target* control unknown-dword11))
+          ;         (< 0.75 (-> *target* control poly-normal y)))
+          ;   (send-event proc
+          ;               'attack-or-shove
+          ;               (-> event param 0)
+          ;               (static-attack-info ((mode 'burn) (vector (vector-normalize! dir 4.0)) (shove-up (-> s4-0 shove-up)))))
+          ;   (send-event proc
+          ;               'attack-or-shove
+          ;               (-> event param 0)
+          ;               (static-attack-info ((mode 'burn) (shove-up (meters 0)) (shove-back (meters 2)) (vector (-> *target* control poly-normal)) (angle 'shove)))))
+          ))
+      (suspend-for (seconds 3)
+                   ; (spawn (-> self explode-part) (-> self root trans))
+                   )
+      ; (kill-and-free-particles (-> self explode-part))
+      (cleanup-for-death self)))
+
+(defstate die (super-red-bomb)
+  :virtual #t
+  :code
+    (behavior ()))

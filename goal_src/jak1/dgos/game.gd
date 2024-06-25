@@ -247,11 +247,11 @@
   "target-util.o"
   "target-part.o"
   "collide-reaction-target.o"
-  ;; TFL note: added
-  "tfl-music-player.o"
+  "tfl-music-player.o" ;; TFL note: added
   "logic-target.o"
   "sidekick.o"
   "voicebox.o"
+  "super-red-bomb.o" ;; TFL note: added
   "target-handler.o"
   "target.o"
   "target2.o"

@@ -1979,13 +1979,16 @@
 ;; TFL note: added
 (goal-src "levels/tfl_common/tfl-music-player.gc" "level")
 
+;; TFL note: added
+(goal-src "levels/tfl_common/super-red-bomb.gc" "process-drawable")
+
 (goal-src-sequence
  ;; prefix
  "engine/"
 
  :deps
- ;; TFL note: added music player dep
- ("$OUT/obj/generic-obs.o" "$OUT/obj/tfl-music-player.o")
+ ;; TFL note: added deps
+ ("$OUT/obj/generic-obs.o" "$OUT/obj/tfl-music-player.o" "$OUT/obj/super-red-bomb.o")
  "target/target-util.gc"
  "target/target-part.gc"
  "target/collide-reaction-target.gc"
