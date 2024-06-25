@@ -58,7 +58,10 @@
   #t)
 
 (defmethod attack-handler ((this sharkey) (arg0 process) (arg1 event-message-block))
-  #t)
+  (when (and (= arg0 *target*) (target-powerup? super-eco-red))
+    (send-event arg0 'get-attack-count 1)
+    (logclear! (-> this mask) (process-mask actor-pause attackable))
+    (go (method-of-object this nav-enemy-die))))
 
 nav-enemy-default-event-handler
 
