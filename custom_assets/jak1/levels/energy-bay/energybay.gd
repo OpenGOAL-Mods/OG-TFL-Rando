@@ -6,9 +6,8 @@
 ;; the actual file name still needs to be 8.3
 ("ENB.DGO"
  (
-  "static-screen.o"
-  "water-anim-training-ag.go" ; water stuff
   "energybay-obs.o"
+  "water-anim-training-ag.go" ; water stuff
   "energybay-part.o"
   "eichar-racer+0-ag.go" ; zoomer stuff
   "ef-plane-ag.go" ; zoomer stuff
@@ -21,7 +20,6 @@
   "dark-crystal-ag.go"
   "balloonlurker-ag.go"
   "race-ring-ag.go"
-  "mistycam-ag.go"
   "lurkerworm.o"
   "lurkerworm-ag.go"
   "lurkerpuppy.o"
@@ -32,5 +30,10 @@
   "lurkercrab.o"
   "lurkercrab-ag.go"
   "twister.o"
+  "turbineblade-ag.go"
+  "village2cam-ag.go"
+  "village1cam-ag.go"
+  "village-cam-ag.go"
+  "mistycam-ag.go"
   "energy-bay.go"
  ))

@@ -167,7 +167,8 @@
    (orig-quat    quaternion :inline)
    (part2        sparticle-launch-control))
   (:states
-   enb-turbine-idle))
+   enb-turbine-idle
+   enb-turbine-active))
 
 (defmethod relocate ((this enb-turbine) (off int))
   (if (nonzero? (-> this part2)) (&+! (-> this part2) off))
@@ -175,18 +176,29 @@
 
 (defmethod deactivate ((this enb-turbine))
   (if (nonzero? (-> this part2)) (kill-and-free-particles (-> this part2)))
-  ((method-of-type process-drawable deactivate) this)
-  (none))
+  (call-parent-method this))
 
 (defstate enb-turbine-idle (enb-turbine)
   :trans
     (behavior ()
-      (cond
-        ((= (get-task-status (-> self entity extra perm task)) (task-status invalid))
-         (spawn (-> self part2) (-> self root trans))
-         (update! (-> self sound))
-         (update-vol! (-> self sound) 150))
-        (else (update! (-> self sound)) (update-vol! (-> self sound) 1))))
+      (update! (-> self sound))
+      (update-vol! (-> self sound) 1))
+  :code
+    (behavior ()
+      (loop
+        (cond
+          ((task-complete? *game-info* (-> self entity extra perm task))
+           (suspend-for (seconds 8.7))
+           (go enb-turbine-active))
+          (else (suspend)))))
+  :post ja-post)
+
+(defstate enb-turbine-active (enb-turbine)
+  :trans
+    (behavior ()
+      (spawn (-> self part2) (-> self root trans))
+      (update! (-> self sound))
+      (update-vol! (-> self sound) 130))
   :code anim-loop
   :post ja-post)
 
@@ -200,5 +212,91 @@
   (set! (-> this part2) (create-launch-control (-> *part-group-id-table* 906) this))
   (set! (-> this sound)
         (new 'process 'ambient-sound (static-sound-spec "blue-eco-idle" :fo-min 30 :fo-max 100 :volume 150) (-> this root trans)))
-  (go enb-turbine-idle)
+  (cond
+    ((= (get-task-status (-> this entity extra perm task)) (task-status invalid)) (go enb-turbine-active))
+    (else (go enb-turbine-idle)))
   (none))
+
+(defskelgroup *village2cam-sg*
+  village2cam
+  village2cam-lod0-jg
+  -1
+  ((village2cam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 10))
+
+(defskelgroup *village-cam-sg*
+  village-cam
+  village-cam-lod0-jg
+  -1
+  ((village-cam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 80))
+
+(defskelgroup *village1cam-sg*
+  village1cam
+  village1cam-lod0-jg
+  village1cam-anim-ja
+  ((village1cam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 4))
+
+(def-art-elt turbineblade-ag turbineblade-lod0-jg 0)
+(def-art-elt turbineblade-ag turbineblade-lod0-mg 1)
+(def-art-elt turbineblade-ag turbineblade-idle-ja 2)
+(defskelgroup *turbineblade-sg*
+  turbineblade
+  turbineblade-lod0-jg
+  turbineblade-idle-ja
+  ((turbineblade-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 0 0 30))
+
+(deftype turbineblade (process-drawable) ()
+  (:states (turbineblade-spinning symbol)
+   turbineblade-idle))
+
+(defmethod init-from-entity! ((this turbineblade) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *turbineblade-sg* '())
+  (cond
+    ((task-complete? *game-info* (-> this entity extra perm task)) (go turbineblade-spinning #t))
+    (else
+     (birth-pickup-at-point (res-lump-struct (-> this entity) 'movie-pos vector)
+                            (pickup-type fuel-cell)
+                            (the float (-> this entity extra perm task))
+                            #f
+                            this
+                            (the-as fact-info #f))
+     (go turbineblade-idle)))
+  (none))
+
+(defstate turbineblade-idle (turbineblade)
+  :trans
+    (behavior ()
+      (if (and (not (-> self child)) (task-complete? *game-info* (-> self entity extra perm task))) (go turbineblade-spinning #f)))
+  :code anim-loop
+  :post ja-post)
+
+(defstate turbineblade-spinning (turbineblade)
+  :code
+    (behavior ((task-complete? symbol))
+      (when (not task-complete?)
+        (let ((task (-> self entity extra perm task))
+              (hints? (-> *setting-control* current play-hints)))
+          (cond
+            ((= task (game-task energy-bay-turbine1))
+             (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine2)))
+             (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine3)))
+             (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine4)))
+             (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
+        (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
+      (suspend-for (seconds 0.5))
+      (process-entity-status! self (entity-perm-status complete) #t)
+      (let ((ent (-> self entity))) (if (and ent (= self (-> ent extra process))) (entity-task-complete-on ent)))
+      (loop
+        (quaternion-rotate-x! (-> self root quat) (-> self root quat) (* (degrees -60) (seconds-per-frame)))
+        (suspend))
+      (logior! (-> self mask) (process-mask sleep))
+      (suspend))
+  :post ja-post)
