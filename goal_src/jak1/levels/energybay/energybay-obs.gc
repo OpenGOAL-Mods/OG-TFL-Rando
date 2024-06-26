@@ -168,7 +168,7 @@
    (part2        sparticle-launch-control))
   (:states
    enb-turbine-idle
-   enb-turbine-activated))
+   enb-turbine-active))
 
 (defmethod relocate ((this enb-turbine) (off int))
   (if (nonzero? (-> this part2)) (&+! (-> this part2) off))
@@ -176,29 +176,31 @@
 
 (defmethod deactivate ((this enb-turbine))
   (if (nonzero? (-> this part2)) (kill-and-free-particles (-> this part2)))
-  ((method-of-type process-drawable deactivate) this)
-  (none))
+  (call-parent-method this))
 
 (defstate enb-turbine-idle (enb-turbine)
   :trans
     (behavior ()
       (update! (-> self sound))
-      (update-vol! (-> self sound) 1)
-      
-      )
+      (update-vol! (-> self sound) 1))
   :code
     (behavior ()
-      (cond
-        ((task-complete? *game-info* (-> self entity extra perm task)) (format 0 "before suspend ~%")  (suspend-for (seconds 5)) (format 0 "after suspend ~%")(go enb-turbine-activated))
-        (else (anim-loop))))
+      (loop
+        (cond
+          ((task-complete? *game-info* (-> self entity extra perm task))
+           (format 0 "before suspend ~%")
+           (suspend-for (seconds 5))
+           (format 0 "after suspend ~%")
+           (go enb-turbine-active))
+          (else (suspend)))))
   :post ja-post)
 
-(defstate enb-turbine-activated (enb-turbine)
+(defstate enb-turbine-active (enb-turbine)
   :trans
     (behavior ()
-          (spawn (-> self part2) (-> self root trans))
-          (update! (-> self sound))
-          (update-vol! (-> self sound) 150))
+      (spawn (-> self part2) (-> self root trans))
+      (update! (-> self sound))
+      (update-vol! (-> self sound) 150))
   :code anim-loop
   :post ja-post)
 
@@ -213,7 +215,7 @@
   (set! (-> this sound)
         (new 'process 'ambient-sound (static-sound-spec "blue-eco-idle" :fo-min 30 :fo-max 100 :volume 150) (-> this root trans)))
   (cond
-    ((= (get-task-status (-> this entity extra perm task)) (task-status invalid)) (go enb-turbine-activated))
+    ((= (get-task-status (-> this entity extra perm task)) (task-status invalid)) (go enb-turbine-active))
     (else (go enb-turbine-idle)))
   (none))
 
@@ -258,14 +260,14 @@
   (initialize-skeleton this *turbineblade-sg* '())
   (cond
     ((task-complete? *game-info* (-> this entity extra perm task)) (go turbineblade-spinning #t))
-    (else 
-      (birth-pickup-at-point (res-lump-struct (-> this entity) 'movie-pos vector)
+    (else
+     (birth-pickup-at-point (res-lump-struct (-> this entity) 'movie-pos vector)
                             (pickup-type fuel-cell)
                             (the float (-> this entity extra perm task))
                             #f
                             this
                             (the-as fact-info #f))
-      (go turbineblade-idle)))
+     (go turbineblade-idle)))
   (none))
 
 (defstate turbineblade-idle (turbineblade)
@@ -283,13 +285,13 @@
               (hints? (-> *setting-control* current play-hints)))
           (cond
             ((= task (game-task energy-bay-turbine1))
-              (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
+             (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
             ((and hints? (= task (game-task energy-bay-turbine2)))
-              (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
+             (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
             ((and hints? (= task (game-task energy-bay-turbine3)))
-              (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
+             (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
             ((and hints? (= task (game-task energy-bay-turbine4)))
-              (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
+             (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
       (suspend-for (seconds 0.5))
       (process-entity-status! self (entity-perm-status complete) #t)
