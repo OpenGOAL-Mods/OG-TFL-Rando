@@ -623,7 +623,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-01",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -645,7 +645,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-02",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -667,7 +667,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-03",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -689,7 +689,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-04",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -698,6 +698,45 @@
                 [895.82, 43.93, 643.08],
                 [903.77, 44.76, 657.52],
                 [882.43, 42.78, 652.17]
+              ],
+            "nav-mesh-actor": "energy-bay-lurkerpuppy-01"
+          }
+        }
+        ,{
+          "trans": [889.44, 40.63, 636.93],
+          "etype": "lurkerpuppy",
+          "game_task": 0,
+          "quat" : [0, 0, 0, 1],
+          "bsphere": [889.44, 40.63, 636.93, 10],
+          "lump": {
+            "name": "energy-bay-lurkerpuppy-05",
+            "vis-dist": ["meters", 200.0],
+            "cam-notice-dist": ["meters", 10.0],
+            "idle-distance": ["meters", 80.0],
+            "cam-vert": ["meters", 8.0],
+            "cam-horz": ["meters", 20.0],
+            "path-actor":"energy-bay-lurkerpuppy-01",
+            "nav-mesh-actor": "energy-bay-lurkerpuppy-01"
+          }
+        }
+        ,{
+          "trans": [864.26, 34.37, 633.7],
+          "etype": "lurkerpuppy",
+          "game_task": 0,
+          "quat" : [0, 0, 0, 1],
+          "bsphere": [864.26, 34.37, 633.7, 10],
+          "lump": {
+            "name": "energy-bay-lurkerpuppy-06",
+            "vis-dist": ["meters", 200.0],
+            "cam-notice-dist": ["meters", 10.0],
+            "idle-distance": ["meters", 80.0],
+            "cam-vert": ["meters", 8.0],
+            "cam-horz": ["meters", 20.0],
+            "path": ["vector3m", 
+                [866.72, 34.20, 632.3],
+                [859.63, 31.38, 614.43],
+                [877.4, 31.31, 605.97],
+                [866.72, 34.20, 632.3]
               ],
             "nav-mesh-actor": "energy-bay-lurkerpuppy-01"
           }

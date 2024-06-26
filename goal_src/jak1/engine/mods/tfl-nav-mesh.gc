@@ -680,7 +680,7 @@
                  (new 'static 'array uint8 3 #x11 #x10 #xf)
                  :adj-poly
                  (new 'static 'array uint8 3 #x43 #x25 #xff)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x6
@@ -688,7 +688,7 @@
                  (new 'static 'array uint8 3 #xd #x13 #xb)
                  :adj-poly
                  (new 'static 'array uint8 3 #xff #x26 #x46)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x7
@@ -710,7 +710,7 @@
                  (new 'static 'array uint8 3 #x1c #x1b #x18)
                  :adj-poly
                  (new 'static 'array uint8 3 #x2a #x2b #xff)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #xa
@@ -760,7 +760,7 @@
                  (new 'static 'array uint8 3 #x2c #x2b #x24)
                  :adj-poly
                  (new 'static 'array uint8 3 #x15 #x32 #xff)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x11
@@ -768,7 +768,7 @@
                  (new 'static 'array uint8 3 #x23 #x2b #x22)
                  :adj-poly
                  (new 'static 'array uint8 3 #x32 #x33 #x31)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x12
@@ -804,7 +804,7 @@
                  (new 'static 'array uint8 3 #x2e #x32 #x33)
                  :adj-poly
                  (new 'static 'array uint8 3 #x36 #x37 #xff)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x17
@@ -840,7 +840,7 @@
                  (new 'static 'array uint8 3 #x34 #x3b #x3c)
                  :adj-poly
                  (new 'static 'array uint8 3 #x3a #x3b #x21)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x1c
@@ -869,7 +869,7 @@
                  (new 'static 'array uint8 3 #x1f #x1e #x43)
                  :adj-poly
                  (new 'static 'array uint8 3 #xa #x3e #x20)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x20
@@ -877,7 +877,7 @@
                  (new 'static 'array uint8 3 #x43 #x13 #x1f)
                  :adj-poly
                  (new 'static 'array uint8 3 #x7 #x3f #x1f)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x21
@@ -885,7 +885,7 @@
                  (new 'static 'array uint8 3 #x3c #x38 #x34)
                  :adj-poly
                  (new 'static 'array uint8 3 #x40 #x39 #x1b)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x22
@@ -893,7 +893,7 @@
                  (new 'static 'array uint8 3 #x3f #x3a #x38)
                  :adj-poly
                  (new 'static 'array uint8 3 #x41 #x1a #x40)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x23
@@ -915,7 +915,7 @@
                  (new 'static 'array uint8 3 #x10 #xe #xf)
                  :adj-poly
                  (new 'static 'array uint8 3 #xff #x48 #x5)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x26
@@ -923,7 +923,7 @@
                  (new 'static 'array uint8 3 #x13 #x12 #xb)
                  :adj-poly
                  (new 'static 'array uint8 3 #x7 #xff #x6)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x27
@@ -959,7 +959,7 @@
                  (new 'static 'array uint8 3 #x1b #x10 #x18)
                  :adj-poly
                  (new 'static 'array uint8 3 #xff #x43 #x9)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x2c
@@ -974,7 +974,7 @@
                  (new 'static 'array uint8 3 #x22 #x1d #x1c)
                  :adj-poly
                  (new 'static 'array uint8 3 #xff #x2a #xb)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x2e
@@ -1010,7 +1010,7 @@
                  (new 'static 'array uint8 3 #x2b #x23 #x24)
                  :adj-poly
                  (new 'static 'array uint8 3 #x11 #xc #x10)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x33
@@ -1018,7 +1018,7 @@
                  (new 'static 'array uint8 3 #x2b #x2a #x22)
                  :adj-poly
                  (new 'static 'array uint8 3 #x15 #xff #x11)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x34
@@ -1040,7 +1040,7 @@
                  (new 'static 'array uint8 3 #x2e #x2d #x32)
                  :adj-poly
                  (new 'static 'array uint8 3 #x14 #xff #x16)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x37
@@ -1069,7 +1069,7 @@
                  (new 'static 'array uint8 3 #x34 #x32 #x3b)
                  :adj-poly
                  (new 'static 'array uint8 3 #x37 #xff #x1b)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x3b
@@ -1098,7 +1098,7 @@
                  (new 'static 'array uint8 3 #x1e #x14 #x43)
                  :adj-poly
                  (new 'static 'array uint8 3 #xff #x28 #x1f)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x3f
@@ -1106,7 +1106,7 @@
                  (new 'static 'array uint8 3 #x13 #x20 #x1f)
                  :adj-poly
                  (new 'static 'array uint8 3 #xff #x2c #x20)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x40
@@ -1114,7 +1114,7 @@
                  (new 'static 'array uint8 3 #x3c #x3f #x38)
                  :adj-poly
                  (new 'static 'array uint8 3 #x1d #x22 #x21)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x41
@@ -1122,7 +1122,7 @@
                  (new 'static 'array uint8 3 #x3f #x40 #x3a)
                  :adj-poly
                  (new 'static 'array uint8 3 #x3c #xff #x22)
-                 :pat 1)
+                 :pat 0)
             (new 'static
                  'nav-poly
                  :id #x42
