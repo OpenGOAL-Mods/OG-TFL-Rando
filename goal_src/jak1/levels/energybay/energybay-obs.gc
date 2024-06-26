@@ -188,9 +188,7 @@
       (loop
         (cond
           ((task-complete? *game-info* (-> self entity extra perm task))
-           (format 0 "before suspend ~%")
-           (suspend-for (seconds 5))
-           (format 0 "after suspend ~%")
+           (suspend-for (seconds 8.7))
            (go enb-turbine-active))
           (else (suspend)))))
   :post ja-post)
@@ -200,7 +198,7 @@
     (behavior ()
       (spawn (-> self part2) (-> self root trans))
       (update! (-> self sound))
-      (update-vol! (-> self sound) 150))
+      (update-vol! (-> self sound) 130))
   :code anim-loop
   :post ja-post)
 
