@@ -49,6 +49,12 @@
     "lurkercrab-ag"
     ],
 
+  // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+    "turbineblade"
+    ],
+
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -68,54 +74,98 @@
   "actors" : [
         // CELLS
         {
-          "trans": [868.93, 70.70, 682.0], // translation
-          "etype": "fuel-cell",  // actor type
+          "trans": [877.53, 106.45, 682.17], // translation
+          "etype": "turbineblade",  // actor type
           "game_task": 128, // associated game task (for powercells, etc)
-          "quat" : [0, 0, 0, 1], // quaternion
-          "bsphere": [868.93, 70.70, 682.0, 10], // bounding sphere
+          "quat" : [0, -0.294, 0, 0.956], // quaternion
+          "bsphere": [877.53, 106.45, 682.17, 10], // bounding sphere
           "lump": {
-            "name":"energy-bay-fuel-cell-01", // energy-bay-turbine1
-            "eco-info": ["int32", 6, 128],
+            "name":"energy-bay-turbineblade-01",
             "movie-pos":["vector4m", [868.93, 68.70, 682.0, 60.0]]
           }
-        },
-        {
-          "trans": [514.4, 79.14, 860.75], // translation
-          "etype": "fuel-cell",  // actor type
+        }
+        ,{
+          "trans": [504.46, 116.71, 859.8], // translation
+          "etype": "turbineblade",  // actor type
           "game_task": 129, // associated game task (for powercells, etc)
-          "quat" : [0, 0, 0, 1], // quaternion
-          "bsphere": [514.4, 79.14, 860.75, 10], // bounding sphere
+          "quat" : [0, -0.994, 0, 0.109], // quaternion
+          "bsphere": [504.46, 116.71, 859.8, 10], // bounding sphere
           "lump": {
-            "name":"energy-bay-fuel-cell-02", // energy-bay-turbine2
-            "eco-info": ["int32", 6, 129],
+            "name":"energy-bay-turbineblade-02",
             "movie-pos":["vector4m", [514.4, 77.14, 860.75, 60.0]]
           }
-        },
-        {
-          "trans": [859.96, 74.58, 919.67], // translation
-          "etype": "fuel-cell",  // actor type
+        }
+        ,{
+          "trans": [863.67, 112.84, 930.24], // translation
+          "etype": "turbineblade",  // actor type
           "game_task": 130, // associated game task (for powercells, etc)
-          "quat" : [0, 0, 0, 1], // quaternion
-          "bsphere": [859.96, 74.58, 919.67, 10], // bounding sphere
+          "quat" : [0, -0.561, 0, 0.828], // quaternion
+          "bsphere": [863.67, 112.84, 930.24, 10], // bounding sphere
           "lump": {
-            "name":"energy-bay-fuel-cell-03", // energy-bay-turbine3
-            "eco-info": ["int32", 6, 130],
+            "name":"energy-bay-turbineblade-03",
             "movie-pos":["vector4m", [859.96, 72.318, 919.67, 4.24]]
           }
-        },
-        {
-          "trans": [760.88, 27.34, 772.33], // translation
-          "etype": "fuel-cell",  // actor type
+        }
+        ,{
+          "trans": [750.63, 64.26, 764.89], // translation
+          "etype": "turbineblade",  // actor type
           "game_task": 131, // associated game task (for powercells, etc)
-          "quat" : [0, 0, 0, 1], // quaternion
-          "bsphere": [760.88, 27.34, 772.33, 10], // bounding sphere
+          "quat" : [0, -0.945, 0, -0.326], // quaternion
+          "bsphere": [750.63, 64.26, 764.89, 10], // bounding sphere
           "lump": {
-            "name":"energy-bay-fuel-cell-04", // energy-bay-turbine4
-            "eco-info": ["int32", 6, 131],
+            "name":"energy-bay-turbineblade-04",
             "movie-pos":["vector4m", [760.88, 24.34, 772.33, 2.0]]
           }
-        },
-        {
+        }
+        // {
+        //   "trans": [868.93, 70.70, 682.0], // translation
+        //   "etype": "fuel-cell",  // actor type
+        //   "game_task": 128, // associated game task (for powercells, etc)
+        //   "quat" : [0, 0, 0, 1], // quaternion
+        //   "bsphere": [868.93, 70.70, 682.0, 10], // bounding sphere
+        //   "lump": {
+        //     "name":"energy-bay-fuel-cell-01", // energy-bay-turbine1
+        //     "eco-info": ["int32", 6, 128],
+        //     "movie-pos":["vector4m", [868.93, 68.70, 682.0, 60.0]]
+        //   }
+        // },
+        // {
+        //   "trans": [514.4, 79.14, 860.75], // translation
+        //   "etype": "fuel-cell",  // actor type
+        //   "game_task": 129, // associated game task (for powercells, etc)
+        //   "quat" : [0, 0, 0, 1], // quaternion
+        //   "bsphere": [514.4, 79.14, 860.75, 10], // bounding sphere
+        //   "lump": {
+        //     "name":"energy-bay-fuel-cell-02", // energy-bay-turbine2
+        //     "eco-info": ["int32", 6, 129],
+        //     "movie-pos":["vector4m", [514.4, 77.14, 860.75, 60.0]]
+        //   }
+        // },
+        // {
+        //   "trans": [859.96, 74.58, 919.67], // translation
+        //   "etype": "fuel-cell",  // actor type
+        //   "game_task": 130, // associated game task (for powercells, etc)
+        //   "quat" : [0, 0, 0, 1], // quaternion
+        //   "bsphere": [859.96, 74.58, 919.67, 10], // bounding sphere
+        //   "lump": {
+        //     "name":"energy-bay-fuel-cell-03", // energy-bay-turbine3
+        //     "eco-info": ["int32", 6, 130],
+        //     "movie-pos":["vector4m", [859.96, 72.318, 919.67, 4.24]]
+        //   }
+        // },
+        // {
+        //   "trans": [760.88, 27.34, 772.33], // translation
+        //   "etype": "fuel-cell",  // actor type
+        //   "game_task": 131, // associated game task (for powercells, etc)
+        //   "quat" : [0, 0, 0, 1], // quaternion
+        //   "bsphere": [760.88, 27.34, 772.33, 10], // bounding sphere
+        //   "lump": {
+        //     "name":"energy-bay-fuel-cell-04", // energy-bay-turbine4
+        //     "eco-info": ["int32", 6, 131],
+        //     "movie-pos":["vector4m", [760.88, 24.34, 772.33, 2.0]]
+        //   }
+        // },
+        ,{
           "trans": [722.78, 15, 836.12], // translation // TFL TODO: move this
           "etype": "balloon-fuelcell",  // actor type
           "game_task": 132, // associated game task (for powercells, etc)
@@ -573,7 +623,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-01",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -595,7 +645,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-02",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -617,7 +667,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-03",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -639,7 +689,7 @@
           "lump": {
             "name": "energy-bay-lurkerpuppy-04",
             "vis-dist": ["meters", 200.0],
-            "cam-notice-dist": ["meters", 30.0],
+            "cam-notice-dist": ["meters", 10.0],
             "idle-distance": ["meters", 80.0],
             "cam-vert": ["meters", 8.0],
             "cam-horz": ["meters", 20.0],
@@ -648,6 +698,45 @@
                 [895.82, 43.93, 643.08],
                 [903.77, 44.76, 657.52],
                 [882.43, 42.78, 652.17]
+              ],
+            "nav-mesh-actor": "energy-bay-lurkerpuppy-01"
+          }
+        }
+        ,{
+          "trans": [889.44, 40.63, 636.93],
+          "etype": "lurkerpuppy",
+          "game_task": 0,
+          "quat" : [0, 0, 0, 1],
+          "bsphere": [889.44, 40.63, 636.93, 10],
+          "lump": {
+            "name": "energy-bay-lurkerpuppy-05",
+            "vis-dist": ["meters", 200.0],
+            "cam-notice-dist": ["meters", 10.0],
+            "idle-distance": ["meters", 80.0],
+            "cam-vert": ["meters", 8.0],
+            "cam-horz": ["meters", 20.0],
+            "path-actor":"energy-bay-lurkerpuppy-01",
+            "nav-mesh-actor": "energy-bay-lurkerpuppy-01"
+          }
+        }
+        ,{
+          "trans": [864.26, 34.37, 633.7],
+          "etype": "lurkerpuppy",
+          "game_task": 0,
+          "quat" : [0, 0, 0, 1],
+          "bsphere": [864.26, 34.37, 633.7, 10],
+          "lump": {
+            "name": "energy-bay-lurkerpuppy-06",
+            "vis-dist": ["meters", 200.0],
+            "cam-notice-dist": ["meters", 10.0],
+            "idle-distance": ["meters", 80.0],
+            "cam-vert": ["meters", 8.0],
+            "cam-horz": ["meters", 20.0],
+            "path": ["vector3m", 
+                [866.72, 34.20, 632.3],
+                [859.63, 31.38, 614.43],
+                [877.4, 31.31, 605.97],
+                [866.72, 34.20, 632.3]
               ],
             "nav-mesh-actor": "energy-bay-lurkerpuppy-01"
           }
@@ -4162,7 +4251,6 @@
         "name":"energy-bay-turbine-04"
       }
     }
-
   ],
   "ambients" : [
     {
