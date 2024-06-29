@@ -2294,17 +2294,16 @@
   :bounds (static-spherem 0 0 0 12)
   :longest-edge (meters 8))
 
-(deftype citb-disc (process-drawable)
+(deftype mines-disc (process-drawable)
   ((root      collide-shape-moving :override)
-   (sync      sync-info :inline)
    (rot-scale float))
   (:methods
    (init! (_type_) none)
-   (citb-disc-method-21 (_type_) none))
+   (mines-disc-method-21 (_type_) none))
   (:states
-   citb-disc-idle))
+   mines-disc-idle))
 
-(defstate citb-disc-idle (citb-disc)
+(defstate mines-disc-idle (mines-disc)
   :event
     (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
@@ -2314,15 +2313,13 @@
     (behavior ()
       (loop
         (update! (-> self sound))
-        (quaternion-axis-angle! (-> self root quat)
-                                0.0
-                                1.0
-                                0.0
-                                (* 65536.0 (get-current-phase (-> self sync)) (-> self rot-scale)))
+        (quaternion-rotate-local-y! (-> self root quat) 
+                                    (-> self root quat) 
+                                    (* (res-lump-float (-> self entity) 'angle-per-sec :default (degrees -45)) (seconds-per-frame)))
         (suspend)))
   :post rider-post)
 
-(defmethod init! ((this citb-disc))
+(defmethod init! ((this mines-disc))
   (let ((s5-0 (new 'process 'collide-shape-moving this (collide-list-enum hit-by-others))))
     (set! (-> s5-0 dynam) (copy *standard-dynamics* 'process))
     (set! (-> s5-0 reaction) default-collision-reaction)
@@ -2342,50 +2339,44 @@
   0
   (none))
 
-(defmethod citb-disc-method-21 ((this citb-disc))
+(defmethod mines-disc-method-21 ((this mines-disc))
   0
   (none))
 
-(defmethod init-from-entity! ((this citb-disc) (arg0 entity-actor))
+(defmethod init-from-entity! ((this mines-disc) (arg0 entity-actor))
   (init! this)
   (process-drawable-from-entity! this arg0)
   (logclear! (-> this mask) (process-mask actor-pause))
-  (load-params! (-> this sync) this (the-as uint 3000) 0.0 0.15 0.15)
-  (cond
-    ((> (-> this sync period) 0) (set! (-> this rot-scale) 1.0))
-    (else
-     (set! (-> this rot-scale) -1.0)
-     (let ((v1-8 (abs (the-as int (-> this sync period))))) (set! (-> this sync period) (the-as uint v1-8)))))
-  (citb-disc-method-21 this)
+  (mines-disc-method-21 this)
   (set! (-> this sound) (new 'process 'ambient-sound (static-sound-spec "rotate-plat" :fo-max 20) (-> this root trans)))
   (logior! (-> this skel status) (janim-status inited))
-  (go citb-disc-idle)
+  (go mines-disc-idle)
   (none))
 
-(deftype citb-disc-a (citb-disc) ())
+(deftype mines-disc-a (mines-disc) ())
 
-(deftype citb-disc-b (citb-disc) ())
+(deftype mines-disc-b (mines-disc) ())
 
-(deftype citb-disc-c (citb-disc) ())
+(deftype mines-disc-c (mines-disc) ())
 
-(deftype citb-disc-d (citb-disc) ())
+(deftype mines-disc-d (mines-disc) ())
 
-(defmethod citb-disc-method-21 ((this citb-disc-a))
+(defmethod mines-disc-method-21 ((this mines-disc-a))
   (initialize-skeleton this *citb-disc-a-sg* '())
   0
   (none))
 
-(defmethod citb-disc-method-21 ((this citb-disc-b))
+(defmethod mines-disc-method-21 ((this mines-disc-b))
   (initialize-skeleton this *citb-disc-b-sg* '())
   0
   (none))
 
-(defmethod citb-disc-method-21 ((this citb-disc-c))
+(defmethod mines-disc-method-21 ((this mines-disc-c))
   (initialize-skeleton this *citb-disc-c-sg* '())
   0
   (none))
 
-(defmethod citb-disc-method-21 ((this citb-disc-d))
+(defmethod mines-disc-method-21 ((this mines-disc-d))
   (initialize-skeleton this *citb-disc-d-sg* '())
   0
   (none))
