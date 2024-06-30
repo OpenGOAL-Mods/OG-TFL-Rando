@@ -78,7 +78,9 @@
     (set! (-> this incomming-attack-id) (the-as handle (-> arg1 param 2)))
     (let ((v1-1 (-> arg1 param 1)))
       (cond
-        ((or (= v1-1 'flop) (= v1-1 'explode) (= v1-1 'darkeco))
+        ;; TFL note: changed
+        ((or (symbol-member? v1-1 '(flop explode darkeco racer-red-boost))
+             (and (= arg0 *target*) (target-powerup? super-eco-red)))
          (logclear! (-> this mask) (process-mask actor-pause))
          (go (method-of-object this nav-enemy-die)))
         ((= v1-1 'punch)
