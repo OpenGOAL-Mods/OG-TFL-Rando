@@ -229,30 +229,30 @@
     (behavior ()
       (when *target*
         (let ((dist (vector-vector-distance (target-pos 0) (-> self root trans)))
-              (dir (vector-! (new-stack-vector0) (-> *target* control trans) (-> self root trans)))
-              (dir-up (vector+! (new-stack-vector0) (-> self root trans) (static-vectorm 0 2 0))))
+              (dir (vector-! (new-stack-vector0) (-> *target* control trans) (-> self root trans))))
           (vector-normalize! dir (meters 70.0))
           (when (< dist SUPER_RED_BOMB_EXPLODE_RADIUS)
             ; (send-event *target*
             ;             'shove
             ;             #f
             ;             (static-attack-info ((shove-back (meters 0)) (shove-up (meters 13)) (angle 'jump) (vector dir) (control 1.0))))
-            (let ((top-dist (vector-vector-distance (-> *target* control trans) dir-up)))
-              (format 0 "top-dist: ~M ~%" top-dist)
-              (format 0 "dist: ~M ~%" (+ (meters 10) (* (meters 10) (/ top-dist (meters 1)))))
+            (let ((xz-dist (vector-vector-xz-distance (-> *target* control trans) (-> self root trans))))
+              ;; (format 0 "xz-dist: ~M ~%" xz-dist)
+              ;; (format 0 "dist: ~M ~%" (+ (meters 10) (* (meters 20) (/ xz-dist (meters 1)))))
+              ;; (format 0 "shove-up ~M ~% ~%" (- (meters 8) (* xz-dist 0.8)))
               (if (or (= (-> *target* control unknown-surface00 mode) 'air)
                       (>= (+ (-> *display* base-frame-counter) (seconds -0.2)) (-> *target* control unknown-dword11))
                       (< 0.75 (-> *target* control poly-normal y)))
-                (if (> top-dist (meters 0.6))
+                (if (> xz-dist (meters 0.6))
                   (send-event *target*
                               'shove
                               #f
-                              (static-attack-info ((dist (+ (meters 10) (* (meters 15) (/ top-dist (meters 1)))))
-                                                   (shove-up (- (meters 9) (/ top-dist (meters 1))))
+                              (static-attack-info ((dist (+ (meters 10) (* (meters 20) (/ xz-dist (meters 1)))))
+                                                   (shove-up (- (meters 8) (* xz-dist 0.8)))
                                                    (angle 'back)
                                                    (vector dir)
                                                    (control 0.2))))
-                  (send-event *target* 'shove #f (static-attack-info ((shove-up (meters 9)) (angle 'jump) (vector dir) (control 1.0)))))
+                  (send-event *target* 'shove #f (static-attack-info ((shove-up (meters 8)) (angle 'jump) (vector dir) (control 1.0)))))
                 (send-event *target*
                             'shove
                             #f
