@@ -57,7 +57,7 @@ std::map<std::string, ma_sound> maSoundMap;
 ma_sound* mainMusicSound;
 
 // TFL Note: Added
-ma_engine tfl_ma_engine;
+ma_engine g_ma_engine_tfl;
 
 void kmachine_init_globals_common() {
   memset(pad_dma_buf, 0, sizeof(pad_dma_buf));
@@ -69,7 +69,7 @@ void kmachine_init_globals_common() {
   ee_clock_timer = Timer();
 
   ma_engine_init(NULL, &maEngine);
-  ma_engine_init(NULL, &tfl_ma_engine);
+  ma_engine_init(nullptr, &g_ma_engine_tfl);
 }
 
 /*!
@@ -285,7 +285,7 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     printf("Playing hint: %s\n", name_str.c_str());
 
     auto* hint = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&tfl_ma_engine, path.c_str(), 0, nullptr, nullptr, hint);
+    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, hint);
     if (hint_result != MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
@@ -357,6 +357,9 @@ void stop_tfl_music(bool force) {
   if (g_tfl_music) {
     if (force) {
       ma_sound_stop(g_tfl_music);
+      ma_sound_uninit(g_tfl_music);
+      ma_engine_stop(&g_ma_engine_tfl);
+      ma_engine_uninit(&g_ma_engine_tfl);
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
@@ -400,7 +403,7 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     }
 
     auto* music = new ma_sound;
-    auto music_result = ma_sound_init_from_file(&tfl_ma_engine, file.c_str(), 0, nullptr, nullptr, music);
+    auto music_result = ma_sound_init_from_file(&g_ma_engine_tfl, file.c_str(), 0, nullptr, nullptr, music);
     if (music_result != MA_SUCCESS) {
       printf("Failed to load music: %s\n", file.c_str());
       delete music;
@@ -492,7 +495,7 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
     printf("Playing commentary: %s\n", name_str.c_str());
 
     auto* node = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&tfl_ma_engine, path.c_str(), 0, nullptr, nullptr, node);
+    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, node);
     if (hint_result != MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
