@@ -487,6 +487,7 @@
   :exit
     (behavior ()
       (set! (-> self play-time) 0)
+      (set! (-> self cur-frame) 0)
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume)
       (remove-setting! 'dialog-volume)))

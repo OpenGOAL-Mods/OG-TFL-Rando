@@ -38,8 +38,8 @@ command list:
 - music: set music volume.
 - sfx: set sfx volume.
 - dialog: set dialog volume.
-- camera: spawn a pov-camera. paramters are:
-  - skelgroup: skeleton-group of the camera
+- camera: spawn a pov-camera. parameters are:
+  - skelgroup: skeleton-group of the camera (make sure the level has the art group and the skelgroup loaded)
   - trans: vector to set the camera position
   - cam-name: name of the camera animation to play.
 
