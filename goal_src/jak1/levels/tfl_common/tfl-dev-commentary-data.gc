@@ -1,0 +1,90 @@
+;;-*-Lisp-*-
+(in-package goal)
+(defenum tfl-commentary-command
+  (none)
+  (grab)
+  (ungrab)
+  (pov-camera)
+  (proc-spawn)
+  (reset)
+  (done))
+
+(defenum tfl-commentary-dev
+  (kuitar))
+
+(deftype tfl-commentary-data (structure)
+  ((file-name   string) ;; file name (with extension)
+   (dev-name    tfl-commentary-dev)
+   (description string) ;; short description
+   (length      time-frame) ;; length of sound clip
+   (cmd-list    pair))) ;; list of commands to do specific stuff like enabling pov cameras, spawning objects, etc.
+
+(defun tfl-commentary-dev->string ((val tfl-commentary-dev))
+  (case val
+    (((tfl-commentary-dev kuitar)) "Kuitar")
+    (else "*unknown*")))
+
+#|
+command system:
+every command starts with a keyframe, measured in ticks (300 ticks = 1 second).
+a keyframe needs to be a multiple of 5 because the timer is only incremented every 5 ticks,
+as suspending a process pauses it for a frame (5 ticks = 1/60th of a second).
+
+there are two special cases: "start" (execute command at the beginning of playback) and "end" (execute at the end of playback).
+
+command list:
+- grab: lock jak in place.
+- release: release jak if he was grabbed.
+- music: set music volume.
+- sfx: set sfx volume.
+- dialog: set dialog volume.
+- camera: spawn a pov-camera. paramters are:
+  - skelgroup: skeleton-group of the camera
+  - trans: vector to set the camera position
+  - cam-name: name of the camera animation to play.
+
+examples:
+(start grab) ;; grab jak at the start
+(start music 5.0) ;; set music volume at the start
+(start sfx 0.0) ;; set sfx volume at the start
+(start dialog 0.0) ;; set dialog volume at the start
+(300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up") ;; 1 second in, spawn a pov-camera using the village2cam animation "elevator-at-bottom-going-up"
+(end release)
+|#
+
+(defmacro static-commentary-data (&key file-name &key dev-name &key description &key (length 0.0) &key (cmd-list '()))
+  `(new 'static
+       'tfl-commentary-data
+       :file-name ,file-name
+       :dev-name ,dev-name
+       :description ,description
+       :length (seconds ,length)
+       :cmd-list ,cmd-list))
+
+(define *tfl-commentary-nodes*
+  (new 'static
+       'boxed-array
+       :type
+       tfl-commentary-data
+       (static-commentary-data :file-name "dev00.wav"
+                               :dev-name (tfl-commentary-dev kuitar)
+                               :description "Designing Energy Bay"
+                               :length 5.0
+                               :cmd-list
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
+                                (end release)))
+       (static-commentary-data :file-name "dev01.wav"
+                               :dev-name (tfl-commentary-dev kuitar)
+                               :description "really long string aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                               :length 65.0
+                               :cmd-list
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
+                                (end release)))))

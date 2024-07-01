@@ -280,6 +280,8 @@
   "task-control.o"
   "process-taskable.o"
   "pov-camera.o"
+  "tfl-dev-commentary-data.o" ;; TFL note: added
+  "tfl-dev-commentary.o" ;; TFL note: added
   "powerups.o"
   "crates.o"
   "hud.o"
@@ -380,4 +382,6 @@
   "tfl-hint-data.o"
   "tfl-hint.o"
   "tfl-nav-mesh.o"
+  "tfl-commentary-node-ag.go"
+  "tfl-commentary-node-active-ag.go"
  ))
