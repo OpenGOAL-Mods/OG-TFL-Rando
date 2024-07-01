@@ -2116,7 +2116,7 @@
 
 (goal-src-sequence
  ;; prefix
- "tfl_common/"
+ "levels/tfl_common/"
  :deps ("$OUT/obj/pov-camera.o")
  "tfl-dev-commentary-data.gc"
  "tfl-dev-commentary.gc"
@@ -2159,7 +2159,7 @@
 
 (goal-src-sequence
  ;; prefix
- "tfl_common/"
+ "levels/tfl_common/"
  :deps ("$OUT/obj/process-drawable.o")
  "super-eco-crystal.gc"
  "tfl-hint-data.gc"
