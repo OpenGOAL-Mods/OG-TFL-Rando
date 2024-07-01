@@ -1,6 +1,5 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
 (defconstant SUPER_RED_BOMB_FUSE_TIME (seconds 3))
 
 (defconstant SUPER_RED_BOMB_EXPLODE_RADIUS (meters 5))
@@ -90,12 +89,12 @@
                                                           (the vector bomb-core)
                                                           probe
                                                           40.96
-                                                          (collide-kind ground-object)
+                                                          (collide-kind background)
                                                           self
                                                           tri
                                                           (new 'static 'pat-surface :noentity #x1))
                         0.0)
-                 (if (!= (-> proc type) target) (send-event proc 'attack (-> block param 0) (static-attack-info ((mode 'explode))))))))))))
+                 (if (!= (-> proc type) target) (send-event proc 'attack (-> block param 0) 'explode (1+! *global-attack-id*) 0)))))))))
   :code
     (behavior ()
       (when *target*
