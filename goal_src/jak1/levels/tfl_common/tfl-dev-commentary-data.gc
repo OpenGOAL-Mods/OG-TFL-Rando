@@ -72,10 +72,10 @@ examples:
                                :length 5.0
                                :cmd-list
                                '((start grab)
-                                ;; (start music 5.0)
-                                ;; (start sfx 5.0)
-                                ;; (start dialog 5.0)
-                                ;; (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
                                 (end release)))
        (static-commentary-data :file-name "dev01.wav"
                                :dev-name (tfl-commentary-dev kuitar)
@@ -83,8 +83,8 @@ examples:
                                :length 65.0
                                :cmd-list
                                '((start grab)
-                                ;; (start music 5.0)
-                                ;; (start sfx 5.0)
-                                ;; (start dialog 5.0)
-                                ;; (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
                                 (end release)))))
