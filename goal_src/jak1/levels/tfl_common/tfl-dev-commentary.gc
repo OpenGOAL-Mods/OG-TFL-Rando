@@ -9,13 +9,13 @@
   :code
     (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause))
-      (let ((gp-0 0))
-        (let ((v1-7 (lookup-art (-> self draw jgeo) "camera" (the-as type #f)))) (if v1-7 (set! gp-0 (+ (-> v1-7 number) 1))))
-        (let ((v1-10 (process-spawn othercam self gp-0 #t #t :to self)))
-          (send-event (ppointer->process v1-10) 'mask (-> self mask-to-clear))))
+      (let ((idx 0))
+        (let ((art (lookup-art (-> self draw jgeo) "camera" (the type #f)))) (if art (set! idx (1+ (-> art number)))))
+        (let ((othercam (process-spawn othercam self idx #t #t :to self)))
+          (send-event (ppointer->process othercam) 'mask (-> self mask-to-clear))))
       (go-virtual pov-camera-playing)))
 
-(defstate pov-camera-done-playing (pov-camera)
+(defstate pov-camera-done-playing (commentary-camera)
   :virtual #t
   :code
     (behavior ()
