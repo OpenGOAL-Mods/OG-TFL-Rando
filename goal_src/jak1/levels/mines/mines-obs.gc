@@ -2581,3 +2581,164 @@
       (set! (-> this cycle-pause) (the int (* f30-3 (if (and v1-77 (< 2 (the int (-> sv-48 elt-count)))) (-> v1-77 2) 2.0))))))
   (go minesflamepots-active)
   (none))
+
+(deftype mines-bouncer (process-drawable)
+  ((root               collide-shape :override)
+   (shove-up           float)
+   (dist               float)
+   (activate-part      sparticle-launch-control)
+   (launch-pos         vector 2 :inline))
+  (:states
+   mines-bouncer-idle
+   (mines-bouncer-activate uint)))
+
+(defstate mines-bouncer-idle (mines-bouncer)
+  :event
+    (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
+      (case event-type
+        (('touch 'attack)
+         (when (= (-> proc type) target)
+           (when ((method-of-type touching-shapes-entry prims-touching-action?)
+                  (the touching-shapes-entry (-> event param 0))
+                  (-> *target* control)
+                  (collide-action solid)
+                  (collide-action))
+                 
+                 (go mines-bouncer-activate (-> event param 0)))))))
+  :trans
+    (behavior ()
+      (restore-collide-with-as (-> self root))
+      (quaternion-copy! *particle-quat* (-> self root quat))
+      (spawn (-> self part) (-> self root trans))
+      (none))
+  :code
+    (behavior ()
+      (loop
+        (logior! (-> self mask) (process-mask sleep-code))
+        (suspend))
+      (none)))
+
+(defstate mines-bouncer-activate (mines-bouncer)
+  :code
+    (behavior ((arg0 uint))
+      (when (!= (-> *target* next-state name) 'target-hit)
+            (sound-play "launch-fire" :vol 150 :pitch 1.4)
+            (let ((s4-0 (new 'stack 'attack-info)))
+                    (calc-shove-up (-> self root) s4-0 (-> self shove-up))
+                    (send-event *target*
+                                'shove
+                                arg0
+                                (static-attack-info 
+                                    ((angle 'up-forward) 
+                                    (vector (-> s4-0 vector)) 
+                                    (shove-up (-> s4-0 shove-up)) 
+                                    (dist (-> self dist))))))
+            (quaternion-rotate-local-x! *particle-quat* (-> self root quat) (degrees 90.0))
+            (suspend-for (seconds 0.75) (spawn (-> self activate-part) (-> self root trans)))
+            (kill-and-free-particles (-> self activate-part)))
+      (go mines-bouncer-idle)))
+
+(defmethod relocate ((this mines-bouncer) (off int))
+  (if (nonzero? (-> this activate-part)) (&+! (-> this activate-part) off))
+  (call-parent-method this off))
+
+(defmethod deactivate ((this mines-bouncer))
+  (if (nonzero? (-> this activate-part)) (kill-and-free-particles (-> this activate-part)))
+  (call-parent-method this))
+
+(defmethod init-from-entity! ((this mines-bouncer) (arg0 entity-actor))
+  (set! (-> this shove-up) (res-lump-float arg0 'shove :default (meters 4.0)))
+  (set! (-> this dist) (res-lump-float arg0 'distance :default (meters 8.0)))
+  (logclear! (-> this mask) (process-mask enemy))
+  (logclear! (-> this mask) (process-mask attackable))
+  (logior! (-> this mask) (process-mask actor-pause))
+  (let ((s4-0 (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (let ((s3-0 (new 'process 'collide-shape-prim-group s4-0 (the uint 1) 0)))
+      (set! (-> s3-0 prim-core collide-as) (collide-kind enemy))
+      (set! (-> s3-0 collide-with) (collide-kind target))
+      (set! (-> s3-0 prim-core offense) (collide-offense no-offense))
+      (set-root-prim! s4-0 s3-0)
+      (let ((s2-0 (new 'process 'collide-shape-prim-sphere s4-0 (the uint 1))))
+        (set! (-> s2-0 prim-core collide-as) (collide-kind enemy))
+        (set! (-> s2-0 collide-with) (collide-kind target))
+        (set! (-> s2-0 prim-core offense) (collide-offense no-offense))
+        (set-vector! (-> s2-0 local-sphere) 0.0 0.0 0.0 (res-lump-float arg0 'radius :default (meters 2.0)))
+        (append-prim s3-0 s2-0)))
+    (backup-collide-with-as s4-0)
+    (set! (-> this root) s4-0))
+  (process-drawable-from-entity! this arg0)
+  (set! (-> this part) (create-launch-control (-> *part-group-id-table* 1008) this))
+  (set! (-> this activate-part) (create-launch-control (-> *part-group-id-table* 1009) this))
+  ;; (quaternion-copy! *particle-quat* (-> this root quat))
+  (let ((v1-42 (new 'process 'path-control this 'path 0.0)))
+    (set! (-> this path) v1-42)
+    (logior! (-> v1-42 flags) (path-control-flag display draw-line draw-point draw-text))
+    (if (<= (-> v1-42 curve num-cverts) 0) (go process-drawable-art-error "no path")))
+  (let ((f30-0 (quaternion-y-angle (-> this root quat))))
+    (let ((s4-1 (-> this launch-pos)))
+      (let ((v1-53 s4-1))
+        (set! (-> v1-53 0 x) 0.0)
+        (set! (-> v1-53 0 y) 0.0)
+        (set! (-> v1-53 0 z) 0.0)
+        (set! (-> v1-53 0 w) 1.0))
+      (vector-rotate-around-y! (the vector s4-1) (the vector s4-1) f30-0)
+      (vector+! (the vector s4-1) (the vector s4-1) (-> this root trans)))
+    (let ((s4-2 (-> this launch-pos 1)))
+      (set-vector! (the vector s4-2) -6144.0 0.0 0.0 1.0)
+      (vector-rotate-around-y! (the vector s4-2) (the vector s4-2) f30-0)
+      (vector+! (the vector s4-2) (the vector s4-2) (-> this root trans)))
+    (let ((s4-3 (-> this root root-prim)))
+      (dotimes (s3-1 (-> (the collide-shape-prim-group s4-3) num-prims))
+        (let ((a1-19 (-> (the collide-shape-prim-group s4-3) prims s3-1 local-sphere)))
+          (vector-rotate-around-y! a1-19 a1-19 f30-0)))))
+  (update-transforms! (-> this root))
+  (go mines-bouncer-idle)
+  (none))
+
+(defskelgroup *citb-stopbox-sg*
+  citb-stopbox
+  citb-stopbox-lod0-jg
+  citb-stopbox-idle-ja
+  ((citb-stopbox-lod0-mg (meters 20)) (citb-stopbox-lod1-mg (meters 999999)))
+  :bounds (static-spherem 0 -2 0 5.5))
+
+(deftype mines-stopbox (plat) ())
+
+(defstate plat-path-active (mines-stopbox)
+  :virtual #t
+  :trans
+    (behavior ()
+      (set! (-> self path-pos) (get-current-phase (-> self sync)))
+      (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
+      (if (< (vector-vector-distance (-> self root trans) (ear-trans)) 81920.0)
+        (sound-play "eco-plat-hover" :id (-> self sound-id) :position (the-as symbol (-> self root trans))))
+      (plat-trans)))
+
+(defmethod get-unlit-skel ((this mines-stopbox))
+  *citb-stopbox-sg*)
+
+(defmethod baseplat-method-24 ((this mines-stopbox))
+  (let ((s5-0 (new 'process 'collide-shape-moving this (collide-list-enum hit-by-others))))
+    (set! (-> s5-0 dynam) (copy *standard-dynamics* 'process))
+    (set! (-> s5-0 reaction) default-collision-reaction)
+    (set! (-> s5-0 no-reaction) (the-as (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (alloc-riders s5-0 1)
+    (let ((s4-0 (new 'process 'collide-shape-prim-mesh s5-0 (the-as uint 0) (the-as uint 0))))
+      (set! (-> s4-0 prim-core collide-as) (collide-kind ground-object))
+      (set! (-> s4-0 collide-with) (collide-kind target))
+      (set! (-> s4-0 prim-core action) (collide-action solid rider-plat-sticky rider-plat))
+      (set! (-> s4-0 prim-core offense) (collide-offense indestructible))
+      (set! (-> s4-0 transform-index) 0)
+      (set-vector! (-> s4-0 local-sphere) 0.0 -8192.0 0.0 22528.0)
+      (set-root-prim! s5-0 s4-0))
+    (set! (-> s5-0 nav-radius) (* 0.75 (-> s5-0 root-prim local-sphere w)))
+    (backup-collide-with-as s5-0)
+    (set! (-> this root) s5-0))
+  0
+  (none))
+
+(defmethod baseplat-method-26 ((this mines-stopbox))
+  (logior! (-> this fact options) (fact-options wrap-phase))
+  (logclear! (-> this mask) (process-mask actor-pause))
+  0
+  (none))

@@ -31,6 +31,7 @@
   "lurkerm-piston-ag.go"
   "citb-disc-ag.go"
   "citb-hose-ag.go"
+  "citb-stopbox-ag.go"
   "misty-conveyor.o"
   "mines-part.o"
   "battlecontroller.o"
