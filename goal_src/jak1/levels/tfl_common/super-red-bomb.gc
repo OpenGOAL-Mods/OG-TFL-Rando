@@ -130,7 +130,7 @@
                               #f
                               (static-attack-info ((dist (+ (meters 10) (* (meters 20) (/ xz-dist (meters 1)))))
                                                    (shove-up (- (meters 8) (* xz-dist 0.8)))
-                                                   (angle 'back)
+                                                   (angle 'up-forward)
                                                    (vector dir)
                                                    (control 0.2))))
                   (send-event *target* 'shove #f (static-attack-info ((shove-up (meters 8)) (angle 'jump) (vector dir) (control 1.0)))))
@@ -140,7 +140,7 @@
                             (static-attack-info ((shove-up (meters 13))
                                                  (shove-back (meters 13))
                                                  (vector (-> *target* control poly-normal))
-                                                 (angle 'shove)
+                                                 (angle 'up-forward)
                                                  (vector dir)
                                                  (control 1.0)))))))))
       (update! (-> self sound))
