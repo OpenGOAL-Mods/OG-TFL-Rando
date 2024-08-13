@@ -1981,9 +1981,45 @@
                                          (meters -423.2)
                                          (meters 1048.6))
                                         :fwd
-                                        (checkpt "open-mines-excavator" #f)
+                                        (checkpt "open-mines-ambush" #f)
                                         :bwd
                                         (checkpt "open-mines-excavator" #f))
+                  (static-load-boundary :flags (player)
+                                        :top (meters 148.85)
+                                        :bot (meters 130.85)
+                                        :points
+                                        ((meters -492.27) (meters 1117.0) (meters -459.05) (meters 1101.6))
+                                        :fwd
+                                        (checkpt "open-mines-minecart1" #f)
+                                        :bwd
+                                        (checkpt "open-mines-minecart1" #f))
+                  (static-load-boundary :flags (player)
+                                        :top (meters 161.91)
+                                        :bot (meters 147.71)
+                                        :points
+                                        ((meters -447.89) (meters 1163.4) (meters -440.24) (meters 1175.0))
+                                        :fwd
+                                        (checkpt "open-mines-minecart1" #f)
+                                        :bwd
+                                        (checkpt "open-mines-minecart1" #f))
+                  (static-load-boundary :flags (player)
+                                        :top (meters 149.21)
+                                        :bot (meters 130.47)
+                                        :points
+                                        ((meters -404.86) (meters 1116.8) (meters -369.04) (meters 1109.2))
+                                        :fwd
+                                        (checkpt "open-mines-minecart2" #f)
+                                        :bwd
+                                        (checkpt "open-mines-minecart2" #f))
+                  (static-load-boundary :flags (player)
+                                        :top (meters 155.8)
+                                        :bot (meters 133.41)
+                                        :points
+                                        ((meters -440.43) (meters 1218.1) (meters -425.8) (meters 1198.8) (meters -402.13) (meters 1204.6))
+                                        :fwd
+                                        (checkpt "open-mines-minecart3" #f)
+                                        :bwd
+                                        (checkpt "open-mines-hole" #f))
                   ;; CRASH TEST TEST-ZONE3
                   (static-load-boundary :flags
                                         ()

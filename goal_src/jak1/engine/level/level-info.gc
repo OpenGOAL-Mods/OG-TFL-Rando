@@ -3115,6 +3115,82 @@
              :lev0 'crescent-t
              :disp0 'display
              :lev1 'open-mines
+             :disp1 'display)
+        (new 'static
+             'continue-point
+             :name "open-mines-minecart1"
+             :level 'open-mines
+             :trans
+             (new 'static 'vector :x (meters -471.8675) :y (meters 131.5532) :z (meters 1105.1433) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y 0.3177 :z 0.0 :w 0.9481)
+             :camera-trans
+             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.8932 0.0000 -0.4495 0.0602 0.9909 0.1196 0.4454 -0.1339 0.8852)
+             :load-commands
+             '()
+             :vis-nick 'opm
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'open-mines
+             :disp1 'display)
+        (new 'static
+             'continue-point
+             :name "open-mines-minecart2"
+             :level 'open-mines
+             :trans
+             (new 'static 'vector :x (meters -383.7655) :y (meters 136.0829) :z (meters 1109.2363) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y -0.1239 :z 0.0 :w 0.9922)
+             :camera-trans
+             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.9651 -0.0000 0.2616 -0.0318 0.9925 0.1173 -0.2597 -0.1215 0.9579)
+             :load-commands
+             '()
+             :vis-nick 'opm
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'open-mines
+             :disp1 'display)
+        (new 'static
+             'continue-point
+             :name "open-mines-minecart3"
+             :level 'open-mines
+             :trans
+             (new 'static 'vector :x (meters -418.6041) :y (meters 135.8521) :z (meters 1198.8315) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y 0.9874 :z 0.0 :w -0.1580)
+             :camera-trans
+             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 -0.9589 0.0000 0.2835 -0.0342 0.9926 -0.1157 -0.2814 -0.1206 -0.9519)
+             :load-commands
+             '()
+             :vis-nick 'opm
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'open-mines
+             :disp1 'display)
+        (new 'static
+             'continue-point
+             :name "open-mines-hole"
+             :level 'open-mines
+             :trans
+             (new 'static 'vector :x (meters -422.1072) :y (meters 137.7198) :z (meters 1210.5549) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y 0.1554 :z 0.0 :w 0.9878)
+             :camera-trans
+             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.9753 -0.0000 -0.2204 0.0345 0.9876 0.1528 0.2177 -0.1567 0.9633)
+             :load-commands
+             '()
+             :vis-nick 'opm
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'open-mines
              :disp1 'display))
        :tasks
        '(137 138 139 140 141 142 143)
