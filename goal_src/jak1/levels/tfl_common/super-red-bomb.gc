@@ -7,7 +7,6 @@
 (deftype super-red-bomb (process-drawable)
   ((root         collide-shape :override)
    (fuse-time    time-frame)
-   (fuse-part    sparticle-launch-control)
    (explode-part sparticle-launch-control))
   (:methods
    (init-collision! (_type_) none))
@@ -16,12 +15,10 @@
    explode))
 
 (defmethod relocate ((this super-red-bomb) (off int))
-  (if (nonzero? (-> this fuse-part)) (&+! (-> this fuse-part) off))
   (if (nonzero? (-> this explode-part)) (&+! (-> this explode-part) off))
   (call-parent-method this off))
 
 (defmethod deactivate ((this super-red-bomb))
-  (if (nonzero? (-> this fuse-part)) (kill-and-free-particles (-> this fuse-part)))
   (if (nonzero? (-> this explode-part)) (kill-and-free-particles (-> this explode-part)))
   (call-parent-method this))
 
@@ -44,20 +41,16 @@
   (quaternion-identity! (-> self root quat))
   (vector-identity! (-> self root scale))
   (set-part! self :id 963)
-  (set-part! self :part fuse-part)
   (set-part! self :part explode-part :id 964)
   (set! (-> self sound)
-        (new 'process
-             'ambient-sound
-             (static-sound-spec "red-fireball" :fo-min 10 :fo-max 100 :volume 150)
-             (-> self root trans)))
+        (new 'process 'ambient-sound (static-sound-spec "red-fireball" :fo-min 10 :fo-max 100 :volume 150) (-> self root trans)))
   (update! (-> self sound))
   (update-vol! (-> self sound) 1)
   (go-virtual fuse))
 
 (defbehavior super-red-bomb-post super-red-bomb ()
-  (if (< (- (current-time) (-> self fuse-time)) (seconds 2))
-    (format *stdcon* "red-bomb fuse time ~,,2es~%" (- (seconds 2) (- (current-time) (-> self fuse-time)))))
+  ; (if (< (- (current-time) (-> self fuse-time)) SUPER_RED_BOMB_FUSE_TIME)
+  ;   (format *stdcon* "red-bomb fuse time ~,,2es~%" (- SUPER_RED_BOMB_FUSE_TIME (- (current-time) (-> self fuse-time)))))
   (transform-post)
   (none))
 
@@ -80,7 +73,8 @@
             (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 (- 40 (/ (* dist 4.0) (meters 1))) (seconds 0.05))
             (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (- 40 (/ (* dist 4.0) (meters 1))) (seconds 0.05))))
         (update! (-> self sound))
-        (update-vol! (-> self sound) (+ 40 (the int (* (/ (the float (- (current-time) (-> self fuse-time))) TICKS_PER_SECOND) 40.0))))
+        (update-vol! (-> self sound)
+                     (+ 40 (the int (* (/ (the float (- (current-time) (-> self fuse-time))) TICKS_PER_SECOND) 40.0))))
         (suspend))
       (go-virtual explode)))
 
@@ -144,7 +138,7 @@
                                                  (vector dir)
                                                  (control 1.0)))))))))
       (update! (-> self sound))
-      (update-vol! (-> self sound) 1)  
+      (update-vol! (-> self sound) 1)
       (let ((prim (-> self root root-prim)))
         (set! (-> prim local-sphere w) SUPER_RED_BOMB_EXPLODE_RADIUS)
         (set! (-> prim prim-core world-sphere w) SUPER_RED_BOMB_EXPLODE_RADIUS)
