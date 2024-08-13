@@ -506,11 +506,6 @@
    "flut_common/flut-part.gc"
    "flut_common/flutflut.gc"
    "flut_common/target-flut.gc"
-
-   ;; TFL note: added
-   "tfl_common/super-eco-crystal.gc"
-   "tfl_common/tfl-hint-data.gc"
-   "tfl_common/tfl-hint.gc"
    )
 
 
@@ -1685,7 +1680,10 @@
 ;; requires a .glb model file in custom_assets/jak1/models
 ;; to also generate a collide-mesh, add :gen-mesh #t
 (build-actor "test-actor" :gen-mesh #t)
+;; TFL note: added
 (build-actor "turbineblade")
+(build-actor "tfl-commentary-node")
+(build-actor "tfl-commentary-node-active")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -1980,13 +1978,16 @@
 ;; TFL note: added
 (goal-src "levels/tfl_common/tfl-music-player.gc" "level")
 
+;; TFL note: added
+(goal-src "levels/tfl_common/super-red-bomb.gc" "process-drawable")
+
 (goal-src-sequence
  ;; prefix
  "engine/"
 
  :deps
- ;; TFL note: added music player dep
- ("$OUT/obj/generic-obs.o" "$OUT/obj/tfl-music-player.o")
+ ;; TFL note: added deps
+ ("$OUT/obj/generic-obs.o" "$OUT/obj/tfl-music-player.o" "$OUT/obj/super-red-bomb.o")
  "target/target-util.gc"
  "target/target-part.gc"
  "target/collide-reaction-target.gc"
@@ -2113,6 +2114,14 @@
    )
  )
 
+(goal-src-sequence
+ ;; prefix
+ "levels/tfl_common/"
+ :deps ("$OUT/obj/pov-camera.o")
+ "tfl-dev-commentary-data.gc"
+ "tfl-dev-commentary.gc"
+ )
+
 ;; Custom or Modified Code
 (goal-src "pc/features/autosplit-h.gc")
 (goal-src "pc/features/autosplit.gc" "autosplit-h" "task-control-h" "progress-static")
@@ -2124,7 +2133,7 @@
 (goal-src "pc/pckernel-common.gc" "pckernel-impl" "pc-anim-util" "settings" "video" "target-h" "autosplit-h" "speedruns-h")
 (goal-src "pc/pckernel.gc" "pckernel-common")
 (goal-src "pc/subtitle.gc" "text" "pckernel" "hint-control" "loader-h" "gsound" "ambient")
-(goal-src "pc/progress-pc.gc" "progress" "pckernel")
+(goal-src "pc/progress-pc.gc" "progress" "pckernel" "tfl-dev-commentary") ;; TFL note: added dep
 (goal-src "pc/hud-classes-pc.gc" "pckernel" "hud" "battlecontroller" "generic-obs")
 (goal-src "pc/debug/anim-tester-x.gc" "pckernel" "gstring" "joint" "process-drawable" "art-h" "effect-control")
 (goal-src "pc/debug/entity-debug.gc" "debug" "main-h" "entity" "pckernel" "font")
@@ -2147,6 +2156,15 @@
 )
 
 ;; TFL note: Custom part and obs files for the levels
+
+(goal-src-sequence
+ ;; prefix
+ "levels/tfl_common/"
+ :deps ("$OUT/obj/process-drawable.o")
+ "super-eco-crystal.gc"
+ "tfl-hint-data.gc"
+ "tfl-hint.gc"
+ )
 
 (goal-src-sequence
  "levels/crystalc/"

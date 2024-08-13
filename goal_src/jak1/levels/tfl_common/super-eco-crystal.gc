@@ -161,9 +161,8 @@
   (initialize-skeleton this *super-eco-crystal-sg* '())
   (logior! (-> this mask) (process-mask pause attackable))
   ;; default to super blue eco and 20 second respawn
-  (set! (-> this eco-type) (aif (res-lump-struct (-> this entity) 'eco-type symbol :time -1000000000.0) it 'blue))
-  (set! (-> this respawn-timer)
-        (aif (res-lump-value (-> this entity) 'respawn-timer int32 :time -1000000000.0) (seconds it) (seconds 20)))
+  (set! (-> this eco-type) (aif (res-lump-struct (-> this entity) 'eco-type symbol) it 'blue))
+  (set! (-> this respawn-timer) (aif (res-lump-value (-> this entity) 'respawn-timer int32) (seconds it) (seconds 20)))
   (set! (-> this bob-amount) 1024.0)
   (set! (-> this bob-offset)
         (+ (the int (-> this cshape trans x)) (the int (-> this cshape trans y)) (the int (-> this cshape trans z))))
@@ -286,7 +285,8 @@
   :event
     (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
       (case event-type
-        (('attack) (if (or (= (-> proc type) target) (= (-> proc type) projectile-yellow)) (go super-eco-crystal-break)))))
+        (('attack)
+         (if (symbol-member? (-> proc type symbol) '(target projectile-yellow tfl-yellow-shot)) (go super-eco-crystal-break)))))
   :trans
     (behavior ()
       (do-lighting! self)

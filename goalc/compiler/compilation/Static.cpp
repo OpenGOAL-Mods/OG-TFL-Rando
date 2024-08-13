@@ -6,6 +6,7 @@
 
 #include "common/goos/ParseHelpers.h"
 #include "common/util/math_util.h"
+#include <common/goos/Printer.h>
 
 #include "goalc/compiler/Compiler.h"
 
@@ -602,6 +603,7 @@ Val* Compiler::compile_bitfield_definition(const goos::Object& form,
  * - Empty Lists
  * - Symbols
  * - Integers
+ * - Floats
  * - Strings
  */
 StaticResult Compiler::compile_static_no_eval_for_pairs(const goos::Object& form,
@@ -656,6 +658,12 @@ StaticResult Compiler::compile_static_no_eval_for_pairs(const goos::Object& form
           bint_val, bint_val);
     }
     return StaticResult::make_constant_data(bint_val, TypeSpec("int32"));
+  } else if (form.is_float()) {
+    auto bfloat = pretty_print::build_list(
+      "new",
+      pretty_print::build_list("quote", "static"),
+      pretty_print::build_list("quote", "bfloat"), ":data", form);
+    return compile_static(bfloat, env);
   } else if (form.is_symbol()) {
     return StaticResult::make_symbol(form.as_symbol().name_ptr);
   } else if (form.is_empty_list()) {

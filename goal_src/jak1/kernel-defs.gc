@@ -545,6 +545,10 @@
 ;;main music end
 
 ;; TFL note: added
+(define-extern play-tfl-commentary (function string float symbol))
+
+(define-extern stop-tfl-commentary (function symbol))
+
 (define-extern play-tfl-hint (function string float symbol symbol))
 
 (define-extern play-tfl-music (function string float symbol))

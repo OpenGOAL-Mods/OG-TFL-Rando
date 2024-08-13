@@ -247,11 +247,11 @@
   "target-util.o"
   "target-part.o"
   "collide-reaction-target.o"
-  ;; TFL note: added
-  "tfl-music-player.o"
+  "tfl-music-player.o" ;; TFL note: added
   "logic-target.o"
   "sidekick.o"
   "voicebox.o"
+  "super-red-bomb.o" ;; TFL note: added
   "target-handler.o"
   "target.o"
   "target2.o"
@@ -280,6 +280,8 @@
   "task-control.o"
   "process-taskable.o"
   "pov-camera.o"
+  "tfl-dev-commentary-data.o" ;; TFL note: added
+  "tfl-dev-commentary.o" ;; TFL note: added
   "powerups.o"
   "crates.o"
   "hud.o"
@@ -380,4 +382,6 @@
   "tfl-hint-data.o"
   "tfl-hint.o"
   "tfl-nav-mesh.o"
+  "tfl-commentary-node-ag.go"
+  "tfl-commentary-node-active-ag.go"
  ))

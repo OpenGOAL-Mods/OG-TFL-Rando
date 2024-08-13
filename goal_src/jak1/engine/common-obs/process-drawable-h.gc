@@ -212,3 +212,13 @@
       :frame-num ,frame-num
       :frame-interp ,frame-interp
       :dist ,dist))
+
+;; TFL note: added
+(defmacro set-part! (proc &key (id 1) &key (part part))
+  `(set! (-> ,proc ,part) (create-launch-control (-> *part-group-id-table* ,id) ,proc)))
+
+(defmacro hide! (proc)
+  `(logior! (-> ,proc draw status) (draw-status hidden)))
+
+(defmacro show! (proc)
+  `(logclear! (-> ,proc draw status) (draw-status hidden)))
