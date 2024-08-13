@@ -87,6 +87,8 @@
    (data           tfl-commentary-data)
    (cur-frame      time-frame)
    (cam            handle)
+   (proc           handle)
+   (hud            handle)
    (cmd-frames     tfl-commentary-keyframes))
   (:methods
    (common-init (_type_) object)
@@ -109,8 +111,7 @@
   (:state-methods
    hidden
    idle
-   playing
-   paused))
+   playing))
 
 (defmacro commentary-debug (&rest body)
   `(#if TFL_COMMENTARY_DEBUG (begin   ,@body) (empty)))
@@ -118,6 +119,8 @@
 (define *tfl-commentary-node-string* (new 'debug 'string 128 (the string #f)))
 
 (defmethod deactivate ((this tfl-commentary-node))
+  (if (-> this cam) (deactivate (handle->process (-> this cam))))
+  (if (-> this proc) (deactivate (handle->process (-> this proc))))
   (call-parent-method this))
 
 (defmethod relocate ((this tfl-commentary-node) (off int))
@@ -200,8 +203,9 @@
 
 (defmethod execute-single-cmd ((this tfl-commentary-node) (cmd pair))
   (format 0 "tfl-commentary-node::parse-cmd executing cmd ~A~%" cmd)
-  (let ((c (car cmd))
-        (rest (cdr cmd)))
+  (let* ((c (car cmd))
+         (rest (cdr cmd))
+         (argc (length rest)))
     (case c
       (('grab) (process-grab? *target*))
       (('release) (process-release? *target*))
@@ -229,6 +233,51 @@
                                                 '()
                                                 :to
                                                 this)))))
+      ; (('spawn)
+      ;  (if (not (handle->process (-> self proc)))
+      ;    (let* ((sg (the symbol (ref rest 0)))
+      ;           (vec (the pair (ref rest 1)))
+      ;           (pos (new-stack-vector0))
+      ;           (cam-name (the string (ref rest 2))))
+      ;      (set! (-> pos x) (meters (unbox-float (ref vec 1))))
+      ;      (set! (-> pos y) (meters (unbox-float (ref vec 2))))
+      ;      (set! (-> pos z) (meters (unbox-float (ref vec 3))))
+      ;      (set! (-> pos w) 1.0)
+      ;      (set! (-> this cam)
+      ;            (ppointer->handle (process-spawn commentary-camera
+      ;                                             :init
+      ;                                             pov-camera-init-by-other
+      ;                                             pos
+      ;                                             (-> sg value)
+      ;                                             cam-name
+      ;                                             (pov-camera-flag inherit-orientation notify-of-abort)
+      ;                                             #f
+      ;                                             '()
+      ;                                             :to
+      ;                                             this))))))
+      ; (('send-event)
+      ;  (if (handle->process (-> this proc))
+      ;    (let* ((sg (the symbol (ref rest 0)))
+      ;           (vec (the pair (ref rest 1)))
+      ;           (pos (new-stack-vector0))
+      ;           (cam-name (the string (ref rest 2))))
+      ;      (set! (-> pos x) (meters (unbox-float (ref vec 1))))
+      ;      (set! (-> pos y) (meters (unbox-float (ref vec 2))))
+      ;      (set! (-> pos z) (meters (unbox-float (ref vec 3))))
+      ;      (set! (-> pos w) 1.0)
+      ;      (set! (-> this cam)
+      ;            (ppointer->handle (process-spawn commentary-camera
+      ;                                             :init
+      ;                                             pov-camera-init-by-other
+      ;                                             pos
+      ;                                             (-> sg value)
+      ;                                             cam-name
+      ;                                             (pov-camera-flag inherit-orientation notify-of-abort)
+      ;                                             #f
+      ;                                             '()
+      ;                                             :to
+      ;                                             this))))))
+      (('kill) (when (-> this proc) (deactivate (handle->process (-> this proc))) (set! (-> this proc) INVALID_HANDLE)))
       (else (format 0 "tfl-commentary-node::parse-cmd unhandled cmd ~A~%" c) #t))))
 
 (defmethod execute-cmds ((this tfl-commentary-node) (cmds pair))
@@ -351,7 +400,9 @@
                (art-group-get-by-name (-> *level* level-default) "tfl-commentary-node-active")
                (-> this entity))
   (set-look! this 'inactive)
-  (set! (-> this cam) INVALID_HANDLE))
+  (set! (-> this cam) INVALID_HANDLE)
+  (set! (-> this proc) INVALID_HANDLE)
+  (set! (-> this hud) INVALID_HANDLE))
 
 (defmethod init-from-entity! ((this tfl-commentary-node) (ent entity-actor))
   (common-init this)
@@ -475,6 +526,17 @@
   :code
     (behavior ()
       ; (play-tfl-commentary (-> self data file-name) (-> *tfl-dev-commentary* vol))
+      ;; manipy doesn't work because draw-bones-hud is using generic
+      ; (when (not (-> self hud))
+      ;   (let ((manipy (the manipy (-> (manipy-spawn (static-vector 0.0 0.0 0.0 1.0) #f *tfl-commentary-node-sg* #f :to self) 0))))
+      ;     (when manipy
+      ;       (set! (-> self hud) (process->handle manipy))
+      ;       (set! (-> manipy draw dma-add-func) dma-add-process-drawable-hud)
+      ;       (set-vector! (-> manipy root trans) -160.0 130.0 0.0 1.0)
+      ;       (set-vector! (-> manipy root scale) 0.0095 -0.011 0.0095 1.0)
+      ;       (logior! (-> manipy mask) (process-mask pause))
+      ;       (logclear! (-> manipy mask) (process-mask menu progress))
+      ;       (set! (-> manipy root trans z) 1024.0))))
       (until (time-elapsed? (-> self play-time) (-> self data length))
         (set! (-> self cur-frame) (- (current-time) (-> self play-time)))
         (when (has-cmds-at-frame? self (-> self cur-frame))
@@ -490,4 +552,8 @@
       (set! (-> self cur-frame) 0)
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume)
-      (remove-setting! 'dialog-volume)))
+      (remove-setting! 'dialog-volume)
+      (if (handle->process (-> self proc)) (deactivate (handle->process (-> self proc))))
+      (set! (-> self proc) INVALID_HANDLE)
+      (if (handle->process (-> self hud)) (deactivate (handle->process (-> self hud))))
+      (set! (-> self hud) INVALID_HANDLE)))
