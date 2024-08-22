@@ -2742,3 +2742,66 @@
   (logclear! (-> this mask) (process-mask actor-pause))
   0
   (none))
+
+(def-art-elt bucket-wheel-ag bucket-wheel-lod0-jg 0)
+(def-art-elt bucket-wheel-ag bucket-wheel-lod0-mg 1)
+(def-art-elt bucket-wheel-ag bucket-wheel-idle-ja 2)
+(defskelgroup *bucket-wheel-sg*
+  bucket-wheel
+  bucket-wheel-lod0-jg
+  bucket-wheel-idle-ja
+  ((bucket-wheel-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 0 0 30))
+
+(deftype bucket-wheel (process-drawable) ()
+  (:states (bucket-wheel-spinning symbol)
+   bucket-wheel-idle))
+
+(defmethod init-from-entity! ((this bucket-wheel) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *bucket-wheel-sg* '())
+  (cond
+    ((task-complete? *game-info* (-> this entity extra perm task)) (go bucket-wheel-spinning #t))
+    (else
+     (birth-pickup-at-point (res-lump-struct (-> this entity) 'movie-pos vector)
+                            (pickup-type fuel-cell)
+                            (the float (-> this entity extra perm task))
+                            #f
+                            this
+                            (the-as fact-info #f))
+     (go bucket-wheel-idle)))
+  (none))
+
+(defstate bucket-wheel-idle (bucket-wheel)
+  :trans
+    (behavior ()
+      (if (and (not (-> self child)) (task-complete? *game-info* (-> self entity extra perm task))) (go bucket-wheel-spinning #f)))
+  :code anim-loop
+  :post ja-post)
+
+(defstate bucket-wheel-spinning (bucket-wheel)
+  :code
+    (behavior ((task-complete? symbol))
+      (when (not task-complete?)
+        (let ((task (-> self entity extra perm task))
+              (hints? (-> *setting-control* current play-hints)))
+          (cond
+            ((= task (game-task energy-bay-turbine1))
+             (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine2)))
+             (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine3)))
+             (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
+            ((and hints? (= task (game-task energy-bay-turbine4)))
+             (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
+        (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
+      (suspend-for (seconds 0.5))
+      (process-entity-status! self (entity-perm-status complete) #t)
+      (let ((ent (-> self entity))) (if (and ent (= self (-> ent extra process))) (entity-task-complete-on ent)))
+      (loop
+        (quaternion-rotate-x! (-> self root quat) (-> self root quat) (* (degrees -90) (seconds-per-frame)))
+        (suspend))
+      (logior! (-> self mask) (process-mask sleep))
+      (suspend))
+  :post ja-post)

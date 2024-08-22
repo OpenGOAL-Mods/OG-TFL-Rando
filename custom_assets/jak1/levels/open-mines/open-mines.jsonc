@@ -70,6 +70,12 @@
     "quicksandlurker-ag"
   ],
 
+  // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+    "bucket-wheel"
+    ],
+
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -300,15 +306,26 @@
     "movie-pos":["vector4m", [-492.78, 154.18, 1176.6, -2.0]]
   }
 }
+// ,{
+//   "trans": [-436.01, 153.83, 1156.5], // translation
+//   "etype": "fuel-cell",  // actor type
+//   "game_task": 141, // associated game task (for powercells, etc)
+//   "quat" : [0, 0, 0, 1], // quaternion
+//   "bsphere": [-436.01, 153.83, 1156.5, 10], // bounding sphere
+//   "lump": {
+//     "name":"open-mines-fuel-cell-05", // open-mines-excavator
+//     "eco-info": ["int32", 6, 141],
+//     "movie-pos":["vector4m", [-436.01, 151.83, 1156.5, 8.0]]
+//   }
+// }
 ,{
-  "trans": [-436.01, 153.83, 1156.5], // translation
-  "etype": "fuel-cell",  // actor type
+  "trans": [-422.23, 160.59, 1193.6], // translation
+  "etype": "bucket-wheel",  // actor type
   "game_task": 141, // associated game task (for powercells, etc)
-  "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-436.01, 153.83, 1156.5, 10], // bounding sphere
+  "quat" : [0, 0.026, 0, 1], // Left Clock-wise
+  "bsphere": [-422.23, 160.59, 1193.6, 10], // bounding sphere
   "lump": {
-    "name":"open-mines-fuel-cell-05", // open-mines-excavator
-    "eco-info": ["int32", 6, 141],
+    "name":"open-mines-bucket-wheel-01",
     "movie-pos":["vector4m", [-436.01, 151.83, 1156.5, 8.0]]
   }
 }
@@ -1653,11 +1670,11 @@
   }
 }
 ,{
-  "trans": [-416.95, 128.28, 858.58], // translation
+  "trans": [-414.5, 128.29, 857.45], // translation
   "etype": "citb-button",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
   "quat" : [0,0,0,1], // quaternion
-  "bsphere": [-416.95, 128.28, 858.58, 10], // bounding sphere
+  "bsphere": [-414.5, 128.29, 857.45, 10], // bounding sphere
   "lump": {
     "name":"open-mines-open-mines-citb-button-01"
     ,"alt-actor":"open-mines-citb-drop-plat-01"
@@ -1935,7 +1952,7 @@
   "lump": {
     "name":"open-mines-stopbox-01",
     "path":["vector4m",
-      [-423.08, 152.64, 1180.1, 1.0],
+      [-423.08, 154.08, 1178.4, 1.0],
       [-423.22, 155.8, 1174.8, 1.0],
       [-423.66, 154.89, 1166.0, 1.0],
       [-424.15, 153.86, 1156.1, 1.0],
@@ -2705,12 +2722,12 @@
   "bsphere": [-391.85, 137.39, 1141.7, 200.0], // bounding sphere
   "lump": {
     "vol": ["vector-vol",
-                [1.0, 0.0, 0.0, -382.98],   // +x (+x in blender)
-                [-1.0, 0.0, 0.0, 399.35],     // -x (inverted x in blender because of the -1)
+                [1.0, 0.0, 0.0, -382.54],   // +x (+x in blender)
+                [-1.0, 0.0, 0.0, 398.59],     // -x (inverted x in blender because of the -1)
                 [0.0, 1.0, 0.0, 137.39],      // +y (+z in blender)
                 [0.0, -1.0, 0.0, -135.34], // -y (inverted z in blender because of the -1)
-                [0.0, 0.0, 1.0, 1151.5],       // +z (-y in blender)
-                [0.0, 0.0, -1.0, -1128.9]       // -z (+y in blender)
+                [0.0, 0.0, 1.0, 1150.1],       // +z (-y in blender)
+                [0.0, 0.0, -1.0, -1130.9]       // -z (+y in blender)
               ],
     "name": "open-mines-mud-03",
     "water-height": ["float",  566845.44, 2048.0, 8192.0, 1310724.0 ], // camera height, ?, wadledept, flags (wt20 19 3)

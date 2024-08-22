@@ -1686,6 +1686,7 @@
 ;; to also generate a collide-mesh, add :gen-mesh #t
 (build-actor "test-actor" :gen-mesh #t)
 (build-actor "turbineblade")
+(build-actor "bucket-wheel")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

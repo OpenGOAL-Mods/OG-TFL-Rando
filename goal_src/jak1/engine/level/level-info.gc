@@ -3045,7 +3045,7 @@
              :name "open-mines-drop-plat"
              :level 'open-mines
              :trans
-             (new 'static 'vector :x (meters -414.2893) :y (meters 127.9319) :z (meters 861.0662) :w 1.0)
+             (new 'static 'vector :x (meters -414.5) :y (meters 128.89) :z (meters 859.25) :w 1.0)
              :quat
              (new 'static 'quaternion :x 0.0 :y 0.9951 :z 0.0 :w -0.0987)
              :camera-trans

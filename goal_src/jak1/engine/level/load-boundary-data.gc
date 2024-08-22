@@ -1924,11 +1924,11 @@
                                         (checkpt "open-mines-start" #f)
                                         :bwd
                                         (checkpt "open-mines-start" #f))
-                  (static-load-boundary :flags (player)
-                                        :top (meters 165.18)
-                                        :bot (meters 125.6)
+                  (static-load-boundary :flags (closed player)
+                                        :top (meters 132.17)
+                                        :bot (meters 132.17)
                                         :points
-                                        ((meters -393.86) (meters 856.52) (meters -440.79) (meters 857.06) (meters -439.89) (meters 838.64))
+                                        ((meters -456.54) (meters 843.47) (meters -392.91) (meters 858.8) (meters -399.42) (meters 873.78) (meters -454.38) (meters 873.61))
                                         :fwd
                                         (checkpt "open-mines-drop-plat" #f)
                                         :bwd
@@ -1937,7 +1937,7 @@
                                         :top (meters 170.48)
                                         :bot (meters 130.9)
                                         :points
-                                        ((meters -548.95) (meters 972.46) (meters -508.89) (meters 982.1) (meters -488.03) (meters 1003.5))
+                                        ((meters -548.95) (meters 972.46) (meters -508.89) (meters 982.1) (meters -488.03) (meters 1003.5) (meters -497.57) (meters 1033.3))
                                         :fwd
                                         (checkpt "open-mines-kegs" #f)
                                         :bwd
@@ -2018,6 +2018,13 @@
                                         ((meters -440.43) (meters 1218.1) (meters -425.8) (meters 1198.8) (meters -402.13) (meters 1204.6))
                                         :fwd
                                         (checkpt "open-mines-minecart3" #f)
+                                        :bwd
+                                        (checkpt "open-mines-minecart3" #f))
+                  (static-load-boundary :flags (player)
+                                        :top (meters 155.8)
+                                        :bot (meters 133.41)
+                                        :points
+                                        ((meters -437.01) (meters 1224.7) (meters -415.98) (meters 1228.6) (meters -398.72) (meters 1211.3))
                                         :bwd
                                         (checkpt "open-mines-hole" #f))
                   ;; CRASH TEST TEST-ZONE3
