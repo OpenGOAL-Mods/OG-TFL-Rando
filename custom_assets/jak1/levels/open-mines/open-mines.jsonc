@@ -67,7 +67,8 @@
     "orb-cache-top-ag",
     "citb-stopbox-ag",
     "minecartsteel-ag",
-    "quicksandlurker-ag"
+    "quicksandlurker-ag",
+    "shortcut-boulder-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
@@ -326,7 +327,8 @@
   "bsphere": [-422.23, 160.59, 1193.6, 10], // bounding sphere
   "lump": {
     "name":"open-mines-bucket-wheel-01",
-    "movie-pos":["vector4m", [-436.01, 151.83, 1156.5, 8.0]]
+    "movie-pos":["vector4m", [-436.01, 151.83, 1156.5, 8.0]],
+    "next-actor":"open-mines-mines-boulder-01"
   }
 }
 // CRATES
@@ -3164,6 +3166,57 @@
       [-439.22, 104.03, 1038.1 , 1.0],
       [-444.48, 103.45, 1045.2 , 1.0]
     ]
+  }
+}
+,{
+  "trans": [-423.68, 137.85, 1212.2], // translation
+  "etype": "mines-boulder",  // actor type
+  "game_task": 141, // associated game task (for powercells, etc)
+  "quat" : [0, 0.030, 0, 1.000], // quaternion
+  "bsphere": [-423.68, 137.85, 1212.2, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-boulder-01",
+    "prev-actor":"open-mines-bucket-wheel-01",
+    "next-actor":"open-mines-mines-boulder-02",
+    "scale":["float", 1.0]
+  }
+}
+,{
+  "trans": [-415.96, 137.85, 1213.4], // translation
+  "etype": "mines-boulder",  // actor type
+  "game_task": 141, // associated game task (for powercells, etc)
+  "quat" : [0, -0.957, 0, 0.289], // quaternion
+  "bsphere": [-415.96, 137.85, 1213.4, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-boulder-02",
+    "prev-actor":"open-mines-mines-boulder-01",
+    "next-actor":"open-mines-mines-boulder-03",
+    "scale":["float", 1.0]
+  }
+}
+,{
+  "trans": [-416.2, 147.6, 1213.9], // translation
+  "etype": "mines-boulder",  // actor type
+  "game_task": 141, // associated game task (for powercells, etc)
+  "quat" : [0.023, -0.569, -0.045, -0.821], // quaternion
+  "bsphere": [-416.2, 147.6, 1213.9, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-boulder-03",
+    "prev-actor":"open-mines-mines-boulder-02",
+    "next-actor":"open-mines-mines-boulder-04",
+    "scale":["float", 1.0]
+  }
+}
+,{
+  "trans": [-422.63, 148.0, 1214.7], // translation
+  "etype": "mines-boulder",  // actor type
+  "game_task": 141, // associated game task (for powercells, etc)
+  "quat" : [0.012, -0.005, 0.085, -0.996], // quaternion
+  "bsphere": [-422.63, 148.0, 1214.7, 10], // bounding sphere
+  "lump": {
+    "name":"open-mines-mines-boulder-04",
+    "prev-actor":"open-mines-mines-boulder-03",
+    "scale":["float", 1.0]
   }
 }
 ,{

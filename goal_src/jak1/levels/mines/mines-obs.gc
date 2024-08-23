@@ -1478,7 +1478,7 @@
       (set! (-> self wiggled?) #f)
       (sleep (-> self ticker) (-> self timeout))
       (set! (-> self hose-id) -1)
-      (send-to-all (-> self link) 'trigger)
+      (send-to-all-after (-> self link) 'trigger)
       (set! (-> self hose-id) 0)
       (set! (-> (the-as tfl-firehose int32) activated) 0)
       (let ((gp-0 1)) (if (< gp-0 0) (set! (-> self hose-id) 32)) (set! (-> self hose-id-dir) gp-0)))
@@ -1961,7 +1961,7 @@
       ((= v1-55 1) (go caveelevator-one-way-idle-start))))
   (none))
 
-(deftype minescam (pov-camera) ())
+(deftype minescam-ambush (pov-camera) ())
 
 (defskelgroup *training-cam-sg*
   trainingcam
@@ -1970,7 +1970,7 @@
   ((trainingcam-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 80))
 
-(defstate pov-camera-playing (minescam)
+(defstate pov-camera-playing (minescam-ambush)
   :virtual #t
   :code
     (behavior ()
@@ -1986,7 +1986,7 @@
   :virtual #t
   :code
     (behavior ()
-      (let ((cam (ppointer->handle (process-spawn minescam
+      (let ((cam (ppointer->handle (process-spawn minescam-ambush
                                                   :init
                                                   pov-camera-init-by-other
                                                   (static-vectorm -419.82 115.0 1037.7) ;; TFL note: changed from (-> self root trans)
@@ -2743,6 +2743,25 @@
   0
   (none))
 
+(deftype minescam-bucket (pov-camera) ())
+
+(defstate pov-camera-playing (minescam-bucket)
+  :virtual #t
+  :code
+    (behavior ()
+      (ja-no-eval :group! junglecam-tower5-ja :num! (seek!) :frame-num 0.0)
+      (until (ja-done? 0)
+        (suspend)
+        (ja :num! (seek! max 0.3)))
+      (go-virtual pov-camera-done-playing)))
+
+(defskelgroup *junglecam-sg*
+  junglecam
+  junglecam-lod0-jg
+  junglecam-beamcam-ja
+  ((junglecam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 80))
+
 (def-art-elt bucket-wheel-ag bucket-wheel-lod0-jg 0)
 (def-art-elt bucket-wheel-ag bucket-wheel-lod0-mg 1)
 (def-art-elt bucket-wheel-ag bucket-wheel-idle-ja 2)
@@ -2760,6 +2779,7 @@
 (defmethod init-from-entity! ((this bucket-wheel) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
   (process-drawable-from-entity! this e)
+  (set! (-> this link) (new 'process 'actor-link-info this))
   (initialize-skeleton this *bucket-wheel-sg* '())
   (cond
     ((task-complete? *game-info* (-> this entity extra perm task)) (go bucket-wheel-spinning #t))
@@ -2787,16 +2807,21 @@
         (let ((task (-> self entity extra perm task))
               (hints? (-> *setting-control* current play-hints)))
           (cond
-            ((= task (game-task energy-bay-turbine1))
-             (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
-            ((and hints? (= task (game-task energy-bay-turbine2)))
-             (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
-            ((and hints? (= task (game-task energy-bay-turbine3)))
-             (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
-            ((and hints? (= task (game-task energy-bay-turbine4)))
-             (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
+            ((= task (game-task open-mines-excavator))
+              (process-spawn minescam-bucket
+                                            :init
+                                            pov-camera-init-by-other
+                                            (static-vectorm -443 161 1208)
+                                            *junglecam-sg*
+                                            "tower5"
+                                            5
+                                            #f
+                                            '()
+                                            :to
+                                            self)))
+          (suspend-for (seconds 2.0))
+          (send-to-all (-> self link) 'break))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
-      (suspend-for (seconds 0.5))
       (process-entity-status! self (entity-perm-status complete) #t)
       (let ((ent (-> self entity))) (if (and ent (= self (-> ent extra process))) (entity-task-complete-on ent)))
       (loop
@@ -2805,3 +2830,90 @@
       (logior! (-> self mask) (process-mask sleep))
       (suspend))
   :post ja-post)
+
+(deftype mines-boulder (process-drawable)
+  ((cshape      collide-shape :overlay-at root)
+   (broken-look lod-set :inline))
+  (:states
+   mines-boulder-break
+   mines-boulder-idle))
+
+(defskelgroup *mines-boulder-whole-sg*
+  shortcut-boulder
+  shortcut-boulder-whole-lod0-jg
+  shortcut-boulder-idle-ja
+  ((shortcut-boulder-whole-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 5.5 0 15.0))
+
+(defskelgroup *mines-boulder-broken-sg*
+  shortcut-boulder
+  shortcut-boulder-broken-lod0-jg
+  shortcut-boulder-idle-ja
+  ((shortcut-boulder-broken-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 5.5 0 20))
+
+(defstate mines-boulder-break (mines-boulder)
+  :enter
+    (behavior ()
+      (sound-play "zoomer-explode")
+      (none))
+  :code
+    (behavior ()
+      (suspend-for (seconds 1.0))
+      (process-entity-status! self (entity-perm-status complete) #t)
+      (lods-assign! (-> self draw) (-> self broken-look))
+      (process-spawn part-tracker
+                     :init
+                     part-tracker-init
+                     (-> *part-group-id-table* 1010)
+                     -1
+                     #f
+                     #f
+                     #f
+                     (-> self cshape trans)
+                     :to
+                     *entity-pool*)
+      (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
+      (until (ja-done? 0)
+        (suspend)
+        (ja :num! (seek!)))
+      (cleanup-for-death self)
+      (deactivate self)
+      (none))
+  :post ja-post)
+
+(defstate mines-boulder-idle (mines-boulder)
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (msg event-message-block))
+      (case message
+        (('break)(go mines-boulder-break))))
+  :code
+    (behavior ()
+      (transform-post)
+      (anim-loop)
+      (none)))
+
+(defmethod init-from-entity! ((this mines-boulder) (entity entity-actor))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-others))))
+    (let ((prim-mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
+      (set! (-> prim-mesh prim-core collide-as) (collide-kind wall-object))
+      (set! (-> prim-mesh collide-with) (collide-kind target))
+      (set! (-> prim-mesh prim-core action) (collide-action solid))
+      (set! (-> prim-mesh prim-core offense) (collide-offense indestructible))
+      (set! (-> prim-mesh transform-index) 3)
+      (set-vector! (-> prim-mesh local-sphere) (meters 0) (meters 5.5) (meters 0) (meters 7.5))
+      (set-root-prim! cshape prim-mesh))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this cshape) cshape))
+  (process-drawable-from-entity! this entity)
+  (initialize-skeleton this *mines-boulder-whole-sg* '())
+  (set! (-> this link) (new 'process 'actor-link-info this))
+  (setup-lods! (-> this broken-look) *mines-boulder-broken-sg* (-> this draw art-group) (-> this entity))
+  (set-vector! (-> this draw color-emissive) 0.125 0.0625 0.0 0.0)
+  (cond
+    ((task-complete? *game-info* (-> this entity extra perm task)) 
+      (cleanup-for-death this)
+      (deactivate this))
+    (else (go mines-boulder-idle)))
+  (none))

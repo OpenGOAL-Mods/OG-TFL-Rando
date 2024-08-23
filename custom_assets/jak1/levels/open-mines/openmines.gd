@@ -44,5 +44,6 @@
   "water-anim-maincave-ag.go"
   "water-anim-maincave-water-ag.go"
   "bucket-wheel-ag.go"
+  "shortcut-boulder-ag.go"
   "open-mines.go"
  ))
