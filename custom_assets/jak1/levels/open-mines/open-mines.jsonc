@@ -3178,7 +3178,8 @@
     "name":"open-mines-mines-boulder-01",
     "prev-actor":"open-mines-bucket-wheel-01",
     "next-actor":"open-mines-mines-boulder-02",
-    "scale":["float", 1.0]
+    "scale":["float", 1.0],
+    "light-index": ["int32", 3]
   }
 }
 ,{
@@ -3191,7 +3192,8 @@
     "name":"open-mines-mines-boulder-02",
     "prev-actor":"open-mines-mines-boulder-01",
     "next-actor":"open-mines-mines-boulder-03",
-    "scale":["float", 1.0]
+    "scale":["float", 1.0],
+    "light-index": ["int32", 3]
   }
 }
 ,{
@@ -3204,7 +3206,8 @@
     "name":"open-mines-mines-boulder-03",
     "prev-actor":"open-mines-mines-boulder-02",
     "next-actor":"open-mines-mines-boulder-04",
-    "scale":["float", 1.0]
+    "scale":["float", 1.0],
+    "light-index": ["int32", 3]
   }
 }
 ,{
@@ -3216,7 +3219,8 @@
   "lump": {
     "name":"open-mines-mines-boulder-04",
     "prev-actor":"open-mines-mines-boulder-03",
-    "scale":["float", 1.0]
+    "scale":["float", 1.0],
+    "light-index": ["int32", 3]
   }
 }
 ,{

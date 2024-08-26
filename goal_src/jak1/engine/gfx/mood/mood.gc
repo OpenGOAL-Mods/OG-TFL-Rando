@@ -2198,5 +2198,17 @@
     (set! (-> s5-1 dir2 levels x) 1.0)
     (set-vector! (-> s5-1 ambi color) -0.2 0.1 -0.05 1.0) ;; COLOR OF THE AMBIANT LIGHT
     )
+  ;; blocking boulders lighting "light-index": ["int32", 3]
+  (let ((s5-1 (-> arg0 light-group 3))) ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+    (quad-copy! (the-as pointer s5-1) (the-as pointer (-> arg0 light-group)) 12) ;; idk?
+    (let ((v1-34 (-> s5-1 dir2))) ;; KEY LIGHT DIRECTION
+      (set! (-> v1-34 direction x) 0.04)
+      (set! (-> v1-34 direction y) 1.0)
+      (set! (-> v1-34 direction z) -0.46)
+      (set! (-> v1-34 direction w) 1.0))
+    (set-vector! (-> s5-1 dir2 color) -0.45 -0.40 -0.35 1.0) ;; COLOR OF THE KEY LIGHT
+    (set! (-> s5-1 dir2 levels x) 1.0)
+    (set-vector! (-> s5-1 ambi color) 0.05 -0.02 -0.035 1.0) ;; COLOR OF THE AMBIANT LIGHT
+    )
   0
   (none))

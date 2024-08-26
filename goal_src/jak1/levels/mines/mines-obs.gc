@@ -2853,13 +2853,10 @@
   :bounds (static-spherem 0 5.5 0 20))
 
 (defstate mines-boulder-break (mines-boulder)
-  :enter
-    (behavior ()
-      (sound-play "zoomer-explode")
-      (none))
   :code
     (behavior ()
       (suspend-for (seconds 1.0))
+      (sound-play "zoomer-explode" :vol 35 :position (the-as symbol (ear-trans)))
       (process-entity-status! self (entity-perm-status complete) #t)
       (lods-assign! (-> self draw) (-> self broken-look))
       (process-spawn part-tracker
@@ -2872,7 +2869,7 @@
                      #f
                      (-> self cshape trans)
                      :to
-                     *entity-pool*)
+                     *entity-pool*) 
       (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
