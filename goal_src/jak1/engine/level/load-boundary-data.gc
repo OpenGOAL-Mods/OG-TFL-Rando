@@ -2024,7 +2024,9 @@
                                         :top (meters 155.8)
                                         :bot (meters 133.41)
                                         :points
-                                        ((meters -437.01) (meters 1224.7) (meters -415.98) (meters 1228.6) (meters -398.72) (meters 1211.3))
+                                        ((meters -437.01) (meters 1224.7) (meters -416.79) (meters 1223.9) (meters -398.72) (meters 1211.3))
+                                        :fwd
+                                        (checkpt "open-mines-minecart3" #f)
                                         :bwd
                                         (checkpt "open-mines-hole" #f))
                   ;; CRASH TEST TEST-ZONE3
