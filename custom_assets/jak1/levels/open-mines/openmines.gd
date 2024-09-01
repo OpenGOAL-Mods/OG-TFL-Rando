@@ -12,6 +12,7 @@
   "battlecontroller.o"
   "bonelurker.o"
   "misty-warehouse.o"
+  "swamp-rat.o"
   "mines-obs.o"
   "plat-ag.go"
   "orb-cache-top-ag.go"
@@ -45,5 +46,6 @@
   "water-anim-maincave-water-ag.go"
   "bucket-wheel-ag.go"
   "shortcut-boulder-ag.go"
+  "swamp-rat-ag.go"
   "open-mines.go"
  ))

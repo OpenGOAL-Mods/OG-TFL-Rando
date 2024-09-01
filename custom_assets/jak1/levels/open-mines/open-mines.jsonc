@@ -68,7 +68,8 @@
     "citb-stopbox-ag",
     "minecartsteel-ag",
     "quicksandlurker-ag",
-    "shortcut-boulder-ag"
+    "shortcut-boulder-ag",
+    "swamp-rat-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
@@ -268,6 +269,162 @@
     "projectile-speed": ["meters", 13.0],
     "projectile-rand": ["float", 0.5],
     "custom-nav": ["symbol", "mines-quicksandlurker-03"]
+  }
+}
+,{
+  "trans": [-409.19, 138.62, 1253.3],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-409.19, 138.62, 1253.3, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-01",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path": ["vector3m", 
+        [-418.35, 138.76, 1259.2],
+        [-417.66, 137.66, 1237.8],
+        [-405.04, 138.43, 1252.2]
+      ],
+    "custom-nav": ["symbol", "mines-swamp-rat"],
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-416.76, 138.84, 1255.9],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-416.76, 138.84, 1255.9, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-02",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path-actor": "open-mines-swamp-rat-01",
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-414.44, 138.02, 1244.7],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-414.44, 138.02, 1244.7, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-03",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path-actor": "open-mines-swamp-rat-01",
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-401.11, 132.99, 1281.8],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-401.11, 132.99, 1281.8, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-04",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path": ["vector3m", 
+        [-397.89, 132.87, 1283.5],
+        [-424.49, 136.09, 1271.6],
+        [-419.99, 135.97, 1270.2]
+      ],
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-416.11, 135.43, 1272.1],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-416.11, 135.43, 1272.1, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-05",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path-actor": "open-mines-swamp-rat-04",
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-367.83, 131.76, 1270.1],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-367.83, 131.76, 1270.1, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-06",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path": ["vector3m", 
+        [-367.45, 131.83, 1270.5],
+        [-388.58, 131.74, 1244.0],
+        [-366.79, 131.3, 1255.3]
+      ],
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-367.65, 131.41, 1255.9],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-367.65, 131.41, 1255.9, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-07",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path-actor": "open-mines-swamp-rat-06",
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
+  }
+}
+,{
+  "trans": [-384.14, 130.2, 1249.2],
+  "etype": "swamp-rat",
+  "game_task": 0,
+  "quat" : [0, 0, 0, 1],
+  "bsphere": [-384.14, 130.2, 1249.2, 10],
+  "lump": {
+    "name": "open-mines-swamp-rat-08",
+    "vis-dist": ["meters", 200.0],
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 60.0],
+    "cam-vert": ["meters", 8.0],
+    "cam-horz": ["meters", 20.0],
+    "path-actor": "open-mines-swamp-rat-06",
+    "nav-mesh-actor": "open-mines-swamp-rat-01",
+    "scale":["float", 0.6]
   }
 }
 // CELLS
