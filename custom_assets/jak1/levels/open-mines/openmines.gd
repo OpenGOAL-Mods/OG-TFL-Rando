@@ -13,6 +13,7 @@
   "bonelurker.o"
   "misty-warehouse.o"
   "swamp-rat.o"
+  "swamp-bat.o"
   "mines-obs.o"
   "plat-ag.go"
   "orb-cache-top-ag.go"
@@ -47,5 +48,6 @@
   "bucket-wheel-ag.go"
   "shortcut-boulder-ag.go"
   "swamp-rat-ag.go"
+  "swamp-bat-ag.go"
   "open-mines.go"
  ))
