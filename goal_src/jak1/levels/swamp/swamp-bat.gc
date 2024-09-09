@@ -298,7 +298,8 @@ swamp-bat-slave-event-handler
   (vector-float*! (-> self root scale) *identity-vector* 2.0)
   (set! (-> self root pause-adjust-distance) 286720.0)
   (set! (-> self fact) (new 'process 'fact-info-enemy self (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc)))
-  (set! (-> self idle-anim-speed) (rand-vu-float-range 0.9 1.1))
+  (set! (-> self idle-anim-speed)(rand-vu-float-range (res-lump-float (-> self entity) 'idle-rand-min :default 0.9) 
+                                                      (res-lump-float (-> self entity) 'idle-rand-max :default 1.1))) ;; TFL note: Added res lump to control the randomness of the idle anim
   (set! (-> self strafe-distance) 0.0)
   (set! (-> self strafe-envelope) 0.0)
   (set! (-> self idle-position-index) arg1)
