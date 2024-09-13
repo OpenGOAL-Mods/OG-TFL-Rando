@@ -14,6 +14,7 @@
   "misty-warehouse.o"
   "swamp-rat.o"
   "swamp-bat.o"
+  "driller-lurker.o"
   "mines-obs.o"
   "plat-ag.go"
   "orb-cache-top-ag.go"
@@ -49,5 +50,6 @@
   "shortcut-boulder-ag.go"
   "swamp-rat-ag.go"
   "swamp-bat-ag.go"
+  "driller-lurker-ag.go"
   "open-mines.go"
  ))

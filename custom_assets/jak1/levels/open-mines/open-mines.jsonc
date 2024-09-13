@@ -70,7 +70,8 @@
     "quicksandlurker-ag",
     "shortcut-boulder-ag",
     "swamp-rat-ag",
-    "swamp-bat-ag"
+    "swamp-bat-ag",
+    "driller-lurker-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
@@ -483,11 +484,11 @@
     "vol": ["vector-vol",
       [-0.999, 0.000, 0.039, 473.240],
       [-0.231, 0.000, -0.973, -1087.733],
-      [0.541, 0.000, -0.841, -1244.773],
-      [-0.003, 0.000, 1.000, 1251.762],
-      [-0.054, -0.989, -0.140, -280.554],
-      [-0.018, 0.999, -0.047, 93.235],
-      [0.730, 0.000, 0.684, 562.397]
+      [0.558, 0.000, -0.830, -1238.231],
+      [-0.059, 0.000, 0.998, 1273.060],
+      [-0.048, -0.989, -0.136, -278.813],
+      [-0.016, 0.999, -0.046, 93.896],
+      [0.730, 0.000, 0.684, 563.955]
     ]
   }
 }
@@ -546,11 +547,11 @@
     "vol": ["vector-vol",
       [-0.999, 0.000, 0.039, 473.240],
       [-0.231, 0.000, -0.973, -1087.733],
-      [0.541, 0.000, -0.841, -1244.773],
-      [-0.003, 0.000, 1.000, 1251.762],
-      [-0.054, -0.989, -0.140, -280.554],
-      [-0.018, 0.999, -0.047, 93.235],
-      [0.730, 0.000, 0.684, 562.397]
+      [0.558, 0.000, -0.830, -1238.231],
+      [-0.059, 0.000, 0.998, 1273.060],
+      [-0.048, -0.989, -0.136, -278.813],
+      [-0.016, 0.999, -0.046, 93.896],
+      [0.730, 0.000, 0.684, 563.955]
     ]
   }
 }
@@ -656,6 +657,115 @@
     "cam-horz": ["meters", 10.0],
     "path-actor": "open-mines-babak-04",
     "nav-mesh-actor": "open-mines-babak-04"
+  }
+}
+,{
+  "trans": [-482.32, 145.68, 961.31],
+  "etype": "babak",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-482.32, 145.68, 961.31, 10],
+  "lump": {
+    "name":"open-mines-babak-06",
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 90.0],
+    "cam-vert": ["meters", 5.0],
+    "cam-horz": ["meters", 10.0],
+    "path": ["vector3m",
+        [-503.91, 145.12, 968.76],
+        [-506.71, 142.95, 984.41],
+        [-459.99, 148.47, 947.13]
+      ],
+    "custom-nav": ["symbol", "mines-babak3"],
+    "nav-mesh-sphere": ["vector4m",
+      [-491.79, 145.63, 959.86, 3.50],
+      [-433.09, 153.49, 917.29, 5.00],
+      [-404.20, 154.08, 922.85, 4.00],
+      [-400.65, 154.11, 927.03, 4.00],
+      [-414.30, 154.11, 931.18, 4.00],
+      [-410.21, 154.11, 935.32, 4.00],
+      [-407.24, 154.11, 929.26, 6.00]
+    ]
+  }
+}
+,{
+  "trans": [-415.25, 148.02, 945.02],
+  "etype": "babak",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-415.25, 148.02, 945.02, 10],
+  "lump": {
+    "name":"open-mines-babak-07",
+    "cam-notice-dist": ["meters", 15.0],
+    "idle-distance": ["meters", 90.0],
+    "cam-vert": ["meters", 5.0],
+    "cam-horz": ["meters", 10.0],
+    "path": ["vector3m",
+        [-424.27, 147.85, 949.62],
+        [-403.78, 147.51, 951.93],
+        [-416.31, 149.30, 939.76]
+      ],
+    "nav-mesh-actor": "open-mines-babak-06"
+  }
+}
+,{
+  "trans": [-475.05, 131.57, 1103.88],
+  "etype": "driller-lurker",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-475.05, 131.57, 1103.88, 10],
+  "lump": {
+    "name":"open-mines-driller-lurker-01",
+    "path": ["vector3m",
+        [-483.56, 134.70, 1053.90],
+        [-482.74, 133.74, 1065.75],
+        [-477.86, 132.49, 1084.16],
+        [-476.39, 131.85, 1096.61]
+      ],
+    "driller-lurker": ["float", 0.62, 1.0, 90.0],
+    "options": 131072,
+    "stop-light-control":["symbol", "#t"]
+  }
+}
+,{
+  "trans": [-487.53, 135.43, 1045.82],
+  "etype": "driller-lurker",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-487.53, 135.43, 1045.82, 10],
+  "lump": {
+    "name":"open-mines-driller-lurker-02",
+    "path": ["vector3m",
+        [-497.23, 140.24, 1001.59],
+        [-496.12, 139.03, 1011.99],
+        [-492.71, 137.96, 1021.38],
+        [-490.88, 136.80, 1032.25],
+        [-487.41, 135.44, 1045.72]
+      ],
+    "driller-lurker": ["float", 0.30, 1.0, -90.0],
+    "options": 131072,
+    "stop-light-control":["symbol", "#t"]
+  }
+}
+,{
+  "trans": [-514.47, 153.14, 1064.32],
+  "etype": "driller-lurker",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-514.47, 153.14, 1064.32, 10],
+  "lump": {
+    "name":"open-mines-driller-lurker-03",
+    "path": ["vector3m",
+        [-567.90, 141.55, 1090.27],
+        [-551.45, 143.19, 1088.58],
+        [-540.19, 146.18, 1083.47],
+        [-530.77, 149.47, 1071.61],
+        [-523.51, 151.68, 1065.91],
+        [-514.81, 153.12, 1063.85]
+      ],
+    "driller-lurker": ["float", 0.25, 1.0, 35.0],
+    "options": 131072,
+    "stop-light-control":["symbol", "#t"]
   }
 }
 // CELLS
@@ -914,6 +1024,120 @@
   }
 }
 ,{
+  "trans": [-430.52, 136.78, 1205.02],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.004, -0.674, 0.087, 0.687],
+  "bsphere": [-430.52, 136.78, 1205.02, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-09"
+  }
+}
+,{
+  "trans": [-433.14, 136.50, 1205.06],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.004, -0.674, 0.087, 0.687],
+  "bsphere": [-433.14, 136.50, 1205.06, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-10"
+  }
+}
+,{
+  "trans": [-430.52, 137.07, 1207.59],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.004, -0.674, 0.087, 0.687],
+  "bsphere": [-430.52, 137.07, 1207.59, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-11"
+  }
+}
+,{
+  "trans": [-433.09, 136.78, 1207.65],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.004, -0.674, 0.087, 0.687],
+  "bsphere": [-433.09, 136.78, 1207.65, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-12"
+  }
+}
+,{
+  "trans": [-424.59, 136.20, 1268.94],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [0.011, -0.744, -0.006, 0.617],
+  "bsphere": [-424.59, 136.20, 1268.94, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-13",
+    "nav-mesh-actor": "open-mines-swamp-rat-01"
+  }
+}
+,{
+  "trans": [-421.98, 136.08, 1269.42],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.002, -0.743, -0.022, 0.617],
+  "bsphere": [-421.98, 136.08, 1269.42, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-14",
+    "nav-mesh-actor": "open-mines-swamp-rat-01"
+  }
+}
+,{
+  "trans": [-426.59, 158.42, 1303.30],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.035, -0.632, 0.019, 0.730],
+  "bsphere": [-426.59, 158.42, 1303.30, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-15"
+  }
+}
+,{
+  "trans": [-425.41, 158.57, 1305.66],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.002, -0.314, 0.000, 0.914],
+  "bsphere": [-425.41, 158.57, 1305.66, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-16"
+  }
+}
+,{
+  "trans": [-422.91, 158.50, 1306.44],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [0.008, -0.042, -0.023, 0.965],
+  "bsphere": [-422.91, 158.50, 1306.44, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-17"
+  }
+}
+,{
+  "trans": [-379.01, 143.92, 1260.25],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.007, -0.496, 0.004, 0.829],
+  "bsphere": [-379.01, 143.92, 1260.25, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-18",
+    "nav-mesh-actor": "open-mines-swamp-rat-01"
+  }
+}
+,{
+  "trans": [-380.32, 143.78, 1257.68],
+  "etype": "crate",
+  "game_task": 0,
+  "quat" : [-0.017, -0.491, 0.022, 0.832],
+  "bsphere": [-380.32, 143.78, 1257.68, 10],
+  "lump": {
+    "name":"open-mines-crate-wood-19",
+    "nav-mesh-actor": "open-mines-swamp-rat-01"
+  }
+}
+,{
   "trans": [-424.79, 144.51, 1085.2], // translation
   "etype": "crate",  // actor type
   "game_task": 0, // associated game task (for powercells, etc)
@@ -974,6 +1198,129 @@
   "bsphere": [-475.21, 168.92, 815.75, 10],
   "lump": {
     "name":"open-mines-crate-darkeco-06"
+  }
+}
+,{
+  "trans": [-420.67, 149.91, 1051.77],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.172, 0.026, -0.005, 0.985],
+  "bsphere": [-420.67, 149.91, 1051.77, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-07"
+  }
+}
+,{
+  "trans": [-427.43, 147.44, 948.97],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.071, -0.078, -0.006, 0.994],
+  "bsphere": [-427.43, 147.44, 948.97, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-08",
+    "custom-nav": ["symbol", "mines-babak3"]
+  }
+}
+,{
+  "trans": [-426.53, 147.96, 945.45],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.070, -0.189, -0.014, 0.979],
+  "bsphere": [-426.53, 147.96, 945.45, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-09",
+    "custom-nav": ["symbol", "mines-babak3"]
+  }
+}
+,{
+  "trans": [-424.43, 148.47, 942.02],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.067, -0.355, -0.025, 0.932],
+  "bsphere": [-424.43, 148.47, 942.02, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-10",
+    "custom-nav": ["symbol", "mines-babak3"]
+  }
+}
+,{
+  "trans": [-406.10, 169.98, 766.81],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.164, -0.581, 0.035, 0.796],
+  "bsphere": [-406.10, 169.98, 766.81, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-11"
+  }
+}
+,{
+  "trans": [-408.77, 169.13, 767.58],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.164, -0.593, 0.032, 0.788],
+  "bsphere": [-408.77, 169.13, 767.58, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-12"
+  }
+}
+,{
+  "trans": [-431.98, 156.99, 785.96],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.176, -0.432, 0.073, 0.881],
+  "bsphere": [-431.98, 156.99, 785.96, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-13"
+  }
+}
+,{
+  "trans": [-433.83, 155.96, 787.36],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.191, -0.431, 0.080, 0.878],
+  "bsphere": [-433.83, 155.96, 787.36, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-14"
+  }
+}
+,{
+  "trans": [-457.15, 144.46, 811.74],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.172, 0.051, 0.004, 0.984],
+  "bsphere": [-457.15, 144.46, 811.74, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-15"
+  }
+}
+,{
+  "trans": [-457.25, 145.24, 809.40],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.171, -0.015, -0.007, 0.985],
+  "bsphere": [-457.25, 145.24, 809.40, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-16"
+  }
+}
+,{
+  "trans": [-444.49, 134.17, 842.80],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.166, 0.012, -0.002, 0.986],
+  "bsphere": [-444.49, 134.17, 842.80, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-17"
+  }
+}
+,{
+  "trans": [-444.40, 133.31, 845.15],
+  "etype": "darkeco",
+  "game_task": 0,
+  "quat" : [0.182, 0.036, 0.001, 0.983],
+  "bsphere": [-444.40, 133.31, 845.15, 10],
+  "lump": {
+    "name":"open-mines-crate-darkeco-18"
   }
 }
 // MONEY / ORBS
@@ -1193,41 +1540,41 @@
   }
 }
 ,{
-  "trans": [-341.22, 173.78, 793.97], // translation
-  "etype": "money",  // actor type
-  "game_task": 0, // associated game task (for powercells, etc)
-  "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-341.22, 173.78, 793.97, 10], // bounding sphere
+  "trans": [-342.07, 173.78, 794.82],
+  "etype": "money",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-342.07, 173.78, 794.82, 10],
   "lump": {
     "name":"open-mines-money-022"
   }
 }
 ,{
-  "trans": [-337.2, 174.13, 801.23], // translation
-  "etype": "money",  // actor type
-  "game_task": 0, // associated game task (for powercells, etc)
-  "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-337.2, 174.13, 801.23, 10], // bounding sphere
+  "trans": [-338.21, 174.13, 801.48],
+  "etype": "money",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-338.21, 174.13, 801.48, 10],
   "lump": {
     "name":"open-mines-money-023"
   }
 }
 ,{
-  "trans": [-337.58, 175.76, 808.5], // translation
-  "etype": "money",  // actor type
-  "game_task": 0, // associated game task (for powercells, etc)
-  "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-337.58, 175.76, 808.5, 10], // bounding sphere
+  "trans": [-338.47, 175.76, 808.34],
+  "etype": "money",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-338.47, 175.76, 808.34, 10],
   "lump": {
     "name":"open-mines-money-024"
   }
 }
 ,{
-  "trans": [-338.53, 178.14, 814.86], // translation
-  "etype": "money",  // actor type
-  "game_task": 0, // associated game task (for powercells, etc)
-  "quat" : [0, 0, 0, 1], // quaternion
-  "bsphere": [-338.53, 178.14, 814.86, 10], // bounding sphere
+  "trans": [-339.27, 178.14, 814.88],
+  "etype": "money",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-339.27, 178.14, 814.88, 10],
   "lump": {
     "name":"open-mines-money-025"
   }
@@ -3647,7 +3994,7 @@
       ],
     "safe-dist":["meters", 10.0], // Default: 25
     "spawn-table":["int32", 1, 2, 3, 4, 3, 2, 1], // Default: 1, 2, 1, 1, 2, 1
-    "keg-duration":["int32", 17], // In seconds Default: 16 (seconds)
+    "keg-duration":["int32", 18], // In seconds Default: 16 (seconds)
     "keg-jump-2":["meters", 15.0], // Default: 25.0
     "keg-jump-3":["meters", 23.0], // Default: 15.0
     "keg-jump-4":["meters", 30.0], // Default: 35.0
@@ -4451,9 +4798,240 @@
     "cycle-speed": ["float", -1.0, 0.0]
   }
 }
+,{
+  "trans": [-462.78, 134.12, 1002.05],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-462.78, 134.12, 1002.05, 10],
+  "lump": {
+    "name":"open-mines-electricWall-01",
+    "art-name":"group-mines-electricWall",
+    "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
+    "cycle-speed": ["float", -1.0, 0.0]
+  }
+}
+,{
+  "trans": [-402.33, 148.72, 1235.29],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-402.33, 148.72, 1235.29, 10],
+  "lump": {
+    "name":"open-mines-torchlight-01",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-418.98, 151.87, 1230.07],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-418.98, 151.87, 1230.07, 10],
+  "lump": {
+    "name":"open-mines-torchlight-02",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-416.32, 155.71, 1257.28],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-416.32, 155.71, 1257.28, 10],
+  "lump": {
+    "name":"open-mines-torchlight-03",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-437.35, 152.77, 1289.46],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-437.35, 152.77, 1289.46, 10],
+  "lump": {
+    "name":"open-mines-torchlight-04",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-429.42, 163.69, 1320.46],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-429.42, 163.69, 1320.46, 10],
+  "lump": {
+    "name":"open-mines-torchlight-05",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-392.42, 148.67, 1327.94],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-392.42, 148.67, 1327.94, 10],
+  "lump": {
+    "name":"open-mines-torchlight-06",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-379.66, 134.12, 1335.72],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-379.66, 134.12, 1335.72, 10],
+  "lump": {
+    "name":"open-mines-torchlight-07",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-359.73, 151.17, 1327.06],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-359.73, 151.17, 1327.06, 10],
+  "lump": {
+    "name":"open-mines-torchlight-08",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-359.76, 163.38, 1279.16],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-359.76, 163.38, 1279.16, 10],
+  "lump": {
+    "name":"open-mines-torchlight-09",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-377.07, 150.47, 1251.17],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-377.07, 150.47, 1251.17, 10],
+  "lump": {
+    "name":"open-mines-torchlight-10",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-389.30, 139.01, 1251.17],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-389.30, 139.01, 1251.17, 10],
+  "lump": {
+    "name":"open-mines-torchlight-11",
+    "art-name":"group-mines-torchlight"
+  }
+}
+,{
+  "trans": [-404.82, 154.64, 921.49],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-404.82, 154.64, 921.49, 10],
+  "lump": {
+    "name":"open-mines-truster-01",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-399.63, 153.84, 927.58],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-399.63, 153.84, 927.58, 10],
+  "lump": {
+    "name":"open-mines-truster-02",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-410.27, 152.74, 936.53],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-410.27, 152.74, 936.53, 10],
+  "lump": {
+    "name":"open-mines-truster-03",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-415.47, 153.54, 930.44],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-415.47, 153.54, 930.44, 10],
+  "lump": {
+    "name":"open-mines-truster-04",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-508.15, 146.82, 968.78],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-508.15, 146.82, 968.78, 10],
+  "lump": {
+    "name":"open-mines-truster-05",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-513.35, 147.20, 964.56],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-513.35, 147.20, 964.56, 10],
+  "lump": {
+    "name":"open-mines-truster-06",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-520.63, 144.81, 973.31],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-520.63, 144.81, 973.31, 10],
+  "lump": {
+    "name":"open-mines-truster-07",
+    "art-name":"group-mines-truster"
+  }
+}
+,{
+  "trans": [-515.44, 144.43, 977.53],
+  "etype": "mines-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [-515.44, 144.43, 977.53, 10],
+  "lump": {
+    "name":"open-mines-truster-08",
+    "art-name":"group-mines-truster"
+  }
+}
   ],
 
   "ambients": [
-
+    {
+      "trans": [-399.08, 180.9, 743.82, 25.0],
+      "bsphere": [-399.08, 180.9, 743.82, 25.0],
+      "lump": {
+        "name": "open-mines-amb-01-namepop",
+        "type": "'hint",
+        "text-id": ["int32", 2608],
+        "play-mode": "'notice"
+      }
+    }
   ]
 }

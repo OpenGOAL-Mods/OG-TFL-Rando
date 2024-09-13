@@ -3178,13 +3178,13 @@
              :name "open-mines-hole"
              :level 'open-mines
              :trans
-             (new 'static 'vector :x (meters -419.5194) :y (meters 137.8847) :z (meters 1219.6873) :w 1.0)
+             (new 'static 'vector :x (meters -419.51) :y (meters 137.85) :z (meters 1216.30) :w 1.0)
              :quat
-             (new 'static 'quaternion :x 0.0 :y -0.3068 :z 0.0 :w -0.9517)
+             (new 'static 'quaternion :x 0.0 :y 0.2752 :z 0.0 :w 0.9613)
              :camera-trans
-             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             (new 'static 'vector :x (meters -423.0450) :y (meters 141.9521) :z (meters 1208.9539) :w 1.0)
              :camera-rot
-             (new 'static 'array float 9 0.8725 0.0000 -0.4884 0.0667 0.9906 0.1192 0.4838 -0.4838 -0.1366 0.8643)
+             (new 'static 'array float 9 0.9019 0.0000 -0.4317 0.0765 0.9841 0.1598 0.4249 -0.1772 0.8877)
              :load-commands
              '()
              :vis-nick 'opm
