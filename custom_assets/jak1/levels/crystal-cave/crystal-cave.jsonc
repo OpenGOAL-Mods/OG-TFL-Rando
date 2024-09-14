@@ -52,7 +52,10 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active"],
+  "custom_models": [
+    "tfl-commentary-node", 
+    "tfl-commentary-node-active",
+    "crc-gondola"],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
@@ -4039,16 +4042,15 @@
           ],
         "cycle-speed":["float", 5.5, 0.0, 4.0]
       }
-    },
-
-    {
+    }
+    ,{
       "trans": [-301, 95.57, 34.84], // translation
-      "etype": "crc-gondola",  // actor type
+      "etype": "crc-gondola-old",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-301, 95.57, 34.84, 10], // bounding sphere
       "lump": {
-        "name": "crystalc-gondola-00",
+        "name": "crystalc-gondola-old-01",
         "path":
           ["vector4m",
             [-301.18, 95.14, 37.34, 1.0],
@@ -4063,6 +4065,16 @@
           ],
         "path-k": ["float", 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 6, 6, 6],
         "scale":["float", 0.9]
+      }
+    }
+    ,{
+      "trans": [0.0, 0.0, 0.0], // translation
+      "etype": "crc-gondola",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0.0, 0.0, 0.0, 10], // bounding sphere
+      "lump": {
+        "name": "crystalc-crc-gondola-01"
       }
     }
 

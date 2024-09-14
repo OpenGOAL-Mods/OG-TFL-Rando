@@ -365,7 +365,7 @@
   (go electric-arc-active)
   (none))
 
-(deftype crc-gondola (plat-eco)
+(deftype crc-gondola-old (plat-eco)
   ((force-dest    float)
    (targ-dest     float)
    (dest          float)
@@ -373,17 +373,17 @@
    (touch-time    time-frame)
    (touching-time time-frame)))
 
-(defskelgroup *crc-gondola-sg*
+(defskelgroup *crc-gondola-old-sg*
   flutflut-plat-med
   flutflut-plat-med-lod0-jg
   flutflut-plat-med-idle-ja
   ((flutflut-plat-med-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 9))
 
-(defmethod get-unlit-skel ((this crc-gondola))
-  *crc-gondola-sg*)
+(defmethod get-unlit-skel ((this crc-gondola-old))
+  *crc-gondola-old-sg*)
 
-(defmethod baseplat-method-26 ((this crc-gondola))
+(defmethod baseplat-method-26 ((this crc-gondola-old))
   (set! (-> this force-dest) -1.0)
   (set! (-> this targ-dest) -1.0)
   (set! (-> this dest) 0.0)
@@ -393,7 +393,7 @@
   (none))
 
 ;; particle effect override
-(defmethod baseplat-method-20 ((this crc-gondola))
+(defmethod baseplat-method-20 ((this crc-gondola-old))
   (none))
 
 (defun can-ride-gondola? ()
@@ -404,7 +404,7 @@
        (task-closed? (game-task crystalc-hidden) (task-status need-resolution))
        (task-closed? (game-task crystalc-buzzer) (task-status need-resolution))))
 
-(defstate plat-path-active (crc-gondola)
+(defstate plat-path-active (crc-gondola-old)
   :virtual #t
   :event
     (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
@@ -474,3 +474,10 @@
                    (nmember (the basic (send-event *target* 'query 'mode)) '(target-grab target-racing-grab))
                    (or (<= (-> self path-pos) 0.0) (= 0.9999 (-> self path-pos))))
           (process-release? *target*)))))
+
+(deftype crc-gondola (process-drawable)
+  ((root collide-shape-moving :override)
+   )
+  (:methods (init-collision! (_type_) none))
+  (:state-methods idle)
+  )

@@ -39,6 +39,7 @@
   "spider-egg.o"
   "spider-egg-ag.go"
   "mother-spider-egg.o"
+  "crc-gondola-ag.go"
   "crystal-cave.go"
     )
   )
