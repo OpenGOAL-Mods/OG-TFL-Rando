@@ -79,7 +79,7 @@
        :jump-land-anim-end-frame 10000000000.0
        :jump-height-min (meters 1)
        :jump-height-factor 0.6
-       :jump-start-anim-speed 5.0
+       :jump-start-anim-speed 1.0
        :shadow-max-y (meters 0.25)
        :shadow-min-y (meters -4)
        :shadow-locus-dist (meters 150)
