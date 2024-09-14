@@ -1,13 +1,37 @@
 #include "kmachine.h"
 
-#include <random>
-#include <iostream>
-#include <fstream>
-#include <thread>
 #include <chrono>
+#include <fstream>
+#include <iostream>
+#include <random>
+#include <thread>
+#include <list>
 
 #define MINIAUDIO_IMPLEMENTATION
+// NOTE - this is needed, because on macOS, there is a file called `MacTypes.h`
+// inside it, it defines something named `Ptr`
+// Our `Ptr` is not namespaced, so there is ambiguity.
+//
+// Second fix is because miniaudio redefines functions in the stdlib based on bad pre-processor
+// assumptions AppleClang apparently does not define POSIX macros, leading to future ambiguity
+namespace MiniAudioLib {
+#if defined(__APPLE__)
+#if !defined(_POSIX_C_SOURCE)
+#define _POSIX_C_SOURCE 200809L
 #include "third-party/miniaudio.h"
+#undef _POSIX_C_SOURCE
+#else
+// It should work if it's defined, but for some reason it didn't this is the unlikely branch
+// but lets maintain the original value
+#define NOT_REAL_OLD_POSIX_C_SOURCE _POSIX_C_SOURCE
+#include "third-party/miniaudio.h"
+#define _POSIX_C_SOURCE NOT_REAL_OLD_POSIX_C_SOURCE
+#undef NOT_REAL_OLD_POSIX_C_SOURCE
+#endif
+#else
+#include "third-party/miniaudio.h"
+#endif
+}  // namespace MiniAudioLib
 
 #include "common/global_profiler/GlobalProfiler.h"
 #include "common/log/log.h"
@@ -52,12 +76,12 @@ u32 vblank_interrupt_handler = 0;
 
 Timer ee_clock_timer;
 
-ma_engine maEngine;
-std::map<std::string, ma_sound> maSoundMap;
-ma_sound* mainMusicSound;
+MiniAudioLib::ma_engine maEngine;
+std::map<std::string, std::list<MiniAudioLib::ma_sound>> maSoundMap;
+MiniAudioLib::ma_sound* mainMusicSound;
 
 // TFL Note: Added
-ma_engine g_ma_engine_tfl;
+MiniAudioLib::ma_engine g_ma_engine_tfl;
 
 void kmachine_init_globals_common() {
   memset(pad_dma_buf, 0, sizeof(pad_dma_buf));
@@ -67,9 +91,13 @@ void kmachine_init_globals_common() {
   vif1_interrupt_handler = 0;
   vblank_interrupt_handler = 0;
   ee_clock_timer = Timer();
+#ifdef _WIN32  // only do this on windows, because it only works on windows?
+  MiniAudioLib::ma_engine_uninit(&maEngine);
+  MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
+#endif
+  MiniAudioLib::ma_engine_init(NULL, &maEngine);
 
-  ma_engine_init(NULL, &maEngine);
-  ma_engine_init(nullptr, &g_ma_engine_tfl);
+  MiniAudioLib::ma_engine_init(nullptr, &g_ma_engine_tfl);
 }
 
 /*!
@@ -122,10 +150,42 @@ u64 CPadOpen(u64 cpad_info, s32 pad_number) {
   return cpad_info;
 }
 
+// Mutex to synchronize access to activeMusics
+std::mutex activeMusicsMutex;
+
+// Declare a mutex for synchronizing access to mainMusicInstance
+std::mutex mainMusicMutex;
+
+// Function to stop all instances of specific sound by filepath
+void stopMP3(u32 filePathu32) {
+  std::string filePath = Ptr<String>(filePathu32).c()->data();
+  std::cout << "Trying to stop file: " << filePath << std::endl;
+
+  std::lock_guard<std::mutex> lock(activeMusicsMutex);
+  auto it = maSoundMap.find(filePath);
+  if (it == maSoundMap.end()) {
+    std::cerr << "Couldn't find sound to stop: " << filePath << std::endl;
+  } else {
+    // stop all instances of this sound
+    for (auto sound : it->second) {
+      if (MiniAudioLib::ma_sound_stop(&sound) != MiniAudioLib::MA_SUCCESS) {
+        std::cerr << "Failed to stop sound: " << filePath << std::endl;
+      }
+      // let the thread finish and handle ma_sound_uninit
+    }
+    // clear list of sounds for this filepath
+    it->second.clear();
+  }
+}
+
 // Function to stop all currently playing sounds.
 void stopAllSounds() {
   for (auto& pair : maSoundMap) {
-    ma_sound_stop(&pair.second);
+    // stop all instances of this sound
+    for (auto sound : pair.second) {
+      MiniAudioLib::ma_sound_stop(&sound);
+    }
+    pair.second.clear();
   }
   maSoundMap.clear();
 }
@@ -139,53 +199,58 @@ std::vector<std::string> getPlayingFileNames() {
   return playingFileNames;
 }
 
-std::mutex activeMusicsMutex;  // Mutex to synchronize access to activeMusics
-
-// Declare a mutex for synchronizing access to mainMusicInstance
-std::mutex mainMusicMutex;
-
 void playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
   std::thread thread([=]() {
     std::string filePath = Ptr<String>(filePathu32).c()->data();
+    std::string fullFilePath = fs::path(file_util::get_jak_project_dir() / "custom_assets" /
+                                    game_version_names[g_game_version] / "audio" / filePath).string();
+
     std::cout << "Playing file: " << filePath << std::endl;
 
-    ma_result result;
-    ma_sound sound;
+    MiniAudioLib::ma_result result;
+    MiniAudioLib::ma_sound sound;
 
-    result = ma_sound_init_from_file(&maEngine, filePath.c_str(), 0, NULL, NULL, &sound);
-    if (result != MA_SUCCESS) {
+    result = MiniAudioLib::ma_sound_init_from_file(&maEngine, fullFilePath.c_str(), 0, NULL, NULL,
+                                                    &sound);
+    if (result != MiniAudioLib::MA_SUCCESS) {
       std::cout << "Failed to load: " << filePath << std::endl;
       return;
     }
 
-    ma_sound_set_volume(&sound, ((float)volume) / 100.0);
+    MiniAudioLib::ma_sound_set_volume(&sound, ((float)volume) / 100.0);
 
     if (isMainMusic) {
-      ma_sound_set_looping(&sound, MA_TRUE);
+      MiniAudioLib::ma_sound_set_looping(&sound, MA_TRUE);
       mainMusicMutex.lock();
       mainMusicSound = &sound;
       mainMusicMutex.unlock();
     }
 
-    ma_sound_start(&sound);
+    MiniAudioLib::ma_sound_start(&sound);
 
-    {
+    if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
-      maSoundMap.insert(std::make_pair(filePath, sound));
+      if (maSoundMap.find(filePath) == maSoundMap.end()) {
+        maSoundMap.insert(std::make_pair(filePath, std::list<MiniAudioLib::ma_sound>()));
+      }
+      maSoundMap[filePath].push_back(sound);
     }
 
-    // loop until we're no longer main music, or we reach the end of non-looping sound
-    while (mainMusicSound == &sound || !ma_sound_at_end(&sound)) {
+    // sleep/loop until we're no longer main music, or non-looping sound is stopped/ends
+    while (mainMusicSound == &sound || MiniAudioLib::ma_sound_is_playing(&sound)) {
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-    ma_sound_stop(&sound);
-    ma_sound_uninit(&sound);
+    MiniAudioLib::ma_sound_stop(&sound);
+    MiniAudioLib::ma_sound_uninit(&sound);
     std::cout << "Finished playing file: " << filePath << std::endl;
 
-    {
+    if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
-      maSoundMap.erase(filePath);
+      if (maSoundMap.find(filePath) != maSoundMap.end()) {
+        maSoundMap[filePath].remove_if(
+            [&](MiniAudioLib::ma_sound l_sound) { return &sound == &l_sound; });
+      }
     }
   });
 
@@ -199,9 +264,9 @@ void playMP3(u32 filePathu32, u32 volume) {
 // Function to stop the Main Music.
 void stopMainMusic() {
   mainMusicMutex.lock();
-  if (mainMusicSound && ma_sound_is_playing(mainMusicSound)) {
+  if (mainMusicSound && MiniAudioLib::ma_sound_is_playing(mainMusicSound)) {
     std::cout << "Stopping Main Music..." << std::endl;
-    ma_sound_stop(mainMusicSound);
+    MiniAudioLib::ma_sound_stop(mainMusicSound);
     mainMusicSound = NULL;
     std::cout << "Stopped Main Music " << std::endl;
   }
@@ -219,16 +284,16 @@ void playMainMusic(u32 filePathu32, u32 volume) {
 
 void pauseMainMusic() {
   mainMusicMutex.lock();
-  if (mainMusicSound && ma_sound_is_playing(mainMusicSound)) {
-    ma_sound_stop(mainMusicSound);
+  if (mainMusicSound && MiniAudioLib::ma_sound_is_playing(mainMusicSound)) {
+    MiniAudioLib::ma_sound_stop(mainMusicSound);
   }
   mainMusicMutex.unlock();
 }
 
 void resumeMainMusic() {
   mainMusicMutex.lock();
-  if (mainMusicSound && !ma_sound_is_playing(mainMusicSound)) {
-    ma_sound_start(mainMusicSound);
+  if (mainMusicSound && !MiniAudioLib::ma_sound_is_playing(mainMusicSound)) {
+    MiniAudioLib::ma_sound_start(mainMusicSound);
   }
   mainMusicMutex.unlock();
 }
@@ -237,19 +302,19 @@ void resumeMainMusic() {
 void changeMainMusicVolume(u32 volume) {
   mainMusicMutex.lock();
   if (mainMusicSound) {
-    ma_sound_set_volume(mainMusicSound, ((float)volume) / 100.0);
+    MiniAudioLib::ma_sound_set_volume(mainMusicSound, ((float)volume) / 100.0);
   }
   mainMusicMutex.unlock();
 }
 
 // TFL note: added
-std::vector<std::pair<ma_sound*, std::string>> g_tfl_hints;
+std::vector<std::pair<MiniAudioLib::ma_sound*, std::string>> g_tfl_hints;
 std::mutex g_tfl_hints_mtx;
 bool g_interrupt_hint = false;
 
 void stop_tfl_hint() {
   for (auto& pair : g_tfl_hints) {
-    ma_sound_stop(pair.first);
+    MiniAudioLib::ma_sound_stop(pair.first);
     // ma_sound_uninit(pair.first);
     // delete pair.first;
     // pair.first = nullptr;
@@ -284,9 +349,10 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     auto path = (file_util::get_jak_project_dir() / "custom_assets" / "jak1" / "audio" / "tfl" / "hints" / name_str).string();
     printf("Playing hint: %s\n", name_str.c_str());
 
-    auto* hint = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, hint);
-    if (hint_result != MA_SUCCESS) {
+    auto* hint = new MiniAudioLib::ma_sound;
+    auto hint_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0,
+                                                             nullptr, nullptr, hint);
+    if (hint_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
       delete hint;
@@ -294,9 +360,9 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     }
     float vol;
     memcpy(&vol, &volume, 4);
-    ma_sound_set_volume(hint, vol);
-    ma_sound_set_looping(hint, MA_FALSE);
-    ma_sound_start(hint);
+    MiniAudioLib::ma_sound_set_volume(hint, vol);
+    MiniAudioLib::ma_sound_set_looping(hint, MA_FALSE);
+    MiniAudioLib::ma_sound_start(hint);
     jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 
     {
@@ -304,26 +370,26 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
       g_tfl_hints.emplace_back(hint, path.c_str());
     }
 
-    auto paused_func = [](ma_sound* hint) {
-      while (!ma_sound_is_playing(hint)) {
+    auto paused_func = [](MiniAudioLib::ma_sound* hint) {
+      while (!MiniAudioLib::ma_sound_is_playing(hint)) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
           stop_tfl_hint();
           return;
         }
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
-          ma_sound_start(hint);
+          MiniAudioLib::ma_sound_start(hint);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
     };
 
     auto play_func = [&hint, &paused_func]() {
-      while (ma_sound_is_playing(hint) && !ma_sound_at_end(hint)) {
+      while (MiniAudioLib::ma_sound_is_playing(hint) && !MiniAudioLib::ma_sound_at_end(hint)) {
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
           // hint->pause();
-          ma_sound_stop(hint);
+          MiniAudioLib::ma_sound_stop(hint);
           paused_func(hint);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -339,8 +405,8 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
                          g_tfl_hints.end());
     }
 
-    ma_sound_stop(hint);
-    ma_sound_uninit(hint);
+    MiniAudioLib::ma_sound_stop(hint);
+    MiniAudioLib::ma_sound_uninit(hint);
     delete hint;
     hint = nullptr;
 
@@ -351,15 +417,17 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
   return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 }
 
-ma_sound* g_tfl_music;
+MiniAudioLib::ma_sound* g_tfl_music;
 
 void stop_tfl_music(bool force) {
   if (g_tfl_music) {
     if (force) {
-      ma_sound_stop(g_tfl_music);
-      ma_sound_uninit(g_tfl_music);
-      ma_engine_stop(&g_ma_engine_tfl);
-      ma_engine_uninit(&g_ma_engine_tfl);
+      MiniAudioLib::ma_sound_stop(g_tfl_music);
+      MiniAudioLib::ma_sound_uninit(g_tfl_music);
+#ifdef MA_UNIX
+      MiniAudioLib::ma_engine_stop(&g_ma_engine_tfl);
+      MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
+#endif
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
@@ -367,17 +435,17 @@ void stop_tfl_music(bool force) {
       return a + t * (b - a);
     };
     float time_elapsed = 1.f;
-    float start = ma_sound_get_volume(g_tfl_music);
+    float start = MiniAudioLib::ma_sound_get_volume(g_tfl_music);
     float end = 0.f;
     float val = start;
     while (val >= 0.01f) {
       val = lerp(start, end, 1.0f - time_elapsed);
-      ma_sound_set_volume(g_tfl_music, val);
+      MiniAudioLib::ma_sound_set_volume(g_tfl_music, val);
       printf("Fading out music volume: %f\n", val);
       time_elapsed -= 0.01f;
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-    ma_sound_stop(g_tfl_music);
+    MiniAudioLib::ma_sound_stop(g_tfl_music);
     jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
     // delete g_tfl_music;
   }
@@ -402,9 +470,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
       }
     }
 
-    auto* music = new ma_sound;
-    auto music_result = ma_sound_init_from_file(&g_ma_engine_tfl, file.c_str(), 0, nullptr, nullptr, music);
-    if (music_result != MA_SUCCESS) {
+    auto* music = new MiniAudioLib::ma_sound;
+    auto music_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, file.c_str(), 0,
+                                                              nullptr, nullptr, music);
+    if (music_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load music: %s\n", file.c_str());
       delete music;
       return;
@@ -412,9 +481,9 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     float vol;
     memcpy(&vol, &volume, 4);
     printf("Playing music: %s (volume %f)\n", name_str.c_str(), vol);
-    ma_sound_set_volume(music, 0.f);
-    ma_sound_set_looping(music, MA_TRUE);
-    ma_sound_start(music);
+    MiniAudioLib::ma_sound_set_volume(music, 0.f);
+    MiniAudioLib::ma_sound_set_looping(music, MA_TRUE);
+    MiniAudioLib::ma_sound_start(music);
     jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
     g_tfl_music = music;
     auto lerp = [](float a, float b, float t) {
@@ -426,24 +495,24 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     float val = start;
     while (val < vol) {
       val = lerp(start, end, time_elapsed);
-      ma_sound_set_volume(g_tfl_music, val);
+      MiniAudioLib::ma_sound_set_volume(g_tfl_music, val);
       printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
       time_elapsed += 0.01f;
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-    auto paused_func = [](ma_sound* music) {
-      while (!ma_sound_is_playing(music)) {
+    auto paused_func = [](MiniAudioLib::ma_sound* music) {
+      while (!MiniAudioLib::ma_sound_is_playing(music)) {
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
-          ma_sound_start(music);
+          MiniAudioLib::ma_sound_start(music);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
     };
 
     auto play_func = [&music, &paused_func]() {
-      while (ma_sound_is_playing(music)) {
+      while (MiniAudioLib::ma_sound_is_playing(music)) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
           stop_tfl_music(true);
           return;
@@ -458,10 +527,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
         float vol;
         auto volume = jak1::call_goal_function_by_name("tfl-music-player-volume");
         memcpy(&vol, &volume, 4);
-        ma_sound_set_volume(music, vol);
+        MiniAudioLib::ma_sound_set_volume(music, vol);
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
-          ma_sound_stop(music);
+          MiniAudioLib::ma_sound_stop(music);
           paused_func(music);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -475,10 +544,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
   return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 }
 
-ma_sound* g_tfl_commentary;
+MiniAudioLib::ma_sound* g_tfl_commentary;
 
 void stop_tfl_commentary() {
-  ma_sound_stop(g_tfl_commentary);
+  MiniAudioLib::ma_sound_stop(g_tfl_commentary);
   delete g_tfl_commentary;
   jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
 }
@@ -494,43 +563,44 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
     auto path = (file_util::get_jak_project_dir() / "custom_assets" / "jak1" / "audio" / "tfl" / "commentary" / name_str).string();
     printf("Playing commentary: %s\n", name_str.c_str());
 
-    auto* node = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, node);
-    if (hint_result != MA_SUCCESS) {
+    auto* node = new MiniAudioLib::ma_sound;
+    auto hint_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0,
+                                                             nullptr, nullptr, node);
+    if (hint_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
       delete node;
       return;
     }
-    ma_sound_set_volume(node, volume);
-    ma_sound_set_looping(node, MA_FALSE);
-    ma_sound_start(node);
+    MiniAudioLib::ma_sound_set_volume(node, volume);
+    MiniAudioLib::ma_sound_set_looping(node, MA_FALSE);
+    MiniAudioLib::ma_sound_start(node);
     g_tfl_commentary = node;
     jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 
-    auto paused_func = [](ma_sound* node) {
-      while (!ma_sound_is_playing(node)) {
+    auto paused_func = [](MiniAudioLib::ma_sound* node) {
+      while (!MiniAudioLib::ma_sound_is_playing(node)) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
           stop_tfl_commentary();
           return;
         }
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
-          ma_sound_start(node);
+          MiniAudioLib::ma_sound_start(node);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
     };
 
     auto play_func = [&node, &paused_func] {
-      while (ma_sound_is_playing(node) && !ma_sound_at_end(node)) {
+      while (MiniAudioLib::ma_sound_is_playing(node) && !MiniAudioLib::ma_sound_at_end(node)) {
         auto volume = jak1::call_goal_function_by_name("tfl-commentary-volume");
         float vol;
         memcpy(&vol, &volume, 4);
-        ma_sound_set_volume(node, vol);
+        MiniAudioLib::ma_sound_set_volume(node, vol);
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
-          ma_sound_stop(node);
+          MiniAudioLib::ma_sound_stop(node);
           paused_func(node);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -539,8 +609,8 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
 
     play_func();
 
-    ma_sound_stop(node);
-    ma_sound_uninit(node);
+    MiniAudioLib::ma_sound_stop(node);
+    MiniAudioLib::ma_sound_uninit(node);
     delete node;
     node = nullptr;
 
@@ -895,6 +965,19 @@ u64 pc_get_mips2c(u32 name) {
   return Mips2C::gLinkedFunctionTable.get(n);
 }
 
+u64 pc_get_display_id() {
+  if (Display::GetMainDisplay()) {
+    return Display::GetMainDisplay()->get_display_manager()->get_active_display_id();
+  }
+  return 0;
+}
+
+void pc_set_display_id(u64 display_id) {
+  if (Display::GetMainDisplay()) {
+    Display::GetMainDisplay()->get_display_manager()->enqueue_set_display_id(display_id);
+  }
+}
+
 u64 pc_get_display_name(u32 id, u32 str_dest_ptr) {
   std::string name = "";
   if (Display::GetMainDisplay()) {
@@ -916,17 +999,16 @@ u64 pc_get_display_name(u32 id, u32 str_dest_ptr) {
 }
 
 u32 pc_get_display_mode() {
-  auto display_mode = WindowDisplayMode::Windowed;
+  auto display_mode = game_settings::DisplaySettings::DisplayMode::Windowed;
   if (Display::GetMainDisplay()) {
-    display_mode = Display::GetMainDisplay()->get_display_manager()->get_window_display_mode();
+    display_mode = Display::GetMainDisplay()->get_display_manager()->get_display_mode();
   }
   switch (display_mode) {
-    case WindowDisplayMode::Borderless:
+    case game_settings::DisplaySettings::DisplayMode::Borderless:
       return g_pc_port_funcs.intern_from_c("borderless").offset;
-    case WindowDisplayMode::Fullscreen:
+    case game_settings::DisplaySettings::DisplayMode::Fullscreen:
       return g_pc_port_funcs.intern_from_c("fullscreen").offset;
     default:
-    case WindowDisplayMode::Windowed:
       return g_pc_port_funcs.intern_from_c("windowed").offset;
   }
 }
@@ -937,13 +1019,13 @@ void pc_set_display_mode(u32 symptr) {
   }
   if (symptr == g_pc_port_funcs.intern_from_c("windowed").offset || symptr == s7.offset) {
     Display::GetMainDisplay()->get_display_manager()->enqueue_set_window_display_mode(
-        WindowDisplayMode::Windowed);
+        game_settings::DisplaySettings::DisplayMode::Windowed);
   } else if (symptr == g_pc_port_funcs.intern_from_c("borderless").offset) {
     Display::GetMainDisplay()->get_display_manager()->enqueue_set_window_display_mode(
-        WindowDisplayMode::Borderless);
+        game_settings::DisplaySettings::DisplayMode::Borderless);
   } else if (symptr == g_pc_port_funcs.intern_from_c("fullscreen").offset) {
     Display::GetMainDisplay()->get_display_manager()->enqueue_set_window_display_mode(
-        WindowDisplayMode::Fullscreen);
+        game_settings::DisplaySettings::DisplayMode::Fullscreen);
   }
 }
 
@@ -1015,12 +1097,6 @@ void pc_get_window_scale(u32 x_ptr, u32 y_ptr) {
   }
 }
 
-void pc_get_fullscreen_display(u64 display_id) {
-  if (Display::GetMainDisplay()) {
-    Display::GetMainDisplay()->get_display_manager()->enqueue_set_fullscreen_display_id(display_id);
-  }
-}
-
 void pc_set_window_size(u64 width, u64 height) {
   if (Display::GetMainDisplay()) {
     Display::GetMainDisplay()->get_display_manager()->enqueue_set_window_size(width, height);
@@ -1046,6 +1122,14 @@ void pc_get_resolution(u32 id, u32 w_ptr, u32 h_ptr) {
       *h = res.height;
     }
   }
+}
+
+u64 pc_is_supported_resolution(u64 width, u64 height) {
+  if (Display::GetMainDisplay()) {
+    return bool_to_symbol(
+        Display::GetMainDisplay()->get_display_manager()->is_supported_resolution(width, height));
+  }
+  return bool_to_symbol(false);
 }
 
 u64 pc_get_controller_name(u32 id, u32 str_dest_ptr) {
@@ -1359,9 +1443,11 @@ void init_common_pc_port_functions(
 
   // -- DISPLAY RELATED --
   // Returns the name of the display with the given id or #f if not found / empty
+  make_func_symbol_func("pc-get-display-id", (void*)pc_get_display_id);
+  make_func_symbol_func("pc-set-display-id!", (void*)pc_set_display_id);
   make_func_symbol_func("pc-get-display-name", (void*)pc_get_display_name);
   make_func_symbol_func("pc-get-display-mode", (void*)pc_get_display_mode);
-  make_func_symbol_func("pc-set-display-mode", (void*)pc_set_display_mode);
+  make_func_symbol_func("pc-set-display-mode!", (void*)pc_set_display_mode);
   make_func_symbol_func("pc-get-display-count", (void*)pc_get_display_count);
   // Returns resolution of the monitor's current display mode
   make_func_symbol_func("pc-get-active-display-size", (void*)pc_get_active_display_size);
@@ -1372,10 +1458,10 @@ void init_common_pc_port_functions(
   make_func_symbol_func("pc-get-window-size", (void*)pc_get_window_size);
   // Returns scale of window. This is for DPI stuff.
   make_func_symbol_func("pc-get-window-scale", (void*)pc_get_window_scale);
-  make_func_symbol_func("pc-set-fullscreen-display", (void*)pc_get_fullscreen_display);
-  make_func_symbol_func("pc-set-window-size", (void*)pc_set_window_size);
+  make_func_symbol_func("pc-set-window-size!", (void*)pc_set_window_size);
   make_func_symbol_func("pc-get-num-resolutions", (void*)pc_get_num_resolutions);
   make_func_symbol_func("pc-get-resolution", (void*)pc_get_resolution);
+  make_func_symbol_func("pc-is-supported-resolution?", (void*)pc_is_supported_resolution);
 
   // -- INPUT RELATED --
   // Returns the name of the display with the given id or #f if not found / empty
@@ -1425,13 +1511,16 @@ void init_common_pc_port_functions(
   make_func_symbol_func("pc-filepath-exists?", (void*)pc_filepath_exists);
   make_func_symbol_func("pc-mkdir-file-path", (void*)pc_mkdir_filepath);
 
-  //Play sound file
+  // Play sound file
   make_func_symbol_func("play-sound-file", (void*)playMP3);
 
-  //Stop sound file
-  make_func_symbol_func("stop-sound-file", (void*)stopAllSounds);
+  // Stop sound file (all instances)
+  make_func_symbol_func("stop-sound-file", (void*)stopMP3);
 
-  //Main music stuff
+  // Stop all sounds
+  make_func_symbol_func("stop-all-sounds", (void*)stopAllSounds);
+
+  // Main music stuff
   make_func_symbol_func("play-main-music", (void*)playMainMusic);
   make_func_symbol_func("pause-main-music", (void*)pauseMainMusic);
   make_func_symbol_func("stop-main-music", (void*)stopMainMusic);
