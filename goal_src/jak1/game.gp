@@ -1684,6 +1684,7 @@
 (build-actor "turbineblade")
 (build-actor "tfl-commentary-node")
 (build-actor "tfl-commentary-node-active")
+(build-actor "bucket-wheel")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

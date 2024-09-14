@@ -3957,7 +3957,7 @@
    (sp-item 3685 :flags (start-dead))
    (sp-item 3678 :period (seconds 3) :length (seconds 0.067))))
 
-(defpart 3676
+(defpart 3676 ;; flying rocks
   :init-specs
   ((:texture (new 'static 'texture-id :page #x2))
    (:num 5.0)
@@ -3981,7 +3981,7 @@
    (:conerot-y (degrees 0) (degrees 360))
    (:conerot-radius (meters 0) (meters 3))))
 
-(defpart 3685
+(defpart 3685 ;; flying rocks trail
   :init-specs
   ((:texture (new 'static 'texture-id :page #x2))
    (:num 1.0)
@@ -4004,7 +4004,7 @@
 (defpart 3679
   :init-specs ((:fade-r -0.14222223) (:fade-g -0.14222223) (:fade-b -0.14222223)))
 
-(defpart 3675
+(defpart 3675 ;; fireworks
   :init-specs
   ((:texture (new 'static 'texture-id :index #xf :page #x2))
    (:num 64.0)
@@ -4034,7 +4034,7 @@
 (defpart 3680
   :init-specs ((:fade-r 0.0) (:fade-g 0.0) (:fade-b 0.0) (:fade-a -0.3)))
 
-(defpart 3678
+(defpart 3678 ;; flash lines
   :init-specs
   ((:texture (new 'static 'texture-id :index #xf :page #x2))
    (:num 6.0)
@@ -4070,7 +4070,7 @@
    (:timer (seconds 0.25))
    (:flags (bit2 bit3 bit14))))
 
-(defpart 3677
+(defpart 3677 ;; thick smoke
   :init-specs
   ((:texture (new 'static 'texture-id :page #x2))
    (:num 32.0)
@@ -4105,7 +4105,7 @@
 (defpart 3683
   :init-specs ((:fade-r -0.114285715) (:fade-g -0.114285715) (:fade-b 0.0) (:fade-a -0.30)))
 
-(defpart 3686
+(defpart 3686 ;; ring
   :init-specs
   ((:texture (new 'static 'texture-id :index #x1e :page #x2))
    (:num 4.0)

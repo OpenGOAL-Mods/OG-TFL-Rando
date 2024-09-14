@@ -759,11 +759,12 @@
     (set! (-> v1-103 ignore-angle) 16384.0))
   (set! (-> this drill) (new 'process 'joint-mod (joint-mod-handler-mode joint-set*) this 38))
   (transform-post)
-  (create-connection! *cavecrystal-light-control*
-                      this
-                      (-> this entity)
-                      (the-as (function object object object object object) cavecrystal-light-control-default-callback)
-                      -1
-                      8192.0)
+  (if (not (res-lump-data (-> this entity) 'stop-light-control (pointer symbol))) ;; TFL note: added res lump to avoid crash without crystal lights
+    (create-connection! *cavecrystal-light-control*
+                        this
+                        (-> this entity)
+                        (the-as (function object object object object object) cavecrystal-light-control-default-callback)
+                        -1
+                        8192.0))
   (if (>= (-> this ambient-drilling-u) 0.0) (go driller-lurker-idle-drilling) (go driller-lurker-patrol))
   (none))

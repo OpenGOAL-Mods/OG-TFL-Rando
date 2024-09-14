@@ -809,6 +809,16 @@
   0
   (none))
 
+(defun sparticle-track-quat ((arg0 object) (arg1 sparticle-cpuinfo) (arg2 quaternion))
+  "track the quat of the process drawable"
+  (let ((v1-5 (-> (the-as process-drawable (-> arg1 key proc)) root quat)))
+    (set! (-> arg2 x) (-> v1-5 x))
+    (set! (-> arg2 y) (-> v1-5 y))
+    (set! (-> arg2 z) (-> v1-5 z))
+    (set! (-> arg2 w) (-> v1-5 w)))
+  0
+  (none))
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; birth funcs
 ;;;;;;;;;;;;;;;;;;;;;

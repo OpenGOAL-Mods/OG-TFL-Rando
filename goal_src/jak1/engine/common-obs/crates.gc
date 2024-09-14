@@ -908,6 +908,15 @@
   (set! (-> this look) 'bucket)
   (none))
 
+;; TFL note: Added direct etype for darkeco crates
+(deftype darkeco (crate) ())
+
+(defmethod params-init ((this darkeco) (arg0 entity))
+  (let ((t9-0 (method-of-type crate params-init))) (t9-0 this arg0))
+  (set! (-> this look) 'darkeco)
+  (set! (-> this defense) 'darkeco)
+  (none))
+
 (defpartgroup group-buzzer-crate
   :id 74
   :duration (seconds 0.017)

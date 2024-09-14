@@ -298,7 +298,8 @@ swamp-bat-slave-event-handler
   (vector-float*! (-> self root scale) *identity-vector* 2.0)
   (set! (-> self root pause-adjust-distance) 286720.0)
   (set! (-> self fact) (new 'process 'fact-info-enemy self (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc)))
-  (set! (-> self idle-anim-speed) (rand-vu-float-range 0.9 1.1))
+  (set! (-> self idle-anim-speed)(rand-vu-float-range (res-lump-float (-> self entity) 'idle-rand-min :default 0.9) 
+                                                      (res-lump-float (-> self entity) 'idle-rand-max :default 1.1))) ;; TFL note: Added res lump to control the randomness of the idle anim
   (set! (-> self strafe-distance) 0.0)
   (set! (-> self strafe-envelope) 0.0)
   (set! (-> self idle-position-index) arg1)
@@ -332,7 +333,7 @@ swamp-bat-slave-event-handler
          (gp-1 (path-control-method-12 s5-0 (-> self path-select-plane arg0) 5.0))
          (s5-1 (eval-path-curve-div! s5-0 (new 'stack-no-clear 'vector) 5.0 'interp)))
     (set! (-> gp-1 y) 0.0)
-    (vector-normalize! gp-1 1.0)
+    (vector-normalize! gp-1 (if (not (res-lump-struct (-> self entity) 'invert-select-plane symbol)) 1.0 -1.0)) ;; TFL note: Added res lump to select which way they spawn
     (set! (-> gp-1 w) (- (vector-dot s5-1 gp-1)))))
 
 (defbehavior swamp-bat-update-path swamp-bat ()
