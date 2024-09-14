@@ -81,7 +81,7 @@ std::map<std::string, std::list<MiniAudioLib::ma_sound>> maSoundMap;
 MiniAudioLib::ma_sound* mainMusicSound;
 
 // TFL Note: Added
-ma_engine g_ma_engine_tfl;
+MiniAudioLib::ma_engine g_ma_engine_tfl;
 
 void kmachine_init_globals_common() {
   memset(pad_dma_buf, 0, sizeof(pad_dma_buf));
@@ -95,6 +95,7 @@ void kmachine_init_globals_common() {
   MiniAudioLib::ma_engine_uninit(&maEngine);
 #endif
   MiniAudioLib::ma_engine_init(NULL, &maEngine);
+  MiniAudioLib::ma_engine_init(nullptr, &g_ma_engine_tfl);
 }
 
 /*!
@@ -305,13 +306,13 @@ void changeMainMusicVolume(u32 volume) {
 }
 
 // TFL note: added
-std::vector<std::pair<ma_sound*, std::string>> g_tfl_hints;
+std::vector<std::pair<MiniAudioLib::ma_sound*, std::string>> g_tfl_hints;
 std::mutex g_tfl_hints_mtx;
 bool g_interrupt_hint = false;
 
 void stop_tfl_hint() {
   for (auto& pair : g_tfl_hints) {
-    ma_sound_stop(pair.first);
+    MiniAudioLib::ma_sound_stop(pair.first);
     // ma_sound_uninit(pair.first);
     // delete pair.first;
     // pair.first = nullptr;
@@ -346,9 +347,10 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     auto path = (file_util::get_jak_project_dir() / "custom_assets" / "jak1" / "audio" / "tfl" / "hints" / name_str).string();
     printf("Playing hint: %s\n", name_str.c_str());
 
-    auto* hint = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, hint);
-    if (hint_result != MA_SUCCESS) {
+    auto* hint = new MiniAudioLib::ma_sound;
+    auto hint_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0,
+                                                             nullptr, nullptr, hint);
+    if (hint_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
       delete hint;
@@ -356,9 +358,9 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     }
     float vol;
     memcpy(&vol, &volume, 4);
-    ma_sound_set_volume(hint, vol);
-    ma_sound_set_looping(hint, MA_FALSE);
-    ma_sound_start(hint);
+    MiniAudioLib::ma_sound_set_volume(hint, vol);
+    MiniAudioLib::ma_sound_set_looping(hint, MA_FALSE);
+    MiniAudioLib::ma_sound_start(hint);
     jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 
     {
@@ -366,26 +368,26 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
       g_tfl_hints.emplace_back(hint, path.c_str());
     }
 
-    auto paused_func = [](ma_sound* hint) {
-      while (!ma_sound_is_playing(hint)) {
+    auto paused_func = [](MiniAudioLib::ma_sound* hint) {
+      while (!MiniAudioLib::ma_sound_is_playing(hint)) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
           stop_tfl_hint();
           return;
         }
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
-          ma_sound_start(hint);
+          MiniAudioLib::ma_sound_start(hint);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
     };
 
     auto play_func = [&hint, &paused_func]() {
-      while (ma_sound_is_playing(hint) && !ma_sound_at_end(hint)) {
+      while (MiniAudioLib::ma_sound_is_playing(hint) && !MiniAudioLib::ma_sound_at_end(hint)) {
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
           // hint->pause();
-          ma_sound_stop(hint);
+          MiniAudioLib::ma_sound_stop(hint);
           paused_func(hint);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -401,8 +403,8 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
                          g_tfl_hints.end());
     }
 
-    ma_sound_stop(hint);
-    ma_sound_uninit(hint);
+    MiniAudioLib::ma_sound_stop(hint);
+    MiniAudioLib::ma_sound_uninit(hint);
     delete hint;
     hint = nullptr;
 
@@ -413,15 +415,15 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
   return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 }
 
-ma_sound* g_tfl_music;
+MiniAudioLib::ma_sound* g_tfl_music;
 
 void stop_tfl_music(bool force) {
   if (g_tfl_music) {
     if (force) {
-      ma_sound_stop(g_tfl_music);
-      ma_sound_uninit(g_tfl_music);
-      ma_engine_stop(&g_ma_engine_tfl);
-      ma_engine_uninit(&g_ma_engine_tfl);
+      MiniAudioLib::ma_sound_stop(g_tfl_music);
+      MiniAudioLib::ma_sound_uninit(g_tfl_music);
+      MiniAudioLib::ma_engine_stop(&g_ma_engine_tfl);
+      MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
@@ -429,17 +431,17 @@ void stop_tfl_music(bool force) {
       return a + t * (b - a);
     };
     float time_elapsed = 1.f;
-    float start = ma_sound_get_volume(g_tfl_music);
+    float start = MiniAudioLib::ma_sound_get_volume(g_tfl_music);
     float end = 0.f;
     float val = start;
     while (val >= 0.01f) {
       val = lerp(start, end, 1.0f - time_elapsed);
-      ma_sound_set_volume(g_tfl_music, val);
+      MiniAudioLib::ma_sound_set_volume(g_tfl_music, val);
       printf("Fading out music volume: %f\n", val);
       time_elapsed -= 0.01f;
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-    ma_sound_stop(g_tfl_music);
+    MiniAudioLib::ma_sound_stop(g_tfl_music);
     jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
     // delete g_tfl_music;
   }
@@ -464,9 +466,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
       }
     }
 
-    auto* music = new ma_sound;
-    auto music_result = ma_sound_init_from_file(&g_ma_engine_tfl, file.c_str(), 0, nullptr, nullptr, music);
-    if (music_result != MA_SUCCESS) {
+    auto* music = new MiniAudioLib::ma_sound;
+    auto music_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, file.c_str(), 0,
+                                                              nullptr, nullptr, music);
+    if (music_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load music: %s\n", file.c_str());
       delete music;
       return;
@@ -474,9 +477,9 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     float vol;
     memcpy(&vol, &volume, 4);
     printf("Playing music: %s (volume %f)\n", name_str.c_str(), vol);
-    ma_sound_set_volume(music, 0.f);
-    ma_sound_set_looping(music, MA_TRUE);
-    ma_sound_start(music);
+    MiniAudioLib::ma_sound_set_volume(music, 0.f);
+    MiniAudioLib::ma_sound_set_looping(music, MA_TRUE);
+    MiniAudioLib::ma_sound_start(music);
     jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
     g_tfl_music = music;
     auto lerp = [](float a, float b, float t) {
@@ -488,24 +491,24 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     float val = start;
     while (val < vol) {
       val = lerp(start, end, time_elapsed);
-      ma_sound_set_volume(g_tfl_music, val);
+      MiniAudioLib::ma_sound_set_volume(g_tfl_music, val);
       printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
       time_elapsed += 0.01f;
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-    auto paused_func = [](ma_sound* music) {
-      while (!ma_sound_is_playing(music)) {
+    auto paused_func = [](MiniAudioLib::ma_sound* music) {
+      while (!MiniAudioLib::ma_sound_is_playing(music)) {
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
-          ma_sound_start(music);
+          MiniAudioLib::ma_sound_start(music);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
     };
 
     auto play_func = [&music, &paused_func]() {
-      while (ma_sound_is_playing(music)) {
+      while (MiniAudioLib::ma_sound_is_playing(music)) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
           stop_tfl_music(true);
           return;
@@ -520,10 +523,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
         float vol;
         auto volume = jak1::call_goal_function_by_name("tfl-music-player-volume");
         memcpy(&vol, &volume, 4);
-        ma_sound_set_volume(music, vol);
+        MiniAudioLib::ma_sound_set_volume(music, vol);
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
-          ma_sound_stop(music);
+          MiniAudioLib::ma_sound_stop(music);
           paused_func(music);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -537,10 +540,10 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
   return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 }
 
-ma_sound* g_tfl_commentary;
+MiniAudioLib::ma_sound* g_tfl_commentary;
 
 void stop_tfl_commentary() {
-  ma_sound_stop(g_tfl_commentary);
+  MiniAudioLib::ma_sound_stop(g_tfl_commentary);
   delete g_tfl_commentary;
   jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
 }
@@ -556,43 +559,44 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
     auto path = (file_util::get_jak_project_dir() / "custom_assets" / "jak1" / "audio" / "tfl" / "commentary" / name_str).string();
     printf("Playing commentary: %s\n", name_str.c_str());
 
-    auto* node = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, node);
-    if (hint_result != MA_SUCCESS) {
+    auto* node = new MiniAudioLib::ma_sound;
+    auto hint_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0,
+                                                             nullptr, nullptr, node);
+    if (hint_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
       delete node;
       return;
     }
-    ma_sound_set_volume(node, volume);
-    ma_sound_set_looping(node, MA_FALSE);
-    ma_sound_start(node);
+    MiniAudioLib::ma_sound_set_volume(node, volume);
+    MiniAudioLib::ma_sound_set_looping(node, MA_FALSE);
+    MiniAudioLib::ma_sound_start(node);
     g_tfl_commentary = node;
     jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 
-    auto paused_func = [](ma_sound* node) {
-      while (!ma_sound_is_playing(node)) {
+    auto paused_func = [](MiniAudioLib::ma_sound* node) {
+      while (!MiniAudioLib::ma_sound_is_playing(node)) {
         if (MasterExit != RuntimeExitStatus::RUNNING) {
           stop_tfl_commentary();
           return;
         }
         auto pause = jak1::call_goal_function_by_name("paused?");
         if (pause == offset_of_s7()) {
-          ma_sound_start(node);
+          MiniAudioLib::ma_sound_start(node);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
     };
 
     auto play_func = [&node, &paused_func] {
-      while (ma_sound_is_playing(node) && !ma_sound_at_end(node)) {
+      while (MiniAudioLib::ma_sound_is_playing(node) && !MiniAudioLib::ma_sound_at_end(node)) {
         auto volume = jak1::call_goal_function_by_name("tfl-commentary-volume");
         float vol;
         memcpy(&vol, &volume, 4);
-        ma_sound_set_volume(node, vol);
+        MiniAudioLib::ma_sound_set_volume(node, vol);
         auto paused = jak1::call_goal_function_by_name("paused?");
         if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
-          ma_sound_stop(node);
+          MiniAudioLib::ma_sound_stop(node);
           paused_func(node);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -601,8 +605,8 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
 
     play_func();
 
-    ma_sound_stop(node);
-    ma_sound_uninit(node);
+    MiniAudioLib::ma_sound_stop(node);
+    MiniAudioLib::ma_sound_uninit(node);
     delete node;
     node = nullptr;
 
