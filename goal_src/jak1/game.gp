@@ -225,7 +225,7 @@
               :out '(,(string-append "$OUT/obj/" name ".go")))))
 
 (defmacro build-actor (name &key (gen-mesh #f))
-  (let* ((path (string-append "custom_assets/jak1/models/" name ".glb")))
+  (let* ((path (string-append "custom_assets/jak1/models/custom_levels/" name ".glb")))
     `(defstep :in '(,path ,(symbol->string gen-mesh))
               :tool 'build-actor
               :out '(,(string-append "$OUT/obj/" name "-ag.go")))))
@@ -492,7 +492,7 @@
    "village_common/oracle.gc"
 
    "common/blocking-plane.gc"
-   "common/blocking-plane-modded.gc" ;; mod-base-change
+   "common/blocking-plane-b.gc" ;; mod-base-change
    "common/launcherdoor.gc"
    "common/battlecontroller.gc"
 
@@ -1677,7 +1677,7 @@
 (custom-level-cgo "OPM.DGO" "open-mines/openmines.gd")
 
 ;; generate the art group for a custom actor.
-;; requires a .glb model file in custom_assets/jak1/models
+;; requires a .glb model file in custom_assets/jak1/models/custom_levels
 ;; to also generate a collide-mesh, add :gen-mesh #t
 (build-actor "test-actor" :gen-mesh #t)
 ;; TFL note: added
@@ -2078,6 +2078,7 @@
  "common-obs/plat.gc"
  "common-obs/plat-button.gc"
  "common-obs/plat-eco.gc"
+ "common-obs/linear-plat.gc"
  "common-obs/ropebridge.gc"
  "common-obs/ticky.gc"
  )

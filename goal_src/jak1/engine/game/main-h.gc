@@ -128,7 +128,7 @@
 
 (define *display-nav-marks* #f)
 
-(define *display-nav-marks-extras* #f) ;; TFL note: nav mesh setup
+(define *display-nav-marks-extras* #f)
 
 (define *display-path-marks* #f)
 
