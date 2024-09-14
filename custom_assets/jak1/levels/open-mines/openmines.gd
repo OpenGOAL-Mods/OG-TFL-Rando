@@ -51,5 +51,6 @@
   "swamp-rat-ag.go"
   "swamp-bat-ag.go"
   "driller-lurker-ag.go"
+  "junglecam-ag.go"
   "open-mines.go"
  ))
