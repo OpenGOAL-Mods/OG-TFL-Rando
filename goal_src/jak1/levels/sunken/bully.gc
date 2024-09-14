@@ -231,9 +231,10 @@
         (set! v0-0 100)
         (set! (-> self bounce-volume) (the-as int v0-0))
         v0-0)
-       ((= (-> arg0 type) target)
+       ((or (= (-> arg0 type) target) (= (-> arg0 type) super-red-bomb))
         (cond
           ((or (= (-> arg3 param 1) 'flop)
+               (= (-> arg3 param 1) 'explode)
                (and (target-powerup? super-eco-red) ;; TFL note: added case for super-eco-red
                     (symbol-member? (-> arg3 param 1) '(punch flip flop flop-down spin spin-air uppercut))))
            (go bully-die)

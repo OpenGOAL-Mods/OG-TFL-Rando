@@ -1018,7 +1018,7 @@
                    (else (send-event proc 'attack (-> block param 0) 'explode (1+! *global-attack-id*) 0))))))))))
   :code
     (behavior ()
-      (dotimes (i 5)
+      (dotimes (i 2)
         (sound-play "yellow-explode"))
       (let ((prim (-> self root root-prim)))
         (set! (-> prim local-sphere w) (-> self blast-radius))

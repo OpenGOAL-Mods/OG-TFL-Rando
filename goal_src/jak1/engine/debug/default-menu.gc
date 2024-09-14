@@ -2450,6 +2450,7 @@
                                                                  (flag "Vol Marks" *display-vol-marks* dm-boolean-toggle-pick-func)
                                                                  ;; TFL note: added
                                                                  (flag "TFL Hint Marks" *display-tfl-hint-marks* dm-boolean-toggle-pick-func)
+                                                                 (flag "TFL Commentary Marks" *display-tfl-commentary-marks* dm-boolean-toggle-pick-func)
                                                                  (menu "Ambient Marks"
                                                                        (flag "Ambient Hint Marks" *display-ambient-hint-marks* dm-boolean-toggle-pick-func)
                                                                        (flag "Ambient Sound Marks" *display-ambient-sound-marks* dm-boolean-toggle-pick-func)

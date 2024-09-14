@@ -57,7 +57,7 @@ std::map<std::string, ma_sound> maSoundMap;
 ma_sound* mainMusicSound;
 
 // TFL Note: Added
-ma_engine tfl_ma_engine;
+ma_engine g_ma_engine_tfl;
 
 void kmachine_init_globals_common() {
   memset(pad_dma_buf, 0, sizeof(pad_dma_buf));
@@ -69,7 +69,7 @@ void kmachine_init_globals_common() {
   ee_clock_timer = Timer();
 
   ma_engine_init(NULL, &maEngine);
-  ma_engine_init(NULL, &tfl_ma_engine);
+  ma_engine_init(nullptr, &g_ma_engine_tfl);
 }
 
 /*!
@@ -285,7 +285,7 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
     printf("Playing hint: %s\n", name_str.c_str());
 
     auto* hint = new ma_sound;
-    auto hint_result = ma_sound_init_from_file(&tfl_ma_engine, path.c_str(), 0, nullptr, nullptr, hint);
+    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, hint);
     if (hint_result != MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-hint-playing?*")->value = offset_of_s7();
@@ -357,6 +357,9 @@ void stop_tfl_music(bool force) {
   if (g_tfl_music) {
     if (force) {
       ma_sound_stop(g_tfl_music);
+      ma_sound_uninit(g_tfl_music);
+      ma_engine_stop(&g_ma_engine_tfl);
+      ma_engine_uninit(&g_ma_engine_tfl);
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
@@ -400,7 +403,7 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     }
 
     auto* music = new ma_sound;
-    auto music_result = ma_sound_init_from_file(&tfl_ma_engine, file.c_str(), 0, nullptr, nullptr, music);
+    auto music_result = ma_sound_init_from_file(&g_ma_engine_tfl, file.c_str(), 0, nullptr, nullptr, music);
     if (music_result != MA_SUCCESS) {
       printf("Failed to load music: %s\n", file.c_str());
       delete music;
@@ -469,6 +472,82 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
   });
 
   music_thread.detach();
+  return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+}
+
+ma_sound* g_tfl_commentary;
+
+void stop_tfl_commentary() {
+  ma_sound_stop(g_tfl_commentary);
+  delete g_tfl_commentary;
+  jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
+}
+
+u32 play_tfl_commentary(u32 file_name, float volume) {
+  if (jak1::intern_from_c("*tfl-commentary-playing?*")->value == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+    printf("TFL commentary is already playing!\n");
+    return offset_of_s7();
+  }
+
+  std::thread commentary_thread([=] {
+    auto name_str = std::string(Ptr<String>(file_name)->data());
+    auto path = (file_util::get_jak_project_dir() / "custom_assets" / "jak1" / "audio" / "tfl" / "commentary" / name_str).string();
+    printf("Playing commentary: %s\n", name_str.c_str());
+
+    auto* node = new ma_sound;
+    auto hint_result = ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0, nullptr, nullptr, node);
+    if (hint_result != MA_SUCCESS) {
+      printf("Failed to load: %s\n", path.c_str());
+      jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
+      delete node;
+      return;
+    }
+    ma_sound_set_volume(node, volume);
+    ma_sound_set_looping(node, MA_FALSE);
+    ma_sound_start(node);
+    g_tfl_commentary = node;
+    jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+
+    auto paused_func = [](ma_sound* node) {
+      while (!ma_sound_is_playing(node)) {
+        if (MasterExit != RuntimeExitStatus::RUNNING) {
+          stop_tfl_commentary();
+          return;
+        }
+        auto pause = jak1::call_goal_function_by_name("paused?");
+        if (pause == offset_of_s7()) {
+          ma_sound_start(node);
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      }
+    };
+
+    auto play_func = [&node, &paused_func] {
+      while (ma_sound_is_playing(node) && !ma_sound_at_end(node)) {
+        auto volume = jak1::call_goal_function_by_name("tfl-commentary-volume");
+        float vol;
+        memcpy(&vol, &volume, 4);
+        ma_sound_set_volume(node, vol);
+        auto paused = jak1::call_goal_function_by_name("paused?");
+        if (paused == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+          ma_sound_stop(node);
+          paused_func(node);
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      }
+    };
+
+    play_func();
+
+    ma_sound_stop(node);
+    ma_sound_uninit(node);
+    delete node;
+    node = nullptr;
+
+    jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
+  });
+
+  commentary_thread.detach();
   return offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
 }
 
@@ -1347,10 +1426,10 @@ void init_common_pc_port_functions(
   make_func_symbol_func("pc-mkdir-file-path", (void*)pc_mkdir_filepath);
 
   //Play sound file
-  make_func_symbol_func("play-sound-file", (void*)playMP3);  
+  make_func_symbol_func("play-sound-file", (void*)playMP3);
 
   //Stop sound file
-  make_func_symbol_func("stop-sound-file", (void*)stopAllSounds);  
+  make_func_symbol_func("stop-sound-file", (void*)stopAllSounds);
 
   //Main music stuff
   make_func_symbol_func("play-main-music", (void*)playMainMusic);
@@ -1361,6 +1440,8 @@ void init_common_pc_port_functions(
   make_func_symbol_func("main-music-volume", (void*)changeMainMusicVolume);
 
   // TFL note: added
+  make_func_symbol_func("stop-tfl-commentary", (void*)stop_tfl_commentary);
+  make_func_symbol_func("play-tfl-commentary", (void*)play_tfl_commentary);
   make_func_symbol_func("play-tfl-hint", (void*)play_tfl_hint);
   make_func_symbol_func("play-tfl-music", (void*)play_tfl_music);
 

@@ -73,8 +73,13 @@
 (defbehavior tfl-music-player-post tfl-music-player ()
   ;; (format 0 "POST tfl-music-player~%")
   (let ((level (aif (level-get-target-inside *level*) (-> it name) #f)))
-    ;; (format *stdcon* "tfl-music-player:~%cur-lev ~A~%level ~A~%playing? ~A~%state: ~A stop: ~A~%"
-    ;;   level (-> self level) *tfl-music-playing?* (-> self state name) *tfl-music-stop*)
+    ; (format *stdcon*
+    ;         "tfl-music-player:~%cur-lev ~A~%level ~A~%playing? ~A~%state: ~A stop? ~A~%"
+    ;         level
+    ;         (-> self level)
+    ;         *tfl-music-playing?*
+    ;         (-> self next-state name)
+    ;         *tfl-music-stop*)
     (when (and (!= (-> self level) level))
       (set-level! self)
       (stop! self)))
@@ -83,20 +88,21 @@
 (defstatehandler tfl-music-player :post tfl-music-player-post)
 
 (defstate tfl-music-player-idle (tfl-music-player)
-  :code sleep-code
-  :trans
-    (behavior ()
-      (when (and (-> self level) (tfl-level-has-music? (-> self level)))
-        (go tfl-music-player-playing))))
-
-(defstate tfl-music-player-playing (tfl-music-player)
-  :enter
-    (behavior ()
-      (play! self)
-      (dotimes (i 10)
-        (suspend)))
   :code
     (behavior ()
+      (until (and *target*
+                  (not (= (-> *target* next-state name) 'target-continue))
+                  (aif (level-get-target-inside *level*) (not (symbol-member? (-> it status) '(loading loading-bt login))) (the level #f))
+                  (-> self level)
+                  (tfl-level-has-music? (-> self level)))
+        (suspend))
+      (go tfl-music-player-playing)))
+
+(defstate tfl-music-player-playing (tfl-music-player)
+  :code
+    (behavior ()
+      (play! self)
+      (suspend-for (seconds 0.16))
       (while *tfl-music-playing?*
         (suspend))
       (go tfl-music-player-fade)))
@@ -106,6 +112,5 @@
     (behavior ()
       (when *tfl-music-playing?*
         (stop! self))
-      (dotimes (i 10)
-        (suspend))
+      (suspend-for (seconds 0.16))
       (go tfl-music-player-idle)))

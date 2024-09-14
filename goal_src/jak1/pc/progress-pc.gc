@@ -620,6 +620,7 @@
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id discord-rpc) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id cutscene-skips) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id speedrunner-mode) :scale #t)
+       (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id tfl-dev-commentary) :scale #t) ;; TFL note: added
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *gfx-ps2-options*
@@ -1507,6 +1508,7 @@
   (set! (-> *misc-options* 1 value-to-modify) (&-> *pc-settings* discord-rpc?))
   (set! (-> *misc-options* 2 value-to-modify) (&-> *pc-settings* skip-movies?))
   (set! (-> *misc-options* 3 value-to-modify) (&-> *pc-settings* speedrunner-mode?))
+  (set! (-> *misc-options* 4 value-to-modify) (&-> *tfl-dev-commentary* enabled?)) ;; TFL note: added
   (set! (-> *camera-options* 0 value-to-modify) (&-> *pc-settings* first-camera-h-inverted?))
   (set! (-> *camera-options* 1 value-to-modify) (&-> *pc-settings* first-camera-v-inverted?))
   (set! (-> *camera-options* 2 value-to-modify) (&-> *pc-settings* third-camera-h-inverted?))
