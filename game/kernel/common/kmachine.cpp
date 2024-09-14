@@ -95,6 +95,8 @@ void kmachine_init_globals_common() {
   MiniAudioLib::ma_engine_uninit(&maEngine);
 #endif
   MiniAudioLib::ma_engine_init(NULL, &maEngine);
+
+  MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
   MiniAudioLib::ma_engine_init(nullptr, &g_ma_engine_tfl);
 }
 
@@ -422,8 +424,8 @@ void stop_tfl_music(bool force) {
     if (force) {
       MiniAudioLib::ma_sound_stop(g_tfl_music);
       MiniAudioLib::ma_sound_uninit(g_tfl_music);
-      MiniAudioLib::ma_engine_stop(&g_ma_engine_tfl);
-      MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
+      // MiniAudioLib::ma_engine_stop(&g_ma_engine_tfl);
+      // MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
