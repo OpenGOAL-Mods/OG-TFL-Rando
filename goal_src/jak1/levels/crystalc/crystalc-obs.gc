@@ -475,6 +475,18 @@
                    (or (<= (-> self path-pos) 0.0) (= 0.9999 (-> self path-pos))))
           (process-release? *target*)))))
 
+(def-art-elt crc-gondola-ag crc-gondola-lod0-jg 0)
+(def-art-elt crc-gondola-ag crc-gondola-lod0-mg 1)
+(def-art-elt crc-gondola-ag crc-gondola-idle-bottom-ja 2)
+(def-art-elt crc-gondola-ag crc-gondola-idle-top-ja 3)
+(def-art-elt crc-gondola-ag crc-gondola-going-up-ja 4)
+(def-art-elt crc-gondola-ag crc-gondola-going-down-ja 5)
+
+(defskelgroup *crc-gondola-sg* crc-gondola crc-gondola-lod0-jg crc-gondola-idle-bottom-ja 
+              ((crc-gondola-lod0-mg (meters 9999999)))
+              :bounds (static-spherem 0 0 0 5)
+              )
+
 (deftype crc-gondola (process-drawable)
   ((root collide-shape-moving :override)
    )
