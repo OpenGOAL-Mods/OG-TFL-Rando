@@ -93,10 +93,10 @@ void kmachine_init_globals_common() {
   ee_clock_timer = Timer();
 #ifdef _WIN32  // only do this on windows, because it only works on windows?
   MiniAudioLib::ma_engine_uninit(&maEngine);
+  MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
 #endif
   MiniAudioLib::ma_engine_init(NULL, &maEngine);
 
-  MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
   MiniAudioLib::ma_engine_init(nullptr, &g_ma_engine_tfl);
 }
 
@@ -424,8 +424,10 @@ void stop_tfl_music(bool force) {
     if (force) {
       MiniAudioLib::ma_sound_stop(g_tfl_music);
       MiniAudioLib::ma_sound_uninit(g_tfl_music);
-      // MiniAudioLib::ma_engine_stop(&g_ma_engine_tfl);
-      // MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
+#ifdef MA_UNIX
+      MiniAudioLib::ma_engine_stop(&g_ma_engine_tfl);
+      MiniAudioLib::ma_engine_uninit(&g_ma_engine_tfl);
+#endif
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
