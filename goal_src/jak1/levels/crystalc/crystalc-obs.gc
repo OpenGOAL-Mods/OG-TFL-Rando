@@ -477,19 +477,145 @@
 
 (def-art-elt crc-gondola-ag crc-gondola-lod0-jg 0)
 (def-art-elt crc-gondola-ag crc-gondola-lod0-mg 1)
-(def-art-elt crc-gondola-ag crc-gondola-idle-bottom-ja 2)
-(def-art-elt crc-gondola-ag crc-gondola-idle-top-ja 3)
-(def-art-elt crc-gondola-ag crc-gondola-going-up-ja 4)
-(def-art-elt crc-gondola-ag crc-gondola-going-down-ja 5)
+(def-art-elt crc-gondola-ag crc-gondola-going-down-ja 2)
+(def-art-elt crc-gondola-ag crc-gondola-going-up-ja 3)
+(def-art-elt crc-gondola-ag crc-gondola-idle-bottom-ja 4)
+(def-art-elt crc-gondola-ag crc-gondola-idle-top-ja 5)
 
 (defskelgroup *crc-gondola-sg* crc-gondola crc-gondola-lod0-jg crc-gondola-idle-bottom-ja 
               ((crc-gondola-lod0-mg (meters 9999999)))
-              :bounds (static-spherem 0 0 0 5)
-              )
+              :bounds (static-spherem 0 5 0 12))
 
 (deftype crc-gondola (process-drawable)
   ((root collide-shape-moving :override)
-   )
+   (anim           spool-anim))
   (:methods (init-collision! (_type_) none))
-  (:state-methods idle)
+  (:states
+    crc-gondola-idle-bottom
+    crc-gondola-idle-top))
+
+(defmethod init-collision! ((this crc-gondola))
+  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
+    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
+    (set! (-> cshape reaction) default-collision-reaction)
+    (set! (-> cshape no-reaction)
+          (the (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (alloc-riders cshape 1)
+    (let ((cgroup (new 'process 'collide-shape-prim-group cshape (the uint 7) 0)))
+      (set! (-> cgroup prim-core collide-as) (collide-kind ground-object))
+      (set! (-> cgroup collide-with) (collide-kind target))
+      (set! (-> cgroup prim-core action) (collide-action solid rider-plat-sticky))
+      (set! (-> cgroup transform-index) 5)
+      (set-vector! (-> cgroup local-sphere) 0.0 (meters 4) 0.0 (meters 12))
+      (set-root-prim! cshape cgroup)
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0)))) ;; Wood platform
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 (meters 7.0))
+        (append-prim cgroup mesh))
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 1) (the uint 0)))) ;; Right chain
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) (meters 5) (meters 3) (meters 0.0) (meters 7.0))
+        (append-prim cgroup mesh))
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 2) (the uint 0)))) ;; Left chain
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) (meters -5) (meters 3) (meters 0.0) (meters 7.0))
+        (append-prim cgroup mesh))
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 3) (the uint 0)))) ;; Lever base
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) (meters 3.5) (meters 0) (meters 0.0) (meters 2.0))
+        (append-prim cgroup mesh))
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 4) (the uint 0)))) ;; Axis
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) (meters 0) (meters 10) (meters 0.0) (meters 6.5))
+        (append-prim cgroup mesh))
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 5) (the uint 0)))) ;; Right wheel
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) (meters 6) (meters 10) (meters 0.0) (meters 3.5))
+        (append-prim cgroup mesh))
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 6) (the uint 0)))) ;; Left wheel
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 5)
+        (set-vector! (-> mesh local-sphere) (meters -6) (meters 10) (meters 0.0) (meters 3.5))
+        (append-prim cgroup mesh)))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape))
+  (none))
+
+(defmethod init-from-entity! ((this crc-gondola) (e entity-actor))
+  (init-collision! this) ;; allocate root and set up prim group
+  (process-drawable-from-entity! this e) ;; copy position and rotation from entity
+  (initialize-skeleton this *crc-gondola-sg* '()) ;; set up draw-control
+  (set! (-> this draw origin-joint-index) 5)
+  (logior! (-> this skel status) (janim-status inited))
+  (transform-post) ;; update our root transform
+  (go crc-gondola-idle-bottom) ;; enter idle state
+  (none))
+
+(defstate crc-gondola-idle-bottom (crc-gondola)
+  :enter
+    (behavior ()
+      (set! (-> self anim) (the-as spool-anim crc-gondola-idle-bottom-ja)))
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (case message
+        (('touch)
+         (when (= (-> proc type) target)
+           (go crc-gondola-going-up)
+             )
+         #f)))
+  :trans rider-trans
+  :code (behavior ()
+    (loop 
+      (suspend))
+    )
+  :post rider-post
+  )
+
+(defstate crc-gondola-going-up (crc-gondola)
+  :enter
+    (behavior ()
+      (set! (-> self anim) (the-as spool-anim crc-gondola-going-up-ja)))
+  :trans rider-trans
+  :code (behavior ()
+    (ja :group! (-> self anim))
+    (loop 
+      (ja :num! (seek! max))
+      (suspend))
+    )
+  :post rider-post
+  )
+
+(defstate crc-gondola-idle-top (crc-gondola)
+  :code (behavior ()
+    (loop (suspend))
+    )
+  :post rider-post
   )
