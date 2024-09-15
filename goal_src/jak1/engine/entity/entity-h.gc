@@ -141,4 +141,4 @@
    (birth-dist float)
    (birth-max  int32)))
 
-(define *ACTOR-bank* (new 'static 'actor-bank :pause-dist (meters 50) :birth-dist (meters 220) :birth-max 10))
+(define *ACTOR-bank* (new 'static 'actor-bank :pause-dist (meters 50) :birth-dist (meters 350) :birth-max 10)) ;; TFL note: changed birth-dist from 220
