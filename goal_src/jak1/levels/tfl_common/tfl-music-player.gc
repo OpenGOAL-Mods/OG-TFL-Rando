@@ -104,12 +104,12 @@
 (defbehavior tfl-music-player-post tfl-music-player ()
   ;; (format 0 "POST tfl-music-player~%")
   (let ((level (aif (level-get-target-inside *level*) (-> it name) #f)))
-    (format *stdcon*
-            "tfl-music-player:~%level ~A~%playing? ~A~%state: ~A~%boss ~A~%"
-            (-> self level)
-            *tfl-music-playing?*
-            (-> self next-state name)
-            *tfl-boss-music*)
+    ; (format *stdcon*
+    ;         "tfl-music-player:~%level ~A~%playing? ~A~%state: ~A~%boss ~A~%"
+    ;         (-> self level)
+    ;         *tfl-music-playing?*
+    ;         (-> self next-state name)
+    ;         *tfl-boss-music*)
     (when (and (!= (-> self level) level))
       (set-level! self)
       (stop! self)))
