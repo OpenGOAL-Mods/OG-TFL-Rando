@@ -388,14 +388,24 @@
 
 (deftype crc-gondola (process-drawable)
   ((root          collide-shape-moving :override)
-   (touching-time time-frame))
+   (touching-time time-frame)
+   (bottom-pos    vector :inline)
+   (top-pos       vector :inline))
   (:methods
-   (init-collision! (_type_) object))
+   (init-collision! (_type_) object)
+   (closer-pos (_type_) symbol))
   (:states
    crc-gondola-idle-bottom
    crc-gondola-idle-top
    crc-gondola-going-up
    crc-gondola-going-down))
+
+(defmethod closer-pos ((this crc-gondola))
+  (when (not *target*)
+    (return 'bottom))
+  (let ((bottom-dist (vector-vector-distance (-> *target* control trans) (-> this bottom-pos)))
+        (top-dist (vector-vector-distance (-> *target* control trans) (-> this top-pos))))
+    (if (< bottom-dist top-dist) 'bottom 'top)))
 
 (defmethod init-collision! ((this crc-gondola))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
@@ -475,6 +485,8 @@
   (process-drawable-from-entity! this e) ;; copy position and rotation from entity
   (initialize-skeleton this *crc-gondola-sg* '()) ;; set up draw-control
   (set! (-> this draw origin-joint-index) 5)
+  (vector-copy! (-> this bottom-pos) (static-vectorm -300 90 45))
+  (vector-copy! (-> this top-pos) (static-vectorm -263 210 320))
   (logior! (-> this skel status) (janim-status inited))
   (transform-post) ;; update our root transform
   (go crc-gondola-idle-bottom) ;; enter idle state
@@ -520,6 +532,16 @@
     (behavior ()
       (ja :group! crc-gondola-idle-bottom-ja)
       (loop
+        (if (= (closer-pos self) 'top) (go crc-gondola-going-up))
+        (ja :num! (loop!))
+        (suspend))))
+
+(defstate crc-gondola-idle-top (crc-gondola)
+  :code
+    (behavior ()
+      (ja :group! crc-gondola-idle-top-ja)
+      (loop
+        (if (= (closer-pos self) 'bottom) (go crc-gondola-going-down))
         (ja :num! (loop!))
         (suspend))))
 
@@ -544,11 +566,3 @@
         (ja :num! (seek! max))
         (suspend))
       (go crc-gondola-idle-bottom)))
-
-(defstate crc-gondola-idle-top (crc-gondola)
-  :code
-    (behavior ()
-      (ja :group! crc-gondola-idle-top-ja)
-      (loop
-        (ja :num! (loop!))
-        (suspend))))
