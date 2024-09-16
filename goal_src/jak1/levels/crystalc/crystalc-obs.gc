@@ -544,6 +544,7 @@
   (vector-copy! (-> this top-pos) (static-vectorm -263 210 320))
   (logior! (-> this skel status) (janim-status inited))
   (transform-post) ;; update our root transform
+  (set! (-> this sound) (new 'process 'ambient-sound (static-sound-spec "lava-pulley" :fo-max 100) (-> this root trans)))
   (case (closest-pos this)
     (('bottom) (go crc-gondola-idle-bottom))
     (('top) (go crc-gondola-idle-top)))
@@ -593,7 +594,9 @@
 (defstate crc-gondola-idle-bottom (crc-gondola)
   :enter
     (behavior ()
-      (toggle-invis-walls self 'off))
+      (toggle-invis-walls self 'off)
+      (update-vol! (-> self sound) 1)
+      (update! (-> self sound)))
   :code
     (behavior ()
       (ja :group! crc-gondola-idle-bottom-ja)
@@ -605,7 +608,9 @@
 (defstate crc-gondola-idle-top (crc-gondola)
   :enter
     (behavior ()
-      (toggle-invis-walls self 'off))
+      (toggle-invis-walls self 'off)
+      (update-vol! (-> self sound) 1)
+      (update! (-> self sound)))
   :code
     (behavior ()
       (ja :group! crc-gondola-idle-top-ja)
@@ -617,7 +622,13 @@
 (defstate crc-gondola-going-up (crc-gondola)
   :enter
     (behavior ()
+      (sound-play "close-orb-cash"
+            :vol 100
+            :pitch -0.2
+            :position
+            (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
       (toggle-invis-walls self 'on)
+      (update-vol! (-> self sound) 80)
       (when (and (not (task-closed? (game-task crystalc-gondola) (task-status need-resolution))) (can-ride-gondola?))
         (close-specific-task! (game-task crystalc-gondola) (task-status need-resolution))))
   :code
@@ -627,12 +638,21 @@
         (ja :num! (seek! max))
         (when (>= (ja-aframe-num 0) 810.0)
           (toggle-invis-walls self 'off))
+        (let ((sound-vector (vector<-cspace! (new-stack-vector0) (-> self node-list data 3))))
+          (update-trans! (-> self sound) sound-vector))
+        (update! (-> self sound))
         (suspend))
       (go crc-gondola-idle-top)))
 
 (defstate crc-gondola-going-down (crc-gondola)
   :enter
     (behavior ()
+      (sound-play "close-orb-cash"
+            :vol 100
+            :pitch -0.2
+            :position
+            (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
+      (update-vol! (-> self sound) 80)
       (toggle-invis-walls self 'on))
   :code
     (behavior ()
@@ -641,5 +661,8 @@
         (ja :num! (seek! max))
         (when (>= (ja-aframe-num 0) 800.0)
           (toggle-invis-walls self 'off))
+        (let ((sound-vector (vector<-cspace! (new-stack-vector0) (-> self node-list data 3))))
+          (update-trans! (-> self sound) sound-vector))
+        (update! (-> self sound))
         (suspend))
       (go crc-gondola-idle-bottom)))
