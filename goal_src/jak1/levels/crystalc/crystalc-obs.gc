@@ -397,42 +397,6 @@
      (set! (-> *CAMERA-bank* default-string-max-y) (meters 4))
      (set! (-> *CAMERA-bank* default-tilt-adjust) (degrees -10)))))
 
-(defun set-gondola-light ((arg0 symbol))
-  (let ((bottom-dir (static-vector -0.18 -0.08 -0.15 1.0))
-        (top-dir (static-vector 0.65 0.60 0.3 1.0))
-        (bottom-ambi (static-vector -0.05 0.08 0.0 1.0))
-        (top-ambi (static-vector 0.50 0.50 0.50 1.0))
-        (lerp-dir (new-stack-vector0))
-        (lerp-ambi (new-stack-vector0))
-        (ja-frame (ja-aframe-num 0)))
-    (case arg0
-      (('idle-bottom)
-        (vector-copy! *crystalc-crc-gondola-dir2* bottom-dir)
-        (vector-copy! *crystalc-crc-gondola-ambi* bottom-ambi))
-      (('idle-top)
-        (vector-copy! *crystalc-crc-gondola-dir2* top-dir)
-        (vector-copy! *crystalc-crc-gondola-ambi* top-ambi))
-      (('going-up)
-        (let ((frame-start 400) (frame-end 750))
-          (when (> ja-frame frame-start)
-            (vector-lerp-clamp! lerp-dir bottom-dir top-dir (/ (- ja-frame frame-start) (- frame-end frame-start)))
-            (vector-copy! *crystalc-crc-gondola-dir2* lerp-dir)
-            (vector-lerp-clamp! lerp-ambi bottom-ambi top-ambi (/ (- ja-frame frame-start) (- frame-end frame-start)))
-            (vector-copy! *crystalc-crc-gondola-ambi* lerp-ambi))))
-      (('going-down)
-        (let ((frame-start 200) (frame-end 600))
-          (when (< ja-frame (+ frame-end frame-start))
-            (vector-lerp-clamp! lerp-dir top-dir bottom-dir (/ (- ja-frame frame-start) frame-end))
-            (vector-copy! *crystalc-crc-gondola-dir2* lerp-dir)
-            (vector-lerp-clamp! lerp-ambi top-ambi bottom-ambi (/ (- ja-frame frame-start) frame-end))
-            (vector-copy! *crystalc-crc-gondola-ambi* lerp-ambi)))))))
-
-(def-art-elt crc-gondola-ag crc-gondola-lod0-jg 0)
-(def-art-elt crc-gondola-ag crc-gondola-lod0-mg 1)
-(def-art-elt crc-gondola-ag crc-gondola-going-down-ja 2)
-(def-art-elt crc-gondola-ag crc-gondola-going-up-ja 3)
-(def-art-elt crc-gondola-ag crc-gondola-idle-bottom-ja 4)
-(def-art-elt crc-gondola-ag crc-gondola-idle-top-ja 5)
 (defskelgroup *crc-gondola-sg*
   crc-gondola
   crc-gondola-lod0-jg
@@ -454,6 +418,36 @@
    crc-gondola-idle-top
    crc-gondola-going-up
    crc-gondola-going-down))
+
+(defbehavior set-gondola-light crc-gondola ((mode symbol))
+  (let ((bottom-dir (static-vector -0.18 -0.08 -0.15 1.0))
+        (top-dir (static-vector 0.65 0.60 0.3 1.0))
+        (bottom-ambi (static-vector -0.05 0.08 0.0 1.0))
+        (top-ambi (static-vector 0.50 0.50 0.50 1.0))
+        (lerp-dir (new-stack-vector0))
+        (lerp-ambi (new-stack-vector0))
+        (ja-frame (ja-aframe-num 0)))
+    (case mode
+      (('idle-bottom)
+       (vector-copy! *crystalc-crc-gondola-dir2* bottom-dir)
+       (vector-copy! *crystalc-crc-gondola-ambi* bottom-ambi))
+      (('idle-top) (vector-copy! *crystalc-crc-gondola-dir2* top-dir) (vector-copy! *crystalc-crc-gondola-ambi* top-ambi))
+      (('going-up)
+       (let ((frame-start 400.0)
+             (frame-end 750.0))
+         (when (> ja-frame frame-start)
+           (vector-lerp-clamp! lerp-dir bottom-dir top-dir (/ (- ja-frame frame-start) (- frame-end frame-start)))
+           (vector-copy! *crystalc-crc-gondola-dir2* lerp-dir)
+           (vector-lerp-clamp! lerp-ambi bottom-ambi top-ambi (/ (- ja-frame frame-start) (- frame-end frame-start)))
+           (vector-copy! *crystalc-crc-gondola-ambi* lerp-ambi))))
+      (('going-down)
+       (let ((frame-start 200.0)
+             (frame-end 600.0))
+         (when (< ja-frame (+ frame-end frame-start))
+           (vector-lerp-clamp! lerp-dir top-dir bottom-dir (/ (- ja-frame frame-start) frame-end))
+           (vector-copy! *crystalc-crc-gondola-dir2* lerp-dir)
+           (vector-lerp-clamp! lerp-ambi top-ambi bottom-ambi (/ (- ja-frame frame-start) frame-end))
+           (vector-copy! *crystalc-crc-gondola-ambi* lerp-ambi)))))))
 
 (defmethod closest-pos ((this crc-gondola))
   (when (not *target*)
@@ -576,8 +570,8 @@
   (transform-post) ;; update our root transform
   (set! (-> this sound) (new 'process 'ambient-sound (static-sound-spec "lava-pulley" :fo-max 100) (-> this root trans)))
   (case (closest-pos this)
-    (('bottom)(format 0 "bottom ~%") (go crc-gondola-idle-bottom))
-    (('top)(format 0 "bottom ~%") (go crc-gondola-idle-top)))
+    (('bottom) (go crc-gondola-idle-bottom))
+    (('top) (go crc-gondola-idle-top)))
   (none))
 
 (defevent crc-gondola-event-handler
@@ -658,7 +652,7 @@
                   :vol 100
                   :pitch -0.2
                   :position
-                  (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
+                  (the symbol (vector<-cspace! (new-stack-vector0) (joint-node crc-gondola-lod0-jg lever))))
       (toggle-invis-walls self 'on)
       (update-vol! (-> self sound) 80)
       (when (and (not (task-closed? (game-task crystalc-gondola) (task-status need-resolution))) (can-ride-gondola?))
@@ -671,7 +665,7 @@
         (when (>= (ja-aframe-num 0) 810.0)
           (toggle-invis-walls self 'off))
         (set-gondola-light 'going-up)
-        (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (-> self node-list data 3)))
+        (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (joint-node crc-gondola-lod0-jg axis)))
         (update! (-> self sound))
         (suspend))
       (go crc-gondola-idle-top)))
@@ -683,7 +677,7 @@
                   :vol 100
                   :pitch -0.2
                   :position
-                  (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
+                  (the symbol (vector<-cspace! (new-stack-vector0) (joint-node crc-gondola-lod0-jg lever))))
       (update-vol! (-> self sound) 80)
       (toggle-invis-walls self 'on))
   :code
@@ -694,7 +688,7 @@
         (when (>= (ja-aframe-num 0) 800.0)
           (toggle-invis-walls self 'off))
         (set-gondola-light 'going-down)
-        (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (-> self node-list data 3)))
+        (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (joint-node crc-gondola-lod0-jg axis)))
         (update! (-> self sound))
         (suspend))
       (go crc-gondola-idle-bottom)))
