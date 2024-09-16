@@ -1855,6 +1855,10 @@
 
 (define *crystalc-ship-ambi* (new 'static 'rgbaf :r 0.2 :g 0.2 :b 0.7 :a 1.0))
 
+(define *crystalc-crc-gondola-dir2* (new 'static 'rgbaf :r 5.0 :g 0.0 :b 0.0 :a 1.0))
+
+(define *crystalc-crc-gondola-ambi* (new 'static 'rgbaf :r 2.0 :g 0.0 :b 0.0 :a 1.0))
+
 (defun update-mood-crystal-cave ((arg0 mood-context) (arg1 float) (arg2 int))
   (when (not (paused?))
     (clear-mood-times arg0)
@@ -1926,6 +1930,18 @@
     (set-vector! (-> s5-5 ambi color) 0.6 0.6 0.2 1.0) ;; COLOR OF THE AMBIANT LIGHT
     )
   ;; DARK GREEN (breakaway) "light-index": ["int32", 6]
+  ;; (let ((s5-6 (-> arg0 light-group 6))) ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
+  ;;   (quad-copy! (the-as pointer s5-6) (the-as pointer (-> arg0 light-group)) 12) ;; idk?
+  ;;   (let ((v1-36 (-> s5-6 dir2))) ;; KEY LIGHT DIRECTION
+  ;;     (set! (-> v1-36 direction x) -0.8)
+  ;;     (set! (-> v1-36 direction y) 0.9)
+  ;;     (set! (-> v1-36 direction z) -0.3)
+  ;;     (set! (-> v1-36 direction w) 1.0))
+  ;;   (set-vector! (-> s5-6 dir2 color) -0.6 -0.2 -0.5 1.0) ;; COLOR OF THE KEY LIGHT
+  ;;   (set! (-> s5-6 dir2 levels x) 1.0)
+  ;;   (set-vector! (-> s5-6 ambi color) -0.3 -0.1 -0.2 1.0) ;; COLOR OF THE AMBIANT LIGHT
+  ;;   )
+  ;; gondola "light-index": ["int32", 6]
   (let ((s5-6 (-> arg0 light-group 6))) ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC
     (quad-copy! (the-as pointer s5-6) (the-as pointer (-> arg0 light-group)) 12) ;; idk?
     (let ((v1-36 (-> s5-6 dir2))) ;; KEY LIGHT DIRECTION
@@ -1933,9 +1949,9 @@
       (set! (-> v1-36 direction y) 0.9)
       (set! (-> v1-36 direction z) -0.3)
       (set! (-> v1-36 direction w) 1.0))
-    (set-vector! (-> s5-6 dir2 color) -0.6 -0.2 -0.5 1.0) ;; COLOR OF THE KEY LIGHT
+    (vector-copy! (-> s5-6 dir2 color) *crystalc-crc-gondola-dir2*) ;; COLOR OF THE KEY LIGHT
     (set! (-> s5-6 dir2 levels x) 1.0)
-    (set-vector! (-> s5-6 ambi color) -0.3 -0.1 -0.2 1.0) ;; COLOR OF THE AMBIANT LIGHT
+    (vector-copy! (-> s5-6 ambi color) *crystalc-crc-gondola-ambi*) ;; COLOR OF THE AMBIANT LIGHT
     )
   ;; LIGHT GREEN (ice-cube) "light-index": ["int32", 7]
   (let ((s5-6 (-> arg0 light-group 7))) ;; INDEX NUMBER TO USE FOR THE ENTITY IN THE JSONC

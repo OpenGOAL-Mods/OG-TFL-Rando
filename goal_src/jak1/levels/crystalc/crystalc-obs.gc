@@ -397,6 +397,36 @@
      (set! (-> *CAMERA-bank* default-string-max-y) (meters 4))
      (set! (-> *CAMERA-bank* default-tilt-adjust) (degrees -10)))))
 
+(defun set-gondola-light ((arg0 symbol))
+  (let ((bottom-dir (static-vector -0.18 -0.08 -0.15 1.0))
+        (top-dir (static-vector 0.65 0.60 0.3 1.0))
+        (bottom-ambi (static-vector -0.05 0.08 0.0 1.0))
+        (top-ambi (static-vector 0.50 0.50 0.50 1.0))
+        (lerp-dir (new-stack-vector0))
+        (lerp-ambi (new-stack-vector0))
+        (ja-frame (ja-aframe-num 0)))
+    (case arg0
+      (('idle-bottom)
+        (vector-copy! *crystalc-crc-gondola-dir2* bottom-dir)
+        (vector-copy! *crystalc-crc-gondola-ambi* bottom-ambi))
+      (('idle-top)
+        (vector-copy! *crystalc-crc-gondola-dir2* top-dir)
+        (vector-copy! *crystalc-crc-gondola-ambi* top-ambi))
+      (('going-up)
+        (let ((frame-start 400) (frame-end 750))
+          (when (> ja-frame frame-start)
+            (vector-lerp-clamp! lerp-dir bottom-dir top-dir (/ (- ja-frame frame-start) (- frame-end frame-start)))
+            (vector-copy! *crystalc-crc-gondola-dir2* lerp-dir)
+            (vector-lerp-clamp! lerp-ambi bottom-ambi top-ambi (/ (- ja-frame frame-start) (- frame-end frame-start)))
+            (vector-copy! *crystalc-crc-gondola-ambi* lerp-ambi))))
+      (('going-down)
+        (let ((frame-start 200) (frame-end 600))
+          (when (< ja-frame (+ frame-end frame-start))
+            (vector-lerp-clamp! lerp-dir top-dir bottom-dir (/ (- ja-frame frame-start) frame-end))
+            (vector-copy! *crystalc-crc-gondola-dir2* lerp-dir)
+            (vector-lerp-clamp! lerp-ambi top-ambi bottom-ambi (/ (- ja-frame frame-start) frame-end))
+            (vector-copy! *crystalc-crc-gondola-ambi* lerp-ambi)))))))
+
 (def-art-elt crc-gondola-ag crc-gondola-lod0-jg 0)
 (def-art-elt crc-gondola-ag crc-gondola-lod0-mg 1)
 (def-art-elt crc-gondola-ag crc-gondola-going-down-ja 2)
@@ -491,7 +521,7 @@
         (set! (-> mesh transform-index) 5)
         (set-vector! (-> mesh local-sphere) (meters -5) (meters 3) (meters 0.0) (meters 7.0))
         (append-prim cgroup mesh))
-      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 4) (the uint 4)))) ;; Lever base
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 4) (the uint 16)))) ;; Lever base
         (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
         (set! (-> mesh collide-with) (collide-kind target))
         (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
@@ -546,8 +576,8 @@
   (transform-post) ;; update our root transform
   (set! (-> this sound) (new 'process 'ambient-sound (static-sound-spec "lava-pulley" :fo-max 100) (-> this root trans)))
   (case (closest-pos this)
-    (('bottom) (go crc-gondola-idle-bottom))
-    (('top) (go crc-gondola-idle-top)))
+    (('bottom)(format 0 "bottom ~%") (go crc-gondola-idle-bottom))
+    (('top)(format 0 "bottom ~%") (go crc-gondola-idle-top)))
   (none))
 
 (defevent crc-gondola-event-handler
@@ -568,7 +598,7 @@
                (let ((tshapes (the touching-shapes-entry (-> block param 0)))
                      (attack (-> block param 1))
                      (state (-> self next-state name))
-                     (LEVER_PRIM_ID (the uint 4)))
+                     (LEVER_PRIM_ID (the uint 16)))
                  (case attack
                    (('spin)
                     (if (and tshapes (prims-touching? tshapes (-> self root) LEVER_PRIM_ID))
@@ -595,6 +625,7 @@
   :enter
     (behavior ()
       (toggle-invis-walls self 'off)
+      (set-gondola-light 'idle-bottom)
       (update-vol! (-> self sound) 1)
       (update! (-> self sound)))
   :code
@@ -609,6 +640,7 @@
   :enter
     (behavior ()
       (toggle-invis-walls self 'off)
+      (set-gondola-light 'idle-top)
       (update-vol! (-> self sound) 1)
       (update! (-> self sound)))
   :code
@@ -638,6 +670,7 @@
         (ja :num! (seek! max))
         (when (>= (ja-aframe-num 0) 810.0)
           (toggle-invis-walls self 'off))
+        (set-gondola-light 'going-up)
         (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (-> self node-list data 3)))
         (update! (-> self sound))
         (suspend))
@@ -660,6 +693,7 @@
         (ja :num! (seek! max))
         (when (>= (ja-aframe-num 0) 800.0)
           (toggle-invis-walls self 'off))
+        (set-gondola-light 'going-down)
         (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (-> self node-list data 3)))
         (update! (-> self sound))
         (suspend))
