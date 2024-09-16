@@ -623,10 +623,10 @@
   :enter
     (behavior ()
       (sound-play "close-orb-cash"
-            :vol 100
-            :pitch -0.2
-            :position
-            (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
+                  :vol 100
+                  :pitch -0.2
+                  :position
+                  (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
       (toggle-invis-walls self 'on)
       (update-vol! (-> self sound) 80)
       (when (and (not (task-closed? (game-task crystalc-gondola) (task-status need-resolution))) (can-ride-gondola?))
@@ -638,8 +638,7 @@
         (ja :num! (seek! max))
         (when (>= (ja-aframe-num 0) 810.0)
           (toggle-invis-walls self 'off))
-        (let ((sound-vector (vector<-cspace! (new-stack-vector0) (-> self node-list data 3))))
-          (update-trans! (-> self sound) sound-vector))
+        (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (-> self node-list data 3)))
         (update! (-> self sound))
         (suspend))
       (go crc-gondola-idle-top)))
@@ -648,10 +647,10 @@
   :enter
     (behavior ()
       (sound-play "close-orb-cash"
-            :vol 100
-            :pitch -0.2
-            :position
-            (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
+                  :vol 100
+                  :pitch -0.2
+                  :position
+                  (the symbol (vector<-cspace! (new-stack-vector0) (-> self node-list data 4))))
       (update-vol! (-> self sound) 80)
       (toggle-invis-walls self 'on))
   :code
@@ -661,8 +660,7 @@
         (ja :num! (seek! max))
         (when (>= (ja-aframe-num 0) 800.0)
           (toggle-invis-walls self 'off))
-        (let ((sound-vector (vector<-cspace! (new-stack-vector0) (-> self node-list data 3))))
-          (update-trans! (-> self sound) sound-vector))
+        (update-trans! (-> self sound) (vector<-cspace! (new-stack-vector0) (-> self node-list data 3)))
         (update! (-> self sound))
         (suspend))
       (go crc-gondola-idle-bottom)))
