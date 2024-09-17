@@ -2167,6 +2167,7 @@
  "super-eco-crystal.gc"
  "tfl-hint-data.gc"
  "tfl-hint.gc"
+ "tfl-cam-control.gc"
  )
 
 (goal-src-sequence

@@ -282,6 +282,7 @@
   "pov-camera.o"
   "tfl-dev-commentary-data.o" ;; TFL note: added
   "tfl-dev-commentary.o" ;; TFL note: added
+  "tfl-cam-control.o" ;; TFL note: added
   "powerups.o"
   "crates.o"
   "hud.o"
