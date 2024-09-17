@@ -2163,7 +2163,7 @@
 (goal-src-sequence
  ;; prefix
  "levels/tfl_common/"
- :deps ("$OUT/obj/process-drawable.o")
+ :deps ("$OUT/obj/joint-exploder.o")
  "super-eco-crystal.gc"
  "tfl-hint-data.gc"
  "tfl-hint.gc"

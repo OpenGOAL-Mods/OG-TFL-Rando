@@ -1,47 +1,43 @@
 ;;-*-Lisp-*-
 (in-package goal)
 (require "engine/geometry/vol.gc")
-
-(deftype tfl-cam-control (process-drawable) 
-    ((root                trsqv :override))
-    (:states
-        tfl-cam-control-idle
-        tfl-cam-control-active
-        tfl-cam-control-die))
+(deftype tfl-cam-control (process-drawable)
+  ((root trsqv :override))
+  (:states
+   tfl-cam-control-idle
+   tfl-cam-control-active
+   tfl-cam-control-die))
 
 (defmethod init-from-entity! ((this tfl-cam-control) (e entity-actor))
-    (set! (-> this root) (new 'process 'trsqv))
-    (process-drawable-from-entity! this e)
-    (update-transforms! (-> this root))
-    (logclear! (-> this mask) (process-mask actor-pause))
-    (set! (-> this vol) (new 'process 'vol-control this))
-    (go tfl-cam-control-idle)
-    (none))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (logclear! (-> this mask) (process-mask actor-pause))
+  (set! (-> this vol) (new 'process 'vol-control this))
+  (go tfl-cam-control-idle)
+  (none))
 
 (defstate tfl-cam-control-idle (tfl-cam-control)
-    :enter
-        (behavior ())
-    :code
-        (behavior ()
-            (loop
-                (if (point-in-vol? (-> self vol) (target-pos 5))
-                    (go tfl-cam-control-active))
-                (suspend))))
+  :enter
+    (behavior ())
+  :code
+    (behavior ()
+      (loop
+        (if (point-in-vol? (-> self vol) (target-pos 5)) (go tfl-cam-control-active))
+        (suspend))))
 
 (defstate tfl-cam-control-active (tfl-cam-control)
-    :enter
-        (behavior ())
-    :code
-        (behavior ()
-            (loop
-                (if (not (point-in-vol? (-> self vol) (target-pos 5)))
-                    (go tfl-cam-control-idle))
-                (suspend))))
+  :enter
+    (behavior ())
+  :code
+    (behavior ()
+      (loop
+        (if (not (point-in-vol? (-> self vol) (target-pos 5))) (go tfl-cam-control-idle))
+        (suspend))))
 
 (defstate tfl-cam-control-die (tfl-cam-control)
-    :enter
-        (behavior ())
-    :code
-        (behavior ()
-            (loop
-                (suspend))))
+  :enter
+    (behavior ())
+  :code
+    (behavior ()
+      (loop
+        (suspend))))
