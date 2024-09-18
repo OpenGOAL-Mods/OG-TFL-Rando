@@ -2,23 +2,36 @@
 (in-package goal)
 (require "engine/geometry/vol.gc")
 (deftype tfl-cam-control (process-drawable)
-  ((root trsqv :override))
+  ((root trsqv :override)
+   (cam-pos vector :inline)
+   (move-timer time-frame))
+  (:methods
+   (lerp-move-to-vector (_type_ vector vector time-frame) none))
   (:states
    tfl-cam-control-idle
    tfl-cam-control-active
    tfl-cam-control-die))
 
 (defmethod init-from-entity! ((this tfl-cam-control) (e entity-actor))
+  (stack-size-set! (-> this main-thread) 512)
   (set! (-> this root) (new 'process 'trsqv))
   (process-drawable-from-entity! this e)
   (logclear! (-> this mask) (process-mask actor-pause))
   (set! (-> this vol) (new 'process 'vol-control this))
+  (let ((cam-p (res-lump-struct e 'cam-position vector))
+        (move-t (res-lump-float e 'move-timer :default 1.0)))
+    (when cam-p
+      (set-vector! (-> this cam-pos) (-> cam-p x) (-> cam-p y) (-> cam-p z) 1.0))
+    (when move-t
+      (set! (-> this move-timer) (the time-frame (seconds move-t)))
+      (format 0 "setting move-timer to : ~E ~%" (-> this move-timer))))
   (go tfl-cam-control-idle)
   (none))
 
 (defstate tfl-cam-control-idle (tfl-cam-control)
   :enter
-    (behavior ())
+    (behavior ()
+      )
   :code
     (behavior ()
       (loop
@@ -27,9 +40,12 @@
 
 (defstate tfl-cam-control-active (tfl-cam-control)
   :enter
-    (behavior ())
+    (behavior ()
+    )
   :code
     (behavior ()
+      (set-time! (-> self state-time))
+      (lerp-move-to-vector self (camera-pos) (-> self cam-pos) (-> self move-timer))
       (loop
         (if (not (point-in-vol? (-> self vol) (target-pos 5))) (go tfl-cam-control-idle))
         (suspend))))
@@ -41,3 +57,21 @@
     (behavior ()
       (loop
         (suspend))))
+
+(defmethod lerp-move-to-vector ((this tfl-cam-control) (cam-start vector) (cam-target vector) (move-timer time-frame))
+  (until (or (time-elapsed? (-> this state-time) move-timer) (not (point-in-vol? (-> this vol) (target-pos 5))))
+         (let ((cam-lerp (new-stack-vector0))
+               (timer (/ (the float (- (current-time) (-> this state-time))) TICKS_PER_SECOND))
+               (move-timer-float (/ (the float move-timer) TICKS_PER_SECOND)))
+              (let ((smooth-lerp (+ (* -0.1 (sin (+ (/ timer move-timer-float) TWO_PI))) (/ timer move-timer-float))))
+                (vector-lerp! cam-lerp cam-start cam-target smooth-lerp)
+                ;; (format 0 "state-time : ~E ~%" (-> this state-time))
+                ;; (format 0 "move-timer : ~E ~%" move-timer)
+                (format 0 "timer ~F ~%" timer)
+                (format 0 "smooth-lerp ~F ~%" smooth-lerp)
+                (format 0 "cam-start X:~M Y:~M Z:~M ~%" (-> cam-start x) (-> cam-start y) (-> cam-start z))
+                (format 0 "cam-target X:~M Y:~M Z:~M ~%" (-> cam-target x) (-> cam-target y) (-> cam-target z))
+                (format 0 "cam-lerp X:~M Y:~M Z:~M ~%" (-> cam-lerp x) (-> cam-lerp y) (-> cam-lerp z))
+                (send-event *camera* 'teleport-to-vector-start-string cam-lerp)))
+          (suspend))
+  (none))
