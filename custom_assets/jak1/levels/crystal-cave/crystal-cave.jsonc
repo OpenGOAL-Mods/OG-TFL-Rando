@@ -4095,8 +4095,12 @@
             [0.000, -1.000, -0.000, -83.696],
             [0.000, 1.000, -0.000, 97.171]
           ],
-        "cam-position":["vector3m",[-101.64, 95.64, -112.29]],
-        "move-timer":["float", 10.0]
+        "cam-position":["vector3m",[-82.73, 97.62, -112.89]],
+        "move-timer":["float", 5.0],
+        "max-z":["meters", 25],
+        "push-z":["meters", 20],
+        "max-y":["meters", 15],
+        "tilt-adjust":["degrees", 5]
       }
     }
     // Hints
