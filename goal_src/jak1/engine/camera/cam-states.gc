@@ -1593,7 +1593,11 @@
     ((logtest? (-> self options) 256)
      (tracking-spline-method-21 (-> self position-spline) (-> self trans) (the-as float 102.4) (the-as float 2457.6)))
     ;; TFL note: Moved the static values to camera-bank to be edited:
-    (else (tracking-spline-method-21 (-> self position-spline) (-> self trans) (-> *CAMERA-bank* default-track-accel) (-> *CAMERA-bank* default-track-speed)))))
+    (else
+     (tracking-spline-method-21 (-> self position-spline)
+                                (-> self trans)
+                                (-> *CAMERA-bank* default-track-accel)
+                                (-> *CAMERA-bank* default-track-speed)))))
 
 (defbehavior set-string-parms camera-slave ()
   (when (not (-> self string-val-locked))
