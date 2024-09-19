@@ -1515,78 +1515,78 @@
         "name":"crystalc-money-018",
         "light-index": ["int32", 1]
       }
-    },
-    {
-      "trans": [ -101.96, 87.9, -105.47], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-101.96, 87.9, -105.47, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-100.68, 87.90, -103.05],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-100.68, 87.90, -103.05, 10],
       "lump": {
         "name":"crystalc-money-019"
       }
-    },
-    {
-      "trans": [ -101.23, 87.82, -102.23], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-101.23, 87.82, -102.23, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-99.95, 87.83, -99.82],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-99.95, 87.83, -99.82, 10],
       "lump": {
         "name":"crystalc-money-020"
       }
-    },
-    {
-      "trans": [ -88.94, 78.25, -94.22], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-88.94, 78.25, -94.22, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-89.96, 78.26, -95.98],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-89.96, 78.26, -95.98, 10],
       "lump": {
         "name":"crystalc-money-021"
       }
-    },
-    {
-      "trans": [ -87.58, 78.17, -91.82], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-87.58, 78.17, -91.82, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-88.60, 78.18, -93.58],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-88.60, 78.18, -93.58, 10],
       "lump": {
         "name":"crystalc-money-022"
       }
-    },
-    {
-      "trans": [ -82.17, 65.47, -111.22], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-82.17, 65.47, -111.22, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-86.58, 65.47, -108.34],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-86.58, 65.47, -108.34, 10],
       "lump": {
         "name":"crystalc-money-023"
       }
-    },
-    {
-      "trans": [ -80.86, 65.21, -107.86], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-80.86, 65.21, -107.86, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-83.04, 65.22, -109.27],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-83.04, 65.22, -109.27, 10],
       "lump": {
         "name":"crystalc-money-024"
       }
-    },
-    {
-      "trans": [ -79.14, 65.56, -110.23], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-79.14, 65.56, -110.23, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-79.15, 65.56, -110.23],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-79.15, 65.56, -110.23, 10],
       "lump": {
         "name":"crystalc-money-025"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-100.44, 91.53, -87.70], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2636,86 +2636,86 @@
         "light-index": ["int32", 2]
       }
     },
-    {
-      "trans": [-92.28, 75.68, -95.15], // translation
-      "etype": "breakaway-left",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-92.28, 75.68, -95.15, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-left-01",
-        "prev-actor":"crystalc-breakaway-mid-01",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-90.38, 75.68, -92.82], // translation
-      "etype": "breakaway-mid",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-90.38, 75.68, -92.82, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-mid-01",
-        "prev-actor":"crystalc-breakaway-right-01",
-        "next-actor":"crystalc-breakaway-left-01",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-88.48, 75.68, -90.50], // translation
-      "etype": "breakaway-right",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-88.48, 75.68, -90.50, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-right-01",
-        "next-actor":"crystalc-breakaway-mid-01",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-102.86, 85.74, -108.25], // translation
-      "etype": "breakaway-left",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-102.86, 85.74, -108.25, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-left-02",
-        "prev-actor":"crystalc-breakaway-mid-02",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-102.04, 85.74, -105.36], // translation
-      "etype": "breakaway-mid",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-102.04, 85.74, -105.36, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-mid-02",
-        "prev-actor":"crystalc-breakaway-right-02",
-        "next-actor":"crystalc-breakaway-left-02",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-101.23, 85.74, -102.46], // translation
-      "etype": "breakaway-right",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-101.23, 85.74, -102.46, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-right-02",
-        "next-actor":"crystalc-breakaway-mid-02",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
+    // {
+    //   "trans": [-92.28, 75.68, -95.15], // translation
+    //   "etype": "breakaway-left",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
+    //   "bsphere": [-92.28, 75.68, -95.15, 10.0], // bounding sphere
+    //   "lump": {
+    //     "name":"crystalc-breakaway-left-01",
+    //     "prev-actor":"crystalc-breakaway-mid-01",
+    //     "scale":["float", 0.751],
+    //     "light-index":["int32", 6]
+    //   }
+    // },
+    // {
+    //   "trans": [-90.38, 75.68, -92.82], // translation
+    //   "etype": "breakaway-mid",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
+    //   "bsphere": [-90.38, 75.68, -92.82, 10.0], // bounding sphere
+    //   "lump": {
+    //     "name":"crystalc-breakaway-mid-01",
+    //     "prev-actor":"crystalc-breakaway-right-01",
+    //     "next-actor":"crystalc-breakaway-left-01",
+    //     "scale":["float", 0.751],
+    //     "light-index":["int32", 6]
+    //   }
+    // },
+    // {
+    //   "trans": [-88.48, 75.68, -90.50], // translation
+    //   "etype": "breakaway-right",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
+    //   "bsphere": [-88.48, 75.68, -90.50, 10.0], // bounding sphere
+    //   "lump": {
+    //     "name":"crystalc-breakaway-right-01",
+    //     "next-actor":"crystalc-breakaway-mid-01",
+    //     "scale":["float", 0.751],
+    //     "light-index":["int32", 6]
+    //   }
+    // },
+    // {
+    //   "trans": [-102.86, 85.74, -108.25], // translation
+    //   "etype": "breakaway-left",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
+    //   "bsphere": [-102.86, 85.74, -108.25, 10.0], // bounding sphere
+    //   "lump": {
+    //     "name":"crystalc-breakaway-left-02",
+    //     "prev-actor":"crystalc-breakaway-mid-02",
+    //     "scale":["float", 0.751],
+    //     "light-index":["int32", 6]
+    //   }
+    // },
+    // {
+    //   "trans": [-102.04, 85.74, -105.36], // translation
+    //   "etype": "breakaway-mid",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
+    //   "bsphere": [-102.04, 85.74, -105.36, 10.0], // bounding sphere
+    //   "lump": {
+    //     "name":"crystalc-breakaway-mid-02",
+    //     "prev-actor":"crystalc-breakaway-right-02",
+    //     "next-actor":"crystalc-breakaway-left-02",
+    //     "scale":["float", 0.751],
+    //     "light-index":["int32", 6]
+    //   }
+    // },
+    // {
+    //   "trans": [-101.23, 85.74, -102.46], // translation
+    //   "etype": "breakaway-right",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
+    //   "bsphere": [-101.23, 85.74, -102.46, 10.0], // bounding sphere
+    //   "lump": {
+    //     "name":"crystalc-breakaway-right-02",
+    //     "next-actor":"crystalc-breakaway-mid-02",
+    //     "scale":["float", 0.751],
+    //     "light-index":["int32", 6]
+    //   }
+    // },
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
@@ -4080,27 +4080,51 @@
     }
     // Camera controls:
     ,{
-      "trans": [-95.22, 93.64, -94.41],
+      "trans": [-101.18, 92.64, -105.57],
       "etype": "tfl-cam-control",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [-95.22, 93.64, -94.41, 10],
+      "bsphere": [-101.18, 92.64, -105.57, 10],
       "lump": {
         "name":"crystalc-tfl-cam-control-01",
         "vol": ["vector-vol",
-            [-0.948, 0.165, 0.272, 86.822],
-            [-0.499, 0.066, -0.864, 158.322],
-            [0.865, 0.037, -0.500, -25.878],
-            [0.499, 0.066, 0.864, -126.933],
-            [0.000, -1.000, -0.000, -81.048],
+            [-0.942, 0.198, 0.270, 89.562],
+            [-0.498, 0.079, -0.863, 159.481],
+            [0.865, 0.045, -0.499, -25.125],
+            [0.498, 0.079, 0.863, -125.493],
+            [0.000, -1.000, -0.000, -83.793],
             [0.000, 1.000, -0.000, 97.171]
           ],
-        "cam-position":["vector3m",[-85.08, 94.78, -113.46]],
-        "move-timer":["float", 2.5],
+        "cam-position":["vector3m",[-86.03, 94.65, -117.82]],
+        "move-timer":["float", 1.6],
         "max-z":["meters", 35],
         "push-z":["meters", 32],
         "max-y":["meters", 10],
         "tilt-adjust":["degrees", 15]
+      }
+    }
+    ,{
+      "trans": [-90.78, 81.98, -90.97],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-90.78, 81.98, -90.97, 10],
+      "lump": {
+        "name":"crystalc-tfl-cam-control-02",
+        "vol": ["vector-vol",
+            [-0.909, 0.235, 0.346, 76.502],
+            [-0.414, 0.386, -0.824, 147.986],
+            [0.846, 0.029, -0.532, -20.037],
+            [0.502, 0.142, 0.853, -103.708],
+            [-0.009, -0.998, 0.064, -76.053],
+            [0.087, 0.995, 0.046, 66.024]
+          ],
+        "cam-position":["vector3m",[-74.61, 83.96, -88.62]],
+        "move-timer":["float", 1.2],
+        "max-z":["meters", 25],
+        "push-z":["meters", 22],
+        "max-y":["meters", 10],
+        "tilt-adjust":["degrees", 6]
       }
     }
     // Hints
