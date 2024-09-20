@@ -4097,8 +4097,8 @@
           ],
         "cam-position":["vector3m",[-86.03, 94.65, -117.82]],
         "move-timer":["float", 1.6],
-        "max-z":["meters", 35],
-        "push-z":["meters", 32],
+        "max-z":["meters", 27],
+        "push-z":["meters", 25],
         "max-y":["meters", 10],
         "tilt-adjust":["degrees", 15]
       }

@@ -584,7 +584,7 @@
                      (send-event self 'change-state cam-free-floating 0)
                      (send-event self 'change-state *camera-base-mode* 0))))
             ;; TFL note: added
-            ((= v1-0 'teleport-to-vector)
+            ((= v1-0 'teleport-to-vector-smooth)
              (set! v0-0
                    (when (> argc 0)
                      (let ((v1-43 (the-as object (-> block param 0)))
@@ -593,7 +593,9 @@
                        (vector-! gp-3 (-> self tpos-curr-adj) (the-as vector v1-43))
                        (vector-normalize! gp-3 1.0)
                        (forward-down->inv-matrix (-> *camera-combiner* inv-camera-rot) gp-3 (new 'static 'vector :y -1.0)))
-                     (send-event self 'change-state cam-free-floating 0))))
+                     (send-event self 'change-state cam-free-floating 0)
+                     (send-event self 'change-state cam-fixed 0)
+                     (send-event *camera* 'change-state *camera-base-mode* (seconds 0.5)))))
             ((= v1-0 'change-pov)
              (let ((v1-52 (the-as object (-> block param 0))))
                (cond
