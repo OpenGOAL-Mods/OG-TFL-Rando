@@ -384,5 +384,6 @@
   "tfl-nav-mesh.o"
   "tfl-commentary-node-ag.go"
   "tfl-commentary-node-active-ag.go"
+  "tfl-lowreskui.o"
   "tfl-lowreskui-ag.go"
  ))

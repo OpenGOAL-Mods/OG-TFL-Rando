@@ -1,36 +1,44 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
-(defskelgroup *tfl-lowreskui-sg* tfl-lowreskui tfl-lowreskui-lod0-jg tfl-lowreskui-idle-ja
-              ((tfl-lowreskui-lod0-mg (meters 9999999)))
-              :bounds (static-spherem 0 1 0 3))
+(defskelgroup *tfl-lowreskui-sg*
+  tfl-lowreskui
+  tfl-lowreskui-lod0-jg
+  tfl-lowreskui-idle-ja
+  ((tfl-lowreskui-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 1 0 3))
 
 (deftype tfl-lowreskui (process-drawable)
-  ((root collide-shape-moving :override))
-  (:states tfl-lowreskui-idle))
+  ((root collide-shape :override))
+  (:methods
+   (init-collision! (_type_) object))
+  (:states
+   tfl-lowreskui-idle))
 
 (defmethod init-collision! ((this tfl-lowreskui))
   (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
     (let ((sphere (new 'process 'collide-shape-prim-sphere cshape (the uint 0))))
-        (set! (-> sphere prim-core collide-as) (collide-kind enemy))
-        (set! (-> sphere collide-with) (collide-kind target))
-        (set! (-> sphere prim-core action) (collide-action solid))
-        (set! (-> sphere prim-core offense) (collide-offense normal-attack))
-        (set-vector! (-> sphere local-sphere) 0.0 (meters 1) 0.0 (meters 1.5))
-        (set-root-prim! cshape sphere))
+      (set! (-> sphere prim-core collide-as) (collide-kind enemy))
+      (set! (-> sphere collide-with) (collide-kind target))
+      (set! (-> sphere prim-core action) (collide-action solid))
+      (set! (-> sphere prim-core offense) (collide-offense normal-attack))
+      (set-vector! (-> sphere local-sphere) 0.0 (meters 1) 0.0 (meters 1.5))
+      (set-root-prim! cshape sphere))
     (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
     (backup-collide-with-as cshape)
-    (set! (-> this root) cshape))
-  (none))
+    (set! (-> this root) cshape)))
 
 (defmethod init-from-entity! ((this tfl-lowreskui) (e entity-actor))
   (init-collision! this)
   (process-drawable-from-entity! this e)
   (initialize-skeleton this *tfl-lowreskui-sg* '())
+  (logclear! (-> this mask) (process-mask actor-pause))
   (transform-post)
-  (go tfl-lowreskui-idle))
+  (go tfl-lowreskui-idle)
+  (none))
 
 (defstate tfl-lowreskui-idle (tfl-lowreskui)
-  :code (behavior ()
-    (loop (suspend)))
+  :code
+    (behavior ()
+      (loop
+        (suspend)))
   :post transform-post)
