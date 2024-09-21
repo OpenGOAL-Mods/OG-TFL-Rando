@@ -1686,7 +1686,7 @@
 (build-actor "tfl-commentary-node-active")
 (build-actor "bucket-wheel")
 (build-actor "crc-gondola" :gen-mesh #t)
-(build-actor "lowreskui")
+(build-actor "tfl-lowreskui")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

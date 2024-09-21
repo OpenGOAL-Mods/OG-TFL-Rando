@@ -1,8 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(defskelgroup *lowreskui-sg* lowreskui lowreskui-lod0-jg lowreskui-idle-ja
-              ((lowreskui-lod0-mg (meters 9999999)))
+(defskelgroup *tfl-lowreskui-sg* tfl-lowreskui tfl-lowreskui-lod0-jg tfl-lowreskui-idle-ja
+              ((tfl-lowreskui-lod0-mg (meters 9999999)))
               :bounds (static-spherem 0 1 0 3))
 
 (deftype tfl-lowreskui (process-drawable)
@@ -26,7 +26,7 @@
 (defmethod init-from-entity! ((this tfl-lowreskui) (e entity-actor))
   (init-collision! this)
   (process-drawable-from-entity! this e)
-  (initialize-skeleton this *lowreskui-sg* '())
+  (initialize-skeleton this *tfl-lowreskui-sg* '())
   (transform-post)
   (go tfl-lowreskui-idle))
 
