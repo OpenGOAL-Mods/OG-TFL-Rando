@@ -1325,7 +1325,7 @@
     ,{
       "trans": [-164.61, 133.87, -138.55],
       "etype": "tfl-lowreskui",
-      "game_task": 1,
+      "game_task": "(game-task tfl-lowreskui)",
       "quat" : [0.000, 0.000, -0.000, 1.000],
       "bsphere": [-164.61, 133.87, -138.55, 10],
       "lump": {

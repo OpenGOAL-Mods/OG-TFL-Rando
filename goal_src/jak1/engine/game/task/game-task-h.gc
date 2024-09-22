@@ -156,4 +156,5 @@
   (open-mines-excavator 141)
   (open-mines-hole 142)
   (open-mines-buzzer 143)
+  (tfl-lowreskui 144)
   (max))

@@ -1,5 +1,42 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(defglobalconstant LOWRESKUI_COUNT 4)
+
+(deftype lowreskui-info (structure)
+  ((level symbol)
+   (index int8)))
+
+(define *lowreskui-info*
+  (new 'static
+       'boxed-array
+       :type
+       lowreskui-info
+       :length
+       LOWRESKUI_COUNT
+       :allocated-length
+       LOWRESKUI_COUNT
+       (new 'static 'lowreskui-info :level 'crystal-ca :index 0)
+       (new 'static 'lowreskui-info :level 'crescent-t :index 1)
+       (new 'static 'lowreskui-info :level 'energy-bay :index 2)
+       (new 'static 'lowreskui-info :level 'open-mines :index 3)))
+
+(defun get-lowreskui-info-by-level ((lev symbol))
+  (dotimes (i LOWRESKUI_COUNT)
+    (if (= (-> *lowreskui-info* i level) lev) (return (-> *lowreskui-info* i))))
+  (the lowreskui-info #f))
+
+(defun lowreskui-collected-count ()
+  (let* ((count 0)
+         (task (game-task tfl-lowreskui))
+         (perm (get-entity-task-perm *game-info* (game-task tfl-lowreskui)))
+         (ctrl (get-task-control task)))
+    ; (dotimes (i 8)
+    ;   (countdown (ii 8)
+    ;     (if (logtest? (get-reminder ctrl i) (ash 1 (* ii 8))) (1+! count))))
+    (countdown (i 63)
+      (if (logtest? (-> perm user-uint64) (ash 1 i)) (1+! count)))
+    count))
+
 (defskelgroup *tfl-lowreskui-sg*
   tfl-lowreskui
   tfl-lowreskui-lod0-jg
@@ -8,14 +45,18 @@
   :bounds (static-spherem 0 1 0 3))
 
 (deftype tfl-lowreskui (process-drawable)
-  ((root collide-shape :override)
-   (birth-time  time-frame)
-   (birth-pos    vector :inline))
+  ((root       collide-shape :override)
+   (birth-time time-frame)
+   (birth-pos  vector :inline)
+   (info       lowreskui-info))
   (:methods
-   (init-collision! (_type_) object))
+   (init-collision! (_type_) object)
+   (collected? (_type_) symbol)
+   (collect! (_type_) object))
   (:states
    tfl-lowreskui-idle
-   tfl-lowreskui-collect))
+   tfl-lowreskui-collect
+   tfl-lowreskui-die))
 
 (defmethod init-collision! ((this tfl-lowreskui))
   (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
@@ -37,59 +78,89 @@
   (logclear! (-> this mask) (process-mask actor-pause))
   (transform-post)
   (vector-copy! (-> this birth-pos) (-> this root trans))
-  (if (= (get-task-status (-> this entity extra perm task)) (game-task complete))
-    (process-entity-status! this (entity-perm-status dead) #t)
-    (go tfl-lowreskui-idle))
+  (set! (-> this info) (get-lowreskui-info-by-level (-> e extra level name)))
+  (if (collected? this) (process-entity-status! this (entity-perm-status dead) #t) (go tfl-lowreskui-idle))
   (none))
+
+(defmethod collected? ((this tfl-lowreskui))
+  (let* ((task (game-task tfl-lowreskui))
+         (perm (get-entity-task-perm *game-info* task))
+         (idx (-> this info index)))
+    (logtest? (-> perm user-uint64) (ash 1 idx))))
+
+(defmethod collect! ((this tfl-lowreskui))
+  (let* ((task (game-task tfl-lowreskui))
+         (perm (get-entity-task-perm *game-info* task))
+         (idx (-> this info index)))
+    (format 0
+            "lowreskui idx ~D ash ~D perm before #b~b perm after #b~b~%"
+            idx
+            (ash 1 idx)
+            (-> perm user-uint64)
+            (logior (-> perm user-uint64) (ash 1 idx)))
+    (logior! (-> perm status) (entity-perm-status user-set-from-cstage))
+    (logior! (-> perm user-uint64) (ash 1 idx))))
 
 (defstate tfl-lowreskui-idle (tfl-lowreskui)
   :event
     (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
-        (('attack 'touch)
-         (when (= (-> proc type) target)
-            (go tfl-lowreskui-collect))
-         #t)))
+        (('attack 'touch) (when (= (-> proc type) target) (go tfl-lowreskui-collect)))))
   :code
     (behavior ()
       (loop
         (let ((bob-amount (meters 0.4))
               (bob-speed 1.8)
               (rotation-per-second (degrees 80)))
-            (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* rotation-per-second (seconds-per-frame)))
-            (set! (-> self root trans y)
-                  (+ (* bob-amount (sin (* 109.22667 (the float (* (mod (- (current-time) (-> self birth-time)) 600) bob-speed)))))
-                     (-> self birth-pos y))))
+          (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* rotation-per-second (seconds-per-frame)))
+          (set! (-> self root trans y)
+                (+ (* bob-amount (sin (* 109.22667 (the float (* (mod (- (current-time) (-> self birth-time)) (seconds 2)) bob-speed)))))
+                   (-> self birth-pos y))))
         (suspend)))
   :post transform-post)
 
-(defstate  tfl-lowreskui-collect (tfl-lowreskui)
+(defstate tfl-lowreskui-die (tfl-lowreskui)
+  :code
+    (behavior ()
+      (cleanup-for-death self)))
+
+(defstate tfl-lowreskui-collect (tfl-lowreskui)
   :enter
     (behavior ()
       (clear-collide-with-as (-> self root))
       (set-time! (-> self state-time)))
   :code
     (behavior ()
-      (set! (-> self entity extra perm task) (game-task complete))
-      (until (time-elapsed? (-> self state-time) (seconds 2.5))
+      (collect! self)
+      (sound-play "get-all-orbs")
+      (when (= (lowreskui-collected-count) LOWRESKUI_COUNT)
+        ; (close-specific-task! (game-task tfl-lowreskui) (task-status invalid))
+        )
+      (protect (progress-allowed?)
+        (set! progress-allowed? false-func)
+        (until (time-elapsed? (-> self state-time) (seconds 2.5))
+          (when (and *target* (= (-> *target* next-state name) 'target-death))
+            (goto die))
           (let ((fnt (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))))
-              (set-width! fnt 448)
-              (set-height! fnt 80)
-              (set-scale! fnt 0.8)
-              (set-flags! fnt (font-flags shadow kerning middle large))
-              (print-game-text "X / 4" fnt #f 128 22))
+            (set-width! fnt 448)
+            (set-height! fnt 80)
+            (set-scale! fnt 0.8)
+            (set-flags! fnt (font-flags shadow kerning middle large))
+            (print-game-text (string-format "~D/~D FOUND" (lowreskui-collected-count) LOWRESKUI_COUNT) fnt #f 128 22))
           (let* ((lerp-timer (/ (/ (the float (- (current-time) (-> self state-time))) TICKS_PER_SECOND) 2.5))
-              (bob-amount (lerp (meters 0.4) (meters 0.1) lerp-timer))
-              (bob-speed 1.8)
-              (rotation-per-second (lerp (degrees 80) (degrees 1200) lerp-timer))
-              (fly-pos (lerp (-> self birth-pos y) (+ (-> self birth-pos y) (meters 2.0)) lerp-timer))
-              (scale-lerp (lerp 1.0 0.1 lerp-timer)))
-              ;; (format *stdcon* "~%~%~% lerp-timer: ~F~%" lerp-timer)
-              (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* rotation-per-second (seconds-per-frame)))
-              (set! (-> self root trans y)
+                 (bob-amount (lerp (meters 0.4) (meters 0.1) lerp-timer))
+                 (bob-speed 1.8)
+                 (rotation-per-second (lerp (degrees 80) (degrees 1200) lerp-timer))
+                 (fly-pos (lerp (-> self birth-pos y) (+ (-> self birth-pos y) (meters 2.0)) lerp-timer))
+                 (scale-lerp (lerp 1.0 0.1 lerp-timer)))
+            ;; (format *stdcon* "~%~%~% lerp-timer: ~F~%" lerp-timer)
+            (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* rotation-per-second (seconds-per-frame)))
+            (set! (-> self root trans y)
                   (+ (* bob-amount (sin (* 109.22667 (the float (* (mod (- (current-time) (-> self birth-time)) 600) bob-speed)))))
-                      fly-pos))
-              (set-vector! (-> self root scale) scale-lerp scale-lerp scale-lerp 1.0))
+                     fly-pos))
+            (set-vector! (-> self root scale) scale-lerp scale-lerp scale-lerp 1.0))
           (suspend))
-      (process-entity-status! self (entity-perm-status dead) #t))
+        (label die)
+        (empty))
+      (go tfl-lowreskui-die))
   :post transform-post)
