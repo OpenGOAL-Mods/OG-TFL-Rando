@@ -4115,7 +4115,7 @@
       "lump": {
         "name": "crystalc-tfl-hint-05-daxSeeGondola",
         "filename": "crystalc-tfl-hint-05-daxSeeGondola.wav",
-        "radius": ["meters", 15.0]
+        "radius": ["meters", 10.0]
       }
     }
     ,{
@@ -4127,7 +4127,7 @@
       "lump": {
         "name": "crystalc-tfl-hint-06-daxUseGondola",
         "filename": "crystalc-tfl-hint-06-daxUseGondola.wav",
-        "radius": ["meters", 6.0]
+        "radius": ["meters", 9.0]
       }
     }
   ],
