@@ -22,3 +22,6 @@
 (def-art-elt observatory-ring-ag observatory-ring-lod0-jg 0)
 (def-art-elt observatory-ring-ag observatory-ring-lod0-mg 1)
 (def-art-elt observatory-ring-ag observatory-ring-idle-ja 2)
+(def-art-elt observatory-lens-ag observatory-lens-lod0-jg 0)
+(def-art-elt observatory-lens-ag observatory-lens-lod0-mg 1)
+(def-art-elt observatory-lens-ag observatory-lens-idle-ja 2)

@@ -44,7 +44,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring"],
+  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens"],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
@@ -5312,6 +5312,16 @@
       "lump": {
         "name":"crescent-observatory-ring-002",
         "scale":["float", 1.15]
+      }
+    }
+    ,{
+      "trans": [56.66, 361.43, 376.21],
+      "etype": "observatory-lens",
+      "game_task": 0,
+      "quat" : [-0.428, 0.833, 0.350, -0.012],
+      "bsphere": [56.66, 361.43, 376.21, 10],
+      "lump": {
+        "name":"crescent-observatory-lens-001"
       }
     }
     // Danger/damage stuff

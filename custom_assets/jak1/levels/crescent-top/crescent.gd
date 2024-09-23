@@ -33,6 +33,7 @@
   "towertop-ag.go"
   "mayorgears-ag.go"
   "observatory-ring-ag.go"
+  "observatory-lens-ag.go"
   "crescent-top.go"
     )
   )

@@ -1688,6 +1688,7 @@
 (build-actor "crc-gondola" :gen-mesh #t)
 (build-actor "tfl-lowreskui")
 (build-actor "observatory-ring")
+(build-actor "observatory-lens")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
