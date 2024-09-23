@@ -899,16 +899,16 @@
       }
     }
     ,{
-      "trans": [-162.6, 102.36, -140.36], // translation
+      "trans": [-162.52, 102.41, -140.34], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-162.6, 102.36, -140.36, 10], // bounding sphere
+      "quat" : [0.008, -0.469, 0.025, 0.883], // quaternion
+      "bsphere": [-162.52, 102.41, -140.34, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-buzzer-06",
         "crate-type":"'iron",
         "eco-info": ["int32", 8, 327801], // to get SF task = game-task + (2^16 * buzzer-count)
-        "movie-pos": ["meters", -162.6, 102.36, -140.36],
+        "movie-pos": ["meters", -162.52, 102.41, -140.34],
         "light-index": ["int32", 4]
       }
     }
@@ -2646,86 +2646,6 @@
         "light-index": ["int32", 2]
       }
     }
-    // ,{
-    //   "trans": [-92.28, 75.68, -95.15], // translation
-    //   "etype": "breakaway-left",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-    //   "bsphere": [-92.28, 75.68, -95.15, 10.0], // bounding sphere
-    //   "lump": {
-    //     "name":"crystalc-breakaway-left-01",
-    //     "prev-actor":"crystalc-breakaway-mid-01",
-    //     "scale":["float", 0.751],
-    //     "light-index":["int32", 6]
-    //   }
-    // },
-    // {
-    //   "trans": [-90.38, 75.68, -92.82], // translation
-    //   "etype": "breakaway-mid",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-    //   "bsphere": [-90.38, 75.68, -92.82, 10.0], // bounding sphere
-    //   "lump": {
-    //     "name":"crystalc-breakaway-mid-01",
-    //     "prev-actor":"crystalc-breakaway-right-01",
-    //     "next-actor":"crystalc-breakaway-left-01",
-    //     "scale":["float", 0.751],
-    //     "light-index":["int32", 6]
-    //   }
-    // },
-    // {
-    //   "trans": [-88.48, 75.68, -90.50], // translation
-    //   "etype": "breakaway-right",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-    //   "bsphere": [-88.48, 75.68, -90.50, 10.0], // bounding sphere
-    //   "lump": {
-    //     "name":"crystalc-breakaway-right-01",
-    //     "next-actor":"crystalc-breakaway-mid-01",
-    //     "scale":["float", 0.751],
-    //     "light-index":["int32", 6]
-    //   }
-    // },
-    // {
-    //   "trans": [-102.86, 85.74, -108.25], // translation
-    //   "etype": "breakaway-left",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-    //   "bsphere": [-102.86, 85.74, -108.25, 10.0], // bounding sphere
-    //   "lump": {
-    //     "name":"crystalc-breakaway-left-02",
-    //     "prev-actor":"crystalc-breakaway-mid-02",
-    //     "scale":["float", 0.751],
-    //     "light-index":["int32", 6]
-    //   }
-    // },
-    // {
-    //   "trans": [-102.04, 85.74, -105.36], // translation
-    //   "etype": "breakaway-mid",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-    //   "bsphere": [-102.04, 85.74, -105.36, 10.0], // bounding sphere
-    //   "lump": {
-    //     "name":"crystalc-breakaway-mid-02",
-    //     "prev-actor":"crystalc-breakaway-right-02",
-    //     "next-actor":"crystalc-breakaway-left-02",
-    //     "scale":["float", 0.751],
-    //     "light-index":["int32", 6]
-    //   }
-    // },
-    // {
-    //   "trans": [-101.23, 85.74, -102.46], // translation
-    //   "etype": "breakaway-right",  // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-    //   "bsphere": [-101.23, 85.74, -102.46, 10.0], // bounding sphere
-    //   "lump": {
-    //     "name":"crystalc-breakaway-right-02",
-    //     "next-actor":"crystalc-breakaway-mid-02",
-    //     "scale":["float", 0.751],
-    //     "light-index":["int32", 6]
-    //   }
-    // }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
