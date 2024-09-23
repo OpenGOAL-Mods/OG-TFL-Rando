@@ -44,7 +44,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active"],
+  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring"],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
@@ -5281,7 +5281,6 @@
         "scale":["float", 1.0]
       }
     },
-
     {
       "trans": [65.92, 190.11, 376.24], // translation
       "etype": "towertop",  // actor type
@@ -5293,9 +5292,30 @@
         "scale":["float", 0.1],
         "light-index":["int32", 2]
       }
-    },
+    }
+    ,{
+      "trans": [70.77, 350.80, 364.37],
+      "etype": "observatory-ring",
+      "game_task": 0,
+      "quat" : [0.090, -0.014, 0.086, 0.992],
+      "bsphere": [70.77, 350.80, 364.37, 10],
+      "lump": {
+        "name":"crescent-observatory-ring-001"
+      }
+    }
+    ,{
+      "trans": [70.77, 350.80, 364.37],
+      "etype": "observatory-ring",
+      "game_task": 0,
+      "quat" : [-0.182, 0.614, -0.292, 0.710],
+      "bsphere": [70.77, 350.80, 364.37, 10],
+      "lump": {
+        "name":"crescent-observatory-ring-002",
+        "scale":["float", 1.15]
+      }
+    }
     // Danger/damage stuff
-    {
+    ,{
       "trans": [-278.86, 202.44, 758.57], // translation
       "etype": "pusher",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)

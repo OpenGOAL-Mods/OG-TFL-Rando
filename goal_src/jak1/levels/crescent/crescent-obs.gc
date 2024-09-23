@@ -754,3 +754,26 @@
     (the (function plat object)
          anim-loop)
   :post plat-post)
+
+(deftype observatory-ring (process-drawable) ()
+  (:states
+    observatory-ring-idle))
+
+(defskelgroup *observatory-ring-sg* observatory-ring observatory-ring-lod0-jg observatory-ring-idle-ja
+              ((observatory-ring-lod0-mg (meters 9999999)))
+              :bounds (static-spherem 0 0 0 30))
+
+(defmethod init-from-entity! ((this observatory-ring) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *observatory-ring-sg* '())
+  (go observatory-ring-idle)
+  (none))
+
+(defstate observatory-ring-idle (observatory-ring)
+  :code 
+    (behavior ()
+      (loop 
+        (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees -60) (seconds-per-frame)))
+        (suspend)))
+  :post ja-post)

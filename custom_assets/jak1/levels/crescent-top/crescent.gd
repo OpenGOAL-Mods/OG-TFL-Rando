@@ -32,6 +32,7 @@
   "bladeassm-ag.go"
   "towertop-ag.go"
   "mayorgears-ag.go"
+  "observatory-ring-ag.go"
   "crescent-top.go"
     )
   )
