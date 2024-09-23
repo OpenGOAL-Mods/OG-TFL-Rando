@@ -221,11 +221,8 @@ It type checks the arguments for the entry function.
 ;; TFL note: added
 (defmacro event (&rest body)
   "Define an event handler for a process state. This may only be used inside a defstate!"
-  (let ((behavior-type (first *defstate-type-stack*)))
-    (pop! *defstate-type-stack*)
-    `(lambda :behavior ,behavior-type
-      ((proc process) (argc int) (message symbol) (block event-message-block))
-      ,@body)))
+  `(behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    ,@body))
 
 ;; set the default handler functions for a process's state handlers
 (seval

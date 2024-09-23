@@ -7,9 +7,6 @@
 ("CRC.DGO"
   (
   "static-screen.o"
-  "eichar-pole+0-ag.go"
-  "target-ice.o"
-  "eichar-ice+0-ag.go"
   "spiderwebs.o"
   "villagep-obs.o"
   "crystalc-obs.o"
@@ -21,9 +18,6 @@
   "tpage-1304.go"
   "tpage-1352.go"
   "water-anim-training-ag.go"
-  "breakaway-left-ag.go"
-  "breakaway-mid-ag.go"
-  "breakaway-right-ag.go"
   "plat-ag.go"
   "flutflut-plat-med-ag.go"
   "orb-cache-top-ag.go"
@@ -39,6 +33,7 @@
   "spider-egg.o"
   "spider-egg-ag.go"
   "mother-spider-egg.o"
+  "crc-gondola-ag.go"
   "crystal-cave.go"
     )
   )

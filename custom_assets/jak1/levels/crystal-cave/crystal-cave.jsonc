@@ -52,7 +52,10 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active"],
+  "custom_models": [
+    "tfl-commentary-node", 
+    "tfl-commentary-node-active",
+    "crc-gondola"],
 
    // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
    // which is not in the common level files and has no art group associated with it.
@@ -104,8 +107,8 @@
         "light-index": ["int32", 1],
         "movie-pos":["vector4m", [-158.77, 104.57, -45.16, 15.0]]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-59.13, 67.35, -115.35], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 118, // associated game task (for powercells, etc)
@@ -115,8 +118,8 @@
         "name":"crystalc-fuel-cell-02", // river cell
         "eco-info": ["int32", 6, 118]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.17, 87.62, -95.83], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 120, // associated game task (for powercells, etc)
@@ -128,8 +131,8 @@
         "light-index": ["int32", 2],
         "movie-pos":["vector4m", [-347.17, 85.12, -95.83, 121.2]]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-157.11, 118.84, -131.35], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 119, // associated game task (for powercells, etc)
@@ -141,8 +144,8 @@
         "light-index": ["int32", 4],
         "movie-pos":["vector4m", [-157.11, 116.34, -131.35, 120.0]]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-248.57, 50.43, -161.32], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 135, // associated game task (for powercells, etc)
@@ -840,8 +843,8 @@
         "eco-info": ["int32", 8, 121], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -59.74, 93.47, 14.18]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-130.55, 95.89, -4.16], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
@@ -853,8 +856,8 @@
         "eco-info": ["int32", 8, 65657], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -123.99, 92.86, -3.92]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-176.28, 94.53, -67.68], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
@@ -867,8 +870,8 @@
         "movie-pos": ["meters", -176.28, 94.53, -67.68],
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-62.82, 113.9, -85.88], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
@@ -880,8 +883,8 @@
         "eco-info": ["int32", 8, 196729], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -65.63, 114.37, -86.91]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-252.87, 72.12, -86.30], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
@@ -894,22 +897,22 @@
         "movie-pos": ["meters", -260.04, 72.02, -86.89],
         "light-index": ["int32", 3]
       }
-    },
-    {
-      "trans": [-162.6, 102.36, -140.36], // translation
+    }
+    ,{
+      "trans": [-162.52, 102.41, -140.34], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-162.6, 102.36, -140.36, 10], // bounding sphere
+      "quat" : [0.008, -0.469, 0.025, 0.883], // quaternion
+      "bsphere": [-162.52, 102.41, -140.34, 10], // bounding sphere
       "lump": {
         "name":"crystalc-crate-buzzer-06",
         "crate-type":"'iron",
         "eco-info": ["int32", 8, 327801], // to get SF task = game-task + (2^16 * buzzer-count)
-        "movie-pos": ["meters", -162.6, 102.36, -140.36],
+        "movie-pos": ["meters", -162.52, 102.41, -140.34],
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-243.49, 89.35, -0.39], // translation
       "etype": "crate",  // actor type
       "game_task": 121, // associated game task (for powercells, etc)
@@ -921,7 +924,7 @@
         "eco-info": ["int32", 8, 393337], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -247.57, 89.35, -3.49]
       }
-    },
+    }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
@@ -931,7 +934,7 @@
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
-    {
+    ,{
       "trans": [-138.79, 100.79, -32.66], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -942,8 +945,8 @@
         "crate-type":"'steel",
         "eco-info": ["int32", 5, 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-128.38, 100.92, -28.02], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -954,8 +957,8 @@
         "crate-type":"'steel",
         "eco-info": ["int32", 5, 5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-300.81, 98.24, -13.17], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -966,8 +969,8 @@
         "crate-type":"'steel",
         "eco-info": ["int32", 5, 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-295.12, 102.79, -43.84], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -978,8 +981,8 @@
         "crate-type":"'steel",
         "eco-info": ["int32", 5, 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-287, 110.32, -34.40], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -990,8 +993,8 @@
         "crate-type":"'steel",
         "eco-info": ["int32", 5, 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-288.86, 110.21, -30.43], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1002,8 +1005,8 @@
         "crate-type":"'steel",
         "eco-info": ["int32", 5, 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-257.66, 98.10, -124.24], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1015,8 +1018,8 @@
         "eco-info": ["int32", 5, 5],
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-241.31, 98.21, -117.83], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1028,8 +1031,8 @@
         "eco-info": ["int32", 5, 5],
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-352.05, 67.07, -106.97], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1042,7 +1045,7 @@
         "light-index": ["int32", 2],
         "nav-mesh-actor": "crystalc-cave-trap-01"
       }
-    },
+    }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
@@ -1052,7 +1055,7 @@
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
-    {
+    ,{
       "trans": [-96.93, 93.11, 2.70], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1063,8 +1066,8 @@
         "crate-type":"'wood",
         "eco-info": ["int32", 4, 1] // green eco blob
       }
-    },
-    {
+    }
+    ,{
       "trans": [-152.51, 104.28, -49.72], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1076,8 +1079,8 @@
         "eco-info": ["int32", 1, 1], // Yellow eco blob
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-69.17, 93.27, 15.79], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1088,8 +1091,8 @@
         "crate-type":"'wood",
         "nav-mesh-actor":"crystalc-ice-cube-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-71.92, 93.13, 15.38], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1100,8 +1103,8 @@
         "crate-type":"'wood",
         "nav-mesh-actor":"crystalc-ice-cube-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-70.08, 92.94, 13.16], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1112,8 +1115,8 @@
         "crate-type":"'wood",
         "nav-mesh-actor":"crystalc-ice-cube-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-190.39, 87.12, -21.51], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1125,8 +1128,8 @@
         "light-index": ["int32", 1],
         "nav-mesh-actor":"crystalc-ice-cube-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-189.37, 87.63, -17.10], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1138,8 +1141,8 @@
         "light-index": ["int32", 1],
         "nav-mesh-actor":"crystalc-ice-cube-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-204.97, 73.80, -103.32], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1149,8 +1152,8 @@
         "name":"crystalc-crate-wood-08",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-206.74, 73.74, -100.50], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1160,8 +1163,8 @@
         "name":"crystalc-crate-wood-09",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-253.08, 87.95, -110.63], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1173,8 +1176,8 @@
         "eco-info": ["int32", 4, 1],
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-350.00, 82.86, -118.72], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1185,8 +1188,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.08, 82.55, -119.56], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1197,8 +1200,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-352.71, 85.90, -82.56], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1209,8 +1212,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-352.61, 85.90, -85.04], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1221,8 +1224,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-352.45, 85.97, -87.58], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1233,8 +1236,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-352.31, 86.00, -90.17], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1245,8 +1248,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-301.09, 91.36, -69.01], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1258,8 +1261,8 @@
         "eco-info": ["int32", 3, 1], // Blue eco blob
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-304.05, 91.44, -67.82], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1270,8 +1273,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-171.38, 104.20, -54.79], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1282,8 +1285,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-169.80, 104.26, -53.75], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1294,8 +1297,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-170.11, 103.99, -56.63], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1306,8 +1309,8 @@
         "crate-type":"'wood",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-168.52, 104.05, -55.58], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1318,7 +1321,17 @@
         "crate-type":"'wood",
         "light-index": ["int32", 1]
       }
-    },
+    }
+    ,{
+      "trans": [-164.61, 133.87, -138.55],
+      "etype": "tfl-lowreskui",
+      "game_task": "(game-task tfl-lowreskui)",
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-164.61, 133.87, -138.55, 10],
+      "lump": {
+        "name":"crystalc-tfl-lowreskui-001"
+      }
+    }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
@@ -1328,7 +1341,7 @@
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
-    {
+    ,{
       "trans": [ -69.51, 98.15, 25.66], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1337,8 +1350,8 @@
       "lump": {
         "name":"crystalc-money-001"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -67.24, 98.36, 25.63], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1347,8 +1360,8 @@
       "lump": {
         "name":"crystalc-money-002"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -65.03, 98.56, 25.58], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1357,8 +1370,8 @@
       "lump": {
         "name":"crystalc-money-003"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -52.41, 107.52, 6.83], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1367,8 +1380,8 @@
       "lump": {
         "name":"crystalc-money-004"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -55, 107.6, 5.30], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1377,8 +1390,8 @@
       "lump": {
         "name":"crystalc-money-005"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -57.30, 107.65, 3.79], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1387,8 +1400,8 @@
       "lump": {
         "name":"crystalc-money-006"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -95.62, 94.70, 4.52], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1397,8 +1410,8 @@
       "lump": {
         "name":"crystalc-money-007"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -99.15, 94.78, 3.33], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1407,8 +1420,8 @@
       "lump": {
         "name":"crystalc-money-008"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -96.25, 94.36, 0.96], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1417,8 +1430,8 @@
       "lump": {
         "name":"crystalc-money-009"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -117.02, 93.37, 18.74], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1427,8 +1440,8 @@
       "lump": {
         "name":"crystalc-money-010"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -121.65, 93.62, 20.77], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1437,8 +1450,8 @@
       "lump": {
         "name":"crystalc-money-011"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-231.11, 65.696, -100.93], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1447,8 +1460,8 @@
       "lump": {
         "name":"crystalc-money-012"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -126.17, 93.39, 18.55], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1457,8 +1470,8 @@
       "lump": {
         "name":"crystalc-money-013"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -182.58, 89.83, -42.33], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1468,8 +1481,8 @@
         "name":"crystalc-money-014",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -182.78, 89.60, -45.55], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1479,8 +1492,8 @@
         "name":"crystalc-money-015",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -168.58, 99.67, -64.07], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1490,8 +1503,8 @@
         "name":"crystalc-money-016",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -164.4, 100.14, -64.63], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1501,8 +1514,8 @@
         "name":"crystalc-money-017",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -160.34, 100.79, -65.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1512,78 +1525,78 @@
         "name":"crystalc-money-018",
         "light-index": ["int32", 1]
       }
-    },
-    {
-      "trans": [ -101.96, 87.9, -105.47], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-101.96, 87.9, -105.47, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-100.68, 87.90, -103.05],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-100.68, 87.90, -103.05, 10],
       "lump": {
         "name":"crystalc-money-019"
       }
-    },
-    {
-      "trans": [ -101.23, 87.82, -102.23], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-101.23, 87.82, -102.23, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-99.95, 87.83, -99.82],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-99.95, 87.83, -99.82, 10],
       "lump": {
         "name":"crystalc-money-020"
       }
-    },
-    {
-      "trans": [ -88.94, 78.25, -94.22], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-88.94, 78.25, -94.22, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-89.96, 78.26, -95.98],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-89.96, 78.26, -95.98, 10],
       "lump": {
         "name":"crystalc-money-021"
       }
-    },
-    {
-      "trans": [ -87.58, 78.17, -91.82], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-87.58, 78.17, -91.82, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-88.60, 78.18, -93.58],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-88.60, 78.18, -93.58, 10],
       "lump": {
         "name":"crystalc-money-022"
       }
-    },
-    {
-      "trans": [ -82.17, 65.47, -111.22], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-82.17, 65.47, -111.22, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-86.58, 65.47, -108.34],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-86.58, 65.47, -108.34, 10],
       "lump": {
         "name":"crystalc-money-023"
       }
-    },
-    {
-      "trans": [ -80.86, 65.21, -107.86], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-80.86, 65.21, -107.86, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-83.04, 65.22, -109.27],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-83.04, 65.22, -109.27, 10],
       "lump": {
         "name":"crystalc-money-024"
       }
-    },
-    {
-      "trans": [ -79.14, 65.56, -110.23], // translation
-      "etype": "money",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-79.14, 65.56, -110.23, 10], // bounding sphere
+    }
+    ,{
+      "trans": [-79.15, 65.56, -110.23],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-79.15, 65.56, -110.23, 10],
       "lump": {
         "name":"crystalc-money-025"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-100.44, 91.53, -87.70], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1592,8 +1605,8 @@
       "lump": {
         "name":"crystalc-money-026"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-97.89, 91.75, -85.73], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1602,8 +1615,8 @@
       "lump": {
         "name":"crystalc-money-027"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-168.32, 83.24, -131.3], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1613,8 +1626,8 @@
         "name":"crystalc-money-028",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -168.13, 83.32, -133.53], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1624,8 +1637,8 @@
         "name":"crystalc-money-029",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -167.44, 83.24, -135.87], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1635,8 +1648,8 @@
         "name":"crystalc-money-030",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -154.97, 84.20, -143.99], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1646,8 +1659,8 @@
         "name":"crystalc-money-031",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -152.76, 84.46, -143.73], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1657,8 +1670,8 @@
         "name":"crystalc-money-032",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -150.43, 84.52, -143], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1668,8 +1681,8 @@
         "name":"crystalc-money-033",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -142.49, 85.36, -130.49], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1679,8 +1692,8 @@
         "name":"crystalc-money-034",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -142.84, 85.39, -128.28], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1690,8 +1703,8 @@
         "name":"crystalc-money-035",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -143.62, 85.12, -125.98], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1701,8 +1714,8 @@
         "name":"crystalc-money-036",
         "light-index": ["int32", 4]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -114.52, 90.23, -80.77], // translation
       "etype": "money",  // actor .type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1711,8 +1724,8 @@
       "lump": {
         "name":"crystalc-money-037"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -116.97, 90.06, -79.68], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1721,8 +1734,8 @@
       "lump": {
         "name":"crystalc-money-038"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -123.73, 90.79, -88.09], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1731,8 +1744,8 @@
       "lump": {
         "name":"crystalc-money-039"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -126.36, 90.62, -88.61], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1741,8 +1754,8 @@
       "lump": {
         "name":"crystalc-money-040"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -123.62, 94.26, -1.89], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1751,8 +1764,8 @@
       "lump": {
         "name":"crystalc-money-041"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -124.97, 94.49, -6.84], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1761,8 +1774,8 @@
       "lump": {
         "name":"crystalc-money-042"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -120.08, 94.44, -4.33], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1771,8 +1784,8 @@
       "lump": {
         "name":"crystalc-money-043"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-57.75, 86.19, -97.17], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1781,8 +1794,8 @@
       "lump": {
         "name":"crystalc-money-044"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-57.75, 93.69, -97.17], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1791,8 +1804,8 @@
       "lump": {
         "name":"crystalc-money-045"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-57.75, 101.19, -97.17], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1801,8 +1814,8 @@
       "lump": {
         "name":"crystalc-money-046"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-234.59, 64.02, -99.56], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1811,8 +1824,8 @@
       "lump": {
         "name":"crystalc-money-047"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-195.45, 81.15, -97.37], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1821,8 +1834,8 @@
       "lump": {
         "name":"crystalc-money-048"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-194.98, 81.15, -94.60], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1831,8 +1844,8 @@
       "lump": {
         "name":"crystalc-money-049"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-199.58, 87.88, -90.18], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1841,8 +1854,8 @@
       "lump": {
         "name":"crystalc-money-050"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-202.85, 87.88, -89.31], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1851,8 +1864,8 @@
       "lump": {
         "name":"crystalc-money-051"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-260.4, 68.36, -140.36], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1862,8 +1875,8 @@
         "name":"crystalc-money-052",
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-257.62, 68.63, -138.76], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1873,8 +1886,8 @@
         "name":"crystalc-money-053",
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-254.68, 68.92, -136.89], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1884,8 +1897,8 @@
         "name":"crystalc-money-054",
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.62, 78.23, -122.79], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1895,8 +1908,8 @@
         "name":"crystalc-money-055",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.92, 78.17, -125.02], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1906,8 +1919,8 @@
         "name":"crystalc-money-056",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.13, 83.55, -125.11], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1917,8 +1930,8 @@
         "name":"crystalc-money-057",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.77, 83.44, -128.17], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1928,8 +1941,8 @@
         "name":"crystalc-money-058",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-344.94, 83.25, -127.89], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1939,8 +1952,8 @@
         "name":"crystalc-money-059",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-344.48, 86.43, -84.238], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1950,8 +1963,8 @@
         "name":"crystalc-money-060",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.33, 86.55, -85.84], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1961,8 +1974,8 @@
         "name":"crystalc-money-061",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-347.38, 86.49, -82.61], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1972,8 +1985,8 @@
         "name":"crystalc-money-062",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-326.03, 88.30, -83.11], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1983,8 +1996,8 @@
         "name":"crystalc-money-063",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-323.27, 88.84, -82.11], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1994,8 +2007,8 @@
         "name":"crystalc-money-064",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-320.08, 89.44, -81.21], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2005,8 +2018,8 @@
         "name":"crystalc-money-065",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-251.23, 53.34, -97.98], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2016,8 +2029,8 @@
         "name":"crystalc-money-066",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-296.12, 91.75, -76.60], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2027,8 +2040,8 @@
         "name":"crystalc-money-067",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-296.39, 92.24, -73.91], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2038,8 +2051,8 @@
         "name":"crystalc-money-068",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-311.01, 92.77, -70.72], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2049,8 +2062,8 @@
         "name":"crystalc-money-069",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-255.73, 53.49, -98.01], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2060,8 +2073,8 @@
         "name":"crystalc-money-070",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-308.55, 93.02, -69.41], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2071,8 +2084,8 @@
         "name":"crystalc-money-071",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-325.68, 82.04, -64.85], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2082,8 +2095,8 @@
         "name":"crystalc-money-072",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-329.90, 82.03, -64.15], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2093,8 +2106,8 @@
         "name":"crystalc-money-073",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-337.10, 95.22, -49.45], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2104,8 +2117,8 @@
         "name":"crystalc-money-074",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-340.74, 95.33, -48.47], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2115,8 +2128,8 @@
         "name":"crystalc-money-075",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-339.28, 95.33, -51.46], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2126,8 +2139,8 @@
         "name":"crystalc-money-076",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-269.09, 50.49, -110.34], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2136,8 +2149,8 @@
       "lump": {
         "name":"crystalc-money-077"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-267.73, 108.87, -26.65], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2146,8 +2159,8 @@
       "lump": {
         "name":"crystalc-money-078"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-263.69, 108.87, -26.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2156,8 +2169,8 @@
       "lump": {
         "name":"crystalc-money-079"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-260.82, 108.87, -23.19], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2166,8 +2179,8 @@
       "lump": {
         "name":"crystalc-money-080"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-256.31, 82.03, -97.02], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2177,8 +2190,8 @@
         "name":"crystalc-money-081",
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-254.91, 82.65, -100.43], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2188,8 +2201,8 @@
         "name":"crystalc-money-082",
         "light-index": ["int32", 3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-147.02, 104.19, -65.71], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2199,8 +2212,8 @@
         "name":"crystalc-money-083",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-269.08, 48.54, -114.92], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2210,8 +2223,8 @@
         "name":"crystalc-money-084",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-143.73, 104.93, -68.94], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2221,8 +2234,8 @@
         "name":"crystalc-money-085",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-268.87, 47.11, -142.45], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2232,8 +2245,8 @@
         "name":"crystalc-money-086",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-141.17, 101.89, -71.46], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2243,8 +2256,8 @@
         "name":"crystalc-money-087",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-75.49, 106.89, -79.51], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2253,8 +2266,8 @@
       "lump": {
         "name":"crystalc-money-088"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-77.92, 106.98, -78.61], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2263,8 +2276,8 @@
       "lump": {
         "name":"crystalc-money-089"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-80.57, 107.06, -77.62], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2273,8 +2286,8 @@
       "lump": {
         "name":"crystalc-money-090"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-57.75, 107.80, -97.17], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2283,8 +2296,8 @@
       "lump": {
         "name":"crystalc-money-091"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-273.65, 73.01, -146.92], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2295,8 +2308,8 @@
         "light-index": ["int32", 3],
         "options":["int32", 1024]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-273.65, 75.01, -146.92], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2307,8 +2320,8 @@
         "light-index": ["int32", 3],
         "options":["int32", 1024]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-273.65, 77.01, -146.92], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2319,8 +2332,8 @@
         "light-index": ["int32", 3],
         "options":["int32", 1024]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-267.82, 47.20, -148.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2331,8 +2344,8 @@
         "light-index": ["int32", 3],
         "options":["int32", 1024]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-326.96, 77.45, -73.94], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2342,8 +2355,8 @@
         "name":"crystalc-money-096",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-326.99, 76.34, -77.48], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2353,8 +2366,8 @@
         "name":"crystalc-money-097",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-326.99, 75.09, -81.65], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2364,8 +2377,8 @@
         "name":"crystalc-money-098",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-326.88, 73.79, -86.05], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2375,8 +2388,8 @@
         "name":"crystalc-money-099",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-265.99, 47.56, -154.66], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2386,8 +2399,8 @@
         "name":"crystalc-money-100",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-234.56, 52.75, -141.64], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2397,8 +2410,8 @@
         "name":"crystalc-money-101",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-235.37, 52.78, -136.26], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2408,8 +2421,8 @@
         "name":"crystalc-money-102",
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-236.95, 53.22, -130.44], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2419,7 +2432,7 @@
         "name":"crystalc-money-103",
         "light-index": ["int32", 2]
       }
-    },
+    }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
@@ -2429,7 +2442,7 @@
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
-    {
+    ,{
       "trans": [ -121.52, 84.71, -47.00], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2445,8 +2458,8 @@
         "sync": ["float", 5.0, 0.0],
         "scale":["float", 1.3]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-127.12, 84.71, -57.91], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2460,8 +2473,8 @@
           ],
         "sync": ["float", 5.0, 0.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-116.12, 84.75, -59.19], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2475,8 +2488,8 @@
           ],
         "sync": ["float", 5.0, 0.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-199.10, 89.37, 0.36], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2501,8 +2514,8 @@
           2.0
         ]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-229.91, 89.37, -19.60], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2527,8 +2540,8 @@
           2.0
         ]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -257.97, 91.07, -6.98], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2538,8 +2551,8 @@
       "lump": {
         "name":"crystalc-plat-6"
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -267.24, 93.24, -6.49], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2554,8 +2567,8 @@
           ],
         "sync": ["float", 4.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -277.35, 95.83, -5.94], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2570,8 +2583,8 @@
           ],
         "sync": ["float", 4.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -57.78, 56.04, -97.06], // translation
       "etype": "launcher",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2581,8 +2594,8 @@
         "name":"crystalc-launcher-01",
         "spring-height": ["meters", 85.45]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-233.06, 69.01, -126.40], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2591,8 +2604,8 @@
       "lump": {
         "name":"crystalc-swingpole-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-242.03, 69.51, -130.96], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2601,8 +2614,8 @@
       "lump": {
         "name":"crystalc-swingpole-02"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-273.48, 69.51, -147.39], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2611,8 +2624,8 @@
       "lump": {
         "name":"crystalc-swingpole-03"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-138.50, 98.11, -73.24], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2621,8 +2634,8 @@
       "lump": {
         "name":"crystalc-swingpole-04"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-341.14, 84.41, -59.66], // translation
       "etype": "spiderwebs",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2632,87 +2645,7 @@
         "name":"crystalc-spiderwebs-01",
         "light-index": ["int32", 2]
       }
-    },
-    {
-      "trans": [-92.28, 75.68, -95.15], // translation
-      "etype": "breakaway-left",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-92.28, 75.68, -95.15, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-left-01",
-        "prev-actor":"crystalc-breakaway-mid-01",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-90.38, 75.68, -92.82], // translation
-      "etype": "breakaway-mid",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-90.38, 75.68, -92.82, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-mid-01",
-        "prev-actor":"crystalc-breakaway-right-01",
-        "next-actor":"crystalc-breakaway-left-01",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-88.48, 75.68, -90.50], // translation
-      "etype": "breakaway-right",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.336, 0.0, 0.942], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-88.48, 75.68, -90.50, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-right-01",
-        "next-actor":"crystalc-breakaway-mid-01",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-102.86, 85.74, -108.25], // translation
-      "etype": "breakaway-left",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-102.86, 85.74, -108.25, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-left-02",
-        "prev-actor":"crystalc-breakaway-mid-02",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-102.04, 85.74, -105.36], // translation
-      "etype": "breakaway-mid",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-102.04, 85.74, -105.36, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-mid-02",
-        "prev-actor":"crystalc-breakaway-right-02",
-        "next-actor":"crystalc-breakaway-left-02",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
-    {
-      "trans": [-101.23, 85.74, -102.46], // translation
-      "etype": "breakaway-right",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.0, 0.137, 0.0, 0.991], // quaternion - Along Z axis in Blender, Y need to be up in blender
-      "bsphere": [-101.23, 85.74, -102.46, 10.0], // bounding sphere
-      "lump": {
-        "name":"crystalc-breakaway-right-02",
-        "next-actor":"crystalc-breakaway-mid-02",
-        "scale":["float", 0.751],
-        "light-index":["int32", 6]
-      }
-    },
+    }
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
@@ -2722,7 +2655,7 @@
     // ###########################################################################
     // ###########################################################################
     // ###########################################################################
-    {
+    ,{
       "trans": [-200.91, 95.70, -59.30], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2736,8 +2669,8 @@
         "cycle-speed": ["float", -1.0, 0.0],
         "vis-dist":["meters", 200.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-290.64, 50.22, -87.57], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2750,8 +2683,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-290.64, 46.58, -107.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2764,8 +2697,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-290.64, 42.84, -127.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2778,8 +2711,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-290.64, 43.70, -147.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2792,8 +2725,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-270.64, 56.11, -87.57], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2806,8 +2739,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-270.64, 49.98, -107.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2820,8 +2753,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-270.64, 46.05, -127.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2834,8 +2767,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-270.64, 45.88, -147.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2848,8 +2781,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.64, 52.09, -87.57], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2862,8 +2795,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.64, 50.53, -107.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2876,8 +2809,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.64, 48.55, -127.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2890,8 +2823,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.64, 47.93, -156.26], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2904,8 +2837,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-230.64, 53.13, -87.64], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2918,8 +2851,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-230.64, 53.84, -107.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2932,8 +2865,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-230.64, 55.10, -127.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2946,8 +2879,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-230.64, 51.75, -147.58], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2960,8 +2893,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-210.73, 53.62, -82.79], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2974,8 +2907,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-97.14, 91.04, -37.73], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2988,8 +2921,8 @@
         "effect-param": ["float", 10.0, 50.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-88.77, 94.42, 16.25], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3002,8 +2935,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-93.13, 95.94, 18.38], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3016,8 +2949,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-199.83, 129.29, 26.17], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3030,8 +2963,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-241.66, 95.93, -37.21], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3044,8 +2977,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-183.28, 83.77, -126.84], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3058,8 +2991,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-242.79, 86.73, -151.68], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3072,8 +3005,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-244.13, 84.53, -146.14], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3086,8 +3019,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-248.44, 85.56, -153.04], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3100,8 +3033,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-269.70, 91.05, -155.37], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3114,8 +3047,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-254.36, 134.4, 13.19], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3128,8 +3061,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-97.77, 88.92, -34.24], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3142,8 +3075,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-99.62, 89.17, -37.62], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3156,8 +3089,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-196.35, 127.62, 24.63], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3170,8 +3103,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-195.97, 129.67, 27.25], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3184,8 +3117,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-204.39, 125.84, 26.93], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3198,8 +3131,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-236.62, 93.78, -36.62], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3212,8 +3145,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-246.75, 97.24, -36.40], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3226,8 +3159,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-186.09, 79.59, -127.80], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3240,8 +3173,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-245.71, 101.36, -66.66], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3254,8 +3187,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.74, 99.03, -68.83], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3268,8 +3201,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-255.41, 98.66, -69.75], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3282,8 +3215,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-255.82, 132.69, 17.43], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3296,8 +3229,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-219.58, 176.2, -48.36], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3310,8 +3243,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-140.56, 86.62, -65.89], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3324,8 +3257,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-128.02, 85.79, -69.29], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3338,8 +3271,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-108.65, 85.80, -71.38], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3352,8 +3285,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-99.52, 86.97, -88.09], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3366,8 +3299,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-171.33, 88.09, -72.78], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3380,8 +3313,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-17.35, 95.03, 20.48], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3394,8 +3327,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-1.65, 104.83, -2.96], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3408,8 +3341,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-12.55, 98.61, 17.77], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3422,8 +3355,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-42.44, 89.66, 15.33], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3436,8 +3369,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-314.85, 100.71, 35.26], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3450,8 +3383,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-266.55, 106.87, -27.37], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3464,8 +3397,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-297.08, 102.8, -39.99], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3478,8 +3411,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-283.12, 110.14, -35.16], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3492,8 +3425,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-285.9, 107.9, -41.42], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3534,8 +3467,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-1.08, 103.75, -2.44], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3548,8 +3481,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [1.94, 101.38, -2.38], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3562,8 +3495,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-136.16, 92.11, -101.96], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3576,8 +3509,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-184.9, 89.51, -111.42], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3590,8 +3523,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-307.84, 80.30, -94.60], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3601,8 +3534,8 @@
         "name":"crystalc-fireflies-01",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-309.55, 75.18, -137.95], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3612,8 +3545,8 @@
         "name":"crystalc-fireflies-02",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-345.84, 111.97, -62.97], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3623,8 +3556,8 @@
         "name":"crystalc-fireflies-03",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-303.27, 87.04, -157.72], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3634,8 +3567,8 @@
         "name":"crystalc-fireflies-04",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-145.51, 109.87, -51.44], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3645,8 +3578,8 @@
         "name":"crystalc-fireflies-05",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-86.76, 110.63, -30.10], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3656,8 +3589,8 @@
         "name":"crystalc-fireflies-06",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-130.79, 111.59, 33.29], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3667,8 +3600,8 @@
         "name":"crystalc-fireflies-07",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-219.65, 123.24, 13.21], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3678,8 +3611,8 @@
         "name":"crystalc-fireflies-08",
         "art-name":"group-crystalc-fireflies"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-320.73, 105.82, 7.96], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 1, // associated game task (for powercells, etc)
@@ -3689,7 +3622,7 @@
         "name":"crystalc-fireflies-09",
         "art-name":"group-crystalc-fireflies"
       }
-    },
+    }
     // other particles : fireflies from citadel's sage cages or the muse or green eco-pill
 
     // ###########################################################################
@@ -3722,7 +3655,7 @@
         // 42=lavatube-lava-1
         // 47=villageb-water-1
 
-        {
+        ,{
           "trans": [-96.3990, 88.0923, 4.2067], // translation
           "etype": "water-anim",  // actor type
           "game_task": 0, // associated game task (for powercells, etc)
@@ -3847,8 +3780,8 @@
         "name":"crystalc-ecovent-01",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-322.42, 96.57, -39.25], // translation
       "etype": "ecovent",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3858,8 +3791,8 @@
         "name":"crystalc-ecovent-02",
         "eco-info": ["int32", 1, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-155.52, 81.78, -130.68], // translation
       "etype": "ecovent",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3869,8 +3802,8 @@
         "name":"crystalc-ecovent-03",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -133.91, 101.99, -29.94], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3880,8 +3813,8 @@
         "name":"crystalc-eco-01",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-180.91, 89.52, -1.94], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3892,8 +3825,8 @@
         "orb-cache-count":["int32", 8],
         "vis-dist":  ["meters", 200.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [ -58.79, 55.85, -104.05], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3903,8 +3836,8 @@
         "name":"crystalc-eco-02",
         "eco-info": ["int32", 3, 1] //blue eco blob
       }
-    },
-    {
+    }
+    ,{
       "trans": [-249.18, 99.06, -114.12], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3926,8 +3859,8 @@
         "name":"crystalc-eco-04",
         "eco-info": ["int32", 3, 1] //blue eco blob
       }
-    },
-    {
+    }
+    ,{
       "trans": [0.52, 99.83, -1.37], // translation
       "etype": "warpgate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3936,8 +3869,8 @@
       "lump": {
         "name":"crystalc-warpgate-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [0.08, 102.85, -1.27], // translation
       "etype": "crystalc-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3946,8 +3879,8 @@
       "lump": {
         "name":"crystalc-warpmiddle-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-224.78, 67.51, -114.07], // translation
       "etype": "super-eco-crystal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3958,7 +3891,7 @@
         "eco-type": "'green",
         "respawn-timer": ["int32", 17]
       }
-    },
+    }
     // SUPER ECO CRYSTALS FOR TESTING
     // ,{
     //   "trans": [-126.3, 95.0, -3.5], // translation
@@ -4024,7 +3957,7 @@
     ////////////////////////////
     // CUSTOM ACTORS :
     ////////////////////////////
-    {
+    ,{
       "trans": [-155.65, 87.97, -131.07], // translation
       "etype": "electric-arc",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4039,33 +3972,91 @@
           ],
         "cycle-speed":["float", 5.5, 0.0, 4.0]
       }
-    },
-
-    {
-      "trans": [-301, 95.57, 34.84], // translation
+    }
+    // ,{
+    //   "trans": [-301, 95.57, 34.84], // translation
+    //   "etype": "crc-gondola-old",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0, 0, 0, 1], // quaternion
+    //   "bsphere": [-301, 95.57, 34.84, 10], // bounding sphere
+    //   "lump": {
+    //     "name": "crystalc-gondola-old-01",
+    //     "path":
+    //       ["vector4m",
+    //         [-301.18, 95.14, 37.34, 1.0],
+    //         [-306.14, 98.56, 91.20, 1.0],
+    //         [-311.58, 114.67, 141.55, 1.0],
+    //         [-315.26, 131.73, 176.59, 1.0],
+    //         [-316.79, 151.83, 210.92, 1.0],
+    //         [-302.53, 195.88, 243.14, 1.0],
+    //         [-283.21, 214.57, 285.21, 1.0],
+    //         [-273.74, 212.73, 302.45, 1.0],
+    //         [-264.26, 212.73, 318.91, 1.0]
+    //       ],
+    //     "path-k": ["float", 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 6, 6, 6],
+    //     "scale":["float", 0.9]
+    //   }
+    // }
+    ,{
+      "trans": [-301.177, 95.149, 37.3438], // translation
       "etype": "crc-gondola",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-301, 95.57, 34.84, 10], // bounding sphere
+      "bsphere": [-301.177, 95.149, 37.3438, 10], // bounding sphere
       "lump": {
-        "name": "crystalc-gondola-00",
-        "path":
-          ["vector4m",
-            [-301.18, 95.14, 37.34, 1.0],
-            [-306.14, 98.56, 91.20, 1.0],
-            [-311.58, 114.67, 141.55, 1.0],
-            [-315.26, 131.73, 176.59, 1.0],
-            [-316.79, 151.83, 210.92, 1.0],
-            [-302.53, 195.88, 243.14, 1.0],
-            [-283.21, 214.57, 285.21, 1.0],
-            [-273.74, 212.73, 302.45, 1.0],
-            [-264.26, 212.73, 318.91, 1.0]
-          ],
-        "path-k": ["float", 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 6, 6, 6],
-        "scale":["float", 0.9]
+        "name": "crystalc-crc-gondola-01",
+        "light-index": ["int32", 6]
       }
     }
-
+    // Camera controls:
+    ,{
+      "trans": [-101.18, 92.64, -105.57],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-101.18, 92.64, -105.57, 10],
+      "lump": {
+        "name":"crystalc-tfl-cam-control-01",
+        "vol": ["vector-vol",
+            [-0.942, 0.198, 0.270, 89.562],
+            [-0.498, 0.079, -0.863, 159.481],
+            [0.865, 0.045, -0.499, -25.125],
+            [0.498, 0.079, 0.863, -125.493],
+            [0.000, -1.000, -0.000, -83.793],
+            [0.000, 1.000, -0.000, 97.171]
+          ],
+        "cam-position":["vector3m",[-86.03, 94.65, -117.82]],
+        "move-timer":["float", 1.6],
+        "max-z":["meters", 27],
+        "push-z":["meters", 25],
+        "max-y":["meters", 10],
+        "tilt-adjust":["degrees", 15]
+      }
+    }
+    ,{
+      "trans": [-90.78, 81.98, -90.97],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-90.78, 81.98, -90.97, 10],
+      "lump": {
+        "name":"crystalc-tfl-cam-control-02",
+        "vol": ["vector-vol",
+            [-0.909, 0.235, 0.346, 76.502],
+            [-0.414, 0.386, -0.824, 147.986],
+            [0.846, 0.029, -0.532, -20.037],
+            [0.502, 0.142, 0.853, -103.708],
+            [-0.009, -0.998, 0.064, -76.053],
+            [0.087, 0.995, 0.046, 66.024]
+          ],
+        "cam-position":["vector3m",[-74.61, 83.96, -88.62]],
+        "move-timer":["float", 1.2],
+        "max-z":["meters", 25],
+        "push-z":["meters", 22],
+        "max-y":["meters", 10],
+        "tilt-adjust":["degrees", 6]
+      }
+    }
     // Hints
     ,{
       "trans": [-2.34, 98.96, 11.32], // translation
@@ -4124,7 +4115,7 @@
       "lump": {
         "name": "crystalc-tfl-hint-05-daxSeeGondola",
         "filename": "crystalc-tfl-hint-05-daxSeeGondola.wav",
-        "radius": ["meters", 15.0]
+        "radius": ["meters", 10.0]
       }
     }
     ,{
@@ -4136,7 +4127,7 @@
       "lump": {
         "name": "crystalc-tfl-hint-06-daxUseGondola",
         "filename": "crystalc-tfl-hint-06-daxUseGondola.wav",
-        "radius": ["meters", 6.0]
+        "radius": ["meters", 9.0]
       }
     }
   ],
@@ -4150,8 +4141,8 @@
       "text-id": ["int32", 2561],
       "play-mode": "'notice"
     }
-  },
-  {
+  }
+  ,{
     "trans": [-197.42, 95.98, -60.98, 70.0],
     "bsphere": [-197.42, 95.98, -60.98, 70],
     "lump": {
@@ -4161,8 +4152,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 70.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-86.69, 66.20, -95.54, 70.0],
     "bsphere": [-86.69, 66.20, -95.54, 70],
     "lump": {
@@ -4172,8 +4163,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 70.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-121.41, 82.82, -53.47, 40.0],
     "bsphere": [-121.41, 82.82, -53.47, 40],
     "lump": {
@@ -4183,8 +4174,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 600.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-30.21, 87.33, 19.2, 30.0],
     "bsphere": [-30.21, 87.33, 19.2, 30],
     "lump": {
@@ -4194,8 +4185,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 500.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-238.0, 89.35, 2.85, 60.0],
     "bsphere": [-238.0, 89.35, 2.85, 60],
     "lump": {
@@ -4205,8 +4196,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 7000.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-304.13, 98.35, -17.54, 40.0],
     "bsphere": [-304.13, 98.35, -17.54, 40],
     "lump": {
@@ -4216,8 +4207,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 700.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-156.64, 109.27, -132.41, 35.0],
     "bsphere": [-156.64, 109.27, -132.41, 35],
     "lump": {
@@ -4227,8 +4218,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-255.75, 57.15, -111.56, 60.0],
     "bsphere": [-255.75, 57.15, -111.56, 60],
     "lump": {
@@ -4238,8 +4229,8 @@
       "effect-param": ["float", 11.0, 40.0, 50.0, 150.0],  // ??, ??, ??, Max Radius
       "cycle-speed": ["float", -1.0, 0.0]
     }
-  },
-  {
+  }
+  ,{
     "trans": [-156.64, 102.49, -132.41, 30.0],
     "bsphere": [-156.64, 102.49, -132.41, 30],
     "lump": {

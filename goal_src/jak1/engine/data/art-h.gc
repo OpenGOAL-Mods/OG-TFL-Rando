@@ -313,4 +313,8 @@
 
 (import "goal_src/jak1/engine/data/art-elts.gc")
 
+(import "goal_src/jak1/engine/data/tfl-art-elts.gc")
+
 (import "goal_src/jak1/engine/data/joint-nodes.gc")
+
+(import "goal_src/jak1/engine/data/tfl-joint-nodes.gc")

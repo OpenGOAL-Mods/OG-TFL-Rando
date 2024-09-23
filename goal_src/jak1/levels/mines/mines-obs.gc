@@ -1121,8 +1121,8 @@
         (('drop) (logclear! (-> self mask) (process-mask actor-pause)) (go tfl-drop-plat-drop))
         (('attack) ;; TFL note: moved 'attack to a different case to fix ground cancel and dropping plat while in the air
          (when (logtest? (-> *target* control status) (cshape-moving-flags onsurf))
-          (send-event *target* 'no-look-around (seconds 1))
-          (send-event (ppointer->process (-> self parent)) 'player-stepped (-> self color)))
+           (send-event *target* 'no-look-around (seconds 1))
+           (send-event (ppointer->process (-> self parent)) 'player-stepped (-> self color)))
          #f)
         (('touch)
          (send-event *target* 'no-look-around (seconds 1))
@@ -2318,8 +2318,8 @@
     (behavior ()
       (loop
         (update! (-> self sound))
-        (quaternion-rotate-local-y! (-> self root quat) 
-                                    (-> self root quat) 
+        (quaternion-rotate-local-y! (-> self root quat)
+                                    (-> self root quat)
                                     (* (res-lump-float (-> self entity) 'angle-per-sec :default (degrees -45)) (seconds-per-frame)))
         (suspend)))
   :post rider-post)
@@ -2588,11 +2588,11 @@
   (none))
 
 (deftype mines-bouncer (process-drawable)
-  ((root               collide-shape :override)
-   (shove-up           float)
-   (dist               float)
-   (activate-part      sparticle-launch-control)
-   (launch-pos         vector 2 :inline))
+  ((root          collide-shape :override)
+   (shove-up      float)
+   (dist          float)
+   (activate-part sparticle-launch-control)
+   (launch-pos    vector 2 :inline))
   (:states
    mines-bouncer-idle
    (mines-bouncer-activate uint)))
@@ -2608,8 +2608,7 @@
                   (-> *target* control)
                   (collide-action solid)
                   (collide-action))
-                 
-                 (go mines-bouncer-activate (-> event param 0)))))))
+             (go mines-bouncer-activate (-> event param 0)))))))
   :trans
     (behavior ()
       (restore-collide-with-as (-> self root))
@@ -2627,20 +2626,16 @@
   :code
     (behavior ((arg0 uint))
       (when (!= (-> *target* next-state name) 'target-hit)
-            (sound-play "launch-fire" :vol 150 :pitch 1.4)
-            (let ((s4-0 (new 'stack 'attack-info)))
-                    (calc-shove-up (-> self root) s4-0 (-> self shove-up))
-                    (send-event *target*
-                                'shove
-                                arg0
-                                (static-attack-info 
-                                    ((angle 'up-forward) 
-                                    (vector (-> s4-0 vector)) 
-                                    (shove-up (-> s4-0 shove-up)) 
-                                    (dist (-> self dist))))))
-            (quaternion-rotate-local-x! *particle-quat* (-> self root quat) (degrees 90.0))
-            (suspend-for (seconds 0.75) (spawn (-> self activate-part) (-> self root trans)))
-            (kill-and-free-particles (-> self activate-part)))
+        (sound-play "launch-fire" :vol 150 :pitch 1.4)
+        (let ((s4-0 (new 'stack 'attack-info)))
+          (calc-shove-up (-> self root) s4-0 (-> self shove-up))
+          (send-event *target*
+                      'shove
+                      arg0
+                      (static-attack-info ((angle 'up-forward) (vector (-> s4-0 vector)) (shove-up (-> s4-0 shove-up)) (dist (-> self dist))))))
+        (quaternion-rotate-local-x! *particle-quat* (-> self root quat) (degrees 90.0))
+        (suspend-for (seconds 0.75) (spawn (-> self activate-part) (-> self root trans)))
+        (kill-and-free-particles (-> self activate-part)))
       (go mines-bouncer-idle)))
 
 (defmethod relocate ((this mines-bouncer) (off int))
@@ -2767,9 +2762,6 @@
   ((junglecam-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 80))
 
-(def-art-elt bucket-wheel-ag bucket-wheel-lod0-jg 0)
-(def-art-elt bucket-wheel-ag bucket-wheel-lod0-mg 1)
-(def-art-elt bucket-wheel-ag bucket-wheel-idle-ja 2)
 (defskelgroup *bucket-wheel-sg*
   bucket-wheel
   bucket-wheel-lod0-jg
@@ -2813,17 +2805,17 @@
               (hints? (-> *setting-control* current play-hints)))
           (cond
             ((= task (game-task open-mines-excavator))
-              (process-spawn minescam-bucket
-                                            :init
-                                            pov-camera-init-by-other
-                                            (static-vectorm -443 161 1208)
-                                            *junglecam-sg*
-                                            "tower5"
-                                            5
-                                            #f
-                                            '()
-                                            :to
-                                            self)))
+             (process-spawn minescam-bucket
+                            :init
+                            pov-camera-init-by-other
+                            (static-vectorm -443 161 1208)
+                            *junglecam-sg*
+                            "tower5"
+                            5
+                            #f
+                            '()
+                            :to
+                            self)))
           (suspend-for (seconds 2.0))
           (send-to-all (-> self link) 'break))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
@@ -2874,7 +2866,7 @@
                      #f
                      (-> self cshape trans)
                      :to
-                     *entity-pool*) 
+                     *entity-pool*)
       (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -2888,7 +2880,7 @@
   :event
     (behavior ((proc process) (argc int) (message symbol) (msg event-message-block))
       (case message
-        (('break)(go mines-boulder-break))))
+        (('break) (go mines-boulder-break))))
   :code
     (behavior ()
       (transform-post)
@@ -2914,8 +2906,6 @@
   (setup-lods! (-> this broken-look) *mines-boulder-broken-sg* (-> this draw art-group) (-> this entity))
   (set-vector! (-> this draw color-emissive) 0.125 0.0625 0.0 0.0)
   (cond
-    ((task-complete? *game-info* (-> this entity extra perm task)) 
-      (cleanup-for-death this)
-      (deactivate this))
+    ((task-complete? *game-info* (-> this entity extra perm task)) (cleanup-for-death this) (deactivate this))
     (else (go mines-boulder-idle)))
   (none))

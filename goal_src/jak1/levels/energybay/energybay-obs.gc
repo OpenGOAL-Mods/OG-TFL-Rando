@@ -187,9 +187,7 @@
     (behavior ()
       (loop
         (cond
-          ((task-complete? *game-info* (-> self entity extra perm task))
-           (suspend-for (seconds 8.7))
-           (go enb-turbine-active))
+          ((task-complete? *game-info* (-> self entity extra perm task)) (suspend-for (seconds 8.7)) (go enb-turbine-active))
           (else (suspend)))))
   :post ja-post)
 
@@ -238,9 +236,6 @@
   ((village1cam-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 4))
 
-(def-art-elt turbineblade-ag turbineblade-lod0-jg 0)
-(def-art-elt turbineblade-ag turbineblade-lod0-mg 1)
-(def-art-elt turbineblade-ag turbineblade-idle-ja 2)
 (defskelgroup *turbineblade-sg*
   turbineblade
   turbineblade-lod0-jg

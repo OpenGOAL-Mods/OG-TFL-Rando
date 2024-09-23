@@ -79,7 +79,9 @@
    (default-string-max-z    meters)
    (default-string-min-z    meters)
    (default-string-push-z   meters)
-   (default-tilt-adjust     degrees)))
+   (default-tilt-adjust     degrees)
+   (default-track-speed     meters) ;; TFL note: added control for the camera speed
+   (default-track-accel     meters)))
 
 (define *CAMERA-bank*
   (new 'static
@@ -92,7 +94,9 @@
        :default-string-max-z (meters 12.5)
        :default-string-min-z (meters 5)
        :default-string-push-z (meters 10)
-       :default-tilt-adjust (degrees -6.5000005)))
+       :default-tilt-adjust (degrees -6.5000005)
+       :default-track-speed (meters 0.6) ;; TFL note: added control for the camera speed
+       :default-track-accel (meters 0.005)))
 
 (deftype cam-index (structure)
   ((flags cam-index-options)

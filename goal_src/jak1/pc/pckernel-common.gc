@@ -195,9 +195,9 @@
      (set! (-> *ACTOR-bank* birth-dist) (meters 10000))
      (set! (-> *ACTOR-bank* pause-dist) (meters 10000))
      (set! (-> *ACTOR-bank* birth-max) 1000))
-    ((> (-> *ACTOR-bank* birth-dist) (meters 220)) ;; the original caps at 220m, exceeding that means it was using our hacks
-     (set! (-> *ACTOR-bank* birth-dist) (meters 220))
-     (set! (-> *ACTOR-bank* pause-dist) (meters 220))))
+    ((> (-> *ACTOR-bank* birth-dist) (meters 500)) ;; the original caps at 220m, exceeding that means it was using our hacks
+     (set! (-> *ACTOR-bank* birth-dist) (meters 500)) ;; TFL note: changed all of these from 220
+     (set! (-> *ACTOR-bank* pause-dist) (meters 500))))
   ;; cheats.
   (update-cheats obj)
   ;; music.

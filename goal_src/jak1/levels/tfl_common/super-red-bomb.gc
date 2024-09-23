@@ -81,27 +81,26 @@
 (defstate explode (super-red-bomb)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
-      (case message
-        (('touched)
-         (let ((pdraw (if (and (nonzero? proc) (type-type? (-> proc type) process-drawable)) (the process-drawable proc))))
-           (when pdraw
-             (let* ((proc-root (the collide-shape (-> pdraw root)))
-                    (bomb-core (-> self root root-prim prim-core))
-                    (proc-core (-> proc-root root-prim prim-core))
-                    (probe (new 'stack-no-clear 'vector))
-                    (tri (new 'stack-no-clear 'collide-tri-result)))
-               (vector-! probe (the vector proc-core) (the vector bomb-core))
-               (when (< (fill-and-probe-using-line-sphere *collide-cache*
-                                                          (the vector bomb-core)
-                                                          probe
-                                                          40.96
-                                                          (collide-kind background)
-                                                          self
-                                                          tri
-                                                          (new 'static 'pat-surface :noentity #x1))
-                        0.0)
-                 (if (!= (-> proc type) target) (send-event proc 'attack (-> block param 0) 'explode (1+! *global-attack-id*) 0)))))))))
+    (event (case message
+             (('touched)
+              (let ((pdraw (if (and (nonzero? proc) (type-type? (-> proc type) process-drawable)) (the process-drawable proc))))
+                (when pdraw
+                  (let* ((proc-root (the collide-shape (-> pdraw root)))
+                         (bomb-core (-> self root root-prim prim-core))
+                         (proc-core (-> proc-root root-prim prim-core))
+                         (probe (new 'stack-no-clear 'vector))
+                         (tri (new 'stack-no-clear 'collide-tri-result)))
+                    (vector-! probe (the vector proc-core) (the vector bomb-core))
+                    (when (< (fill-and-probe-using-line-sphere *collide-cache*
+                                                               (the vector bomb-core)
+                                                               probe
+                                                               40.96
+                                                               (collide-kind background)
+                                                               self
+                                                               tri
+                                                               (new 'static 'pat-surface :noentity #x1))
+                             0.0)
+                      (if (!= (-> proc type) target) (send-event proc 'attack (-> block param 0) 'explode (1+! *global-attack-id*) 0)))))))))
   :code
     (behavior ()
       (when *target*

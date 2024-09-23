@@ -1,0 +1,5 @@
+(def-joint-node crc-gondola-lod0-jg "align" 1)
+(def-joint-node crc-gondola-lod0-jg "main" 2)
+(def-joint-node crc-gondola-lod0-jg "axis" 3)
+(def-joint-node crc-gondola-lod0-jg "lever" 4)
+(def-joint-node crc-gondola-lod0-jg "transform" 5)

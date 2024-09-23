@@ -1685,6 +1685,8 @@
 (build-actor "tfl-commentary-node")
 (build-actor "tfl-commentary-node-active")
 (build-actor "bucket-wheel")
+(build-actor "crc-gondola" :gen-mesh #t)
+(build-actor "tfl-lowreskui")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -2162,10 +2164,12 @@
 (goal-src-sequence
  ;; prefix
  "levels/tfl_common/"
- :deps ("$OUT/obj/process-drawable.o")
+ :deps ("$OUT/obj/joint-exploder.o")
  "super-eco-crystal.gc"
  "tfl-hint-data.gc"
  "tfl-hint.gc"
+ "tfl-cam-control.gc"
+ "tfl-lowreskui.gc"
  )
 
 (goal-src-sequence

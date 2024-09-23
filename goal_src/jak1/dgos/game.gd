@@ -282,6 +282,7 @@
   "pov-camera.o"
   "tfl-dev-commentary-data.o" ;; TFL note: added
   "tfl-dev-commentary.o" ;; TFL note: added
+  "tfl-cam-control.o" ;; TFL note: added
   "powerups.o"
   "crates.o"
   "hud.o"
@@ -383,4 +384,6 @@
   "tfl-nav-mesh.o"
   "tfl-commentary-node-ag.go"
   "tfl-commentary-node-active-ag.go"
+  "tfl-lowreskui.o"
+  "tfl-lowreskui-ag.go"
  ))

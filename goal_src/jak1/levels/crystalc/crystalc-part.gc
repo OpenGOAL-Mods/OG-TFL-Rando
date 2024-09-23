@@ -375,8 +375,8 @@
 (defpart 3014
   :init-specs
   ((:texture (new 'static 'texture-id :index #x18 :page #x2))
-   (:num 5.5) ;; Particles quantity
-   (:x (meters -3.25) (meters 7.5) 1.0) ;; (Start pos) (start lenght)
+   (:num 7.0) ;; Particles quantity
+   (:x (meters -4.25) (meters 8.5) 1.0) ;; (Start pos) (start lenght)
    (:y (meters 1)) ;; Start height
    (:z (meters -3.25) (meters 3) 1.0) ;; (Start pos) (start lenght)
    (:scale-x (meters 2.4) (meters 1.6) 1.0) ;; X Scaling of the particle texture
@@ -385,11 +385,11 @@
    (:g 152.0) ;; Green lighting (64.0 to 192.0)
    (:b 130.0) ;; Blue lighting (64.0 to 192.0)
    (:a 45.0 16.0 1.0) ;; Alpha ?? multiplier
-   (:vel-x (meters 0.015) (meters 0.01) 1.0) ;; Starting velocity X
+   (:vel-x (meters 0.008) (meters 0.01) 1.0) ;; Starting velocity X
    (:vel-y (meters -0.05) (meters 0.01) 1.0) ;; Starting velocity Y
-   (:vel-z (meters 0.035) (meters 0.01) 1.0) ;; Starting velocity Z
-   (:scalevel-x (meters 0.01)) ;; Scale while falling X
-   (:scalevel-y (meters 0.035)) ;; Scale while falling Y
+   (:vel-z (meters 0.020) (meters 0.01) 1.0) ;; Starting velocity Z
+   (:scalevel-x (meters 0.008)) ;; Scale while falling X
+   (:scalevel-y (meters 0.015)) ;; Scale while falling Y
    (:accel-x 6.00) ;; Acceleration X (forward)
    (:accel-y -10.018667 -2.7306666 1.0) ;; Acceleration Y (falling)
    (:accel-z 9.00) ;; Acceleration Z (forward)
@@ -407,8 +407,8 @@
 (defpart 3015
   :init-specs
   ((:texture (new 'static 'texture-id :index #x18 :page #x2))
-   (:num 5.5) ;; Particles quantity
-   (:x (meters -10) (meters 7.5) 1.0) ;; (Start pos) (start lenght)
+   (:num 7.0) ;; Particles quantity
+   (:x (meters -11) (meters 9.0) 1.0) ;; (Start pos) (start lenght)
    (:y (meters 1)) ;; Start height
    (:z (meters 2.5) (meters 3) 1.0) ;; (Start pos) (start lenght)
    (:scale-x (meters 2.4) (meters 1.6) 1.0) ;; X Scaling of the particle texture
@@ -417,11 +417,11 @@
    (:g 152.0) ;; Green lighting (64.0 to 192.0)
    (:b 130.0) ;; Blue lighting (64.0 to 192.0)
    (:a 45.0 16.0 1.0) ;; Alpha ?? multiplier
-   (:vel-x (meters 0.015) (meters 0.01) 1.0) ;; Starting velocity X
+   (:vel-x (meters 0.008) (meters 0.01) 1.0) ;; Starting velocity X
    (:vel-y (meters -0.05) (meters 0.01) 1.0) ;; Starting velocity Y
-   (:vel-z (meters 0.035) (meters 0.01) 1.0) ;; Starting velocity Z
-   (:scalevel-x (meters 0.01)) ;; Scale while falling X
-   (:scalevel-y (meters 0.035)) ;; Scale while falling Y
+   (:vel-z (meters 0.020) (meters 0.01) 1.0) ;; Starting velocity Z
+   (:scalevel-x (meters 0.008)) ;; Scale while falling X
+   (:scalevel-y (meters 0.015)) ;; Scale while falling Y
    (:accel-x 6.00) ;; Acceleration X (forward)
    (:accel-y -10.018667 -2.7306666 1.0) ;; Acceleration Y (falling)
    (:accel-z 9.00) ;; Acceleration Z (forward)
@@ -436,8 +436,8 @@
 (defpart 3016
   :init-specs
   ((:texture (new 'static 'texture-id :index #x18 :page #x2))
-   (:num 6.0) ;; Particles quantity
-   (:x (meters 4) (meters 8) 1.0) ;; (Start pos) (start lenght)
+   (:num 7.0) ;; Particles quantity
+   (:x (meters 3.5) (meters 8.5) 1.0) ;; (Start pos) (start lenght)
    (:y (meters 1)) ;; Start height
    (:z (meters -9) (meters 6) 1.0) ;; (Start pos) (start lenght)
    (:scale-x (meters 2.4) (meters 1.6) 1.0) ;; X Scaling of the particle texture
@@ -446,11 +446,11 @@
    (:g 152.0) ;; Green lighting (64.0 to 192.0)
    (:b 130.0) ;; Blue lighting (64.0 to 192.0)
    (:a 45.0 16.0 1.0) ;; Alpha ?? multiplier
-   (:vel-x (meters 0.015) (meters 0.01) 1.0) ;; Starting velocity X
+   (:vel-x (meters 0.008) (meters 0.01) 1.0) ;; Starting velocity X
    (:vel-y (meters -0.05) (meters 0.01) 1.0) ;; Starting velocity Y
-   (:vel-z (meters 0.035) (meters 0.01) 1.0) ;; Starting velocity Z
-   (:scalevel-x (meters 0.01)) ;; Scale while falling X
-   (:scalevel-y (meters 0.035)) ;; Scale while falling Y
+   (:vel-z (meters 0.020) (meters 0.01) 1.0) ;; Starting velocity Z
+   (:scalevel-x (meters 0.008)) ;; Scale while falling X
+   (:scalevel-y (meters 0.015)) ;; Scale while falling Y
    (:accel-x 6.00) ;; Acceleration X (forward)
    (:accel-y -10.018667 -2.7306666 1.0) ;; Acceleration Y (falling)
    (:accel-z 9.00) ;; Acceleration Z (forward)

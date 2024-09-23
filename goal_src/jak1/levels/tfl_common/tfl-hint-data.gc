@@ -74,7 +74,7 @@ examples:
        (static-hint-data :file-name "crystalc-tfl-hint-05-daxSeeGondola.wav"
                          :text-id (text-id crystalc-tfl-hint-05-daxSeeGondola)
                          :task (game-task crystalc-gondola)
-                         :task-status (task-status need-hint)
+                         :task-status (task-status need-reminder)
                          :force-playback? #t)
        (static-hint-data :file-name "crystalc-tfl-hint-06-daxUseGondola.wav"
                          :text-id (text-id crystalc-tfl-hint-06-daxUseGondola)
