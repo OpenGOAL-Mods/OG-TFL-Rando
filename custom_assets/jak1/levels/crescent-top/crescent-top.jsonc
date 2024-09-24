@@ -157,6 +157,30 @@
         "nav-mesh-actor": "crescent-babak-001"
       }
     }
+    ,{
+      "trans": [-284.25, 198.61, 808.17],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-284.25, 198.61, 808.17, 10],
+      "lump": {
+        "name":"crescent-babak-004",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-276.87, 198.86, 827.30],
+            [-285.39, 198.64, 811.75],
+            [-280.57, 198.61, 797.14],
+            [-293.32, 198.67, 789.18]
+          ],
+        "custom-nav": ["symbol", "crescent-babak1"],
+        "nav-mesh-sphere": ["vector4m",
+            [-287.12, 199.16, 799.66, 2.94]
+          ]
+      }
+    }
     // CELLS
     ,{
       "trans": [-129.08, 257.71, 487.94], // translation
