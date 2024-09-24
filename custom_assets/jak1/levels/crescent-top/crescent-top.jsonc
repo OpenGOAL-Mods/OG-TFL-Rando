@@ -112,9 +112,19 @@
         "eco-info": ["int32", 6, 122],
         "movie-pos":["vector4m", [75.06, 327.11, 364.88, -45.0]]
       }
-    },
+    }
+    ,{
+      "trans": [-272.66, 261.73, 663.21],
+      "etype": "tfl-lowreskui",
+      "game_task": 0,
+      "quat" : [-0.000, -0.747, -0.000, -0.665],
+      "bsphere": [-272.66, 261.73, 663.21, 10],
+      "lump": {
+        "name":"crescent-tfl-lowreskui-001"
+      }
+    }
     // SCOUT FLIES
-    {
+    ,{
       "trans": [-204.09, 247.81, 475.45], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -2593,16 +2603,22 @@
       }
     },
     {
-      "trans": [-217.83, 231.88, 689.29], // translation
+      "trans": [-219.20, 231.07, 689.61], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-217.83, 231.88, 689.29, 10], // bounding sphere
+      "bsphere": [-219.20, 231.07, 689.61, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-11",
-        "path":["vector4m",
-          [-217.83, 231.88, 689.29, 1.0],
-          [-234.07, 241.47, 670.68, 1.0]
+        "path": ["vector3m",
+            [-219.20, 231.07, 689.61],
+            [-221.51, 231.07, 687.09],
+            [-228.15, 236.27, 679.15],
+            [-231.80, 241.47, 671.60]
+          ],
+        "path-k":["float", 
+            0.0, 0.0, 0.0, 0.0,
+            1.0, 1.0, 1.0, 1.0
           ],
         "sync": ["float", 6.0, 0.0]
         ,"scale":["float", 1.5]
@@ -2647,9 +2663,15 @@
       "bsphere": [-180.14, 258.67, 642.84, 10], // bounding sphere
       "lump": {
         "name":"crescent-plat-14",
-        "path":["vector4m",
-          [-180.14, 258.67, 642.84, 1.0],
-          [-165.72, 272.38, 646.72, 1.0]
+        "path": ["vector3m",
+            [-182.42, 257.82, 642.22],
+            [-179.33, 259.17, 643.04],
+            [-171.33, 264.09, 645.21],
+            [-165.72, 272.38, 646.72]
+          ],
+        "path-k":["float", 
+            0.0, 0.0, 0.0, 0.0,
+            1.0, 1.0, 1.0, 1.0
           ],
         "sync": ["float", 6.0, 0.0]
       }
@@ -5627,6 +5649,57 @@
         "name":"crescent-orb-cache-top-04",
         "orb-cache-count":["int32", 5],
         "light-index":["int32",1]
+      }
+    }
+    // Camera control
+    ,{
+      "trans": [-205.16, 228.62, 703.91],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-205.16, 228.62, 703.91, 10],
+      "lump": {
+        "name":"crescent-tlf-cam-control-001",
+        "vol": ["vector-vol",
+            [-0.680, 0.000, 0.733, 659.353],
+            [-0.733, 0.000, -0.680, -315.130],
+            [0.680, 0.000, -0.733, -651.264],
+            [0.733, 0.000, 0.680, 317.958],
+            [0.000, -1.000, -0.000, -234.852],
+            [0.000, 1.000, -0.000, 237.716]
+          ],
+        "cam-position":["vector3m",[-220.22, 242.3, 710.63]],
+        "move-timer":["float", 1.2],
+        "max-z":["meters", 24],
+        "push-z":["meters", 20],
+        "max-y":["meters", 10],
+        "min-y":["meters", -2],
+        "tilt-adjust":["degrees", 6]
+      }
+    }
+    ,{
+      "trans": [-204.28, 272.30, 634.69],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-204.28, 272.30, 634.69, 10],
+      "lump": {
+        "name":"crescent-tlf-cam-control-002",
+        "vol": ["vector-vol",
+            [-0.924, 0.250, -0.289, 74.002],
+            [0.298, 0.000, -0.954, -662.861],
+            [0.954, 0.000, 0.298, 3.589],
+            [-0.298, 0.000, 0.954, 670.015],
+            [0.302, -0.949, 0.094, -255.195],
+            [0.000, 1.000, -0.000, 276.116]
+          ],
+        "cam-position":["vector3m",[-211.08, 279.4, 632.32]],
+        "move-timer":["float", 1.5],
+        "max-z":["meters", 10],
+        "push-z":["meters", 10],
+        "max-y":["meters", 10],
+        "min-y":["meters", 0],
+        "tilt-adjust":["degrees", 3]
       }
     }
     // Hints
