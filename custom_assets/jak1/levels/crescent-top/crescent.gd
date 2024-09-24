@@ -34,6 +34,7 @@
   "mayorgears-ag.go"
   "observatory-ring-ag.go"
   "observatory-lens-ag.go"
+  "babak-ag.go"
   "crescent-top.go"
     )
   )
