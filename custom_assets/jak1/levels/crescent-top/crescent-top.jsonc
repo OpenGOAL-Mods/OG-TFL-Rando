@@ -181,6 +181,27 @@
           ]
       }
     }
+    ,{
+      "trans": [-46.49, 212.79, 468.98],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-46.49, 212.79, 468.98, 10],
+      "lump": {
+        "name":"crescent-babak-005",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-53.72, 213.56, 466.60],
+            [-46.49, 212.79, 468.98],
+            [-38.35, 212.80, 468.25],
+            [-35.67, 212.48, 469.97]
+          ],
+        "custom-nav": ["symbol", "crescent-babak3"]
+      }
+    }
     // CELLS
     ,{
       "trans": [-129.08, 257.71, 487.94], // translation
