@@ -31,7 +31,6 @@
   "cavecrusher-ag.go"
   "caveelevator-ag.go"
   "mayorgears-ag.go"
-  "babak-ag.go"
   "bonelurker-ag.go"
   "trainingcam-ag.go"
   "dark-crystal-ag.go"

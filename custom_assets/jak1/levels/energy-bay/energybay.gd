@@ -22,8 +22,6 @@
   "race-ring-ag.go"
   "lurkerworm.o"
   "lurkerworm-ag.go"
-  "lurkerpuppy.o"
-  "lurkerpuppy-ag.go"
   "bully.o"
   "bully-ag.go"
   "sharkey-ag.go"
