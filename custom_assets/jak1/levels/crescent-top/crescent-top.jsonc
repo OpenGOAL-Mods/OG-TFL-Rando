@@ -202,6 +202,157 @@
         "custom-nav": ["symbol", "crescent-babak3"]
       }
     }
+    ,{
+      "trans": [228.46, 236.23, 373.76],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [228.46, 236.23, 373.76, 10],
+      "lump": {
+        "name":"crescent-babak-006",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [227.68, 237.43, 379.42],
+            [225.47, 236.02, 373.27],
+            [228.36, 234.91, 367.55],
+            [231.26, 236.35, 373.76]
+          ],
+        "custom-nav": ["symbol", "crescent-babak4"]
+      }
+    }
+    ,{
+      "trans": [61.27, 184.54, 369.07],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [61.27, 184.54, 369.07, 10],
+      "lump": {
+        "name":"crescent-babak-007",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [54.93, 184.49, 382.44],
+            [56.52, 184.53, 373.11],
+            [61.07, 184.51, 367.87],
+            [68.14, 184.42, 366.73],
+            [74.34, 184.42, 371.08],
+            [76.25, 184.63, 381.90]
+          ],
+        "custom-nav": ["symbol", "crescent-babak5"],
+        "nav-mesh-sphere": ["vector4m",
+            [102.51, 189.25, 440.80, 6.59],
+            [101.39, 189.25, 435.82, 5.18],
+            [117.58, 191.72, 412.42, 3.50],
+            [65.93, 185.43, 376.24, 6.31],
+            [85.93, 184.82, 374.49, 7.22],
+            [70.28, 185.89, 407.36, 4.67],
+            [93.67, 187.67, 407.36, 4.67]
+          ],
+        "light-index": ["int32", 1]
+      }
+    }
+    ,{
+      "trans": [126.12, 194.88, 430.36],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [126.12, 194.88, 430.36, 10],
+      "lump": {
+        "name":"crescent-babak-008",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [129.40, 195.13, 416.13],
+            [120.10, 192.73, 437.74],
+            [135.81, 196.88, 428.10],
+            [134.18, 196.40, 420.91],
+            [117.37, 191.06, 423.24],
+            [133.87, 196.69, 432.58]
+          ],
+        "nav-mesh-actor":"crescent-babak-007",
+        "light-index": ["int32", 1]
+      }
+    }
+    ,{
+      "trans": [217.13, 208.41, 426.82],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [217.13, 208.41, 426.82, 10],
+      "lump": {
+        "name":"crescent-babak-009",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [195.74, 206.82, 422.56],
+            [207.70, 207.57, 421.28],
+            [222.11, 208.74, 426.19],
+            [232.77, 210.13, 436.79]
+          ],
+        "custom-nav": ["symbol", "crescent-babak6"],
+        "nav-mesh-sphere": ["vector4m",
+            [260.78, 225.77, 474.18, 9.83],
+            [288.94, 233.32, 461.62, 9.83],
+            [292.63, 244.65, 500.31, 10.72],
+            [166.71, 207.00, 430.93, 7.62],
+            [168.35, 207.00, 447.49, 12.37],
+            [149.03, 207.00, 437.11, 12.37],
+            [148.95, 204.62, 406.34, 14.44],
+            [259.89, 221.83, 466.00, 3.87]
+          ]
+      }
+    }
+    ,{
+      "trans": [251.15, 215.51, 458.85],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [251.15, 215.51, 458.85, 10],
+      "lump": {
+        "name":"crescent-babak-010",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "nav-mesh-actor":"crescent-babak-009",
+        "path": ["vector3m",
+            [247.64, 214.94, 459.98],
+            [259.26, 217.21, 456.04],
+            [267.41, 221.25, 460.97],
+            [273.50, 225.55, 469.30]
+          ]
+      }
+    }
+    ,{
+      "trans": [282.61, 230.18, 473.80],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [282.61, 230.18, 473.80, 10],
+      "lump": {
+        "name":"crescent-babak-011",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "nav-mesh-actor":"crescent-babak-009",
+        "path": ["vector3m",
+            [276.71, 224.18, 459.05],
+            [279.06, 227.64, 469.18],
+            [286.60, 231.99, 474.78],
+            [300.23, 236.84, 472.49]
+          ]
+      }
+    }
     // CELLS
     ,{
       "trans": [-129.08, 257.71, 487.94], // translation
@@ -2211,7 +2362,8 @@
       "lump": {
         "name":"crescent-crate-wood-28",
         "crate-type":"'wood",
-        "light-index":["int32", 1]
+        "light-index":["int32", 1],
+        "nav-mesh-actor":"crescent-babak-007"
       }
     },
     {
@@ -2223,7 +2375,8 @@
       "lump": {
         "name":"crescent-crate-wood-29",
         "crate-type":"'wood",
-        "light-index":["int32", 1]
+        "light-index":["int32", 1],
+        "nav-mesh-actor":"crescent-babak-007"
       }
     },
     {
@@ -2951,7 +3104,8 @@
           ],
         "sync": ["float", 6.0, 0.0],
         "notice-dist":["meters", 2.5],
-        "light-index":["int32", 1]
+        "light-index":["int32", 1],
+        "nav-mesh-actor":"crescent-babak-007"
       }
     },
     {
