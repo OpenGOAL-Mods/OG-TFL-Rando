@@ -6,6 +6,7 @@
 
 #include "Entity.h"
 #include "FileInfo.h"
+#include "SkyData.h"
 #include "ambient.h"
 
 #include "common/common_types.h"
@@ -135,6 +136,6 @@ struct LevelFile {
 
   //  (unk-data-8             uint32                        55 :offset-assert 180)
 
-  std::vector<u8> save_object_file() const;
+  std::vector<u8> save_object_file(const std::string& sky_name = "none") const;
 };
 }  // namespace jak1

@@ -71,7 +71,17 @@ size_t generate_u32_array(const std::vector<u32>& array, DataObjectGenerator& ge
   return result;
 }
 
-std::vector<u8> LevelFile::save_object_file() const {
+size_t generate_adgif_shader_array(const std::vector<u32>& data, DataObjectGenerator& gen) {
+  gen.align_to_basic();
+  gen.add_type_tag("adgif-shader-array");
+  size_t result = gen.current_offset_bytes();
+  for (auto& word : data) {
+    gen.add_word(word);
+  }
+  return result;
+}
+
+std::vector<u8> LevelFile::save_object_file(const std::string& sky_name) const {
   DataObjectGenerator gen;
   gen.add_type_tag("bsp-header");
 
@@ -117,6 +127,10 @@ std::vector<u8> LevelFile::save_object_file() const {
   //(unk-data-4             float                            :offset-assert 160)
   //(unk-data-5             float                            :offset-assert 164)
   //(adgifs                 adgif-shader-array               :offset-assert 168)
+  if (sky_name != "none") {
+    gen.link_word_to_byte(168 / 4,
+                          generate_adgif_shader_array(get_adgifs_by_level_name(sky_name), gen));
+  }
   //(actor-birth-order      (pointer uint32)                 :offset-assert 172)
   gen.link_word_to_byte(172 / 4, generate_u32_array(actor_birth_order, gen));
   //(split-box-indices      (pointer uint16)                 :offset-assert 176)

@@ -83,6 +83,26 @@
     // "zoomerhud-main-03knob"
   ],
 
+  // Which sky to use for your custom level. This needs to be the name of a vanilla level with sky textures.
+  // Your level's mood update needs to be set up to copy the sky texture (update-mood-default already handles this as an example).
+  // You also need to add a specific tpage to your level .gd depending on the level you chose:
+  // training:   tpage-1308.go
+  // village1:   tpage-401.go
+  // beach:      tpage-215.go
+  // jungle:     tpage-388.go
+  // misty:      tpage-520.go
+  // firecanyon: tpage-1123.go
+  // village2:   tpage-921.go
+  // rolling:    tpage-925.go
+  // sunkenb:    tpage-162.go
+  // swamp:      tpage-630.go
+  // ogre:       tpage-1117.go
+  // village3:   tpage-1194.go
+  // snow:       tpage-712.go
+  // finalboss:  tpage-1418.go
+
+  // "sky": "village1",
+
   // Ambients you want to use in your custom level. Ambients can be used for various things like changing the music variation (flava),
   // adding ambient sounds, level name hints, etc.
   "ambients": [

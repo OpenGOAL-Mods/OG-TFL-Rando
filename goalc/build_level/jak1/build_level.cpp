@@ -17,7 +17,7 @@ bool run_build_level(const std::string& input_file,
                      const std::string& output_prefix) {
   auto level_json = parse_commented_json(
       file_util::read_text_file(file_util::get_file_path({input_file})), input_file);
-  LevelFile file;                   // GOAL level file
+  LevelFile file{};                 // GOAL level file
   tfrag3::Level pc_level;           // PC level file
   gltf_util::TexturePool tex_pool;  // pc level texture pool
 
@@ -95,7 +95,8 @@ bool run_build_level(const std::string& input_file,
   }
 
   // Save the GOAL level
-  auto result = file.save_object_file();
+  auto sky_name = level_json.value("sky", "none");
+  auto result = file.save_object_file(sky_name);
   lg::print("Level bsp file size {} bytes\n", result.size());
   auto save_path = file_util::get_jak_project_dir() / bsp_output_file;
   file_util::create_dir_if_needed_for_file(save_path);
