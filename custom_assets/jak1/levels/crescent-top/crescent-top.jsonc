@@ -41,7 +41,8 @@
     "towertop-ag",
     "mayorgears-ag",
     "babak-ag",
-    "lurkerpuppy-ag"
+    "lurkerpuppy-ag",
+    "junglesnake-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
@@ -571,6 +572,50 @@
             [104.83, 268.37, 390.43]
           ],
         "custom-nav": ["symbol", "crescent-lurkerpuppy3"]
+      }
+    }
+    ,{
+      "trans": [198.79, 231.70, 317.90],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [198.79, 231.70, 317.90, 10],
+      "lump": {
+        "name":"crescent-junglesnake-001",
+        "scale":["float", 0.7]
+      }
+    }
+    ,{
+      "trans": [-37.61, 208.07, 514.26],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-37.61, 208.07, 514.26, 10],
+      "lump": {
+        "name":"crescent-junglesnake-002",
+        "scale":["float", 0.7]
+      }
+    }
+    ,{
+      "trans": [-64.90, 231.08, 326.68],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-64.90, 231.08, 326.68, 10],
+      "lump": {
+        "name":"crescent-junglesnake-003",
+        "scale":["float", 0.7]
+      }
+    }
+    ,{
+      "trans": [-111.08, 231.08, 325.59],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-111.08, 231.08, 325.59, 10],
+      "lump": {
+        "name":"crescent-junglesnake-004",
+        "scale":["float", 0.9]
       }
     }
     // CELLS

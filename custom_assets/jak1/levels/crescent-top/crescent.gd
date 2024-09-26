@@ -17,6 +17,7 @@
   "crescent-obs.o"
   "crescent-part.o"
   "bouncer.o" ; springbox
+  "junglesnake.o"
   "wall-plat.o" ; moving in and out of the wall
   "lurkerpuppy.o"
   "plat-ag.go"
@@ -37,6 +38,7 @@
   "observatory-lens-ag.go"
   "babak-ag.go"
   "lurkerpuppy-ag.go"
+  "junglesnake-ag.go"
   "crescent-top.go"
     )
   )
