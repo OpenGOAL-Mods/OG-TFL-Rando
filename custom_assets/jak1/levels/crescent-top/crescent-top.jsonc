@@ -3536,40 +3536,43 @@
     // RACE RINGS
     {
       "trans": [-118.49, 239.84, 362.23], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0.000, -0.594, 0.000, 0.804], // quaternion
       "bsphere": [-118.49, 239.84, 362.23, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-01-start",
         "timeout":["float", 0.0],
+        "rot-y":["degrees", 17.10],
         "next-actor":"crescent-race-ring-02",
         "alt-task":["int32", 0] // Only appear when that task is complete
       }
     },
     {
       "trans": [-148.08, 244.20, 378.60], // translation -148.68, 244.2, 378.6
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0.000, 0.184, -0.000, 0.983], // quaternion 0, -0.184, 0, 0.963
       "bsphere": [-148.08, 244.20, 378.60, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-02",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 68.84],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-03",
         "prev-actor":"crescent-race-ring-01-start"
       }
     },
     {
-      "trans": [-143.11, 228.08, 443.13], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [-147.36, 228.08, 440.1], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.380, 0, 0.925], // quaternion
-      "bsphere": [-143.11, 228.08, 443.13, 10], // bounding sphere
+      "bsphere": [-147.36, 228.08, 440.1, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-03",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 21.36],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-04",
         "prev-actor":"crescent-race-ring-02"
@@ -3577,13 +3580,14 @@
     },
     {
       "trans": [-193.87, 225.72, 452.61], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.731, 0, 0.682], // quaternion
       "bsphere": [-193.87, 225.72, 452.61, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-04",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 6.78],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-05",
         "prev-actor":"crescent-race-ring-03"
@@ -3591,13 +3595,14 @@
     },
     {
       "trans": [-240.71, 219.57, 493.46], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.197, 0, 0.980], // quaternion
       "bsphere": [-240.71, 219.57, 493.46, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-05",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 67.29],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-06",
         "prev-actor":"crescent-race-ring-04"
@@ -3605,13 +3610,14 @@
     },
     {
       "trans": [-250.26, 223.60, 555.88], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.250, 0, 0.968], // quaternion
       "bsphere": [-250.26, 223.60, 555.88, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-06",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 119.01],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-07",
         "prev-actor":"crescent-race-ring-05"
@@ -3619,27 +3625,29 @@
     },
     {
       "trans": [-204.10, 207.44, 615.05], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.096, 0, 0.995], // quaternion
       "bsphere": [-204.10, 207.44, 615.05, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-07",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 79.01],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-08",
         "prev-actor":"crescent-race-ring-06"
       }
     },
     {
-      "trans": [-236.79, 204.33, 680.59], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [-240.89, 204.33, 683.47], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.333, 0, 0.943], // quaternion
-      "bsphere": [-236.79, 204.33, 680.59, 10], // bounding sphere
+      "bsphere": [-240.89, 204.33, 683.47, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-08",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 38.15],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-09",
         "prev-actor":"crescent-race-ring-07"
@@ -3647,13 +3655,14 @@
     },
     {
       "trans": [-292.91, 203.95, 719.02], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.118, 0, 0.993], // quaternion
       "bsphere": [-292.91, 203.95, 719.02, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-09",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 103.57],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-10",
         "prev-actor":"crescent-race-ring-08"
@@ -3661,13 +3670,14 @@
     },
     {
       "trans": [-237.10, 204.35, 811.13], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.177, 0, 0.886], // quaternion
       "bsphere": [-237.10, 204.35, 811.13, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-10",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 67.34],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-11",
         "prev-actor":"crescent-race-ring-09"
@@ -3675,27 +3685,29 @@
     },
     {
       "trans": [-272.77, 204.10, 811.33], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.903, 0, -0.017], // quaternion
       "bsphere": [-272.77, 204.10, 811.33, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-11",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 267.88],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-12",
         "prev-actor":"crescent-race-ring-10"
       }
     },
     {
-      "trans": [-251.84, 204.81, 730.28], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [-261.75, 204.81, 741.92], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.901, 0, -0.060], // quaternion
-      "bsphere": [-251.84, 204.81, 730.28, 10], // bounding sphere
+      "bsphere": [-261.75, 204.81, 741.92, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-12",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 255.76],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-13",
         "prev-actor":"crescent-race-ring-11"
@@ -3703,13 +3715,14 @@
     },
     {
       "trans": [-232.98, 234.18, 629.38], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.852, 0, -0.299], // quaternion
       "bsphere": [-232.98, 234.18, 629.38, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-13",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 243.18],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-14",
         "prev-actor":"crescent-race-ring-12"
@@ -3717,13 +3730,14 @@
     },
     {
       "trans": [-181.25, 221.20, 493.90], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.852, 0, -0.299], // quaternion
       "bsphere": [-181.25, 221.20, 493.90, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-14",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 231.28],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-15",
         "prev-actor":"crescent-race-ring-13"
@@ -3731,13 +3745,14 @@
     },
     {
       "trans": [-143.64, 230.29, 424.80], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.901, 0, -0.068], // quaternion
       "bsphere": [-143.64, 230.29, 424.80, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-15",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 261.31],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-16",
         "prev-actor":"crescent-race-ring-14"
@@ -3745,13 +3760,14 @@
     },
     {
       "trans": [-129.71, 235.32, 325.13], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.819, 0, -0.381], // quaternion
       "bsphere": [-129.71, 235.32, 325.13, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-16",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 220.15],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-17",
         "prev-actor":"crescent-race-ring-15"
@@ -3759,69 +3775,74 @@
     },
     {
       "trans": [-51.50, 245.61, 279.58], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.725, 0, -0.539], // quaternion
       "bsphere": [-51.50, 245.61, 279.58, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-17",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 206.07],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-18",
         "prev-actor":"crescent-race-ring-16"
       }
     },
     {
-      "trans": [5.14, 254.19, 252.62], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [11.37, 254.19, 248.31], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.729, 0, -0.533], // quaternion
-      "bsphere": [5.14, 254.19, 252.62, 10], // bounding sphere
+      "bsphere": [11.37, 254.19, 248.31, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-18",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 193.2],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-19",
         "prev-actor":"crescent-race-ring-17"
       }
     },
     {
-      "trans": [86.91, 200.27, 236.96], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [95.05, 199.69, 235.39], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.624, 0, -0.653], // quaternion
-      "bsphere": [86.91, 200.27, 236.96, 10], // bounding sphere
+      "bsphere": [95.05, 199.69, 235.39, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-19",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 182.38],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-20",
         "prev-actor":"crescent-race-ring-18"
       }
     },
     {
-      "trans": [238.90, 241.32, 303.76], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [238.9, 240.74, 303.76], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.057, 0, -0.901], // quaternion
-      "bsphere": [238.90, 241.32, 303.76, 10], // bounding sphere
+      "bsphere": [238.9, 240.74, 303.76, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-20",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 88.93],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-21",
         "prev-actor":"crescent-race-ring-19"
       }
     },
     {
-      "trans": [225.55, 257.46, 423.31], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [226.2, 257.46, 423.62], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.197, 0, -0.882], // quaternion
-      "bsphere": [225.55, 257.46, 423.31, 10], // bounding sphere
+      "bsphere": [226.2, 257.46, 423.62, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-21",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 64.86],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-22",
         "prev-actor":"crescent-race-ring-20"
@@ -3829,13 +3850,14 @@
     },
     {
       "trans": [159.80, 245.06, 464.04], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.797, 0, -0.425], // quaternion
       "bsphere": [159.80, 245.06, 464.04, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-22",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", -33.92],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-23",
         "prev-actor":"crescent-race-ring-21"
@@ -3843,13 +3865,14 @@
     },
     {
       "trans": [98.67, 235.93, 401.43], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.885, 0, -0.181], // quaternion
       "bsphere": [98.67, 235.93, 401.43, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-23",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", -66.94],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-24",
         "prev-actor":"crescent-race-ring-22"
@@ -3857,41 +3880,44 @@
     },
     {
       "trans": [63.55, 245.04, 347.81], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, -0.443, 0, 0.787], // quaternion
       "bsphere": [63.55, 245.04, 347.81, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-24",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", -25.46],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-25",
         "prev-actor":"crescent-race-ring-23"
       }
     },
     {
-      "trans": [32.87, 261.62, 303.70], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [44.14, 264.04, 299.2], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.815, 0, 0.390], // quaternion
-      "bsphere": [32.87, 261.62, 303.70, 10], // bounding sphere
+      "bsphere": [44.14, 264.04, 299.2, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-25",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 189.2],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-26",
         "prev-actor":"crescent-race-ring-24"
       }
     },
     {
-      "trans": [134.08, 287.12, 316.47], // translation
-      "etype": "race-ring",  // actor type
+      "trans": [144.57, 287.11, 320.37], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.516, 0, 0.741], // quaternion
-      "bsphere": [134.08, 287.12, 316.47, 10], // bounding sphere
+      "bsphere": [144.57, 287.11, 320.37, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-26",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 159.65],
         "alt-actor":"crescent-race-ring-01-start",
         "next-actor":"crescent-race-ring-27",
         "prev-actor":"crescent-race-ring-25"
@@ -3899,13 +3925,14 @@
     },
     {
       "trans": [207.57, 273.07, 341.89], // translation
-      "etype": "race-ring",  // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat" : [0, 0.424, 0, 0.798], // quaternion
       "bsphere": [207.57, 273.07, 341.89, 10], // bounding sphere
       "lump": {
         "name":"crescent-race-ring-27",
         "timeout":["float", 8.0],
+        "rot-y":["degrees", 145.96],
         "movie-pos":["vector4m", [209.91, 249.08, 373.25, 60.0]],
         "alt-actor":"crescent-race-ring-01-start",
         "prev-actor":"crescent-race-ring-26",
