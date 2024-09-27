@@ -630,8 +630,8 @@
         "eco-info": ["int32", 6, 125],
         "movie-pos":["vector4m", [-129.08, 255.21, 487.94, 60.0]]
       }
-    },
-    {
+    }
+    ,{
       "trans": [25.52, 184.44, 361.89], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 124, // associated game task (for powercells, etc)
@@ -643,8 +643,8 @@
         "movie-pos":["vector4m", [25.52, 181.44, 361.89, -120.0]],
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-159.87, 275.04, 648.33], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 123, // associated game task (for powercells, etc)
@@ -655,8 +655,8 @@
         "eco-info": ["int32", 6, 123],
         "movie-pos":["vector4m", [-159.87, 272.54, 648.33, 3.6]]
       }
-    },
-    {
+    }
+    ,{
       "trans": [75.06, 330.11, 364.88], // translation
       "etype": "fuel-cell",  // actor type
       "game_task": 122, // associated game task (for powercells, etc)
@@ -691,8 +691,8 @@
         "eco-info": ["int32", 8, 127], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -204.09, 247.81, 475.45]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-217.77, 228.79, 333.22], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -704,8 +704,8 @@
         "eco-info": ["int32", 8, 65663], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -217.77, 228.79, 333.22]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-83.08, 247.21, 500.42], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -717,8 +717,8 @@
         "eco-info": ["int32", 8, 131199], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", -83.08, 247.21, 500.42]
       }
-    },
-    {
+    }
+    ,{
       "trans": [53.13, 199.15, 401.06], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -731,8 +731,8 @@
         "movie-pos": ["meters", 53.13, 199.15, 401.06],
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [30.22, 244.20, 417.53], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -744,8 +744,8 @@
         "eco-info": ["int32", 8, 262271], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", 30.22, 244.20, 417.53]
       }
-    },
-    {
+    }
+    ,{
       "trans": [379.58, 291.79, 567.31], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -757,8 +757,8 @@
         "eco-info": ["int32", 8, 327807], // to get SF task = game-task + (2^16 * buzzer-count)
         "movie-pos": ["meters", 379.58, 291.79, 567.31]
       }
-    },
-    {
+    }
+    ,{
       "trans": [311.81, 162.48, 418.00], // translation
       "etype": "crate",  // actor type
       "game_task": 127, // associated game task (for powercells, etc)
@@ -771,9 +771,9 @@
         "movie-pos": ["meters", 311.81, 162.48, 418.00],
         "light-index":["int32", 1]
       }
-    },
+    }
     // ORBS
-    {
+    ,{
       "trans": [-227.8, 247.08, 398.28], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -782,8 +782,8 @@
       "lump": {
         "name":"crescent-money-001"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-224.77, 249.08, 401.28], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -792,8 +792,8 @@
       "lump": {
         "name":"crescent-money-002"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-221.72, 250.83, 403.72], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -802,8 +802,8 @@
       "lump": {
         "name":"crescent-money-003"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-162.86, 259.09, 426.41], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -812,8 +812,8 @@
       "lump": {
         "name":"crescent-money-004"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-157.8, 259.09, 424.13], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -822,8 +822,8 @@
       "lump": {
         "name":"crescent-money-005"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-160.63, 259.09, 418.74], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -832,8 +832,8 @@
       "lump": {
         "name":"crescent-money-006"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-164.41, 259.09, 422.16], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -842,8 +842,8 @@
       "lump": {
         "name":"crescent-money-007"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-185.08, 230.94, 364.02], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -852,8 +852,8 @@
       "lump": {
         "name":"crescent-money-008"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-188.52, 230.69, 360.95], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -862,8 +862,8 @@
       "lump": {
         "name":"crescent-money-009"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-191.7, 230.65, 358.42], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -872,8 +872,8 @@
       "lump": {
         "name":"crescent-money-010"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-195.16, 231.05, 356.51], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -882,8 +882,8 @@
       "lump": {
         "name":"crescent-money-011"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-152.67, 242.86, 369.62], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -892,8 +892,8 @@
       "lump": {
         "name":"crescent-money-012"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-154.9, 242.68, 371.34], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -902,8 +902,8 @@
       "lump": {
         "name":"crescent-money-013"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-152.44, 242.68, 372.14], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -912,8 +912,8 @@
       "lump": {
         "name":"crescent-money-014"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-194.01, 247.45, 476.52], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -922,8 +922,8 @@
       "lump": {
         "name":"crescent-money-015"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-191.07, 247.45, 473.98], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -932,8 +932,8 @@
       "lump": {
         "name":"crescent-money-016"
       }
-    },
-    {
+    }
+    ,{
       "trans": [219.07, 255.08, 443.73], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -943,8 +943,8 @@
         "name":"crescent-money-017",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [220.57, 255.58, 439.71], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -954,8 +954,8 @@
         "name":"crescent-money-018",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [223.40, 255.58, 432.17], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -965,8 +965,8 @@
         "name":"crescent-money-019",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [224.78, 255.08, 428.34], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -976,8 +976,8 @@
         "name":"crescent-money-020",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [67.42, 247.49, 433.50], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -986,8 +986,8 @@
       "lump": {
         "name":"crescent-money-021"
       }
-    },
-    {
+    }
+    ,{
       "trans": [69.85, 247.83, 431.21], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -996,8 +996,8 @@
       "lump": {
         "name":"crescent-money-022"
       }
-    },
-    {
+    }
+    ,{
       "trans": [96.45, 259.08, 408.87], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1006,8 +1006,8 @@
       "lump": {
         "name":"crescent-money-023"
       }
-    },
-    {
+    }
+    ,{
       "trans": [98.35, 259.86, 406.46], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1016,8 +1016,8 @@
       "lump": {
         "name":"crescent-money-024"
       }
-    },
-    {
+    }
+    ,{
       "trans": [33.88, 186.74, 373.44], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1027,8 +1027,8 @@
         "name":"crescent-money-025",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [32.98, 186.74, 369.75], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1038,8 +1038,8 @@
         "name":"crescent-money-026",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [31.82, 193.98, 378.74], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1049,8 +1049,8 @@
         "name":"crescent-money-027",
         "light-index": ["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-224.15, 214.96, 584.65], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1060,8 +1060,8 @@
         "name":"crescent-money-028",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [-222.95, 214.96, 581.83], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1071,8 +1071,8 @@
         "name":"crescent-money-029",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [-240.82, 219.04, 568.90], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1082,8 +1082,8 @@
         "name":"crescent-money-030",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [-240.44, 219.04, 571.88], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1093,8 +1093,8 @@
         "name":"crescent-money-031",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [-238.07, 219.04, 570.31], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1104,8 +1104,8 @@
         "name":"crescent-money-032",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [-244.87, 208.61, 609.60], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1114,8 +1114,8 @@
       "lump": {
         "name":"crescent-money-033"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-243.31, 211.08, 614.75], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1124,8 +1124,8 @@
       "lump": {
         "name":"crescent-money-034"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-246.10, 214.55, 639.50], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1134,8 +1134,8 @@
       "lump": {
         "name":"crescent-money-035"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-241.08, 214.39, 642.36], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1144,8 +1144,8 @@
       "lump": {
         "name":"crescent-money-036"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-195.72, 219.30, 670.56], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1154,8 +1154,8 @@
       "lump": {
         "name":"crescent-money-037"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-192.02, 221.73, 678.38], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1164,8 +1164,8 @@
       "lump": {
         "name":"crescent-money-038"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-189.61, 225.03, 690.21], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1174,8 +1174,8 @@
       "lump": {
         "name":"crescent-money-039"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-204.14, 230.12, 703.49], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1184,8 +1184,8 @@
       "lump": {
         "name":"crescent-money-040"
       }
-    },
-    {
+    }
+    ,{
       "trans": [170.73, 206.74, 419.70], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1194,8 +1194,8 @@
       "lump": {
         "name":"crescent-money-041"
       }
-    },
-    {
+    }
+    ,{
       "trans": [175.06, 207.03, 418.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1204,8 +1204,8 @@
       "lump": {
         "name":"crescent-money-042"
       }
-    },
-    {
+    }
+    ,{
       "trans": [179.99, 207.42, 417.95], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1214,8 +1214,8 @@
       "lump": {
         "name":"crescent-money-043"
       }
-    },
-    {
+    }
+    ,{
       "trans": [184.58, 207.79, 419.78], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1224,8 +1224,8 @@
       "lump": {
         "name":"crescent-money-044"
       }
-    },
-    {
+    }
+    ,{
       "trans": [202.07, 209.53, 437.91], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1234,8 +1234,8 @@
       "lump": {
         "name":"crescent-money-045"
       }
-    },
-    {
+    }
+    ,{
       "trans": [207.21, 210.06, 440.95], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1244,8 +1244,8 @@
       "lump": {
         "name":"crescent-money-046"
       }
-    },
-    {
+    }
+    ,{
       "trans": [213.74, 210.58, 442.69], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1254,8 +1254,8 @@
       "lump": {
         "name":"crescent-money-047"
       }
-    },
-    {
+    }
+    ,{
       "trans": [220.10, 210.91, 441.98], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1264,8 +1264,8 @@
       "lump": {
         "name":"crescent-money-048"
       }
-    },
-    {
+    }
+    ,{
       "trans": [240.90, 212.73, 433.52], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1274,8 +1274,8 @@
       "lump": {
         "name":"crescent-money-049"
       }
-    },
-    {
+    }
+    ,{
       "trans": [246.03, 213.73, 434.99], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1284,8 +1284,8 @@
       "lump": {
         "name":"crescent-money-050"
       }
-    },
-    {
+    }
+    ,{
       "trans": [250.94, 214.93, 438.18], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1294,8 +1294,8 @@
       "lump": {
         "name":"crescent-money-051"
       }
-    },
-    {
+    }
+    ,{
       "trans": [255.63, 216.37, 443.08], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1304,8 +1304,8 @@
       "lump": {
         "name":"crescent-money-052"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-211.64, 215.41, 546.10], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1314,8 +1314,8 @@
       "lump": {
         "name":"crescent-money-053"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-208.56, 215.55, 539.78], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1324,8 +1324,8 @@
       "lump": {
         "name":"crescent-money-054"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-205.86, 215.79, 533.42], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1334,8 +1334,8 @@
       "lump": {
         "name":"crescent-money-055"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-28.73, 233.96, 357.47], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1344,8 +1344,8 @@
       "lump": {
         "name":"crescent-money-056"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-17.47, 238.56, 357.42], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1354,8 +1354,8 @@
       "lump": {
         "name":"crescent-money-057"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-18.77, 241.67, 363.79], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1364,8 +1364,8 @@
       "lump": {
         "name":"crescent-money-058"
       }
-    },
-    {
+    }
+    ,{
       "trans": [5.83, 245.51, 388.78], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1374,8 +1374,8 @@
       "lump": {
         "name":"crescent-money-059"
       }
-    },
-    {
+    }
+    ,{
       "trans": [8.43, 245.55, 391.14], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1384,8 +1384,8 @@
       "lump": {
         "name":"crescent-money-060"
       }
-    },
-    {
+    }
+    ,{
       "trans": [18.37, 248.58, 402.11], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1394,8 +1394,8 @@
       "lump": {
         "name":"crescent-money-061"
       }
-    },
-    {
+    }
+    ,{
       "trans": [21.07, 248.58, 405.37], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1404,8 +1404,8 @@
       "lump": {
         "name":"crescent-money-062"
       }
-    },
-    {
+    }
+    ,{
       "trans": [43.08, 248.23, 428.62], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1414,8 +1414,8 @@
       "lump": {
         "name":"crescent-money-063"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-105.60, 235.09, 398.15], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1424,8 +1424,8 @@
       "lump": {
         "name":"crescent-money-064"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-105.94, 243.25, 390.49], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1434,8 +1434,8 @@
       "lump": {
         "name":"crescent-money-065"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-105.33, 243.25, 388.70], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1444,8 +1444,8 @@
       "lump": {
         "name":"crescent-money-066"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-103.09, 243.25, 388.68], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1454,8 +1454,8 @@
       "lump": {
         "name":"crescent-money-067"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-102.68, 243.25, 390.58], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1464,8 +1464,8 @@
       "lump": {
         "name":"crescent-money-068"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-104.33, 243.25, 391.86], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1474,8 +1474,8 @@
       "lump": {
         "name":"crescent-money-069"
       }
-    },
-    {
+    }
+    ,{
       "trans": [210.73, 232.76, 325.19], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1484,8 +1484,8 @@
       "lump": {
         "name":"crescent-money-070"
       }
-    },
-    {
+    }
+    ,{
       "trans": [201.97, 232.68, 328.72], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1494,8 +1494,8 @@
       "lump": {
         "name":"crescent-money-071"
       }
-    },
-    {
+    }
+    ,{
       "trans": [193.76, 232.66, 333.49], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1504,8 +1504,8 @@
       "lump": {
         "name":"crescent-money-072"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-2.56, 250.11, 340.32], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1514,8 +1514,8 @@
       "lump": {
         "name":"crescent-money-073"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-8.93, 247.96, 340.32], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1524,8 +1524,8 @@
       "lump": {
         "name":"crescent-money-074"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-15.59, 245.60, 340.32], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1534,8 +1534,8 @@
       "lump": {
         "name":"crescent-money-075"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-182.64, 222.29, 451.24], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1544,8 +1544,8 @@
       "lump": {
         "name":"crescent-money-076"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-188.79, 222.04, 451.72], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1554,8 +1554,8 @@
       "lump": {
         "name":"crescent-money-077"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-197.11, 221.70, 452.71], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1564,8 +1564,8 @@
       "lump": {
         "name":"crescent-money-078"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-221.66, 250.09, 655.21], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1574,8 +1574,8 @@
       "lump": {
         "name":"crescent-money-079"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-254.92, 202.09, 674.81], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1584,8 +1584,8 @@
       "lump": {
         "name":"crescent-money-080"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-253.04, 204.14, 670.05], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1594,8 +1594,8 @@
       "lump": {
         "name":"crescent-money-081"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-120.22, 231.58, 313.53], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1604,8 +1604,8 @@
       "lump": {
         "name":"crescent-money-082"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-112.68, 231.58, 307.78], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1614,8 +1614,8 @@
       "lump": {
         "name":"crescent-money-083"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-104.50, 231.58, 303.70], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1624,8 +1624,8 @@
       "lump": {
         "name":"crescent-money-084"
       }
-    },
-    {
+    }
+    ,{
       "trans": [37.01, 219.12, 466.39], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1634,8 +1634,8 @@
       "lump": {
         "name":"crescent-money-085"
       }
-    },
-    {
+    }
+    ,{
       "trans": [31.33, 219.66, 458.53], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1644,8 +1644,8 @@
       "lump": {
         "name":"crescent-money-086"
       }
-    },
-    {
+    }
+    ,{
       "trans": [27.03, 220.57, 450.21], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1654,8 +1654,8 @@
       "lump": {
         "name":"crescent-money-087"
       }
-    },
-    {
+    }
+    ,{
       "trans": [22.79, 221.60, 441.98], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1664,8 +1664,8 @@
       "lump": {
         "name":"crescent-money-088"
       }
-    },
-    {
+    }
+    ,{
       "trans": [400.54, 262.67, 446.40], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1674,8 +1674,8 @@
       "lump": {
         "name":"crescent-money-089"
       }
-    },
-    {
+    }
+    ,{
       "trans": [405.04, 263.41, 452.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1684,8 +1684,8 @@
       "lump": {
         "name":"crescent-money-090"
       }
-    },
-    {
+    }
+    ,{
       "trans": [408.76, 264.38, 461.94], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1694,8 +1694,8 @@
       "lump": {
         "name":"crescent-money-091"
       }
-    },
-    {
+    }
+    ,{
       "trans": [409.15, 264.72, 468.38], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1704,8 +1704,8 @@
       "lump": {
         "name":"crescent-money-092"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-15.47, 235.01, 445.44], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1714,8 +1714,8 @@
       "lump": {
         "name":"crescent-money-093"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-14.06, 235.41, 451.40], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1724,8 +1724,8 @@
       "lump": {
         "name":"crescent-money-094"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-16.61, 236.18, 457.86], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1734,8 +1734,8 @@
       "lump": {
         "name":"crescent-money-095"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-228.35, 246.14, 665.67], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1744,8 +1744,8 @@
       "lump": {
         "name":"crescent-money-096"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-225.51, 247.12, 663.62], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1754,8 +1754,8 @@
       "lump": {
         "name":"crescent-money-097"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-208.58, 273.45, 632.69], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1764,8 +1764,8 @@
       "lump": {
         "name":"crescent-money-098"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-192.98, 269.75, 638.27], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1775,8 +1775,8 @@
         "name":"crescent-money-099",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [-192.09, 266.16, 638.64], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1786,8 +1786,8 @@
         "name":"crescent-money-100",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [61.27, 201.74, 377.92], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1797,8 +1797,8 @@
         "name":"crescent-money-101",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [58.78, 201.56, 375.25], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1808,8 +1808,8 @@
         "name":"crescent-money-102",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [58.79, 201.56, 379.76], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1819,8 +1819,8 @@
         "name":"crescent-money-103",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [56.91, 201.42, 377.33], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1830,8 +1830,8 @@
         "name":"crescent-money-104",
         "options":["int32", 1024] // big hitbox
       }
-    },
-    {
+    }
+    ,{
       "trans": [24.27, 181.39, 467.93], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1841,8 +1841,8 @@
         "name":"crescent-money-105",
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [24.76, 181.39, 465.61], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1852,8 +1852,8 @@
         "name":"crescent-money-106",
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [22.40, 181.39, 466.28], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1863,8 +1863,8 @@
         "name":"crescent-money-107",
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-2.35, 181.39, 423.64], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1874,8 +1874,8 @@
         "name":"crescent-money-108",
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [0.13, 181.39, 423.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1885,8 +1885,8 @@
         "name":"crescent-money-109",
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-1.68, 181.39, 421.28], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1896,8 +1896,8 @@
         "name":"crescent-money-110",
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [95.37, 188.57, 422.71], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1907,8 +1907,8 @@
         "name":"crescent-money-111",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [99.59, 189.22, 422.24], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1918,8 +1918,8 @@
         "name":"crescent-money-112",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [104.23, 190.05, 421.92], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1929,8 +1929,8 @@
         "name":"crescent-money-113",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [108.45, 190.86, 421.95], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1940,8 +1940,8 @@
         "name":"crescent-money-114",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [64.96, 266.61, 299.26], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1950,8 +1950,8 @@
       "lump": {
         "name":"crescent-money-115"
       }
-    },
-    {
+    }
+    ,{
       "trans": [71.93, 268.98, 300.52], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1960,8 +1960,8 @@
       "lump": {
         "name":"crescent-money-116"
       }
-    },
-    {
+    }
+    ,{
       "trans": [78.61, 271.51, 301.9], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1970,8 +1970,8 @@
       "lump": {
         "name":"crescent-money-117"
       }
-    },
-    {
+    }
+    ,{
       "trans": [85.31, 273.95, 303.56], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1980,8 +1980,8 @@
       "lump": {
         "name":"crescent-money-118"
       }
-    },
-    {
+    }
+    ,{
       "trans": [91.98, 276.19, 304.94], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -1990,8 +1990,8 @@
       "lump": {
         "name":"crescent-money-119"
       }
-    },
-    {
+    }
+    ,{
       "trans": [99.16, 278.28, 306.98], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2000,8 +2000,8 @@
       "lump": {
         "name":"crescent-money-120"
       }
-    },
-    {
+    }
+    ,{
       "trans": [104.42, 269.8, 393.07], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2010,8 +2010,8 @@
       "lump": {
         "name":"crescent-money-121"
       }
-    },
-    {
+    }
+    ,{
       "trans": [103.81, 269.86, 390.6], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2020,8 +2020,8 @@
       "lump": {
         "name":"crescent-money-122"
       }
-    },
-    {
+    }
+    ,{
       "trans": [103.84, 269.95, 387.68], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2030,8 +2030,8 @@
       "lump": {
         "name":"crescent-money-123"
       }
-    },
-    {
+    }
+    ,{
       "trans": [120.53, 276.21, 383.64], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2040,8 +2040,8 @@
       "lump": {
         "name":"crescent-money-124"
       }
-    },
-    {
+    }
+    ,{
       "trans": [117.79, 276.19, 382.79], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2050,8 +2050,8 @@
       "lump": {
         "name":"crescent-money-125"
       }
-    },
-    {
+    }
+    ,{
       "trans": [114.96, 276.17, 381.87], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2060,8 +2060,8 @@
       "lump": {
         "name":"crescent-money-126"
       }
-    },
-    {
+    }
+    ,{
       "trans": [111.99, 276.14, 381.16], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2070,8 +2070,8 @@
       "lump": {
         "name":"crescent-money-127"
       }
-    },
-    {
+    }
+    ,{
       "trans": [90.10, 286.31, 390.03], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2080,8 +2080,8 @@
       "lump": {
         "name":"crescent-money-128"
       }
-    },
-    {
+    }
+    ,{
       "trans": [87.73, 286.27, 387.78], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2090,8 +2090,8 @@
       "lump": {
         "name":"crescent-money-129"
       }
-    },
-    {
+    }
+    ,{
       "trans": [87.40, 286.3, 391.99], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2100,8 +2100,8 @@
       "lump": {
         "name":"crescent-money-130"
       }
-    },
-    {
+    }
+    ,{
       "trans": [259.04, 226.58, 467.63], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2110,8 +2110,8 @@
       "lump": {
         "name":"crescent-money-131"
       }
-    },
-    {
+    }
+    ,{
       "trans": [261.72, 227.03, 469.71], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2120,8 +2120,8 @@
       "lump": {
         "name":"crescent-money-132"
       }
-    },
-    {
+    }
+    ,{
       "trans": [282.93, 233.84, 461.48], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2130,8 +2130,8 @@
       "lump": {
         "name":"crescent-money-133"
       }
-    },
-    {
+    }
+    ,{
       "trans": [285.72, 234.31, 463.59], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2140,8 +2140,8 @@
       "lump": {
         "name":"crescent-money-134"
       }
-    },
-    {
+    }
+    ,{
       "trans": [290.28, 246.5, 495.23], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2150,8 +2150,8 @@
       "lump": {
         "name":"crescent-money-135"
       }
-    },
-    {
+    }
+    ,{
       "trans": [293.01, 246.92, 496.6], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2160,8 +2160,8 @@
       "lump": {
         "name":"crescent-money-136"
       }
-    },
-    {
+    }
+    ,{
       "trans": [83.71, 305.53, 367.44], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2170,8 +2170,8 @@
       "lump": {
         "name":"crescent-money-137"
       }
-    },
-    {
+    }
+    ,{
       "trans": [83.71, 308.53, 367.44], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2180,8 +2180,8 @@
       "lump": {
         "name":"crescent-money-138"
       }
-    },
-    {
+    }
+    ,{
       "trans": [84.76, 319.93, 366.38], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2190,8 +2190,8 @@
       "lump": {
         "name":"crescent-money-139"
       }
-    },
-    {
+    }
+    ,{
       "trans": [84.76, 322.93, 366.38], // translation
       "etype": "money",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2200,9 +2200,9 @@
       "lump": {
         "name":"crescent-money-140"
       }
-    },
+    }
     // CRATES
-    {
+    ,{
       "trans": [-142.10, 240.08, 478.87], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2214,8 +2214,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [-164.88, 247.29, 524.92], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2227,8 +2227,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [-134.27, 255.87, 549.35], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2240,8 +2240,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [-245.97, 199.36, 839.91], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2253,8 +2253,8 @@
         "eco-info": ["int32", 5, 5],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [130.24, 189.15, 236.21], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2266,8 +2266,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [200.48, 205.61, 250.69], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2279,8 +2279,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [291.69, 244.91, 418.93], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2292,8 +2292,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [138.31, 255.49, 478.56], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2305,8 +2305,8 @@
         "eco-info": ["int32", 5, 6],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [408.99, 262.90, 456.96], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2318,8 +2318,8 @@
         "eco-info": ["int32", 5, 3],
         "options":["int32", 8192] // zoomer goes through
       }
-    },
-    {
+    }
+    ,{
       "trans": [-248.67, 211.15, 331.32], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2329,8 +2329,8 @@
         "name":"crescent-crate-wood-01",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.27, 211.15, 332.87], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2340,8 +2340,8 @@
         "name":"crescent-crate-wood-02",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-205.69, 250.42, 398.25], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2351,8 +2351,8 @@
         "name":"crescent-crate-wood-03",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-204.40, 250.42, 400.75], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2362,8 +2362,8 @@
         "name":"crescent-crate-wood-04",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-203.48, 250.42, 403.37], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2373,8 +2373,8 @@
         "name":"crescent-crate-wood-05",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-222.51, 226.07, 328.13], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2385,8 +2385,8 @@
         "crate-type":"'wood",
         "eco-info": ["int32", 4, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-66.52, 230.02, 361.30], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2396,8 +2396,8 @@
         "name":"crescent-crate-wood-07",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-66.92, 230.01, 363.90], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2407,8 +2407,8 @@
         "name":"crescent-crate-wood-08",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-63.80, 230.02, 361.72], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2418,8 +2418,8 @@
         "name":"crescent-crate-wood-09",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-64.20, 230.00, 364.33], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2429,8 +2429,8 @@
         "name":"crescent-crate-wood-10",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-73.74, 245.42, 516.96], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2440,8 +2440,8 @@
         "name":"crescent-crate-wood-11",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-71.35, 245.08, 517.47], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2451,8 +2451,8 @@
         "name":"crescent-crate-wood-12",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-72.96, 245.24, 519.37], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2462,8 +2462,8 @@
         "name":"crescent-crate-wood-13",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [220.68, 272.06, 502.98], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2473,8 +2473,8 @@
         "name":"crescent-crate-wood-14",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [198.78, 267.46, 499.21], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2484,8 +2484,8 @@
         "name":"crescent-crate-wood-15",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [175.70, 263.56, 496.00], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2495,8 +2495,8 @@
         "name":"crescent-crate-wood-16",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [373.31, 266.54, 603.79], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2506,8 +2506,8 @@
         "name":"crescent-crate-wood-17",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [375.74, 266.55, 605.28], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2517,8 +2517,8 @@
         "name":"crescent-crate-wood-18",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [378.14, 266.57, 606.76], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2528,8 +2528,8 @@
         "name":"crescent-crate-wood-19",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [119.25, 264.71, 399.99], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2540,8 +2540,8 @@
         "crate-type":"'wood",
         "eco-info": ["int32", 4, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-218.14, 215.9, 511.04], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2551,8 +2551,8 @@
         "name":"crescent-crate-wood-21",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-219.21, 215.66, 512.87], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2562,8 +2562,8 @@
         "name":"crescent-crate-wood-22",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-189.89, 218.24, 667.57], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2574,8 +2574,8 @@
         "crate-type":"'wood",
         "nav-mesh-actor":"crescent-lurkerpuppy-004"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-185.45, 221.25, 676.89], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2586,8 +2586,8 @@
         "crate-type":"'wood",
         "nav-mesh-actor":"crescent-lurkerpuppy-004"
       }
-    },
-    {
+    }
+    ,{
       "trans": [26.31, 230.08, 278.11], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2597,8 +2597,8 @@
         "name":"crescent-crate-wood-25",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [23.58, 230.08, 278.94], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2608,8 +2608,8 @@
         "name":"crescent-crate-wood-26",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [20.79, 230.08, 279.8], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2619,8 +2619,8 @@
         "name":"crescent-crate-wood-27",
         "crate-type":"'wood"
       }
-    },
-    {
+    }
+    ,{
       "trans": [54.22, 183.44, 415.81], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2632,8 +2632,8 @@
         "light-index":["int32", 1],
         "nav-mesh-actor":"crescent-babak-007"
       }
-    },
-    {
+    }
+    ,{
       "trans": [55.10, 183.5, 418.16], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2645,8 +2645,8 @@
         "light-index":["int32", 1],
         "nav-mesh-actor":"crescent-babak-007"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-241.54, 199.86, 849.62], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2656,8 +2656,8 @@
         "name":"crescent-crate-darkeco-01",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.75, 198.97, 829.05], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2667,8 +2667,8 @@
         "name":"crescent-crate-darkeco-02",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-251.95, 199.01, 825.29], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2678,8 +2678,8 @@
         "name":"crescent-crate-darkeco-03",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-263.79, 211.66, 523.60], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2689,8 +2689,8 @@
         "name":"crescent-crate-darkeco-04",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-264.58, 211.79, 527.57], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2700,8 +2700,8 @@
         "name":"crescent-crate-darkeco-05",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-173.19, 205.50, 593.53], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2711,8 +2711,8 @@
         "name":"crescent-crate-darkeco-06",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-165.89, 208.20, 569.23], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2722,8 +2722,8 @@
         "name":"crescent-crate-darkeco-07",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-254.33, 198.61, 703.94], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2733,8 +2733,8 @@
         "name":"crescent-crate-darkeco-08",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-257.01, 198.61, 701.79], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2744,8 +2744,8 @@
         "name":"crescent-crate-darkeco-09",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-133.95, 229.17, 366.77], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2755,8 +2755,8 @@
         "name":"crescent-crate-darkeco-10",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-127.37, 229.37, 364.44], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2766,8 +2766,8 @@
         "name":"crescent-crate-darkeco-11",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [129.5, 232.94, 434.86], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2777,8 +2777,8 @@
         "name":"crescent-crate-darkeco-12",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [127.44, 232.8, 437.06], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2788,8 +2788,8 @@
         "name":"crescent-crate-darkeco-13",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [107.71, 230.67, 428.31], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2799,8 +2799,8 @@
         "name":"crescent-crate-darkeco-14",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [104.89, 230.35, 429.37], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2810,8 +2810,8 @@
         "name":"crescent-crate-darkeco-15",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [110.48, 230.99, 427.26], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2821,8 +2821,8 @@
         "name":"crescent-crate-darkeco-16",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [125.38, 232.64, 439.26], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2832,8 +2832,8 @@
         "name":"crescent-crate-darkeco-17",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-65.09, 245.12, 489.84], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2843,8 +2843,8 @@
         "name":"crescent-crate-darkeco-18",
         "crate-type":"'darkeco"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-63.99, 244.5, 504.99], // translation
       "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2854,9 +2854,9 @@
         "name":"crescent-crate-darkeco-19",
         "crate-type":"'darkeco"
       }
-    },
+    }
     // PLATFORMS AND MOVEMENT
-    {
+    ,{
       "trans": [-262.57, 205.43, 370.94], // translation
       "etype": "launcher",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2867,8 +2867,8 @@
         "spring-height": ["meters", 65.0],
         "alt-vector":["vector4m", [-240.59, 238.12, 390.69, 0.000488]]
       }
-    },
-    {
+    }
+    ,{
       "trans": [67.83, 184.42, 393.70], // translation
       "etype": "launcher",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2878,8 +2878,8 @@
         "name":"crescent-launcher-02",
         "spring-height": ["meters", 113.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [432.85, 266.96, 683.28], // translation
       "etype": "launcher",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2890,8 +2890,8 @@
         "spring-height": ["meters", 38.0],
         "alt-vector":["vector4m", [516.60, 47.98, 683.27, 0.00195]] //515.21, 13.01, 682.77, 0.00195
       }
-    },
-    {
+    }
+    ,{
       "trans": [65.93, 180.07, 461.29], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2909,8 +2909,8 @@
         "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 5.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [53.88, 173.57, 470.04], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2928,8 +2928,8 @@
         "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 5.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [41.69, 180.07, 461.11], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2947,8 +2947,8 @@
         "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 5.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [7.69, 177.69, 466.67], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -2974,8 +2974,8 @@
         "sync": ["float", 9.0, 0.0],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-2.53, 177.69, 456.98], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3001,8 +3001,8 @@
         "sync": ["float", 9.0, 0.75],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-10.24, 177.69, 441.52], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3028,8 +3028,8 @@
         "sync": ["float", 9.0, 0.50],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [7.47, 178.07, 400.26], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3052,17 +3052,11 @@
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.30],
         "part-emerge-height": ["meters", 173.5],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
         "sync": ["float", 20.0, 0.0],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-5.52, 178.07, 387.26], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3082,20 +3076,14 @@
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
           ],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.30],
         "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 20.0, 0.25],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [7.47, 178.07, 374.26], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3118,17 +3106,11 @@
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.30],
         "part-emerge-height": ["meters", 173.5],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
         "sync": ["float", 20.0, 0.50],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [20.47, 178.07, 387.26], // translation
       "etype": "lava-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3148,20 +3130,14 @@
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
           ],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.30],
         "part-emerge-height": ["meters", 173.5],
         "sync": ["float", 20.0, 0.75],
         "options":["int32", 8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-219.20, 231.07, 689.61], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3182,8 +3158,8 @@
         "sync": ["float", 6.0, 0.0]
         ,"scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-237.26, 265.62, 630.8], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3198,8 +3174,8 @@
           ],
         "sync": ["float", 6.0, 0.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-209.87, 261.34, 622.53], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3213,8 +3189,8 @@
           ],
         "sync": ["float", 6.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-180.14, 2580.67, 642.84], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3234,8 +3210,8 @@
           ],
         "sync": ["float", 6.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [66.76, 299.85, 362.66], // translation
       "etype": "plat",  // actor type
       "game_task": 0, //
@@ -3250,8 +3226,8 @@
         "sync": ["float", 6.0, 0.0],
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [0.35, 243.54, 374.64], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3265,8 +3241,8 @@
           ],
         "sync": ["float", 4.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [16.19, 243.54, 399.58], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3280,8 +3256,8 @@
           ],
         "sync": ["float", 4.5, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [42.73, 244.21, 422.15], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3295,8 +3271,8 @@
           ],
         "sync": ["float", 4.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [49.77, 244.21, 428.45], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3310,8 +3286,8 @@
           ],
         "sync": ["float", 4.0, 0.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [67.02, 311.12, 351.09], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3327,8 +3303,8 @@
           ],
         "sync": ["float", 6.0, 0.55]
       }
-    },
-    {
+    }
+    ,{
       "trans": [73.94, 294.7, 366.09], // translation
       "etype": "plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3339,8 +3315,8 @@
         "scale":["float", 1.15],
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-159.87, 272.54, 648.33], // translation
       "etype": "plat-eco",  // actor type
       "game_task": 4, // stay activated if set to 4
@@ -3356,8 +3332,8 @@
         "sync": ["float", 10.0, 0.0],
         "notice-dist":["meters", 2.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [56.06, 201.29, 411.79], // translation
       "etype": "plat-eco",  // actor type
       "game_task": 4, // stay activated if set to 4
@@ -3374,8 +3350,8 @@
         "light-index":["int32", 1],
         "nav-mesh-actor":"crescent-babak-007"
       }
-    },
-    {
+    }
+    ,{
       "trans": [69.99, 326.81, 364.0], // translation
       "etype": "plat-eco",  // actor type
       "game_task": 4, // stay activated if set to 4
@@ -3392,8 +3368,8 @@
         "sync": ["float", 9.0, 0.0],
         "notice-dist":["meters", 2.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-227.29, 218.93, 649.43], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3402,8 +3378,8 @@
       "lump": {
         "name":"crescent-swingpole-01"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-218.71, 221.92, 654.25], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3412,8 +3388,8 @@
       "lump": {
         "name":"crescent-swingpole-02"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-212.00, 223.83, 659.66], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3422,8 +3398,8 @@
       "lump": {
         "name":"crescent-swingpole-03"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-212.75, 236.38, 694.82], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3432,8 +3408,8 @@
       "lump": {
         "name":"crescent-swingpole-04"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-191.09, 261.29, 639.09], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3442,8 +3418,8 @@
       "lump": {
         "name":"crescent-swingpole-05"
       }
-    },
-    {
+    }
+    ,{
       "trans": [84.76, 315.93, 366.38], // translation
       "etype": "swingpole",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3452,8 +3428,8 @@
       "lump": {
         "name":"crescent-swingpole-06"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-21.96, 229.55, 366.85], // translation
       "etype": "springbox",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3463,8 +3439,8 @@
         "name":"crescent-springbox-01",
         "scale":["float", 0.8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [78.48, 228.27, 448.18], // translation
       "etype": "springbox",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3474,8 +3450,8 @@
         "name":"crescent-springbox-02",
         "scale":["float", 0.8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [69.87, 285.33, 370.38], // translation
       "etype": "springbox",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3486,8 +3462,8 @@
         "scale":["float", 1.0],
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [73.94, 294.4, 366.09], // translation
       "etype": "springbox",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3498,8 +3474,8 @@
         "scale":["float", 1.0],
         "light-index":["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [82.64, 301.31, 367.45], // translation
       "etype": "springbox",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3509,8 +3485,8 @@
         "name":"crescent-springbox-05",
         "scale":["float", 1.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-231.75, 208.49, 289.16], // translation
       "etype": "springbox",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3520,8 +3496,8 @@
         "name":"crescent-springbox-06",
         "scale":["float", 0.8]
       }
-    },
-    {
+    }
+    ,{
       "trans": [79.02, 324.42, 365.4], // translation
       "etype": "wall-plat",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -3532,9 +3508,9 @@
         "sync":["float", 3.5, 0.0, 0.25, 0.25],
         "scale":["float", 0.75]
       }
-    },
+    }
     // RACE RINGS
-    {
+    ,{
       "trans": [-118.49, 239.84, 362.23], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3547,8 +3523,8 @@
         "next-actor":"crescent-race-ring-02",
         "alt-task":["int32", 0] // Only appear when that task is complete
       }
-    },
-    {
+    }
+    ,{
       "trans": [-148.08, 244.20, 378.60], // translation -148.68, 244.2, 378.6
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3562,8 +3538,8 @@
         "next-actor":"crescent-race-ring-03",
         "prev-actor":"crescent-race-ring-01-start"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-147.36, 228.08, 440.1], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3577,8 +3553,8 @@
         "next-actor":"crescent-race-ring-04",
         "prev-actor":"crescent-race-ring-02"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-193.87, 225.72, 452.61], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3592,8 +3568,8 @@
         "next-actor":"crescent-race-ring-05",
         "prev-actor":"crescent-race-ring-03"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-240.71, 219.57, 493.46], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3607,8 +3583,8 @@
         "next-actor":"crescent-race-ring-06",
         "prev-actor":"crescent-race-ring-04"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-250.26, 223.60, 555.88], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3622,8 +3598,8 @@
         "next-actor":"crescent-race-ring-07",
         "prev-actor":"crescent-race-ring-05"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-204.10, 207.44, 615.05], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3637,8 +3613,8 @@
         "next-actor":"crescent-race-ring-08",
         "prev-actor":"crescent-race-ring-06"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-240.89, 204.33, 683.47], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3652,8 +3628,8 @@
         "next-actor":"crescent-race-ring-09",
         "prev-actor":"crescent-race-ring-07"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-292.91, 203.95, 719.02], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3667,8 +3643,8 @@
         "next-actor":"crescent-race-ring-10",
         "prev-actor":"crescent-race-ring-08"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-237.10, 204.35, 811.13], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3682,8 +3658,8 @@
         "next-actor":"crescent-race-ring-11",
         "prev-actor":"crescent-race-ring-09"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-272.77, 204.10, 811.33], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3697,8 +3673,8 @@
         "next-actor":"crescent-race-ring-12",
         "prev-actor":"crescent-race-ring-10"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-261.75, 204.81, 741.92], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3712,8 +3688,8 @@
         "next-actor":"crescent-race-ring-13",
         "prev-actor":"crescent-race-ring-11"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-232.98, 234.18, 629.38], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3727,8 +3703,8 @@
         "next-actor":"crescent-race-ring-14",
         "prev-actor":"crescent-race-ring-12"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-181.25, 221.20, 493.90], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3742,8 +3718,8 @@
         "next-actor":"crescent-race-ring-15",
         "prev-actor":"crescent-race-ring-13"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-143.64, 230.29, 424.80], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3757,8 +3733,8 @@
         "next-actor":"crescent-race-ring-16",
         "prev-actor":"crescent-race-ring-14"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-129.71, 235.32, 325.13], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3772,8 +3748,8 @@
         "next-actor":"crescent-race-ring-17",
         "prev-actor":"crescent-race-ring-15"
       }
-    },
-    {
+    }
+    ,{
       "trans": [-51.50, 245.61, 279.58], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3787,8 +3763,8 @@
         "next-actor":"crescent-race-ring-18",
         "prev-actor":"crescent-race-ring-16"
       }
-    },
-    {
+    }
+    ,{
       "trans": [11.37, 254.19, 248.31], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3802,8 +3778,8 @@
         "next-actor":"crescent-race-ring-19",
         "prev-actor":"crescent-race-ring-17"
       }
-    },
-    {
+    }
+    ,{
       "trans": [95.05, 199.69, 235.39], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3817,8 +3793,8 @@
         "next-actor":"crescent-race-ring-20",
         "prev-actor":"crescent-race-ring-18"
       }
-    },
-    {
+    }
+    ,{
       "trans": [238.9, 240.74, 303.76], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3832,8 +3808,8 @@
         "next-actor":"crescent-race-ring-21",
         "prev-actor":"crescent-race-ring-19"
       }
-    },
-    {
+    }
+    ,{
       "trans": [226.2, 257.46, 423.62], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3847,8 +3823,8 @@
         "next-actor":"crescent-race-ring-22",
         "prev-actor":"crescent-race-ring-20"
       }
-    },
-    {
+    }
+    ,{
       "trans": [159.80, 245.06, 464.04], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3862,8 +3838,8 @@
         "next-actor":"crescent-race-ring-23",
         "prev-actor":"crescent-race-ring-21"
       }
-    },
-    {
+    }
+    ,{
       "trans": [98.67, 235.93, 401.43], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3877,8 +3853,8 @@
         "next-actor":"crescent-race-ring-24",
         "prev-actor":"crescent-race-ring-22"
       }
-    },
-    {
+    }
+    ,{
       "trans": [63.55, 245.04, 347.81], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3892,8 +3868,8 @@
         "next-actor":"crescent-race-ring-25",
         "prev-actor":"crescent-race-ring-23"
       }
-    },
-    {
+    }
+    ,{
       "trans": [44.14, 264.04, 299.2], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3907,8 +3883,8 @@
         "next-actor":"crescent-race-ring-26",
         "prev-actor":"crescent-race-ring-24"
       }
-    },
-    {
+    }
+    ,{
       "trans": [144.57, 287.11, 320.37], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3922,8 +3898,8 @@
         "next-actor":"crescent-race-ring-27",
         "prev-actor":"crescent-race-ring-25"
       }
-    },
-    {
+    }
+    ,{
       "trans": [207.57, 273.07, 341.89], // translation
       "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
@@ -3938,11 +3914,9 @@
         "prev-actor":"crescent-race-ring-26",
         "options":["int32", 1024] // big hitbox
       }
-    },
-
+    }
     // RACERS
-
-    {
+    ,{
       "trans": [-191.63, 227.06, 402.98], // translation
       "etype": "racer",  // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
@@ -3953,8 +3927,8 @@
         "index": ["int32", 2],
         "rotoffset": ["meters", 3.3333]
       }
-    },
-    {
+    }
+    ,{
       "trans": [166.73, 206.69, 430.91], // translation
       "etype": "racer",  // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
@@ -3965,8 +3939,8 @@
         "index": ["int32", 2],
         "rotoffset": ["meters", 3.5555]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-364.37, 195.32, 642.8], // translation
       "etype": "racer",  // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
@@ -3977,9 +3951,21 @@
         "index": ["int32", 2],
         "rotoffset": ["meters", 5.7777]
       }
-    },
+    }
+    ,{
+      "trans": [220.86, 206.18, 586.11],
+      "etype": "racer",
+      "game_task": 128,
+      "quat" : [0.0, 0.0, 0.0, 1.0],
+      "bsphere": [220.86, 206.18, 586.11, 10],
+      "lump": {
+        "name":"crescent-racer-04",
+        "index": ["int32", 2],
+        "rotoffset": ["degrees", 0.0]
+      }
+    }
     // energy-bay racers to avoid the crash
-    {
+    ,{
       "trans": [603.44, 3.02, 670.49], // translation
       "etype": "racer",  // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
@@ -3990,8 +3976,8 @@
         "index": ["int32", 2],
         "rotoffset": ["meters", -1.5555]
       }
-    },
-    {
+    }
+    ,{
       "trans": [734.74, 1.99, 966.33], // translation
       "etype": "racer",  // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
@@ -4002,8 +3988,8 @@
         "index": ["int32", 2],
         "rotoffset": ["meters", 2.2222]
       }
-    },
-    {
+    }
+    ,{
       "trans": [856.95, 74.58, 772.22], // translation
       "etype": "racer",  // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
@@ -4015,7 +4001,6 @@
         "rotoffset": ["meters", -1.5111]
       }
     }
-
     // Particles
     ,{
       "trans": [-221.07, 229.85, 233.35], // translation
@@ -4029,8 +4014,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-175.87, 222.43, 208.21], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4042,8 +4027,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-115.83, 273.35, 594.68], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4055,8 +4040,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-266.35, 241.41, 845.55], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4068,8 +4053,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-249.74, 234.54, 887.83], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4081,8 +4066,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [382.34, 335.1, 595.76], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4094,8 +4079,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-279.46, 199.37, 348.12], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4107,8 +4092,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-212.56, 250.42, 396.84], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4120,8 +4105,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-207.37, 227.71, 337.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4133,8 +4118,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-83.80, 230.08, 328.65], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4146,8 +4131,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-94.02, 242.98, 329.45], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4159,8 +4144,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-114.12, 256.29, 487.65], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4172,8 +4157,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-210.46, 216.07, 511.78], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4185,8 +4170,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-281.12, 198.69, 816.79], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4198,8 +4183,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [253.95, 266.41, 520.68], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4211,8 +4196,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-249.11, 215.73, 328.54], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4224,8 +4209,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-173.44, 251.15, 505.95], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4237,8 +4222,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-237.81, 205.41, 859.84], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4250,8 +4235,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-234.62, 250.42, 401.25], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4263,8 +4248,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-202.74, 270.90, 630.78], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4276,8 +4261,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [401.60, 300.06, 622.48], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4289,8 +4274,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [71.41, 370.22, 364.74], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4302,8 +4287,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [508.27, 200.18, 683.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4315,8 +4300,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [513.59, 172.0, 683.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4328,8 +4313,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [517.71, 140.95, 683.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4341,8 +4326,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [498.97, 229.25, 683.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4354,8 +4339,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [484.21, 256.76, 683.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4367,8 +4352,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [479.48, 261.1, 683.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4380,8 +4365,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [69.43, 174.21, 469.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4393,8 +4378,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [49.43, 174.21, 469.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4406,8 +4391,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [49.43, 174.21, 449.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4419,8 +4404,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [29.43, 174.21, 469.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4432,8 +4417,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [29.43, 174.21, 449.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4445,8 +4430,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [9.43, 174.21, 469.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4458,8 +4443,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [9.43, 174.21, 449.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4471,8 +4456,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-10.56, 174.21, 469.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4484,8 +4469,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-10.56, 174.21, 449.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4497,8 +4482,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [9.43, 174.21, 429.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4510,8 +4495,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-10.56, 174.21, 429.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4523,8 +4508,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [19.43, 174.21, 409.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4536,8 +4521,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-0.56, 174.21, 409.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4549,8 +4534,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [24.43, 174.21, 389.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4562,8 +4547,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [4.43, 174.21, 389.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4575,8 +4560,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [29.43, 174.21, 366.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4588,8 +4573,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [9.43, 174.21, 366.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4601,8 +4586,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-225.01, 195.54, 656.53], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4614,8 +4599,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-204.58, 195.54, 668.71], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4627,8 +4612,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-182.35, 195.54, 668.99], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4640,8 +4625,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-167.16, 129.41, 685.67], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4653,8 +4638,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-165.15, 127.2, 672.89], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4666,8 +4651,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-218.16, 215.26, 539.32], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4679,8 +4664,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-215.22, 215.68, 532.67], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4692,8 +4677,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-212.28, 216.11, 526.02], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4705,8 +4690,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-4.48, 244.96, 369.38], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4718,8 +4703,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [0.45, 244.96, 374.74], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4731,8 +4716,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [5.39, 244.96, 380.09], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4744,8 +4729,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-11.21, 244.96, 375.59], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4757,8 +4742,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-6.27, 244.96, 380.94], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4770,8 +4755,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-1.33, 244.96, 386.3], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4783,8 +4768,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [25.06, 245.07, 399.14], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4796,8 +4781,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [19.56, 245.07, 403.91], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4809,8 +4794,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [14.06, 245.07, 408.69], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4822,8 +4807,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [40.91, 244.96, 420.49], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4835,8 +4820,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [46.32, 244.96, 425.37], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4848,8 +4833,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [51.73, 244.96, 430.24], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4861,8 +4846,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [34.78, 244.96, 427.29], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4874,8 +4859,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [40.19, 244.96, 432.17], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4887,8 +4872,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [45.60, 244.96, 437.04], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4900,8 +4885,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [351.25, 277.41, 561.5], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4913,8 +4898,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [351.58, 277.41, 568.77], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4926,8 +4911,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [351.91, 277.41, 576.05], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4939,8 +4924,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [373.81, 280.74, 583.31], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4952,8 +4937,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [377.47, 280.74, 589.61], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4965,8 +4950,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [381.14, 280.74, 595.9], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4978,8 +4963,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [385.87, 294.54, 577.56], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -4991,8 +4976,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [392.63, 294.54, 576.06], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5004,8 +4989,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [61.85, 289.75, 363.52], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5017,8 +5002,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [69.57, 289.75, 361.54], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5030,8 +5015,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [77.29, 289.75, 359.56], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5043,8 +5028,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [60.89, 293.1, 358.92], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5056,8 +5041,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [68.61, 293.1, 356.94], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5069,8 +5054,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [76.33, 293.1, 354.96], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5082,8 +5067,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [82.38, 311.19, 372.87], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5095,8 +5080,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [84.96, 304.52, 374.26], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5108,8 +5093,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [87.53, 297.85, 375.64], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5121,8 +5106,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [325.37, 171.3, 385.39], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5134,8 +5119,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [319.01, 166.65, 403.78], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5147,8 +5132,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [311.95, 161.34, 419.28], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5160,8 +5145,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [310.05, 156.03, 437.08], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5173,8 +5158,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [307.65, 149.28, 453.45], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5186,8 +5171,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [308.59, 141.16, 470.94], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5199,8 +5184,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [309.11, 134.05, 487.58], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5212,8 +5197,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [313.47, 125.93, 503.13], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5225,8 +5210,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [322.02, 119.33, 519.79], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5238,8 +5223,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [327.86, 109.57, 537.29], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5251,8 +5236,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [336.7, 101.59, 552.95], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5264,8 +5249,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [343.81, 94.69, 568.91], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5277,8 +5262,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [356.89, 85.08, 586.65], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5290,8 +5275,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [369.33, 76.58, 602.4], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5303,8 +5288,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [384.74, 67.88, 615.0], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5316,8 +5301,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [402.24, 59.56, 628.92], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5329,8 +5314,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [419.44, 53.09, 639.44], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5342,8 +5327,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [437.54, 48.33, 647.7], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5355,8 +5340,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-231.75, 219.43, 289.16], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5368,8 +5353,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-230.06, 202.94, 291.36], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5381,8 +5366,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-235.5, 204.81, 286.43], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5394,8 +5379,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-234.52, 205.19, 284.52], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5407,8 +5392,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-17.87, 243.14, 454.79], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5420,8 +5405,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-23.26, 243.74, 457.25], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5433,8 +5418,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-15.55, 244.11, 458.77], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5446,8 +5431,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-22.39, 246.17, 468.15], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5459,8 +5444,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-26.56, 246.95, 468.05], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5472,8 +5457,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-31.13, 249.41, 473.52], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5485,8 +5470,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-33.92, 241.3, 468.82], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5498,8 +5483,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-33.63, 241.39, 470.76], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5511,8 +5496,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-32.93, 241.76, 472.74], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5524,8 +5509,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-32.25, 242.22, 474.65], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5537,8 +5522,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [49.28, 186.93, 392.37], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5550,8 +5535,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [48.87, 186.81, 389.4], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5563,8 +5548,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [50.06, 186.96, 386.75], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5576,8 +5561,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [51.22, 186.79, 370.9], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5589,8 +5574,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [57.70, 188.90, 357.41], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5602,8 +5587,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [65.59, 186.98, 357.27], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5615,8 +5600,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [102.66, 186.34, 392.21], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5628,8 +5613,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [97.81, 184.81, 399.09], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5641,8 +5626,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [79.94, 289.34, 374.37], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5654,8 +5639,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [80.90, 294.18, 366.24], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5667,8 +5652,8 @@
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],  // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [60.54, 288.69, 376.49], // translation
       "etype": "crescent-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5681,7 +5666,6 @@
         "cycle-speed": ["float", -1.0, 0.0]
       }
     }
-
     // OTHERS
     ,{
       "trans": [22.51, 174.2, 436.62], // translation
@@ -5694,8 +5678,8 @@
         // "water-height": ["float",  364640.0, 2048.0, 8192.0, 1048588.0 ], // camera height, ?, wadledept, flags
         "look": ["int32", 35]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-174.13, 108.94, 674.38], // translation
       "etype": "lavafall",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5707,8 +5691,8 @@
         "texscroll-dist":  ["meters", 600.0],
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-152.73, 54.58, 684.47], // translation
       "etype": "lavafall",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5720,8 +5704,8 @@
         "texscroll-dist":  ["meters", 600.0],
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-155.02, 54.60, 668.66], // translation
       "etype": "lavafall",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5733,8 +5717,8 @@
         "texscroll-dist":  ["meters", 600.0],
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-4.86, 174.2, 386.83], // translation
       "etype": "lavafall",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5744,8 +5728,8 @@
         "name":"crescent-lavafall-04",
         "scale":["float", 1.16]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-6.95, 173.71, 389.07], // translation
       "etype": "lavafall",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5755,8 +5739,8 @@
         "name":"crescent-lavafall-05",
         "scale":["float", 1.16]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-139.59, 56.61, 677.59], // translation
       "etype": "lavabase",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5768,8 +5752,8 @@
         "texscroll-dist":  ["meters", 600.0],
         "light-index": ["int32", 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-5.71, 175.2, 390.74], // translation
       "etype": "lavabase",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5779,8 +5763,8 @@
         "name":"crescent-lavabase-02",
         "scale":["float", 0.65]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-5.70, 175.2, 380.97], // translation
       "etype": "lavabase",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5790,8 +5774,8 @@
         "name":"crescent-lavabase-03",
         "scale":["float", 0.65]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-249.38, 210.16, 292.05], // translation
       "etype": "hutlamp",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5801,8 +5785,8 @@
         "name":"crescent-hutlamp-01",
         "scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-252.79, 209.2, 278.33], // translation
       "etype": "hutlamp",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5812,8 +5796,8 @@
         "name":"crescent-hutlamp-02",
         "scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-240.72, 208.88, 266.93], // translation
       "etype": "hutlamp",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5823,8 +5807,8 @@
         "name":"crescent-hutlamp-03",
         "scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-222.63, 209.61, 275.86], // translation
       "etype": "hutlamp",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5834,8 +5818,8 @@
         "name":"crescent-hutlamp-04",
         "scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-240.97, 211.07, 301.27], // translation
       "etype": "hutlamp",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5845,8 +5829,8 @@
         "name":"crescent-hutlamp-05",
         "scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-219.28, 225.58, 304.77], // translation
       "etype": "hutlamp",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5856,8 +5840,8 @@
         "name":"crescent-hutlamp-05",
         "scale":["float", 1.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [64.74, 302.84, 415.33], // translation
       "etype": "bladeassm",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5867,8 +5851,8 @@
         "name":"crescent-bladeassm-01",
         "scale":["float", 1.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [65.62, 302.84, 409.82], // translation
       "etype": "mayorgears",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5878,8 +5862,8 @@
         "name":"crescent-mayorgear-01",
         "scale":["float", 1.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [66.18, 307.47, 406.32], // translation
       "etype": "mayorgears",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5889,8 +5873,8 @@
         "name":"crescent-mayorgear-02",
         "scale":["float", 1.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [65.92, 190.11, 376.24], // translation
       "etype": "towertop",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5945,8 +5929,8 @@
         "scale":["float", 0.9],
         "sync":["float", 2.0, 0.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-252.04, 202.44, 748.59], // translation
       "etype": "pusher",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5957,8 +5941,8 @@
         "scale":["float", 0.9],
         "sync":["float", 2.0, 0.5]
       }
-    },
-    {
+    }
+    ,{
       "trans": [366.47, 97.317, 611.99], // translation
       "etype": "chainmine",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5968,8 +5952,8 @@
         "name":"crescent-chainmine-01",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [363.51, 107.58, 586.35], // translation
       "etype": "chainmine",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5979,8 +5963,8 @@
         "name":"crescent-chainmine-02",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [321.66, 142.11, 520.69], // translation
       "etype": "chainmine",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -5990,8 +5974,8 @@
         "name":"crescent-chainmine-03",
         "light-index":["int32", 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [12.85, 174.21, 452.66], // translation
       "etype": "crescentflamepots",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6006,8 +5990,8 @@
           [9.37, 174.21, 444.84 , 1.0]
         ]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-2.17, 174.21, 448.19], // translation
       "etype": "crescentflamepots",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6022,9 +6006,9 @@
           [-9.06, 174.21, 444.6 , 1.0]
         ]
       }
-    },
+    }
     // eco
-    {
+    ,{
       "trans": [-256.33, 201.41, 294.52], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6034,8 +6018,8 @@
         "name":"crescent-eco-01",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-188.67, 254.98, 439.89], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6045,8 +6029,8 @@
         "name":"crescent-eco-02",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [221.93, 256.08, 435.92], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6056,8 +6040,8 @@
         "name":"crescent-eco-03",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [57.92, 186.92, 365.66], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6067,8 +6051,8 @@
         "name":"crescent-eco-04",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [32.56, 198.16, 385.82], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6078,8 +6062,8 @@
         "name":"crescent-eco-05",
         "eco-info": ["int32", 3, 2]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-265.45, 201.44, 753.58], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6089,8 +6073,8 @@
         "name":"crescent-eco-06",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [143.82, 195.09, 236.28], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6100,8 +6084,8 @@
         "name":"crescent-eco-07",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [346.95, 271.3, 568.83], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6111,8 +6095,8 @@
         "name":"crescent-eco-08",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [360.42, 278.22, 569.11], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6122,8 +6106,8 @@
         "name":"crescent-eco-09",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-218.77, 204.80, 304.54], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6133,8 +6117,8 @@
         "name":"crescent-eco-10",
         "eco-info": ["int32", 3, 2] // Give double the ammount
       }
-    },
-    {
+    }
+    ,{
       "trans": [418.98, 263.24, 683.31], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6144,8 +6128,8 @@
         "name":"crescent-eco-11",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-157.64, 273.14, 647.05], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6155,8 +6139,8 @@
         "name":"crescent-eco-12",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [69.99, 327.81, 364.0], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6166,8 +6150,8 @@
         "name":"crescent-eco-13",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [385.3, 66.32, 627.25], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6177,8 +6161,8 @@
         "name":"crescent-eco-14",
         "eco-info": ["int32", 3, 1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [376.05, 78.00, 599.45], // translation
       "etype": "eco",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6188,9 +6172,9 @@
         "name":"crescent-eco-15",
         "eco-info": ["int32", 3, 1]
       }
-    },
+    }
     // orb cache
-    {
+    ,{
       "trans": [398.9, 300.19, 621.95], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6201,8 +6185,8 @@
         "orb-cache-count":["int32", 12],
         "vis-dist":  ["meters", 200.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [-241.01, 203.03, 275.03], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6213,8 +6197,8 @@
         "orb-cache-count":["int32", 6],
         "vis-dist":  ["meters", 200.0]
       }
-    },
-    {
+    }
+    ,{
       "trans": [92.48, 184.42, 359.15], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
@@ -6225,8 +6209,8 @@
         "orb-cache-count":["int32", 5],
         "light-index":["int32",1]
       }
-    },
-    {
+    }
+    ,{
       "trans": [92.73, 184.42, 363.79], // translation
       "etype": "orb-cache-top",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
