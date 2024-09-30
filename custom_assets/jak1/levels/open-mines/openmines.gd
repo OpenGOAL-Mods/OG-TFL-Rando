@@ -3,8 +3,7 @@
 
 ;; the actual file name still needs to be 8.3
 ("OPM.DGO"
- ("static-screen.o"
-  "quicksandlurker.o"
+ ("quicksandlurker.o"
   "minecart.o"
   "mud.o"
   "misty-conveyor.o"
@@ -52,4 +51,5 @@
   "driller-lurker-ag.go"
   "junglecam-ag.go"
   "open-mines.go"
- ))
+  )
+ )

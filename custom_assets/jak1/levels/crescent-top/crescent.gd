@@ -5,20 +5,18 @@
 
 ;; the actual file name still needs to be 8.3
 ("CST.DGO"
-  (
-  "static-screen.o"
-  "rolling-race-ring.o"
+ ("rolling-race-ring.o"
   "race-ring-ag.go"
   "eichar-pole+0-ag.go"
   "eichar-racer+0-ag.go" ; zoomer stuff
-  "blocking-plane.o" ; zoomer stuff
-  "ef-plane-ag.go" ; zoomer stuff
-  "racer-ag.go" ; zoomer stuff
+  "blocking-plane.o"     ; zoomer stuff
+  "ef-plane-ag.go"       ; zoomer stuff
+  "racer-ag.go"          ; zoomer stuff
   "crescent-obs.o"
   "crescent-part.o"
-  "bouncer.o" ; springbox
+  "bouncer.o"            ; springbox
   "junglesnake.o"
-  "wall-plat.o" ; moving in and out of the wall
+  "wall-plat.o"          ; moving in and out of the wall
   "lurkerpuppy.o"
   "plat-ag.go"
   "orb-cache-top-ag.go"
@@ -40,5 +38,5 @@
   "lurkerpuppy-ag.go"
   "junglesnake-ag.go"
   "crescent-top.go"
-    )
   )
+ )
