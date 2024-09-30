@@ -32,7 +32,6 @@ add_library(compiler
         build_level/common/ResLump.cpp
         build_level/common/Tfrag.cpp
         build_level/jak1/ambient.cpp
-        build_level/jak1/SkyData.cpp
         compiler/Compiler.cpp
         compiler/Env.cpp
         compiler/Val.cpp

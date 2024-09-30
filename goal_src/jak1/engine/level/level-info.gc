@@ -2496,10 +2496,11 @@
        :music-bank #f
        :ambient-sounds
        '()
-       :mood '*default-mood*
-       :mood-func 'update-mood-default
-       :ocean #f
+       :mood '*village1-mood*
+       :mood-func 'update-mood-village1
+       :ocean '*ocean-map-village1*
        :sky #t
+       :sun-fade 1.0
        :continues
        '((new 'static
              'continue-point
@@ -2518,8 +2519,8 @@
              :vis-nick 'none
              :lev0 'test-zone
              :disp0 'display
-             :lev1 'village1
-             :disp1 'display))
+             :lev1 #f
+             :disp1 #f))
        :tasks
        '()
        :priority 100
@@ -2558,7 +2559,7 @@
        :mood '*crystal-cave-mood*
        :mood-func 'update-mood-crystal-cave
        :ocean #f
-       :sky #t
+       :sky #f
        :continues
        '((new 'static
              'continue-point
@@ -2923,7 +2924,7 @@
        :mood '*crescent-top-mood*
        :mood-func 'update-mood-crescent-top
        :ocean '*ocean-map-village1*
-       :sky #t
+       :sky #f
        :continues
        '((new 'static
              'continue-point
@@ -3019,7 +3020,7 @@
        :mood '*open-mines-mood*
        :mood-func 'update-mood-open-mines
        :ocean '*ocean-map-village1*
-       :sky #t
+       :sky #f
        :continues
        '((new 'static
              'continue-point
