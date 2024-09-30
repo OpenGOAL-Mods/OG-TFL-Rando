@@ -2560,6 +2560,7 @@
        :mood-func 'update-mood-crystal-cave
        :ocean #f
        :sky #f
+       :sun-fade 1.0
        :continues
        '((new 'static
              'continue-point
@@ -2733,6 +2734,7 @@
        :mood-func 'update-mood-crescent-top
        :ocean '*ocean-map-village1*
        :sky #t
+       :sun-fade 1.0
        :continues
        '((new 'static
              'continue-point
@@ -2925,6 +2927,7 @@
        :mood-func 'update-mood-crescent-top
        :ocean '*ocean-map-village1*
        :sky #f
+       :sun-fade 1.0
        :continues
        '((new 'static
              'continue-point
@@ -3021,6 +3024,7 @@
        :mood-func 'update-mood-open-mines
        :ocean '*ocean-map-village1*
        :sky #f
+       :sun-fade 1.0
        :continues
        '((new 'static
              'continue-point

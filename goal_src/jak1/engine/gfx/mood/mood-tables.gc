@@ -3723,13 +3723,48 @@
                  (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
                  :env-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun))))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0)))))
 
 (define *crystal-cave-mood* (new 'global 'mood-context))
 
@@ -3834,13 +3869,48 @@
                  (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
                  :env-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun)
-            (new 'static 'mood-sun))))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0))
+            (new 'static
+                 'mood-sun
+                 :sun-color
+                 (new 'static 'vector :x 255.0 :y 128.0 :w 128.0) ;; :x Red   :y Green   :w Blue
+                 :env-color
+                 (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 255.0)))))
 
 (define *crescent-top-mood* (new 'global 'mood-context))
 

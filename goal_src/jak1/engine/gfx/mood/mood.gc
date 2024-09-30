@@ -1863,9 +1863,10 @@
   (when (not (paused?))
     (clear-mood-times arg0)
     (set! (-> arg0 times 0 w) 1.0)
+    (set! (-> *time-of-day-proc* 0 time-ratio) 0.0) (set! (-> *time-of-day-proc* 0 hour) 12)
     (update-mood-quick arg0 0 0 0 arg2)
     (update-mood-itimes arg0)
-    ;;(update-mood-sky-texture arg0 arg1) ;; Break metalic effect for now because no textures
+    (update-mood-sky-texture arg0 arg1)
     ;;(update-mood-palette arg0 arg1 arg2) ;; This update the actor lighting with time of day
     )
   ;; CUSTOM LIGHT-INDEX FOR DIFFERENT ACTOR LIGHTING (see update-mood-jungleb) :
@@ -2066,9 +2067,10 @@
   (when (not (paused?))
     (clear-mood-times arg0)
     (set! (-> arg0 times 0 w) 1.0)
+    (set! (-> *time-of-day-proc* 0 time-ratio) 0.0) (set! (-> *time-of-day-proc* 0 hour) 12)
     (update-mood-quick arg0 0 0 0 arg2)
     (update-mood-itimes arg0)
-    ;;(update-mood-sky-texture arg0 arg1) ;; Break metalic effect for now because no textures
+    (update-mood-sky-texture arg0 arg1)
     ;;(update-mood-palette arg0 arg1 arg2) ;; This update the actor lighting with time of day
     )
   ;; CUSTOM LIGHT-INDEX FOR DIFFERENT ACTOR LIGHTING (see update-mood-jungleb) :
@@ -2184,9 +2186,10 @@
   (when (not (paused?))
     (clear-mood-times arg0)
     (set! (-> arg0 times 0 w) 1.0)
+    (set! (-> *time-of-day-proc* 0 time-ratio) 0.0) (set! (-> *time-of-day-proc* 0 hour) 12)
     (update-mood-quick arg0 0 0 0 arg2)
     (update-mood-itimes arg0)
-    ;;(update-mood-sky-texture arg0 arg1) ;; Break metalic effect for now because no textures
+    (update-mood-sky-texture arg0 arg1)
     ;;(update-mood-palette arg0 arg1 arg2) ;; This update the actor lighting with time of day
     )
   ;; CUSTOM LIGHT-INDEX FOR DIFFERENT ACTOR LIGHTING (see update-mood-jungleb) :

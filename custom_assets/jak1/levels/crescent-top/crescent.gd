@@ -18,6 +18,10 @@
   "junglesnake.o"
   "wall-plat.o"          ; moving in and out of the wall
   "lurkerpuppy.o"
+  "tpage-398.go"
+  "tpage-400.go"
+  "tpage-399.go"
+  "tpage-401.go"
   "plat-ag.go"
   "orb-cache-top-ag.go"
   "lavabase-ag.go"

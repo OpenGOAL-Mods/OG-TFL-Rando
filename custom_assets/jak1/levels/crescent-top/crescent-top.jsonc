@@ -57,14 +57,15 @@
   // The format is ["tpage-name", "texture-name1", "texture-name2", ...].
   // If you want all textures from a tpage, you can just do ["tpage-name"].
   "textures": [
-    ["zoomerhud"]
+    ["zoomerhud"],
+    ["village1-vis-alpha"]
   ],
 
   // Which vanilla level's texture remap table to use.
   // This is needed if you want to have proper textures for objects that are drawn using generic, such as
   // dark eco pools or dying enemies. If you choose to use this,
   // the order of art groups and tpages in your level's .gd MUST match the vanilla level's for the textures to work.
-  "tex_remap": "none",
+  "tex_remap": "village1",
 
   // Which sky to use for your custom level. This needs to be the name of a vanilla level with sky textures.
   // Your level's mood update needs to be set up to copy the sky texture (update-mood-default already handles this as an example).
@@ -84,7 +85,7 @@
   // snow:       tpage-712.go
   // finalboss:  tpage-1418.go
   // The tpage you choose also has to be in the alpha (4th) slot in the "tpages" list below.
-  "sky": "none",
+  "sky": "village1",
 
   // Any texture pages that are added to the level's "texture-ids" array.
   // These will be logged in and linked as part of level loading.
