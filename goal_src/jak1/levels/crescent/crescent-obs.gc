@@ -754,3 +754,57 @@
     (the (function plat object)
          anim-loop)
   :post plat-post)
+
+(deftype observatory-ring (process-drawable) ()
+  (:states
+    observatory-ring-idle))
+
+(defskelgroup *observatory-ring-sg* observatory-ring observatory-ring-lod0-jg observatory-ring-idle-ja
+              ((observatory-ring-lod0-mg (meters 9999999)))
+              :bounds (static-spherem 0 0 0 30))
+
+(defmethod init-from-entity! ((this observatory-ring) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *observatory-ring-sg* '())
+  (go observatory-ring-idle)
+  (none))
+
+(defstate observatory-ring-idle (observatory-ring)
+  :code 
+    (behavior ()
+      (loop 
+        (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees -60) (seconds-per-frame)))
+        (suspend)))
+  :post ja-post)
+
+(deftype observatory-lens (process-drawable) 
+  ((birth-time time-frame)
+   (birth-pos  vector :inline))
+  (:states
+    observatory-lens-idle))
+
+(defskelgroup *observatory-lens-sg* observatory-lens observatory-lens-lod0-jg observatory-lens-idle-ja
+              ((observatory-lens-lod0-mg (meters 9999999)))
+              :bounds (static-spherem 0 0 0 6))
+
+(defmethod init-from-entity! ((this observatory-lens) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *observatory-lens-sg* '())
+  (vector-copy! (-> this birth-pos) (-> this root trans))
+  (go observatory-lens-idle)
+  (none))
+
+(defstate observatory-lens-idle (observatory-lens)
+  :code 
+    (behavior ()
+      (loop 
+        (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees 15) (seconds-per-frame)))
+        (let ((bob-amount (meters 0.9))
+              (bob-speed 1))
+          (set! (-> self root trans y)
+                (+ (* bob-amount (sin (* 109.22667 (the float (* (mod (- (current-time) (-> self birth-time)) (seconds 4)) bob-speed)))))
+                   (-> self birth-pos y))))
+        (suspend)))
+  :post ja-post)

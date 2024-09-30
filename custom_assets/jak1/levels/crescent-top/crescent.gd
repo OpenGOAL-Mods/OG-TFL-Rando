@@ -15,7 +15,9 @@
   "crescent-obs.o"
   "crescent-part.o"
   "bouncer.o"            ; springbox
+  "junglesnake.o"
   "wall-plat.o"          ; moving in and out of the wall
+  "lurkerpuppy.o"
   "plat-ag.go"
   "orb-cache-top-ag.go"
   "lavabase-ag.go"
@@ -30,6 +32,11 @@
   "bladeassm-ag.go"
   "towertop-ag.go"
   "mayorgears-ag.go"
+  "observatory-ring-ag.go"
+  "observatory-lens-ag.go"
+  "babak-ag.go"
+  "lurkerpuppy-ag.go"
+  "junglesnake-ag.go"
   "crescent-top.go"
   )
  )

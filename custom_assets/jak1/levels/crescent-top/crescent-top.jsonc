@@ -39,12 +39,15 @@
     "chainmine-ag",
     "bladeassm-ag",
     "towertop-ag",
-    "mayorgears-ag"
+    "mayorgears-ag",
+    "babak-ag",
+    "lurkerpuppy-ag",
+    "junglesnake-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active"],
+  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -99,6 +102,558 @@
   "tpages": [],
 
   "actors": [
+    // ENEMIES
+    {
+      "trans": [18.24, 226.05, 403.24],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [18.24, 226.05, 403.24, 10],
+      "lump": {
+        "name":"crescent-babak-001",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [26.40, 228.21, 387.98],
+            [17.96, 225.91, 404.25],
+            [-2.14, 225.91, 401.27],
+            [3.85, 224.77, 409.49],
+            [34.92, 227.25, 399.36],
+            [40.35, 226.35, 408.91],
+            [14.62, 226.00, 402.59],
+            [13.64, 223.39, 419.64],
+            [23.03, 222.09, 430.34],
+            [18.55, 225.60, 406.68],
+            [16.12, 228.41, 383.35]
+          ],
+        "custom-nav": ["symbol", "crescent-babak1"],
+        "nav-mesh-sphere": ["vector4m",
+            [-14.88, 230.74, 363.18, 8.05],
+            [-21.22, 230.74, 357.33, 7.29],
+            [-28.90, 230.74, 357.61, 4.04],
+            [7.66, 229.08, 388.90, 8.55],
+            [31.68, 226.73, 416.96, 9.19],
+            [64.19, 226.73, 453.69, 14.31],
+            [79.77, 226.73, 450.25, 5.73],
+            [60.02, 226.58, 440.93, 7.26],
+            [10.26, 225.51, 411.81, 2.35],
+            [28.93, 228.48, 395.72, 2.35],
+            [-14.88, 229.92, 371.71, 2.35],
+            [-8.02, 229.92, 365.41, 2.35],
+            [49.20, 223.60, 440.27, 2.35],
+            [55.50, 225.29, 433.51, 2.35],
+            [-21.90, 229.97, 366.84, 2.38],
+            [73.93, 227.33, 457.06, 7.60]
+          ]
+      }
+    },
+    {
+      "trans": [-16.70, 230.08, 340.30],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-16.70, 230.08, 340.30, 10],
+      "lump": {
+        "name":"crescent-babak-002",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-6.69, 230.08, 347.39],
+            [-18.50, 230.08, 331.56],
+            [-35.09, 230.08, 342.88],
+            [-36.54, 229.96, 356.71],
+            [-21.05, 230.08, 344.37],
+            [-2.73, 229.86, 359.83]
+          ],
+        "nav-mesh-actor": "crescent-babak-001"
+      }
+    },
+    {
+      "trans": [36.96, 220.03, 449.88],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [36.96, 220.03, 449.88, 10],
+      "lump": {
+        "name":"crescent-babak-003",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [23.42, 221.32, 435.06],
+            [27.77, 218.20, 456.04],
+            [52.07, 218.70, 475.03],
+            [62.46, 220.68, 472.81],
+            [43.29, 219.99, 454.39],
+            [45.58, 223.39, 432.63]
+          ],
+        "nav-mesh-actor": "crescent-babak-001"
+      }
+    },
+    {
+      "trans": [-284.25, 198.61, 808.17],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-284.25, 198.61, 808.17, 10],
+      "lump": {
+        "name":"crescent-babak-004",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-276.87, 198.86, 827.30],
+            [-285.39, 198.64, 811.75],
+            [-280.57, 198.61, 797.14],
+            [-293.32, 198.67, 789.18]
+          ],
+        "custom-nav": ["symbol", "crescent-babak1"],
+        "nav-mesh-sphere": ["vector4m",
+            [-287.12, 199.16, 799.66, 2.94]
+          ]
+      }
+    },
+    {
+      "trans": [-46.49, 212.79, 468.98],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-46.49, 212.79, 468.98, 10],
+      "lump": {
+        "name":"crescent-babak-005",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-53.72, 213.56, 466.60],
+            [-46.49, 212.79, 468.98],
+            [-38.35, 212.80, 468.25],
+            [-35.67, 212.48, 469.97]
+          ],
+        "custom-nav": ["symbol", "crescent-babak3"]
+      }
+    },
+    {
+      "trans": [228.46, 236.23, 373.76],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [228.46, 236.23, 373.76, 10],
+      "lump": {
+        "name":"crescent-babak-006",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [227.68, 237.43, 379.42],
+            [225.47, 236.02, 373.27],
+            [228.36, 234.91, 367.55],
+            [231.26, 236.35, 373.76]
+          ],
+        "custom-nav": ["symbol", "crescent-babak4"]
+      }
+    },
+    {
+      "trans": [61.27, 184.54, 369.07],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [61.27, 184.54, 369.07, 10],
+      "lump": {
+        "name":"crescent-babak-007",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [54.93, 184.49, 382.44],
+            [56.52, 184.53, 373.11],
+            [61.07, 184.51, 367.87],
+            [68.14, 184.42, 366.73],
+            [74.34, 184.42, 371.08],
+            [76.25, 184.63, 381.90]
+          ],
+        "custom-nav": ["symbol", "crescent-babak5"],
+        "nav-mesh-sphere": ["vector4m",
+            [102.51, 189.25, 440.80, 6.59],
+            [101.39, 189.25, 435.82, 5.18],
+            [117.58, 191.72, 412.42, 3.50],
+            [65.93, 185.43, 376.24, 6.31],
+            [85.93, 184.82, 374.49, 7.22],
+            [70.28, 185.89, 407.36, 4.67],
+            [93.67, 187.67, 407.36, 4.67]
+          ],
+        "light-index": ["int32", 1]
+      }
+    },
+    {
+      "trans": [126.12, 194.88, 430.36],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [126.12, 194.88, 430.36, 10],
+      "lump": {
+        "name":"crescent-babak-008",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [129.40, 195.13, 416.13],
+            [120.10, 192.73, 437.74],
+            [135.81, 196.88, 428.10],
+            [134.18, 196.40, 420.91],
+            [117.37, 191.06, 423.24],
+            [133.87, 196.69, 432.58]
+          ],
+        "nav-mesh-actor":"crescent-babak-007",
+        "light-index": ["int32", 1]
+      }
+    },
+    {
+      "trans": [217.13, 208.41, 426.82],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [217.13, 208.41, 426.82, 10],
+      "lump": {
+        "name":"crescent-babak-009",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [195.74, 206.82, 422.56],
+            [207.70, 207.57, 421.28],
+            [222.11, 208.74, 426.19],
+            [232.77, 210.13, 436.79]
+          ],
+        "custom-nav": ["symbol", "crescent-babak6"],
+        "nav-mesh-sphere": ["vector4m",
+            [260.78, 225.77, 474.18, 9.83],
+            [288.94, 233.32, 461.62, 9.83],
+            [292.63, 244.65, 500.31, 10.72],
+            [166.71, 207.00, 430.93, 7.62],
+            [168.35, 207.00, 447.49, 12.37],
+            [149.03, 207.00, 437.11, 12.37],
+            [148.95, 204.62, 406.34, 14.44],
+            [259.89, 221.83, 466.00, 3.87]
+          ]
+      }
+    },
+    {
+      "trans": [251.15, 215.51, 458.85],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [251.15, 215.51, 458.85, 10],
+      "lump": {
+        "name":"crescent-babak-010",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "nav-mesh-actor":"crescent-babak-009",
+        "path": ["vector3m",
+            [247.64, 214.94, 459.98],
+            [259.26, 217.21, 456.04],
+            [267.41, 221.25, 460.97],
+            [273.50, 225.55, 469.30]
+          ]
+      }
+    },
+    {
+      "trans": [282.61, 230.18, 473.80],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [282.61, 230.18, 473.80, 10],
+      "lump": {
+        "name":"crescent-babak-011",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "nav-mesh-actor":"crescent-babak-009",
+        "path": ["vector3m",
+            [276.71, 224.18, 459.05],
+            [279.06, 227.64, 469.18],
+            [286.60, 231.99, 474.78],
+            [300.23, 236.84, 472.49]
+          ]
+      }
+    },
+    {
+      "trans": [408.64, 254.46, 734.81],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [408.64, 254.46, 734.81, 10],
+      "lump": {
+        "name":"crescent-babak-012",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [405.11, 258.13, 697.02],
+            [416.07, 256.42, 713.41],
+            [414.55, 254.98, 728.61],
+            [408.22, 253.39, 744.48]
+          ],
+        "custom-nav": ["symbol", "crescent-babak7"],
+        "nav-mesh-sphere": ["vector4m",
+            [385.12, 260.52, 712.91, 15.74],
+            [442.51, 256.94, 710.75, 10.95]
+          ]
+      }
+    },
+    {
+      "trans": [30.04, 243.33, 360.54],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [30.04, 243.33, 360.54, 10],
+      "lump": {
+        "name":"crescent-babak-013",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [39.86, 247.37, 335.43],
+            [35.97, 245.99, 343.84],
+            [32.24, 244.11, 354.39],
+            [30.09, 243.06, 362.77]
+          ],
+        "custom-nav": ["symbol", "crescent-babak8"],
+        "nav-mesh-sphere": ["vector4m",
+            [48.67, 254.31, 321.16, 16.20]
+          ]
+      }
+    },
+    {
+      "trans": [34.12, 255.34, 309.80],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [34.12, 255.34, 309.80, 10],
+      "lump": {
+        "name":"crescent-babak-014",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [19.95, 256.13, 294.72],
+            [25.27, 255.82, 299.39],
+            [30.46, 255.77, 304.71],
+            [34.09, 255.30, 309.97]
+          ],
+        "nav-mesh-actor":"crescent-babak-013"
+      }
+    },
+    {
+      "trans": [91.06, 272.71, 289.30],
+      "etype": "babak",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [91.06, 272.71, 289.30, 10],
+      "lump": {
+        "name":"crescent-babak-015",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [87.74, 272.93, 315.27],
+            [89.38, 273.36, 307.76],
+            [90.52, 273.46, 297.52],
+            [91.07, 272.68, 289.08]
+          ],
+        "nav-mesh-actor":"crescent-babak-013"
+      }
+    },
+    {
+      "trans": [-291.62, 200.65, 313.28],
+      "etype": "lurkerpuppy",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-291.62, 200.65, 313.28, 10],
+      "lump": {
+        "name":"crescent-lurkerpuppy-001",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-283.00, 199.35, 314.11],
+            [-284.51, 200.44, 338.02],
+            [-294.81, 201.36, 308.99],
+            [-291.95, 200.86, 324.61],
+            [-282.53, 199.57, 325.72],
+            [-275.00, 198.98, 310.23]
+          ],
+        "custom-nav": ["symbol", "crescent-lurkerpuppy1"],
+        "nav-mesh-sphere": ["vector4m",
+            [-220.20, 198.99, 329.98, 12.49],
+            [-299.73, 204.77, 326.34, 7.48],
+            [-285.19, 204.77, 293.19, 16.23],
+            [-271.09, 204.77, 291.20, 13.88],
+            [-228.51, 200.77, 284.11, 26.27],
+            [-219.89, 200.77, 306.22, 15.80],
+            [-263.61, 201.39, 325.90, 16.37],
+            [-265.52, 201.39, 337.84, 10.72],
+            [-260.05, 201.39, 345.70, 10.14],
+            [-251.76, 201.39, 350.32, 7.21],
+            [-258.60, 201.39, 323.79, 13.96],
+            [-262.70, 201.39, 370.99, 6.31],
+            [-268.64, 201.39, 367.78, 6.70],
+            [-293.35, 202.01, 351.40, 3.18],
+            [-293.95, 202.04, 345.62, 3.44],
+            [-249.66, 200.91, 299.01, 3.86],
+            [-252.09, 200.91, 300.71, 3.63]
+          ]
+      }
+    },
+    {
+      "trans": [-278.58, 200.55, 372.52],
+      "etype": "lurkerpuppy",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-278.58, 200.55, 372.52, 10],
+      "lump": {
+        "name":"crescent-lurkerpuppy-002",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-271.44, 198.99, 356.24],
+            [-280.36, 199.60, 359.20],
+            [-283.14, 200.73, 367.30],
+            [-277.50, 200.76, 376.38],
+            [-265.69, 199.40, 380.38],
+            [-257.05, 198.94, 378.25]
+          ],
+        "nav-mesh-actor":"crescent-lurkerpuppy-001"
+      }
+    },
+    {
+      "trans": [-242.66, 198.94, 339.68],
+      "etype": "lurkerpuppy",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-242.66, 198.94, 339.68, 10],
+      "lump": {
+        "name":"crescent-lurkerpuppy-003",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-242.30, 198.94, 311.11],
+            [-236.62, 198.94, 322.50],
+            [-241.67, 198.94, 345.47],
+            [-235.46, 198.94, 356.05]
+          ],
+        "nav-mesh-actor":"crescent-lurkerpuppy-001"
+      }
+    },
+    {
+      "trans": [-192.72, 220.15, 677.96],
+      "etype": "lurkerpuppy",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-192.72, 220.15, 677.96, 10],
+      "lump": {
+        "name":"crescent-lurkerpuppy-004",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [-194.88, 219.73, 680.27],
+            [-186.71, 221.14, 675.22],
+            [-186.50, 220.76, 684.37],
+            [-193.83, 220.04, 676.77]
+          ],
+        "custom-nav": ["symbol", "crescent-lurkerpuppy2"]
+      }
+    },
+    {
+      "trans": [114.32, 268.61, 395.39],
+      "etype": "lurkerpuppy",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [114.32, 268.61, 395.39, 10],
+      "lump": {
+        "name":"crescent-lurkerpuppy-005",
+        "cam-notice-dist": ["meters", 15.0],
+        "idle-distance": ["meters", 150.0],
+        "cam-vert": ["meters", 5.0],
+        "cam-horz": ["meters", 10.0],
+        "path": ["vector3m",
+            [105.29, 268.45, 394.28],
+            [116.81, 268.76, 396.48],
+            [108.66, 268.52, 396.72],
+            [104.83, 268.37, 390.43]
+          ],
+        "custom-nav": ["symbol", "crescent-lurkerpuppy3"]
+      }
+    },
+    {
+      "trans": [198.79, 231.70, 317.90],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [198.79, 231.70, 317.90, 10],
+      "lump": {
+        "name":"crescent-junglesnake-001",
+        "scale":["float", 0.7]
+      }
+    },
+    {
+      "trans": [-37.61, 208.07, 514.26],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-37.61, 208.07, 514.26, 10],
+      "lump": {
+        "name":"crescent-junglesnake-002",
+        "scale":["float", 0.7]
+      }
+    },
+    {
+      "trans": [-64.90, 231.08, 326.68],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-64.90, 231.08, 326.68, 10],
+      "lump": {
+        "name":"crescent-junglesnake-003",
+        "scale":["float", 0.7]
+      }
+    },
+    {
+      "trans": [-111.08, 231.08, 325.59],
+      "etype": "junglesnake",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-111.08, 231.08, 325.59, 10],
+      "lump": {
+        "name":"crescent-junglesnake-004",
+        "scale":["float", 0.9]
+      }
+    },
     // CELLS
     {
       "trans": [-129.08, 257.71, 487.94], // translation
@@ -147,6 +702,16 @@
         "name": "crescent-fuel-cell-04", //crescent-observatory climb the observatory
         "eco-info": ["int32", 6, 122],
         "movie-pos": ["vector4m", [75.06, 327.11, 364.88, -45.0]]
+      }
+    },
+    {
+      "trans": [-272.66, 261.73, 663.21],
+      "etype": "tfl-lowreskui",
+      "game_task": 0,
+      "quat" : [-0.000, -0.747, -0.000, -0.665],
+      "bsphere": [-272.66, 261.73, 663.21, 10],
+      "lump": {
+        "name":"crescent-tfl-lowreskui-001"
       }
     },
     // SCOUT FLIES
@@ -2041,8 +2606,9 @@
       "quat": [-0.005, -0.124, -0.022, -0.956], // quaternion
       "bsphere": [-189.89, 218.24, 667.57, 10], // bounding sphere
       "lump": {
-        "name": "crescent-crate-wood-23",
-        "crate-type": "'wood"
+        "name":"crescent-crate-wood-23",
+        "crate-type":"'wood",
+        "nav-mesh-actor":"crescent-lurkerpuppy-004"
       }
     },
     {
@@ -2052,8 +2618,9 @@
       "quat": [-0.01, -0.232, -0.061, -0.934], // quaternion
       "bsphere": [-185.45, 221.25, 676.89, 10], // bounding sphere
       "lump": {
-        "name": "crescent-crate-wood-24",
-        "crate-type": "'wood"
+        "name":"crescent-crate-wood-24",
+        "crate-type":"'wood",
+        "nav-mesh-actor":"crescent-lurkerpuppy-004"
       }
     },
     {
@@ -2096,9 +2663,10 @@
       "quat": [-0.021, 0.822, -0.015, 0.569], // quaternion
       "bsphere": [54.22, 183.44, 415.81, 10], // bounding sphere
       "lump": {
-        "name": "crescent-crate-wood-28",
-        "crate-type": "'wood",
-        "light-index": ["int32", 1]
+        "name":"crescent-crate-wood-28",
+        "crate-type":"'wood",
+        "light-index":["int32", 1],
+        "nav-mesh-actor":"crescent-babak-007"
       }
     },
     {
@@ -2110,7 +2678,8 @@
       "lump": {
         "name": "crescent-crate-wood-29",
         "crate-type": "'wood",
-        "light-index": ["int32", 1]
+        "light-index": ["int32", 1],
+        "nav-mesh-actor": "crescent-babak-007"
       }
     },
     {
@@ -2526,12 +3095,6 @@
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.3],
         "part-emerge-height": ["meters", 173.5],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
         "sync": ["float", 20.0, 0.0],
         "options": ["int32", 8]
       }
@@ -2556,13 +3119,7 @@
           [20.47, 178.07, 387.26, 1.0],
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
-        ],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
+          ],
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.3],
         "part-emerge-height": ["meters", 173.5],
@@ -2624,13 +3181,7 @@
           [20.47, 178.07, 387.26, 1.0],
           [16.66, 173.07, 396.45, 1.0],
           [7.47, 178.07, 400.26, 1.0]
-        ],
-        // "path-k":["float",
-        //   0.0, 0.0,
-        //   0.0, 0.0,
-        //   0.1, 0.3,
-        //   0.1, 0.3
-        // ],
+          ],
         "part-height": ["meters", 175.8],
         "part-range": ["meters", 0.3],
         "part-emerge-height": ["meters", 173.5],
@@ -2639,20 +3190,25 @@
       }
     },
     {
-      "trans": [-217.83, 231.88, 689.29], // translation
+      "trans": [-219.2, 231.07, 689.61], // translation
       "etype": "plat", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-217.83, 231.88, 689.29, 10], // bounding sphere
+      "bsphere": [-219.2, 231.07, 689.61, 10], // bounding sphere
       "lump": {
-        "name": "crescent-plat-11",
-        "path": [
-          "vector4m",
-          [-217.83, 231.88, 689.29, 1.0],
-          [-234.07, 241.47, 670.68, 1.0]
-        ],
-        "sync": ["float", 6.0, 0.0],
-        "scale": ["float", 1.5]
+        "name":"crescent-plat-11",
+        "path": ["vector3m",
+            [-219.20, 231.07, 689.61],
+            [-221.51, 231.07, 687.09],
+            [-228.15, 236.27, 679.15],
+            [-231.80, 241.47, 671.60]
+          ],
+        "path-k":["float", 
+            0.0, 0.0, 0.0, 0.0,
+            1.0, 1.0, 1.0, 1.0
+          ],
+        "sync": ["float", 6.0, 0.0]
+        ,"scale":["float", 1.5]
       }
     },
     {
@@ -2695,12 +3251,17 @@
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [-180.14, 258.67, 642.84, 10], // bounding sphere
       "lump": {
-        "name": "crescent-plat-14",
-        "path": [
-          "vector4m",
-          [-180.14, 258.67, 642.84, 1.0],
-          [-165.72, 272.38, 646.72, 1.0]
-        ],
+        "name":"crescent-plat-14",
+        "path": ["vector3m",
+            [-182.42, 257.82, 642.22],
+            [-179.33, 259.17, 643.04],
+            [-171.33, 264.09, 645.21],
+            [-165.72, 272.38, 646.72]
+          ],
+        "path-k":["float", 
+            0.0, 0.0, 0.0, 0.0,
+            1.0, 1.0, 1.0, 1.0
+          ],
         "sync": ["float", 6.0, 0.0]
       }
     },
@@ -2744,13 +3305,13 @@
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [16.19, 243.54, 399.58, 10], // bounding sphere
       "lump": {
-        "name": "crescent-plat-17",
-        "path": [
-          "vector4m",
-          [16.19, 243.54, 399.58, 1.0],
-          [23.3, 243.54, 408.11, 1.0]
+        "name":"crescent-plat-17",
+        "path":[
+          "vector3m",
+          [14.68, 243.54, 398.27],
+          [24.14, 243.54, 408.52]
         ],
-        "sync": ["float", 4.0, 0.0]
+        "sync": ["float", 4.5, 0.0]
       }
     },
     {
@@ -2848,7 +3409,8 @@
         ],
         "sync": ["float", 6.0, 0.0],
         "notice-dist": ["meters", 2.5],
-        "light-index": ["int32", 1]
+        "light-index": ["int32", 1],
+        "nav-mesh-actor": "crescent-babak-007"
       }
     },
     {
@@ -3013,40 +3575,43 @@
     // RACE RINGS
     {
       "trans": [-118.49, 239.84, 362.23], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0.0, -0.594, 0.0, 0.804], // quaternion
       "bsphere": [-118.49, 239.84, 362.23, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-01-start",
         "timeout": ["float", 0.0],
+        "rot-y": ["degrees", 17.10],
         "next-actor": "crescent-race-ring-02",
         "alt-task": ["int32", 0] // Only appear when that task is complete
       }
     },
     {
       "trans": [-148.08, 244.2, 378.6], // translation -148.68, 244.2, 378.6
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0.0, 0.184, -0.0, 0.983], // quaternion 0, -0.184, 0, 0.963
       "bsphere": [-148.08, 244.2, 378.6, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-02",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 68.84],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-03",
         "prev-actor": "crescent-race-ring-01-start"
       }
     },
     {
-      "trans": [-143.11, 228.08, 443.13], // translation
-      "etype": "race-ring", // actor type
+      "trans": [-147.36, 228.08, 440.1], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.38, 0, 0.925], // quaternion
-      "bsphere": [-143.11, 228.08, 443.13, 10], // bounding sphere
+      "bsphere": [-147.36, 228.08, 440.1, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-03",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 21.36],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-04",
         "prev-actor": "crescent-race-ring-02"
@@ -3054,13 +3619,14 @@
     },
     {
       "trans": [-193.87, 225.72, 452.61], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.731, 0, 0.682], // quaternion
       "bsphere": [-193.87, 225.72, 452.61, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-04",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 6.78],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-05",
         "prev-actor": "crescent-race-ring-03"
@@ -3068,13 +3634,14 @@
     },
     {
       "trans": [-240.71, 219.57, 493.46], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.197, 0, 0.98], // quaternion
       "bsphere": [-240.71, 219.57, 493.46, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-05",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 67.29],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-06",
         "prev-actor": "crescent-race-ring-04"
@@ -3082,13 +3649,14 @@
     },
     {
       "trans": [-250.26, 223.6, 555.88], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.25, 0, 0.968], // quaternion
       "bsphere": [-250.26, 223.6, 555.88, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-06",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 119.01],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-07",
         "prev-actor": "crescent-race-ring-05"
@@ -3096,27 +3664,29 @@
     },
     {
       "trans": [-204.1, 207.44, 615.05], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.096, 0, 0.995], // quaternion
       "bsphere": [-204.1, 207.44, 615.05, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-07",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 79.01],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-08",
         "prev-actor": "crescent-race-ring-06"
       }
     },
     {
-      "trans": [-236.79, 204.33, 680.59], // translation
-      "etype": "race-ring", // actor type
+      "trans": [-240.89, 204.33, 683.47], // translation
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.333, 0, 0.943], // quaternion
-      "bsphere": [-236.79, 204.33, 680.59, 10], // bounding sphere
+      "bsphere": [-240.89, 204.33, 683.47, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-08",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 38.15],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-09",
         "prev-actor": "crescent-race-ring-07"
@@ -3124,13 +3694,14 @@
     },
     {
       "trans": [-292.91, 203.95, 719.02], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.118, 0, 0.993], // quaternion
       "bsphere": [-292.91, 203.95, 719.02, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-09",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 103.57],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-10",
         "prev-actor": "crescent-race-ring-08"
@@ -3138,13 +3709,14 @@
     },
     {
       "trans": [-237.1, 204.35, 811.13], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.177, 0, 0.886], // quaternion
       "bsphere": [-237.1, 204.35, 811.13, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-10",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 67.34],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-11",
         "prev-actor": "crescent-race-ring-09"
@@ -3152,27 +3724,29 @@
     },
     {
       "trans": [-272.77, 204.1, 811.33], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.903, 0, -0.017], // quaternion
       "bsphere": [-272.77, 204.1, 811.33, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-11",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 267.88],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-12",
         "prev-actor": "crescent-race-ring-10"
       }
     },
     {
-      "trans": [-251.84, 204.81, 730.28], // translation
-      "etype": "race-ring", // actor type
+      "trans": [-261.75, 204.81, 741.92], // translation
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.901, 0, -0.06], // quaternion
-      "bsphere": [-251.84, 204.81, 730.28, 10], // bounding sphere
+      "bsphere": [-261.75, 204.81, 741.92, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-12",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 255.76],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-13",
         "prev-actor": "crescent-race-ring-11"
@@ -3180,13 +3754,14 @@
     },
     {
       "trans": [-232.98, 234.18, 629.38], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.852, 0, -0.299], // quaternion
       "bsphere": [-232.98, 234.18, 629.38, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-13",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 243.18],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-14",
         "prev-actor": "crescent-race-ring-12"
@@ -3194,13 +3769,14 @@
     },
     {
       "trans": [-181.25, 221.2, 493.9], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.852, 0, -0.299], // quaternion
       "bsphere": [-181.25, 221.2, 493.9, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-14",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 231.28],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-15",
         "prev-actor": "crescent-race-ring-13"
@@ -3208,13 +3784,14 @@
     },
     {
       "trans": [-143.64, 230.29, 424.8], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.901, 0, -0.068], // quaternion
       "bsphere": [-143.64, 230.29, 424.8, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-15",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 261.31],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-16",
         "prev-actor": "crescent-race-ring-14"
@@ -3222,13 +3799,14 @@
     },
     {
       "trans": [-129.71, 235.32, 325.13], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.819, 0, -0.381], // quaternion
       "bsphere": [-129.71, 235.32, 325.13, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-16",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 220.15],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-17",
         "prev-actor": "crescent-race-ring-15"
@@ -3236,69 +3814,74 @@
     },
     {
       "trans": [-51.5, 245.61, 279.58], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.725, 0, -0.539], // quaternion
       "bsphere": [-51.5, 245.61, 279.58, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-17",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 206.07],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-18",
         "prev-actor": "crescent-race-ring-16"
       }
     },
     {
-      "trans": [5.14, 254.19, 252.62], // translation
-      "etype": "race-ring", // actor type
+      "trans": [11.37, 254.19, 248.31], // translation
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.729, 0, -0.533], // quaternion
-      "bsphere": [5.14, 254.19, 252.62, 10], // bounding sphere
+      "bsphere": [11.37, 254.19, 248.31, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-18",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 193.2],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-19",
         "prev-actor": "crescent-race-ring-17"
       }
     },
     {
-      "trans": [86.91, 200.27, 236.96], // translation
-      "etype": "race-ring", // actor type
+      "trans": [95.05, 199.69, 235.39], // translation
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.624, 0, -0.653], // quaternion
-      "bsphere": [86.91, 200.27, 236.96, 10], // bounding sphere
+      "bsphere": [95.05, 199.69, 235.39, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-19",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 182.38],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-20",
         "prev-actor": "crescent-race-ring-18"
       }
     },
     {
-      "trans": [238.9, 241.32, 303.76], // translation
-      "etype": "race-ring", // actor type
+      "trans": [238.9, 240.74, 303.76], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
-      "quat": [0, -0.057, 0, -0.901], // quaternion
-      "bsphere": [238.9, 241.32, 303.76, 10], // bounding sphere
+      "quat" : [0, -0.057, 0, -0.901], // quaternion
+      "bsphere": [238.9, 240.74, 303.76, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-20",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 88.93],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-21",
         "prev-actor": "crescent-race-ring-19"
       }
     },
     {
-      "trans": [225.55, 257.46, 423.31], // translation
-      "etype": "race-ring", // actor type
+      "trans": [226.2, 257.46, 423.62], // translation
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.197, 0, -0.882], // quaternion
-      "bsphere": [225.55, 257.46, 423.31, 10], // bounding sphere
+      "bsphere": [226.2, 257.46, 423.62, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-21",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 64.86],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-22",
         "prev-actor": "crescent-race-ring-20"
@@ -3306,13 +3889,14 @@
     },
     {
       "trans": [159.8, 245.06, 464.04], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.797, 0, -0.425], // quaternion
       "bsphere": [159.8, 245.06, 464.04, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-22",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", -33.92],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-23",
         "prev-actor": "crescent-race-ring-21"
@@ -3320,13 +3904,14 @@
     },
     {
       "trans": [98.67, 235.93, 401.43], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.885, 0, -0.181], // quaternion
       "bsphere": [98.67, 235.93, 401.43, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-23",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", -66.94],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-24",
         "prev-actor": "crescent-race-ring-22"
@@ -3334,41 +3919,44 @@
     },
     {
       "trans": [63.55, 245.04, 347.81], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.443, 0, 0.787], // quaternion
       "bsphere": [63.55, 245.04, 347.81, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-24",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", -25.46],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-25",
         "prev-actor": "crescent-race-ring-23"
       }
     },
     {
-      "trans": [32.87, 261.62, 303.7], // translation
-      "etype": "race-ring", // actor type
+      "trans": [44.14, 264.04, 299.2], // translation
+      "etype": "tfl-race-ring",  // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.815, 0, 0.39], // quaternion
-      "bsphere": [32.87, 261.62, 303.7, 10], // bounding sphere
+      "bsphere": [44.14, 264.04, 299.2, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-25",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 189.2],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-26",
         "prev-actor": "crescent-race-ring-24"
       }
     },
     {
-      "trans": [134.08, 287.12, 316.47], // translation
-      "etype": "race-ring", // actor type
+      "trans": [144.57, 287.11, 320.37], // translation
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.516, 0, 0.741], // quaternion
-      "bsphere": [134.08, 287.12, 316.47, 10], // bounding sphere
+      "bsphere": [144.57, 287.11, 320.37, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-26",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 159.65],
         "alt-actor": "crescent-race-ring-01-start",
         "next-actor": "crescent-race-ring-27",
         "prev-actor": "crescent-race-ring-25"
@@ -3376,22 +3964,21 @@
     },
     {
       "trans": [207.57, 273.07, 341.89], // translation
-      "etype": "race-ring", // actor type
+      "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, 0.424, 0, 0.798], // quaternion
       "bsphere": [207.57, 273.07, 341.89, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-27",
         "timeout": ["float", 8.0],
+        "rot-y": ["degrees", 145.96],
         "movie-pos": ["vector4m", [209.91, 249.08, 373.25, 60.0]],
         "alt-actor": "crescent-race-ring-01-start",
         "prev-actor": "crescent-race-ring-26",
         "options": ["int32", 1024] // big hitbox
       }
     },
-
     // RACERS
-
     {
       "trans": [-191.63, 227.06, 402.98], // translation
       "etype": "racer", // actor type
@@ -3426,6 +4013,18 @@
         "name": "crescent-racer-03",
         "index": ["int32", 2],
         "rotoffset": ["meters", 5.7777]
+      }
+    },
+    {
+      "trans": [220.86, 206.18, 586.11],
+      "etype": "racer",
+      "game_task": 128,
+      "quat" : [0.0, 0.0, 0.0, 1.0],
+      "bsphere": [220.86, 206.18, 586.11, 10],
+      "lump": {
+        "name":"crescent-racer-04",
+        "index": ["int32", 2],
+        "rotoffset": ["degrees", 0.0]
       }
     },
     // energy-bay racers to avoid the crash
@@ -3465,7 +4064,6 @@
         "rotoffset": ["meters", -1.5111]
       }
     },
-
     // Particles
     {
       "trans": [-221.07, 229.85, 233.35], // translation
@@ -5340,7 +5938,6 @@
         "scale": ["float", 1.0]
       }
     },
-
     {
       "trans": [65.92, 190.11, 376.24], // translation
       "etype": "towertop", // actor type
@@ -5351,6 +5948,37 @@
         "name": "crescent-towertop-01",
         "scale": ["float", 0.1],
         "light-index": ["int32", 2]
+      }
+    },
+    {
+      "trans": [70.77, 350.80, 364.37],
+      "etype": "observatory-ring",
+      "game_task": 0,
+      "quat" : [0.090, -0.014, 0.086, 0.992],
+      "bsphere": [70.77, 350.80, 364.37, 10],
+      "lump": {
+        "name":"crescent-observatory-ring-001"
+      }
+    },
+    {
+      "trans": [70.77, 350.80, 364.37],
+      "etype": "observatory-ring",
+      "game_task": 0,
+      "quat" : [-0.182, 0.614, -0.292, 0.710],
+      "bsphere": [70.77, 350.80, 364.37, 10],
+      "lump": {
+        "name":"crescent-observatory-ring-002",
+        "scale":["float", 1.15]
+      }
+    },
+    {
+      "trans": [56.66, 361.43, 376.21],
+      "etype": "observatory-lens",
+      "game_task": 0,
+      "quat" : [-0.428, 0.833, 0.350, -0.012],
+      "bsphere": [56.66, 361.43, 376.21, 10],
+      "lump": {
+        "name":"crescent-observatory-lens-001"
       }
     },
     // Danger/damage stuff
@@ -5658,6 +6286,57 @@
         "name": "crescent-orb-cache-top-04",
         "orb-cache-count": ["int32", 5],
         "light-index": ["int32", 1]
+      }
+    },
+    // Camera control
+    {
+      "trans": [-205.16, 228.62, 703.91],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-205.16, 228.62, 703.91, 10],
+      "lump": {
+        "name":"crescent-tlf-cam-control-001",
+        "vol": ["vector-vol",
+            [-0.680, 0.000, 0.733, 659.353],
+            [-0.733, 0.000, -0.680, -315.130],
+            [0.680, 0.000, -0.733, -651.264],
+            [0.733, 0.000, 0.680, 317.958],
+            [0.000, -1.000, -0.000, -234.852],
+            [0.000, 1.000, -0.000, 237.716]
+          ],
+        "cam-position":["vector3m",[-220.22, 242.3, 710.63]],
+        "move-timer":["float", 1.2],
+        "max-z":["meters", 24],
+        "push-z":["meters", 20],
+        "max-y":["meters", 10],
+        "min-y":["meters", -2],
+        "tilt-adjust":["degrees", 6]
+      }
+    },
+    {
+      "trans": [-204.28, 272.30, 634.69],
+      "etype": "tfl-cam-control",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-204.28, 272.30, 634.69, 10],
+      "lump": {
+        "name":"crescent-tlf-cam-control-002",
+        "vol": ["vector-vol",
+            [-0.924, 0.250, -0.289, 74.002],
+            [0.298, 0.000, -0.954, -662.861],
+            [0.954, 0.000, 0.298, 3.589],
+            [-0.298, 0.000, 0.954, 670.015],
+            [0.302, -0.949, 0.094, -255.195],
+            [0.000, 1.000, -0.000, 276.116]
+          ],
+        "cam-position":["vector3m",[-211.08, 279.4, 632.32]],
+        "move-timer":["float", 1.5],
+        "max-z":["meters", 10],
+        "push-z":["meters", 10],
+        "max-y":["meters", 10],
+        "min-y":["meters", 0],
+        "tilt-adjust":["degrees", 3]
       }
     },
     // Hints

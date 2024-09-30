@@ -385,7 +385,11 @@
                 :position
                 (the-as symbol (-> self control trans))))
   (cond
-    ((and (!= (-> self current-level name) 'ogre) (!= (-> self current-level name) 'lavatube)) #f)
+    ((and (!= (-> self current-level name) 'ogre) 
+          (!= (-> self current-level name) 'lavatube)
+          (!= (-> self current-level name) 'crescent-t)
+          (!= (-> self current-level name) 'energy-bay)
+          (!= (-> self current-level name) 'open-mines)) #f) ;; TFL note: adding TFL levels to explode when stuck
     ((or (logtest? (-> self control status) (cshape-moving-flags onground))
          (< 12288.0 (vector-length (-> self control transv))))
      (let ((v0-5 (the-as object (current-time)))) (set! (-> self racer unstuck-time) (the-as time-frame v0-5)) v0-5))
@@ -983,5 +987,23 @@
   (let ((v1-240 (-> *target-shadow-control* settings shadow-dir quad)))
     (set! (-> *racer-shadow-control* settings shadow-dir quad) v1-240))
   (target-racing-super-red-boost) ;; TFL note: added call for super red eco attack
+  ;; TFL note: added a condition to spawn the hud-bike-heat only in the lava tunnel 
+  (if (= (-> *hud-parts* bike-heat) #f)
+      (when (or (and (= (-> *target* current-level name) 'energy-bay) 
+                    (< (vector-vector-distance (-> *target* control trans) (static-vectorm 427.55 51.74 641.52)) (meters 20)))
+                (and (= (-> *target* current-level name) 'crescent-t) 
+                    (< (vector-vector-distance (-> *target* control trans) (static-vectorm 324.16 171.66 387.85)) (meters 20))))
+        (set! (-> *hud-parts* bike-heat) (process-spawn hud-bike-heat :init hud-init-by-other 0 :to self))
+        (set! (-> *hud-parts* buzzers 0 next-y-offset) -120)
+        (set! (-> *hud-parts* buzzers 0 y-sgn) 0))
+      (when (or (and (= (-> *target* current-level name) 'energy-bay) 
+                      (< (vector-vector-distance (-> *target* control trans) (static-vectorm 475.53 43.94 651.98)) (meters 25)))
+                (and (= (-> *target* current-level name) 'crescent-t) 
+                      (< (vector-vector-distance (-> *target* control trans) (static-vectorm 337.64 180.49 337.1)) (meters 35))))
+        (set! (-> self racer heat) 0.0)
+        (set! (-> (-> *hud-parts* bike-heat) 0 deactivate-when-hidden) #t)
+        (send-event (ppointer->process (-> *hud-parts* bike-heat)) 'hide)
+        (set! (-> *hud-parts* buzzers 0 next-y-offset) 0)
+        (set! (-> *hud-parts* buzzers 0 y-sgn) 0)))
   0
   (none))
