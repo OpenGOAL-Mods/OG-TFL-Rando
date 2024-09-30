@@ -14,6 +14,7 @@
   "racer-ag.go" ; zoomer stuff
   "sun-iris-door.o"
   "balloonlurker.o"
+  "lurkerpuppy.o"
   "orb-cache-top-ag.go"
   "sun-iris-door-ag.go"
   "shortcut-boulder-ag.go"
