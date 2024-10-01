@@ -212,6 +212,16 @@
         "movie-pos": ["vector4m", [722.78, 13, 836.12, 0.0]]
       }
     },
+    {
+      "trans": [779.93, 29.03, 510.44],
+      "etype": "tfl-lowreskui",
+      "game_task": "(game-task tfl-lowreskui)",
+      "quat" : [-0.000, -0.747, -0.000, -0.665],
+      "bsphere": [779.93, 29.03, 510.44, 10],
+      "lump": {
+        "name":"open-mines-tfl-lowreskui-001"
+      }
+    },
     // ENEMIES
     {
       "trans": [614.63, 44.11, 826.26], // translation

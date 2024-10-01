@@ -708,7 +708,7 @@
     {
       "trans": [-272.66, 261.73, 663.21],
       "etype": "tfl-lowreskui",
-      "game_task": 0,
+      "game_task": "(game-task tfl-lowreskui)",
       "quat" : [-0.000, -0.747, -0.000, -0.665],
       "bsphere": [-272.66, 261.73, 663.21, 10],
       "lump": {
