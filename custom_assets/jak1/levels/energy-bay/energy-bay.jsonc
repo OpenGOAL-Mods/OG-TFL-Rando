@@ -303,11 +303,11 @@
       }
     },
     {
-      "trans": [555.98, 58.3, 979.82], // translation
+      "trans": [646.96, -10, 882.96], // translation
       "etype": "balloonlurker", // actor type
       "game_task": 132, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [555.98, 58.3, 979.82, 10], // bounding sphere
+      "bsphere": [646.96, -10, 882.96, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-balloonlurker-02",
         "alt-actor": "energy-bay-fuel-cell-05",
@@ -318,17 +318,68 @@
       }
     },
     {
-      "trans": [632.54, 25.68, 697.32], // translation
+      "trans": [1020.78, 0.00, 747.59], // translation
       "etype": "balloonlurker", // actor type
       "game_task": 132, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [632.54, 25.68, 697.32, 10], // bounding sphere
+      "bsphere": [1020.78, 0.00, 747.59, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-balloonlurker-03",
         "alt-actor": "energy-bay-fuel-cell-05",
         "prev-actor": "energy-bay-balloonlurker-02",
         "next-actor": "energy-bay-balloonlurker-04",
-        "path-actor": "energy-bay-balloonlurker-01",
+        "path": [
+          "vector3m",
+          [981.49, 0.00, 717.78],
+          [1033.16, 0.00, 827.13],
+          [986.72, 0.00, 915.60],
+          [903.38, 0.00, 910.73],
+          [846.40, 0.00, 849.02],
+          [824.60, 0.00, 727.30],
+          [830.65, 0.00, 651.07],
+          [819.68, -3.15, 602.90],
+          [808.33, 2.20, 562.08],
+          [771.32, 3.17, 564.66],
+          [759.36, -4.11, 603.56],
+          [794.53, 39.26, 615.37],
+          [832.27, 53.93, 629.24],
+          [894.48, 62.12, 642.06],
+          [916.20, 50.36, 650.98],
+          [919.16, 51.18, 676.24],
+          [904.69, 56.29, 694.69],
+          [922.03, 51.60, 716.03],
+          [981.49, 0.00, 717.78],
+          [1033.16, 0.00, 827.13],
+          [986.72, 0.00, 915.60]
+        ],
+        "path-k":[
+          "float",
+          0,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          18
+        ],
         "options": ["enum-int32", "(fact-options instant-collect)"]
       }
     },
@@ -415,11 +466,11 @@
       }
     },
     {
-      "trans": [751.56, 39.34, 501.81], // translation
+      "trans": [652.21, 37.62, 604.96], // translation
       "etype": "balloonlurker", // actor type
       "game_task": 132, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [751.56, 39.34, 501.81, 10], // bounding sphere
+      "bsphere": [652.21, 37.62, 604.96, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-balloonlurker-05",
         "alt-actor": "energy-bay-fuel-cell-05",
@@ -430,16 +481,16 @@
       }
     },
     {
-      "trans": [662.9, 0, 664.67], // translation
+      "trans": [758.72, -4.62, 597.30], // translation
       "etype": "balloonlurker", // actor type
       "game_task": 132, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [662.9, 0, 664.67, 10], // bounding sphere
+      "bsphere": [758.72, -4.62, 597.30, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-balloonlurker-06",
         "alt-actor": "energy-bay-fuel-cell-05",
         "prev-actor": "energy-bay-balloonlurker-05",
-        "path-actor": "energy-bay-balloonlurker-04",
+        "path-actor": "energy-bay-balloonlurker-03",
         "options": ["enum-int32", "(fact-options instant-collect)"]
       }
     },
