@@ -1515,15 +1515,15 @@
                   ;;   :fwd (display crescent-t display-no-wait)
                   ;;   :bwd (display crescent-t #f)
                   ;;   )
-                  (static-load-boundary :flags
-                                        ()
-                                        :top (meters 117.77)
-                                        :bot (meters 77.84)
-                                        :points
-                                        ((meters -262.81) (meters 26.82) (meters -290.15) (meters -11.62) (meters -332.01) (meters -12.9))
-                                        :fwd (display crescent-t display-no-wait)
-                                        :bwd
-                                        (display crescent-t #f))
+                  ;; (static-load-boundary :flags
+                  ;;                       ()
+                  ;;                       :top (meters 117.77)
+                  ;;                       :bot (meters 77.84)
+                  ;;                       :points
+                  ;;                       ((meters -262.81) (meters 26.82) (meters -290.15) (meters -11.62) (meters -332.01) (meters -12.9))
+                  ;;                       :fwd (display crescent-t display-no-wait)
+                  ;;                       :bwd
+                  ;;                       (display crescent-t #f))
                   (static-load-boundary :flags
                                         ()
                                         :top (meters 138.83)
