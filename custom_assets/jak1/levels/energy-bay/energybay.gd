@@ -10,7 +10,6 @@
   "balloonlurker.o"
   "twister.o"
   "lurkerworm.o"
-  "lurkerpuppy.o"
   "bully.o"
   "lurkercrab.o"
   "energybay-part.o"
