@@ -18,7 +18,6 @@
   "eichar-racer+0-ag.go" ; zoomer stuff
   "ef-plane-ag.go" ; zoomer stuff
   "racer-ag.go" ; zoomer stuff
-  "lurkerpuppy.o"
   "orb-cache-top-ag.go"
   "sun-iris-door-ag.go"
   "shortcut-boulder-ag.go"
@@ -26,6 +25,7 @@
   "balloonlurker-ag.go"
   "race-ring-ag.go"
   "lurkerworm-ag.go"
+  "lurkerpuppy-ag.go"
   "bully.o"
   "bully-ag.go"
   "sharkey-ag.go"
