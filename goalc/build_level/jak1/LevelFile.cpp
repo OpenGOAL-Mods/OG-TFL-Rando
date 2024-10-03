@@ -74,16 +74,6 @@ size_t generate_u32_array(const std::vector<u32>& array, DataObjectGenerator& ge
   return result;
 }
 
-size_t generate_adgif_shader_array(const std::vector<u32>& data, DataObjectGenerator& gen) {
-  gen.align_to_basic();
-  gen.add_type_tag("adgif-shader-array");
-  size_t result = gen.current_offset_bytes();
-  for (auto& word : data) {
-    gen.add_word(word);
-  }
-  return result;
-}
-
 size_t generate_adgif_shader_array(const AdgifShaderArray& adgifs, DataObjectGenerator& gen) {
   gen.align_to_basic();
   gen.add_type_tag("adgif-shader-array");
