@@ -115,7 +115,7 @@
   // snow:       tpage-712.go
   // finalboss:  tpage-1418.go
   // The tpage you choose also has to be in the alpha (4th) slot in the "tpages" list below.
-  "sky": "none",
+  "sky": "misty",
 
   // Any texture pages that are added to the level's "texture-ids" array.
   // These will be logged in and linked as part of level loading.
@@ -4147,11 +4147,11 @@
     },
     // LIQUID
     {
-      "trans": [-470.65, 168.2, 757.03], // translation
-      "etype": "dark-eco-pool", // actor type dark-eco-pool
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, -0.172, 0, 0.985], // quaternion
-      "bsphere": [-470.65, 168.2, 757.03, 200.0], // bounding sphere
+      "trans": [-474.61, 168.2, 775.48],
+      "etype": "dark-eco-pool",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-474.61, 168.2, 775.48, 10],
       "lump": {
         "vol": [
           "vector",
@@ -4164,9 +4164,8 @@
         ],
         "name": "open-mines-dark-eco-pool-01",
         "water-height": ["float", 4096.0, 2048.0, 8192.0, 1572868.0], // camera height, ?, wadledept, flags (wt20 19 3)
-        "look": ["int32", 19],
-        "vis-dist": ["meters", 200.0],
-        "scale": ["float", 1.165]
+        "look": ["int32", 32],
+        "scale": ["float", 1.5, 1.2, 1.5]
       }
     },
     {
@@ -4190,6 +4189,66 @@
         "look": ["int32", 19],
         "vis-dist": ["meters", 200.0],
         "scale": ["float", 1.0]
+      }
+    },
+    {
+      "trans": [-480.04, 168.20, 790.23],
+      "etype": "dark-eco-pool",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-480.04, 168.20, 790.23, 10],
+      "lump": {
+        "name":"open-mines-dark-eco-pool-03",
+        "look": ["int32", 32],
+        "scale": ["float", 1.5, 1.2, 1.5]
+      }
+    },
+    {
+      "trans": [-466.51, 168.20, 777.98],
+      "etype": "dark-eco-pool",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-466.51, 168.20, 777.98, 10],
+      "lump": {
+        "name":"open-mines-dark-eco-pool-04",
+        "look": ["int32", 32],
+        "scale": ["float", 1.5, 1.2, 1.5]
+      }
+    },
+    {
+      "trans": [-459.86, 168.20, 757.06],
+      "etype": "dark-eco-pool",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-459.86, 168.20, 757.06, 10],
+      "lump": {
+        "name":"open-mines-dark-eco-pool-05",
+        "look": ["int32", 32],
+        "scale": ["float", 1.5, 1.2, 1.5]
+      }
+    },
+    {
+      "trans": [-445.49, 168.20, 755.79],
+      "etype": "dark-eco-pool",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-445.49, 168.20, 755.79, 10],
+      "lump": {
+        "name":"open-mines-dark-eco-pool-06",
+        "look": ["int32", 32],
+        "scale": ["float", 1.5, 1.2, 1.5]
+      }
+    },
+    {
+      "trans": [-455.53, 168.20, 766.57],
+      "etype": "dark-eco-pool",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-455.53, 168.20, 766.57, 10],
+      "lump": {
+        "name":"open-mines-dark-eco-pool-07",
+        "look": ["int32", 32],
+        "scale": ["float", 1.5, 1.2, 1.5]
       }
     },
     {
