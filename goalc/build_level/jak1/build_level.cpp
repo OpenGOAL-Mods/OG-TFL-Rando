@@ -5,6 +5,8 @@
 #include "decompiler/extractor/extractor_util.h"
 #include "decompiler/level_extractor/BspHeader.h"
 #include "decompiler/level_extractor/extract_level.h"
+#include "decompiler/level_extractor/BspHeader.h"
+#include "decompiler/level_extractor/extract_level.h"
 #include "decompiler/level_extractor/extract_merc.h"
 #include "goalc/build_level/collide/jak1/collide_bvh.h"
 #include "goalc/build_level/collide/jak1/collide_pack.h"
@@ -82,9 +84,19 @@ bool run_build_level(const std::string& input_file,
   pc_level.level_name = file.name;
 
   // TFRAG
-  auto& tfrag_drawable_tree = file.drawable_trees.tfrags.emplace_back();
-  tfrag_from_gltf(mesh_extract_out.tfrag, tfrag_drawable_tree,
-                  pc_level.tfrag_trees[0].emplace_back());
+  file.drawable_trees.tfrags.emplace_back("drawable-tree-tfrag", "drawable-inline-array-tfrag");
+  file.drawable_trees.tfrags.emplace_back("drawable-tree-trans-tfrag",
+                                          "drawable-inline-array-trans-tfrag");
+
+  tfrag_from_gltf(mesh_extract_out.tfrag, pc_level.tfrag_trees[0]);
+
+  // TIE
+  if (!mesh_extract_out.tie.base_draws.empty()) {
+    file.drawable_trees.ties.emplace_back();
+    tie_from_gltf(mesh_extract_out.tie, pc_level.tie_trees[0]);
+  }
+
+  // TEXTURE
   pc_level.textures = std::move(tex_pool.textures_by_idx);
 
   // COLLIDE
@@ -149,15 +161,19 @@ bool run_build_level(const std::string& input_file,
 
     std::vector<std::string> processed_art_groups;
 
-    // find all art groups used by the custom level in other dgos
-    if (level_json.contains("art_groups") && !level_json.at("art_groups").empty()) {
+    // find all art groups used by the custom level in other dgos and extract sky and texture remap
+    // if desired
+    auto should_process_art_groups =
+        (level_json.contains("art_groups") && !level_json.at("art_groups").empty()) ||
+        (sky_name != "none" || texture_remap != "none");
+    if (should_process_art_groups) {
       for (auto& dgo : config.dgo_names) {
         // remove "DGO/" prefix
         const auto& dgo_name = dgo.substr(4);
         const auto& files = db.obj_files_by_dgo.at(dgo_name);
         auto art_groups =
             find_art_groups(processed_art_groups,
-                            level_json.at("art_groups").get<std::vector<std::string>>(), files);
+                            level_json.value("art_groups", std::vector<std::string>{}), files);
         std::vector<level_tools::TextureRemap> tex_remap{};
         if (auto bsp = get_bsp_file(files, dgo_name)) {
           const auto& link_data = db.lookup_record(bsp.value()).linked_data;

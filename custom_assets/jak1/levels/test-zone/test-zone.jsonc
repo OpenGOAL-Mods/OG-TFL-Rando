@@ -69,8 +69,12 @@
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
   // which also requires you to set a texture remap table and a list of tpages.
+  // sky textures and cases where you want to use objects drawn with the generic renderer,
+  // which also requires you to set a texture remap table and a list of tpages.
   // To get a list of all the textures, you can extract all of the game's textures
   // by setting "save_texture_pngs" to true in the decompiler config.
+  // The format is ["tpage-name", "texture-name1", "texture-name2", ...].
+  // If you want all textures from a tpage, you can just do ["tpage-name"].
   // The format is ["tpage-name", "texture-name1", "texture-name2", ...].
   // If you want all textures from a tpage, you can just do ["tpage-name"].
   "textures": [
@@ -114,7 +118,7 @@
   // - shrub
   // - alpha
   // - water
-  // This is also (with the except of levels that use the zoomer) the order that the tpages are listed in in the vanilla .gd files.
+  // This is also (with the exception of levels that use the zoomer) the order that the tpages are listed in in the vanilla .gd files.
   // You need to also add these to your level .gd as well.
   // Sky textures use the alpha slot.
   // If this is empty and "tex_remap" and "sky" are the same level, this will be auto-filled with the tpages from the
