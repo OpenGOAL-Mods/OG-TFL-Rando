@@ -22,6 +22,7 @@
   "citb-button-ag.go"
   "plat-eco-ag.go"
   "citb-drop-plat-ag.go"
+  "babak-ag.go"
   "keg-ag.go"
   "keg-conveyor-ag.go"
   "keg-conveyor-paddle-ag.go"

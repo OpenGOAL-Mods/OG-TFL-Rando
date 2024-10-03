@@ -708,7 +708,7 @@
     {
       "trans": [-272.66, 261.73, 663.21],
       "etype": "tfl-lowreskui",
-      "game_task": 0,
+      "game_task": "(game-task tfl-lowreskui)",
       "quat" : [-0.000, -0.747, -0.000, -0.665],
       "bsphere": [-272.66, 261.73, 663.21, 10],
       "lump": {
@@ -3829,11 +3829,11 @@
       }
     },
     {
-      "trans": [11.37, 254.19, 248.31], // translation
+      "trans": [11.37, 257.19, 248.31], // translation
       "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.729, 0, -0.533], // quaternion
-      "bsphere": [11.37, 254.19, 248.31, 10], // bounding sphere
+      "bsphere": [11.37, 257.19, 248.31, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-18",
         "timeout": ["float", 8.0],
@@ -3981,11 +3981,11 @@
     },
     // RACERS
     {
-      "trans": [-191.63, 227.06, 402.98], // translation
+      "trans": [-191.57, 227.19, 402.92], // translation
       "etype": "racer", // actor type
       "game_task": 128, // associated game task TO SPAWN THE ZOOMER
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-191.63, 227.06, 402.98, 10], // bounding sphere
+      "bsphere": [-191.57, 227.19, 402.92, 10], // bounding sphere
       "lump": {
         "name": "crescent-racer-01",
         "index": ["int32", 2],
