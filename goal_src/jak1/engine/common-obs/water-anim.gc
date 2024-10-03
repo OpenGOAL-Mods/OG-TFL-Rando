@@ -353,7 +353,7 @@
    (anim               int32)
    (ambient-sound-spec sound-spec)))
 
-;; TFL note: added
+;; og:preserve-this added
 (defenum water-look
   (water-anim-sunken-big-room 0)
   (water-anim-sunken-first-room-from-entrance 1)

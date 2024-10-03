@@ -19662,7 +19662,6 @@
   (wt31)
   )
 
-;; TFL note: added
 (defenum water-look
   (water-anim-sunken-big-room 0)
   (water-anim-sunken-first-room-from-entrance 1)
