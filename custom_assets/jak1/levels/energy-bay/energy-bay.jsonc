@@ -219,7 +219,7 @@
       "quat" : [-0.000, -0.747, -0.000, -0.665],
       "bsphere": [779.93, 29.03, 510.44, 10],
       "lump": {
-        "name":"open-mines-tfl-lowreskui-001"
+        "name":"energy-bay-tfl-lowreskui-001"
       }
     },
     // ENEMIES

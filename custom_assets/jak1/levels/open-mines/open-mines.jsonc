@@ -89,13 +89,13 @@
   // by setting "save_texture_pngs" to true in the decompiler config.
   // The format is ["tpage-name", "texture-name1", "texture-name2", ...].
   // If you want all textures from a tpage, you can just do ["tpage-name"].
-  "textures": [],
+  "textures": [["misty-vis-alpha"],["misty-vis-pris"],["misty-vis-shrub"],["misty-vis-tfrag"]],
 
   // Which vanilla level's texture remap table to use.
   // This is needed if you want to have proper textures for objects that are drawn using generic, such as
   // dark eco pools or dying enemies. If you choose to use this,
   // the order of art groups and tpages in your level's .gd MUST match the vanilla level's for the textures to work.
-  "tex_remap": "none",
+  "tex_remap": "misty",
 
   // Which sky to use for your custom level. This needs to be the name of a vanilla level with sky textures.
   // Your level's mood update needs to be set up to copy the sky texture (update-mood-default already handles this as an example).
@@ -952,6 +952,16 @@
         "name": "open-mines-fuel-cell-06", // open-mines-hole
         "eco-info": ["int32", 6, 142],
         "movie-pos": ["vector4m", [-357.48, 152.5, 1300.8, 2.66]]
+      }
+    },
+    {
+      "trans": [-493.97, 136.68, 1127.53],
+      "etype": "tfl-lowreskui",
+      "game_task": "(game-task tfl-lowreskui)",
+      "quat" : [-0.000, -0.747, -0.000, -0.665],
+      "bsphere": [-493.97, 136.68, 1127.53, 10],
+      "lump": {
+        "name":"open-mines-tfl-lowreskui-001"
       }
     },
     {
