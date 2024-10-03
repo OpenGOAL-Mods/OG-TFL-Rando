@@ -3829,11 +3829,11 @@
       }
     },
     {
-      "trans": [11.37, 254.19, 248.31], // translation
+      "trans": [11.37, 257.19, 248.31], // translation
       "etype": "tfl-race-ring", // actor type
       "game_task": 126, // associated game task (for powercells, etc)
       "quat": [0, -0.729, 0, -0.533], // quaternion
-      "bsphere": [11.37, 254.19, 248.31, 10], // bounding sphere
+      "bsphere": [11.37, 257.19, 248.31, 10], // bounding sphere
       "lump": {
         "name": "crescent-race-ring-18",
         "timeout": ["float", 8.0],
