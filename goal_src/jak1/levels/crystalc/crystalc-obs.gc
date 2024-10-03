@@ -351,7 +351,7 @@
         (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
         (set! (-> mesh prim-core offense) (collide-offense indestructible))
         (set! (-> mesh transform-index) 5)
-        (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 (meters 60.0))
+        (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 (meters 7.0))
         (append-prim cgroup mesh))
       (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 1) (the uint 1)))) ;; Platform walls
         (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
