@@ -202,15 +202,15 @@ std::vector<std::string> getPlayingFileNames() {
 u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
   std::string filePath = Ptr<String>(filePathu32).c()->data();
   std::string fullFilePath = fs::path(file_util::get_jak_project_dir() / "custom_assets" /
-                                  game_version_names[g_game_version] / "audio" / filePath).string();
-  
+                                      game_version_names[g_game_version] / "audio" / filePath)
+                                 .string();
+
   if (!file_util::file_exists(fullFilePath)) {
     // file doesn't exist, let GOAL side know we didn't find it
     return bool_to_symbol(false);
   }
 
   std::thread thread([=]() {
-
     std::cout << "Playing file: " << filePath << std::endl;
 
     MiniAudioLib::ma_result result;
@@ -429,6 +429,44 @@ u32 play_tfl_hint(u32 file_name, u32 volume, u32 interrupt) {
 
 MiniAudioLib::ma_sound* g_tfl_music;
 
+float tfl_get_music_vol() {
+  float vol;
+  auto volume = jak1::call_goal_function_by_name("tfl-music-player-volume");
+  memcpy(&vol, &volume, 4);
+  return vol;
+}
+
+void lerp_tfl_music(float vol, bool pause) {
+  auto lerp = [](float a, float b, float t) { return a + t * (b - a); };
+  float val;
+  if (pause) {
+    float time_elapsed = 1.f;
+    // float start = MiniAudioLib::ma_sound_get_volume(g_tfl_music);
+    float start = vol;
+    float end = 0.f;
+    val = start;
+    while (val >= 0.01f) {
+      val = lerp(start, end, 1.0f - time_elapsed);
+      MiniAudioLib::ma_sound_set_volume(g_tfl_music, std::min<float>(1.f, val));
+      printf("Fading out music volume: %f\n", val);
+      time_elapsed -= 0.01f;
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+  } else {
+    float time_elapsed = 0.f;
+    float start = 0.f;
+    float end = vol;
+    val = start;
+    while (val < vol) {
+      val = lerp(start, end, time_elapsed);
+      MiniAudioLib::ma_sound_set_volume(g_tfl_music, std::min<float>(1.f, val));
+      printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
+      time_elapsed += 0.01f;
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+  }
+}
+
 void stop_tfl_music(bool force) {
   if (g_tfl_music) {
     if (force) {
@@ -441,27 +479,31 @@ void stop_tfl_music(bool force) {
       jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
       return;
     }
-    auto lerp = [](float a, float b, float t) { return a + t * (b - a); };
-    float time_elapsed = 1.f;
-    float start = MiniAudioLib::ma_sound_get_volume(g_tfl_music);
-    float end = 0.f;
-    float val = start;
-    while (val >= 0.01f) {
-      val = lerp(start, end, 1.0f - time_elapsed);
-      MiniAudioLib::ma_sound_set_volume(g_tfl_music, val);
-      // printf("Fading out music volume: %f\n", val);
-      time_elapsed -= 0.01f;
-      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    lerp_tfl_music(tfl_get_music_vol(), true);
+    MiniAudioLib::ma_sound_stop(g_tfl_music);
+    MiniAudioLib::ma_sound_uninit(g_tfl_music);
+    delete g_tfl_music;
+    g_tfl_music = nullptr;
+    jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
+  }
+}
+
+void pause_tfl_music(bool lerp) {
+  if (g_tfl_music) {
+    if (lerp) {
+      lerp_tfl_music(tfl_get_music_vol(), true);
     }
     MiniAudioLib::ma_sound_stop(g_tfl_music);
-    jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
+    // MiniAudioLib::ma_sound_uninit(g_tfl_music);
     // delete g_tfl_music;
+    // g_tfl_music = nullptr;
+    // jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
   }
 }
 
 u32 play_tfl_music(u32 file_name, u32 volume) {
   auto music_playing = jak1::intern_from_c("*tfl-music-playing?*")->value ==
-                          offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
+                       offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
   auto boss = jak1::intern_from_c("*tfl-boss-music*")->value;
   auto music_is_playing = music_playing && boss == offset_of_s7();
   if (music_is_playing) {
@@ -469,7 +511,7 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     return offset_of_s7();
   }
 
-  std::thread music_thread([=]() {
+  std::thread music_thread([=] {
     auto name_str = std::string(Ptr<String>(file_name)->data());
     std::string file;
     auto music_dir =
@@ -499,24 +541,17 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
     jak1::intern_from_c("*tfl-music-playing?*")->value =
         offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
     g_tfl_music = music;
-    auto lerp = [](float a, float b, float t) { return a + t * (b - a); };
-    float time_elapsed = 0.f;
-    float start = 0.f;
-    float end = vol;
-    float val = start;
-    while (val < vol) {
-      val = lerp(start, end, time_elapsed);
-      MiniAudioLib::ma_sound_set_volume(g_tfl_music, val);
-      // printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
-      time_elapsed += 0.01f;
-      std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
+    lerp_tfl_music(vol, false);
 
     auto paused_func = [](MiniAudioLib::ma_sound* music) {
       while (!MiniAudioLib::ma_sound_is_playing(music)) {
         auto pause = jak1::call_goal_function_by_name("tfl-music-player-paused?");
         if (pause == offset_of_s7()) {
           MiniAudioLib::ma_sound_start(music);
+          if (jak1::intern_from_c("*tfl-music-fade?*")->value ==
+              offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+            lerp_tfl_music(tfl_get_music_vol(), false);
+          }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }
@@ -535,13 +570,14 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
           // delete g_tfl_music;
           // std::terminate();
         }
-        float vol;
-        auto volume = jak1::call_goal_function_by_name("tfl-music-player-volume");
-        memcpy(&vol, &volume, 4);
+        float vol = tfl_get_music_vol();
         MiniAudioLib::ma_sound_set_volume(music, vol);
         auto paused = jak1::call_goal_function_by_name("tfl-music-player-paused?");
+        auto fade = jak1::intern_from_c("*tfl-music-fade?*")->value ==
+                    offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
         if (paused != offset_of_s7()) {
-          MiniAudioLib::ma_sound_stop(music);
+          // MiniAudioLib::ma_sound_stop(music);
+          pause_tfl_music(fade);
           paused_func(music);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
