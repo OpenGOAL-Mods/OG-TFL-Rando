@@ -2834,6 +2834,82 @@
     "sksp0b42": [
       "STOP MISSING THE YELLOW FISH, THEY WEIGH FIVE POUNDS EACH!",
       "AND THAT'S A LOTTA FISH, JAK."
+    ],
+    "crystalc-tfl-hint-01-daxPortal.wav": [
+      "GREAT IDEA, GENIUS. NOW WE'RE STUCK HERE WITH NO WAY BACK!"
+    ],
+    "crystalc-tfl-hint-02-daxShip.wav": [
+      "WHAT'S THIS THING DOING HERE?",
+      "WAIT A SEC, IS THAT A SHIP OR AM I DREAMING?"
+    ],
+    "crystalc-tfl-hint-03-daxSeeGreen.wav": [
+      "THIS GREEN ECO SEEMS... STRONGER?"
+    ],
+    "crystalc-tfl-hint-04-daxUseGreen.wav": [
+      "OH YEAH, THIS IS DEFINITELY STRONGER!"
+    ],
+    "crystalc-tfl-hint-05-daxSeeGondola.wav": [
+      "OH, COLLECT EVERY POWER CELL, THEY SAID...",
+      "IT'LL BE FUN, THEY SAID... DÉJÀ VU, ANYONE?"
+    ],
+    "crystalc-tfl-hint-06-daxUseGondola.wav": [
+      "NOW, SURELY... THIS WILL TAKE US BACK HOME."
+    ],
+    "crescent-tfl-hint-01-daxStart.wav": [
+      "AND SURPRISE, SURPRISE... WE'RE STILL NOT HOME!"
+    ],
+    "crescent-tfl-hint-02-daxHouse.wav": [
+      "LOOKS LIKE WE'RE NOT THE FIRST VISITORS HERE."
+    ],
+    "crescent-tfl-hint-03-daxPlushie.wav": [
+      "IS THAT A... RAT PLUSHIE? THAT'S CUTE."
+    ],
+    "crescent-tfl-hint-04-daxPad.wav": [
+      "JAK, TELL ME YOU'RE NOT CONSIDERING THIS JUMP PAD.",
+      "HAVE YOU SEEN THIS DROP?"
+    ],
+    "crescent-tfl-hint-05-daxScream.wav": [
+      "WAAAAAAAAHHHHHHHH!!"
+    ],
+    "crescent-tfl-hint-06-daxRobot.wav": [
+      "WHOA, LOOK AT THE SIZE OF THAT HOLE!"
+    ],
+    "crescent-tfl-hint-07-SamosConnect.wav": [
+      "JAK! KEIRA WAS FINALLY ABLE TO CONNECT US BACK.",
+      "WHERE IN THE PRECURSORS HAVE YOU TWO LANDED?"
+    ],
+    "crescent-tfl-hint-08-SamosInfused.wav": [
+      "THIS WHOLE PLACE SEEMS INFUSED BY ECO",
+      "AT A MUCH HIGHER DENSITY THAN I HAVE EVER SEEN...",
+      "JAK, KEEP EXPLORING THIS PLACE.",
+      "I NEED TO CHECK SOME BOOKS."
+    ],
+    "crescent-tfl-hint-09-KeiraZoomer.wav": [
+      "THIS LOOKS LIKE A TRANSPORTER PAD.",
+      "IF YOU CAN FIND A WAY TO POWER IT UP,",
+      "I CAN SEND YOU THE ZOOMER."
+    ],
+    "crescent-tfl-hint-12-KeiraControl.wav": [
+      "WOW! THIS MUST BE THE CONTROL ROOM FOR THAT OBSERVATORY OUTSIDE.",
+      "I WONDER WHAT THE PRECURSORS WERE RESEARCHING HERE.",
+      "OH, IT LOOKS LIKE SOMEONE ELSE HAS BEEN CONTINUING THEIR WORK."
+    ],
+    "crescent-tfl-hint-13-KeiraCable.wav": [
+      "THESE CABLES MUST BE CONNECTED TO A POWER SOURCE.",
+      "YOU SHOULD FOLLOW THEM, JAK."
+    ],
+    "energy-bay-tfl-hint-01-daxTurbine1.wav": [
+      "POWER'S BACK, BABY! TIME TO ZOOM OUTTA HERE!"
+    ],
+    "energy-bay-tfl-hint-02-daxClosed.wav": [
+      "LOOKS LIKE THIS DOOR NEEDS TO BE POWERED AS WELL."
+    ],
+    "energy-bay-tfl-hint-03-daxTurbine4.wav": [
+      "THAT'S THE TICKET! LET'S GET OUTTA THIS PLACE, JAK!"
+    ],
+    "energy-bay-tfl-hint-04-SamosCrystal.wav": [
+      "BY THE PRECURSORS! THIS CRYSTAL IS EMITTING SO MUCH ECO,",
+      "IT'S SATURATING ALL MY MEASURING TOOLS!"
     ]
   },
   "speakers": {
@@ -2863,6 +2939,7 @@
     "WARRIOR": "WARRIOR",
     "WILLARD": "WILLARD",
     "WOMAN": "WOMAN",
-    "YELLOW SAGE": "YELLOW SAGE"
+    "YELLOW SAGE": "YELLOW SAGE",
+    "KUITAR": "KUITAR"
   }
 }
