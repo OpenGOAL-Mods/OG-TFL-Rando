@@ -133,6 +133,7 @@
       (collect! self)
       (sound-play "get-all-orbs")
       (when (= (lowreskui-collected-count) LOWRESKUI_COUNT)
+        (logior! (-> *pc-settings* cheats-known) (pc-cheats super-eco-blue super-eco-red super-eco-yellow super-eco-green))
         ; (close-specific-task! (game-task tfl-lowreskui) (task-status invalid))
         )
       (protect (progress-allowed?)
@@ -145,7 +146,13 @@
             (set-height! fnt 80)
             (set-scale! fnt 0.8)
             (set-flags! fnt (font-flags shadow kerning middle large))
-            (print-game-text (string-format "~D/~D FOUND" (lowreskui-collected-count) LOWRESKUI_COUNT) fnt #f 128 22))
+            (print-game-text (if (!= (lowreskui-collected-count) LOWRESKUI_COUNT)
+                               (string-format "~D/~D FOUND" (lowreskui-collected-count) LOWRESKUI_COUNT)
+                               (string-format "~D/~D FOUND! NEW SECRETS UNLOCKED." (lowreskui-collected-count) LOWRESKUI_COUNT))
+                             fnt
+                             #f
+                             128
+                             22))
           (let* ((lerp-timer (/ (/ (the float (- (current-time) (-> self state-time))) TICKS_PER_SECOND) 2.5))
                  (bob-amount (lerp (meters 0.4) (meters 0.1) lerp-timer))
                  (bob-speed 1.8)
