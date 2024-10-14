@@ -7213,6 +7213,68 @@
         "offscreen": false,
         "speaker": ""
       }
+    ],
+    "tfl-dev-crescent-control-room-kui.wav": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1200,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2400,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4800,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6000,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7200,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8400,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10800,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
     ]
   },
   "hints": {
