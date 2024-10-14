@@ -36,7 +36,7 @@
 
 (define *tfl-dev-commentary-playing?* (-> *tfl-dev-commentary* playing?))
 
-(define *display-tfl-commentary-marks* #t)
+(define *display-tfl-commentary-marks* #f)
 
 (defun tfl-commentary-volume ()
   (-> *tfl-dev-commentary* vol))
@@ -106,6 +106,8 @@
    hidden
    idle
    playing))
+
+(define *tfl-commentary-semaphore* (the tfl-commentary-node #f))
 
 (defmacro commentary-debug (&rest body)
   `(#if TFL_COMMENTARY_DEBUG (begin   ,@body) (empty)))
@@ -206,7 +208,7 @@
       (('music) (add-setting! 'music-volume 'abs (unbox-float (ref rest 0)) 0))
       (('sfx) (add-setting! 'sfx-volume 'abs (unbox-float (ref rest 0)) 0))
       (('dialog) (add-setting! 'dialog-volume 'abs (unbox-float (ref rest 0)) 0))
-      (('camera)
+      (('pov-camera)
        (let* ((sg (the symbol (ref rest 0)))
               (vec (the pair (ref rest 1)))
               (pos (new-stack-vector0))
@@ -227,50 +229,9 @@
                                                 '()
                                                 :to
                                                 this)))))
-      ; (('spawn)
-      ;  (if (not (handle->process (-> self proc)))
-      ;    (let* ((sg (the symbol (ref rest 0)))
-      ;           (vec (the pair (ref rest 1)))
-      ;           (pos (new-stack-vector0))
-      ;           (cam-name (the string (ref rest 2))))
-      ;      (set! (-> pos x) (meters (unbox-float (ref vec 1))))
-      ;      (set! (-> pos y) (meters (unbox-float (ref vec 2))))
-      ;      (set! (-> pos z) (meters (unbox-float (ref vec 3))))
-      ;      (set! (-> pos w) 1.0)
-      ;      (set! (-> this cam)
-      ;            (ppointer->handle (process-spawn commentary-camera
-      ;                                             :init
-      ;                                             pov-camera-init-by-other
-      ;                                             pos
-      ;                                             (-> sg value)
-      ;                                             cam-name
-      ;                                             (pov-camera-flag inherit-orientation notify-of-abort)
-      ;                                             #f
-      ;                                             '()
-      ;                                             :to
-      ;                                             this))))))
-      ; (('send-event)
-      ;  (if (handle->process (-> this proc))
-      ;    (let* ((sg (the symbol (ref rest 0)))
-      ;           (vec (the pair (ref rest 1)))
-      ;           (pos (new-stack-vector0))
-      ;           (cam-name (the string (ref rest 2))))
-      ;      (set! (-> pos x) (meters (unbox-float (ref vec 1))))
-      ;      (set! (-> pos y) (meters (unbox-float (ref vec 2))))
-      ;      (set! (-> pos z) (meters (unbox-float (ref vec 3))))
-      ;      (set! (-> pos w) 1.0)
-      ;      (set! (-> this cam)
-      ;            (ppointer->handle (process-spawn commentary-camera
-      ;                                             :init
-      ;                                             pov-camera-init-by-other
-      ;                                             pos
-      ;                                             (-> sg value)
-      ;                                             cam-name
-      ;                                             (pov-camera-flag inherit-orientation notify-of-abort)
-      ;                                             #f
-      ;                                             '()
-      ;                                             :to
-      ;                                             this))))))
+      ; (('camera)) fixed cam with fov lerp?
+      ; (('spawn))
+      ; (('send-event))
       (('kill) (when (-> this proc) (deactivate (handle->process (-> this proc))) (set! (-> this proc) INVALID_HANDLE)))
       (else (format 0 "tfl-commentary-node::parse-cmd unhandled cmd ~A~%" c) #t))))
 
@@ -325,64 +286,71 @@
     (get-string-length str ctx)))
 
 (defmethod draw-hud ((this tfl-commentary-node))
-  (mlet ((HUD_Y 32))
-        (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
-          ;; bg box
-          (draw-sprite2d-xy buf
-                            13
-                            (- HUD_Y 2)
-                            (the int
-                                 (* (+ (get-bg-width-for-str this
-                                                             (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name))))
-                                       7.0)
-                                    (-> *video-parms* relative-x-scale)))
-                            (the int (* (the float (+ HUD_Y (* 2 8))) (-> *video-parms* relative-y-scale)))
-                            (static-rgba 0 0 0 #x50))
-          (draw-string-xy (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name)))
-                          buf
-                          14
-                          (+ HUD_Y (* 0 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-string-xy (string-format "Volume ~8L~D%~0L" (the int (* (-> *tfl-dev-commentary* vol) 100.0)))
-                          buf
-                          14
-                          (+ HUD_Y (* 1 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-string-xy "L2 + Up: ~3LVolume Up~0L" buf 14 (+ HUD_Y (* 2 8)) (font-color default) (font-flags shadow kerning))
-          (draw-string-xy "L2 + Down: ~3LVolume Down~0L"
-                          buf
-                          14
-                          (+ HUD_Y (* 3 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-string-xy "L2 + Circle: ~3LStop Playback~0L"
-                          buf
-                          14
-                          (+ HUD_Y (* 4 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-sprite2d-xy buf
-                            120
-                            177
-                            (the int
-                                 (* (+ (get-bg-width-for-str this (string-format "~21L~S~0L" (time->string this))) 3.0)
-                                    (-> *video-parms* relative-x-scale)))
-                            (the int (* 8 (-> *video-parms* relative-y-scale)))
-                            (static-rgba 0 0 0 #x40))
-          (draw-string-xy (string-format "~21L~S~0L" (time->string this))
-                          buf
-                          120
-                          177
-                          (font-color default)
-                          (font-flags shadow kerning)))
-        (debug-percent-bar #t
-                           (bucket-id debug)
-                           120
-                           160
-                           (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
-                           (static-rgba #xff 80 0 #x80))))
+  (mlet ((HUD_Y 45)
+         (BOX_HEIGHT (+ (* 6 8) 4)))
+    (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
+      ;; bg box
+      (draw-sprite2d-xy buf
+                        13
+                        (- HUD_Y 2)
+                        (the int
+                             (* (+ (get-bg-width-for-str this
+                                                         (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name))))
+                                   7.0)
+                                (-> *video-parms* relative-x-scale)))
+                        (the int (* (the float BOX_HEIGHT) (-> *video-parms* relative-y-scale)))
+                        (static-rgba 0 0 0 #x50))
+      (draw-string-xy (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name)))
+                      buf
+                      14
+                      (+ HUD_Y (* 0 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy (string-format "Volume ~8L~D%~0L" (the int (* (-> *tfl-dev-commentary* vol) 100.0)))
+                      buf
+                      14
+                      (+ HUD_Y (* 1 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy "L2 + Up: ~3LVolume Up~0L" buf 14 (+ HUD_Y (* 2 8)) (font-color default) (font-flags shadow kerning))
+      (draw-string-xy "L2 + Down: ~3LVolume Down~0L"
+                      buf
+                      14
+                      (+ HUD_Y (* 3 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy "L2 + Circle: ~3LStop Playback~0L"
+                      buf
+                      14
+                      (+ HUD_Y (* 4 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy "Square: ~3LToggle Subtitles~0L"
+                      buf
+                      14
+                      (+ HUD_Y (* 5 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      ; (draw-sprite2d-xy buf
+      ;                   120
+      ;                   167
+      ;                   (the int
+      ;                        (* (+ (get-bg-width-for-str this (string-format "~21L~S~0L" (time->string this))) 3.0)
+      ;                           (-> *video-parms* relative-x-scale)))
+      ;                   (the int (* 8 (-> *video-parms* relative-y-scale)))
+      ;                   (static-rgba 0 0 0 #x40))
+      (draw-string-xy (string-format "~21L~S~0L" (time->string this))
+                      buf
+                      120
+                      167
+                      (font-color default)
+                      (font-flags shadow kerning)))
+    (debug-percent-bar #t
+                       (bucket-id debug)
+                       120
+                       150
+                       (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
+                       (static-rgba #xff 80 0 #x80))))
 
 (defmethod common-init ((this tfl-commentary-node))
   (set! (-> this root) (new 'process 'trsqv))
@@ -510,6 +478,7 @@
   :virtual #t
   :enter
     (behavior ()
+      (set! *tfl-commentary-semaphore* self)
       (set-time! (-> self play-time))
       (set! (-> self cur-frame) 0)
       (set-look! self 'active))
@@ -532,6 +501,7 @@
       ;       (logclear! (-> manipy mask) (process-mask menu progress))
       ;       (set! (-> manipy root trans z) 1024.0))))
       (until (time-elapsed? (-> self play-time) (-> self data length))
+        (hide-hud)
         (set! (-> self cur-frame) (- (current-time) (-> self play-time)))
         (when (has-cmds-at-frame? self (-> self cur-frame))
           (execute-cmds-at-frame self (-> self cur-frame)))
@@ -542,6 +512,7 @@
       (go-virtual idle))
   :exit
     (behavior ()
+      (set! *tfl-commentary-semaphore* (the tfl-commentary-node #f))
       (set! (-> self play-time) 0)
       (set! (-> self cur-frame) 0)
       (remove-setting! 'music-volume)
