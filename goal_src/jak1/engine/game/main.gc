@@ -460,6 +460,8 @@
               (when (and (or (= *master-mode* 'game) (= *master-mode* 'pause)) (-> *entity-debug-inspect* entity))
                 (define-extern entity-inspect-draw (function entity-debug-inspect object))
                 (entity-inspect-draw *entity-debug-inspect*)))
+            ;; TFL note: added
+            (draw-text-3d-buffers)
             (debug-draw-buffers) ;; lines/text
             ;; debug dma
             (with-dma-buffer-add-bucket ((debug-buf (-> disp frames (-> disp on-screen) frame debug-buf)) (bucket-id debug-no-zbuf))
