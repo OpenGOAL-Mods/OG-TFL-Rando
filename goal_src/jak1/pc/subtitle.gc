@@ -43,9 +43,13 @@
   (invalid -1)
   (movie 0)
   (hint 1)
-  (hint-named 2))
+  (hint-named 2)
+  ;; TFL note: added
+  (tfl-hint 3)
+  (tfl-commentary 4))
 
-(defconstant SUBTITLE_CHANNEL_COUNT 3)
+;; TFL note: changed
+(defconstant SUBTITLE_CHANNEL_COUNT 5)
 
 (defenum pc-subtitle-flags
   :bitfield #t
@@ -446,6 +450,24 @@
       (set! (-> self cur-channel) (pc-subtitle-channel invalid))
       ;; check what kind of subtitles are running
       (cond
+        ;; TFL note: added
+        (*tfl-commentary-semaphore*
+         (if *debug-segment*
+           (format *stdcon*
+                   "tfl commentary detected: ~3L~S~0L~%current frame is ~3L~D~0L~%"
+                   (-> *tfl-commentary-semaphore* sound-to-play)
+                   (-> *tfl-commentary-semaphore* cur-frame)))
+         (set! (-> self spool-name) (-> *tfl-commentary-semaphore* sound-to-play))
+         (set! (-> self cur-channel) (pc-subtitle-channel tfl-commentary)))
+        (*tfl-hint-semaphore*
+         (if *debug-segment*
+           (format *stdcon*
+                   "tfl hint detected!~%~3L~A~0L/~3L#x~X~0L~%current str pos is ~3L~D~0L~%"
+                   (-> *tfl-hint-semaphore* 0 sound-to-play)
+                   (-> *tfl-hint-semaphore* 0 hint-data text-id)
+                   (-> *tfl-hint-semaphore* 0 cur-frame)))
+         (set! (-> self spool-name) (-> *tfl-hint-semaphore* 0 sound-to-play))
+         (set! (-> self cur-channel) (pc-subtitle-channel tfl-hint)))
         ((and (movie?) (-> *art-control* spool-lock) (-> *art-control* active-stream))
          ;; there's a cutscene happening and an active spool with a valid owner.
          (set! (-> self spool-name) (-> *art-control* active-stream))
@@ -481,6 +503,31 @@
       (let ((keyframe (the subtitle-keyframe #f)))
         (when *subtitle-text*
           (case (-> self cur-channel)
+            ;; TFL note: added
+            (((pc-subtitle-channel tfl-commentary))
+             (set! (-> self hint-subtitle?) #f)
+             (awhen (get-scene-by-name *subtitle-text* (pc-subtitle-channel movie) (-> self spool-name))
+                    ;; during commentary playback, check if user toggled subtitles
+                    (when (and (= 'game *master-mode*) (cpad-pressed? 0 square))
+                      (not! (-> *pc-settings* subtitles?))
+                      (set-state-time)
+                      (if (-> *pc-settings* subtitles?)
+                        (set! (-> self notice-id) (text-id subtitle-enabled))
+                        (set! (-> self notice-id) (text-id subtitle-disabled))))
+                    (let ((pos (-> *tfl-commentary-semaphore* cur-frame)))
+                      ;; find closest keyframe
+                      (dotimes (i (-> it length))
+                        (when (>= pos (-> it keyframes i frame))
+                          (set! keyframe (-> it keyframes i)))))))
+            (((pc-subtitle-channel tfl-hint))
+             ;; hint! find it. or else.
+             (set! (-> self hint-subtitle?) #t)
+             (awhen (get-scene-by-name *subtitle-text* (pc-subtitle-channel hint-named) (-> self spool-name))
+                    (let ((pos (-> *tfl-hint-semaphore* 0 cur-frame)))
+                      ;; find closest keyframe
+                      (dotimes (i (-> it length))
+                        (when (>= pos (-> it keyframes i frame))
+                          (set! keyframe (-> it keyframes i)))))))
             (((pc-subtitle-channel movie))
              ;; cutscenes. get our cutscene.
              (set! (-> self hint-subtitle?) #f)

@@ -6,6 +6,8 @@
 
 (deftype tfl-hint (process-drawable)
   ((sound-to-play string)
+   (play-time     time-frame)
+   (cur-frame     time-frame)
    (sphere        sphere :inline)
    (last-time     time-frame)
    (voicebox      handle)
@@ -147,10 +149,12 @@
     (= (get-task-status (-> this hint-data task)) (-> this hint-data task-status))
     #f))
 
+(defun-extern subtitle? symbol symbol)
+
 (defmethod can-play? ((this tfl-hint))
   (let ((seen? (seen-text? *game-info* (-> this hint-data text-id)))
         (hint (get-tfl-hint)))
-    ;; we are not playing a hint ourselves and there is either no other hint or the current hint can be interrupted 
+    ;; we are not playing a hint ourselves and there is either no other hint or the current hint can be interrupted
     (and (and (not (= hint this)) (or (not hint) (-> hint hint-data interrupt?)))
          ;; if we have a task associated, check our task-status and only play then, if task-status is invalid, just play if task is open
          (if (> (-> this hint-data task) (game-task none))
@@ -162,8 +166,8 @@
          (or (-> *setting-control* current play-hints) (-> this hint-data force-playback?))
          ;; check for special condition
          (check-target-mode this)
-         ;; volume >0
-         (< 0.0 (-> *setting-control* current dialog-volume))
+         ;; volume >0 or subtitles
+         (or (subtitle? #t) (< 0.0 (-> *setting-control* current dialog-volume)))
          ;; either hint was not yet seen or it was seen, can be repeated and the delay has passed
          (or (not seen?)
              (and seen? (-> this hint-data repeat?) (time-elapsed? (-> this last-time) (-> this hint-data repeat-delay)))))))
@@ -257,8 +261,11 @@
           (send-event hint 'interrupt))))
   :code
     (behavior ()
+      (set-time! (-> self play-time))
+      (kill-current-level-hint '() '() 'die)
       (when (and (or (-> self hint-data force-playback?) (-> *setting-control* current play-hints))
-                 (< 0.0 (-> *setting-control* current dialog-volume)))
+                 ; (nonzero? (-> *setting-control* current dialog-volume))
+                 )
         (hint-debug (format 0 "CODE tfl-hint-play start ~A~%" self))
         (when (> (-> self hint-data text-id) (text-id zero))
           (hint-debug (format 0 "CODE tfl-hint-play marking ~S as seen (~A)~%" (text-id->string (-> self hint-data text-id)) (-> self name)))
@@ -275,7 +282,7 @@
         (play-tfl-hint (if (and (-> self hint-data alt-names) (> (-> self hint-data alt-names length) 0))
                          (-> self hint-data alt-names (-> self alt-name-idx))
                          (-> self hint-data file-name))
-                       (/ (-> *setting-control* current dialog-volume) 100.0)
+                       (if (zero? (-> *setting-control* current dialog-volume)) 0.001 (/ (-> *setting-control* current dialog-volume) 100.0))
                        (-> (get-tfl-hint) hint-data interrupt?))
         (next-alt-hint! self)
         (hint-debug (format 0 "CODE tfl-hint-play starting playback (~A)~%" (-> self name)))
@@ -289,6 +296,7 @@
         (add-setting! 'sfx-volume 'rel (-> *setting-control* current sfx-volume-movie) 0)
         (add-setting! 'dialog-volume 'rel (-> *setting-control* current dialog-volume-hint) 0)
         (while *tfl-hint-playing?*
+          (set! (-> self cur-frame) (- (current-time) (-> self play-time)))
           ;; (hint-debug (format 0 "CODE tfl-hint-play playing~%"))
           (suspend))
         (set-time! (-> self last-time))
@@ -310,6 +318,8 @@
   :exit
     (behavior ()
       (hint-debug (format 0 "EXIT tfl-hint-play start ~A~%" self))
+      (set! (-> self play-time) 0)
+      (set! (-> self cur-frame) 0)
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume)
       (remove-setting! 'dialog-volume)
