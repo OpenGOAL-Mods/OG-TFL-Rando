@@ -1014,7 +1014,7 @@
   ;; og:mod-base use custom continue point
   (let* ((debug-cont (if (and *debug-segment* (nonzero? *debug-continue-point*)) (get-continue-by-name *game-info* *debug-continue-point*)))
          (startup-level (if debug-cont
-                          (-> debug-cont level)
+                          (-> debug-cont lev0)
                           (case *kernel-boot-message*
                             (('play) (if *debug-segment* 'village1 'title))
                             (else 'demo)))))
