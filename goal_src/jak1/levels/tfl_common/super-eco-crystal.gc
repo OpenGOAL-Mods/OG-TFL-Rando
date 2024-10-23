@@ -38,10 +38,11 @@
    (bob-offset    int64)
    (bob-amount    float))
   (:methods
-   (init-collision! (_type_) none)
-   (give-powerup (_type_) none)
-   (respawn-blocked? (_type_) basic)
-   (do-lighting! (_type_) none))
+   (should-draw? (_type_) symbol)
+   (init-collision! (_type_) object)
+   (give-powerup (_type_) object)
+   (respawn-blocked? (_type_) object)
+   (do-lighting! (_type_) object))
   (:states
    super-eco-crystal-idle
    super-eco-crystal-break
@@ -151,8 +152,7 @@
     (set! (-> self part) (create-launch-control (-> *part-group-id-table* (-> self ambient-part)) self)))
   (if (-> self color) (vector-copy! (-> self draw color-mult) (-> self color)))
   (transform-post)
-  (go super-eco-crystal-idle)
-  (none))
+  (go super-eco-crystal-idle))
 
 (defmethod init-from-entity! super-eco-crystal
   ((this super-eco-crystal) (entity entity-actor))
@@ -200,12 +200,12 @@
   (none))
 
 (defmethod give-powerup ((this super-eco-crystal))
-  (case (-> this eco-type)
-    (('blue) (send-event *target* 'get-pickup (pickup-type super-eco-blue) (-> *FACT-bank* eco-full-inc)))
-    (('red) (send-event *target* 'get-pickup (pickup-type super-eco-red) (-> *FACT-bank* eco-full-inc)))
-    (('yellow) (send-event *target* 'get-pickup (pickup-type super-eco-yellow) (-> *FACT-bank* eco-full-inc)))
-    (('green) (send-event *target* 'get-pickup (pickup-type super-eco-green) (-> *FACT-bank* eco-full-inc))))
-  (none))
+  (let ((pickup (case (-> this eco-type)
+                  (('blue) (pickup-type super-eco-blue))
+                  (('red) (pickup-type super-eco-red))
+                  (('yellow) (pickup-type super-eco-yellow))
+                  (('green) (pickup-type super-eco-green)))))
+    (send-event *target* 'get-pickup pickup (-> *FACT-bank* eco-full-inc))))
 
 (defmethod respawn-blocked? ((this super-eco-crystal))
   (restore-collide-with-as (-> this cshape))
@@ -269,11 +269,11 @@
     )
   (none))
 
-(defbehavior should-draw? super-eco-crystal ()
-  (= (-> self next-state name) 'super-eco-crystal-idle))
+(defmethod should-draw? ((this super-eco-crystal))
+  (= (-> this next-state name) 'super-eco-crystal-idle))
 
 (defbehavior super-eco-crystal-post super-eco-crystal ()
-  (if (should-draw?)
+  (if (should-draw? self)
     (logclear! (-> self draw status) (draw-status hidden))
     (logior! (-> self draw status) (draw-status hidden)))
   (ja-post)
@@ -283,21 +283,22 @@
 
 (defstate super-eco-crystal-idle (super-eco-crystal)
   :event
-    (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
-      (case event-type
-        (('attack)
-         (if (symbol-member? (-> proc type symbol) '(target projectile-yellow tfl-yellow-shot)) (go super-eco-crystal-break)))))
-  :trans
-    (behavior ()
-      (do-lighting! self)
-      (spawn (-> self part) (-> self cshape trans))
-      (update! (-> self sound)))
+    (event (case message
+             (('attack)
+              (when (symbol-member? (-> proc type symbol) '(target projectile-yellow tfl-yellow-shot))
+                (give-powerup self)
+                (go super-eco-crystal-break)))))
   :enter
     (behavior ()
       (ja-channel-push! 1 0)
       (let ((jcontrol (-> self skel root-channel 0)))
         (joint-control-channel-group-eval! jcontrol (the art-joint-anim dark-crystal-idle-ja) num-func-identity)
         (set! (-> jcontrol frame-num) 0.0)))
+  :trans
+    (behavior ()
+      (do-lighting! self)
+      (spawn (-> self part) (-> self cshape trans))
+      (update! (-> self sound)))
   :code
     (behavior ()
       (loop
@@ -312,13 +313,15 @@
         (suspend))))
 
 (defstate super-eco-crystal-break (super-eco-crystal)
+  :enter
+    (behavior ()
+      (stop! (-> self sound)))
   :code
     (behavior ()
-      (set! (-> self state-time) (current-time))
+      (set-state-time)
       (vector-copy! (-> self base) (-> self old-base))
       (vector-copy! (-> self cshape trans) (-> self base))
       (clear-collide-with-as (-> self cshape))
-      (give-powerup self)
       (let ((explode (the process-drawable
                           (ppointer->process (process-spawn joint-exploder
                                                             *super-eco-crystal-explode-sg*
@@ -347,15 +350,12 @@
                      *entity-pool*)
       (until (not (-> self child))
         (suspend))
-      (go super-eco-crystal-respawn))
-  :enter
-    (behavior ()
-      (stop! (-> self sound))))
+      (go super-eco-crystal-respawn)))
 
 (defstate super-eco-crystal-respawn (super-eco-crystal)
   :code
     (behavior ()
-      (set! (-> self state-time) (current-time))
-      (until (and (time-elapsed? (-> self state-time) (-> self respawn-timer)) (not (respawn-blocked? self)))
+      (set-state-time)
+      (until (and (time-passed? (-> self respawn-timer)) (not (respawn-blocked? self)))
         (suspend))
       (go super-eco-crystal-idle)))
