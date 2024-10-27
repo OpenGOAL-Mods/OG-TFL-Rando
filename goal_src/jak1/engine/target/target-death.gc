@@ -691,13 +691,7 @@
         trans)
   :code
     (behavior ((arg0 symbol))
-      <<<<<<<
-      HEAD
-      (runs-on-jak-death 'dying)
-      =======
-      (runs-on-jak-death 'dying) ;;mod-base-change
-      >>>>>>>
-      upstream/main
+      (runs-on-jak-death 'dying) ;; mod-base-change
       (set! (-> self control unknown-uint20) (the-as uint #f))
       (set! (-> self control unknown-int21)
             (the-as int (send-event (handle->process (-> self attack-info attacker)) 'target 'die arg0)))
