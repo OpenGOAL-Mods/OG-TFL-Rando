@@ -106,7 +106,8 @@
 (defbehavior racer-calc-gravity target ()
   (let ((f0-8 (cond
                 ;; TFL note: added
-                ((and (target-powerup? super-eco-blue) (= (-> self next-state name) 'target-racing-jump)) SUPER_ECO_BLUE_GRAVITY_LENGTH)
+                ((and (target-powerup? super-eco-blue) (= (-> self next-state name) 'target-racing-jump))
+                 (lerp-scale GRAVITY_AMOUNT SUPER_ECO_BLUE_GRAVITY_LENGTH (-> self control unknown-float01) 0.0 (meters 50)))
                 ((or (-> self racer stick-lock) (-> self racer heavy)) 409600.0)
                 ((= (-> self next-state name) 'target-racing-bounce)
                  (lerp-scale 81920.0 163840.0 (-> self control unknown-float01) 40960.0 (-> self racer transv-max)))
