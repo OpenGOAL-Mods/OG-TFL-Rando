@@ -17,6 +17,7 @@ jobs:
     with:
       cmakePreset: "Release-windows-clang"
       cachePrefix: ""
+      uploadArtifacts: true
     secrets: inherit
 
   build_windows_msvc:
@@ -34,6 +35,7 @@ jobs:
     with:
       cmakePreset: "Release-linux-clang-asan"
       cachePrefix: ""
+      uploadArtifacts: true
     secrets: inherit
 
   build_linux_gcc:
