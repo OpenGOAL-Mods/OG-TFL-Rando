@@ -20,13 +20,13 @@ jobs:
       uploadArtifacts: true
     secrets: inherit
 
-  build_windows_msvc:
-    name: "🖥️ Windows"
-    uses: ./.github/workflows/windows-build-msvc.yaml
-    with:
-      cmakePreset: "Release-windows-msvc"
-      cachePrefix: ""
-    secrets: inherit
+  # build_windows_msvc:
+  #   name: "🖥️ Windows"
+  #   uses: ./.github/workflows/windows-build-msvc.yaml
+  #   with:
+  #     cmakePreset: "Release-windows-msvc"
+  #     cachePrefix: ""
+  #   secrets: inherit
 
   # Linux
   build_linux_clang:
@@ -38,13 +38,13 @@ jobs:
       uploadArtifacts: true
     secrets: inherit
 
-  build_linux_gcc:
-    name: "🐧 Linux"
-    uses: ./.github/workflows/linux-build-gcc.yaml
-    with:
-      cmakePreset: "Release-linux-gcc"
-      cachePrefix: ""
-    secrets: inherit
+  # build_linux_gcc:
+  #   name: "🐧 Linux"
+  #   uses: ./.github/workflows/linux-build-gcc.yaml
+  #   with:
+  #     cmakePreset: "Release-linux-gcc"
+  #     cachePrefix: ""
+  #   secrets: inherit
 
   # MacOS
   build_macos_intel:
