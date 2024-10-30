@@ -16,7 +16,7 @@
 
 (defconstant SUPER_ECO_RED_BOOST_RAMP_UP (seconds 0.5))
 
-(defconstant SUPER_ECO_BLUE_GRAVITY_LENGTH (meters 3))
+(defconstant SUPER_ECO_BLUE_GRAVITY_LENGTH (meters 2.5))
 
 ;; DECOMP BEGINS
 
@@ -106,9 +106,9 @@
 (defbehavior racer-calc-gravity target ()
   (let ((f0-8 (cond
                 ;; TFL note: added
-                ((and (target-powerup? super-eco-blue) (= (-> self next-state name) 'target-racing-jump))
-                 (lerp-scale GRAVITY_AMOUNT SUPER_ECO_BLUE_GRAVITY_LENGTH (-> self control unknown-float01) 0.0 (meters 50)))
-                ((or (-> self racer stick-lock) (-> self racer heavy)) 409600.0)
+                ((and (target-powerup? super-eco-blue) (cpad-hold? 0 l1 r1))
+                 (lerp-scale (meters 30) SUPER_ECO_BLUE_GRAVITY_LENGTH (-> self control unknown-float01) 0.0 (meters 25)))
+                ((or (-> self racer stick-lock) (-> self racer heavy)) 409600.0) 
                 ((= (-> self next-state name) 'target-racing-bounce)
                  (lerp-scale 81920.0 163840.0 (-> self control unknown-float01) 40960.0 (-> self racer transv-max)))
                 ((or (-> self racer hop?) (= (-> self next-state name) 'target-racing-bounce))

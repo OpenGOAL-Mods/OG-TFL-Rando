@@ -10,7 +10,7 @@
 (define-extern *race-track-surface* surface)
 
 ;; TFL note: added constants
-(defconstant SUPER_ECO_BLUE_JUMP_HEIGHT (meters 10))
+(defconstant SUPER_ECO_BLUE_JUMP_HEIGHT (meters 8))
 
 ;; DECOMP BEGINS
 
