@@ -15,8 +15,8 @@ jobs:
     name: "🖥️ Windows"
     uses: ./.github/workflows/windows-build-clang.yaml
     with:
-      cmakePreset: "Release-windows-clang"
-      cachePrefix: ""
+      cmakePreset: "Release-windows-clang-static"
+      cachePrefix: "pr-build"
       uploadArtifacts: true
     secrets: inherit
 
@@ -33,8 +33,8 @@ jobs:
     name: "🐧 Linux"
     uses: ./.github/workflows/linux-build-clang.yaml
     with:
-      cmakePreset: "Release-linux-clang-asan"
-      cachePrefix: ""
+      cmakePreset: "Release-linux-clang-static"
+      cachePrefix: "pr-build"
       uploadArtifacts: true
     secrets: inherit
 
@@ -52,7 +52,7 @@ jobs:
     uses: ./.github/workflows/macos-build.yaml
     with:
       cmakePreset: "Release-macos-clang"
-      cachePrefix: ""
+      cachePrefix: "pr-build"
       uploadArtifacts: true
 
   # Q4 2023 there will hopefully be native arm64 runners 
