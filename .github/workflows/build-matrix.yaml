@@ -53,6 +53,7 @@ jobs:
     with:
       cmakePreset: "Release-macos-clang"
       cachePrefix: ""
+      uploadArtifacts: true
 
   # Q4 2023 there will hopefully be native arm64 runners 
   # https://github.com/github/roadmap/issues/528
