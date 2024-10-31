@@ -95,8 +95,7 @@
   (process-mask-clear! (-> self mask) pause menu)
   (set! *tfl-music-player* (the (pointer tfl-music-player) (process->ppointer self)))
   (set-level! self)
-  (go-virtual idle)
-  (none))
+  (go-virtual idle))
 
 (defevent tfl-music-player-event-handler
           tfl-music-player
