@@ -268,9 +268,9 @@
           (go target-racing-jump 2048.0 5324.8 #t)))
       (target-racing-smack-check)
       (let* ((f30-0 (target-height-above-ground))
-             (v1-28 (time-to-ground (vector-dot (-> self control dynam gravity-normal) (-> self control transv))
-                                    (-> self control dynam gravity-length)
-                                    f30-0)))
+             (v1-28 (if (> (-> self control dynam gravity-max) 0.1)
+                        (time-to-ground (vector-dot (-> self control dynam gravity-normal) (-> self control transv)) (-> self control dynam gravity-length) f30-0)
+                        31))) ;; TFL note: added a fix for sub 0 gravity for super blue eco zoomer
         (if (and (not (logtest? (-> self control status) (cshape-moving-flags onsurf)))
                  (or (time-elapsed? (-> self control unknown-dword11) (* (-> *TARGET-bank* ground-timeout) 2)) (< 75 v1-28))
                  (< 30 v1-28)
