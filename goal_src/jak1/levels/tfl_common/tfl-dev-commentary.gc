@@ -36,7 +36,7 @@
 
 (define *tfl-dev-commentary-playing?* (-> *tfl-dev-commentary* playing?))
 
-(define *display-tfl-commentary-marks* #t)
+(define *display-tfl-commentary-marks* #f)
 
 (defun tfl-commentary-volume ()
   (-> *tfl-dev-commentary* vol))
@@ -69,24 +69,28 @@
     (set! (-> this num-cmds) cmd-len)
     this))
 
+(defconstant TFL_COMMENTARY_MAX_HANDLES 4)
+
 (deftype tfl-commentary-node (process-drawable)
-  ((sound-to-play  string)
-   (length         float)
-   (last-time      time-frame)
-   (play-time      time-frame)
-   (activate-range float)
-   (active?        symbol)
-   (inactive-look  lod-set :inline)
-   (active-look    lod-set :inline)
-   (data           tfl-commentary-data)
-   (cur-frame      time-frame)
-   (cam            handle)
-   (proc           handle)
-   (hud            handle)
-   (cmd-frames     tfl-commentary-keyframes))
+  ((sound-to-play     string)
+   (length            float)
+   (last-time         time-frame)
+   (play-time         time-frame)
+   (activate-range    float)
+   (active?           symbol)
+   (inactive-look     lod-set :inline)
+   (active-look       lod-set :inline)
+   (data              tfl-commentary-data)
+   (cur-frame         time-frame)
+   (pov-cam           handle)
+   (cam-control-parms tfl-cam-control-init-params)
+   (cam-control       handle)
+   (proc              handle TFL_COMMENTARY_MAX_HANDLES)
+   (hud               handle)
+   (cmd-frames        tfl-commentary-keyframes))
   (:methods
    (common-init (_type_) object)
-   (init-keyframes (_type_) object)
+   (init-keyframes! (_type_) object)
    (get-bg-width-for-str (_type_ string) float)
    (draw-hud (_type_) object)
    (handle-input (_type_) object)
@@ -101,24 +105,40 @@
    (execute-cmds-at-frame (_type_ time-frame) object)
    (has-cmds-at-frame? (_type_ time-frame) symbol)
    (get-cmds-at-frame (_type_ time-frame) pair)
-   (get-commentary-data (_type_) tfl-commentary-data))
+   (get-commentary-data (_type_) tfl-commentary-data)
+   (parse-cmd-vec! (_type_ vector pair) vector)
+   (parse-cam-control! (_type_ tfl-cam-control-init-params pair) tfl-cam-control-init-params)
+   (spawn-func-by-name (_type_ string) (function handle))
+   (kill-all-handles! (_type_) object))
   (:state-methods
    hidden
    idle
    playing))
+
+(define-perm *tfl-commentary-semaphore* tfl-commentary-node (the tfl-commentary-node #f))
 
 (defmacro commentary-debug (&rest body)
   `(#if TFL_COMMENTARY_DEBUG (begin   ,@body) (empty)))
 
 (define *tfl-commentary-node-string* (new 'debug 'string 128 (the string #f)))
 
+(defmacro deactivate-handle (handle)
+  `(let ((h (handle->process ,handle))) (when h (deactivate h) (set! ,handle INVALID_HANDLE))))
+
+(defmethod kill-all-handles! ((this tfl-commentary-node))
+  (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
+    (deactivate-handle (-> this proc i)))
+  (deactivate-handle (-> this cam-control))
+  (deactivate-handle (-> this hud)))
+
 (defmethod deactivate ((this tfl-commentary-node))
-  (if (-> this cam) (deactivate (handle->process (-> this cam))))
-  (if (-> this proc) (deactivate (handle->process (-> this proc))))
+  (if (-> this pov-cam) (deactivate (handle->process (-> this pov-cam))))
+  (kill-all-handles! this)
   (call-parent-method this))
 
 (defmethod relocate ((this tfl-commentary-node) (off int))
   (if (nonzero? (-> this cmd-frames)) (&+! (-> this cmd-frames) off))
+  (if (nonzero? (-> this cam-control-parms)) (&+! (-> this cam-control-parms) off))
   (call-parent-method this off))
 
 (defmethod get-commentary-data ((this tfl-commentary-node))
@@ -181,7 +201,7 @@
     (('inactive) (lods-assign! (-> this draw) (-> this inactive-look)))
     (('active) (lods-assign! (-> this draw) (-> this active-look)))))
 
-(defmethod init-keyframes ((this tfl-commentary-node))
+(defmethod init-keyframes! ((this tfl-commentary-node))
   (let* ((cmds (-> this data cmd-list))
          (len (length cmds)))
     (dotimes (i len)
@@ -192,8 +212,59 @@
           (('end) (set! (-> this cmd-frames data i) (-> this data length)))
           (else (set! (-> this cmd-frames data i) (/ (the time-frame frame) 8))))))))
 
-(defmacro unbox-float (bfloat)
-  `(-> (the bfloat ,bfloat) data))
+(defmacro unbox-bfloat-or-binteger (val)
+  `(if (binteger? ,val) (the float (/ (the int ,val) 8)) (the float (-> (the bfloat ,val) data))))
+
+(defmethod parse-cmd-vec! ((this tfl-commentary-node) (vec vector) (cmd pair))
+  (set! (-> vec x) (meters (unbox-bfloat-or-binteger (ref cmd 1))))
+  (set! (-> vec y) (meters (unbox-bfloat-or-binteger (ref cmd 2))))
+  (set! (-> vec z) (meters (unbox-bfloat-or-binteger (ref cmd 3))))
+  (set! (-> vec w) 1.0)
+  vec)
+
+(defmethod parse-cam-control! ((this tfl-commentary-node) (parms tfl-cam-control-init-params) (cmd pair))
+  (set-vector! (-> parms cam-dest) 0.0 0.0 0.0 1.0)
+  (set! (-> parms move-timer) (seconds 1))
+  (set! (-> parms reset-speed) (seconds 1))
+  (set! (-> parms max-y) (meters 3))
+  (set! (-> parms min-y) (meters 1))
+  (set! (-> parms max-z) (meters 1235))
+  (set! (-> parms min-z) (meters 5))
+  (set! (-> parms push-z) (meters 10))
+  (set! (-> parms tilt-adjust) (degrees -6.5000005))
+  (set! (-> parms track-speed) (meters 0.6))
+  (set! (-> parms track-accel) (meters 0.005))
+  (set! (-> parms max-y-start) (-> *camera* stringMaxHeight))
+  (set! (-> parms min-y-start) (-> *camera* stringMinHeight))
+  (set! (-> parms max-z-start) (-> *camera* stringMaxLength))
+  (set! (-> parms min-z-start) (-> *camera* stringMinLength))
+  (dotimes (i (length cmd))
+    (let* ((elt (the pair (ref cmd i)))
+           (field (ref elt 0))
+           (val (ref elt 1)))
+      (case field
+        (('cam-dest) (parse-cmd-vec! this (-> parms cam-dest) elt))
+        (('move-timer) (set! (-> parms move-timer) (the time-frame (the int (* 300.0 (unbox-bfloat-or-binteger val))))))
+        (('max-y) (set! (-> parms max-y) (meters (unbox-bfloat-or-binteger val))))
+        (('min-y) (set! (-> parms min-y) (meters (unbox-bfloat-or-binteger val))))
+        (('max-z) (set! (-> parms max-z) (meters (unbox-bfloat-or-binteger val))))
+        (('min-z) (set! (-> parms min-z) (meters (unbox-bfloat-or-binteger val))))
+        (('push-z) (set! (-> parms push-z) (meters (unbox-bfloat-or-binteger val))))
+        (('tilt-adjust) (set! (-> parms tilt-adjust) (degrees (unbox-bfloat-or-binteger val))))
+        (('track-accel) (set! (-> parms track-accel) (meters (unbox-bfloat-or-binteger val))))
+        (('track-speed) (set! (-> parms track-speed) (meters (unbox-bfloat-or-binteger val))))
+        (('max-y-start) (set! (-> parms max-y-start) (meters (unbox-bfloat-or-binteger val))))
+        (('min-y-start) (set! (-> parms min-y-start) (meters (unbox-bfloat-or-binteger val))))
+        (('max-z-start) (set! (-> parms max-z-start) (meters (unbox-bfloat-or-binteger val))))
+        (('min-z-start) (set! (-> parms min-z-start) (meters (unbox-bfloat-or-binteger val))))
+        (('tilt-adjust-start) (set! (-> parms tilt-adjust-start) (degrees (unbox-bfloat-or-binteger val))))
+        (('reset-speed) (set! (-> parms reset-speed) (the time-frame (the int (* 300.0 (unbox-bfloat-or-binteger val)))))))))
+  parms)
+
+(defmethod spawn-func-by-name ((this tfl-commentary-node) (name string))
+  (dotimes (i (-> this data spawn-list length))
+    (if (string= (-> this data spawn-list i name) name) (return (the (function handle) (-> this data spawn-list i func)))))
+  (the (function handle) #f))
 
 (defmethod execute-single-cmd ((this tfl-commentary-node) (cmd pair))
   (format 0 "tfl-commentary-node::parse-cmd executing cmd ~A~%" cmd)
@@ -203,23 +274,18 @@
     (case c
       (('grab) (process-grab? *target*))
       (('release) (process-release? *target*))
-      (('music) (add-setting! 'music-volume 'abs (unbox-float (ref rest 0)) 0))
-      (('sfx) (add-setting! 'sfx-volume 'abs (unbox-float (ref rest 0)) 0))
-      (('dialog) (add-setting! 'dialog-volume 'abs (unbox-float (ref rest 0)) 0))
-      (('camera)
+      (('music) (add-setting! 'music-volume 'abs (unbox-bfloat-or-binteger (ref rest 0)) 0))
+      (('sfx) (add-setting! 'sfx-volume 'abs (unbox-bfloat-or-binteger (ref rest 0)) 0))
+      (('dialog) (add-setting! 'dialog-volume 'abs (unbox-bfloat-or-binteger (ref rest 0)) 0))
+      (('pov-cam)
        (let* ((sg (the symbol (ref rest 0)))
               (vec (the pair (ref rest 1)))
-              (pos (new-stack-vector0))
               (cam-name (the string (ref rest 2))))
-         (set! (-> pos x) (meters (unbox-float (ref vec 1))))
-         (set! (-> pos y) (meters (unbox-float (ref vec 2))))
-         (set! (-> pos z) (meters (unbox-float (ref vec 3))))
-         (set! (-> pos w) 1.0)
-         (set! (-> this cam)
+         (set! (-> this pov-cam)
                (ppointer->handle (process-spawn commentary-camera
                                                 :init
                                                 pov-camera-init-by-other
-                                                pos
+                                                (parse-cmd-vec! this (new-stack-vector0) vec)
                                                 (-> sg value)
                                                 cam-name
                                                 (pov-camera-flag inherit-orientation notify-of-abort)
@@ -227,51 +293,56 @@
                                                 '()
                                                 :to
                                                 this)))))
-      ; (('spawn)
-      ;  (if (not (handle->process (-> self proc)))
-      ;    (let* ((sg (the symbol (ref rest 0)))
-      ;           (vec (the pair (ref rest 1)))
-      ;           (pos (new-stack-vector0))
-      ;           (cam-name (the string (ref rest 2))))
-      ;      (set! (-> pos x) (meters (unbox-float (ref vec 1))))
-      ;      (set! (-> pos y) (meters (unbox-float (ref vec 2))))
-      ;      (set! (-> pos z) (meters (unbox-float (ref vec 3))))
-      ;      (set! (-> pos w) 1.0)
-      ;      (set! (-> this cam)
-      ;            (ppointer->handle (process-spawn commentary-camera
-      ;                                             :init
-      ;                                             pov-camera-init-by-other
-      ;                                             pos
-      ;                                             (-> sg value)
-      ;                                             cam-name
-      ;                                             (pov-camera-flag inherit-orientation notify-of-abort)
-      ;                                             #f
-      ;                                             '()
-      ;                                             :to
-      ;                                             this))))))
-      ; (('send-event)
-      ;  (if (handle->process (-> this proc))
-      ;    (let* ((sg (the symbol (ref rest 0)))
-      ;           (vec (the pair (ref rest 1)))
-      ;           (pos (new-stack-vector0))
-      ;           (cam-name (the string (ref rest 2))))
-      ;      (set! (-> pos x) (meters (unbox-float (ref vec 1))))
-      ;      (set! (-> pos y) (meters (unbox-float (ref vec 2))))
-      ;      (set! (-> pos z) (meters (unbox-float (ref vec 3))))
-      ;      (set! (-> pos w) 1.0)
-      ;      (set! (-> this cam)
-      ;            (ppointer->handle (process-spawn commentary-camera
-      ;                                             :init
-      ;                                             pov-camera-init-by-other
-      ;                                             pos
-      ;                                             (-> sg value)
-      ;                                             cam-name
-      ;                                             (pov-camera-flag inherit-orientation notify-of-abort)
-      ;                                             #f
-      ;                                             '()
-      ;                                             :to
-      ;                                             this))))))
-      (('kill) (when (-> this proc) (deactivate (handle->process (-> this proc))) (set! (-> this proc) INVALID_HANDLE)))
+      (('spawn)
+       (let ((idx (/ (the int (ref rest 0)) 8))
+             (name (the string (ref rest 1))))
+         (set! (-> this proc idx) (aif (spawn-func-by-name this name) (it)))))
+      (('go)
+       (let* ((idx (/ (the int (ref rest 0)) 8))
+              (p (handle->process (-> this proc idx)))
+              (state (the state (-> (the symbol (ref rest 1)) value))))
+         (when p
+           (with-pp
+             (protect (pp) (set! pp p) (set! (-> pp next-state) state) (enter-state #f #f #f #f #f #f))))))
+      (('kill)
+       (let ((param (ref rest 0)))
+         (if (binteger? param)
+           (when (handle->process (-> this proc (/ (the int param) 8)))
+             (deactivate (handle->process (-> this proc (/ (the int param) 8))))
+             (set! (-> this proc (/ (the int param) 8)) INVALID_HANDLE))
+           (case param
+             (('cam-control) (if (handle->process (-> this cam-control)) (deactivate (handle->process (-> this cam-control)))))
+             (('pov-cam)
+              (when (handle->process (-> this pov-cam))
+                (send-event (handle->process (-> this pov-cam)) 'abort)
+                ; (process-release? *target*)
+                ))))))
+      (('send-event)
+       (let* ((idx (/ (the int (ref rest 0)) 8))
+              (p (handle->process (-> this proc idx)))
+              (msg (the symbol (ref rest 1)))
+              (args (the pair (ref rest 2)))
+              (argc (length args))
+              (block (new 'stack-no-clear 'event-message-block)))
+         (when p
+           (set! (-> block from) this)
+           (set! (-> block num-params) argc)
+           (set! (-> block message) msg)
+           (dotimes (i argc)
+             (set! (-> block param i) (the uint (ref args i))))
+           (send-event-function p block))))
+      (('go)
+       (let* ((idx (/ (the int (ref rest 0)) 8))
+              (p (handle->process (-> this proc idx)))
+              (state (the state (-> (the symbol (ref rest 1)) value))))
+         (when p
+           (with-pp
+             (protect (pp) (set! pp p) (set! (-> pp next-state) state) (enter-state #f #f #f #f #f #f))))))
+      (('cam-control)
+       (set! (-> this cam-control)
+             (ppointer->handle (process-spawn tfl-cam-control (parse-cam-control! this (-> this cam-control-parms) (the pair rest))))))
+      ; (('go-virtual))
+      ; (('text)) ;; draw text on-screen
       (else (format 0 "tfl-commentary-node::parse-cmd unhandled cmd ~A~%" c) #t))))
 
 (defmethod execute-cmds ((this tfl-commentary-node) (cmds pair))
@@ -301,9 +372,9 @@
      (set! (-> *tfl-dev-commentary* vol) (fmax 0.0 (- (-> *tfl-dev-commentary* vol) 0.1))))
     ((and (cpad-hold? 0 l2) (cpad-pressed? 0 circle))
      ; (stop-tfl-commentary)
-     (if (handle->process (-> this cam)) (send-event (handle->process (-> this cam)) 'abort))
+     (if (handle->process (-> this pov-cam)) (send-event (handle->process (-> this pov-cam)) 'abort))
      (process-release? *target*)
-     (set! (-> this cam) INVALID_HANDLE)
+     (set! (-> this pov-cam) INVALID_HANDLE)
      (go-virtual idle :proc this))))
 
 (defun rminutes ((time time-frame))
@@ -325,66 +396,74 @@
     (get-string-length str ctx)))
 
 (defmethod draw-hud ((this tfl-commentary-node))
-  (mlet ((HUD_Y 32))
-        (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
-          ;; bg box
-          (draw-sprite2d-xy buf
-                            13
-                            (- HUD_Y 2)
-                            (the int
-                                 (* (+ (get-bg-width-for-str this
-                                                             (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name))))
-                                       7.0)
-                                    (-> *video-parms* relative-x-scale)))
-                            (the int (* (the float (+ HUD_Y (* 2 8))) (-> *video-parms* relative-y-scale)))
-                            (static-rgba 0 0 0 #x50))
-          (draw-string-xy (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name)))
-                          buf
-                          14
-                          (+ HUD_Y (* 0 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-string-xy (string-format "Volume ~8L~D%~0L" (the int (* (-> *tfl-dev-commentary* vol) 100.0)))
-                          buf
-                          14
-                          (+ HUD_Y (* 1 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-string-xy "L2 + Up: ~3LVolume Up~0L" buf 14 (+ HUD_Y (* 2 8)) (font-color default) (font-flags shadow kerning))
-          (draw-string-xy "L2 + Down: ~3LVolume Down~0L"
-                          buf
-                          14
-                          (+ HUD_Y (* 3 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-string-xy "L2 + Circle: ~3LStop Playback~0L"
-                          buf
-                          14
-                          (+ HUD_Y (* 4 8))
-                          (font-color default)
-                          (font-flags shadow kerning))
-          (draw-sprite2d-xy buf
-                            120
-                            177
-                            (the int
-                                 (* (+ (get-bg-width-for-str this (string-format "~21L~S~0L" (time->string this))) 3.0)
-                                    (-> *video-parms* relative-x-scale)))
-                            (the int (* 8 (-> *video-parms* relative-y-scale)))
-                            (static-rgba 0 0 0 #x40))
-          (draw-string-xy (string-format "~21L~S~0L" (time->string this))
-                          buf
-                          120
-                          177
-                          (font-color default)
-                          (font-flags shadow kerning)))
-        (debug-percent-bar #t
-                           (bucket-id debug)
-                           120
-                           160
-                           (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
-                           (static-rgba #xff 80 0 #x80))))
+  (mlet ((HUD_Y 45)
+         (BOX_HEIGHT (+ (* 6 8) 4)))
+    (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
+      ;; bg box
+      (draw-sprite2d-xy buf
+                        13
+                        (- HUD_Y 2)
+                        (the int
+                             (* (+ (get-bg-width-for-str this
+                                                         (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name))))
+                                   7.0)
+                                (-> *video-parms* relative-x-scale)))
+                        (the int (* (the float BOX_HEIGHT) (-> *video-parms* relative-y-scale)))
+                        (static-rgba 0 0 0 #x50))
+      (draw-string-xy (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name)))
+                      buf
+                      14
+                      (+ HUD_Y (* 0 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy (string-format "Volume ~8L~D%~0L" (the int (* (-> *tfl-dev-commentary* vol) 100.0)))
+                      buf
+                      14
+                      (+ HUD_Y (* 1 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy "L2 + Up: ~3LVolume Up~0L" buf 14 (+ HUD_Y (* 2 8)) (font-color default) (font-flags shadow kerning))
+      (draw-string-xy "L2 + Down: ~3LVolume Down~0L"
+                      buf
+                      14
+                      (+ HUD_Y (* 3 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy "L2 + Circle: ~3LStop Playback~0L"
+                      buf
+                      14
+                      (+ HUD_Y (* 4 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      (draw-string-xy "Square: ~3LToggle Subtitles~0L"
+                      buf
+                      14
+                      (+ HUD_Y (* 5 8))
+                      (font-color default)
+                      (font-flags shadow kerning))
+      ; (draw-sprite2d-xy buf
+      ;                   120
+      ;                   167
+      ;                   (the int
+      ;                        (* (+ (get-bg-width-for-str this (string-format "~21L~S~0L" (time->string this))) 3.0)
+      ;                           (-> *video-parms* relative-x-scale)))
+      ;                   (the int (* 8 (-> *video-parms* relative-y-scale)))
+      ;                   (static-rgba 0 0 0 #x40))
+      (draw-string-xy (string-format "~21L~S~0L" (time->string this))
+                      buf
+                      120
+                      167
+                      (font-color default)
+                      (font-flags shadow kerning)))
+    (debug-percent-bar #t
+                       (bucket-id debug)
+                       120
+                       150
+                       (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
+                       (static-rgba #xff 80 0 #x80))))
 
 (defmethod common-init ((this tfl-commentary-node))
+  (stack-size-set! (-> this main-thread) 512)
   (set! (-> this root) (new 'process 'trsqv))
   (logior! (-> this mask) (process-mask actor-pause))
   (initialize-skeleton this *tfl-commentary-node-sg* '())
@@ -394,8 +473,11 @@
                (art-group-get-by-name (-> *level* level-default) "tfl-commentary-node-active")
                (-> this entity))
   (set-look! this 'inactive)
-  (set! (-> this cam) INVALID_HANDLE)
-  (set! (-> this proc) INVALID_HANDLE)
+  (set! (-> this pov-cam) INVALID_HANDLE)
+  (set! (-> this cam-control) INVALID_HANDLE)
+  (set! (-> this cam-control-parms) (new 'process 'tfl-cam-control-init-params))
+  (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
+    (set! (-> this proc i) INVALID_HANDLE))
   (set! (-> this hud) INVALID_HANDLE))
 
 (defmethod init-from-entity! ((this tfl-commentary-node) (ent entity-actor))
@@ -405,7 +487,7 @@
   (set! (-> this data) (get-commentary-data this))
   (set! (-> this activate-range) (res-lump-float ent 'radius :default (meters 6)))
   (set! (-> this cmd-frames) (new 'process 'tfl-commentary-keyframes (length (-> this data cmd-list))))
-  (init-keyframes this)
+  (init-keyframes! this)
   (ja-post)
   (if (-> *tfl-dev-commentary* enabled?)
     (if (or (not (-> this data)) (not (-> this sound-to-play)))
@@ -427,7 +509,7 @@
   (set! (-> self data) (get-commentary-data self))
   (set! (-> self activate-range) r)
   (set! (-> self cmd-frames) (new 'process 'tfl-commentary-keyframes (length (-> self data cmd-list))))
-  (init-keyframes self)
+  (init-keyframes! self)
   (ja-post)
   (if (-> *tfl-dev-commentary* enabled?)
     (if (or (not (-> self data)) (not (-> self sound-to-play)))
@@ -443,9 +525,10 @@
   (ja-post)
   (none))
 
-(defbehavior tfl-commentary-node-event-handler tfl-commentary-node ((proc process) (argc int) (message symbol) (block event-message-block))
-  (case message
-    (('grab) #t)))
+(defevent tfl-commentary-node-event-handler
+          tfl-commentary-node
+          (case message
+            (('grab) #t)))
 
 (defstatehandler tfl-commentary-node :event tfl-commentary-node-event-handler :post tfl-commentary-node-post)
 
@@ -510,6 +593,7 @@
   :virtual #t
   :enter
     (behavior ()
+      (set! *tfl-commentary-semaphore* self)
       (set-time! (-> self play-time))
       (set! (-> self cur-frame) 0)
       (set-look! self 'active))
@@ -532,6 +616,7 @@
       ;       (logclear! (-> manipy mask) (process-mask menu progress))
       ;       (set! (-> manipy root trans z) 1024.0))))
       (until (time-elapsed? (-> self play-time) (-> self data length))
+        (hide-hud)
         (set! (-> self cur-frame) (- (current-time) (-> self play-time)))
         (when (has-cmds-at-frame? self (-> self cur-frame))
           (execute-cmds-at-frame self (-> self cur-frame)))
@@ -542,12 +627,10 @@
       (go-virtual idle))
   :exit
     (behavior ()
+      (set! *tfl-commentary-semaphore* (the tfl-commentary-node #f))
       (set! (-> self play-time) 0)
       (set! (-> self cur-frame) 0)
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume)
       (remove-setting! 'dialog-volume)
-      (if (handle->process (-> self proc)) (deactivate (handle->process (-> self proc))))
-      (set! (-> self proc) INVALID_HANDLE)
-      (if (handle->process (-> self hud)) (deactivate (handle->process (-> self hud))))
-      (set! (-> self hud) INVALID_HANDLE)))
+      (kill-all-handles! self)))

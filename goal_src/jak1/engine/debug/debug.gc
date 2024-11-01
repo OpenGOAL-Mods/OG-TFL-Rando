@@ -737,3 +737,87 @@
             (format *stdcon* "mdb file: ~S~%" (-> s5-0 info mdb-file-name))
             (format *stdcon* "~S" (-> s5-0 info tool-debug)))))))
   0)
+
+;; TFL note: added
+;; retail mode 3d text
+(deftype text-3d (structure)
+  ((flags  int32)
+   (bucket bucket-id)
+   (pos    vector :inline)
+   (color  font-color)
+   (offset vector2h :inline)
+   (str    string)))
+
+(deftype text-tracking-thang (basic)
+  ((length           int32)
+   (allocated-length int32)))
+
+;; allocate draw buffers
+(define *text-3ds* (the (inline-array text-3d) (malloc 'global (* 16 (psize-of text-3d)))))
+
+(define *text-3d-trk* (new 'static 'text-tracking-thang))
+
+(set! (-> *text-3d-trk* allocated-length) 16)
+
+(dotimes (i (-> *text-3d-trk* allocated-length))
+  (set! (-> *text-3ds* i str) (new 'global 'string 80 (the string #f))))
+
+(defun internal-draw-text-3d ((bucket bucket-id) (str string) (location vector) (color font-color) (offset vector2h))
+  "Draw text at the given location (in 3D), with a 2D offset."
+  (let ((pos (new 'stack-no-clear 'vector4w)))
+    (set! (-> pos quad) (the uint128 0))
+    (when (transform-point-qword! pos location)
+      (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) bucket)
+        (let ((fnt (new 'stack
+                        'font-context
+                        *font-default-matrix*
+                        (+ (+ (-> offset x) -1792) (/ (-> pos x) 16))
+                        (- (+ (+ (-> offset y) -8) (/ (-> pos y) 16)) (-> *video-parms* screen-miny))
+                        0.0
+                        color
+                        (font-flags shadow kerning))))
+          (set! (-> fnt origin z) (the float (/ (-> pos z) 16)))
+          (draw-string str buf fnt))))))
+
+(defun get-text-3d ()
+  (cond
+    ((< (-> *text-3d-trk* length) (-> *text-3d-trk* allocated-length))
+     (+! (-> *text-3d-trk* length) 1)
+     (-> *text-3ds* (+ (-> *text-3d-trk* length) -1)))
+    (else (the text-3d #f))))
+
+(defun reset-text-buffers ()
+  (set! (-> *text-3d-trk* length) 0)
+  (set! *debug-draw-pauseable* #f)
+  #f)
+
+(defun draw-text-3d-buffers ()
+  (dotimes (i (-> *text-3d-trk* length))
+    (let ((t (-> *debug-text-3ds* i)))
+      (internal-draw-text-3d (-> t bucket) (-> t str) (-> t pos) (-> t color) (-> t offset))))
+  #f)
+
+(defun add-text-3d ((draw? symbol) (bucket bucket-id) (str string) (pos vector) (color font-color) (offset vector2h))
+  (when draw?
+    (cond
+      (*debug-draw-pauseable*
+       (let ((t (get-text-3d)))
+         (when t
+           (set! (-> t flags) 0)
+           (set! (-> t bucket) bucket)
+           (set! (-> t pos quad) (-> pos quad))
+           (cond
+             (offset (set! (-> t offset x) (-> offset x)) (set! (-> t offset y) (-> offset y)))
+             (else (set! (-> t offset x) 0) (set! (-> t offset y) 0) 0))
+           (set! (-> t color) color)
+           (let ((idx 0)
+                 (src-data (-> str data))
+                 (dst-data (-> t str data)))
+             (while (and (nonzero? (-> src-data 0)) (< idx 79))
+               (set! (-> dst-data 0) (-> src-data 0))
+               (set! src-data (&-> src-data 1))
+               (set! dst-data (&-> dst-data 1))
+               (1+! idx))
+             (set! (-> dst-data 0) (the uint 0))))))
+      (else (internal-draw-text-3d bucket str pos color (if offset offset (new 'static 'vector2h))))))
+  #f)

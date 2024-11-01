@@ -153,14 +153,10 @@
    target-wheel
    (target-wheel-flip float float)
    target-yellow-blast
-   <<<<<<<
-   HEAD
-   target-super-yellow-blast ;; TFL note: added state
-   target-super-yellow-jump-blast ;; TFL note: added state
-   =======
-   >>>>>>>
-   upstream/main
-   target-yellow-jump-blast))
+   target-yellow-jump-blast
+   ;; TFL note: added states
+   target-super-yellow-blast
+   target-super-yellow-jump-blast))
 
 (define-perm *target* target #f)
 

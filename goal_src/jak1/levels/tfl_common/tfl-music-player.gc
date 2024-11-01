@@ -1,6 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
-(define *tfl-music-player-level-info* (new 'static 'boxed-array :type string "crystal-ca" "crescent-t" "energy-bay" "open-mines"))
+(define *tfl-music-player-level-info*
+  (new 'static 'boxed-array :type string "crystal-ca" "crescent-t" "energy-bay" "open-mines"))
 
 (define *tfl-music-player-boss-info* (new 'static 'boxed-array :type string "boss-test"))
 
@@ -11,6 +12,8 @@
 (define *tfl-boss-music* #f)
 
 (define *tfl-music-stop* #f)
+
+(define *tfl-music-fade?* #t)
 
 (deftype tfl-music-player (process)
   ((level symbol))
@@ -89,20 +92,22 @@
     (suspend)))
 
 (defbehavior tfl-music-player-init-by-other tfl-music-player ()
+  (process-mask-clear! (-> self mask) pause menu)
   (set! *tfl-music-player* (the (pointer tfl-music-player) (process->ppointer self)))
   (set-level! self)
-  (go-virtual idle)
-  (none))
+  (go-virtual idle))
 
 (defevent tfl-music-player-event-handler
           tfl-music-player
           (case message
-            (('pause) (true! *tfl-music-paused?*))
+            (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
             (('unpause) (false! *tfl-music-paused?*))
+            (('fade?) (set! *tfl-music-fade?* (the symbol (-> block param 0))))
             (('boss) (set! *tfl-boss-music* (the symbol (-> block param 0))))))
 
 (defbehavior tfl-music-player-post tfl-music-player ()
   ;; (format 0 "POST tfl-music-player~%")
+  (set! *tfl-music-fade?* (not (paused?)))
   (let ((level (aif (level-get-target-inside *level*) (-> it name) #f)))
     ; (format *stdcon*
     ;         "tfl-music-player:~%level ~A~%playing? ~A~%state: ~A~%boss ~A~%"

@@ -1067,6 +1067,8 @@
     ;; reset debugging stuff
     (when (not (paused?))
       (clear *stdcon1*)
+      ;; TFL note: added
+      (reset-text-buffers)
       (debug-reset-buffers))
     ;; add the buckets
     (set! (-> new-frame bucket-group) (dma-buffer-add-buckets (-> new-frame calc-buf) BUCKET_COUNT)))

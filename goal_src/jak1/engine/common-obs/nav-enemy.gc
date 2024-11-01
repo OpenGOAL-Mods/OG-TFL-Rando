@@ -175,22 +175,18 @@ nav-enemy-default-event-handler
 
 ;; TFL note: added freeze state
 (defstate freeze (nav-enemy)
-  :event
-    (the (function process int symbol event-message-block object :behavior nav-enemy)
-         nav-enemy-default-event-handler)
+  :event nav-enemy-default-event-handler
   :enter
     (behavior ()
-      (set! (-> self state-time) (current-time)))
+      (set-state-time))
   :trans
     (behavior ()
-      (if (> (- (current-time) (-> self state-time)) (seconds 4)) (go-virtual nav-enemy-idle)))
+      (if (time-passed? (seconds 4)) (go-virtual nav-enemy-idle)))
   :code
     (behavior ()
       (loop
         (target-powerup-effect 'eco-blue)
         (suspend)))
-  :exit
-    (behavior ())
   :post nav-enemy-simple-post)
 
 (defmethod nav-enemy-method-40 ((this nav-enemy))

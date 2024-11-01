@@ -876,6 +876,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id finalboss-level-name) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
+;; TFL note: adjusted param1 values due to enum differences
 (define *cheats*
   (new 'static
        'boxed-array
@@ -886,7 +887,7 @@
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-sidekick-alt)
             :scale #t
-            :param1 5.0)
+            :param1 13.0)
        (new 'static
             'game-option
             :option-type (game-option-type cheat-toggle)
@@ -898,28 +899,33 @@
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-small-head)
             :scale #t
-            :param1 10.0)
+            :param1 14.0)
        (new 'static
             'game-option
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-big-fist)
             :scale #t
-            :param1 11.0)
+            :param1 15.0)
        (new 'static
             'game-option
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-big-head-npc)
             :scale #t
-            :param1 16.0)
-       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-tunes) :scale #t :param1 6.0)
-       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-sky) :scale #t :param1 7.0)
+            :param1 20.0)
+       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-tunes) :scale #t :param1 10.0)
+       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-sky) :scale #t :param1 11.0)
        (new 'static
             'game-option
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-huge-head)
             :scale #t
-            :param1 15.0)
-       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-mirror) :scale #t :param1 8.0)
+            :param1 19.0)
+       (new 'static
+            'game-option
+            :option-type (game-option-type cheat-toggle)
+            :name (text-id cheat-mirror)
+            :scale #t
+            :param1 12.0)
        (new 'static
             'game-option
             :option-type (game-option-type cheat-toggle)
@@ -944,13 +950,38 @@
             :name (text-id cheat-eco-green)
             :scale #t
             :param1 0.0)
-       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-invinc) :scale #t :param1 4.0)
+       ;; TFL note: added
+       (new 'static
+            'game-option
+            :option-type (game-option-type cheat-toggle)
+            :name (text-id cheat-super-eco-yellow)
+            :scale #t
+            :param1 7.0)
+       (new 'static
+            'game-option
+            :option-type (game-option-type cheat-toggle)
+            :name (text-id cheat-super-eco-blue)
+            :scale #t
+            :param1 6.0)
+       (new 'static
+            'game-option
+            :option-type (game-option-type cheat-toggle)
+            :name (text-id cheat-super-eco-red)
+            :scale #t
+            :param1 5.0)
+       (new 'static
+            'game-option
+            :option-type (game-option-type cheat-toggle)
+            :name (text-id cheat-super-eco-green)
+            :scale #t
+            :param1 4.0)
+       (new 'static 'game-option :option-type (game-option-type cheat-toggle) :name (text-id cheat-invinc) :scale #t :param1 8.0)
        (new 'static
             'game-option
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-no-tex)
             :scale #t
-            :param1 12.0)
+            :param1 16.0)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *music-player-options*
@@ -3230,6 +3261,9 @@
                             (pc-cheats big-fist)
                             (pc-cheats big-head-npc))
                            (set! option-str (lookup-text! *common-text* (text-id cheat-req-beat-game) #f)))
+                          ;; TFL note: added
+                          (((pc-cheats super-eco-blue) (pc-cheats super-eco-red) (pc-cheats super-eco-yellow) (pc-cheats super-eco-green))
+                           (set! option-str (lookup-text! *common-text* (text-id cheat-tfl-find-lowreskuis) #f)))
                           (else
                            ;; (format 0 "weird case ~f #x~x~%" (-> options index param1) (ash 1 (the int (-> options index param1))))
                            (set! option-str locked-str))))

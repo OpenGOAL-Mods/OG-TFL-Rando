@@ -7213,6 +7213,68 @@
         "offscreen": false,
         "speaker": ""
       }
+    ],
+    "tfl-dev-crescent-control-room-kui.wav": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1200,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2400,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4800,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6000,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7200,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8400,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10800,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
     ]
   },
   "hints": {
@@ -13608,6 +13670,281 @@
           "clear": false,
           "frame_start": 240,
           "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crystalc-tfl-hint-01-daxPortal.wav": {
+      "id": "b00",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crystalc-tfl-hint-02-daxShip.wav": {
+      "id": "b01",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        },
+        {
+          "clear": false,
+          "frame_start": 735,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crystalc-tfl-hint-03-daxSeeGreen.wav": {
+      "id": "b02",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crystalc-tfl-hint-04-daxUseGreen.wav": {
+      "id": "b03",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crystalc-tfl-hint-05-daxSeeGondola.wav": {
+      "id": "b04",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        },
+        {
+          "clear": false,
+          "frame_start": 1000,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crystalc-tfl-hint-06-daxUseGondola.wav": {
+      "id": "b05",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-01-daxStart.wav": {
+      "id": "b06",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-02-daxHouse.wav": {
+      "id": "b07",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-03-daxPlushie.wav": {
+      "id": "b08",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-04-daxPad.wav": {
+      "id": "b09",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        },
+        {
+          "clear": false,
+          "frame_start": 1100,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-05-daxScream.wav": {
+      "id": "b0a",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-06-daxRobot.wav": {
+      "id": "b0b",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-07-SamosConnect.wav": {
+      "id": "b0c",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 1255,
+          "speaker": "SAMOS"
+        }
+      ]
+    },
+    "crescent-tfl-hint-08-SamosInfused.wav": {
+      "id": "b0d",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 850,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 1875,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 2635,
+          "speaker": "SAMOS"
+        }
+      ]
+    },
+    "crescent-tfl-hint-09-KeiraZoomer.wav": {
+      "id": "b0e",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 180,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 850,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1425,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "crescent-tfl-hint-12-KeiraControl.wav": {
+      "id": "b0f",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1350,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 2450,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "crescent-tfl-hint-13-KeiraCable.wav": {
+      "id": "b10",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1065,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-01-daxTurbine1.wav": {
+      "id": "b11",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-02-daxClosed.wav": {
+      "id": "b12",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-03-daxTurbine4.wav": {
+      "id": "b13",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 150,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-04-SamosCrystal.wav": {
+      "id": "b14",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 1550,
+          "speaker": "SAMOS"
         }
       ]
     }

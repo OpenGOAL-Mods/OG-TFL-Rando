@@ -1,6 +1,5 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
 (defskelgroup *electric-arc-sg*
   money
   money-lod0-jg
@@ -320,17 +319,17 @@
 
 (defmethod toggle-invis-walls ((this crc-gondola) (mode symbol))
   (mlet ((INVIS_WALL_PRIM_IDX 8))
-        (case mode
-          (('on)
-           (set-collide-with! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
-                              (collide-kind target))
-           (set-collide-as! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
-                            (collide-kind ground-object)))
-          (('off)
-           (set-collide-with! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
-                              (collide-kind enemy))
-           (set-collide-as! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
-                            (collide-kind target))))))
+    (case mode
+      (('on)
+       (set-collide-with! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
+                          (collide-kind target))
+       (set-collide-as! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
+                        (collide-kind ground-object)))
+      (('off)
+       (set-collide-with! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
+                          (collide-kind enemy))
+       (set-collide-as! (-> (the collide-shape-prim-group (-> this root root-prim)) prims INVIS_WALL_PRIM_IDX)
+                        (collide-kind target))))))
 
 (defmethod init-collision! ((this crc-gondola))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
@@ -442,7 +441,14 @@
             (('ridden)
              (if (zero? (-> self touching-time)) (set-time! (-> self touching-time)))
              (let ((idle? (symbol-member? (-> self next-state name) '(crc-gondola-idle-bottom crc-gondola-idle-top)))
-                   (fnt (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))))
+                   (fnt (new 'stack
+                             'font-context
+                             *font-default-matrix*
+                             32
+                             (if *tfl-hint-semaphore* 140 160)
+                             0.0
+                             (font-color default)
+                             (font-flags shadow kerning))))
                (when (and (not (can-ride-gondola?)) (time-elapsed? (-> self touching-time) (seconds 1.5)))
                  (close-specific-task! (game-task crystalc-gondola) (task-status need-introduction))
                  (set-width! fnt 448)

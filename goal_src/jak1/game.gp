@@ -2123,7 +2123,7 @@
 (goal-src-sequence
  ;; prefix
  "levels/tfl_common/"
- :deps ("$OUT/obj/pov-camera.o")
+ :deps ("$OUT/obj/pov-camera.o" "$OUT/obj/super-eco-crystal.o" "$OUT/obj/tfl-cam-control.o")
  "tfl-dev-commentary-data.gc"
  "tfl-dev-commentary.gc"
  )
@@ -2138,7 +2138,7 @@
 (goal-src "pc/util/pc-anim-util.gc" "target-h")
 (goal-src "pc/pckernel-common.gc" "pckernel-impl" "pc-anim-util" "settings" "video" "target-h" "autosplit-h" "speedruns-h")
 (goal-src "pc/pckernel.gc" "pckernel-common")
-(goal-src "pc/subtitle.gc" "text" "pckernel" "hint-control" "loader-h" "gsound" "ambient")
+(goal-src "pc/subtitle.gc" "text" "pckernel" "hint-control" "loader-h" "gsound" "ambient" "tfl-hint" "tfl-dev-commentary") ;; TFL note: added deps
 (goal-src "pc/progress-pc.gc" "progress" "pckernel" "tfl-dev-commentary") ;; TFL note: added dep
 (goal-src "pc/hud-classes-pc.gc" "pckernel" "hud" "battlecontroller" "generic-obs")
 (goal-src "pc/debug/anim-tester-x.gc" "pckernel" "gstring" "joint" "process-drawable" "art-h" "effect-control")

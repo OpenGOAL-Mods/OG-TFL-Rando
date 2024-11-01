@@ -292,6 +292,11 @@
   0
   (none))
 
+;; TFL note: added
+(declare-type tfl-hint process-drawable)
+
+(define-extern *tfl-hint-semaphore* (pointer tfl-hint))
+
 ;; WARN: disable def twice: 139. This may happen when a cond (no else) is nested inside of another conditional, but it should be rare.
 (defun can-hint-be-played? ((arg0 text-id) (arg1 entity) (arg2 string))
   (let ((v1-0 (not (str-is-playing?))))
@@ -312,6 +317,8 @@
                  (>= (current-time) (-> *game-info* blackout-time))))
       0)
     (cond
+      ;; TFL note: added
+      (*tfl-hint-semaphore* #f)
       (v1-0
        (let ((v1-16 (find-hint-control-index arg0)))
          (cond

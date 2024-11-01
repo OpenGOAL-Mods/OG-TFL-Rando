@@ -12,11 +12,16 @@
 (defenum tfl-commentary-dev
   (kuitar))
 
+(deftype tfl-commentary-spawn-func (structure)
+  ((name string)
+   (func (function handle))))
+
 (deftype tfl-commentary-data (structure)
   ((file-name   string) ;; file name (with extension)
    (dev-name    tfl-commentary-dev)
    (description string) ;; short description
    (length      time-frame) ;; length of sound clip
+   (spawn-list  (array tfl-commentary-spawn-func)) ;; list of function pointers for spawning special processes
    (cmd-list    pair))) ;; list of commands to do specific stuff like enabling pov cameras, spawning objects, etc.
 
 (defun tfl-commentary-dev->string ((val tfl-commentary-dev))
@@ -38,28 +43,47 @@ command list:
 - music: set music volume.
 - sfx: set sfx volume.
 - dialog: set dialog volume.
-- camera: spawn a pov-camera. parameters are:
+- pov-cam: spawn a pov-camera. parameters are:
   - skelgroup: skeleton-group of the camera (make sure the level has the art group and the skelgroup loaded)
   - trans: vector to set the camera position
-  - cam-name: name of the camera animation to play.
+  - cam-name: name of the camera animation to player.
+- cam-control: spawn a tfl-cam-control.
+- spawn: spawn a process. you can spawn up to TFL_COMMENTARY_MAX_HANDLES processes.
+         the first parameter is the index of the process in the handle list.
+         the second parameter is the name of a function pointer in the spawn-list for that commentary node.
+- kill: kill a spawned process by its index in the handle list. also used to kill a cam-control or a pov-cam.
+- send-event: send an event to a process.
+- go: make a process go to a state.
 
 examples:
 (start grab) ;; grab jak at the start
 (start music 5.0) ;; set music volume at the start
 (start sfx 0.0) ;; set sfx volume at the start
 (start dialog 0.0) ;; set dialog volume at the start
-(300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up") ;; 1 second in, spawn a pov-camera using the village2cam animation "elevator-at-bottom-going-up"
-(end release)
+(300 pov-cam *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up") ;; 1 second in, spawn a pov-camera using the village2cam animation "elevator-at-bottom-going-up"
+(500 kill pov-cam) ;; kill the pov-camera that was just spawned.
+(600 cam-control (cam-dest 91.5 186.5 394.75) (move-timer 1.2) (max-z 24) (push-z 20) (max-y 10) (min-y -2) (tilt-adjust 6)) ;; spawn a tfl-cam-control with the given parameters.
+(800 kill cam-control) ;; kill the current cam-control.
+(900 spawn 0 "super-eco-crystal0") ;; 3 seconds in, call the function that spawns a super eco crystal at index 0 in the handle list.
+(1200 send-event 0 powerup ()) ;; send a "powerup" event to the process at handle list index 0.
+(1500 go 0 super-eco-crystal-break) ;; force the process at handle list index 0 to go into the super-eco-crystal-break state.
+(3000 kill 0) ;; kill the process at index 0 in the handle list.
+(end release) ;; ungrab jak once the commentary playback is finished.
 |#
 
-(defmacro static-commentary-data (&key file-name &key dev-name &key description &key (length 0.0) &key (cmd-list '()))
+(defmacro static-commentary-data (&key file-name &key dev-name &key description &key (length 0.0) &key (spawn-list ()) &key (cmd-list '()))
   `(new 'static
        'tfl-commentary-data
        :file-name ,file-name
        :dev-name ,dev-name
        :description ,description
        :length (seconds ,length)
+       :spawn-list
+       (new 'static 'boxed-array :type tfl-commentary-spawn-func ,@spawn-list)
        :cmd-list ,cmd-list))
+
+(defmacro static-spawn-func (name &rest body)
+  `(new 'static 'tfl-commentary-spawn-func :name ,name :func (lambda () ,@body)))
 
 (define *tfl-commentary-nodes*
   (new 'static
@@ -75,16 +99,47 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
+                                (300 pov-camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
                                 (end release)))
-       (static-commentary-data :file-name "dev01.wav"
+       (static-commentary-data :file-name "tfl-dev-crescent-control-room-kui.wav"
                                :dev-name (tfl-commentary-dev kuitar)
-                               :description "really long string aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                               :length 65.0
+                               :description "Underground Area"
+                               :length 35.0
+                               :spawn-list
+                               ((static-spawn-func "super-eco-crystal0"
+                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 388.75) 'red 20)))
+                                (static-spawn-func "super-eco-crystal1"
+                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 392.75) 'green 20)))
+                                (static-spawn-func "super-eco-crystal2"
+                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 396.75) 'blue 20)))
+                                (static-spawn-func "super-eco-crystal3"
+                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 400.75) 'yellow 20))))
                                :cmd-list
                                '((start grab)
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                (300 camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
+                                (300 spawn 0 "super-eco-crystal0")
+                                (300 spawn 1 "super-eco-crystal1")
+                                (300 spawn 2 "super-eco-crystal2")
+                                (300 spawn 3 "super-eco-crystal3")
+                                (600
+                                 cam-control
+                                 (cam-dest 91.5 186.5 394.75)
+                                 (move-timer 1.2)
+                                 (max-z 24)
+                                 (push-z 20)
+                                 (max-y 10)
+                                 (min-y -2)
+                                 (tilt-adjust 6))
+                                ; (900 send-event 0 powerup (a b c 0 0.0 "test" last))
+                                (1200 go 0 super-eco-crystal-break)
+                                (1500 go 1 super-eco-crystal-break)
+                                (1800 go 2 super-eco-crystal-break)
+                                (2100 go 3 super-eco-crystal-break)
+                                (2500 kill cam-control)
+                                (9100 kill 0)
+                                (9400 kill 1)
+                                (9700 kill 2)
+                                (10000 kill 3)
                                 (end release)))))
