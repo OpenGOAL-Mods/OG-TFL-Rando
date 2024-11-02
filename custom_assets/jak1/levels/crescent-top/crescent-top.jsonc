@@ -6254,11 +6254,11 @@
       }
     },
     {
-      "trans": [-241.01, 203.03, 275.03], // translation
+      "trans": [-241.01, 202.86, 275.03], // translation
       "etype": "orb-cache-top", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-241.01, 203.03, 275.03, 10], // bounding sphere
+      "bsphere": [-241.01, 202.86, 275.03, 10], // bounding sphere
       "lump": {
         "name": "crescent-orb-cache-top-02",
         "orb-cache-count": ["int32", 6],
