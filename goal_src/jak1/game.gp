@@ -1676,6 +1676,10 @@
 (build-custom-level "open-mines")
 (custom-level-cgo "OPM.DGO" "open-mines/openmines.gd")
 
+;; Taiga Valley
+(build-custom-level "valley")
+(custom-level-cgo "VAL.DGO" "valley/valley.gd")
+
 ;; generate the art group for a custom actor.
 ;; requires a .glb model file in custom_assets/jak1/models/custom_levels
 ;; to also generate a collide-mesh, add :gen-mesh #t

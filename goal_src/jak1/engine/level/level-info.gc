@@ -3213,6 +3213,65 @@
        '()
        :wait-for-load #t))
 
+(define valley
+  (new 'static
+       'level-load-info
+       :index 28
+       :name 'valley
+       :customname "Taiga Valley"
+       :custom-orb-count 50
+       :custom-buzzer-count 7
+       :visname 'valley-vis
+       ;; name + -vis
+       :nickname 'val
+       ;; nickname
+       :packages '(village1)
+       :sound-banks '(village1)
+       ;; to get ambient sounds
+       :music-bank #f
+       :ambient-sounds
+       '()
+       :mood '*crescent-top-mood*
+       :mood-func 'update-mood-crescent-top
+       :ocean '*ocean-map-village1*
+       :sky #f
+       :sun-fade 1.0
+       :continues
+       '((new 'static
+             'continue-point
+             :name "valley-start"
+             :level 'valley
+             :trans
+             (new 'static 'vector :x (meters 214.9402) :y (meters 212.2147) :z (meters 576.5442) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y -0.0008 :z 0.0 :w 0.9999)
+             :camera-trans
+             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.9997 -0.0000 0.0223 -0.0027 0.9925 0.1221 -0.0221 -0.1221 0.9922)
+             :load-commands
+             '()
+             :vis-nick 'val
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'valley
+             :disp1 'display))
+       :tasks
+       '() ;TFL note: TO DO
+       :priority 100
+       :load-commands
+       '()
+       :alt-load-commands
+       '()
+       :bsp-mask #xffffffffffffffff
+       :bsphere
+       (new 'static 'sphere :x (meters 285.33) :y (meters 90.025) :z (meters 1653.1) :w (meters 800.0))
+       :buzzer 0
+       :bottom-height (meters -20.0)
+       :run-packages
+       '()
+       :wait-for-load #t))
+
 (cons! *level-load-list* 'test-zone)
 
 (cons! *level-load-list* 'crystal-ca)
@@ -3222,3 +3281,5 @@
 (cons! *level-load-list* 'energy-bay)
 
 (cons! *level-load-list* 'open-mines)
+
+(cons! *level-load-list* 'valley)

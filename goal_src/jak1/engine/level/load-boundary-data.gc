@@ -1650,10 +1650,10 @@
                                         (display crystal-ca #f))
                   (static-load-boundary :flags
                                         ()
-                                        :top (meters 302.75)
-                                        :bot (meters 126.82)
+                                        :top (meters 303.28)
+                                        :bot (meters 103.59)
                                         :points
-                                        ((meters 386.22) (meters 384.52) (meters 255.35) (meters 576.76))
+                                        ((meters 388.17) (meters 384.52) (meters 262.82) (meters 563.96))
                                         :fwd (display energy-bay display-no-wait)
                                         :bwd
                                         (display energy-bay #f))
