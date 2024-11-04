@@ -2029,6 +2029,31 @@
                                         (checkpt "open-mines-minecart3" #f)
                                         :bwd
                                         (checkpt "open-mines-hole" #f))
+                  ;; THUNDRA VALLEY LOAD BOUNDARIES:
+                  (static-load-boundary :flags
+                                        ()
+                                        :top (meters 360.66)
+                                        :bot (meters 187.27)
+                                        :points
+                                        ((meters 126.03) (meters 525.26) (meters 220.34) (meters 535.63) (meters 294.47) (meters 609.89))
+                                        :fwd (vis cst #f)
+                                        :bwd (load crescent-t valley))
+                  (static-load-boundary :flags
+                                        ()
+                                        :top (meters 360.66)
+                                        :bot (meters 187.27)
+                                        :points
+                                        ((meters 124.86) (meters 543.87) (meters 219.17) (meters 554.24) (meters 293.3) (meters 628.5))
+                                        ;; :fwd (load test-zone test-zone3)
+                                        :bwd (display valley display-no-wait))
+                  (static-load-boundary :flags
+                                        ()
+                                        :top (meters 262.34)
+                                        :bot (meters 190.79)
+                                        :points
+                                        ((meters 196.51) (meters 585.08) (meters 266.02) (meters 620.0))
+                                        ;; :fwd (vis cst #f)
+                                        :bwd (vis val #f))
                   ;; CRASH TEST TEST-ZONE3
                   (static-load-boundary :flags
                                         ()

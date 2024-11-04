@@ -2887,6 +2887,25 @@
              :lev0 'crescent-t
              :disp0 'display
              :lev1 'open-mines
+             :disp1 'display)
+        (new 'static
+             'continue-point
+             :name "crescent-top-near-valley"
+             :level 'crescent-t
+             :trans
+             (new 'static 'vector :x (meters 214.4402) :y (meters 212.2147) :z (meters 576.5442) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y -0.0008 :z 0.0 :w 0.9999)
+             :camera-trans
+             (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.9997 -0.0000 0.0223 -0.0027 0.9925 0.1221 -0.0221 -0.1221 0.9922)
+             :load-commands
+             '()
+             :vis-nick 'cst
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'valley
              :disp1 'display))
        :tasks
        '(122 123 124 125 127)
@@ -2900,7 +2919,6 @@
        (new 'static 'sphere :x (meters 740.01) :y (meters 9.37) :z (meters 696.20) :w (meters 1000.0))
        :buzzer 127
        :bottom-height (meters 50.0)
-       ;; 75.0
        :run-packages
        '()
        :wait-for-load #t))
