@@ -47,7 +47,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens"],
+  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens", "valley-rock"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -713,6 +713,16 @@
       "bsphere": [-272.66, 261.73, 663.21, 10],
       "lump": {
         "name":"crescent-tfl-lowreskui-001"
+      }
+    },
+    {
+      "trans": [221.62, 200.22, 616.81],
+      "etype": "valley-rock",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [221.62, 200.22, 616.81, 10],
+      "lump": {
+        "name": "crescent-valley-rock-01"
       }
     },
     // SCOUT FLIES

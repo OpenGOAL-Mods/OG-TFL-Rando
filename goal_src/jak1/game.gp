@@ -1693,6 +1693,7 @@
 (build-actor "tfl-lowreskui")
 (build-actor "observatory-ring")
 (build-actor "observatory-lens")
+(build-actor "valley-rock")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

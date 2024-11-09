@@ -808,3 +808,98 @@
                    (-> self birth-pos y))))
         (suspend)))
   :post ja-post)
+
+(defskelgroup *valley-rock-sg*
+  valley-rock
+  valley-rock-lod0-jg
+  valley-rock-idle-ja
+  ((valley-rock-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 5 0 50))
+
+(deftype valley-rock (process-drawable)
+  ((root     collide-shape :override))
+  (:methods
+   (init-collision! (_type_) object))
+  (:states
+   valley-rock-idle
+   valley-rock-explode))
+
+(defmethod init-collision! ((this valley-rock))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (let ((prim-mesh (new 'process 'collide-shape-prim-group cshape (the uint 4) 0)))
+      (set! (-> prim-mesh prim-core collide-as) (collide-kind wall-object))
+      (set! (-> prim-mesh collide-with) (collide-kind target))
+      (set! (-> prim-mesh prim-core action) (collide-action solid))
+      (set! (-> prim-mesh prim-core offense) (collide-offense indestructible))
+      (set-vector! (-> prim-mesh local-sphere) 0.0 (meters 8) 0.0 (meters 16))
+      (set-root-prim! cshape prim-mesh)
+      (let ((sphere-01 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-01 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-01 collide-with) (collide-kind target))
+        (set! (-> sphere-01 prim-core action) (collide-action solid))
+        (set! (-> sphere-01 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-01 local-sphere) (meters -3.05) (meters 5.00) (meters -1.00) (meters 6.2))
+        (append-prim prim-mesh sphere-01))
+      (let ((sphere-02 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-02 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-02 collide-with) (collide-kind target))
+        (set! (-> sphere-02 prim-core action) (collide-action solid))
+        (set! (-> sphere-02 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-02 local-sphere) (meters 3.37) (meters 4.76) (meters 2.32) (meters 6.2))
+        (append-prim prim-mesh sphere-02))
+      (let ((sphere-03 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-03 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-03 collide-with) (collide-kind target))
+        (set! (-> sphere-03 prim-core action) (collide-action solid))
+        (set! (-> sphere-03 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-03 local-sphere) (meters 2.64) (meters 13.35) (meters 3.68) (meters 6.2))
+        (append-prim prim-mesh sphere-03))
+      (let ((sphere-04 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-04 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-04 collide-with) (collide-kind target))
+        (set! (-> sphere-04 prim-core action) (collide-action solid))
+        (set! (-> sphere-04 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-04 local-sphere) (meters -4.70) (meters 14.00) (meters 0.60) (meters 6.2))
+        (append-prim prim-mesh sphere-04)))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape))
+  (none))
+
+(defmethod init-from-entity! ((this valley-rock) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *valley-rock-sg* '())
+  (logior! (-> this skel status) (janim-status inited))
+  (transform-post)
+  (go valley-rock-idle)
+  (none))
+
+(defstate valley-rock-idle (valley-rock)
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (case message
+        (('trigger) (go valley-rock-explode))))
+  :code
+    (behavior ()
+      (loop 
+        (ja :group! valley-rock-idle-ja :num! min)
+        (until (ja-done? 0)
+          (ja :num! (seek! max))
+          (format *stdcon* "~%~%~%~%~%in idle anim~%")
+          (suspend))
+        (go valley-rock-explode)
+        (suspend))))
+
+(defstate valley-rock-explode (valley-rock)
+  :code
+    (behavior ()
+      (ja :group! valley-rock-explode-ja :num! min)
+      (until (ja-done? 0)
+        (ja :num! (seek! max))
+        (format *stdcon* "~%~%~%~%~%in explode anim~%")
+        (suspend))
+      (loop 
+        ;; (ja :num! (loop!))
+        (format *stdcon* "~%~%~%~%~%out explode anim~%")
+        (suspend))))
