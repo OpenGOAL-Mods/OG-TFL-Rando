@@ -757,11 +757,14 @@
 
 (deftype observatory-ring (process-drawable) ()
   (:states
-    observatory-ring-idle))
+   observatory-ring-idle))
 
-(defskelgroup *observatory-ring-sg* observatory-ring observatory-ring-lod0-jg observatory-ring-idle-ja
-              ((observatory-ring-lod0-mg (meters 9999999)))
-              :bounds (static-spherem 0 0 0 30))
+(defskelgroup *observatory-ring-sg*
+  observatory-ring
+  observatory-ring-lod0-jg
+  observatory-ring-idle-ja
+  ((observatory-ring-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 0 0 30))
 
 (defmethod init-from-entity! ((this observatory-ring) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
@@ -771,22 +774,25 @@
   (none))
 
 (defstate observatory-ring-idle (observatory-ring)
-  :code 
+  :code
     (behavior ()
-      (loop 
+      (loop
         (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees -60) (seconds-per-frame)))
         (suspend)))
   :post ja-post)
 
-(deftype observatory-lens (process-drawable) 
+(deftype observatory-lens (process-drawable)
   ((birth-time time-frame)
    (birth-pos  vector :inline))
   (:states
-    observatory-lens-idle))
+   observatory-lens-idle))
 
-(defskelgroup *observatory-lens-sg* observatory-lens observatory-lens-lod0-jg observatory-lens-idle-ja
-              ((observatory-lens-lod0-mg (meters 9999999)))
-              :bounds (static-spherem 0 0 0 6))
+(defskelgroup *observatory-lens-sg*
+  observatory-lens
+  observatory-lens-lod0-jg
+  observatory-lens-idle-ja
+  ((observatory-lens-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 0 0 6))
 
 (defmethod init-from-entity! ((this observatory-lens) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
@@ -797,9 +803,9 @@
   (none))
 
 (defstate observatory-lens-idle (observatory-lens)
-  :code 
+  :code
     (behavior ()
-      (loop 
+      (loop
         (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees 15) (seconds-per-frame)))
         (let ((bob-amount (meters 0.9))
               (bob-speed 1))
@@ -817,7 +823,7 @@
   :bounds (static-spherem 0 5 0 50))
 
 (deftype valley-rock (process-drawable)
-  ((root     collide-shape :override))
+  ((root collide-shape :override))
   (:methods
    (init-collision! (_type_) object))
   (:states
@@ -871,7 +877,7 @@
   (process-drawable-from-entity! this e)
   (initialize-skeleton this *valley-rock-sg* '())
   (logior! (-> this skel status) (janim-status inited))
-  (transform-post)
+  (ja-post)
   (go valley-rock-idle)
   (none))
 
@@ -882,14 +888,15 @@
         (('trigger) (go valley-rock-explode))))
   :code
     (behavior ()
-      (loop 
+      (loop
         (ja :group! valley-rock-idle-ja :num! min)
         (until (ja-done? 0)
           (ja :num! (seek! max))
           (format *stdcon* "~%~%~%~%~%in idle anim~%")
           (suspend))
         (go valley-rock-explode)
-        (suspend))))
+        (suspend)))
+  :post ja-post)
 
 (defstate valley-rock-explode (valley-rock)
   :code
@@ -899,7 +906,5 @@
         (ja :num! (seek! max))
         (format *stdcon* "~%~%~%~%~%in explode anim~%")
         (suspend))
-      (loop 
-        ;; (ja :num! (loop!))
-        (format *stdcon* "~%~%~%~%~%out explode anim~%")
-        (suspend))))
+      (go valley-rock-idle))
+  :post ja-post)
