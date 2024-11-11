@@ -820,7 +820,7 @@
   valley-rock-lod0-jg
   valley-rock-idle-ja
   ((valley-rock-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 5 0 50))
+  :bounds (static-spherem 0 5 0 200))
 
 (deftype valley-rock (process-drawable)
   ((root collide-shape :override))
@@ -878,7 +878,9 @@
   (initialize-skeleton this *valley-rock-sg* '())
   (logior! (-> this skel status) (janim-status inited))
   (ja-post)
-  (go valley-rock-idle)
+  (if (task-closed? (game-task valley-end) (task-status need-hint))
+      (cleanup-for-death this)
+      (go valley-rock-idle))
   (none))
 
 (defstate valley-rock-idle (valley-rock)
@@ -889,12 +891,6 @@
   :code
     (behavior ()
       (loop
-        (ja :group! valley-rock-idle-ja :num! min)
-        (until (ja-done? 0)
-          (ja :num! (seek! max))
-          (format *stdcon* "~%~%~%~%~%in idle anim~%")
-          (suspend))
-        (go valley-rock-explode)
         (suspend)))
   :post ja-post)
 
@@ -906,5 +902,41 @@
         (ja :num! (seek! max))
         (format *stdcon* "~%~%~%~%~%in explode anim~%")
         (suspend))
-      (go valley-rock-idle))
+      (suspend-for (seconds 5.0) (cleanup-for-death self)))
   :post ja-post)
+
+
+(deftype valley-rock-button (basebutton) ())
+
+(defstate basebutton-up-idle (valley-rock-button)
+  :virtual #t
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (case message
+        (('attack)
+         (case (-> block param 1)
+           (('flop)
+            ;; TFL note: remove this if we can get it to work in task-control.gc
+            (if (and (not (task-closed? (game-task valley-end) (task-status need-hint)))
+                     (>= (the int (the float (send-event *target* 'query 'pickup (pickup-type fuel-cell)))) 20))
+                        (close-specific-task! (game-task valley-end) (task-status need-hint)))
+            (when (task-closed? (game-task valley-end) (task-status need-hint))
+              (basebutton-method-29 self (-> self event-going-down) (-> self notify-actor))
+              (sound-play "silo-button")
+              (go-virtual basebutton-going-down)))))
+        (('trigger) (sound-play "silo-button") (go-virtual basebutton-going-down))
+        (('move-to) (move-to-vec-or-quat! self (the-as vector (-> block param 0)) (the-as quaternion (-> block param 1))))))
+  :enter
+    (behavior ()
+      (press! self #f))
+  :trans
+    (behavior ()
+      (if (-> self move-to?) (rider-trans)))
+  :code anim-loop
+  :post
+    (behavior ()
+      (when (-> self move-to?)
+        (set! (-> self move-to?) #f)
+        (set! (-> self root trans quad) (-> self move-to-pos quad))
+        (quaternion-copy! (-> self root quat) (-> self move-to-quat))
+        (rider-post))))

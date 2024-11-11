@@ -42,7 +42,8 @@
     "mayorgears-ag",
     "babak-ag",
     "lurkerpuppy-ag",
-    "junglesnake-ag"
+    "junglesnake-ag",
+    "generic-button-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
@@ -718,11 +719,22 @@
     {
       "trans": [221.62, 200.22, 616.81],
       "etype": "valley-rock",
-      "game_task": 0,
+      "game_task": "(game-task valley-end)",
       "quat" : [0.000, 0.000, -0.000, 1.000],
       "bsphere": [221.62, 200.22, 616.81, 10],
       "lump": {
         "name": "crescent-valley-rock-01"
+      }
+    },
+    {
+      "trans": [210.20, 211.42, 582.60],
+      "etype": "valley-rock-button",
+      "game_task": "(game-task valley-end)",
+      "quat" : [0.075, 0.000, 0.029, 0.997],
+      "bsphere": [210.20, 211.42, 582.60, 10],
+      "lump": {
+        "name": "crescent-valley-rock-button-01",
+        "alt-actor": "crescent-valley-rock-01"
       }
     },
     // SCOUT FLIES

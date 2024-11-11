@@ -4657,7 +4657,7 @@
                               'task-cstage
                               :game-task (game-task firecanyon-assistant)
                               :status (task-status need-reward-speech)
-                              :flags (task-flags has-entity)
+                              :flags (task-flags has-entity closed-by-default)
                               :condition
                               (lambda :behavior process-taskable ((arg0 task-control))
                                 (>= (the int (the float (send-event *target* 'query 'pickup (pickup-type fuel-cell)))) 20)))
@@ -6126,6 +6126,207 @@
                          (new 'static
                               'task-cstage
                               :game-task (game-task tfl-lowreskui)
+                              :status (task-status need-resolution)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))))
+               ;; THUNDRA VALLEY
+               (new 'static
+                    'task-control
+                    :current-stage -1
+                    :stage
+                    (new 'static
+                         'boxed-array
+                         :type
+                         task-cstage
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-end)
+                              :status (task-status need-hint)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                   (>= (the int (the float (send-event *target* 'query 'pickup (pickup-type fuel-cell)))) 20)))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-end)
+                              :status (task-status need-introduction)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-end)
+                              :status (task-status need-reminder)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-end)
+                              :status (task-status need-resolution)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))))
+               (new 'static
+                    'task-control
+                    :current-stage -1
+                    :stage
+                    (new 'static
+                         'boxed-array
+                         :type
+                         task-cstage
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-hidden)
+                              :status (task-status need-hint)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-hidden)
+                              :status (task-status need-introduction)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-hidden)
+                              :status (task-status need-reminder)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-hidden)
+                              :status (task-status need-resolution)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))))
+               (new 'static
+                    'task-control
+                    :current-stage -1
+                    :stage
+                    (new 'static
+                         'boxed-array
+                         :type
+                         task-cstage
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-kill)
+                              :status (task-status need-hint)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-kill)
+                              :status (task-status need-introduction)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-kill)
+                              :status (task-status need-reminder)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-kill)
+                              :status (task-status need-resolution)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))))                 
+               (new 'static
+                    'task-control
+                    :current-stage -1
+                    :stage
+                    (new 'static
+                         'boxed-array
+                         :type
+                         task-cstage
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-boss)
+                              :status (task-status need-hint)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-boss)
+                              :status (task-status need-introduction)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-boss)
+                              :status (task-status need-reminder)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-boss)
+                              :status (task-status need-resolution)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))))
+               (new 'static
+                    'task-control
+                    :current-stage -1
+                    :stage
+                    (new 'static
+                         'boxed-array
+                         :type
+                         task-cstage
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-buzzer)
+                              :status (task-status need-hint)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-buzzer)
+                              :status (task-status need-introduction)
+                              :flags (task-flags has-entity closed-by-default)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-buzzer)
+                              :status (task-status need-reminder)
+                              :flags (task-flags has-entity)
+                              :condition
+                              (lambda :behavior process-taskable ((arg0 task-control))
+                                #t))
+                         (new 'static
+                              'task-cstage
+                              :game-task (game-task valley-buzzer)
                               :status (task-status need-resolution)
                               :flags (task-flags has-entity)
                               :condition
