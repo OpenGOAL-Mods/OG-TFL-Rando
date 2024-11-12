@@ -2177,6 +2177,7 @@
  "tfl-hint.gc"
  "tfl-cam-control.gc"
  "tfl-lowreskui.gc"
+ "tfl-util.gc"
  )
 
 (goal-src-sequence
