@@ -130,5 +130,202 @@
   ],
 
   "actors": [
+    // Enemies
+    // Cells
+    // Crates
+    {
+      "trans": [327.91, 60.58, 1719.45],
+      "etype": "crate",
+      "game_task": "(game-task valley-buzzer)",
+      "quat" : [0.136, 0.129, -0.099, 0.977],
+      "bsphere": [327.91, 60.58, 1719.45, 10],
+      "lump": {
+        "name": "valley-buzzer-01",
+        "crate-type": "'iron",
+        "eco-info": ["buzzer-info", "(game-task valley-buzzer)", 0],
+        "movie-pos": ["movie-pos", [327.91, 60.58, 1719.45, 0.0]]
+      }
+    },
+    // Money
+    {
+      "trans": [136.38, 138.73, 859.48],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [136.38, 138.73, 859.48, 10],
+      "lump": {
+        "name": "valley-money-001"
+      }
+    },
+    {
+      "trans": [132.41, 136.47, 866.63],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [132.41, 136.47, 866.63, 10],
+      "lump": {
+        "name": "valley-money-002"
+      }
+    },
+    {
+      "trans": [129.83, 134.78, 874.21],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [129.83, 134.78, 874.21, 10],
+      "lump": {
+        "name": "valley-money-003"
+      }
+    },
+    {
+      "trans": [151.66, 123.32, 996.86],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [151.66, 123.32, 996.86, 10],
+      "lump": {
+        "name": "valley-money-004"
+      }
+    },
+    {
+      "trans": [153.68, 123.60, 1005.83],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [153.68, 123.60, 1005.83, 10],
+      "lump": {
+        "name": "valley-money-005"
+      }
+    },
+    {
+      "trans": [155.81, 122.80, 1015.68],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [155.81, 122.80, 1015.68, 10],
+      "lump": {
+        "name": "valley-money-006"
+      }
+    },
+    {
+      "trans": [110.05, 85.06, 1132.76],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [110.05, 85.06, 1132.76, 10],
+      "lump": {
+        "name": "valley-money-007"
+      }
+    },
+    {
+      "trans": [106.73, 83.63, 1140.56],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [106.73, 83.63, 1140.56, 10],
+      "lump": {
+        "name": "valley-money-008"
+      }
+    },
+    {
+      "trans": [103.95, 82.08, 1147.54],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [103.95, 82.08, 1147.54, 10],
+      "lump": {
+        "name": "valley-money-009"
+      }
+    },
+    {
+      "trans": [225.67, 82.35, 1432.90],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [225.67, 82.35, 1432.90, 10],
+      "lump": {
+        "name": "valley-money-010"
+      }
+    },
+    {
+      "trans": [235.35, 81.74, 1438.14],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [235.35, 81.74, 1438.14, 10],
+      "lump": {
+        "name": "valley-money-011"
+      }
+    },
+    {
+      "trans": [244.45, 80.99, 1442.22],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [244.45, 80.99, 1442.22, 10],
+      "lump": {
+        "name": "valley-money-012"
+      }
+    },
+    // Eco
+    {
+      "trans": [165.31, 167.76, 781.36],
+      "etype": "eco",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [165.31, 167.76, 781.36, 10],
+      "lump": {
+        "name": "valley-eco-01-blue",
+        "eco-info": ["int32", 3, 1]
+      }
+    },
+    {
+      "trans": [148.20, 120.32, 972.65],
+      "etype": "eco",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [148.20, 120.32, 972.65, 10],
+      "lump": {
+        "name": "valley-eco-02-blue",
+        "eco-info": ["int32", 3, 1]
+      }
+    },
+    {
+      "trans": [157.31, 101.24, 1037.84],
+      "etype": "eco",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [157.31, 101.24, 1037.84, 10],
+      "lump": {
+        "name": "valley-eco-03-blue",
+        "eco-info": ["int32", 3, 1]
+      }
+    },
+    {
+      "trans": [92.70, 74.44, 1248.73],
+      "etype": "eco",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [92.70, 74.44, 1248.73, 10],
+      "lump": {
+        "name": "valley-eco-04-blue",
+        "eco-info": ["int32", 3, 1]
+      }
+    },
+    {
+      "trans": [187.59, 57.07, 1510.40],
+      "etype": "eco",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [187.59, 57.07, 1510.40, 10],
+      "lump": {
+        "name": "valley-eco-05-blue",
+        "eco-info": ["int32", 3, 1]
+      }
+    }
+    // Movement
+    // Danger
+    // Others
+    // Visuals
   ]
 }

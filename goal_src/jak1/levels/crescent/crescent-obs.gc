@@ -914,6 +914,7 @@
 (defstate valley-rock-explode (valley-rock)
   :code
     (behavior ()
+      (suspend-for (seconds 1.0))
       (let ((cam (ppointer->handle (process-spawn crescentcam-valley-rock
                                                   :init
                                                   pov-camera-init-by-other
@@ -942,7 +943,7 @@
                        *entity-pool*)
         (until (ja-done? 0)
           (ja :num! (seek! max))
-          (format *stdcon* "~%~%~%~%~%in explode anim~%")
+          ;; (format *stdcon* "~%~%~%~%~%in explode anim~%")
           (suspend))
         (while (handle->process cam)
           (suspend)))
