@@ -9,7 +9,7 @@
    (freq-max         float)
    (last-path-picked int32))
   (:methods
-   (rolling-rock-master-initialize-paths (_type_) none))
+   (rolling-rock-master-initialize-paths (_type_) object))
   (:states
    rolling-rock-master-idle))
 
@@ -33,29 +33,21 @@
   (none))
 
 (defmethod rolling-rock-master-initialize-paths ((this rolling-rock-master))
-;;   (set! (-> this path) (new 'process 'path-control this 'path 0.0))
-;;   (logior! (-> this path flags) (path-control-flag display draw-line draw-point draw-text))
-  (let* ((all-paths '(patha pathb pathc pathd pathe pathf pathg pathh))
-         (all-paths-car (car all-paths))
-         (path-counter 0))
-    (while (not (null? all-paths))
-      (let ((res-path (res-lump-struct (-> this entity) (the symbol all-paths-car) structure))
-            (this-path (-> this path-array path-counter)))
-        (when (and res-path (< path-counter 8))
-          (set! this-path (new 'process 'path-control this (the symbol all-paths-car) 0.0))
-          (format 0 "this-path ~D #x~X~%" path-counter this-path)
-          (logior! (-> this-path flags) (path-control-flag display draw-line draw-point draw-text))
-          (+! path-counter 1)))
-      (format 0 "path-counter: ~D ~%" path-counter)
-      (set! all-paths (cdr all-paths))
-      (set! all-paths-car (car all-paths)))
+  (let ((paths '(patha pathb pathc pathd pathe pathf pathg pathh))
+        (path-counter 0))
+    (dotimes (i (length paths))
+      (let* ((path-sym (the symbol (ref paths i)))
+             (res-path (res-lump-struct (-> this entity) path-sym structure))
+             (this-path (-> this path-array path-counter)))
+        (when res-path
+          (set! (-> this path-array i) (new 'process 'path-control this path-sym 0.0))
+          (logior! (-> this path-array path-counter flags) (path-control-flag display draw-line draw-point draw-text))
+          (+! path-counter 1))))
     (set! (-> this path-count) path-counter))
-  (format 0 "final path-count: ~D ~%" (-> this path-count))
   (set! (-> this scale-min) (res-lump-float (-> this entity) 'scale-min :default 1.0))
   (set! (-> this scale-max) (res-lump-float (-> this entity) 'scale-max :default 1.0))
   (set! (-> this freq-min) (res-lump-float (-> this entity) 'freq-min :default 2.0))
-  (set! (-> this freq-max) (res-lump-float (-> this entity) 'freq-min :default 2.0))
-  (none))
+  (set! (-> this freq-max) (res-lump-float (-> this entity) 'freq-min :default 2.0)))
 
 (defmethod relocate ((this rolling-rock-master) (off int))
   (dotimes (i (-> this path-count))
@@ -63,6 +55,11 @@
   (call-parent-method this off))
 
 (defstate rolling-rock-master-idle (rolling-rock-master)
+  :trans
+    (behavior ()
+      (when *display-path-marks*
+        (dotimes (i (-> self path-count))
+          (if (nonzero? (-> self path-array i)) (debug-draw (-> self path-array i))))))
   :code
     (behavior ()
       (loop
