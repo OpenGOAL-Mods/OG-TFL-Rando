@@ -1,0 +1,63 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+(deftype rolling-rock-master (process)
+  ((path-count        int32)
+   (path-array        array 8 :inline)
+   (scale-min         float)
+   (scale-max         float)
+   (freq-min          float)
+   (freq-max          float)
+   (last-path-picked  int32))
+  (:methods
+   (rolling-rock-master-initialize-paths (_type_) none))
+  (:states
+   rolling-rock-master-idle))
+
+(defskelgroup *rolling-rock-sg*
+  rolling-rock
+  rolling-rock-lod0-jg
+  rolling-rock-idle-ja
+  ((rolling-rock-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 5 0 10))
+
+(deftype rolling-rock (process-drawable) 
+  ((root              collide-shape-moving :override))
+  (:states
+   rolling-rock-rolling
+   rolling-rock-explode))
+
+(defmethod init-from-entity! ((this rolling-rock-master) (e entity-actor))
+  (logclear! (-> this mask) (process-mask actor-pause))
+  (rolling-rock-master-initialize-paths this)
+  (go rolling-rock-master-idle)
+  (none))
+
+(defmethod rolling-rock-master-initialize-paths ((this rolling-rock-master))
+  (let ((path-counter 0))
+       (let* ((all-paths '(patha pathb pathc pathd pathe pathf pathg pathh))
+              (all-paths-car (car all-paths)))
+          (while (not (null? all-paths))
+            (let ((res-path (res-lump-struct (-> this entity) (the-as symbol all-paths-car) structure))
+                  (this-path (-> this path-array path-counter)))
+              (when (and res-path (< path-counter 8))
+                (set! (-> this-path path) (new 'process 'path-control this (the-as symbol all-paths-ca) 0.0))
+                (logior! (-> this-path path flags) (path-control-flag display draw-line draw-point draw-text))
+                (+! path-counter 1)))
+            (set! all-paths (cdr all-paths))
+            (set! all-paths-car (car all-paths))))
+    (set! (-> this path-count) path-counter))
+  (set! (-> this scale-min) (res-lump-float (-> this entity) 'scale-min :default 1.0))
+  (set! (-> this scale-max) (res-lump-float (-> this entity) 'scale-max :default 1.0))
+  (set! (-> this freq-min) (res-lump-float (-> this entity) 'freq-min :default 2.0))
+  (set! (-> this freq-max) (res-lump-float (-> this entity) 'freq-min :default 2.0))
+  (none))
+
+(defstate rolling-rock-master-idle (rolling-rock-master)
+  :code
+    (behavior ()
+        (loop (suspend))))
+
+;; (defbehavior rolling-rock-init-by-other! rolling-rock ((this rolling-rock) (e entity-actor))
+
+;;   (none))

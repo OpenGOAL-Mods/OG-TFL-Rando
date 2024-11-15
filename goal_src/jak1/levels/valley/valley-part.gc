@@ -1,0 +1,6 @@
+;;-*-Lisp-*-
+(in-package goal)
+(deftype valley-part (part-spawner) ())
+
+;; group-id range for thundra valley : 1050-1099
+;; part-id range for thundra valley : 4000-4199

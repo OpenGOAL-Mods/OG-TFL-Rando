@@ -64,7 +64,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models/custom_levels" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": [],
+  "custom_models": ["rolling-rock"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -322,9 +322,20 @@
         "name": "valley-eco-05-blue",
         "eco-info": ["int32", 3, 1]
       }
-    }
+    },
     // Movement
     // Danger
+    // rolling-rock
+    {
+      "trans": [105.75, 186.71, 849.56],
+      "etype": "rolling-rock-master",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [105.75, 186.71, 849.56, 10],
+      "lump": {
+        "name": "valley-rolling-rock-master-01"
+      }
+    }
     // Others
     // Visuals
   ]

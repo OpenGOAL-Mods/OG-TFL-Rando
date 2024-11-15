@@ -1694,6 +1694,7 @@
 (build-actor "observatory-ring")
 (build-actor "observatory-lens")
 (build-actor "valley-rock")
+(build-actor "rolling-rock")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -2206,6 +2207,13 @@
  :deps ("$OUT/obj/ticky.o")
  "mines-obs.gc"
  "mines-part.gc"
+ )
+
+(goal-src-sequence
+ "levels/valley/"
+ :deps ("$OUT/obj/ticky.o")
+ "valley-obs.gc"
+ "valley-part.gc"
  )
 
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-drawable")

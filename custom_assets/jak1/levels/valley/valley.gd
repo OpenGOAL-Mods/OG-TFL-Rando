@@ -4,6 +4,9 @@
 ;; the actual file name still needs to be 8.3
 ("VAL.DGO"
  (
+  "valley-obs.o"
+  "valley-part.o"
+  "rolling-rock-ag.go"
   "valley.go"
   )
  )
