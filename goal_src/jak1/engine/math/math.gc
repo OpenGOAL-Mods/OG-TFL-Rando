@@ -189,6 +189,16 @@
   ;; and back to integer.
   (the int float-in-range))
 
+;; TFL note: added from jak2/3
+(defun rand-vu-int-range-exclude ((arg0 int) (arg1 int) (arg2 int))
+  "Get an integer in the range [0, arg0), excluding arg2.
+   Note that this doesn't use bits like rand-vu-int-count-excluding."
+  (until #f
+    (let ((v1-0 (rand-vu-int-range arg0 arg1)))
+      (if (!= v1-0 arg2)
+          (return v1-0))))
+  (the-as int #f))
+
 (defun rand-vu-int-count ((maximum int))
   "Get an integer in [0, maximum)"
   (the int (* (rand-vu) (the float maximum))))
