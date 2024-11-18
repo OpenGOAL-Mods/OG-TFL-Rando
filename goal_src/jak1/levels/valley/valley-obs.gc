@@ -67,7 +67,7 @@
     (vector-copy! (-> this root trans) new-pos)))
 
 (defmethod init-collision! ((this rolling-rock) (scale float))
-  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
+  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
     (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
     (set! (-> cshape reaction) default-collision-reaction)
     (set! (-> cshape no-reaction)
@@ -81,7 +81,11 @@
       (set-root-prim! cshape csphere))
     (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
     (backup-collide-with-as cshape)
-    (set! (-> this root) cshape)))
+    ;; (set-root-prim-collide-with! (-> this root) (collide-kind target))
+    (set! (-> this root) cshape))
+  (set-root-prim-collide-with! (-> this root) (collide-kind target))
+  (set! (-> this root event-other) 'touch)
+  (set! (-> this root event-self) 'touched))
 
 (defmethod rolling-rock-master-initialize-paths ((this rolling-rock-master))
   (let ((paths '(patha pathb pathc pathd pathe pathf pathg pathh))
@@ -139,6 +143,15 @@
         (suspend))))
 
 (defstate rolling-rock-rolling (rolling-rock)
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (format 0 "proc type: ~A message: ~A ~%" (-> proc type) message)
+      (case message
+        (('touch 'attack 'explode 'touched)
+         (format 0 "inside touch proc type: ~A~%" (-> proc type))
+         (if (= (-> proc type) target)
+           (send-event proc 'attack #f (new 'static 'attack-info)))
+         (go rolling-rock-explode))))
   :code
     (behavior ()
       (ja :group! rolling-rock-rolling-ja)
