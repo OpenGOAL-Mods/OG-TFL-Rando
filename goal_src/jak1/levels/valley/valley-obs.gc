@@ -2,7 +2,7 @@
 (in-package goal)
 (deftype rolling-rock-master (process)
   ((path-count       int32)
-   (path-array       path-control 8)
+   (path-array       curve-control 8)
    (scale-min        float)
    (scale-max        float)
    (freq-min         float)
@@ -23,13 +23,13 @@
   :bounds (static-spherem 0 5 0 15))
 
 (deftype rolling-rock (process-drawable)
-  ((root                    collide-shape-moving :override)
-   (path-speed              float)
-   (path-length             float)
-   (path-pos                float))
+  ((root        collide-shape-moving :override)
+   (path-speed  float)
+   (path-length float)
+   (path-pos    float))
   (:methods
    (init-collision! (_type_ float) object)
-   (follow-path (_type_) none))
+   (follow-path (_type_) object))
   (:states
    rolling-rock-rolling
    rolling-rock-explode))
@@ -40,43 +40,38 @@
   (go rolling-rock-master-idle)
   (none))
 
-(defbehavior rolling-rock-init-by-other rolling-rock ((e entity-actor) (this rolling-rock) (scale float) (path curve-control) (speed float))
-  (set! (-> self path) path)
+(defbehavior rolling-rock-init-by-other rolling-rock ((e entity-actor) (this rolling-rock) (scale float) (path-name symbol) (speed float))
   (set! (-> self entity) e)
+  (set! (-> self path) (new 'process 'curve-control self path-name -1000000000.0))
   (set! (-> self path-length) (path-distance (-> self path)))
   (set! (-> self path-speed) (/ 1.0 (/ (-> self path-length) speed)))
   (init-collision! self scale)
   (process-drawable-from-entity! self e)
   (set-vector! (-> self root scale) scale scale scale 1.0)
   (initialize-skeleton self *rolling-rock-sg* '())
-  (set-vector! (-> self root trans) 
-               (-> self path cverts 0 x)
-               (-> self path cverts 0 y)
-               (-> self path cverts 0 z)
-               (-> self path cverts 0 w))
+  (vector-copy! (-> self root trans) (-> self path cverts 0))
   (logclear! (-> self mask) (process-mask actor-pause))
   (transform-post)
-  (go rolling-rock-rolling)
-  (none))
+  (go rolling-rock-rolling))
 
 (defmethod follow-path ((this rolling-rock))
   (let* ((pos (-> this root trans))
          (new-pos (vector-copy! (new-stack-vector0) pos)))
-    (set! (-> this path-pos)(+ (-> this path-pos) (* (-> this path-speed) (seconds-per-frame))))
+    (set! (-> this path-pos) (+ (-> this path-pos) (* (-> this path-speed) (seconds-per-frame))))
     (eval-path-curve! (-> this path) new-pos (-> this path-pos) 'interp)
     (let ((axis (vector-! (new-stack-vector0) pos new-pos))
           (angle (new-stack-quaternion0)))
       (quaternion-zxy! angle axis)
       (quaternion-rotate-local-y! angle angle (vector-y-angle axis))
       (set-quaternion! (-> this root) angle))
-    (set-vector! pos (-> new-pos x) (-> new-pos y) (-> new-pos z) (-> new-pos w)))
-  (none))
+    (vector-copy! (-> this root trans) new-pos)))
 
 (defmethod init-collision! ((this rolling-rock) (scale float))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
     (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
     (set! (-> cshape reaction) default-collision-reaction)
-    (set! (-> cshape no-reaction) (the-as (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (set! (-> cshape no-reaction)
+          (the-as (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
     (let ((csphere (new 'process 'collide-shape-prim-sphere cshape (the-as uint 0))))
       (set! (-> csphere prim-core collide-as) (collide-kind enemy))
       (set! (-> csphere collide-with) (collide-kind target))
@@ -86,16 +81,14 @@
       (set-root-prim! cshape csphere))
     (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
     (backup-collide-with-as cshape)
-    (set! (-> this root) cshape))
-  (none))
+    (set! (-> this root) cshape)))
 
 (defmethod rolling-rock-master-initialize-paths ((this rolling-rock-master))
   (let ((paths '(patha pathb pathc pathd pathe pathf pathg pathh))
         (path-counter 0))
     (dotimes (i (length paths))
       (let* ((path-sym (the symbol (ref paths i)))
-             (res-path (res-lump-struct (-> this entity) path-sym structure))
-             (this-path (-> this path-array path-counter)))
+             (res-path (res-lump-struct (-> this entity) path-sym (inline-array vector))))
         (when res-path
           (set! (-> this path-array i) (new 'process 'curve-control this path-sym -1000000000.0))
           (logior! (-> this path-array path-counter flags) (path-control-flag display draw-line draw-point draw-text))
@@ -124,47 +117,43 @@
     (behavior ()
       (loop
         (let ((time-rand (rand-vu-float-range (-> self freq-min) (-> self freq-max)))
-              (path-rand (if (> (-> self path-count) 1)
-                             (rand-vu-int-range-exclude 1 (-> self path-count) (-> self last-path-picked))
-                             1))
+              (path-rand (if (> (-> self path-count) 1) (rand-vu-int-range-exclude 1 (-> self path-count) (-> self last-path-picked)) 1))
               (scale-rand (rand-vu-float-range (-> self scale-min) (-> self scale-max)))
               (speed-rand (rand-vu-float-range (-> self speed-min) (-> self speed-max))))
           (suspend-for (seconds time-rand))
-          ;; (format 0 
-          ;;         "________________________________~%time-rand: ~F path-rand: ~D~%scale-rand: ~F last-path-picked: ~D~%" 
-          ;;         time-rand 
-          ;;         path-rand 
-          ;;         scale-rand 
+          ;; (format 0
+          ;;         "________________________________~%time-rand: ~F path-rand: ~D~%scale-rand: ~F last-path-picked: ~D~%"
+          ;;         time-rand
+          ;;         path-rand
+          ;;         scale-rand
           ;;         (-> self last-path-picked))
-          (process-spawn rolling-rock 
-                         (-> self entity) 
-                         self 
-                         scale-rand 
-                         (-> self path-array (- path-rand 1)) 
+          (process-spawn rolling-rock
+                         (-> self entity)
+                         self
+                         scale-rand
+                         (-> self path-array (- path-rand 1) name)
                          speed-rand
-                         :to *entity-pool*)
+                         :to
+                         self)
           (set! (-> self last-path-picked) path-rand))
         (suspend))))
 
 (defstate rolling-rock-rolling (rolling-rock)
-    :enter
-      (behavior ()
-        (ja :group! rolling-rock-rolling-ja))
-    :trans
-      (behavior ())
-    :code
-      (behavior ()
-        (loop
-          (follow-path self)
-          (if (>= (-> self path-pos) 1.0) (go rolling-rock-explode))
-          (ja :num! (loop!))
-          (suspend)))
-    :post transform-post)
+  :code
+    (behavior ()
+      (ja :group! rolling-rock-rolling-ja)
+      (loop
+        (ja :num! (loop!))
+        (follow-path self)
+        (if (>= (-> self path-pos) 1.0) (go rolling-rock-explode))
+        (suspend)))
+  :post
+    (behavior ()
+      (transform-post)
+      ; (format *stdcon* "path #x~X~% pos ~f~%" (-> self path) (-> self path-pos))
+      ))
 
 (defstate rolling-rock-explode (rolling-rock)
-    :code
-      (behavior ()
-        (loop
-          (cleanup-for-death self)
-          (deactivate self)
-          (suspend))))
+  :code
+    (behavior ()
+      (cleanup-for-death self)))
