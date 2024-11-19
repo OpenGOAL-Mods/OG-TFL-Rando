@@ -22,6 +22,41 @@
   ((rolling-rock-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 5 0 15))
 
+(define *rolling-rock-exploder-params*
+  (new 'static
+       'joint-exploder-static-params
+       :joints
+       (new 'static
+            'boxed-array
+            :type
+            joint-exploder-static-joint-params
+            (new 'static 'joint-exploder-static-joint-params :joint-index 4 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 5 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 6 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 7 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 8 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 9 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 10 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 11 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 12 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 13 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 14 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 15 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 16 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 17 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 18 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 19 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 20 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 21 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 22 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 23 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 24 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 25 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 26 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 27 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 28 :parent-joint-index -1)
+            (new 'static 'joint-exploder-static-joint-params :joint-index 29 :parent-joint-index -1))))
+
 (deftype rolling-rock (process-drawable)
   ((root        collide-shape-moving :override)
    (path-speed  float)
@@ -98,8 +133,8 @@
           (logior! (-> this path-array path-counter flags) (path-control-flag display draw-line draw-point draw-text))
           (+! path-counter 1))))
     (set! (-> this path-count) path-counter))
-  (set! (-> this scale-min) (res-lump-float (-> this entity) 'scale-min :default 1.0))
-  (set! (-> this scale-max) (res-lump-float (-> this entity) 'scale-max :default 1.0))
+  (set! (-> this scale-min) (/ (res-lump-float (-> this entity) 'scale-min :default (meters 5)) (meters 5)))
+  (set! (-> this scale-max) (/ (res-lump-float (-> this entity) 'scale-max :default (meters 5)) (meters 5)))
   (set! (-> this freq-min) (res-lump-float (-> this entity) 'freq-min :default 2.0))
   (set! (-> this freq-max) (res-lump-float (-> this entity) 'freq-max :default 2.0))
   (set! (-> this speed-min) (res-lump-float (-> this entity) 'speed-min :default (meters 20.0)))
@@ -150,7 +185,7 @@
         (('touch 'attack 'explode 'touched)
          (format 0 "inside touch proc type: ~A~%" (-> proc type))
          (if (= (-> proc type) target)
-           (send-event proc 'attack #f (new 'static 'attack-info)))
+           (send-event proc 'attack (-> block param 0) (static-attack-info ((mode 'deadly)))))
          (go rolling-rock-explode))))
   :code
     (behavior ()
@@ -169,4 +204,30 @@
 (defstate rolling-rock-explode (rolling-rock)
   :code
     (behavior ()
+      (clear-collide-with-as (-> self root))
+      (sound-play "explosion" :vol 60)
+      (process-spawn part-tracker
+                       :init
+                       part-tracker-init
+                       (-> *part-group-id-table* 1050)
+                       -1
+                       #f
+                       #f
+                       #f
+                       (-> self root trans)
+                       :to
+                       *entity-pool*)
+      (let ((explode (the process-drawable
+                          (ppointer->process (process-spawn joint-exploder
+                                                            *rolling-rock-sg*
+                                                            3
+                                                            (new 'stack 'joint-exploder-tuning 0)
+                                                            *rolling-rock-exploder-params*
+                                                            :to
+                                                            self))))))
+      (suspend)
+      (ja-channel-set! 0)
+      (ja-post)
+      (until (not (-> self child))
+        (suspend))
       (cleanup-for-death self)))

@@ -336,8 +336,8 @@
         "name": "valley-rolling-rock-master-01",
         "freq-min":["float", 1.0],
         "freq-max":["float", 3.0],
-        "scale-min":["float", 0.5],
-        "scale-max":["float", 1.5],
+        "scale-min":["meters", 3.5],
+        "scale-max":["meters", 6.5],
         "speed-min":["meters", 20],
         "speed-max":["meters", 35],
         "patha": [
