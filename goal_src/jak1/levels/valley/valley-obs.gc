@@ -69,10 +69,52 @@
    rolling-rock-rolling
    rolling-rock-explode))
 
+(defskelgroup *rolling-rock-shadow-sg*
+  snow-ball
+  snow-ball-shadow-lod0-jg
+  -1
+  ((snow-ball-shadow-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 -1.5 0 2)
+  :shadow snow-ball-shadow-shadow-mg)
+
+(deftype rolling-rock-shadow (process-drawable) ()
+  (:states
+   rolling-rock-shadow-idle))
+
+(define *rolling-rock-shadow-control*
+  (new 'static
+       'shadow-control
+       :settings
+       (new 'static
+            'shadow-settings
+            :flags (shadow-flags disable-fade)
+            :shadow-dir
+            (new 'static 'vector :y -1.0 :w (meters 40))
+            :bot-plane
+            (new 'static 'plane :y 1.0 :w (meters 50))
+            :top-plane
+            (new 'static 'plane :y 1.0 :w (meters -2))
+            :fade-dist (meters 1000))))
+
 (defmethod init-from-entity! ((this rolling-rock-master) (e entity-actor))
   (logclear! (-> this mask) (process-mask actor-pause))
   (rolling-rock-master-initialize-paths this)
   (go rolling-rock-master-idle)
+  (none))
+
+(defbehavior rolling-rock-shadow-init-by-other rolling-rock-shadow ()
+  (stack-size-set! (-> self main-thread) 128)
+  (logclear! (-> self mask) (process-mask actor-pause movie enemy platform projectile))
+  (set! (-> self root) (new 'process 'trsqv))
+  (set! (-> self root trans quad) (-> (the-as process-drawable (-> self parent 0)) root trans quad))
+  (quaternion-identity! (-> self root quat))
+  (initialize-skeleton self *rolling-rock-shadow-sg* '())
+  (ja-channel-set! 1)
+  (ja :group! snow-ball-shadow-idle-ja :num! min)
+  (set! (-> self draw shadow-ctrl) *rolling-rock-shadow-control*)
+  (vector-copy! (-> self root scale) 
+                (vector-float*! (new-stack-vector0) (-> (the-as process-drawable (-> self parent 0)) root scale) 2.0))
+  (go rolling-rock-shadow-idle)
   (none))
 
 (defbehavior rolling-rock-init-by-other rolling-rock ((e entity-actor) (this rolling-rock) (scale float) (path-name symbol) (speed float))
@@ -87,6 +129,7 @@
   (vector-copy! (-> self root trans) (-> self path cverts 0))
   (logclear! (-> self mask) (process-mask actor-pause))
   (transform-post)
+  (process-spawn rolling-rock-shadow :to self)
   (go rolling-rock-rolling))
 
 (defmethod follow-path ((this rolling-rock))
@@ -231,3 +274,15 @@
       (until (not (-> self child))
         (suspend))
       (cleanup-for-death self)))
+
+(defstate rolling-rock-shadow-idle (rolling-rock-shadow)
+  :trans
+    (behavior ()
+      (set! (-> self root trans quad) (-> (the-as process-drawable (-> self parent 0)) root trans quad))
+      (vector+! (-> self root trans) (-> self root trans) (static-vectorm 0 3 0))
+      0)
+  :code
+    (behavior ()
+      (until (= (-> (the-as process-drawable (-> self parent 0)) next-state name) 'rolling-rock-explode)
+        (suspend)))
+  :post ja-post)
