@@ -7,6 +7,7 @@
   "valley-obs.o"
   "valley-part.o"
   "rolling-rock-ag.go"
+  "snow-ball-ag.go"
   "valley.go"
   )
  )

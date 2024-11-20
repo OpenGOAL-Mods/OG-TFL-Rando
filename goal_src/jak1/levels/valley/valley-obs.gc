@@ -58,13 +58,16 @@
             (new 'static 'joint-exploder-static-joint-params :joint-index 29 :parent-joint-index -1))))
 
 (deftype rolling-rock (process-drawable)
-  ((root        collide-shape-moving :override)
-   (path-speed  float)
-   (path-length float)
-   (path-pos    float))
+  ((root         collide-shape-moving :override)
+   (path-speed   float)
+   (path-length  float)
+   (path-pos     float)
+   (rotate-joint joint-mod)
+   (old-trans    vector 3 :inline))
   (:methods
    (init-collision! (_type_ float) object)
-   (follow-path (_type_) object))
+   (follow-path (_type_) object)
+   (rotate-rock (_type_) object))
   (:states
    rolling-rock-rolling
    rolling-rock-explode))
@@ -126,7 +129,11 @@
   (process-drawable-from-entity! self e)
   (set-vector! (-> self root scale) scale scale scale 1.0)
   (initialize-skeleton self *rolling-rock-sg* '())
+  (set! (-> self rotate-joint) (new 'process 'joint-mod (joint-mod-handler-mode joint-set*) self 3))
   (vector-copy! (-> self root trans) (-> self path cverts 0))
+  (vector-copy! (-> self old-trans 0) (-> self root trans))
+  (vector-copy! (-> self old-trans 1) (-> self root trans))
+  (vector-copy! (-> self old-trans 2) (-> self root trans))
   (logclear! (-> self mask) (process-mask actor-pause))
   (transform-post)
   (process-spawn rolling-rock-shadow :to self)
@@ -143,6 +150,19 @@
       (quaternion-rotate-local-y! angle angle (vector-y-angle axis))
       (set-quaternion! (-> this root) angle))
     (vector-copy! (-> this root trans) new-pos)))
+
+(defmethod rotate-rock ((this rolling-rock))
+  (let ((vel-absolute (vector-vector-distance (-> this root trans) (-> this old-trans 2)))
+        (rotate 0.0)
+        (rotate-smooth 0.0))
+    (set! rotate (/ (/ (- (* vel-absolute 2.0)) PI) (-> this root scale y)))
+    (seek! rotate-smooth rotate (degrees 5.0))
+    (quaternion-rotate-local-x! (-> this rotate-joint quat) 
+                                (-> this rotate-joint quat) 
+                                rotate-smooth))
+  (vector-copy! (-> this old-trans 0) (-> this root trans))
+  (vector-copy! (-> this old-trans 1) (-> this old-trans 0))
+  (vector-copy! (-> this old-trans 2) (-> this old-trans 1)))
 
 (defmethod init-collision! ((this rolling-rock) (scale float))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
@@ -189,6 +209,10 @@
     (if (nonzero? (-> this path-array i)) (&+! (-> this path-array i) off)))
   (call-parent-method this off))
 
+(defmethod relocate ((this rolling-rock) (off int))
+  (if (nonzero? (-> this rotate-joint)) (&+! (-> this rotate-joint) off))
+  (call-parent-method this off))
+
 (defstate rolling-rock-master-idle (rolling-rock-master)
   :trans
     (behavior ()
@@ -232,10 +256,9 @@
          (go rolling-rock-explode))))
   :code
     (behavior ()
-      (ja :group! rolling-rock-rolling-ja)
       (loop
-        (ja :num! (loop!))
         (follow-path self)
+        (rotate-rock self)
         (if (>= (-> self path-pos) 1.0) (go rolling-rock-explode))
         (suspend)))
   :post

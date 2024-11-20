@@ -60,7 +60,7 @@
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Note: You will still have to add them to your level's .gd file.
-  "art_groups": [],
+  "art_groups": ["snow-ball-ag"],
 
   // If you have any custom models in the "custom_assets/jak1/models/custom_levels" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
@@ -333,12 +333,12 @@
       "quat" : [0.000, 0.000, -0.000, 1.000],
       "bsphere": [105.75, 186.71, 849.56, 10],
       "lump": {
-        "name": "valley-rolling-rock-master-01",
+        "name": "valley-rolling-rock-master-test",
         "freq-min":["float", 1.0],
         "freq-max":["float", 3.0],
         "scale-min":["meters", 3.5],
         "scale-max":["meters", 6.5],
-        "speed-min":["meters", 20],
+        "speed-min":["meters", 25],
         "speed-max":["meters", 35],
         "patha": [
           "vector3m",
