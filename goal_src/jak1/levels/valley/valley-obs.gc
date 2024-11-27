@@ -58,16 +58,22 @@
             (new 'static 'joint-exploder-static-joint-params :joint-index 29 :parent-joint-index -1))))
 
 (deftype rolling-rock (process-drawable)
-  ((root         collide-shape-moving :override)
-   (path-speed   float)
-   (path-length  float)
-   (path-pos     float)
-   (rotate-joint joint-mod)
-   (old-trans    vector 3 :inline))
+  ((root           collide-shape-moving :override)
+   (speed          float)
+   (path-speed     float)
+   (smooth-speed   float)
+   (path-length    float)
+   (path-pos       float)
+   (next-path-pos  float)
+   (rotate-joint   joint-mod)
+   (rotate-smooth  float)
+   (gravity-accel  float)
+   (old-trans      vector 3 :inline))
   (:methods
    (init-collision! (_type_ float) object)
    (follow-path (_type_) object)
-   (rotate-rock (_type_) object))
+   (rotate-rock (_type_) object)
+   (get-gravity-accel (_type_) object))
   (:states
    rolling-rock-rolling
    rolling-rock-explode))
@@ -125,6 +131,10 @@
   (set! (-> self path) (new 'process 'curve-control self path-name -1000000000.0))
   (set! (-> self path-length) (path-distance (-> self path)))
   (set! (-> self path-speed) (/ 1.0 (/ (-> self path-length) speed)))
+  (set! (-> self rotate-smooth) 0.0)
+  (set! (-> self smooth-speed) 0.0)
+  (set! (-> self speed) speed)
+  (set! (-> self gravity-accel) 1.0)
   (init-collision! self scale)
   (process-drawable-from-entity! self e)
   (set-vector! (-> self root scale) scale scale scale 1.0)
@@ -139,30 +149,67 @@
   (process-spawn rolling-rock-shadow :to self)
   (go rolling-rock-rolling))
 
+(defmethod get-gravity-accel ((this rolling-rock))
+  (let* ((height-diff (/ (- (-> this root trans y) (-> this old-trans 2 y)) (* (seconds-per-frame) 3)))
+         (gravity (if (< height-diff 0.0)
+                      (lerp-scale 0.9 6.0 height-diff (meters 0) (meters -100))
+                      (lerp-scale 0.9 0.4 height-diff (meters 0) (meters 60)))))
+    (seek! (-> this gravity-accel) gravity (* (seconds-per-frame) 2.0))
+    ;; (format *stdcon* "~%~% height-diff: ~M ~% gravity: ~F~% gravity-accel: ~F" height-diff gravity (-> this gravity-accel))
+    ))
+
 (defmethod follow-path ((this rolling-rock))
   (let* ((pos (-> this root trans))
-         (new-pos (vector-copy! (new-stack-vector0) pos)))
-    (set! (-> this path-pos) (+ (-> this path-pos) (* (-> this path-speed) (seconds-per-frame))))
+         (new-pos (vector-copy! (new-stack-vector0) pos))
+         (next-pos (new-stack-vector0))
+         (next-vel 0.0)
+         (relative-speed 0.0))
+    ;; Check velocity for the next position:
+    (set! (-> this next-path-pos) (+ (-> this path-pos) (* (-> this path-speed) (seconds-per-frame) 2.0)))
+    (eval-path-curve! (-> this path) next-pos (-> this next-path-pos) 'interp)
+    (set! next-vel (/ (/ (vector-vector-distance pos next-pos) (seconds-per-frame)) 2.0))
+    ;; (format *stdcon* "~%~% next-vel: ~M~%" next-vel)
+
+    ;; Use height momentum to slow down or speed up:
+    (get-gravity-accel this)
+
+    ;; Use that next velocity to calculate a relative speed
+    ;; This gives you a number you can multiply the path-speed with to keep the constant original speed
+    ;; Which is then multiplied by the gravity accel to speed up/slow down the rock with gravity
+    (set! relative-speed (* (/ (-> this speed) next-vel) (-> this gravity-accel)))
+    ;; (format *stdcon* "relative-speed: ~F~%" relative-speed)
+
+    ;; multiply the relative speed by the original path-speed to get the correct speed based on absolute velocity and gravity
+    (set! (-> this smooth-speed) (* relative-speed (-> this path-speed)))
+
+    ;; Use our smooth speed to set the position on the path
+    (set! (-> this path-pos) (+ (-> this path-pos) (* (-> this smooth-speed) (seconds-per-frame))))
+
+    ;; Use the position on the path to set the new position of the rock
     (eval-path-curve! (-> this path) new-pos (-> this path-pos) 'interp)
+
+    ;; Set the rotation to follow the curve
     (let ((axis (vector-! (new-stack-vector0) pos new-pos))
           (angle (new-stack-quaternion0)))
       (quaternion-zxy! angle axis)
       (quaternion-rotate-local-y! angle angle (vector-y-angle axis))
       (set-quaternion! (-> this root) angle))
+
+    ;; Copy the new position onto the actor 
     (vector-copy! (-> this root trans) new-pos)))
 
 (defmethod rotate-rock ((this rolling-rock))
-  (let ((vel-absolute (vector-vector-distance (-> this root trans) (-> this old-trans 2)))
-        (rotate 0.0)
-        (rotate-smooth 0.0))
-    (set! rotate (/ (/ (- (* vel-absolute 2.0)) PI) (-> this root scale y)))
-    (seek! rotate-smooth rotate (degrees 5.0))
+  (let* ((vel-absolute (vector-vector-distance (-> this root trans) (-> this old-trans 2)))
+        (rotate (/ (/ (- (* vel-absolute 0.5)) PI) (-> this root scale y))))
+    ;; (format *stdcon* "vel-absolute: ~M~%" (/ vel-absolute (seconds-per-frame)))
+    (seek! (-> this rotate-smooth) rotate (* (seconds-per-frame) (degrees 5.0)))
     (quaternion-rotate-local-x! (-> this rotate-joint quat) 
                                 (-> this rotate-joint quat) 
-                                rotate-smooth))
-  (vector-copy! (-> this old-trans 0) (-> this root trans))
-  (vector-copy! (-> this old-trans 1) (-> this old-trans 0))
-  (vector-copy! (-> this old-trans 2) (-> this old-trans 1)))
+                                (-> this rotate-smooth)))
+  (vector-copy! (-> this old-trans 2) (-> this old-trans 1))      
+  (vector-copy! (-> this old-trans 1) (-> this old-trans 0))                        
+  (vector-copy! (-> this old-trans 0) (-> this root trans)))
+
 
 (defmethod init-collision! ((this rolling-rock) (scale float))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
