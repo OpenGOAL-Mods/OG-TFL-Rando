@@ -61,7 +61,7 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 ;; TFL notes: turn off vibration by default
 (false! (-> *setting-control* default vibration))
 
-;; TFL notes: TO DELETE FOR RELEASE turn off RPC
+;; TODO: TFL notes: DELETE FOR RELEASE turn off RPC
 (false! (-> *pc-settings* discord-rpc?))
 
 ;; do NOT change %MODVERSIONPLACEHOLDER% below, otherwise the mod-bundling-tools

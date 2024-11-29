@@ -104,7 +104,7 @@
   "tpages": [],
 
   "actors": [
-    // ENEMIES
+// Actors: ENEMIES
     {
       "trans": [18.24, 226.05, 403.24],
       "etype": "babak",
@@ -656,7 +656,7 @@
         "scale":["float", 0.9]
       }
     },
-    // CELLS
+// Actors: CELLS
     {
       "trans": [-129.08, 257.71, 487.94], // translation
       "etype": "fuel-cell", // actor type
@@ -737,7 +737,7 @@
         "alt-actor": "crescent-valley-rock-01"
       }
     },
-    // SCOUT FLIES
+// Actors: SCOUT FLIES
     {
       "trans": [-204.09, 247.81, 475.45], // translation
       "etype": "crate", // actor type
@@ -831,7 +831,7 @@
         "light-index": ["int32", 1]
       }
     },
-    // ORBS
+// Actors: ORBS
     {
       "trans": [-227.8, 247.08, 398.28], // translation
       "etype": "money", // actor type
@@ -2260,7 +2260,7 @@
         "name": "crescent-money-140"
       }
     },
-    // CRATES
+// Actors: CRATES
     {
       "trans": [-142.1, 240.08, 478.87], // translation
       "etype": "crate", // actor type
@@ -2914,7 +2914,7 @@
         "crate-type": "'darkeco"
       }
     },
-    // PLATFORMS AND MOVEMENT
+// Actors: PLATFORMS AND MOVEMENT
     {
       "trans": [-262.57, 205.43, 370.94], // translation
       "etype": "launcher", // actor type
@@ -3595,7 +3595,7 @@
         "scale": ["float", 0.75]
       }
     },
-    // RACE RINGS
+// Actors: RACE RINGS
     {
       "trans": [-118.49, 239.84, 362.23], // translation
       "etype": "tfl-race-ring",  // actor type
@@ -4001,7 +4001,7 @@
         "options": ["int32", 1024] // big hitbox
       }
     },
-    // RACERS
+// Actors: RACERS
     {
       "trans": [-191.57, 227.19, 402.92], // translation
       "etype": "racer", // actor type
@@ -4087,7 +4087,7 @@
         "rotoffset": ["meters", -1.5111]
       }
     },
-    // Particles
+// Actors: PARTICLES
     {
       "trans": [-221.07, 229.85, 233.35], // translation
       "etype": "crescent-part", // actor type
@@ -5753,7 +5753,7 @@
       }
     },
 
-    // OTHERS
+// Actors: OTHERS
     {
       "trans": [22.51, 174.2, 436.62], // translation
       "etype": "villagec-lava", // actor type
@@ -6096,7 +6096,7 @@
         ]
       }
     },
-    // eco
+// Actors: ECO
     {
       "trans": [-256.33, 201.41, 294.52], // translation
       "etype": "eco", // actor type
@@ -6362,7 +6362,7 @@
         "tilt-adjust":["degrees", 3]
       }
     },
-    // Hints
+// Actors: HINTS
     {
       "trans": [-278.76, 207.28, 285.73], // translation
       "etype": "tfl-hint", // actor type
@@ -6533,6 +6533,7 @@
     }
   ],
   "ambients": [
+// Actors: AMBIENTS
     {
       "trans": [-207.03, 250.42, 414.21, 10.0],
       "bsphere": [-207.03, 250.42, 414.21, 20.0],
