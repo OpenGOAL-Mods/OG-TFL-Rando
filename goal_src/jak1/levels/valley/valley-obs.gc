@@ -1,7 +1,9 @@
 ;;-*-Lisp-*-
 (in-package goal)
 (deftype rolling-rock-master (process)
-  ((path-count       int32)
+  ((trans            vector :inline)
+   (distance       float)
+   (path-count       int32)
    (path-array       curve-control 8)
    (scale-min        float)
    (scale-max        float)
@@ -106,6 +108,8 @@
             :fade-dist (meters 1000))))
 
 (defmethod init-from-entity! ((this rolling-rock-master) (e entity-actor))
+  (set! (-> this trans quad) (-> e extra trans quad))
+  (set! (-> this distance) (res-lump-float (-> this entity) 'max-distance :default (meters 450)))
   (logclear! (-> this mask) (process-mask actor-pause))
   (rolling-rock-master-initialize-paths this)
   (go rolling-rock-master-idle)
@@ -152,9 +156,9 @@
 (defmethod get-gravity-accel ((this rolling-rock))
   (let* ((height-diff (/ (- (-> this root trans y) (-> this old-trans 2 y)) (* (seconds-per-frame) 3)))
          (gravity (if (< height-diff 0.0)
-                      (lerp-scale 0.9 6.0 height-diff (meters 0) (meters -100))
-                      (lerp-scale 0.9 0.4 height-diff (meters 0) (meters 60)))))
-    (seek! (-> this gravity-accel) gravity (* (seconds-per-frame) 2.0))
+                      (lerp-scale 0.95 4.0 height-diff (meters 0) (meters -100))
+                      (lerp-scale 0.95 0.6 height-diff (meters 0) (meters 50)))))
+    (seek! (-> this gravity-accel) gravity (* (seconds-per-frame) 1.2))
     ;; (format *stdcon* "~%~% height-diff: ~M ~% gravity: ~F~% gravity-accel: ~F" height-diff gravity (-> this gravity-accel))
     ))
 
@@ -269,26 +273,27 @@
   :code
     (behavior ()
       (loop
-        (let ((time-rand (rand-vu-float-range (-> self freq-min) (-> self freq-max)))
-              (path-rand (if (> (-> self path-count) 1) (rand-vu-int-range-exclude 1 (-> self path-count) (-> self last-path-picked)) 1))
-              (scale-rand (rand-vu-float-range (-> self scale-min) (-> self scale-max)))
-              (speed-rand (rand-vu-float-range (-> self speed-min) (-> self speed-max))))
-          (suspend-for (seconds time-rand))
-          ;; (format 0
-          ;;         "________________________________~%time-rand: ~F path-rand: ~D~%scale-rand: ~F last-path-picked: ~D~%"
-          ;;         time-rand
-          ;;         path-rand
-          ;;         scale-rand
-          ;;         (-> self last-path-picked))
-          (process-spawn rolling-rock
-                         (-> self entity)
-                         self
-                         scale-rand
-                         (-> self path-array (- path-rand 1) name)
-                         speed-rand
-                         :to
-                         self)
-          (set! (-> self last-path-picked) path-rand))
+        (when (< (vector-vector-distance (camera-pos) (-> self trans)) (-> self distance))
+          (let ((time-rand (rand-vu-float-range (-> self freq-min) (-> self freq-max)))
+                (path-rand (if (> (-> self path-count) 1) (rand-vu-int-range-exclude 1 (-> self path-count) (-> self last-path-picked)) 1))
+                (scale-rand (rand-vu-float-range (-> self scale-min) (-> self scale-max)))
+                (speed-rand (rand-vu-float-range (-> self speed-min) (-> self speed-max))))
+            (suspend-for (seconds time-rand))
+            ;; (format 0
+            ;;         "________________________________~%time-rand: ~F path-rand: ~D~%scale-rand: ~F last-path-picked: ~D~%"
+            ;;         time-rand
+            ;;         path-rand
+            ;;         scale-rand
+            ;;         (-> self last-path-picked))
+            (process-spawn rolling-rock
+                          (-> self entity)
+                          self
+                          scale-rand
+                          (-> self path-array (- path-rand 1) name)
+                          speed-rand
+                          :to
+                          self)
+            (set! (-> self last-path-picked) path-rand)))
         (suspend))))
 
 (defstate rolling-rock-rolling (rolling-rock)
