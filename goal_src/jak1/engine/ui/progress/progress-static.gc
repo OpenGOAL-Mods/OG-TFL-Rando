@@ -281,6 +281,7 @@
   (crescent-t 17)
   (energy-bay 18)
   (open-mines 19)
+  (valley 20)
   (max))
 
 ;; maps level-info indices to the appropriate offset in *level-task-data*
@@ -316,6 +317,7 @@
        (level-task-data-index crescent-t) ;; Crescent top ;25
        (level-task-data-index energy-bay) ;; Energy bay ;26
        (level-task-data-index open-mines) ;; Open Mines ;27
+       (level-task-data-index valley) ;; Open Mines ;28
        ))
 
 ;; maps goal language ID to its name string ID
@@ -1744,6 +1746,78 @@
                            (text-id open-mines-buzzer)
                            (text-id open-mines-buzzer)
                            (text-id open-mines-buzzer)
+                           (text-id zero)))))
+       ;; TAIGA VALLEY LEVEL TASK INFO
+       (new 'static
+            'level-tasks-info
+            :level-name-id (text-id valley-level)
+            :text-group-index 1
+            :nb-of-tasks 5
+            :buzzer-task-index 4
+            :task-info
+            (new 'static
+                 'array
+                 task-info-data
+                 8
+                 (new 'static
+                      'task-info-data
+                      :task-id (game-task valley-end)
+                      :task-name
+                      (new 'static
+                           'array
+                           text-id
+                           4
+                           (text-id valley-end)
+                           (text-id valley-end)
+                           (text-id valley-end)
+                           (text-id zero)))
+                 (new 'static
+                      'task-info-data
+                      :task-id (game-task valley-hidden)
+                      :task-name
+                      (new 'static
+                           'array
+                           text-id
+                           4
+                           (text-id valley-hidden)
+                           (text-id valley-hidden)
+                           (text-id valley-hidden)
+                           (text-id zero)))
+                 (new 'static
+                      'task-info-data
+                      :task-id (game-task valley-kill)
+                      :task-name
+                      (new 'static
+                           'array
+                           text-id
+                           4
+                           (text-id valley-kill)
+                           (text-id valley-kill)
+                           (text-id valley-kill)
+                           (text-id zero)))
+                 (new 'static
+                      'task-info-data
+                      :task-id (game-task valley-boss)
+                      :task-name
+                      (new 'static
+                           'array
+                           text-id
+                           4
+                           (text-id valley-boss)
+                           (text-id valley-boss)
+                           (text-id valley-boss)
+                           (text-id zero)))
+                 (new 'static
+                      'task-info-data
+                      :task-id (game-task valley-buzzer)
+                      :task-name
+                      (new 'static
+                           'array
+                           text-id
+                           4
+                           (text-id valley-buzzer)
+                           (text-id valley-buzzer)
+                           (text-id valley-buzzer)
                            (text-id zero)))))))
 
 ;; goes down by 24 or 23 every time

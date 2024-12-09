@@ -108,7 +108,7 @@
   "tpages": [],
 
   "actors": [
-    // CELLS
+// Actors: CELLS
     {
       "trans": [877.53, 106.45, 682.17], // translation
       "etype": "turbineblade", // actor type
@@ -222,7 +222,7 @@
         "name":"energy-bay-tfl-lowreskui-001"
       }
     },
-    // ENEMIES
+// Actors: ENEMIES
     {
       "trans": [614.63, 44.11, 826.26], // translation
       "etype": "balloonlurker", // actor type
@@ -1118,7 +1118,7 @@
         "movie-pos": ["meters", 729.61, 18.32, 803.25]
       }
     },
-    // ORBS
+// Actors: ORBS
     {
       "trans": [605.27, 44.88, 566.65], // translation
       "etype": "money", // actor type
@@ -2498,7 +2498,7 @@
         "name": "energy-bay-money-136"
       }
     },
-    // CRATES
+// Actors: CRATES
     {
       "trans": [532.51, 35.39, 942.53], // translation
       "etype": "crate", // actor type
@@ -3393,8 +3393,7 @@
 
     // Racers moved to crescent-top.jsonc to avoid crashing without zoomers everywhere
 
-    // RACE RINGS
-
+// Actors: RACE RINGS
     {
       "trans": [591.65, 36.9, 611.79], // translation
       "etype": "tfl-race-ring", // actor type
@@ -3709,7 +3708,7 @@
       }
     },
 
-    // ECO
+// Actors: ECO
     {
       "trans": [611.67, 44.57, 557.13], // translation
       "etype": "eco", // actor type
@@ -3823,7 +3822,7 @@
         "respawn-timer": ["int32", 12]
       }
     },
-    // OTHER
+// Actors: OTHERS
     {
       "trans": [646.54, 48.05, 557.63], // translation
       "etype": "orb-cache-top", // actor type
@@ -3972,7 +3971,7 @@
         "vis-dist": ["meters", 200.0]
       }
     },
-    // HINTS
+// Actors: HINTS
     {
       "trans": [516.6, 47.98, 683.27], // translation
       "etype": "tfl-hint", // actor type                               // TEST ACTOR //
@@ -4033,7 +4032,7 @@
         "radius": ["meters", 10.0]
       }
     },
-    // PARTICLES
+// Actors: PARTICLES
     {
       "trans": [485.58, 55.73, 786.36], // translation
       "etype": "crescent-part", // actor type
@@ -4428,6 +4427,7 @@
     }
   ],
   "ambients": [
+// Actors: AMBIENTS
     {
       "trans": [516.6, 47.98, 683.27, 7.0],
       "bsphere": [516.6, 47.98, 683.27, 7.0],

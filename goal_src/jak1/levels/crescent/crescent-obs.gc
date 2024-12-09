@@ -757,11 +757,14 @@
 
 (deftype observatory-ring (process-drawable) ()
   (:states
-    observatory-ring-idle))
+   observatory-ring-idle))
 
-(defskelgroup *observatory-ring-sg* observatory-ring observatory-ring-lod0-jg observatory-ring-idle-ja
-              ((observatory-ring-lod0-mg (meters 9999999)))
-              :bounds (static-spherem 0 0 0 30))
+(defskelgroup *observatory-ring-sg*
+  observatory-ring
+  observatory-ring-lod0-jg
+  observatory-ring-idle-ja
+  ((observatory-ring-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 0 0 30))
 
 (defmethod init-from-entity! ((this observatory-ring) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
@@ -771,22 +774,25 @@
   (none))
 
 (defstate observatory-ring-idle (observatory-ring)
-  :code 
+  :code
     (behavior ()
-      (loop 
+      (loop
         (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees -60) (seconds-per-frame)))
         (suspend)))
   :post ja-post)
 
-(deftype observatory-lens (process-drawable) 
+(deftype observatory-lens (process-drawable)
   ((birth-time time-frame)
    (birth-pos  vector :inline))
   (:states
-    observatory-lens-idle))
+   observatory-lens-idle))
 
-(defskelgroup *observatory-lens-sg* observatory-lens observatory-lens-lod0-jg observatory-lens-idle-ja
-              ((observatory-lens-lod0-mg (meters 9999999)))
-              :bounds (static-spherem 0 0 0 6))
+(defskelgroup *observatory-lens-sg*
+  observatory-lens
+  observatory-lens-lod0-jg
+  observatory-lens-idle-ja
+  ((observatory-lens-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 0 0 6))
 
 (defmethod init-from-entity! ((this observatory-lens) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
@@ -797,9 +803,9 @@
   (none))
 
 (defstate observatory-lens-idle (observatory-lens)
-  :code 
+  :code
     (behavior ()
-      (loop 
+      (loop
         (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees 15) (seconds-per-frame)))
         (let ((bob-amount (meters 0.9))
               (bob-speed 1))
@@ -808,3 +814,172 @@
                    (-> self birth-pos y))))
         (suspend)))
   :post ja-post)
+
+(defskelgroup *sunkencam-sg*
+  sunkencam
+  sunkencam-lod0-jg
+  -1
+  ((sunkencam-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 10))
+
+(deftype crescentcam-valley-rock (pov-camera) ())
+
+(defstate pov-camera-playing (crescentcam-valley-rock)
+  :virtual #t
+  :code
+    (behavior ()
+      (ja-no-eval :group! sunkencam-helix-hit-switch-ja :num! (seek!) :frame-num 0.0)
+      (until (ja-done? 0)
+        (suspend)
+        (ja :num! (seek! max 0.6)))
+      (go-virtual pov-camera-done-playing)))
+
+(defskelgroup *valley-rock-sg*
+  valley-rock
+  valley-rock-lod0-jg
+  valley-rock-idle-ja
+  ((valley-rock-lod0-mg (meters 9999999)))
+  :bounds (static-spherem 0 5 0 200))
+
+(deftype valley-rock (process-drawable)
+  ((root collide-shape :override))
+  (:methods
+   (init-collision! (_type_) object))
+  (:states
+   valley-rock-idle
+   valley-rock-explode))
+
+(defmethod init-collision! ((this valley-rock))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (let ((prim-mesh (new 'process 'collide-shape-prim-group cshape (the uint 4) 0)))
+      (set! (-> prim-mesh prim-core collide-as) (collide-kind wall-object))
+      (set! (-> prim-mesh collide-with) (collide-kind target))
+      (set! (-> prim-mesh prim-core action) (collide-action solid))
+      (set! (-> prim-mesh prim-core offense) (collide-offense indestructible))
+      (set-vector! (-> prim-mesh local-sphere) 0.0 (meters 8) 0.0 (meters 16))
+      (set-root-prim! cshape prim-mesh)
+      (let ((sphere-01 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-01 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-01 collide-with) (collide-kind target))
+        (set! (-> sphere-01 prim-core action) (collide-action solid))
+        (set! (-> sphere-01 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-01 local-sphere) (meters -3.05) (meters 5.00) (meters -1.00) (meters 6.2))
+        (append-prim prim-mesh sphere-01))
+      (let ((sphere-02 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-02 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-02 collide-with) (collide-kind target))
+        (set! (-> sphere-02 prim-core action) (collide-action solid))
+        (set! (-> sphere-02 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-02 local-sphere) (meters 3.37) (meters 4.76) (meters 2.32) (meters 6.2))
+        (append-prim prim-mesh sphere-02))
+      (let ((sphere-03 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-03 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-03 collide-with) (collide-kind target))
+        (set! (-> sphere-03 prim-core action) (collide-action solid))
+        (set! (-> sphere-03 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-03 local-sphere) (meters 2.64) (meters 13.35) (meters 3.68) (meters 6.2))
+        (append-prim prim-mesh sphere-03))
+      (let ((sphere-04 (new 'process 'collide-shape-prim-sphere cshape (the uint 1))))
+        (set! (-> sphere-04 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> sphere-04 collide-with) (collide-kind target))
+        (set! (-> sphere-04 prim-core action) (collide-action solid))
+        (set! (-> sphere-04 prim-core offense) (collide-offense indestructible))
+        (set-vector! (-> sphere-04 local-sphere) (meters -4.70) (meters 14.00) (meters 0.60) (meters 6.2))
+        (append-prim prim-mesh sphere-04)))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape))
+  (none))
+
+(defmethod init-from-entity! ((this valley-rock) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *valley-rock-sg* '())
+  (logior! (-> this skel status) (janim-status inited))
+  (ja-post)
+  (if (task-closed? (game-task valley-end) (task-status need-hint)) (cleanup-for-death this) (go valley-rock-idle))
+  (none))
+
+(defstate valley-rock-idle (valley-rock)
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (case message
+        (('trigger) (go valley-rock-explode))))
+  :code
+    (behavior ()
+      (loop
+        (suspend)))
+  :post ja-post)
+
+(defstate valley-rock-explode (valley-rock)
+  :code
+    (behavior ()
+      (suspend-for (seconds 1.0))
+      (let ((cam (ppointer->handle (process-spawn crescentcam-valley-rock
+                                                  :init
+                                                  pov-camera-init-by-other
+                                                  (static-vectorm 229.47 212.19 594.07)
+                                                  *sunkencam-sg*
+                                                  "helix-hit-switch"
+                                                  5
+                                                  #f
+                                                  '()
+                                                  :to
+                                                  self))))
+        (suspend-for (seconds 1.2))
+        (ja :group! valley-rock-explode-ja :num! min)
+        (sound-play "explosion" :vol 150 :position (the-as symbol (ear-trans)))
+        (activate! *camera-smush-control* 1200.0 37 (seconds 1.3) 1.0 1.0)
+        (process-spawn part-tracker
+                       :init
+                       part-tracker-init
+                       (-> *part-group-id-table* 872)
+                       -1
+                       #f
+                       #f
+                       #f
+                       (-> self root trans)
+                       :to
+                       *entity-pool*)
+        (until (ja-done? 0)
+          (ja :num! (seek! max))
+          ;; (format *stdcon* "~%~%~%~%~%in explode anim~%")
+          (suspend))
+        (while (handle->process cam)
+          (suspend)))
+      (cleanup-for-death self))
+  :post ja-post)
+
+(deftype valley-rock-button (basebutton) ())
+
+(defstate basebutton-up-idle (valley-rock-button)
+  :virtual #t
+  :event
+    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+      (case message
+        (('attack)
+         (case (-> block param 1)
+           (('flop)
+            ;; TFL note: remove this if we can get it to work in task-control.gc
+            (if (and (not (task-closed? (game-task valley-end) (task-status need-hint))) (>= (tfl-collected-cell-count) 20))
+              (close-specific-task! (game-task valley-end) (task-status need-hint)))
+            (when (task-closed? (game-task valley-end) (task-status need-hint))
+              (basebutton-method-29 self (-> self event-going-down) (-> self notify-actor))
+              (sound-play "silo-button")
+              (go-virtual basebutton-going-down)))))
+        (('trigger) (sound-play "silo-button") (go-virtual basebutton-going-down))
+        (('move-to) (move-to-vec-or-quat! self (the-as vector (-> block param 0)) (the-as quaternion (-> block param 1))))))
+  :enter
+    (behavior ()
+      (press! self #f))
+  :trans
+    (behavior ()
+      (if (-> self move-to?) (rider-trans)))
+  :code anim-loop
+  :post
+    (behavior ()
+      (when (-> self move-to?)
+        (set! (-> self move-to?) #f)
+        (set! (-> self root trans quad) (-> self move-to-pos quad))
+        (quaternion-copy! (-> self root quat) (-> self move-to-quat))
+        (rider-post))))

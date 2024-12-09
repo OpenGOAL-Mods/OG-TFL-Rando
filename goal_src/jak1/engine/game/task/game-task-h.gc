@@ -149,6 +149,7 @@
   (energy-bay-buzzer 134)
   (crystalc-hidden 135)
   (crystalc-gondola 136)
+  ;; OPEN MINES
   (open-mines-drop-plat 137)
   (open-mines-kegs 138)
   (open-mines-minecarts 139)
@@ -157,4 +158,10 @@
   (open-mines-hole 142)
   (open-mines-buzzer 143)
   (tfl-lowreskui 144)
+  ;; TAIGA VALLEY
+  (valley-end 145)
+  (valley-hidden 146)
+  (valley-kill 147)
+  (valley-boss 148)
+  (valley-buzzer 149)
   (max))

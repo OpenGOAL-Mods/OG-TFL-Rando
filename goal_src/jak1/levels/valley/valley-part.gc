@@ -1,0 +1,84 @@
+;;-*-Lisp-*-
+(in-package goal)
+(deftype valley-part (part-spawner) ())
+
+;; group-id range for taiga valley : 1050-1099
+;; part-id range for taiga valley : 4000-4199
+
+(defpartgroup group-rolling-rock-explosion
+  :id 1050
+  :duration (seconds 1)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 8)
+  :parts
+  ((sp-item 4000 :period (seconds 5) :length (seconds 0.017))
+   (sp-item 4001 :period (seconds 5) :length (seconds 0.017))
+   (sp-item 4002 :period (seconds 5) :length (seconds 0.05))))
+
+(defpart 4001
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x12 :page #x2))
+   (:num 3.0 2.0)
+   (:y (meters 3) (meters 2))
+   (:scale-x (meters 15) (meters 5))
+   (:scale-y :copy scale-x)
+   (:r 112.0)
+   (:g 64.0)
+   (:b 72.0)
+   (:a 94.0)
+   (:fade-a -2.1333334)
+   (:timer (seconds 0.4))
+   (:flags (bit2 bit3))))
+
+(defpart 4000
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x1d :page #x2))
+   (:num 16.0 8.0)
+   (:x (meters -2) (meters 4))
+   (:y (meters 2) (meters 3))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 0.2) (meters 0.8))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 32.0 8.0)
+   (:g 48.0 8.0)
+   (:b 72.0 24.0)
+   (:a 128.0)
+   (:vel-y (meters 0.06) (meters 0.08))
+   (:rotvel-z (degrees -1.2) (degrees 2.4))
+   (:accel-y (meters -0.0026666666))
+   (:friction 0.99)
+   (:timer (seconds 1.5))
+   (:flags (bit2))
+   (:userdata 0.0)
+   (:func 'check-water-level-drop)
+   (:conerot-x (degrees 20) (degrees 50.000004))
+   (:conerot-y (degrees 0) (degrees 360))))
+
+(defpart 4002
+  :init-specs
+  ((:texture (new 'static 'texture-id :page #x2))
+   (:num 15.0)
+   (:x (meters -1.5) (meters 3))
+   (:y (meters 2) (meters 3))
+   (:z (meters -1.5) (meters 3))
+   (:scale-x (meters 1.0) (meters 3.5))
+   (:scale-y :copy scale-x)
+   (:r 64.0 24.0)
+   (:g 64.0 40.0)
+   (:b 64.0 24.0)
+   (:a 16.0 24.0)
+   (:vel-y (meters 0.02) (meters 0.025))
+   (:scalevel-x (meters 0.015))
+   (:scalevel-y (meters 0.004))
+   (:accel-y (meters -0.0003))
+   (:friction 0.95)
+   (:timer (seconds 3.0))
+   (:flags (bit2))
+   (:next-time (seconds 0.2) (seconds 1.5))
+   (:next-launcher 4003)
+   (:conerot-x (degrees 70) (degrees 20))
+   (:conerot-y (degrees 0) (degrees 360))))
+
+(defpart 4003
+  :init-specs ((:fade-a -0.22)))

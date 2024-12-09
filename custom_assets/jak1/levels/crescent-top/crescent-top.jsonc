@@ -42,12 +42,13 @@
     "mayorgears-ag",
     "babak-ag",
     "lurkerpuppy-ag",
-    "junglesnake-ag"
+    "junglesnake-ag",
+    "generic-button-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens"],
+  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens", "valley-rock"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -103,7 +104,7 @@
   "tpages": [],
 
   "actors": [
-    // ENEMIES
+// Actors: ENEMIES
     {
       "trans": [18.24, 226.05, 403.24],
       "etype": "babak",
@@ -655,7 +656,7 @@
         "scale":["float", 0.9]
       }
     },
-    // CELLS
+// Actors: CELLS
     {
       "trans": [-129.08, 257.71, 487.94], // translation
       "etype": "fuel-cell", // actor type
@@ -715,7 +716,28 @@
         "name":"crescent-tfl-lowreskui-001"
       }
     },
-    // SCOUT FLIES
+    {
+      "trans": [221.62, 200.22, 616.81],
+      "etype": "valley-rock",
+      "game_task": "(game-task valley-end)",
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [221.62, 200.22, 616.81, 10],
+      "lump": {
+        "name": "crescent-valley-rock-01"
+      }
+    },
+    {
+      "trans": [210.20, 211.42, 582.60],
+      "etype": "valley-rock-button",
+      "game_task": "(game-task valley-end)",
+      "quat" : [0.075, 0.000, 0.029, 0.997],
+      "bsphere": [210.20, 211.42, 582.60, 10],
+      "lump": {
+        "name": "crescent-valley-rock-button-01",
+        "alt-actor": "crescent-valley-rock-01"
+      }
+    },
+// Actors: SCOUT FLIES
     {
       "trans": [-204.09, 247.81, 475.45], // translation
       "etype": "crate", // actor type
@@ -809,7 +831,7 @@
         "light-index": ["int32", 1]
       }
     },
-    // ORBS
+// Actors: ORBS
     {
       "trans": [-227.8, 247.08, 398.28], // translation
       "etype": "money", // actor type
@@ -2238,7 +2260,7 @@
         "name": "crescent-money-140"
       }
     },
-    // CRATES
+// Actors: CRATES
     {
       "trans": [-142.1, 240.08, 478.87], // translation
       "etype": "crate", // actor type
@@ -2892,7 +2914,7 @@
         "crate-type": "'darkeco"
       }
     },
-    // PLATFORMS AND MOVEMENT
+// Actors: PLATFORMS AND MOVEMENT
     {
       "trans": [-262.57, 205.43, 370.94], // translation
       "etype": "launcher", // actor type
@@ -3573,7 +3595,7 @@
         "scale": ["float", 0.75]
       }
     },
-    // RACE RINGS
+// Actors: RACE RINGS
     {
       "trans": [-118.49, 239.84, 362.23], // translation
       "etype": "tfl-race-ring",  // actor type
@@ -3979,7 +4001,7 @@
         "options": ["int32", 1024] // big hitbox
       }
     },
-    // RACERS
+// Actors: RACERS
     {
       "trans": [-191.57, 227.19, 402.92], // translation
       "etype": "racer", // actor type
@@ -4028,7 +4050,7 @@
         "rotoffset": ["degrees", 0.0]
       }
     },
-    // energy-bay racers to avoid the crash
+    // energy-bay racers to avoid the crash:
     {
       "trans": [603.44, 3.02, 670.49], // translation
       "etype": "racer", // actor type
@@ -4065,7 +4087,19 @@
         "rotoffset": ["meters", -1.5111]
       }
     },
-    // Particles
+    // valley racers to avoid the crash:
+    {
+      "trans": [532.45, 67.57, 1955.24],
+      "etype": "racer",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [532.45, 67.57, 1955.24, 10],
+      "lump": {
+        "name": "valley-racer-01",
+        "index": ["int32", 4]
+      }
+    },
+// Actors: PARTICLES
     {
       "trans": [-221.07, 229.85, 233.35], // translation
       "etype": "crescent-part", // actor type
@@ -5731,7 +5765,7 @@
       }
     },
 
-    // OTHERS
+// Actors: OTHERS
     {
       "trans": [22.51, 174.2, 436.62], // translation
       "etype": "villagec-lava", // actor type
@@ -6074,7 +6108,7 @@
         ]
       }
     },
-    // eco
+// Actors: ECO
     {
       "trans": [-256.33, 201.41, 294.52], // translation
       "etype": "eco", // actor type
@@ -6340,7 +6374,7 @@
         "tilt-adjust":["degrees", 3]
       }
     },
-    // Hints
+// Actors: HINTS
     {
       "trans": [-278.76, 207.28, 285.73], // translation
       "etype": "tfl-hint", // actor type
@@ -6511,6 +6545,7 @@
     }
   ],
   "ambients": [
+// Actors: AMBIENTS
     {
       "trans": [-207.03, 250.42, 414.21, 10.0],
       "bsphere": [-207.03, 250.42, 414.21, 20.0],

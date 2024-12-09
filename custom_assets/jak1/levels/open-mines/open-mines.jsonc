@@ -136,7 +136,7 @@
   // adding ambient sounds, level name hints, etc.
 
   "actors": [
-    // ENEMIES
+// Actors: ENEMIES
     {
       "trans": [-430.79, 102.75, 1035.6],
       "etype": "mines-battlecontroller",
@@ -893,7 +893,7 @@
         "stop-light-control": ["symbol", "#t"]
       }
     },
-    // CELLS
+// Actors: CELLS
     {
       "trans": [-424.58, 139.16, 807.61], // translation
       "etype": "fuel-cell", // actor type
@@ -976,7 +976,7 @@
         "next-actor": "open-mines-mines-boulder-01"
       }
     },
-    // CRATES
+// Actors: CRATES
     {
       "trans": [-493.93, 165.5, 850.43], // translation
       "etype": "crate", // actor type
@@ -1458,7 +1458,7 @@
         "name": "open-mines-crate-darkeco-18"
       }
     },
-    // MONEY / ORBS
+// Actors: ORBS
     {
       "trans": [-449.85, 177.51, 757.24], // translation
       "etype": "money", // actor type
@@ -2844,7 +2844,7 @@
         "name": "open-mines-money-138"
       }
     },
-    // MOVEMENT / PLATS
+// Actors: PLATFORMS AND MOVEMENT
     {
       "trans": [-424.64, 139.66, 812.34], // translation
       "etype": "plat-eco", // actor type
@@ -3566,7 +3566,7 @@
         "loop-start": ["float", 0.05]
       }
     },
-    // ECO
+// Actors: ECO
     {
       "trans": [-496.96, 153.03, 915.51], // translation
       "etype": "orb-cache-top", // actor type
@@ -3657,6 +3657,7 @@
         "respawn-timer": ["int32", 13]
       }
     },
+// Actors: AMBUSH
     {
       "trans": [-430.06, 105.06, 1046.6], // translation
       "etype": "pickup-spawner", // actor type
@@ -4145,7 +4146,7 @@
         "prev-actor": "open-mines-silostep-02"
       }
     },
-    // LIQUID
+// Actors: LIQUID
     {
       "trans": [-474.61, 168.2, 775.48],
       "etype": "dark-eco-pool",
@@ -4695,7 +4696,7 @@
         "scale": ["float", 0.9]
       }
     },
-    // OTHERS
+// Actors: DANGER
     {
       "trans": [-351.63, 197.96, 741.04], // translation
       "etype": "keg-conveyor", // actor type
@@ -5146,6 +5147,7 @@
         ]
       }
     },
+// Actors: OTHERS
     {
       "trans": [-423.68, 137.35, 1212.2], // translation
       "etype": "mines-boulder", // actor type
@@ -5201,6 +5203,7 @@
         "light-index": ["int32", 3]
       }
     },
+// Actors: VISUALS
     {
       "trans": [-554.94, 146.06, 1007.3], // translation
       "etype": "mayorgears", // actor type
@@ -5345,7 +5348,7 @@
         "rotation-speed": ["float", 0.6]
       }
     },
-    /// PARTICLES
+// Actors: PARTICLES
     {
       "trans": [-424.98, 104.48, 1019.4], // translation
       "etype": "mines-part", // actor type
@@ -5780,6 +5783,7 @@
 
   "ambients": [
     {
+// Actors: AMBIENTS
       "trans": [-399.08, 180.9, 743.82, 25.0],
       "bsphere": [-399.08, 180.9, 743.82, 25.0],
       "lump": {

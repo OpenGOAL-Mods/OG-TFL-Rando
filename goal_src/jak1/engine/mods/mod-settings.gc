@@ -35,9 +35,9 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 ;; Define Settings to use in mods
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define *debug-continue-point* "crystal-cave-river")
+(define *debug-continue-point* "valley-start")
 
-;crescent-top-near-cave crystal-cave-void-entry energy-bay-start open-mines-start
+;crescent-top-near-cave crystal-cave-void-entry energy-bay-start open-mines-start valley-start
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Define Custom Settings Variables to use in mods
@@ -61,7 +61,7 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 ;; TFL notes: turn off vibration by default
 (false! (-> *setting-control* default vibration))
 
-;; TFL notes: TO DELETE FOR RELEASE turn off RPC
+;; TODO: TFL notes: DELETE FOR RELEASE turn off RPC
 (false! (-> *pc-settings* discord-rpc?))
 
 ;; do NOT change %MODVERSIONPLACEHOLDER% below, otherwise the mod-bundling-tools

@@ -1676,6 +1676,10 @@
 (build-custom-level "open-mines")
 (custom-level-cgo "OPM.DGO" "open-mines/openmines.gd")
 
+;; Taiga Valley
+(build-custom-level "valley")
+(custom-level-cgo "VAL.DGO" "valley/valley.gd")
+
 ;; generate the art group for a custom actor.
 ;; requires a .glb model file in custom_assets/jak1/models/custom_levels
 ;; to also generate a collide-mesh, add :gen-mesh #t
@@ -1689,6 +1693,8 @@
 (build-actor "tfl-lowreskui")
 (build-actor "observatory-ring")
 (build-actor "observatory-lens")
+(build-actor "valley-rock")
+(build-actor "rolling-rock")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -2172,6 +2178,7 @@
  "tfl-hint.gc"
  "tfl-cam-control.gc"
  "tfl-lowreskui.gc"
+ "tfl-util.gc"
  )
 
 (goal-src-sequence
@@ -2200,6 +2207,13 @@
  :deps ("$OUT/obj/ticky.o")
  "mines-obs.gc"
  "mines-part.gc"
+ )
+
+(goal-src-sequence
+ "levels/valley/"
+ :deps ("$OUT/obj/ticky.o")
+ "valley-obs.gc"
+ "valley-part.gc"
  )
 
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-drawable")

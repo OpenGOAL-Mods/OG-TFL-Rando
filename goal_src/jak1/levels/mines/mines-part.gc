@@ -2,8 +2,8 @@
 (in-package goal)
 (deftype mines-part (part-spawner) ())
 
-;; group-id range for energy bay : 1000-1049
-;; part-id range for energy bay : 3800-3999
+;; group-id range for open mines : 1000-1049
+;; part-id range for open mines : 3800-3999
 
 ;; custom green race ring color
 

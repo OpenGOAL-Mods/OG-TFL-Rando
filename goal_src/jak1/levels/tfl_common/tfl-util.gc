@@ -1,0 +1,286 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+#| @file General utility functions and overrides used in TFL. |#
+
+(defconstant TFL_LEVELS '(crystal-ca crescent-t energy-bay open-mines valley))
+
+(defconstant TFL_NO_CELL_TASKS '(crystalc-gondola tfl-lowreskui))
+
+(deftype tfl-counts (structure)
+  ((cell   int32)
+   (money  int32)
+   (buzzer int32)))
+
+(define *tfl-counts* (new 'static 'tfl-counts))
+
+;; count tfl buzzers and money
+(dotimes (i (length TFL_LEVELS))
+  (let* ((lvl (the level-load-info (-> (the symbol (ref TFL_LEVELS i)) value))))
+    (+! (-> *tfl-counts* money) (-> lvl custom-orb-count))
+    (+! (-> *tfl-counts* buzzer) (-> lvl custom-buzzer-count))))
+
+;; count tfl cells
+(let ((tfl-task-start (game-task crystalc-middle))
+      (tfl-task-end (game-task max))
+      (cell? (lambda ((task game-task)) (not (nmember (string->symbol (game-task->string task)) TFL_NO_CELL_TASKS)))))
+  (dotimes (i (- tfl-task-end tfl-task-start))
+    (let ((task (+ (game-task crystalc-middle) (the game-task i)))) (when (cell? task) (1+! (-> *tfl-counts* cell))))))
+
+(defun tfl-collected-cell-count ()
+  (let ((tfl-task-start (game-task crystalc-middle))
+        (tfl-task-end (game-task max))
+        (cell? (lambda ((task game-task)) (not (nmember (string->symbol (game-task->string task)) TFL_NO_CELL_TASKS))))
+        (cnt 0))
+    (dotimes (i (- tfl-task-end tfl-task-start))
+      (let ((task (+ (game-task crystalc-middle) (the game-task i))))
+        (when (and (cell? task) (task-complete? *game-info* task))
+          (1+! cnt))))
+    cnt))
+
+(defun tfl-collected-money-count ()
+  (let ((cnt 0))
+    (dotimes (i (length TFL_LEVELS))
+      (let* ((lvl (the level-load-info (-> (the symbol (ref TFL_LEVELS i)) value)))
+             (idx (-> *level-task-data-remap* (1- (-> lvl index)))))
+        (+! cnt (-> *game-info* money-per-level idx))))
+    cnt))
+
+(defun tfl-collected-buzzer-count ()
+  (let ((cnt 0))
+    (dotimes (i (length TFL_LEVELS))
+      (let* ((lvl (the level-load-info (-> (the symbol (ref TFL_LEVELS i)) value)))
+             (idx (-> *level-task-data-remap* (1- (-> lvl index)))))
+        (+! cnt
+            (buzzer-count *game-info* (-> *level-task-data* idx task-info (-> *level-task-data* idx buzzer-task-index) task-id)))))
+    cnt))
+
+(defun in-tfl-level? ()
+  (aif (level-get-target-inside *level*) (nmember (-> it name) TFL_LEVELS)))
+
+;; overwrite draw-hud to display TFL cell count when inside a TFL level
+(defmethod draw-hud ((this hud-fuel-cell))
+  (call-parent-method this)
+  (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug))
+    (let* ((string-x (+ (-> this text-x) (* (-> this x-sgn) (-> this offset))))
+           (string-y (/ (* (+ (-> this text-y) (* (-> this y-sgn) (-> this offset)) (-> this y-offset))
+                           (the int (-> *video-parms* relative-y-scale)))
+                        2)))
+      (if (in-tfl-level?)
+        (case *hud-collectable-view*
+          (((hud-collectable-view game-totals))
+           ;; show cells collected/total across all tfl levels
+           (draw-string-xy-scaled (string-format "~D~%/~D" (tfl-collected-cell-count) (-> *tfl-counts* cell))
+                                  buf
+                                  string-x
+                                  (- string-y 5)
+                                  (font-color yellow)
+                                  (font-flags shadow kerning large)
+                                  0.8))
+          (((hud-collectable-view level-totals))
+           (let ((lvl-idx (-> *level-task-data-remap* (1- (-> *target* current-level info index))))
+                 (completed-task-count 0))
+             ;; determine number of cells collected in this level
+             (dotimes (task-idx (-> *level-task-data* lvl-idx nb-of-tasks))
+               (if (= (get-task-status (-> *level-task-data* lvl-idx task-info task-idx task-id)) (task-status invalid))
+                 (+! completed-task-count 1)))
+             ;; show cells/total collected this level
+             (draw-string-xy-scaled (string-format "~D~%/~D" completed-task-count (-> *level-task-data* lvl-idx nb-of-tasks))
+                                    buf
+                                    string-x
+                                    (- string-y 5)
+                                    (font-color yellow)
+                                    (font-flags shadow kerning large)
+                                    0.8)))
+          (((hud-collectable-view original))
+           ;; show original (cells collected across all tfl levels)
+           (draw-string-xy (string-format "~D" (tfl-collected-cell-count))
+                           buf
+                           string-x
+                           string-y
+                           (font-color yellow)
+                           (font-flags shadow kerning large))))
+        (case *hud-collectable-view*
+          (((hud-collectable-view game-totals))
+           ;; show cells collected/total across entire game
+           (draw-string-xy-scaled (string-format "~D~%/~D"
+                                                 (the int (-> *game-info* fuel))
+                                                 101 ;;(-> (the progress (-> *progress-process* 0)) total-nb-of-power-cells)
+                                                 )
+                                  buf
+                                  string-x
+                                  (- string-y 5)
+                                  (font-color yellow)
+                                  (font-flags shadow kerning large)
+                                  0.8))
+          (((hud-collectable-view level-totals))
+           (let ((lvl-idx (-> *level-task-data-remap* (1- (-> *target* current-level info index))))
+                 (completed-task-count 0))
+             ;; determine number of cells collected in this level
+             (dotimes (task-idx (-> *level-task-data* lvl-idx nb-of-tasks))
+               (if (= (get-task-status (-> *level-task-data* lvl-idx task-info task-idx task-id)) (task-status invalid))
+                 (+! completed-task-count 1)))
+             ;; show cells/total collected this level
+             (draw-string-xy-scaled (string-format "~D~%/~D" completed-task-count (-> *level-task-data* lvl-idx nb-of-tasks))
+                                    buf
+                                    string-x
+                                    (- string-y 5)
+                                    (font-color yellow)
+                                    (font-flags shadow kerning large)
+                                    0.8)))
+          (((hud-collectable-view original))
+           ;; show original (cells collected across entire game)
+           (draw-string-xy (string-format "~D" (-> this value))
+                           buf
+                           string-x
+                           string-y
+                           (font-color yellow)
+                           (font-flags shadow kerning large)))))))
+  (none))
+
+;; overwrite draw-hud to display TFL money count when inside a TFL level
+(defmethod draw-hud ((this hud-money))
+  (call-parent-method this)
+  (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug))
+    (let* ((string-x (+ (-> this text-x) (* (-> this x-sgn) (-> this offset))))
+           (string-y (/ (* (+ (-> this text-y) (* (-> this y-sgn) (-> this offset)) (-> this y-offset))
+                           (the int (-> *video-parms* relative-y-scale)))
+                        2)))
+      (if (in-tfl-level?)
+        (case *hud-collectable-view*
+          (((hud-collectable-view game-totals))
+           ;; show orbs collected/total across entire game
+           (draw-string-xy-scaled (string-format "~D~%/~D" (tfl-collected-money-count) (-> *tfl-counts* money))
+                                  buf
+                                  string-x
+                                  (- string-y 5)
+                                  (font-color yellow)
+                                  (font-flags shadow kerning large)
+                                  0.8))
+          (((hud-collectable-view level-totals))
+           (let ((lvl-idx (-> *level-task-data-remap* (1- (-> *target* current-level info index)))))
+             ;; show orbs collected/total this level
+             (draw-string-xy-scaled (string-format "~D~%/~D" (-> *game-info* money-per-level lvl-idx) (-> *game-counts* data lvl-idx money-count))
+                                    buf
+                                    string-x
+                                    (- string-y 5)
+                                    (font-color yellow)
+                                    (font-flags shadow kerning large)
+                                    0.8)))
+          (((hud-collectable-view original))
+           ;; show original (total collected, unspent orbs)
+           (draw-string-xy (string-format "~D" (-> this value))
+                           buf
+                           string-x
+                           string-y
+                           (font-color yellow)
+                           (font-flags shadow kerning large))))
+        (case *hud-collectable-view*
+          (((hud-collectable-view game-totals))
+           ;; show orbs collected/total across entire game
+           (draw-string-xy-scaled (string-format "~D~%/~D"
+                                                 (the int (-> *game-info* money-total))
+                                                 2000 ;;(-> (the progress (-> *progress-process* 0)) total-nb-of-orbs)
+                                                 )
+                                  buf
+                                  string-x
+                                  (- string-y 5)
+                                  (font-color yellow)
+                                  (font-flags shadow kerning large)
+                                  0.8))
+          (((hud-collectable-view level-totals))
+           (let ((lvl-idx (-> *level-task-data-remap* (1- (-> *target* current-level info index)))))
+             ;; show orbs collected/total this level
+             (draw-string-xy-scaled (string-format "~D~%/~D" (-> *game-info* money-per-level lvl-idx) (-> *game-counts* data lvl-idx money-count))
+                                    buf
+                                    string-x
+                                    (- string-y 5)
+                                    (font-color yellow)
+                                    (font-flags shadow kerning large)
+                                    0.8)))
+          (((hud-collectable-view original))
+           ;; show original (total collected, unspent orbs)
+           (draw-string-xy (string-format "~D" (-> this value))
+                           buf
+                           string-x
+                           string-y
+                           (font-color yellow)
+                           (font-flags shadow kerning large)))))))
+  (none))
+
+;; overwrite draw-hud to display TFL buzzer count when inside a TFL level
+(defmethod draw-hud ((this hud-buzzers))
+  (call-parent-method this)
+  (set! (-> this text-y) (+ (if (nonzero? (-> this next-y-offset)) (-> this text-y-offset) 0) 362))
+  (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug))
+    (let* ((string-x (+ (-> this text-x) (* (-> this x-sgn) (-> this offset))))
+           (string-y (/ (* (+ (-> this text-y) (* (-> this y-sgn) (-> this offset)) (-> this y-offset))
+                           (the int (-> *video-parms* relative-y-scale)))
+                        2)))
+      (if (in-tfl-level?)
+        (case *hud-collectable-view*
+          (((hud-collectable-view game-totals))
+           ;; show flies collected/total across entire game
+           (draw-string-xy-scaled (string-format " ~D~% /~D" (tfl-collected-buzzer-count) (-> *tfl-counts* buzzer))
+                                  buf
+                                  string-x
+                                  (- string-y 5)
+                                  (font-color yellow)
+                                  (font-flags shadow kerning large)
+                                  0.8))
+          (((hud-collectable-view level-totals))
+           (let ((lvl-idx (-> *level-task-data-remap* (+ (-> *target* current-level info index) -1))))
+             ;; show flies collected/total this level
+             (draw-string-xy-scaled (string-format " ~D~% /~D"
+                                                   (buzzer-count *game-info*
+                                                                 (-> *level-task-data* lvl-idx task-info (-> *level-task-data* lvl-idx buzzer-task-index) task-id))
+                                                   (-> *game-counts* data lvl-idx buzzer-count))
+                                    buf
+                                    string-x
+                                    (- string-y 5)
+                                    (font-color yellow)
+                                    (font-flags shadow kerning large)
+                                    0.8)))
+          (((hud-collectable-view original))
+           ;; show original (flies collected this level)
+           (draw-string-xy (string-format " ~D" (-> this value))
+                           buf
+                           string-x
+                           string-y
+                           (font-color yellow)
+                           (font-flags shadow kerning large))))
+        (case *hud-collectable-view*
+          (((hud-collectable-view game-totals))
+           ;; show flies collected/total across entire game
+           (draw-string-xy-scaled (string-format " ~D~% /~D"
+                                                 (the int (-> *game-info* buzzer-total))
+                                                 112 ;; (-> (the progress (-> *progress-process* 0)) total-nb-of-buzzers)
+                                                 )
+                                  buf
+                                  string-x
+                                  (- string-y 5)
+                                  (font-color yellow)
+                                  (font-flags shadow kerning large)
+                                  0.8))
+          (((hud-collectable-view level-totals))
+           (let ((lvl-idx (-> *level-task-data-remap* (+ (-> *target* current-level info index) -1))))
+             ;; show flies collected/total this level
+             (draw-string-xy-scaled (string-format " ~D~% /~D"
+                                                   (buzzer-count *game-info*
+                                                                 (-> *level-task-data* lvl-idx task-info (-> *level-task-data* lvl-idx buzzer-task-index) task-id))
+                                                   (-> *game-counts* data lvl-idx buzzer-count))
+                                    buf
+                                    string-x
+                                    (- string-y 5)
+                                    (font-color yellow)
+                                    (font-flags shadow kerning large)
+                                    0.8)))
+          (((hud-collectable-view original))
+           ;; show original (flies collected this level)
+           (draw-string-xy (string-format " ~D" (-> this value))
+                           buf
+                           string-x
+                           string-y
+                           (font-color yellow)
+                           (font-flags shadow kerning large)))))))
+  (none))

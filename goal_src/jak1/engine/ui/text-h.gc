@@ -695,6 +695,12 @@
   (cheat-super-eco-green #xa3c)
   (cheat-super-eco-yellow #xa3d)
   (cheat-tfl-find-lowreskuis #xa3e)
+  (valley-level #xa40)
+  (valley-end #xa41)
+  (valley-hidden #xa42)
+  (valley-kill #xa43)
+  (valley-boss #xa44)
+  (valley-buzzer #xa45)
   ;; TFL Hint IDs so they only play once. Use up from #xb00
   (crystalc-tfl-hint-01-daxPortal #xb00)
   (crystalc-tfl-hint-02-daxShip #xb01)

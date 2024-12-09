@@ -1650,10 +1650,10 @@
                                         (display crystal-ca #f))
                   (static-load-boundary :flags
                                         ()
-                                        :top (meters 302.75)
-                                        :bot (meters 126.82)
+                                        :top (meters 303.28)
+                                        :bot (meters 103.59)
                                         :points
-                                        ((meters 386.22) (meters 384.52) (meters 255.35) (meters 576.76))
+                                        ((meters 388.17) (meters 384.52) (meters 262.82) (meters 563.96))
                                         :fwd (display energy-bay display-no-wait)
                                         :bwd
                                         (display energy-bay #f))
@@ -2029,6 +2029,39 @@
                                         (checkpt "open-mines-minecart3" #f)
                                         :bwd
                                         (checkpt "open-mines-hole" #f))
+                  ;; TAIGA VALLEY LOAD BOUNDARIES:
+                  (static-load-boundary :flags
+                                        ()
+                                        :top (meters 360.66)
+                                        :bot (meters 187.27)
+                                        :points
+                                        ((meters 126.03) (meters 525.26) (meters 220.34) (meters 535.63) (meters 294.47) (meters 609.89))
+                                        :fwd (vis cst #f)
+                                        :bwd (load crescent-t valley))
+                  (static-load-boundary :flags
+                                        ()
+                                        :top (meters 360.66)
+                                        :bot (meters 187.27)
+                                        :points
+                                        ((meters 124.86) (meters 543.87) (meters 219.17) (meters 554.24) (meters 293.3) (meters 628.5))
+                                        ;; :fwd (load test-zone test-zone3)
+                                        :bwd (display valley display-no-wait))
+                  (static-load-boundary :flags
+                                        ()
+                                        :top (meters 262.34)
+                                        :bot (meters 190.79)
+                                        :points
+                                        ((meters 196.51) (meters 585.08) (meters 266.02) (meters 620.0))
+                                        ;; :fwd (vis cst #f)
+                                        :bwd (vis val #f))
+                  (static-load-boundary :flags
+                                        (player)
+                                        :top (meters 94.11)
+                                        :bot (meters 22.56)
+                                        :points
+                                        ((meters 403.74) (meters 1987.2) (meters 561.1) (meters 1953.6))
+                                        :fwd (checkpt "valley-after-rocks" #f)
+                                        :bwd (checkpt "valley-after-rocks" #f))
                   ;; CRASH TEST TEST-ZONE3
                   (static-load-boundary :flags
                                         ()

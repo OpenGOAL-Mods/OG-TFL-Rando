@@ -41,6 +41,8 @@
   "babak-ag.go"
   "lurkerpuppy-ag.go"
   "junglesnake-ag.go"
+  "valley-rock-ag.go"
+  "generic-button-ag.go"
   "crescent-top.go"
   )
  )
