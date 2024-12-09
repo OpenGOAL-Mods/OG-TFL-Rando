@@ -4050,7 +4050,7 @@
         "rotoffset": ["degrees", 0.0]
       }
     },
-    // energy-bay racers to avoid the crash
+    // energy-bay racers to avoid the crash:
     {
       "trans": [603.44, 3.02, 670.49], // translation
       "etype": "racer", // actor type
@@ -4085,6 +4085,18 @@
         "name": "energy-bay-racer-03",
         "index": ["int32", 2],
         "rotoffset": ["meters", -1.5111]
+      }
+    },
+    // valley racers to avoid the crash:
+    {
+      "trans": [532.45, 67.57, 1955.24],
+      "etype": "racer",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [532.45, 67.57, 1955.24, 10],
+      "lump": {
+        "name": "valley-racer-01",
+        "index": ["int32", 4]
       }
     },
 // Actors: PARTICLES

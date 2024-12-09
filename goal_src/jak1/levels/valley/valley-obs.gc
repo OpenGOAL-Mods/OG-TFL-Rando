@@ -203,8 +203,8 @@
     (vector-copy! (-> this root trans) new-pos)))
 
 (defmethod rotate-rock ((this rolling-rock))
-  (let* ((vel-absolute (vector-vector-distance (-> this root trans) (-> this old-trans 2)))
-        (rotate (/ (/ (- (* vel-absolute 0.5)) PI) (-> this root scale y))))
+  (let* ((vel-absolute (vector-vector-xz-distance (-> this root trans) (-> this old-trans 2)))
+        (rotate (/ (/ (- (* vel-absolute 0.6)) PI) (-> this root scale y))))
     ;; (format *stdcon* "vel-absolute: ~M~%" (/ vel-absolute (seconds-per-frame)))
     (seek! (-> this rotate-smooth) rotate (* (seconds-per-frame) (degrees 5.0)))
     (quaternion-rotate-local-x! (-> this rotate-joint quat) 
@@ -323,6 +323,15 @@
   :code
     (behavior ()
       (clear-collide-with-as (-> self root))
+      (let ((jak-distance (vector-vector-distance (-> self root trans) (target-pos 0))))
+        (when (< jak-distance (meters 25))
+          (let((smush-strenght (lerp-scale 50.0 600.0 jak-distance (meters 25) (meters 0)))
+               (smush-lenght (lerp-scale 100.0 250.0 jak-distance (meters 25) (meters 0)))
+               (buzz-strenght (lerp-scale 0.0 150.0 jak-distance (meters 25) (meters 0))))
+            ;; (format 0 "jak-distance: ~M smush-strenght: ~F smush-lenght ~F ~%" jak-distance smush-strenght smush-lenght)
+            (activate! *camera-smush-control* (* smush-strenght (-> self root scale x)) 37 (the int smush-lenght) 1.0 0.99)
+            (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 (the int buzz-strenght) (the int smush-lenght))
+            (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int buzz-strenght) (the int smush-lenght)))))
       (sound-play "explosion" :vol 60)
       (process-spawn part-tracker
                        :init

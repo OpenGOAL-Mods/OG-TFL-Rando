@@ -1747,7 +1747,7 @@
                            (text-id open-mines-buzzer)
                            (text-id open-mines-buzzer)
                            (text-id zero)))))
-       ;; THUNDRA VALLEY LEVEL TASK INFO
+       ;; TAIGA VALLEY LEVEL TASK INFO
        (new 'static
             'level-tasks-info
             :level-name-id (text-id valley-level)

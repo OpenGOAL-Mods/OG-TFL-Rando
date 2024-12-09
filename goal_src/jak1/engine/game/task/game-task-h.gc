@@ -158,7 +158,7 @@
   (open-mines-hole 142)
   (open-mines-buzzer 143)
   (tfl-lowreskui 144)
-  ;; THUNDRA VALLEY
+  ;; TAIGA VALLEY
   (valley-end 145)
   (valley-hidden 146)
   (valley-kill 147)

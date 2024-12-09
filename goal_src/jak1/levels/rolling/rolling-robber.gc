@@ -185,7 +185,7 @@
       (cond
         ((or (not arg4) (< arg0 (vector-length gp-1))) (if (< (-> self speed) 0.0) (set! f30-0 (- f30-0))))
         ((< (vector-dot gp-1 (-> self tangent)) 0.0) (set! f30-0 (- f30-0))))
-      (set! (-> self speed) f30-0)
+      (set! (-> self speed) (* f30-0 (res-lump-float (-> self entity) 'speed-modifier :default 1.0))) ;; TFL note: added speed modifier lump
       f30-0)))
 
 (defbehavior robber-calc-anim-speed robber ()

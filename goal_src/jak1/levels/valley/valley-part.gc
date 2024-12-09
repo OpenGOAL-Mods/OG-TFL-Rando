@@ -2,8 +2,8 @@
 (in-package goal)
 (deftype valley-part (part-spawner) ())
 
-;; group-id range for thundra valley : 1050-1099
-;; part-id range for thundra valley : 4000-4199
+;; group-id range for taiga valley : 1050-1099
+;; part-id range for taiga valley : 4000-4199
 
 (defpartgroup group-rolling-rock-explosion
   :id 1050

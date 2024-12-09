@@ -6,8 +6,11 @@
  (
   "valley-obs.o"
   "valley-part.o"
+  "rolling-robber.o"
   "rolling-rock-ag.go"
   "snow-ball-ag.go"
+  "dark-crystal-ag.go"
+  "robber-ag.go"
   "valley.go"
   )
  )

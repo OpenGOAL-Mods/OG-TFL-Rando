@@ -3273,6 +3273,25 @@
              :lev0 'crescent-t
              :disp0 'display
              :lev1 'valley
+             :disp1 'display)
+          (new 'static
+             'continue-point
+             :name "valley-after-rocks"
+             :level 'valley
+             :trans
+             (new 'static 'vector :x (meters 532.54) :y (meters 66.302) :z (meters 1951.3) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y 0.2441 :z 0.0 :w 0.9697)
+             :camera-trans
+             (new 'static 'vector :x (meters 528.6769) :y (meters 70.4944) :z (meters 1946.4173) :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.9222 0.0000 -0.3867 0.0127 0.9994 0.0304 0.3864 -0.0329 0.9217)
+             :load-commands
+             '()
+             :vis-nick 'val
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'valley
              :disp1 'display))
        :tasks
        '() ;TFL note: TODO

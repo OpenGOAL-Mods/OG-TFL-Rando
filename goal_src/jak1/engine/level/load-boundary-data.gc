@@ -2029,7 +2029,7 @@
                                         (checkpt "open-mines-minecart3" #f)
                                         :bwd
                                         (checkpt "open-mines-hole" #f))
-                  ;; THUNDRA VALLEY LOAD BOUNDARIES:
+                  ;; TAIGA VALLEY LOAD BOUNDARIES:
                   (static-load-boundary :flags
                                         ()
                                         :top (meters 360.66)
@@ -2054,6 +2054,14 @@
                                         ((meters 196.51) (meters 585.08) (meters 266.02) (meters 620.0))
                                         ;; :fwd (vis cst #f)
                                         :bwd (vis val #f))
+                  (static-load-boundary :flags
+                                        (player)
+                                        :top (meters 94.11)
+                                        :bot (meters 22.56)
+                                        :points
+                                        ((meters 403.74) (meters 1987.2) (meters 561.1) (meters 1953.6))
+                                        :fwd (checkpt "valley-after-rocks" #f)
+                                        :bwd (checkpt "valley-after-rocks" #f))
                   ;; CRASH TEST TEST-ZONE3
                   (static-load-boundary :flags
                                         ()

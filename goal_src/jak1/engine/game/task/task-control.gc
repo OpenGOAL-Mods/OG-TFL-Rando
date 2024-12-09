@@ -6131,7 +6131,7 @@
                               :condition
                               (lambda :behavior process-taskable ((arg0 task-control))
                                 #t))))
-               ;; THUNDRA VALLEY
+               ;; TAIGA VALLEY
                (new 'static
                     'task-control
                     :current-stage -1
