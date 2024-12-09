@@ -2271,9 +2271,11 @@
                                                                  (function "Reset Game"
                                                                            #f
                                                                            ,(lambda ()
-                                                                             (set! (-> *game-info* mode) 'debug)
-                                                                             (initialize! *game-info* 'game (the-as game-save #f) (the-as string #f))
-                                                                             (none)))
+                                                                              (let ((was-play? (if (= (-> *game-info* mode) 'play) #t #f))) ;; TFL note: reset back to play if it was
+                                                                                (set! (-> *game-info* mode) 'debug)
+                                                                                (initialize! *game-info* 'game (the-as game-save #f) (the-as string #f))
+                                                                                (if was-play? (set! (-> *game-info* mode) 'play))) 
+                                                                              (none)))
                                                                  (function "Reset Actors" #f ,(lambda () (reset-actors 'debug) (none)))
                                                                  (function "Save Game" #f ,(lambda () (auto-save-command 'save 0 0 *default-pool*) (none)))
                                                                  (function "Load Game" #f ,(lambda () (auto-save-command 'restore 0 0 *default-pool*) (none)))
