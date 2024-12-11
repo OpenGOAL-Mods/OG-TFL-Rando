@@ -2907,7 +2907,8 @@
               (sound-play "start-options")
               (sound-volume-off)
               (set! (-> *game-info* mode) 'play)
-              (initialize! *game-info* 'game (the-as game-save #f) "title-start"))
+              ;; TFL note: changed continue
+              (initialize! *game-info* 'game (the-as game-save #f) "crescent-top-title"))
              (else (sound-play "cursor-options") (set! (-> obj next-display-state) (progress-screen invalid)))))
           (((progress-screen memcard-format))
            (cond
