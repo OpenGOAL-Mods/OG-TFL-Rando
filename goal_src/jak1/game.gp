@@ -1695,6 +1695,7 @@
 (build-actor "observatory-lens")
 (build-actor "valley-rock")
 (build-actor "rolling-rock")
+(build-actor "tfl-title")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -2192,6 +2193,7 @@
  "levels/crescent/"
  :deps ("$OUT/obj/ticky.o")
  "crescent-obs.gc"
+ "tfl-title-obs.gc"
  "crescent-part.gc"
  )
 
