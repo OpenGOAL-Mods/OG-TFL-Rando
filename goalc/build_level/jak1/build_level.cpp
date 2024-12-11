@@ -175,6 +175,11 @@ bool run_build_level(const std::string& input_file,
     auto textures_out = file_util::get_jak_project_dir() / "decompiler_out/jak1/textures";
     file_util::create_dir_if_needed(textures_out);
     db.process_tpages(tex_db, textures_out, config, "");
+    auto replacements_path = file_util::get_jak_project_dir() / "custom_assets" /
+                         game_version_names[config.game_version] / "texture_replacements";
+    if (fs::exists(replacements_path)) {
+      tex_db.replace_textures(replacements_path);
+    }
 
     std::vector<std::string> processed_art_groups;
 
