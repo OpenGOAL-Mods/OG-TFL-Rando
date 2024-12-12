@@ -459,3 +459,13 @@
                     ,(1+ (length init-specs))
                     ,@(apply process-init-spec init-specs)
                     (new 'static 'sp-field-init-spec :field (sp-field-id spt-end)))))))
+
+;; TFL note: macro to get init-specs by names instead of #
+(defmacro get-init-spec-by-id (part id)
+  `(let ((i 0)
+        (spec (the sp-field-init-spec #f)))
+    (while (!= (-> ,part init-specs i field) (sp-field-id spt-end))
+      (let ((init-spec (-> ,part init-specs i)))
+        (if (= (-> init-spec field) (sp-field-id ,(string->symbol-format "spt-{}" (symbol->string id)))) (set! spec init-spec)))
+      (+! i 1))
+    spec))
