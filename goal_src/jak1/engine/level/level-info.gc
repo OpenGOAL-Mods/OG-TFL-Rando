@@ -2597,9 +2597,9 @@
              :load-commands
              '()
              :vis-nick 'crc
-             :lev0 'crescent-t
+             :lev0 'crystal-ca
              :disp0 'display
-             :lev1 'crystal-ca
+             :lev1 'crescent-t
              :disp1 'display)
         (new 'static
              'continue-point

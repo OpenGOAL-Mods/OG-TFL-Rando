@@ -701,6 +701,8 @@
   (valley-kill #xa43)
   (valley-boss #xa44)
   (valley-buzzer #xa45)
+  (valley-super-blue-hint #xa46)
+  (skip-training-hint #xa47)
   ;; TFL Hint IDs so they only play once. Use up from #xb00
   (crystalc-tfl-hint-01-daxPortal #xb00)
   (crystalc-tfl-hint-02-daxShip #xb01)
