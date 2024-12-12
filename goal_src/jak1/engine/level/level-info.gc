@@ -3292,6 +3292,25 @@
              :lev0 'crescent-t
              :disp0 'display
              :lev1 'valley
+             :disp1 'display)
+          (new 'static
+             'continue-point
+             :name "valley-end"
+             :level 'valley
+             :trans
+             (new 'static 'vector :x (meters 1845.8100) :y (meters 8.6048) :z (meters 1948.2384) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y -0.0662 :z 0.0 :w 0.9978)
+             :camera-trans
+             (new 'static 'vector :x (meters 1850.2595) :y (meters 13.5609) :z (meters 1937.3284) :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 -0.0000 0.3784 -0.0451 0.9928 0.1105 -0.3757 -0.1194 0.9190)
+             :load-commands
+             '()
+             :vis-nick 'val
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'valley
              :disp1 'display))
        :tasks
        '() ;TFL note: TODO

@@ -4099,6 +4099,17 @@
         "index": ["int32", 4]
       }
     },
+    {
+      "trans": [1855.91, 4.90, 1963.53],
+      "etype": "racer",
+      "game_task": "(game-task valley-end)",
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [1855.91, 4.90, 1963.53, 10],
+      "lump": {
+        "name": "valley-racer-02",
+        "index": ["int32", 3]
+      }
+    },
 // Actors: PARTICLES
     {
       "trans": [-221.07, 229.85, 233.35], // translation
