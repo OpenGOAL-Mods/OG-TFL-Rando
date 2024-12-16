@@ -5,7 +5,8 @@
 
 ;; the actual file name still needs to be 8.3
 ("CST.DGO"
- ("rolling-race-ring.o"
+ ("static-screen.o"
+  "rolling-race-ring.o"
   "race-ring-ag.go"
   "eichar-pole+0-ag.go"
   "eichar-racer+0-ag.go" ; zoomer stuff
@@ -13,6 +14,8 @@
   "ef-plane-ag.go"       ; zoomer stuff
   "racer-ag.go"          ; zoomer stuff
   "crescent-obs.o"
+  ; "title-obs.o"
+  "tfl-title-obs.o"
   "crescent-part.o"
   "bouncer.o"            ; springbox
   "junglesnake.o"
@@ -43,6 +46,15 @@
   "junglesnake-ag.go"
   "valley-rock-ag.go"
   "generic-button-ag.go"
+  ; title screen
+  "tfl-title-ag.go"
+  "logo-ag.go"
+  "logo-black-ag.go"
+  "logo-cam-ag.go"
+  "logo-volumes-ag.go"
+  "ndi-ag.go"
+  "ndi-cam-ag.go"
+  "ndi-volumes-ag.go"
   "crescent-top.go"
   )
  )

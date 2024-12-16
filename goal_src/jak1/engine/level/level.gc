@@ -627,8 +627,7 @@
      ;;  it should be copied back out of game-info on birth to prevent "NG+ glitch"
      (let ((lev-ents (-> this entity)))
        (dotimes (idx (-> lev-ents length))
-         (let ((ent (-> lev-ents data idx entity)))
-           (update-perm! (-> ent extra perm) 'game (the-as entity-perm-status 1919)))))
+         (let ((ent (-> lev-ents data idx entity))) (update-perm! (-> ent extra perm) 'game (the-as entity-perm-status 1919)))))
      (send-event *camera* 'level-deactivate (-> this name))
      (send-event *target* 'level-deactivate (-> this name))
      ;; remove this BSP from the engine. This will stop us from being drawn.
@@ -1022,7 +1021,9 @@
          (startup-level (if debug-cont
                           (-> debug-cont lev0)
                           (case *kernel-boot-message*
-                            (('play) (if *debug-segment* 'village1 'title))
+                            (('play)
+                             ;; TFL note: changed title screen level to crescent top
+                             (if *debug-segment* 'village1 #| 'title |# 'crescent-t))
                             (else 'demo)))))
     (stop 'play)
     (set! (-> *level* vis?) use-vis)

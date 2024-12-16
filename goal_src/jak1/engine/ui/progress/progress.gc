@@ -28,10 +28,15 @@
 
 (defun progress-allowed? ()
   (not (or (-> *setting-control* current talking)
-           (-> *setting-control* current movie)
+           ;; TFL note: changed for new title screen
+           ; (-> *setting-control* current movie)
+           (if (and *target* (!= (-> *target* next-state name) 'target-title-wait)) (-> *setting-control* current movie))
            (movie?)
            (handle->process (-> *game-info* pov-camera-handle))
-           (handle->process (-> *game-info* other-camera-handle))
+           ;; TFL note: changed for new title screen
+           ; (handle->process (-> *game-info* other-camera-handle))
+           (if (and *target* (!= (-> *target* next-state name) 'target-title-wait))
+             (handle->process (-> *game-info* other-camera-handle)))
            (< (-> *display* base-frame-counter) (-> *game-info* letterbox-time))
            (< (-> *display* base-frame-counter) (-> *game-info* blackout-time))
            (!= (-> *setting-control* current bg-a) 0.0)

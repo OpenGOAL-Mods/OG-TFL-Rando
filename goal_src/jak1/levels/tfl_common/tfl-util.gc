@@ -284,3 +284,66 @@
                            (font-color yellow)
                            (font-flags shadow kerning large)))))))
   (none))
+
+;; TFL note: added
+(deftype warp-to-crystalc (process)
+  ((state-time         time-frame)
+   (timer              time-frame)
+   (last-activate-time time-frame)
+   (cooldown           time-frame))
+  (:methods
+   (print-text (_type_) object))
+  (:state-methods
+   idle))
+
+(defbehavior warp-to-crystalc-init-by-other warp-to-crystalc ()
+  (set! (-> self state-time) 0)
+  (set! (-> self last-activate-time) 0)
+  (set! (-> self timer) (seconds 10))
+  (set! (-> self cooldown) (seconds 15))
+  (go-virtual idle))
+
+(defmethod print-text ((this warp-to-crystalc))
+  (let ((fnt (new 'stack
+                  'font-context
+                  *font-default-matrix*
+                  56
+                  (if *hint-semaphore* 140 160)
+                  0.0
+                  (font-color default)
+                  (font-flags shadow kerning))))
+    (set-width! fnt 400)
+    (set-height! fnt 96)
+    (set-scale! fnt 0.75)
+    (set-flags! fnt (font-flags shadow kerning middle large))
+    (print-game-text (string-format "~S (~D)"
+                                    (lookup-text! *common-text* (text-id skip-training-hint) #f)
+                                    (/ (- (-> this timer) (- (current-time) (-> this state-time))) TICKS_PER_SECOND))
+                     fnt
+                     #f
+                     128
+                     22)))
+
+(defstate idle (warp-to-crystalc)
+  :virtual #t
+  :code
+    (behavior ()
+      (if (and *target* (-> *game-info* current-continue) (string= (-> *game-info* current-continue name) "crystal-cave-start"))
+        (deactivate self))
+      (until (and *target*
+                  (-> *game-info* current-continue)
+                  (string= (-> *game-info* current-continue name) "training-start")
+                  (or (logtest? (-> *target* control status) (cshape-moving-flags onground onsurf on-water))
+                      (= (-> *target* next-state name) 'target-hit-ground)))
+        (suspend))
+      (set-state-time)
+      (suspend-for (-> self timer)
+        (print-text self)
+        (when (cpad-pressed? 0 start)
+          (send-event *target* 'continue (get-continue-by-name *game-info* "crystal-cave-warp"))
+          (kill-current-level-hint '() '() 'die)
+          (deactivate self)))
+      ; (suspend-for (-> self cooldown))
+      ))
+
+(if (not (process-by-name "warp-to-crystalc" *active-pool*)) (process-spawn warp-to-crystalc))

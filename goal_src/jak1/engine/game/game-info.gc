@@ -183,7 +183,10 @@
                       (continue-point-override (empty) continue-point-override)
                       ((!= *kernel-boot-message* 'play) "demo-start")
                       (*debug-segment* "village1-hut")
-                      (else "title-start")))
+                      ;; TFL note: changed default continue
+                      (else "crescent-top-title")
+                      ; (else "title-start")
+                      ))
      (set! (-> this auto-save-count) 0)
      (set! (-> *setting-control* default auto-save) #f)
      (set! (-> this money) 0.0)
