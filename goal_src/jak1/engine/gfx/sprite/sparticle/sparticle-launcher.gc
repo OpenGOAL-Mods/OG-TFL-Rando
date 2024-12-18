@@ -53,12 +53,15 @@
 ;; When a level heap is discarded, it should call (unlink-part-group-by-heap <heap>) to remove references to
 ;; particle effects that are going to be discarded.
 
+;; TFL note: added
+(defglobalconstant MAX_LAUNCH_GROUP_SIZE 2048)
+
 ;; All the particle launchers.
 ;; Particle effects will add themselves to this table when the code is loaded/linked
 (define *part-id-table* (new 'global 'boxed-array sparticle-launcher 8192)) ;; TFL note: increased (default:3584)
 
 ;; All the particle groups.
-(define *part-group-id-table* (new 'global 'boxed-array sparticle-launch-group 2048)) ;; TFL note: increased (default:1024)
+(define *part-group-id-table* (new 'global 'boxed-array sparticle-launch-group MAX_LAUNCH_GROUP_SIZE)) ;; TFL note: increased (default:1024)
 
 (defun lookup-part-group-by-name ((arg0 string))
   "Find a particle group with the given name. Checks all of them, not very efficient."
@@ -85,7 +88,7 @@
   (let ((v1-0 *part-group-id-table*))
     ;; og:preserve-this
     ;; just check if we are inside the array.
-    (and (>= (the-as int arg0) (the-as int (-> v1-0 data))) (< (the-as int arg0) (the-as int (&-> v1-0 1024))))))
+    (and (>= (the-as int arg0) (the-as int (-> v1-0 data))) (< (the-as int arg0) (the-as int (&-> v1-0 MAX_LAUNCH_GROUP_SIZE)))))) ;; TFL note: increased to fit new particle groups
 
 (defun unlink-part-group-by-heap ((arg0 kheap))
   "Find all particle groups that are stored in the specified heap and set them to 0."
