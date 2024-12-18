@@ -764,7 +764,7 @@
   observatory-ring-lod0-jg
   observatory-ring-idle-ja
   ((observatory-ring-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 30))
+  :bounds (static-spherem 0 0 0 35))
 
 (defmethod init-from-entity! ((this observatory-ring) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
