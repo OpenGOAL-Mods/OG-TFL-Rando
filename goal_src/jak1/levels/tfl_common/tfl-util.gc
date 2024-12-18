@@ -55,6 +55,9 @@
             (buzzer-count *game-info* (-> *level-task-data* idx task-info (-> *level-task-data* idx buzzer-task-index) task-id)))))
     cnt))
 
+(defun is-tfl-level? ((lev symbol))
+  (nmember lev TFL_LEVELS))
+
 (defun in-tfl-level? ()
   (aif (level-get-target-inside *level*) (nmember (-> it name) TFL_LEVELS)))
 
