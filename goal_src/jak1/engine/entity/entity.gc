@@ -1054,6 +1054,8 @@
                   (deactivate s2-0))))))))))
   (none))
 
+(define-extern is-tfl-level? (function symbol object)) ;; TFL notes: is-tfl-level? defined in tfl-util.gc
+
 (defun process-drawable-from-entity! ((arg0 process-drawable) (arg1 entity-actor))
   (logior! (-> arg0 mask) (process-mask actor-pause))
   (set! (-> arg0 root trans quad) (-> arg1 extra trans quad))
