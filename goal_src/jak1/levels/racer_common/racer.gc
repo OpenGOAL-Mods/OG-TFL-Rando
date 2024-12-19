@@ -278,7 +278,10 @@
   (set! (-> this fact) (new 'process 'fact-info this (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc)))
   (set! (-> this part) (create-launch-control (-> *part-group-id-table* 115) this))
   (dotimes (s5-1 2)
-    (let ((v1-32 (new 'process 'curve-control this 'path (the float (+ s5-1 1)))))
+    (let ((v1-32 (new 'process 'curve-control this 'path
+                      (if (and (res-lump-struct arg0 'use-default-keyframe symbol) (= s5-1 1)) ;; TFL notes: added res-lump to ignore keyframes
+                        -1000000000.0 
+                        (the float (+ s5-1 1))))))
       (set! (-> this path-data s5-1) v1-32)
       (if v1-32 (logior! (-> v1-32 flags) (path-control-flag display draw-line draw-point draw-text)))))
   (set! (-> this path) (-> this path-target))
