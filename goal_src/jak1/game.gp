@@ -1695,6 +1695,10 @@
 (build-actor "observatory-lens")
 (build-actor "valley-rock")
 (build-actor "rolling-rock")
+(build-actor "PDS-sentinel")
+(build-actor "PDS-gem-green")
+(build-actor "PDS-gem-yellow")
+(build-actor "PDS-gem-blue")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

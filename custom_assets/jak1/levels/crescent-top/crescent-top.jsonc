@@ -4107,7 +4107,15 @@
       "bsphere": [1855.91, 4.90, 1963.53, 10],
       "lump": {
         "name": "valley-racer-02",
-        "index": ["int32", 3]
+        "index": ["int32", 3],
+        "rotoffset":["degrees", -90.0],
+        "movie-pos": ["movie-pos", [1855.91, 4.90, 1963.53, 30.0]],
+        "use-default-keyframe": ["symbol", "#t"],
+        "path": [
+          "vector3m",
+          [1842.05, 38.88, 1836.63],
+          [1927.24, 38.88, 1993.07]
+        ]
       }
     },
 // Actors: PARTICLES
