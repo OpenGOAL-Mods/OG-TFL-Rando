@@ -1696,10 +1696,10 @@
 (build-actor "valley-rock")
 (build-actor "rolling-rock")
 (build-actor "tfl-title")
-(build-actor "PDS-sentinel")
-(build-actor "PDS-gem-green")
-(build-actor "PDS-gem-yellow")
-(build-actor "PDS-gem-blue")
+(build-actor "pds-sentinel")
+(build-actor "pds-gem-green")
+(build-actor "pds-gem-yellow")
+(build-actor "pds-gem-blue")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
