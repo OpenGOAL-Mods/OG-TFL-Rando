@@ -43,7 +43,14 @@
     "babak-ag",
     "lurkerpuppy-ag",
     "junglesnake-ag",
-    "generic-button-ag"
+    "generic-button-ag",
+    "logo-ag",
+    "logo-black-ag",
+    "logo-cam-ag",
+    "logo-volumes-ag",
+    "ndi-ag",
+    "ndi-cam-ag",
+    "ndi-volumes-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
@@ -6033,6 +6040,27 @@
       "bsphere": [56.66, 361.43, 376.21, 10],
       "lump": {
         "name":"crescent-observatory-lens-001"
+      }
+    },
+    // Title screen
+    {
+      "trans": [60.2279, 244.954, 435.654],
+      "etype": "camera-start",
+      "game_task": "(game-task none)",
+      "quat" : [0, 0, 0, 1],
+      "bsphere": [60.2279, 244.954, 435.654, 10],
+      "lump": {
+        "name": "camera-start-55"
+      }
+    },
+    {
+      "trans": [60.2279, -200.0, 435.654], // "trans": [60.2279, 244.954, 435.654],
+      "etype": "tfl-logo",
+      "game_task": "(game-task none)",
+      "quat" : [0, 0, 0.707, -0.707],
+      "bsphere": [60.2279, 244.954, 435.654, 10],
+      "lump": {
+        "name": "tfl-logo-1"
       }
     },
     // Danger/damage stuff

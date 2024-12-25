@@ -435,8 +435,7 @@
     (('top) (go crc-gondola-idle-top)))
   (none))
 
-(defevent crc-gondola-event-handler
-          crc-gondola
+(defevent crc-gondola
           (case message
             (('ridden)
              (if (zero? (-> self touching-time)) (set-time! (-> self touching-time)))

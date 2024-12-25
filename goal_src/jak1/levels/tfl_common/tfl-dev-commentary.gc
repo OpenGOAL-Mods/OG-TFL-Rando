@@ -525,8 +525,7 @@
   (ja-post)
   (none))
 
-(defevent tfl-commentary-node-event-handler
-          tfl-commentary-node
+(defevent tfl-commentary-node
           (case message
             (('grab) #t)))
 
