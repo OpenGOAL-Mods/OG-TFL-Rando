@@ -1695,6 +1695,7 @@
 (build-actor "observatory-lens")
 (build-actor "valley-rock")
 (build-actor "rolling-rock")
+(build-actor "tfl-title")
 (build-actor "PDS-sentinel")
 (build-actor "PDS-gem-green")
 (build-actor "PDS-gem-yellow")
@@ -2196,6 +2197,7 @@
  "levels/crescent/"
  :deps ("$OUT/obj/ticky.o")
  "crescent-obs.gc"
+ "tfl-title-obs.gc"
  "crescent-part.gc"
  )
 

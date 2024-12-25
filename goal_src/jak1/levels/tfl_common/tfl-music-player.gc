@@ -97,8 +97,7 @@
   (set-level! self)
   (go-virtual idle))
 
-(defevent tfl-music-player-event-handler
-          tfl-music-player
+(defevent tfl-music-player
           (case message
             (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
             (('unpause) (false! *tfl-music-paused?*))
