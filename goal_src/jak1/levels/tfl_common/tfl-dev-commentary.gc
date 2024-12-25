@@ -498,10 +498,7 @@
 
 (defbehavior tfl-commentary-node-init-by-other tfl-commentary-node ((sound string) (pos vector) (r float))
   (common-init self)
-  ; (set! (-> self name)
-  ;       (begin
-  ;         (format (clear *tfl-commentary-node-string*) "tfl-commentary-node-~D" (rand-vu-int-range 1 99))
-  ;         *tfl-commentary-node-string*))
+  (set! (-> self name) sound)
   (vector-copy! (-> self root trans) pos)
   (vector-identity! (-> self root scale))
   (quaternion-identity! (-> self root quat))
@@ -603,19 +600,24 @@
   :code
     (behavior ()
       ; (play-tfl-commentary (-> self data file-name) (-> *tfl-dev-commentary* vol))
-      ;; manipy doesn't work because draw-bones-hud is using generic
-      ; (when (not (-> self hud))
-      ;   (let ((manipy (the manipy (-> (manipy-spawn (static-vector 0.0 0.0 0.0 1.0) #f *tfl-commentary-node-sg* #f :to self) 0))))
-      ;     (when manipy
-      ;       (set! (-> self hud) (process->handle manipy))
-      ;       (set! (-> manipy draw dma-add-func) dma-add-process-drawable-hud)
-      ;       (set-vector! (-> manipy root trans) -160.0 130.0 0.0 1.0)
-      ;       (set-vector! (-> manipy root scale) 0.0095 -0.011 0.0095 1.0)
-      ;       (logior! (-> manipy mask) (process-mask pause))
-      ;       (logclear! (-> manipy mask) (process-mask menu progress))
-      ;       (set! (-> manipy root trans z) 1024.0))))
+      ;; TODO positioning relative to aspect ratio
+      (when (not (-> self hud))
+        (let ((manipy (the manipy (-> (manipy-spawn (static-vector 0.0 0.0 0.0 1.0) #f *tfl-commentary-node-sg* #f :to self) 0))))
+          (when manipy
+            (set! (-> self hud) (process->handle manipy))
+            (set! (-> manipy draw dma-add-func) dma-add-process-drawable-hud-merc)
+            (set-vector! (-> manipy root trans) 1000.0 -400.0 0.0 1.0)
+            (set-vector! (-> manipy root scale) 0.05 0.05 0.05 1.0)
+            (process-mask-set! (-> manipy mask) pause)
+            (process-mask-clear! (-> manipy mask) menu progress)
+            (set! (-> manipy root trans z) 2048.0)
+            (send-event manipy
+                        'trans-hook
+                        (lambda :behavior manipy ()
+                          (let ((root (-> self root)))
+                            (quaternion-rotate-y! (-> root quat) (-> root quat) (degrees (* 30.0 (seconds-per-frame))))))))))
       (until (time-elapsed? (-> self play-time) (-> self data length))
-        (hide-hud)
+        (hide-hud-quick)
         (set! (-> self cur-frame) (- (current-time) (-> self play-time)))
         (when (has-cmds-at-frame? self (-> self cur-frame))
           (execute-cmds-at-frame self (-> self cur-frame)))
