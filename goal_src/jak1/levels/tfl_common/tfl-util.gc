@@ -25,7 +25,7 @@
       (tfl-task-end (game-task max))
       (cell? (lambda ((task game-task)) (not (nmember (string->symbol (game-task->string task)) TFL_NO_CELL_TASKS)))))
   (dotimes (i (- tfl-task-end tfl-task-start))
-    (let ((task (+ (game-task crystalc-middle) (the game-task i)))) (when (cell? task) (1+! (-> *tfl-counts* cell))))))
+    (let ((task (+ tfl-task-start (the game-task i)))) (when (cell? task) (1+! (-> *tfl-counts* cell))))))
 
 (defun tfl-collected-cell-count ()
   (let ((tfl-task-start (game-task crystalc-middle))
@@ -33,7 +33,7 @@
         (cell? (lambda ((task game-task)) (not (nmember (string->symbol (game-task->string task)) TFL_NO_CELL_TASKS))))
         (cnt 0))
     (dotimes (i (- tfl-task-end tfl-task-start))
-      (let ((task (+ (game-task crystalc-middle) (the game-task i))))
+      (let ((task (+ tfl-task-start (the game-task i))))
         (when (and (cell? task) (task-complete? *game-info* task))
           (1+! cnt))))
     cnt))

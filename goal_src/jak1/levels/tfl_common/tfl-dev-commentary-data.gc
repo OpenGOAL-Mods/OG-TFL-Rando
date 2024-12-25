@@ -82,7 +82,7 @@ examples:
        (new 'static 'boxed-array :type tfl-commentary-spawn-func ,@spawn-list)
        :cmd-list ,cmd-list))
 
-(defmacro static-spawn-func (name &rest body)
+(defmacro tfl-static-spawn-func (name &rest body)
   `(new 'static 'tfl-commentary-spawn-func :name ,name :func (lambda () ,@body)))
 
 (define *tfl-commentary-nodes*
@@ -106,14 +106,14 @@ examples:
                                :description "Underground Area"
                                :length 35.0
                                :spawn-list
-                               ((static-spawn-func "super-eco-crystal0"
-                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 388.75) 'red 20)))
-                                (static-spawn-func "super-eco-crystal1"
-                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 392.75) 'green 20)))
-                                (static-spawn-func "super-eco-crystal2"
-                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 396.75) 'blue 20)))
-                                (static-spawn-func "super-eco-crystal3"
-                                                   (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 400.75) 'yellow 20))))
+                               ((tfl-static-spawn-func "super-eco-crystal0"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 388.75) 'red 20)))
+                                (tfl-static-spawn-func "super-eco-crystal1"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 392.75) 'green 20)))
+                                (tfl-static-spawn-func "super-eco-crystal2"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 396.75) 'blue 20)))
+                                (tfl-static-spawn-func "super-eco-crystal3"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 400.75) 'yellow 20))))
                                :cmd-list
                                '((start grab)
                                 (start music 5.0)
@@ -123,15 +123,15 @@ examples:
                                 (300 spawn 1 "super-eco-crystal1")
                                 (300 spawn 2 "super-eco-crystal2")
                                 (300 spawn 3 "super-eco-crystal3")
-                                (600
-                                 cam-control
-                                 (cam-dest 91.5 186.5 394.75)
-                                 (move-timer 1.2)
-                                 (max-z 24)
-                                 (push-z 20)
-                                 (max-y 10)
-                                 (min-y -2)
-                                 (tilt-adjust 6))
+                                ; (600
+                                ;  cam-control
+                                ;  (cam-dest 91.5 186.5 394.75)
+                                ;  (move-timer 1.2)
+                                ;  (max-z 24)
+                                ;  (push-z 20)
+                                ;  (max-y 10)
+                                ;  (min-y -2)
+                                ;  (tilt-adjust 6))
                                 ; (900 send-event 0 powerup (a b c 0 0.0 "test" last))
                                 (1200 go 0 super-eco-crystal-break)
                                 (1500 go 1 super-eco-crystal-break)
