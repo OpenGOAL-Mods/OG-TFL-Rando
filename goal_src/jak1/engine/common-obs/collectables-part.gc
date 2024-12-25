@@ -4453,3 +4453,8 @@
 (defpart 3723
   :init-specs ((:fade-a -2.0)))
 
+(defpartgroup group-part-hud-lowreskui
+  :id 965
+  :flags (use-local-clock screen-space)
+  :bounds (static-bspherem 0 0 0 100)
+  :parts ((sp-item 319 :fade-after (meters 35)) (sp-item 320 :fade-after (meters 20))))

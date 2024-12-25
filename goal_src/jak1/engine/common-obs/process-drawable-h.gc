@@ -214,7 +214,7 @@
       :dist ,dist))
 
 ;; TFL note: added
-(defmacro set-part! (proc &key (id 1) &key (part part))
+(defmacro set-part! (&key (proc self) &key (id 1) &key (part part))
   `(set! (-> ,proc ,part) (create-launch-control (-> *part-group-id-table* ,id) ,proc)))
 
 (defmacro hide! (proc)

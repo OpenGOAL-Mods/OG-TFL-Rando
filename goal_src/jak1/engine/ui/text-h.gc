@@ -703,6 +703,8 @@
   (valley-buzzer #xa45)
   (valley-super-blue-hint #xa46)
   (skip-training-hint #xa47)
+  (tfl-lowreskui-found #xa48)
+  (tfl-lowreskui-all-found #xa49)
   ;; TFL Hint IDs so they only play once. Use up from #xb00
   (crystalc-tfl-hint-01-daxPortal #xb00)
   (crystalc-tfl-hint-02-daxShip #xb01)
