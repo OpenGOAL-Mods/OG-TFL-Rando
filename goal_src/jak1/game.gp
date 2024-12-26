@@ -1700,6 +1700,12 @@
 (build-actor "pds-gem-green")
 (build-actor "pds-gem-yellow")
 (build-actor "pds-gem-blue")
+(build-actor "pds-trap-central" :gen-mesh #t)
+(build-actor "pds-trap-inner" :gen-mesh #t)
+(build-actor "pds-trap-mid-left" :gen-mesh #t)
+(build-actor "pds-trap-mid-right" :gen-mesh #t)
+(build-actor "pds-trap-out-left" :gen-mesh #t)
+(build-actor "pds-trap-out-right" :gen-mesh #t)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

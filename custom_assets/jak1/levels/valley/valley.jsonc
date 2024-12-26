@@ -64,7 +64,17 @@
 
   // If you have any custom models in the "custom_assets/jak1/models/custom_levels" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["rolling-rock", "PDS-sentinel", "PDS-gem-green", "PDS-gem-yellow", "PDS-gem-blue"],
+  "custom_models": ["rolling-rock", 
+                    "pds-sentinel", 
+                    "pds-gem-green", 
+                    "pds-gem-yellow", 
+                    "pds-gem-blue",
+                    "pds-trap-central",
+                    "pds-trap-inner",
+                    "pds-trap-mid-left",
+                    "pds-trap-mid-right",
+                    "pds-trap-out-left",
+                    "pds-trap-out-right"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -151,6 +161,458 @@
   ],
 
   "actors": [
+// Actors: SENTINEL
+  {
+    "trans": [2075.06, 7.93, 1852.18],
+    "etype": "pds-master",
+    "game_task": "(game-task valley-boss)",
+    "quat" : [0.000, -0.707, 0.000, 0.707],
+    "bsphere": [2075.06, 7.93, 1852.18, 10],
+    "lump": {
+      "name": "valley-pds-master-01",
+      "movie-pos": ["movie-pos", [2075.06, 7.93, 1852.18, 0.0]],
+      "custom-nav": ["symbol", "valley-boss"],      // nav-mesh for the nav-enemies
+      "path": ["vector3m",                          // Path for the nav-enemies
+          [2049.93, 7.93, 1851.75],
+          [2062.31, 7.93, 1829.41],
+          [2088.67, 7.93, 1829.24],
+          [2100.08, 7.93, 1851.91],
+          [2088.02, 7.93, 1873.61],
+          [2062.31, 7.93, 1873.77]
+          ],
+      "alt-actor": [                                // to send/receive events
+        "string",
+        "valley-pds-sentinel-01",
+        "valley-pds-gem-01",
+        "valley-pds-gem-02",
+        "valley-pds-gem-03",
+        "valley-pds-trap-central-01",               // traps just have one of each 
+        "valley-pds-trap-inner-01",                 // then can use prev/next-actor on each maybe? 
+        "valley-pds-trap-mid-left-01",              // If not we can put all of them here as well
+        "valley-pds-trap-mid-right-01",
+        "valley-pds-trap-out-left-01",
+        "valley-pds-trap-out-right-01"
+        // just missing the pds-plat 
+        // for the plat I was thinking of doing similar to the trap 
+        // where only one for each phase is here
+        // then they can activate each other
+        // and add a small delay inbetween each so it's not 
+        // just one big group of plat going up all at once
+      ]
+    }
+  },
+  {
+    "trans": [2096.17, 31.09, 1839.82], // this is the sleep/wake position
+    "etype": "pds-sentinel",
+    "game_task": "(game-task valley-boss)",
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2096.17, 31.09, 1839.82, 10],
+    "lump": {
+      "name": "valley-pds-sentinel-01",
+      "path": [
+        "vector3m",
+        [2038.69, 53.31, 1789.4],
+        [2108.9, 53.31, 1788.98],
+        [2144.52, 53.31, 1851.21],
+        [2110.75, 53.31, 1913.15],
+        [2038.11, 53.31, 1912.57],
+        [2005.09, 53.31, 1853.37]
+      ]
+    }
+  },
+  {
+    "trans": [2075.06, 43.31, 1807.36],
+    "etype": "pds-gem",
+    "game_task": "(game-task valley-boss)",
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2075.06, 43.31, 1807.36, 10],
+    "lump": {
+      "name": "valley-pds-gem-01",
+      "gem-type": "'green"
+    }
+  },
+  {
+    "trans": [2113.88, 43.31, 1874.59],
+    "etype": "pds-gem",
+    "game_task": "(game-task valley-boss)",
+    "quat" : [0.000, -0.866, 0.000, 0.500],
+    "bsphere": [2113.88, 43.31, 1874.59, 10],
+    "lump": {
+      "name": "valley-pds-gem-02",
+      "gem-type": "'blue"
+    }
+  },
+  {
+    "trans": [2036.24, 43.31, 1874.59],
+    "etype": "pds-gem",
+    "game_task": "(game-task valley-boss)",
+    "quat" : [-0.000, -0.866, -0.000, -0.500],
+    "bsphere": [2036.24, 43.31, 1874.59, 10],
+    "lump": {
+      "name": "valley-pds-gem-03",
+      "gem-type": "'yellow"
+    }
+  },
+  {
+    "trans": [2075.06, 7.93, 1852.18],
+    "etype": "pds-trap-central",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2075.06, 7.93, 1852.18, 10],
+    "lump": {
+      "name": "valley-pds-trap-central-01"
+    }
+  },
+  {
+    "trans": [2075.06, 7.93, 1838.87],
+    "etype": "pds-trap-inner",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2075.06, 7.93, 1838.87, 10],
+    "lump": {
+      "name": "valley-pds-trap-inner-01",
+      "next-actor":"valley-pds-trap-inner-02"
+    }
+  },
+  {
+    "trans": [2067.99, 7.93, 1827.42],
+    "etype": "pds-trap-mid-left",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2067.99, 7.93, 1827.42, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-left-01",
+      "next-actor":"valley-pds-trap-mid-left-02"
+    }
+  },
+  {
+    "trans": [2082.14, 7.93, 1827.42],
+    "etype": "pds-trap-mid-right",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2082.14, 7.93, 1827.42, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-right-01",
+      "next-actor":"valley-pds-trap-mid-right-02"
+    }
+  },
+  {
+    "trans": [2064.15, 7.93, 1814.14],
+    "etype": "pds-trap-out-left",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2064.15, 7.93, 1814.14, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-left-01",
+      "next-actor":"valley-pds-trap-out-left-02"
+    }
+  },
+  {
+    "trans": [2085.97, 7.93, 1814.14],
+    "etype": "pds-trap-out-right",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2085.97, 7.93, 1814.14, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-right-01",
+      "next-actor":"valley-pds-trap-out-right-02"
+    }
+  },
+  {
+    "trans": [2086.59, 7.93, 1845.53],
+    "etype": "pds-trap-inner",
+    "game_task": 0,
+    "quat" : [0.000, -0.500, 0.000, 0.866],
+    "bsphere": [2086.59, 7.93, 1845.53, 10],
+    "lump": {
+      "name": "valley-pds-trap-inner-02",
+      "prev-actor":"valley-pds-trap-inner-01",
+      "next-actor":"valley-pds-trap-inner-03"
+    }
+  },
+  {
+    "trans": [2092.97, 7.93, 1833.67],
+    "etype": "pds-trap-mid-left",
+    "game_task": 0,
+    "quat" : [0.000, -0.500, 0.000, 0.866],
+    "bsphere": [2092.97, 7.93, 1833.67, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-left-02",
+      "prev-actor":"valley-pds-trap-mid-left-01",
+      "next-actor":"valley-pds-trap-mid-left-03"
+    }
+  },
+  {
+    "trans": [2100.05, 7.93, 1845.93],
+    "etype": "pds-trap-mid-right",
+    "game_task": 0,
+    "quat" : [0.000, -0.500, 0.000, 0.866],
+    "bsphere": [2100.05, 7.93, 1845.93, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-right-02",
+      "prev-actor":"valley-pds-trap-mid-right-01",
+      "next-actor":"valley-pds-trap-mid-right-03"
+    }
+  },
+  {
+    "trans": [2102.55, 7.93, 1823.71],
+    "etype": "pds-trap-out-left",
+    "game_task": 0,
+    "quat" : [0.000, -0.500, 0.000, 0.866],
+    "bsphere": [2102.55, 7.93, 1823.71, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-left-02",
+      "prev-actor":"valley-pds-trap-out-left-01",
+      "next-actor":"valley-pds-trap-out-left-03"
+    }
+  },
+  {
+    "trans": [2113.46, 7.93, 1842.61],
+    "etype": "pds-trap-out-right",
+    "game_task": 0,
+    "quat" : [0.000, -0.500, 0.000, 0.866],
+    "bsphere": [2113.46, 7.93, 1842.61, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-right-02",
+      "prev-actor":"valley-pds-trap-out-right-01",
+      "next-actor":"valley-pds-trap-out-right-03"
+    }
+  },
+  {
+    "trans": [2086.59, 7.93, 1858.84],
+    "etype": "pds-trap-inner",
+    "game_task": 0,
+    "quat" : [0.000, -0.866, 0.000, 0.500],
+    "bsphere": [2086.59, 7.93, 1858.84, 10],
+    "lump": {
+      "name": "valley-pds-trap-inner-03",
+      "prev-actor":"valley-pds-trap-inner-02",
+      "next-actor":"valley-pds-trap-inner-04"
+    }
+  },
+  {
+    "trans": [2100.05, 7.93, 1858.44],
+    "etype": "pds-trap-mid-left",
+    "game_task": 0,
+    "quat" : [0.000, -0.866, 0.000, 0.500],
+    "bsphere": [2100.05, 7.93, 1858.44, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-left-03",
+      "prev-actor":"valley-pds-trap-mid-left-02",
+      "next-actor":"valley-pds-trap-mid-left-04"
+    }
+  },
+  {
+    "trans": [2092.97, 7.93, 1870.69],
+    "etype": "pds-trap-mid-right",
+    "game_task": 0,
+    "quat" : [0.000, -0.866, 0.000, 0.500],
+    "bsphere": [2092.97, 7.93, 1870.69, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-right-03",
+      "prev-actor":"valley-pds-trap-mid-right-02",
+      "next-actor":"valley-pds-trap-mid-right-04"
+    }
+  },
+  {
+    "trans": [2113.46, 7.93, 1861.76],
+    "etype": "pds-trap-out-left",
+    "game_task": 0,
+    "quat" : [0.000, -0.866, 0.000, 0.500],
+    "bsphere": [2113.46, 7.93, 1861.76, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-left-03",
+      "prev-actor":"valley-pds-trap-out-left-02",
+      "next-actor":"valley-pds-trap-out-left-04"
+    }
+  },
+  {
+    "trans": [2102.55, 7.93, 1880.65],
+    "etype": "pds-trap-out-right",
+    "game_task": 0,
+    "quat" : [0.000, -0.866, 0.000, 0.500],
+    "bsphere": [2102.55, 7.93, 1880.65, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-right-03",
+      "prev-actor":"valley-pds-trap-out-right-02",
+      "next-actor":"valley-pds-trap-out-right-04"
+    }
+  },
+  {
+    "trans": [2075.06, 7.93, 1865.49],
+    "etype": "pds-trap-inner",
+    "game_task": 0,
+    "quat" : [-0.000, -1.000, -0.000, -0.000],
+    "bsphere": [2075.06, 7.93, 1865.49, 10],
+    "lump": {
+      "name": "valley-pds-trap-inner-04",
+      "prev-actor":"valley-pds-trap-inner-03",
+      "next-actor":"valley-pds-trap-inner-05"
+    }
+  },
+  {
+    "trans": [2082.14, 7.93, 1876.95],
+    "etype": "pds-trap-mid-left",
+    "game_task": 0,
+    "quat" : [-0.000, -1.000, -0.000, -0.000],
+    "bsphere": [2082.14, 7.93, 1876.95, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-left-04",
+      "prev-actor":"valley-pds-trap-mid-left-03",
+      "next-actor":"valley-pds-trap-mid-left-05"
+    }
+  },
+  {
+    "trans": [2067.99, 7.93, 1876.95],
+    "etype": "pds-trap-mid-right",
+    "game_task": 0,
+    "quat" : [-0.000, -1.000, -0.000, -0.000],
+    "bsphere": [2067.99, 7.93, 1876.95, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-right-04",
+      "prev-actor":"valley-pds-trap-mid-right-03",
+      "next-actor":"valley-pds-trap-mid-right-05"
+    }
+  },
+  {
+    "trans": [2085.97, 7.93, 1890.23],
+    "etype": "pds-trap-out-left",
+    "game_task": 0,
+    "quat" : [-0.000, -1.000, -0.000, -0.000],
+    "bsphere": [2085.97, 7.93, 1890.23, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-left-04",
+      "prev-actor":"valley-pds-trap-out-left-03",
+      "next-actor":"valley-pds-trap-out-left-05"
+    }
+  },
+  {
+    "trans": [2064.15, 7.93, 1890.23],
+    "etype": "pds-trap-out-right",
+    "game_task": 0,
+    "quat" : [-0.000, -1.000, -0.000, -0.000],
+    "bsphere": [2064.15, 7.93, 1890.23, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-right-04",
+      "prev-actor":"valley-pds-trap-out-right-03",
+      "next-actor":"valley-pds-trap-out-right-04"
+    }
+  },
+  {
+    "trans": [2063.53, 7.93, 1858.84],
+    "etype": "pds-trap-inner",
+    "game_task": 0,
+    "quat" : [-0.000, -0.866, -0.000, -0.500],
+    "bsphere": [2063.53, 7.93, 1858.84, 10],
+    "lump": {
+      "name": "valley-pds-trap-inner-05",
+      "prev-actor":"valley-pds-trap-inner-04",
+      "next-actor":"valley-pds-trap-inner-06"
+    }
+  },
+  {
+    "trans": [2057.15, 7.93, 1870.69],
+    "etype": "pds-trap-mid-left",
+    "game_task": 0,
+    "quat" : [-0.000, -0.866, -0.000, -0.500],
+    "bsphere": [2057.15, 7.93, 1870.69, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-left-05",
+      "prev-actor":"valley-pds-trap-mid-left-04",
+      "next-actor":"valley-pds-trap-mid-left-06"
+    }
+  },
+  {
+    "trans": [2050.08, 7.93, 1858.44],
+    "etype": "pds-trap-mid-right",
+    "game_task": 0,
+    "quat" : [-0.000, -0.866, -0.000, -0.500],
+    "bsphere": [2050.08, 7.93, 1858.44, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-right-05",
+      "prev-actor":"valley-pds-trap-mid-right-04",
+      "next-actor":"valley-pds-trap-mid-right-06"
+    }
+  },
+  {
+    "trans": [2047.57, 7.93, 1880.65],
+    "etype": "pds-trap-out-left",
+    "game_task": 0,
+    "quat" : [-0.000, -0.866, -0.000, -0.500],
+    "bsphere": [2047.57, 7.93, 1880.65, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-left-05",
+      "prev-actor":"valley-pds-trap-out-left-04",
+      "next-actor":"valley-pds-trap-out-left-06"
+    }
+  },
+  {
+    "trans": [2036.66, 7.93, 1861.76],
+    "etype": "pds-trap-out-right",
+    "game_task": 0,
+    "quat" : [-0.000, -0.866, -0.000, -0.500],
+    "bsphere": [2036.66, 7.93, 1861.76, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-right-05",
+      "prev-actor":"valley-pds-trap-out-right-04",
+      "next-actor":"valley-pds-trap-out-right-06"
+    }
+  },
+  {
+    "trans": [2063.53, 7.93, 1845.53],
+    "etype": "pds-trap-inner",
+    "game_task": 0,
+    "quat" : [-0.000, -0.500, -0.000, -0.866],
+    "bsphere": [2063.53, 7.93, 1845.53, 10],
+    "lump": {
+      "name": "valley-pds-trap-inner-06",
+      "prev-actor":"valley-pds-trap-inner-05"
+    }
+  },
+  {
+    "trans": [2050.07, 7.93, 1845.93],
+    "etype": "pds-trap-mid-left",
+    "game_task": 0,
+    "quat" : [-0.000, -0.500, -0.000, -0.866],
+    "bsphere": [2050.07, 7.93, 1845.93, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-left-06",
+      "prev-actor":"valley-pds-trap-mid-left-05"
+    }
+  },
+  {
+    "trans": [2057.15, 7.93, 1833.67],
+    "etype": "pds-trap-mid-right",
+    "game_task": 0,
+    "quat" : [-0.000, -0.500, -0.000, -0.866],
+    "bsphere": [2057.15, 7.93, 1833.67, 10],
+    "lump": {
+      "name": "valley-pds-trap-mid-right-06",
+      "prev-actor":"valley-pds-trap-mid-right-05"
+    }
+  },
+  {
+    "trans": [2036.66, 7.93, 1842.61],
+    "etype": "pds-trap-out-left",
+    "game_task": 0,
+    "quat" : [-0.000, -0.500, -0.000, -0.866],
+    "bsphere": [2036.66, 7.93, 1842.61, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-left-06",
+      "prev-actor":"valley-pds-trap-out-left-05"
+    }
+  },
+  {
+    "trans": [2047.57, 7.93, 1823.71],
+    "etype": "pds-trap-out-right",
+    "game_task": 0,
+    "quat" : [-0.000, -0.500, -0.000, -0.866],
+    "bsphere": [2047.57, 7.93, 1823.71, 10],
+    "lump": {
+      "name": "valley-pds-trap-out-right-06",
+      "prev-actor":"valley-pds-trap-out-right-05"
+    }
+  },
 // Actors: ENEMIES
     {
       "trans": [1067.67, 29.48, 1980.14],
