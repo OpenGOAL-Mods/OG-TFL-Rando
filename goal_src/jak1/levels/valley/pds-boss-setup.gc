@@ -1,0 +1,240 @@
+;;-*-Lisp-*-
+(in-package goal)
+(def-actor pds-gem-green
+  :bounds (0 0 0 5.5)
+  :joints
+  (align main
+         shard
+         shard.001
+         shard.002
+         shard.003
+         shard.004
+         shard.005
+         shard.006
+         shard.007
+         shard.008
+         shard.009
+         shard.010
+         shard.011
+         shard.012
+         shard.013
+         shard.014
+         shard.015
+         shard.016
+         shard.017
+         shard.018
+         shard.019))
+
+(def-actor pds-gem-yellow
+  :bounds (0 0 0 5.5)
+  :joints
+  (align main
+         shard
+         shard.001
+         shard.002
+         shard.003
+         shard.004
+         shard.005
+         shard.006
+         shard.007
+         shard.008
+         shard.009
+         shard.010
+         shard.011
+         shard.012
+         shard.013
+         shard.014
+         shard.015
+         shard.016
+         shard.017
+         shard.018
+         shard.019))
+
+(def-actor pds-gem-blue
+  :bounds (0 0 0 5.5)
+  :joints
+  (align main
+         shard
+         shard.001
+         shard.002
+         shard.003
+         shard.004
+         shard.005
+         shard.006
+         shard.007
+         shard.008
+         shard.009
+         shard.010
+         shard.011
+         shard.012
+         shard.013
+         shard.014
+         shard.015
+         shard.016
+         shard.017
+         shard.018
+         shard.019))
+
+(static-exploder-params pds-gem
+                        :jgeo
+                        pds-gem-green
+                        (shard shard.001
+                               shard.002
+                               shard.003
+                               shard.004
+                               shard.005
+                               shard.006
+                               shard.007
+                               shard.008
+                               shard.009
+                               shard.010
+                               shard.011
+                               shard.012
+                               shard.013
+                               shard.014
+                               shard.015
+                               shard.016
+                               shard.017
+                               shard.018
+                               shard.019))
+
+(deftype pds-gem (process-drawable)
+  ((root  collide-shape-moving :override)
+   (color symbol))
+  (:methods
+   (init-collision! (_type_) object)
+   (get-skel (_type_) skeleton-group))
+  (:state-methods
+   idle
+   explode))
+
+(defmethod init-collision! ((this pds-gem))
+  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
+    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
+    (set! (-> cshape reaction) default-collision-reaction)
+    (set! (-> cshape no-reaction) (the (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (let ((sphere (new 'process 'collide-shape-prim-sphere cshape (the uint 0))))
+      (set! (-> sphere prim-core collide-as) (collide-kind enemy))
+      (set! (-> sphere collide-with) (collide-kind target))
+      (set! (-> sphere prim-core action) (collide-action solid))
+      (set! (-> sphere prim-core offense) (collide-offense normal-attack))
+      (set-vector! (-> sphere local-sphere) 0.0 0.0 0.0 (meters 3.5))
+      (set-root-prim! cshape sphere))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape)))
+
+(defmethod get-skel ((this pds-gem))
+  (case (-> this color)
+    (('green) *pds-gem-green-sg*)
+    (('yellow) *pds-gem-yellow-sg*)
+    (('blue) *pds-gem-blue-sg*)
+    (else *pds-gem-green-sg*)))
+
+(defmethod init-from-entity! ((this pds-gem) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (set! (-> this color) (aif (res-lump-struct e 'gem-type symbol) it 'green))
+  (initialize-skeleton this (get-skel this) '())
+  (transform-post)
+  (go-virtual idle :proc this)
+  (none))
+
+(defstate idle (pds-gem)
+  :virtual #t
+  :event
+    (event (case message
+             (('attack) (if (= (-> proc type) target) (go-virtual explode)))))
+  :code anim-loop
+  :post transform-post)
+
+(defstate explode (pds-gem)
+  :virtual #t
+  :code
+    (behavior ()
+      (clear-collide-with-as (-> self root))
+      (let ((dist (vector-vector-distance (-> self root trans) (target-pos 0))))
+        (when (< dist (meters 25))
+          (let ((smush-strength (lerp-scale 50.0 600.0 dist (meters 25) (meters 0)))
+                (smush-length (lerp-scale 100.0 250.0 dist (meters 25) (meters 0)))
+                (buzz-strength (lerp-scale 0.0 150.0 dist (meters 25) (meters 0))))
+            ;; (format 0 "dist: ~M smush-strength: ~F smush-length ~F~%" dist smush-strength smush-length)
+            (activate! *camera-smush-control* (* smush-strength (-> self root scale x)) 37 (the int smush-length) 1.0 0.99)
+            (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 (the int buzz-strength) (the int smush-length))
+            (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int buzz-strength) (the int smush-length)))))
+      (sound-play "crystal-explode")
+      ; (process-spawn part-tracker
+      ;                :init
+      ;                part-tracker-init
+      ;                (-> *part-group-id-table* 951)
+      ;                -1
+      ;                #f
+      ;                #f
+      ;                #f
+      ;                (-> self root trans)
+      ;                :to
+      ;                *entity-pool*)
+      (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)
+      (suspend)
+      (ja-channel-set! 0)
+      (ja-post)
+      (until (not (-> self child))
+        (suspend))
+      (cleanup-for-death self)))
+
+(def-actor pds-trap-central
+  :bounds (0 0 0 20))
+
+(def-actor pds-trap-inner
+  :bounds (0 0 0 20))
+
+(def-actor pds-trap-mid-left
+  :bounds (0 0 0 20))
+
+(def-actor pds-trap-mid-right
+  :bounds (0 0 0 20))
+
+(def-actor pds-trap-out-left
+  :bounds (0 0 0 20))
+
+(def-actor pds-trap-out-right
+  :bounds (0 0 0 20))
+
+(deftype pds-trap (process-drawable)
+  ((root collide-shape-moving :override)))
+
+(deftype pds-trap-central (pds-trap) ())
+
+(deftype pds-trap-inner (pds-trap) ())
+
+(deftype pds-trap-mid-left (pds-trap) ())
+
+(deftype pds-trap-mid-right (pds-trap) ())
+
+(deftype pds-trap-out-left (pds-trap) ())
+
+(deftype pds-trap-out-right (pds-trap) ())
+
+(def-actor pds-sentinel
+  :bounds (0 0 0 20)
+  :art (idle-ja sleep-ja wake-ja moving-ja charging-ja damaged-ja death-ja)
+  :joints (align main circle out-circle in-circle sphere top cover gun gun-cover1 gun-cover2 gun-cover3 gun-tip bot thruster core))
+
+(deftype pds-sentinel (process-drawable)
+  ((root          collide-shape-moving :override)
+   (stage         int8)
+   (core-part     sparticle-launch-control)
+   (thruster-part sparticle-launch-control)
+   (explode-part  sparticle-launch-control)
+   (damage-part   sparticle-launch-control)
+   (death-part    sparticle-launch-control))
+  (:state-methods
+   dormant
+   wake
+   patrol
+   spawn-enemies
+   charging
+   damaged))
+
+; (defmethod init-from-entity! ((this pds-sentinel) (e entity-actor))
+;   ())

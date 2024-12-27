@@ -64,10 +64,10 @@
 
   // If you have any custom models in the "custom_assets/jak1/models/custom_levels" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["rolling-rock", 
-                    "pds-sentinel", 
-                    "pds-gem-green", 
-                    "pds-gem-yellow", 
+  "custom_models": ["rolling-rock",
+                    "pds-sentinel",
+                    "pds-gem-green",
+                    "pds-gem-yellow",
                     "pds-gem-blue",
                     "pds-trap-central",
                     "pds-trap-inner",
