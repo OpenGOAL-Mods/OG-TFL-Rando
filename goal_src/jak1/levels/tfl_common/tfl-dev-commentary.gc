@@ -41,19 +41,11 @@
 (defun tfl-commentary-volume ()
   (-> *tfl-dev-commentary* vol))
 
-(defskelgroup *tfl-commentary-node-sg*
-  tfl-commentary-node
-  tfl-commentary-node-lod0-jg
-  tfl-commentary-node-idle-ja
-  ((tfl-commentary-node-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 5))
+(def-actor tfl-commentary-node
+  :bounds (0 0 0 5))
 
-(defskelgroup *tfl-commentary-node-active-sg*
-  tfl-commentary-node-active
-  tfl-commentary-node-active-lod0-jg
-  tfl-commentary-node-active-idle-ja
-  ((tfl-commentary-node-active-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 5))
+(def-actor tfl-commentary-node-active
+  :bounds (0 0 0 5))
 
 (deftype tfl-commentary-keyframes (basic)
   ((num-cmds int32)

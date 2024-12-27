@@ -236,12 +236,8 @@
   ((village1cam-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 4))
 
-(defskelgroup *turbineblade-sg*
-  turbineblade
-  turbineblade-lod0-jg
-  turbineblade-idle-ja
-  ((turbineblade-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 30))
+(def-actor turbineblade
+  :bounds (0 0 0 30))
 
 (deftype turbineblade (process-drawable) ()
   (:states (turbineblade-spinning symbol)

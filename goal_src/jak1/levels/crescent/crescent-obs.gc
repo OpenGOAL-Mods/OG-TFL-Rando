@@ -755,16 +755,12 @@
          anim-loop)
   :post plat-post)
 
+(def-actor observatory-ring
+  :bounds (0 0 0 35))
+
 (deftype observatory-ring (process-drawable) ()
   (:states
    observatory-ring-idle))
-
-(defskelgroup *observatory-ring-sg*
-  observatory-ring
-  observatory-ring-lod0-jg
-  observatory-ring-idle-ja
-  ((observatory-ring-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 35))
 
 (defmethod init-from-entity! ((this observatory-ring) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
@@ -781,18 +777,14 @@
         (suspend)))
   :post ja-post)
 
+(def-actor observatory-lens
+  :bounds (0 0 0 6))
+
 (deftype observatory-lens (process-drawable)
   ((birth-time time-frame)
    (birth-pos  vector :inline))
   (:states
    observatory-lens-idle))
-
-(defskelgroup *observatory-lens-sg*
-  observatory-lens
-  observatory-lens-lod0-jg
-  observatory-lens-idle-ja
-  ((observatory-lens-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 6))
 
 (defmethod init-from-entity! ((this observatory-lens) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
@@ -834,12 +826,10 @@
         (ja :num! (seek! max 0.6)))
       (go-virtual pov-camera-done-playing)))
 
-(defskelgroup *valley-rock-sg*
-  valley-rock
-  valley-rock-lod0-jg
-  valley-rock-idle-ja
-  ((valley-rock-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 5 0 200))
+(def-actor valley-rock
+  :idle idle-ja
+  :art (explode-ja idle-ja)
+  :bounds (0 5 0 200))
 
 (deftype valley-rock (process-drawable)
   ((root collide-shape :override))
@@ -905,10 +895,7 @@
     (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (go valley-rock-explode))))
-  :code
-    (behavior ()
-      (loop
-        (suspend)))
+  :code anim-loop
   :post ja-post)
 
 (defstate valley-rock-explode (valley-rock)
