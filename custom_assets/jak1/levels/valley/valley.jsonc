@@ -165,7 +165,7 @@
   ],
 
   "actors": [
-// Actors: SENTINEL
+// Actors: PDS - main stuff
   {
     "trans": [2075.06, 7.93, 1852.18],
     "etype": "pds-master",
@@ -257,6 +257,234 @@
       "gem-type": "'yellow"
     }
   },
+// Actors: PDS - plats - phase 1
+  {
+    "trans": [2076.78, 6.28, 1845.58],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2076.78, 6.28, 1845.58, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-01",
+      "sync": ["float", 3.0, 0.0],
+      "path": [
+        "vector3m",
+        [2076.78, 12.28, 1845.58]
+        ],
+      "next-actor":"valley-pds-plat-rectangle-01"
+    }
+  },
+  {
+    "trans": [2069.26, 6.28, 1839.52],
+    "etype": "pds-plat-rectangle",
+    "game_task": 0,
+    "quat" : [0.000, 0.296, -0.000, 0.955],
+    "bsphere": [2069.26, 6.28, 1839.52, 10],
+    "lump": {
+      "name": "valley-pds-plat-rectangle-01",
+      "sync": ["float", 3.0, 0.0],
+      "path": [
+          "vector3m",
+          [2069.26, 16.76, 1839.52]
+        ],
+      "prev-actor":"valley-pds-plat-circle-01",
+      "next-actor":"valley-pds-plat-square-01"
+    }
+  },
+  {
+    "trans": [2082.11, 6.28, 1835.19],
+    "etype": "pds-plat-square",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2082.11, 6.28, 1835.19, 10],
+    "lump": {
+      "name": "valley-pds-plat-square-01",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2082.11, 20.20, 1835.19],
+          [2082.11, 24.20, 1835.19]
+        ],
+      "prev-actor":"valley-pds-plat-rectangle-01",
+      "next-actor":"valley-pds-plat-square-02"
+    }
+  },
+  {
+    "trans": [2070.60, 6.28, 1828.76],
+    "etype": "pds-plat-square",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2070.60, 6.28, 1828.76, 10],
+    "lump": {
+      "name": "valley-pds-plat-square-02",
+      "sync": ["float", 4.0, 0.5],
+      "path": [
+          "vector3m",
+          [2070.60, 24.96, 1828.76],
+          [2070.60, 28.96, 1828.76]
+        ],
+      "prev-actor":"valley-pds-plat-square-01",
+      "next-actor":"valley-pds-plat-rectangle-02"
+    }
+  },
+  {
+    "trans": [2075.12, 6.28, 1819.83],
+    "etype": "pds-plat-rectangle",
+    "game_task": 0,
+    "quat" : [0.000, 0.707, -0.000, 0.707],
+    "bsphere": [2075.12, 6.28, 1819.83, 10],
+    "lump": {
+      "name": "valley-pds-plat-rectangle-02",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2075.12, 31.63, 1819.83],
+          [2075.12, 31.63, 1815.83],
+          [2075.12, 33.63, 1811.83]
+        ],
+      "prev-actor":"valley-pds-plat-square-02"
+    }
+  },
+// Actors: PDS - plats - phase 2
+  {
+    "trans": [2082.30, 15.23, 1856.86],
+    "etype": "pds-swingpole",
+    "game_task": 0,
+    "quat" : [0.683, -0.183, 0.183, 0.683],
+    "bsphere": [2082.30, 6.28, 1856.86, 10],
+    "lump": {
+      "name": "valley-pds-swingpole-01",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2082.30, 15.23, 1856.86]
+        ],
+      "next-actor":"valley-pds-plat-rectangle-03"
+    }
+  },
+  {
+    "trans": [2094.31, 6.28, 1863.27],
+    "etype": "pds-plat-rectangle",
+    "game_task": 0,
+    "quat" : [0.000, 0.505, -0.000, 0.863],
+    "bsphere": [2094.31, 6.28, 1863.27, 10],
+    "lump": {
+      "name": "valley-pds-plat-rectangle-03",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2094.31, 19.06, 1863.27]
+        ],
+      "prev-actor":"valley-pds-swingpole-01",
+      "next-actor":"valley-pds-plat-circle-02"
+    }
+  },
+  {
+    "trans": [2089.69, 6.28, 1871.20],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2089.69, 6.28, 1871.20, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-02",
+      "sync": ["float", 5.5, 0.0],
+      "path": [
+          "vector3m",
+          [2089.69, 19.51, 1871.20],
+          [2090.73, 27.51, 1887.53]
+        ],
+      "prev-actor":"valley-pds-plat-rectangle-03",
+      "next-actor":"valley-pds-plat-circle-03"
+    }
+  },
+  {
+    "trans": [2098.97, 6.28, 1855.46],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2098.97, 6.28, 1855.46, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-03",
+      "sync": ["float", 5.5, 0.5],
+      "path": [
+          "vector3m",
+          [2098.97, 19.51, 1855.46],
+          [2112.97, 27.51, 1848.74]
+        ],
+      "prev-actor":"valley-pds-plat-circle-02",
+      "next-actor":"valley-pds-swingpole-02"
+    }
+  },
+  {
+    "trans": [2095.59, 32.35, 1880.67],
+    "etype": "pds-swingpole",
+    "game_task": 0,
+    "quat" : [0.612, 0.354, -0.354, 0.612],
+    "bsphere": [2095.59, 6.28, 1880.67, 10],
+    "lump": {
+      "name": "valley-pds-swingpole-02",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2095.59, 32.35, 1880.67]
+        ],
+      "prev-actor":"valley-pds-plat-circle-03",
+      "next-actor":"valley-pds-swingpole-03"
+    }
+  },
+  {
+    "trans": [2109.60, 32.35, 1855.92],
+    "etype": "pds-swingpole",
+    "game_task": 0,
+    "quat" : [0.612, 0.354, -0.354, 0.612],
+    "bsphere": [2109.60, 6.28, 1855.92, 10],
+    "lump": {
+      "name": "valley-pds-swingpole-03",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2109.60, 32.35, 1855.92]
+        ],
+      "prev-actor":"valley-pds-swingpole-02",
+      "next-actor":"valley-pds-plat-rectangle-04"
+    }
+  },
+  {
+    "trans": [2102.87, 6.28, 1868.15],
+    "etype": "pds-plat-rectangle",
+    "game_task": 0,
+    "quat" : [0.000, 0.505, -0.000, 0.863],
+    "bsphere": [2102.87, 6.28, 1868.15, 10],
+    "lump": {
+      "name": "valley-pds-plat-rectangle-04",
+      "sync": ["float", 4.0, 0.0],
+      "path": [
+          "vector3m",
+          [2102.87, 34.40, 1868.15]
+        ],
+      "prev-actor":"valley-pds-swingpole-03",
+      "next-actor":"valley-pds-plat-square-03"
+    }
+  },
+  {
+    "trans": [2110.39, 6.28, 1872.46],
+    "etype": "pds-plat-square",
+    "game_task": 0,
+    "quat" : [0.000, -0.259, -0.000, 0.966],
+    "bsphere": [2110.39, 6.28, 1872.46, 10],
+    "lump": {
+      "name": "valley-pds-plat-square-03",
+      "sync": ["float", 3.0, 0.0],
+      "path": [
+          "vector3m",
+          [2110.39, 33.19, 1872.46],
+          [2110.39, 37.19, 1872.46]
+        ],
+      "prev-actor":"valley-pds-plat-rectangle-04"
+    }
+  },
+// Actors: PDS - plats - phase 3
+// Actors: PDS - traps
   {
     "trans": [2075.06, 7.93, 1852.18],
     "etype": "pds-trap-central",

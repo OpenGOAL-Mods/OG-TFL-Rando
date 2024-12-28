@@ -10,6 +10,7 @@
   "eichar-tube+0-ag.go"
   "target-ice.o"
   "eichar-ice+0-ag.go"
+  "eichar-pole+0-ag.go"
   "rolling-robber.o"
   "pds-boss-part.o"
   "pds-boss-setup.o"
