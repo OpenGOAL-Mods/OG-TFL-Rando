@@ -74,7 +74,11 @@
                     "pds-trap-mid-left",
                     "pds-trap-mid-right",
                     "pds-trap-out-left",
-                    "pds-trap-out-right"],
+                    "pds-trap-out-right",
+                    "pds-plat-circle",
+                    "pds-plat-square",
+                    "pds-plat-rectangle",
+                    "pds-swingpole"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,

@@ -1706,6 +1706,10 @@
 (build-actor "pds-trap-mid-right" :gen-mesh #t)
 (build-actor "pds-trap-out-left" :gen-mesh #t)
 (build-actor "pds-trap-out-right" :gen-mesh #t)
+(build-actor "pds-plat-circle" :gen-mesh #t)
+(build-actor "pds-plat-square" :gen-mesh #t)
+(build-actor "pds-plat-rectangle" :gen-mesh #t)
+(build-actor "pds-swingpole" :gen-mesh #t)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
