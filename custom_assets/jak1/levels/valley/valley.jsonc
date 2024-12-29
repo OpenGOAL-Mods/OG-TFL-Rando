@@ -347,7 +347,7 @@
   },
 // Actors: PDS - plats - phase 2
   {
-    "trans": [2082.30, 15.23, 1856.86],
+    "trans": [2082.30, 6.28, 1856.86],
     "etype": "pds-swingpole",
     "game_task": 0,
     "quat" : [0.683, -0.183, 0.183, 0.683],
@@ -416,7 +416,7 @@
     }
   },
   {
-    "trans": [2095.59, 32.35, 1880.67],
+    "trans": [2095.59, 6.28, 1880.67],
     "etype": "pds-swingpole",
     "game_task": 0,
     "quat" : [0.612, 0.354, -0.354, 0.612],
@@ -433,7 +433,7 @@
     }
   },
   {
-    "trans": [2109.60, 32.35, 1855.92],
+    "trans": [2109.60, 6.28, 1855.92],
     "etype": "pds-swingpole",
     "game_task": 0,
     "quat" : [0.612, 0.354, -0.354, 0.612],
@@ -484,6 +484,187 @@
     }
   },
 // Actors: PDS - plats - phase 3
+  {
+    "trans": [2082.46, 6.28, 1848.00],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2082.46, 6.28, 1848.00, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-04",
+      "sync": ["float", 5.0, 0.0],
+      "path": [
+          "vector3m",
+          [2082.46, 12.00, 1848.00],
+          [2090.88, 21.05, 1843.00]
+        ],
+      "next-actor":"valley-pds-plat-circle-05"
+    }
+  },
+  {
+    "trans": [2098.34, 6.28, 1838.53],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2098.34, 6.28, 1838.53, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-05",
+      "sync": ["float", 15.0, 0.0],
+      "options": ["enum-int32", "(fact-options wrap-phase)"],
+      "path": [
+        "vector3m",
+        [2075.06, 21.05, 1879.39],
+        [2047.84, 21.05, 1879.39],
+        [2047.84, 21.05, 1852.16],
+        [2047.84, 21.05, 1824.94],
+        [2075.06, 21.05, 1824.94],
+        [2102.28, 21.05, 1824.94],
+        [2102.28, 21.05, 1852.16],
+        [2102.28, 21.05, 1879.39],
+        [2075.06, 21.05, 1879.39],
+        [2047.84, 21.05, 1879.39],
+        [2047.84, 21.05, 1852.16]
+      ],
+      "path-k": [
+        "float",
+        0.0,
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        8.0
+      ],
+      "prev-actor":"valley-pds-plat-circle-04",
+      "next-actor":"valley-pds-plat-circle-06"
+    }
+  },
+  {
+    "trans": [2051.50, 6.28, 1838.53],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2051.50, 6.28, 1838.53, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-06",
+      "sync": ["float", 15.0, 0.333],
+      "options": ["enum-int32", "(fact-options wrap-phase)"],
+      "path-actor": "valley-pds-plat-circle-05",
+      "prev-actor":"valley-pds-plat-circle-05",
+      "next-actor":"valley-pds-plat-circle-07"
+    }
+  },
+  {
+    "trans": [2075.07, 6.28, 1879.41],
+    "etype": "pds-plat-circle",
+    "game_task": 0,
+    "quat" : [0.000, 0.000, -0.000, 1.000],
+    "bsphere": [2075.07, 6.28, 1879.41, 10],
+    "lump": {
+      "name": "valley-pds-plat-circle-07",
+      "sync": ["float", 15.0, 0.666],
+      "options": ["enum-int32", "(fact-options wrap-phase)"],
+      "path-actor": "valley-pds-plat-circle-05",
+      "prev-actor":"valley-pds-plat-circle-06",
+      "next-actor":"valley-pds-plat-square-04"
+    }
+  },
+  {
+    "trans": [2075.26, 6.28, 1870.35],
+    "etype": "pds-plat-square",
+    "game_task": 0,
+    "quat" : [0.000, 0.259, -0.000, 0.966],
+    "bsphere": [2075.26, 6.28, 1870.35, 10],
+    "lump": {
+      "name": "valley-pds-plat-square-04",
+      "sync": ["float", 5.0, 0.35],
+      "path": [
+          "vector3m",
+          [2075.26, 21.05, 1870.35],
+          [2067.16, 34.35, 1875.04]
+        ],
+      "prev-actor":"valley-pds-plat-circle-07",
+      "next-actor":"valley-pds-plat-square-05"
+    }
+  },
+  {
+    "trans": [2059.23, 6.28, 1843.27],
+    "etype": "pds-plat-square",
+    "game_task": 0,
+    "quat" : [0.000, -0.966, -0.000, 0.259],
+    "bsphere": [2059.23, 6.28, 1843.27, 10],
+    "lump": {
+      "name": "valley-pds-plat-square-05",
+      "sync": ["float", 5.0, 0.35],
+      "path": [
+          "vector3m",
+          [2059.23, 21.05, 1843.27],
+          [2051.67, 34.35, 1847.87]
+        ],
+      "prev-actor":"valley-pds-plat-square-04>",
+      "next-actor":"valley-pds-plat-rectangle-05"
+    }
+  },
+  {
+    "trans": [2059.10, 6.28, 1879.66],
+    "etype": "pds-plat-rectangle",
+    "game_task": 0,
+    "quat" : [0.000, 0.259, -0.000, 0.966],
+    "bsphere": [2059.10, 6.28, 1879.66, 10],
+    "lump": {
+      "name": "valley-pds-plat-rectangle-05",
+      "sync": ["float", 1.0, 0.0],
+      "path": [
+          "vector3m",
+          [2059.10, 34.45, 1879.66]
+        ],
+      "prev-actor":"valley-pds-plat-square-05",
+      "next-actor":"valley-pds-plat-rectangle-06"
+    }
+  },
+  {
+    "trans": [2043.61, 6.28, 1852.82],
+    "etype": "pds-plat-rectangle",
+    "game_task": 0,
+    "quat" : [0.000, 0.259, -0.000, 0.966],
+    "bsphere": [2043.61, 6.28, 1852.82, 10],
+    "lump": {
+      "name": "valley-pds-plat-rectangle-06",
+      "sync": ["float", 1.0, 0.0],
+      "path": [
+          "vector3m",
+          [2044.68, 34.45, 1852.08]
+        ],
+      "prev-actor":"valley-pds-plat-rectangle-05",
+      "next-actor":"valley-pds-swingpole-04"
+    }
+  },
+  {
+    "trans": [2044.57, 6.28, 1870.17],
+    "etype": "pds-swingpole",
+    "game_task": 0,
+    "quat" : [0.183, -0.683, 0.683, 0.183],
+    "bsphere": [2044.57, 6.28, 1870.17, 10],
+    "lump": {
+      "name": "valley-pds-swingpole-04",
+      "sync": ["float", 8.0, 0.0],
+      "path": [
+          "vector3m",
+          [2036.91, 41.50, 1856.79],
+          [2044.57, 41.50, 1870.17],
+          [2052.22, 41.50, 1883.55]
+        ],
+      "prev-actor":"valley-pds-plat-rectangle-06"
+    }
+  },
 // Actors: PDS - traps
   {
     "trans": [2075.06, 7.93, 1852.18],
