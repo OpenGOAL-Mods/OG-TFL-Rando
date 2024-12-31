@@ -3,7 +3,7 @@
 (define *tfl-music-player-level-info*
   (new 'static 'boxed-array :type string "crystal-ca" "crescent-t" "energy-bay" "open-mines"))
 
-(define *tfl-music-player-boss-info* (new 'static 'boxed-array :type string "boss-test"))
+(define *tfl-music-player-boss-info* (new 'static 'boxed-array :type string "pds-sentinel"))
 
 (define *tfl-music-playing?* #f)
 
