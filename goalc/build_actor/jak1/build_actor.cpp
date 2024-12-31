@@ -281,6 +281,8 @@ void ArtJointGeo::add_res() {
     lump.add_res(
         std::make_unique<ResRef>("collide-mesh-group", "array", mesh_slot, DEFAULT_RES_TIME));
   }
+  lump.add_res(
+      std::make_unique<ResUint8>("texture-bucket", std::vector<u8>{0}, DEFAULT_RES_TIME));
   // jgeo.lump.add_res(
   //     std::make_unique<ResInt32>("texture-level", std::vector<s32>{2}, DEFAULT_RES_TIME));
   // jgeo.lump.add_res(std::make_unique<ResVector>(
