@@ -14,6 +14,11 @@
 
 ;; note: the while loop in this is changed to include a cast to basic.
 
+;; TFL note: added
+(defmacro relocate-fields (&rest fields)
+  `(begin
+    ,@(apply (lambda (x) `(if (nonzero? (-> this ,x)) (&+! (-> this ,x) offset))) fields)))
+
 ;; DECOMP BEGINS
 
 (defmethod relocate ((this process) (arg0 int))
