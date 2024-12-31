@@ -1063,10 +1063,10 @@
   (vector-identity! (-> arg0 root scale))
   (if (is-tfl-level? (-> arg1 extra level name))
     (let* ((scale-x 1.0) ;; TFL notes: added a scale option for every process-drawable in the lump
-        (scale-y 1.0)
-        (scale-z 1.0)
-        (tag (new 'static 'res-tag))
-        (res (res-lump-data arg1 'scale (pointer float) :tag-ptr (& tag))))
+           (scale-y 1.0)
+           (scale-z 1.0)
+           (tag (new 'static 'res-tag))
+           (res (res-lump-data arg1 'scale (pointer float) :tag-ptr (& tag))))
       (when res
         (case (-> tag elt-count)
           ((1) (set! scale-x (-> res 0)) (set! scale-y (-> res 0)) (set! scale-z (-> res 0)))
