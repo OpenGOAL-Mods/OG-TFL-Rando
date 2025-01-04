@@ -1,3 +1,653 @@
 ;;-*-Lisp-*-
 (in-package goal)
+
+;;;;;;;;;;;;;;;;;
+;;; projectile
+;;;;;;;;;;;;;;;;;
+
+(defbehavior tfl-arcing-shot-setup tfl-arcing-shot ((from vector) (to vector) (arg2 float))
+  (vector-copy! (-> self from) from)
+  (vector-copy! (-> self to) to)
+  (let ((v1-2 (fmax 1.0 arg2)))
+    (if (< (-> from y) (-> to y)) (set! v1-2 (+ v1-2 (- (-> to y) (-> from y)))))
+    (let ((f0-6 (* -4.0 v1-2))
+          (f3-1 (* 4.0 v1-2 (- (-> to y) (-> from y)))))
+      (set! (-> self y-vel) (* 0.5 (- (sqrtf (- (* f0-6 f0-6) (* 4.0 f3-1))) f0-6))))
+    (set! (-> self grav) (/ (- (* (-> self y-vel) (-> self y-vel))) (* 2.0 v1-2)))))
+
+(defbehavior tfl-arcing-shot-calculate tfl-arcing-shot ((arg0 vector) (arg1 float))
+  (let ((s5-0 (fmin 1.0 (fmax 0.0 arg1))))
+    (vector-lerp! arg0 (-> self from) (-> self to) s5-0)
+    (set! (-> arg0 y) (-> self from y))
+    (+! (-> arg0 y) (* (-> self y-vel) s5-0))
+    (set! (-> arg0 y) (+ (-> arg0 y) (* (/ s5-0 2) s5-0 (-> self grav))))))
+
+(defbehavior tfl-arcing-shot-draw tfl-arcing-shot ()
+  (let ((gp-0 (new-stack-vector0))
+        (s5-0 (new-stack-vector0)))
+    (vector-copy! s5-0 (-> self from))
+    (dotimes (i 30)
+      (tfl-arcing-shot-calculate gp-0 (* 0.033333335 (the float (+ i 1))))
+      (camera-line gp-0 s5-0 (new 'static 'vector4w :x #xff :y #xff :w #x80))
+      (vector-copy! s5-0 gp-0)))
+  #f)
+
+(defmethod relocate ((this pds-shot) (offset int))
+  (relocate-fields explode-part)
+  (call-parent-method this offset))
+
+(defmethod deactivate ((this pds-shot))
+  (if (nonzero? (-> this explode-part)) (kill-and-free-particles (-> this explode-part)))
+  (call-parent-method this))
+
+(defskelgroup *redring-sg*
+  redring
+  redring-lod0-jg
+  redring-idle-ja
+  ((redring-lod0-mg (meters 999999)))
+  :bounds (static-spherem 0 0 0 40))
+
+(defbehavior pds-shot-init-by-other pds-shot ((pos vector) (to vector) (flight-time time-frame) (stall-time time-frame) (rot-off int) (type-to-make type))
+  (set! (-> self root) (new 'process 'trsqv))
+  (vector-copy! (-> self root trans) pos)
+  (initialize-skeleton self *redring-sg* '())
+  (logclear! (-> self mask) (process-mask actor-pause))
+  (tfl-arcing-shot-setup pos to (meters 10))
+  (set! (-> self flight-time) flight-time)
+  (set! (-> self stall-time) stall-time)
+  (set! (-> self rotation-offset) rot-off)
+  (set! (-> self type-to-make) type-to-make)
+  (set-part! :id 963)
+  (set-part! :part explode-part :id 964)
+  ; (set! (-> self part) (create-launch-control (-> *part-group-id-table* 647) self))
+  (logior! (-> self draw status) (draw-status hidden))
+  (go-virtual idle))
+
+(define-extern pds-nav-enemy-init (function pds-sentinel vector vector object :behavior nav-enemy))
+
+(defstate idle (pds-shot)
+  :virtual #t
+  :enter
+    (behavior ()
+      (set! (-> self state-time) (-> *display* game-frame-counter)))
+  :trans
+    (behavior ()
+      (let ((mat (new-stack-matrix0)))
+        (matrix-rotate-yx! mat
+                           (* 436.90668 (the float (+ (-> self rotation-offset) (-> *display* game-frame-counter))))
+                           (* 291.27112 (the float (+ (-> self rotation-offset) (-> *display* game-frame-counter)))))
+        (matrix->quaternion (-> self root quat) mat))
+      ; (if (< (* 0.006666667 (the float (min 150 (seconds 5)))) 1.0) (spawn (-> self part) (-> self root trans)))
+      (tfl-arcing-shot-calculate (-> self root trans)
+                                 (/ (the float (- (-> *display* game-frame-counter) (-> self state-time))) (the float (-> self flight-time))))
+      (if (>= (- (-> *display* game-frame-counter) (-> self state-time)) (-> self flight-time)) (go-virtual explode))
+      (spawn (-> self part) (-> self root trans)))
+  :code
+    (behavior ()
+      (loop
+        (suspend)))
+  :post ja-post)
+
+(defstate explode (pds-shot)
+  :virtual #t
+  :code
+    (behavior ()
+      (set! (-> self state-time) (-> *display* game-frame-counter))
+      (sound-play "explosion" :vol 90 :pitch 0.0)
+      (logclear! (-> self draw status) (draw-status hidden))
+      (quaternion-identity! (-> self root quat))
+      (send-event *pds-master*
+                  'notify
+                  'spawned
+                  (ppointer->handle (case (-> self type-to-make)
+                                      ((babak) (process-spawn babak :init pds-nav-enemy-init self (-> self root trans) (target-pos 0) :to (-> self parent 0)))
+                                      ((lurkerpuppy)
+                                       (process-spawn lurkerpuppy :init pds-nav-enemy-init self (-> self root trans) (target-pos 0) :to (-> self parent 0)))
+                                      ((swamp-rat)
+                                       (process-spawn swamp-rat :init pds-nav-enemy-init self (-> self root trans) (target-pos 0) :to (-> self parent 0)))
+                                      ((kermit)
+                                       (process-spawn kermit :init pds-nav-enemy-init self (-> self root trans) (target-pos 0) :to (-> self parent 0)))
+                                      ((bonelurker)
+                                       (process-spawn bonelurker :init pds-nav-enemy-init self (-> self root trans) (target-pos 0) :to (-> self parent 0)))
+                                      ((ice-cube)
+                                       (process-spawn ice-cube :init pds-nav-enemy-init self (-> self root trans) (target-pos 0) :to (-> self parent 0)))))))
+  :post ja-post)
+
+;;;;;;;;;;;;;;;;;
+;;; gem
+;;;;;;;;;;;;;;;;;
+
+(deftype pds-gem (process-drawable)
+  ((root          collide-shape-moving :override)
+   (sentinel      entity-actor)
+   (color         symbol)
+   (charging-spot vector :inline))
+  (:methods
+   (init-collision! (_type_) object)
+   (get-skel (_type_) skeleton-group))
+  (:state-methods
+   idle
+   explode))
+
+(defmethod init-collision! ((this pds-gem))
+  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
+    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
+    (set! (-> cshape reaction) default-collision-reaction)
+    (set! (-> cshape no-reaction) (the (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (let ((sphere (new 'process 'collide-shape-prim-sphere cshape (the uint 0))))
+      (set! (-> sphere prim-core collide-as) (collide-kind enemy))
+      (set! (-> sphere collide-with) (collide-kind target))
+      (set! (-> sphere prim-core action) (collide-action solid))
+      (set! (-> sphere prim-core offense) (collide-offense normal-attack))
+      (set-vector! (-> sphere local-sphere) 0.0 0.0 0.0 (meters 3.75))
+      (set-root-prim! cshape sphere))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape)))
+
+(defmethod get-skel ((this pds-gem))
+  (case (-> this color)
+    (('green) *pds-gem-green-sg*)
+    (('yellow) *pds-gem-yellow-sg*)
+    (('blue) *pds-gem-blue-sg*)
+    (else *pds-gem-green-sg*)))
+
+(defmethod init-from-entity! ((this pds-gem) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (set! (-> this color) (aif (res-lump-struct e 'gem-type symbol) it 'green))
+  (initialize-skeleton this (get-skel this) '())
+  (vector-copy! (-> this charging-spot) (-> e extra trans))
+  (+! (-> this charging-spot y) (meters 18.5))
+  (transform-post)
+  (go-virtual idle :proc this)
+  (none))
+
+(defstate idle (pds-gem)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('attack) (if (= (-> proc type) target) (go-virtual explode)))))
+  :code anim-loop
+  :post transform-post)
+
+(defstate explode (pds-gem)
+  :virtual #t
+  :enter
+    (behavior ()
+      (send-event *pds-master* 'gem-destroyed))
+  :code
+    (behavior ()
+      (clear-collide-with-as (-> self root))
+      (activate! *camera-smush-control* 409.6 37 210 1.0 0.995)
+      (sound-play "crystal-explode")
+      ; (process-spawn part-tracker
+      ;                :init
+      ;                part-tracker-init
+      ;                (-> *part-group-id-table* 951)
+      ;                -1
+      ;                #f
+      ;                #f
+      ;                #f
+      ;                (-> self root trans)
+      ;                :to
+      ;                *entity-pool*)
+      (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)
+      (suspend)
+      (ja-channel-set! 0)
+      (ja-post)
+      (until (not (-> self child))
+        (suspend))
+      (cleanup-for-death self)))
+
+;;;;;;;;;;;;;;;;;
+;;; traps
+;;;;;;;;;;;;;;;;;
+
+(deftype pds-trap (process-drawable)
+  ((root        collide-shape :override)
+   (disabled?   symbol)
+   (active-part sparticle-launch-control)
+   (deadly-part sparticle-launch-control))
+  (:methods
+   (init-collision! (_type_) object)
+   (get-skel (_type_) skeleton-group)
+   (target-rider? (_type_) symbol))
+  (:state-methods
+   idle
+   active
+   deadly))
+
+(defmethod relocate ((this pds-trap) (offset int))
+  (if (nonzero? (-> this active-part)) (&+! (-> this active-part) offset))
+  (if (nonzero? (-> this deadly-part)) (&+! (-> this deadly-part) offset))
+  (call-parent-method this offset))
+
+(defmethod target-rider? ((this pds-trap))
+  (aif *target*
+    (and (nonzero? (-> this root riders num-riders)) (= it (handle->process (-> this root riders rider 0 rider-handle))))))
+
+(defmethod init-collision! ((this pds-trap))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (alloc-riders cshape 1)
+    (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
+      (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+      (set! (-> mesh collide-with) (collide-kind target))
+      (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+      (set! (-> mesh prim-core offense) (collide-offense indestructible))
+      (set! (-> mesh transform-index) 0)
+      (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 (meters 20))
+      (set-root-prim! cshape mesh))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape)))
+
+(defmethod init-from-entity! ((this pds-trap) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (true! (-> this disabled?))
+  (initialize-skeleton this (get-skel this) '())
+  (transform-post)
+  (go-virtual idle :proc this)
+  (none))
+
+(defstate idle (pds-trap)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('enable) (false! (-> self disabled?)))
+        (('disable) (true! (-> self disabled?)))
+        (('activate) (go-virtual active))
+        (('ridden) #t)))
+  :enter
+    (behavior ()
+      (set-state-time))
+  :trans rider-trans
+  :code
+    (behavior ()
+      (until (not (-> self disabled?))
+        ; (vector-seek! (-> self draw color-mult) (static-vector 1.0 1.0 1.0 1.0) (seconds-per-frame))
+        (suspend))
+      (until (target-in-arena? *pds-master*)
+        ; (vector-seek! (-> self draw color-mult) (static-vector 1.0 1.0 1.0 1.0) (seconds-per-frame))
+        (suspend))
+      (until (time-passed? (seconds 2))
+        (vector-seek! (-> self draw color-mult) (static-vector 0.0 0.0 0.5 1.0) (/ (seconds-per-frame) 2))
+        (suspend))
+      (go-virtual active))
+  :post transform-post)
+
+(defstate active (pds-trap)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('enable) (false! (-> self disabled?)))
+        (('disable) (true! (-> self disabled?)) (go-virtual idle))
+        (('deactivate) (go-virtual idle))
+        (('deadly) (go-virtual deadly))
+        (('ridden) (when (target-rider? self) (send-event *target* 'attack #f (static-attack-info ((mode 'generic))))))))
+  :enter
+    (behavior ()
+      (set-state-time))
+  :trans rider-trans
+  :code
+    (behavior ()
+      (until (time-passed? (seconds 2))
+        (vector-seek! (-> self draw color-mult) (static-vector 0.5 0.0 0.0 1.0) (/ (seconds-per-frame) 2))
+        (suspend))
+      (go-virtual deadly))
+  :post transform-post)
+
+(defstate deadly (pds-trap)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('enable) (false! (-> self disabled?)))
+        (('disable) (true! (-> self disabled?)) (go-virtual idle))
+        (('deactivate) (go-virtual idle))
+        (('activate) (go-virtual active))
+        (('ridden)
+         (when (and (target-rider? self) (not (= (-> *target* next-state name) 'target-hit)))
+           (send-event *target* 'attack-invinc #f (static-attack-info ((mode 'death))))))))
+  :enter
+    (behavior ()
+      (set-state-time))
+  :trans rider-trans
+  :code
+    (behavior ()
+      (until (time-passed? (seconds 2))
+        (vector-seek! (-> self draw color-mult) (static-vector 1.0 1.0 1.0 1.0) (/ (seconds-per-frame) 2))
+        (suspend))
+      (go-virtual idle))
+  :post transform-post)
+
+(deftype pds-trap-central (pds-trap) ())
+
+(defmethod get-skel ((this pds-trap-central))
+  *pds-trap-central-sg*)
+
+(deftype pds-trap-inner (pds-trap) ())
+
+(defmethod get-skel ((this pds-trap-inner))
+  *pds-trap-inner-sg*)
+
+(deftype pds-trap-mid-left (pds-trap) ())
+
+(defmethod get-skel ((this pds-trap-mid-left))
+  *pds-trap-mid-left-sg*)
+
+(deftype pds-trap-mid-right (pds-trap) ())
+
+(defmethod get-skel ((this pds-trap-mid-right))
+  *pds-trap-mid-right-sg*)
+
+(deftype pds-trap-out-left (pds-trap) ())
+
+(defmethod get-skel ((this pds-trap-out-left))
+  *pds-trap-out-left-sg*)
+
+(deftype pds-trap-out-right (pds-trap) ())
+
+(defmethod get-skel ((this pds-trap-out-right))
+  *pds-trap-out-right-sg*)
+
+;;;;;;;;;;;;;;;;;
+;;; plats
+;;;;;;;;;;;;;;;;;
+
+(deftype pds-plat (baseplat)
+  ((path-pos   float)
+   (sync       sync-info-eased :inline)
+   (rise-speed float)
+   (sound-id   sound-id))
+  (:methods
+   (get-skel (_type_) skeleton-group)
+   (init-collision! (_type_) object))
+  (:state-methods
+   hidden
+   come-up
+   active
+   go-down))
+
+(defmethod init-collision! ((this pds-plat))
+  (let* ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player)))
+         (plat-type (-> this type symbol))
+         (r (case plat-type
+              (('pds-plat-circle) (meters 4))
+              (('pds-plat-square) (meters 5))
+              (('pds-plat-rectangle) (meters 6.5))
+              (else (meters 10)))))
+    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
+    (set! (-> cshape reaction) default-collision-reaction)
+    (set! (-> cshape no-reaction) (the (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (alloc-riders cshape 1)
+    (let ((cgroup (new 'process 'collide-shape-prim-group cshape (the uint 2) 0)))
+      (set! (-> cgroup prim-core collide-as) (collide-kind ground-object))
+      (set! (-> cgroup collide-with) (collide-kind target))
+      (set! (-> cgroup prim-core action) (collide-action solid rider-plat-sticky))
+      (set! (-> cgroup transform-index) 0)
+      (set-vector! (-> cgroup local-sphere) 0.0 0.0 0.0 (+ r (meters 0.5)))
+      (set-root-prim! cshape cgroup)
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
+        (set! (-> mesh prim-core collide-as) (collide-kind ground-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) 0)
+        (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 r)
+        (append-prim cgroup mesh))
+      (let ((mesh1 (new 'process 'collide-shape-prim-mesh cshape (the uint 1) (the uint 1))))
+        (set! (-> mesh1 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> mesh1 collide-with) (collide-kind target))
+        (set! (-> mesh1 prim-core action) (collide-action solid rider-plat-sticky))
+        (set! (-> mesh1 prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh1 transform-index) 0)
+        (set-vector! (-> mesh1 local-sphere) 0.0 (meters 0) 0.0 r)
+        (append-prim cgroup mesh1)))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape)))
+
+(defmethod init-from-entity! ((this pds-plat) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (set! (-> this fact) (new 'process 'fact-info this (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc)))
+  (set! (-> this path) (new 'process 'curve-control this 'path DEFAULT_RES_TIME))
+  (set! (-> this path flags) DEFAULT_PATH_FLAGS)
+  (set! (-> this path-pos) 0.0)
+  (set! (-> this rise-speed) (meters 15))
+  (set! (-> this sound-id) (new-sound-id))
+  (set-part! :proc this :id 107)
+  (initialize-skeleton this (get-skel this) '())
+  (load-params! (-> this sync) this (the uint 0) 0.0 0.15 0.15)
+  (baseplat-method-21 this)
+  (go-virtual hidden :proc this)
+  (none))
+
+(defevent pds-plat
+  (case message
+    (('bonk) (baseplat-method-22 self))
+    (('activate) (go-virtual come-up))
+    (('deactivate) (go-virtual go-down))
+    (('next-stage) (when (= (-> self next-state name) 'active) (go-virtual go-down)))))
+
+(defstatehandler pds-plat :event pds-plat-event-handler :post plat-post)
+
+(defstate hidden (pds-plat)
+  :virtual #t
+  :enter
+    (behavior ()
+      (clear-collide-with-as (-> self root))
+      (hide! self))
+  :code anim-loop
+  :post transform-post)
+
+(defbehavior pds-plat-trans pds-plat ()
+  (rider-trans)
+  (cond
+    ((-> self bouncing)
+     (let ((vec (new-stack-vector0)))
+       (vector-copy! vec (-> self basetrans))
+       (+! (-> vec y) (* 819.2 (update! (-> self smush))))
+       ; (move-to-point! (-> self root) vec)
+       )
+     (if (not (!= (-> self smush amp) 0.0)) (set! (-> self bouncing) #f)))
+    (else ; (move-to-point! (-> self root) (-> self basetrans))
+     )))
+
+(defstate come-up (pds-plat)
+  :virtual #t
+  :enter
+    (behavior ()
+      (restore-collide-with-as (-> self root))
+      (show! self))
+  :trans
+    (behavior ()
+      (set! (-> self path-pos)
+            (if (logtest? (-> self fact options) (fact-options wrap-phase))
+              (get-current-phase (-> self sync))
+              (get-current-phase-with-mirror (-> self sync))))
+      (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
+      (pds-plat-trans))
+  :code
+    (behavior ()
+      (ja :group! pds-plat-circle-idle-ja :num! (identity 0.0))
+      (until (< (vector-vector-distance (-> self root trans) (-> self basetrans)) (meters 0.1))
+        (vector-seek! (-> self root trans) (-> self basetrans) (* (-> self rise-speed) (seconds-per-frame)))
+        (suspend))
+      (go-virtual active)))
+
+(defstate active (pds-plat)
+  :virtual #t
+  :trans
+    (behavior ()
+      (set! (-> self path-pos)
+            (if (logtest? (-> self fact options) (fact-options wrap-phase))
+              (get-current-phase (-> self sync))
+              (get-current-phase-with-mirror (-> self sync))))
+      (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
+      (if (< (vector-vector-distance (-> self root trans) (ear-trans)) (meters 20))
+        (sound-play "eco-plat-hover" :id (-> self sound-id) :position (the symbol (-> self root trans))))
+      (plat-trans))
+  :code anim-loop
+  :exit
+    (behavior ()
+      (sound-stop (-> self sound-id))))
+
+(defstate go-down (pds-plat)
+  :virtual #t
+  :trans
+    (behavior ()
+      (vector-copy! (-> self basetrans) (-> self root trans))
+      (plat-trans))
+  :code
+    (behavior ()
+      (until (= (-> self root trans y) (-> self entity extra trans y))
+        (seek! (-> self root trans y) (-> self entity extra trans y) (* (-> self rise-speed) (seconds-per-frame)))
+        (suspend))
+      (go-virtual hidden)))
+
+(deftype pds-plat-circle (pds-plat) ())
+
+(defmethod get-skel ((this pds-plat-circle))
+  *pds-plat-circle-sg*)
+
+(deftype pds-plat-square (pds-plat) ())
+
+(defmethod get-skel ((this pds-plat-square))
+  *pds-plat-square-sg*)
+
+(deftype pds-plat-rectangle (pds-plat) ())
+
+(defmethod get-skel ((this pds-plat-rectangle))
+  *pds-plat-rectangle-sg*)
+
+;;;;;;;;;;;;;;;;;
+;;; swingpole
+;;;;;;;;;;;;;;;;;
+
+(deftype pds-swingpole (process-drawable)
+  ((root        collide-shape :override)
+   (edge-length float)
+   (path-pos    float)
+   (joint-track int32)
+   (speed       float)
+   (dir         vector :inline)
+   (sync        sync-info-eased :inline))
+  (:state-methods
+   idle
+   (active handle))
+  (:methods
+   (move-along-path (_type_) object)))
+
+;;;;;;;;;;;;;;;;;
+;;; master
+;;;;;;;;;;;;;;;;;
+
+(defmethod relocate ((this pds-master) (offset int))
+  (set! *pds-master* this)
+  (if *pds-master* (&+! *pds-master* offset))
+  (relocate-fields root
+                   link
+                   gems
+                   traps
+                   traps-outer
+                   traps-mid
+                   traps-inner
+                   plats
+                   plats-1
+                   plats-2
+                   plats-3
+                   poles
+                   poles-2
+                   poles-3)
+  (call-parent-method this offset))
+
+(defmethod fill-actor-arr ((this pds-master) (arr (array entity-actor)) (e entity-actor) (lump symbol))
+  (dotimes (i (length arr))
+    (set! (-> arr i) (entity-actor-lookup e lump i)))
+  arr)
+
+(defmethod send-to-actor ((this pds-master) (e entity-actor) (message symbol))
+  (when (and e (-> e extra process))
+    (send-event (-> e extra process) message)))
+
+(defmethod send-to-actor-group ((this pds-master) (group (array entity-actor)) (message symbol))
+  (dotimes (i (length group))
+    (send-to-actor this (-> group i) message)))
+
+(defmethod send-to-all ((this pds-master) (message symbol))
+  (send-to-actor this (-> this sentinel) message)
+  (dotimes (i 12)
+    (send-to-actor-group this (-> this actors i) message)))
+
+(defmethod target-in-arena? ((this pds-master))
+  (aif *target* (< (vector-vector-distance (-> this root trans) (target-pos 0)) (meters 70))))
+
+(defbehavior pds-master-send-to-group-delayed pds-master ((group (array entity-actor)) (message symbol) (delay time-frame))
+  (dotimes (i (length group))
+    (format 0 "pds-master-send-to-group-delayed ~A ~A~%" message (-> group i extra process))
+    (suspend-for delay)
+    (send-to-actor self (-> group i) message)))
+
+(defevent pds-master
+  (case message
+    (('notify)
+     (case (the symbol (-> block param 0))
+       (('spawned) ; (format 0 "pds-master got enemy ~A~%" (handle->process (the handle (-> block param 1))))
+        )
+       (('killed) (1+! (-> self enemies-killed)))))
+    (('stage) (-> self stage))
+    (('gem-destroyed) (1+! (-> self stage)) (send-to-actor self (-> self sentinel) 'next-stage))
+    (('num-killed) (-> self enemies-killed))
+    (('reset-kills) (set! (-> self enemies-killed) 0))
+    (('set-max-enemies) (set! (-> self max-enemies) (the int (-> block param 0))))
+    (('set-max-active) (set! (-> self max-active) (the int (-> block param 0))))
+    (('spawn-plats)
+     (case (-> self stage)
+       ((0) (send-to-actor-group self (-> self plats-1) 'activate))
+       ((1) (send-to-actor-group self (-> self plats-2) 'activate))
+       ((2) (send-to-actor-group self (-> self plats-3) 'activate))))
+    (('deactivate-plats)
+     (case (1- (-> self stage))
+       ((0) (go-virtual send-with-delay (-> self plats-1) 'deactivate (seconds 0.25)))
+       ((1) (go-virtual send-with-delay (-> self plats-2) 'deactivate (seconds 0.25)))
+       ((2) (go-virtual send-with-delay (-> self plats-3) 'deactivate (seconds 0.25)))))
+    (('send-with-delay)
+     (pds-master-send-to-group-delayed (the (array entity-actor) (-> block param 0))
+                                       (the symbol (-> block param 1))
+                                       (the time-frame (-> block param 2))))))
+
+(defpost pds-master
+  (if *target*
+    (format *stdcon*
+            "target arena dist ~,,2m~%stage ~D~%killed ~D needed ~D remaining ~D~%"
+            (vector-vector-distance (-> self root trans) (target-pos 0))
+            (-> self stage)
+            (-> self enemies-killed)
+            (-> self max-enemies)
+            (- (-> self max-enemies) (-> self enemies-killed)))))
+
+(defstatehandler pds-master :event pds-master-event-handler :post pds-master-post)
+
+(defstate idle (pds-master)
+  :virtual #t
+  :code anim-loop)
+
+(defstate send-with-delay (pds-master)
+  :virtual #t
+  :code
+    (behavior ((group (array entity-actor)) (message symbol) (delay time-frame))
+      (format 0 "pds-master: send-with-delay ~e ~A ~A~%" delay message group)
+      (pds-master-send-to-group-delayed group message delay)
+      (go-virtual idle)))
+
+;;;;;;;;;;;;;;;;;
+;;; door
+;;;;;;;;;;;;;;;;;
+
 (deftype pds-lab-door (process-drawable) ())

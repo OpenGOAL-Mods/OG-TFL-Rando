@@ -1,2 +1,312 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(defmethod deactivate ((this pds-sentinel))
+  (if (nonzero? (-> this spawn-part)) (kill-and-free-particles (-> this spawn-part)))
+  (if (nonzero? (-> this core-part)) (kill-and-free-particles (-> this core-part)))
+  (if (nonzero? (-> this thruster-part)) (kill-and-free-particles (-> this thruster-part)))
+  (if (nonzero? (-> this explode-part)) (kill-and-free-particles (-> this explode-part)))
+  (if (nonzero? (-> this damage-part)) (kill-and-free-particles (-> this damage-part)))
+  (if (nonzero? (-> this death-part)) (kill-and-free-particles (-> this death-part)))
+  (call-parent-method this))
+
+(defmethod relocate ((this pds-sentinel) (offset int))
+  (relocate-fields spawn-part core-part thruster-part explode-part damage-part death-part)
+  (call-parent-method this offset))
+
+(defmethod random-enemy-type ((this pds-sentinel) (stage int))
+  (let ((lst (case stage
+               ((0) (-> this enemy-types-1))
+               ((1) (-> this enemy-types-2))
+               ((2) (-> this enemy-types-3)))))
+    (the type (-> (the symbol (ref lst (rand-vu-int-count (length lst)))) value))))
+
+(defmethod random-nav-mesh-pos ((this pds-sentinel) (dest vector))
+  ;; - start from arena middle
+  ;; - go out up to +/- 35 meters
+  ;; - maybe use is-in-bounds? to ensure the point is valid?
+  (let ((pos (new-stack-vector0))
+        (mesh *nav-valley-boss*))
+    (vector-copy! pos (-> *pds-master* root trans))
+    (+! (-> pos x) (* (meters 30) (if (rand-vu-percent? 0.5) (rand-vu) (- (rand-vu)))))
+    (+! (-> pos z) (* (meters 30) (if (rand-vu-percent? 0.5) (rand-vu) (- (rand-vu)))))
+    (vector-copy! dest pos))
+  dest)
+
+(defmethod child-count ((this pds-sentinel))
+  (set! (-> this child-count) 0)
+  (let ((cnt-func (lambda ((p process))
+                    (when (symbol-member? (-> p type symbol) '(babak lurkerpuppy swamp-rat kermit bonelurker ice-cube))
+                      (let ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
+                            (as-enemy (the nav-enemy p)))
+                        (1+! (-> sentinel child-count))
+                        (when (-> sentinel enemy-debug-draw?)
+                          (add-debug-x #t (bucket-id debug-no-zbuf) (-> as-enemy root trans) (static-rgba #x80 #xff #x80 #x80))
+                          ; (add-debug-text-3d #t
+                          ;                    (bucket-id debug-no-zbuf)
+                          ;                    (symbol->string (-> as-enemy name))
+                          ;                    (-> as-enemy root trans)
+                          ;                    (font-color white)
+                          ;                    (new 'static 'vector2h :y 8))
+                          (add-debug-text-sphere #t
+                                                 (bucket-id debug-no-zbuf)
+                                                 (-> as-enemy root trans)
+                                                 (meters 1)
+                                                 (symbol->string (-> as-enemy name))
+                                                 (static-rgba 0 #xff 0 #x80))
+                          (add-debug-text-3d #t
+                                             (bucket-id debug-no-zbuf)
+                                             (symbol->string (-> as-enemy state name))
+                                             (-> as-enemy root trans)
+                                             (font-color white)
+                                             (new 'static 'vector2h :y 8))))))))
+    (iterate-process-tree this cnt-func *null-kernel-context*))
+  (-> this child-count))
+
+(defmethod clean-up-enemies ((this pds-sentinel))
+  (let ((cnt-func (lambda ((p process))
+                    (if (symbol-member? (-> p type symbol) '(babak lurkerpuppy swamp-rat kermit bonelurker ice-cube)) (deactivate p)))))
+    (iterate-process-tree this cnt-func *null-kernel-context*)))
+
+(defbehavior pds-nav-enemy-init nav-enemy ((pds pds-sentinel) (pos vector) (pt vector))
+  (set! (-> self entity) (-> pds entity))
+  (initialize-collision self)
+  (logior! (-> self mask) (process-mask actor-pause))
+  (vector-copy! (-> self collide-info trans) pos)
+  (vector-copy! (-> self event-param-point) pt)
+  (let ((dir (vector-! (new-stack-vector0) pt pos)))
+    (set! (-> dir y) 0.0)
+    (vector-normalize! dir 1.0)
+    (forward-up->quaternion (-> self collide-info quat) dir *up-vector*))
+  (vector-identity! (-> self collide-info scale))
+  (nav-enemy-method-48 self)
+  (logclear! (-> self nav-enemy-flags) (nav-enemy-flags navenmf12))
+  (case (-> self type symbol)
+    (('kermit) (go kermit-idle))
+    (('ice-cube)
+     (let ((as-ice (the ice-cube self)))
+       (set! (-> as-ice part) (create-launch-control (-> *part-group-id-table* 507) as-ice))
+       (set! (-> as-ice part2) (create-launch-control (-> *part-group-id-table* 508) as-ice))
+       (set! (-> as-ice part3) (create-launch-control (-> *part-group-id-table* 509) as-ice))
+       (set! (-> as-ice part4) (create-launch-control (-> *part-group-id-table* 567) as-ice)))
+     (go ice-cube-appear))
+    (else (go-virtual nav-enemy-chase))))
+
+(defbehavior pds-sentinel-follow-path pds-sentinel ()
+  (seek! (-> self path-pos) (if (-> self patrol-backwards?) 0.0 1.0) (/ (seconds-per-frame) (-> self patrol-speed)))
+  (eval-path-curve! (-> self path) (-> self root trans) (-> self path-pos) 'interp)
+  (when (= (-> self path-pos) 0.0)
+    (false! (-> self patrol-backwards?)))
+  (when (= (-> self path-pos) 1.0)
+    (true! (-> self patrol-backwards?))))
+
+(defpost pds-sentinel
+  (format *stdcon*
+          "pds-sentinel: state ~A child-count ~D path-pos ~,,2f~%"
+          (-> self next-state name)
+          (child-count self)
+          (-> self path-pos))
+  (debug-print-channels (-> self skel) (the symbol *stdcon*))
+  (when (not (symbol-member? (-> self next-state name) '(dormant wake)))
+    (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster))))
+  (ja-post))
+
+(defevent pds-sentinel
+  (case message
+    (('notify) (if (= (-> block param 0) 'die) #t))
+    (('next-stage) (go-virtual damaged))
+    (('child-die) (send-event *pds-master* 'notify 'killed))))
+
+(defstatehandler pds-sentinel :event pds-sentinel-event-handler :post pds-sentinel-post)
+
+(defstate dormant (pds-sentinel)
+  :virtual #t
+  :trans
+    (behavior ()
+      (when (and *target*
+                 (< (vector-vector-distance (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg main)) (target-pos 0))
+                    (meters 37.5)))
+        (go-virtual wake)))
+  :code
+    (behavior ()
+      (ja :group! pds-sentinel-sleep-ja :num! min)
+      (loop
+        (ja :num! (loop!))
+        (suspend))))
+
+(defstate wake (pds-sentinel)
+  :virtual #t
+  :enter
+    (behavior ()
+      (close-specific-task! (-> self entity extra perm task) (task-status need-introduction))
+      ; (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
+      (process-spawn pov-camera (-> self root trans) *sunkencam-sg* "exit-chamber-door-open" 0 self '() :to self))
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-sentinel-wake-ja :num! min)
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (suspend))
+      ;; wait for pov-cam
+      (while (-> self child)
+        (suspend))
+      (go-virtual move-to-path)))
+
+(defstate move-to-path (pds-sentinel)
+  :virtual #t
+  :enter
+    (behavior ()
+      (eval-path-curve! (-> self path) (-> self resume-path-pos) (-> self path-pos) 'interp))
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-sentinel-moving-ja :num! min)
+      (let ((pos (if (> (send-event *pds-master* 'stage) 0) (-> self resume-path-pos) (-> self path cverts 0))))
+        ;; first move to path height
+        (until (= (-> self root trans y) (-> pos y))
+          (ja :num! (loop!))
+          (seek! (-> self root trans y) (-> pos y) (* (meters 17.5) (seconds-per-frame)))
+          (suspend))
+        ;; then move to x/z
+        (until (< (vector-vector-distance (-> self root trans) pos) (meters 0.1))
+          (ja :num! (loop!))
+          (vector-seek! (-> self root trans) pos (* (meters 17.5) (seconds-per-frame)))
+          (suspend)))
+      (go-virtual spawn-enemies)))
+
+(defstate patrol-wait (pds-sentinel)
+  :virtual #t
+  :trans pds-sentinel-follow-path
+  :code
+    (behavior ()
+      (when (not (= (ja-group) pds-sentinel-moving-ja))
+        (ja-channel-push! 1 (seconds 0.1))
+        (ja-no-eval :group! pds-sentinel-moving-ja :num! min))
+      (until (target-in-arena? *pds-master*)
+        (ja :num! (loop!))
+        (suspend))
+      (go-virtual spawn-enemies)))
+
+(defstate spawn-enemies (pds-sentinel)
+  :virtual #t
+  :enter
+    (behavior ()
+      (send-event *pds-master* 'reset-kills)
+      (case (send-event *pds-master* 'stage)
+        ((0)
+         (send-event *pds-master* 'set-max-enemies 12)
+         (send-event *pds-master* 'set-max-active 4)
+         (set! (-> self spawn-interval) (seconds 2)))
+        ((1)
+         (send-event *pds-master* 'set-max-enemies 16)
+         (send-event *pds-master* 'set-max-active 8)
+         (set! (-> self spawn-interval) (seconds 1.5)))
+        ((2)
+         (send-event *pds-master* 'set-max-enemies 20)
+         (send-event *pds-master* 'set-max-active 12)
+         (set! (-> self spawn-interval) (seconds 1.25)))))
+  :trans pds-sentinel-follow-path
+  :code
+    (behavior ()
+      (set-time! (-> self last-spawn-time))
+      (until (= (send-event *pds-master* 'num-killed) (-> *pds-master* max-enemies))
+        (ja :num! (loop!))
+        (let ((killed (the int (send-event *pds-master* 'num-killed)))
+              (active (child-count self)))
+          (when (and (< active (min (- (-> *pds-master* max-enemies) killed) (-> *pds-master* max-active)))
+                     (time-elapsed? (-> self last-spawn-time) (-> self spawn-interval)))
+            (let ((spawn-pos (random-nav-mesh-pos self (new-stack-vector0)))
+                  (t (random-enemy-type self (the int (send-event *pds-master* 'stage))))
+                  (gun (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg gun))))
+              (process-spawn pds-shot gun spawn-pos (seconds 1) (seconds 0) 0 t :to self)
+              (set-time! (-> self last-spawn-time)))))
+        (suspend))
+      (go-virtual move-to-gem)))
+
+(defstate move-to-gem (pds-sentinel)
+  :virtual #t
+  :enter
+    (behavior ()
+      (set! (-> self current-gem) (-> *pds-master* gems (the int (send-event *pds-master* 'stage)))))
+  :code
+    (behavior ()
+      (when (and (-> self current-gem) (-> self current-gem extra process))
+        (let* ((gem (the pds-gem (-> self current-gem extra process)))
+               (pos (-> gem charging-spot)))
+          (until (= (-> self root trans y) (-> pos y))
+            (ja :num! (loop!))
+            (seek! (-> self root trans y) (-> pos y) (* (meters 17.5) (seconds-per-frame)))
+            (suspend))
+          (until (< (vector-vector-distance (-> self root trans) pos) (meters 0.1))
+            (ja :num! (loop!))
+            (vector-seek! (-> self root trans) pos (* (meters 17.5) (seconds-per-frame)))
+            (suspend))))
+      (send-event *pds-master* 'spawn-plats)
+      (go-virtual charging)))
+
+(defstate charging (pds-sentinel)
+  :virtual #t
+  :enter
+    (behavior ()
+      (set-state-time)
+      (case (send-event *pds-master* 'stage)
+        ((0) (set! (-> self charging-attack-window) (seconds 30)))
+        ((1) (set! (-> self charging-attack-window) (seconds 25)))
+        ((2) (set! (-> self charging-attack-window) (seconds 20)))))
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-sentinel-charging-ja :num! min)
+      (until (or (not (-> self current-gem extra process)) (time-passed? (-> self charging-attack-window)))
+        (ja :num! (loop!))
+        (suspend))
+      (if (not (time-passed? (-> self charging-attack-window))) (go-virtual damaged) (go-virtual move-to-path))))
+
+(defstate damaged (pds-sentinel)
+  :virtual #t
+  :code
+    (behavior ()
+      (if (= (send-event *pds-master* 'stage) 3) (go-virtual die))
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (suspend))
+      (send-event *pds-master* 'deactivate-plats)
+      (go-virtual move-to-path)))
+
+(defstate die (pds-sentinel)
+  :virtual #t
+  :code
+    (behavior ()
+      (vector-copy! (-> self death-pos) (-> *pds-master* root trans))
+      (set! (-> self death-pos y) (-> self root trans y))
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-sentinel-death-ja :num! min)
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (vector-seek! (-> self root trans) (-> self death-pos) (* (meters 15.5) (seconds-per-frame)))
+        (suspend))
+      (send-event *pds-master* 'deactivate-plats)
+      (go-virtual beaten)))
+
+(defstate beaten (pds-sentinel)
+  :virtual #t
+  :code
+    (behavior ()
+      ; (send-event (ppointer->process *tfl-music-player*) 'boss #f)
+      (vector-copy! (-> self root trans) (-> self entity extra trans))
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-sentinel-sleep-ja :num! min)
+      (process-entity-status! self (entity-perm-status complete) #t)
+      (close-specific-task! (game-task valley-boss) (task-status need-reminder))
+      (when (not (task-complete? *game-info* (-> self entity extra perm task)))
+        (birth-pickup-at-point (-> self root trans)
+                               (pickup-type fuel-cell)
+                               (the float (-> self entity extra perm task))
+                               #f
+                               self
+                               (the fact-info #f)))
+      (loop
+        (ja :num! (loop!))
+        (suspend))))

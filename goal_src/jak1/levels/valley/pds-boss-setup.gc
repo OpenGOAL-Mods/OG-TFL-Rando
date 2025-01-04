@@ -98,90 +98,6 @@
                                shard.018
                                shard.019))
 
-(deftype pds-gem (process-drawable)
-  ((root  collide-shape-moving :override)
-   (color symbol))
-  (:methods
-   (init-collision! (_type_) object)
-   (get-skel (_type_) skeleton-group))
-  (:state-methods
-   idle
-   explode))
-
-(defmethod init-collision! ((this pds-gem))
-  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
-    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
-    (set! (-> cshape reaction) default-collision-reaction)
-    (set! (-> cshape no-reaction) (the (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
-    (let ((sphere (new 'process 'collide-shape-prim-sphere cshape (the uint 0))))
-      (set! (-> sphere prim-core collide-as) (collide-kind enemy))
-      (set! (-> sphere collide-with) (collide-kind target))
-      (set! (-> sphere prim-core action) (collide-action solid))
-      (set! (-> sphere prim-core offense) (collide-offense normal-attack))
-      (set-vector! (-> sphere local-sphere) 0.0 0.0 0.0 (meters 3.5))
-      (set-root-prim! cshape sphere))
-    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
-    (backup-collide-with-as cshape)
-    (set! (-> this root) cshape)))
-
-(defmethod get-skel ((this pds-gem))
-  (case (-> this color)
-    (('green) *pds-gem-green-sg*)
-    (('yellow) *pds-gem-yellow-sg*)
-    (('blue) *pds-gem-blue-sg*)
-    (else *pds-gem-green-sg*)))
-
-(defmethod init-from-entity! ((this pds-gem) (e entity-actor))
-  (init-collision! this)
-  (process-drawable-from-entity! this e)
-  (set! (-> this color) (aif (res-lump-struct e 'gem-type symbol) it 'green))
-  (initialize-skeleton this (get-skel this) '())
-  (transform-post)
-  (go-virtual idle :proc this)
-  (none))
-
-(defstate idle (pds-gem)
-  :virtual #t
-  :event
-    (event (case message
-             (('attack) (if (= (-> proc type) target) (go-virtual explode)))))
-  :code anim-loop
-  :post transform-post)
-
-(defstate explode (pds-gem)
-  :virtual #t
-  :code
-    (behavior ()
-      (clear-collide-with-as (-> self root))
-      (let ((dist (vector-vector-distance (-> self root trans) (target-pos 0))))
-        (when (< dist (meters 25))
-          (let ((smush-strength (lerp-scale 50.0 600.0 dist (meters 25) (meters 0)))
-                (smush-length (lerp-scale 100.0 250.0 dist (meters 25) (meters 0)))
-                (buzz-strength (lerp-scale 0.0 150.0 dist (meters 25) (meters 0))))
-            ;; (format 0 "dist: ~M smush-strength: ~F smush-length ~F~%" dist smush-strength smush-length)
-            (activate! *camera-smush-control* (* smush-strength (-> self root scale x)) 37 (the int smush-length) 1.0 0.99)
-            (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 (the int buzz-strength) (the int smush-length))
-            (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int buzz-strength) (the int smush-length)))))
-      (sound-play "crystal-explode")
-      ; (process-spawn part-tracker
-      ;                :init
-      ;                part-tracker-init
-      ;                (-> *part-group-id-table* 951)
-      ;                -1
-      ;                #f
-      ;                #f
-      ;                #f
-      ;                (-> self root trans)
-      ;                :to
-      ;                *entity-pool*)
-      (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)
-      (suspend)
-      (ja-channel-set! 0)
-      (ja-post)
-      (until (not (-> self child))
-        (suspend))
-      (cleanup-for-death self)))
-
 (def-actor pds-trap-central
   :bounds (0 0 0 20))
 
@@ -200,41 +116,213 @@
 (def-actor pds-trap-out-right
   :bounds (0 0 0 20))
 
-(deftype pds-trap (process-drawable)
-  ((root collide-shape-moving :override)))
+(def-actor pds-plat-circle
+  :bounds (0 0 0 20))
 
-(deftype pds-trap-central (pds-trap) ())
+(def-actor pds-plat-square
+  :bounds (0 0 0 20))
 
-(deftype pds-trap-inner (pds-trap) ())
+(def-actor pds-plat-rectangle
+  :bounds (0 0 0 20))
 
-(deftype pds-trap-mid-left (pds-trap) ())
+(def-actor pds-swingpole
+  :bounds (0 0 0 7.5))
 
-(deftype pds-trap-mid-right (pds-trap) ())
-
-(deftype pds-trap-out-left (pds-trap) ())
-
-(deftype pds-trap-out-right (pds-trap) ())
+(def-actor pds-lab-door
+  :bounds (0 0 0 50))
 
 (def-actor pds-sentinel
   :bounds (0 0 0 20)
   :art (idle-ja sleep-ja wake-ja moving-ja charging-ja damaged-ja death-ja)
   :joints (align main circle out-circle in-circle sphere top cover gun gun-cover1 gun-cover2 gun-cover3 gun-tip bot thruster core))
 
+(deftype tfl-arcing-shot (process-drawable)
+  ((y-vel float)
+   (grav  float)
+   (from  vector :inline)
+   (to    vector :inline)))
+
+(deftype pds-shot (tfl-arcing-shot)
+  ((flight-time     time-frame)
+   (stall-time      time-frame)
+   (rotation-offset int64)
+   (part-track      handle)
+   (explode-part    sparticle-launch-control)
+   (type-to-make    type))
+  (:state-methods
+   idle
+   explode))
+
 (deftype pds-sentinel (process-drawable)
-  ((root          collide-shape-moving :override)
-   (stage         int8)
-   (core-part     sparticle-launch-control)
-   (thruster-part sparticle-launch-control)
-   (explode-part  sparticle-launch-control)
-   (damage-part   sparticle-launch-control)
-   (death-part    sparticle-launch-control))
+  ((patrol-speed           int8)
+   (path-pos               float)
+   (resume-path-pos        vector :inline)
+   (death-pos              vector :inline)
+   (patrol-backwards?      symbol)
+   (last-spawn-time        time-frame)
+   (spawn-interval         time-frame)
+   (enemy-debug-draw?      symbol)
+   (child-count            int8)
+   (enemy-types-1          pair)
+   (enemy-types-2          pair)
+   (enemy-types-3          pair)
+   (current-gem            entity-actor)
+   (charging-attack-window time-frame)
+   (spawn-part             sparticle-launch-control)
+   (core-part              sparticle-launch-control)
+   (thruster-part          sparticle-launch-control)
+   (explode-part           sparticle-launch-control)
+   (damage-part            sparticle-launch-control)
+   (death-part             sparticle-launch-control))
+  (:methods
+   (random-enemy-type (_type_ int) type)
+   (random-nav-mesh-pos (_type_ vector) vector)
+   (child-count (_type_) int)
+   (clean-up-enemies (_type_) object))
   (:state-methods
    dormant
    wake
-   patrol
+   move-to-path
+   patrol-wait
    spawn-enemies
+   move-to-gem
    charging
-   damaged))
+   damaged
+   die
+   beaten))
 
-; (defmethod init-from-entity! ((this pds-sentinel) (e entity-actor))
-;   ())
+(defmethod init-from-entity! ((this pds-sentinel) (e entity-actor))
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (set! (-> this path) (new 'process 'path-control this 'path DEFAULT_RES_TIME))
+  (logior! (-> this path flags) DEFAULT_PATH_FLAGS)
+  (set! (-> this patrol-speed) 15)
+  (set! (-> this path-pos) 0.0)
+  (set! (-> this last-spawn-time) 0)
+  (set! (-> this spawn-interval) (seconds 2))
+  (true! (-> this enemy-debug-draw?))
+  (set! (-> this enemy-types-1) '(babak lurkerpuppy))
+  (set! (-> this enemy-types-2) '(swamp-rat kermit))
+  (set! (-> this enemy-types-3)
+        '(babak bonelurker) ; '(bonelurker ice-cube)
+        )
+  (set! (-> this current-gem) (the entity-actor (entity-by-name "valley-pds-gem-01")))
+  (set! (-> this charging-attack-window) (seconds 30))
+  (false! (-> this patrol-backwards?))
+  (nav-mesh-connect this (-> this root) (the nav-control #f))
+  (initialize-skeleton this *pds-sentinel-sg* '())
+  (set-part! :part thruster-part :proc this :id 107)
+  (ja-post)
+  (cond
+    ((logtest? (-> this entity extra perm status) (entity-perm-status complete)) (go-virtual beaten :proc this))
+    ((task-closed? (-> this entity extra perm task) (task-status need-introduction)) (go-virtual patrol-wait :proc this))
+    (else (go-virtual dormant :proc this)))
+  (none))
+
+(deftype pds-master (process)
+  ((root           trsqv)
+   (link           actor-link-info)
+   (sentinel       entity-actor)
+   (trap-central   entity-actor)
+   (door           entity-actor)
+   (actors         (array entity-actor) 12)
+   (gems           (array entity-actor) :overlay-at (-> actors 0))
+   (traps          (array entity-actor) :overlay-at (-> actors 1))
+   (traps-outer    (array entity-actor) :overlay-at (-> actors 2))
+   (traps-mid      (array entity-actor) :overlay-at (-> actors 3))
+   (traps-inner    (array entity-actor) :overlay-at (-> actors 4))
+   (poles          (array entity-actor) :overlay-at (-> actors 5))
+   (poles-2        (array entity-actor) :overlay-at (-> actors 6))
+   (poles-3        (array entity-actor) :overlay-at (-> actors 7))
+   (plats          (array entity-actor) :overlay-at (-> actors 8))
+   (plats-1        (array entity-actor) :overlay-at (-> actors 9))
+   (plats-2        (array entity-actor) :overlay-at (-> actors 10))
+   (plats-3        (array entity-actor) :overlay-at (-> actors 11))
+   (stage          uint8)
+   (max-enemies    uint8)
+   (max-active     uint8)
+   (enemies-killed uint8))
+  (:methods
+   (fill-actor-arr (_type_ (array entity-actor) entity-actor symbol) (array entity-actor))
+   (send-to-actor (_type_ entity-actor symbol) object)
+   (send-to-actor-group (_type_ (array entity-actor) symbol) object)
+   (send-to-all (_type_ symbol) object)
+   (target-in-arena? (_type_) symbol))
+  (:state-methods
+   idle
+   (send-with-delay (array entity-actor) symbol time-frame)))
+
+(define *pds-master* (the pds-master #f))
+
+(defmacro pds-master-actors (&rest lumps)
+  `(begin
+    ,@(apply (lambda (x)
+             `(begin
+               (set! (-> this ,x) (new 'process 'boxed-array entity-actor (entity-actor-count e (quote ,x))))
+               (fill-actor-arr this (-> this ,x) e (quote ,x))))
+           lumps)))
+
+(defmethod init-from-entity! ((this pds-master) (e entity-actor))
+  (set! *pds-master* this)
+  (set! (-> this root) (new 'process 'trsqv))
+  (vector-copy! (-> this root trans) (-> e extra trans))
+  (vector-identity! (-> this root scale))
+  (quaternion-identity! (-> this root quat))
+  (set! (-> this link) (new 'process 'actor-link-info this))
+  (set! (-> this sentinel) (the entity-actor (entity-by-name "valley-pds-sentinel-01")))
+  (set! (-> this trap-central) (the entity-actor (entity-by-name "valley-pds-trap-central-01")))
+  (set! (-> this door) (the entity-actor (entity-by-name "valley-pds-lab-door-01")))
+  (set! (-> this max-enemies) 12)
+  (set! (-> this max-active) 8)
+  (set! (-> this enemies-killed) 0)
+  (pds-master-actors gems traps traps-outer traps-mid traps-inner poles poles-2 poles-3 plats plats-1 plats-2 plats-3)
+  (go-virtual idle :proc this)
+  (none))
+
+;; kermit is missing two methods needed for the init...
+(defmethod initialize-collision ((this kermit))
+  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
+    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
+    (set! (-> cshape reaction) default-collision-reaction)
+    (set! (-> cshape no-reaction) (the (function collide-shape-moving collide-shape-intersect vector vector none) nothing))
+    (let ((cgroup (new 'process 'collide-shape-prim-group cshape (the-as uint 1) 0)))
+      (set! (-> cgroup prim-core collide-as) (collide-kind enemy))
+      (set! (-> cgroup collide-with) (collide-kind target))
+      (set! (-> cgroup prim-core action) (collide-action solid))
+      (set-vector! (-> cgroup local-sphere) 0.0 0.0 0.0 16384.0)
+      (set-root-prim! cshape cgroup)
+      (let ((sphere (new 'process 'collide-shape-prim-sphere cshape (the-as uint 3))))
+        (set! (-> sphere prim-core collide-as) (collide-kind enemy))
+        (set! (-> sphere collide-with) (collide-kind target))
+        (set! (-> sphere prim-core action) (collide-action solid))
+        (set! (-> sphere prim-core offense) (collide-offense touch))
+        (set! (-> sphere transform-index) 3)
+        (set-vector! (-> sphere local-sphere) 0.0 0.0 0.0 3072.0)
+        (append-prim cgroup sphere)))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this collide-info) cshape))
+  (none))
+
+(defmethod nav-enemy-method-48 ((this kermit))
+  (initialize-skeleton this *kermit-sg* '())
+  (set! (-> this draw origin-joint-index) (the uint 3))
+  (false! (-> this airborne))
+  (init-defaults! this *kermit-nav-enemy-info*)
+  (set-vector! (-> this neck twist-max) 3640.889 3640.889 0.0 1.0)
+  (set! (-> this neck up) (the uint 1))
+  (set! (-> this neck nose) (the uint 2))
+  (set! (-> this neck ear) (the uint 0))
+  (set! (-> this neck max-dist) 102400.0)
+  (set! (-> this neck ignore-angle) 16384.0)
+  (set! (-> this miss-count) 0)
+  (set! (-> this tongue-control) (new 'process 'joint-mod-tracker this 24 kermit-get-tongue-target-callback 1 2))
+  (set! (-> this tongue-control inv-forward-scale-factor) (1/ 49152.0))
+  (set! (-> this tongue-control forward-scale-control) 0.0)
+  (set! (-> this tongue-control forward-scale-max) 2.0)
+  (false! (-> this tongue-control enable))
+  (true! (-> this charged-up))
+  (set! (-> this part) (create-launch-control (-> *part-group-id-table* 299) this))
+  (set! (-> this charging-part) (create-launch-control (-> *part-group-id-table* 298) this))
+  (set! (-> this sound-id) (new-sound-id))
+  (none))
