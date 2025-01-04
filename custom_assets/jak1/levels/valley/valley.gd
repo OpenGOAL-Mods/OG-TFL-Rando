@@ -12,6 +12,10 @@
   "eichar-ice+0-ag.go"
   "eichar-pole+0-ag.go"
   "rolling-robber.o"
+  "bonelurker.o"
+  "ice-cube.o"
+  "swamp-rat.o"
+  "kermit.o"
   "pds-boss-part.o"
   "pds-boss-setup.o"
   "pds-boss-extras.o"
@@ -34,6 +38,11 @@
   "snow-ball-ag.go"
   "dark-crystal-ag.go"
   "robber-ag.go"
+  "bonelurker-ag.go"
+  "ice-cube-ag.go"
+  "ice-cube-break-ag.go"
+  "swamp-rat-ag.go"
+  "kermit-ag.go"
   "valley.go"
   )
  )
