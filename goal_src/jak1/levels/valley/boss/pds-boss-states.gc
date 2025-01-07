@@ -182,11 +182,11 @@
   :code
     (behavior ()
       (send-event (ppointer->process *tfl-music-player*) 'boss #f)
-      (send-event *pds-master* 'reset-gems)
       (when (not (= (ja-group) pds-sentinel-moving-ja))
         (ja-channel-push! 1 (seconds 0.1))
         (ja-no-eval :group! pds-sentinel-moving-ja :num! min))
       (until (target-in-arena? *pds-master*)
+        (send-event *pds-master* 'reset-gems)
         (ja :num! (loop!))
         (suspend))
       (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
@@ -197,6 +197,7 @@
   :enter
     (behavior ()
       (send-event *pds-master* 'reset-kills)
+      (clean-up-enemies self)
       (case (send-event *pds-master* 'stage)
         ((0)
          (send-event *pds-master* 'set-max-enemies 12)
@@ -255,11 +256,13 @@
     (behavior ()
       (set-state-time)
       (set! (-> self charging-attack-window)
-            (case (send-event *pds-master* 'stage)
-              ;; for every retry, multiply attack window by 10% up to a max of 30%
-              ((0) (the int (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10)) (seconds 30))))
-              ((1) (the int (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10)) (seconds 25))))
-              ((2) (the int (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10)) (seconds 20)))))))
+            ;; for every retry, multiply attack window by 10% up to a max of 30%
+            (the int
+                 (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10))
+                    (case (send-event *pds-master* 'stage)
+                      ((0) (seconds 30))
+                      ((1) (seconds 25))
+                      ((2) (seconds 20)))))))
   :code
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
