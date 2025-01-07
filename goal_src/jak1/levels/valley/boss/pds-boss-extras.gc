@@ -168,6 +168,7 @@
   :event
     (event
       (case message
+        (('explode) (go-virtual explode))
         (('attack) (if (= (-> proc type) target) (go-virtual explode)))))
   :code anim-loop
   :post transform-post)
@@ -769,6 +770,7 @@
        (set-or-clear-status! (-> self gems i) (entity-perm-status dead) #f)
        (entity-birth-no-kill (-> self gems i))))
     (('gem-destroyed) (1+! (-> self stage)) (send-to-actor self (-> self sentinel) 'next-stage))
+    (('destroy-gem) (send-to-actor self (-> self gems (-> self stage)) 'explode))
     (('num-killed) (-> self enemies-killed))
     (('reset-kills) (set! (-> self enemies-killed) 0))
     (('set-max-enemies) (set! (-> self max-enemies) (the int (-> block param 0))))
