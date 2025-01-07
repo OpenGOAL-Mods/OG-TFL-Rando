@@ -508,6 +508,8 @@
     (behavior ()
       (until (= (-> self root trans y) (-> self entity extra trans y))
         (seek! (-> self root trans y) (-> self entity extra trans y) (* (-> self rise-speed) (seconds-per-frame)))
+        (when (<= (-> self root trans y) (+ (meters 0.05) (-> *pds-master* root trans y)))
+          (clear-collide-with-as (-> self root)))
         (suspend))
       (go-virtual hidden)))
 
