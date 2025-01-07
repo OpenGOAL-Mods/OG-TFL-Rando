@@ -14,12 +14,18 @@
   (call-parent-method this offset))
 
 (defmethod random-enemy-type ((this pds-sentinel) (stage int))
-  (let ((lst (case stage
+  (let* ((lst (case stage
                ((0) (-> this enemy-types-1))
                ((1) (-> this enemy-types-2))
                ((2) (-> this enemy-types-3))
-               (else (-> this enemy-types-1)))))
-    (the type (-> (the symbol (ref lst (rand-vu-int-count (length lst)))) value))))
+               (else (-> this enemy-types-1))))
+        (type-rand (case stage
+               ((0) 0.35)
+               ((1) 0.85)
+               ((2) 0.5)
+               (else 0.5)))
+        (rand-select (if (rand-vu-percent? type-rand) 0 1)))
+    (the type (-> (the symbol (ref lst rand-select)) value))))
 
 (defmethod random-nav-mesh-pos ((this pds-sentinel) (dest vector))
   ;; - start from arena middle
@@ -200,17 +206,17 @@
       (clean-up-enemies self)
       (case (send-event *pds-master* 'stage)
         ((0)
-         (send-event *pds-master* 'set-max-enemies 12)
-         (send-event *pds-master* 'set-max-active 4)
-         (set! (-> self spawn-interval) (seconds 2)))
-        ((1)
-         (send-event *pds-master* 'set-max-enemies 16)
+         (send-event *pds-master* 'set-max-enemies 18)
          (send-event *pds-master* 'set-max-active 8)
          (set! (-> self spawn-interval) (seconds 1.5)))
-        ((2)
+        ((1)
          (send-event *pds-master* 'set-max-enemies 20)
-         (send-event *pds-master* 'set-max-active 12)
-         (set! (-> self spawn-interval) (seconds 1.25)))))
+         (send-event *pds-master* 'set-max-active 10)
+         (set! (-> self spawn-interval) (seconds 0.70)))
+        ((2)
+         (send-event *pds-master* 'set-max-enemies 16)
+         (send-event *pds-master* 'set-max-active 6)
+         (set! (-> self spawn-interval) (seconds 1.5)))))
   :trans pds-sentinel-follow-path
   :code
     (behavior ()
