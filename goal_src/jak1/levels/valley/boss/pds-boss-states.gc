@@ -42,7 +42,7 @@
 (defmethod child-count ((this pds-sentinel))
   (set! (-> this child-count) 0)
   (let ((cnt-func (lambda ((p process))
-                    (when (symbol-member? (-> p type symbol) '(babak lurkerpuppy swamp-rat kermit bonelurker ice-cube))
+                    (when (symbol-member? (-> p type symbol) '(babak lurkerpuppy swamp-rat kermit bonelurker ice-cube pds-shot))
                       (let ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
                             (as-enemy (the nav-enemy p)))
                         (1+! (-> sentinel child-count))
