@@ -23,7 +23,7 @@
 
 (defmethod random-nav-mesh-pos ((this pds-sentinel) (dest vector))
   ;; - start from arena middle
-  ;; - go out up to +/- 35 meters
+  ;; - go out up to +/- 30 meters
   ;; - maybe use is-in-bounds? to ensure the point is valid?
   (let ((pos (new-stack-vector0))
         (mesh *nav-valley-boss*))
@@ -140,7 +140,7 @@
   :enter
     (behavior ()
       (close-specific-task! (-> self entity extra perm task) (task-status need-introduction))
-      ; (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
+      (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
       (process-spawn pov-camera (-> self root trans) *sunkencam-sg* "exit-chamber-door-open" 0 self '() :to self))
   :code
     (behavior ()
@@ -163,7 +163,7 @@
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-moving-ja :num! min)
-      (let ((pos (if (> (send-event *pds-master* 'stage) 0) (-> self resume-path-pos) (-> self path cverts 0))))
+      (let ((pos (-> self resume-path-pos)))
         ;; first move to path height
         (until (= (-> self root trans y) (-> pos y))
           (ja :num! (loop!))
@@ -181,6 +181,7 @@
   :trans pds-sentinel-follow-path
   :code
     (behavior ()
+      (send-event (ppointer->process *tfl-music-player*) 'boss #f)
       (send-event *pds-master* 'reset-gems)
       (when (not (= (ja-group) pds-sentinel-moving-ja))
         (ja-channel-push! 1 (seconds 0.1))
@@ -188,6 +189,7 @@
       (until (target-in-arena? *pds-master*)
         (ja :num! (loop!))
         (suspend))
+      (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
       (go-virtual spawn-enemies)))
 
 (defstate spawn-enemies (pds-sentinel)
@@ -302,7 +304,7 @@
   :virtual #t
   :code
     (behavior ()
-      ; (send-event (ppointer->process *tfl-music-player*) 'boss #f)
+      (send-event (ppointer->process *tfl-music-player*) 'boss #f)
       (vector-copy! (-> self root trans) (-> self entity extra trans))
       (ja-no-eval :group! pds-sentinel-sleep-ja :num! min)
       (process-entity-status! self (entity-perm-status complete) #t)

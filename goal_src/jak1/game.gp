@@ -2230,10 +2230,10 @@
  :deps ("$OUT/obj/ticky.o")
  "valley-obs.gc"
  "valley-part.gc"
- "pds-boss-part.gc"
- "pds-boss-setup.gc"
- "pds-boss-extras.gc"
- "pds-boss-states.gc"
+ "boss/pds-boss-part.gc"
+ "boss/pds-boss-setup.gc"
+ "boss/pds-boss-extras.gc"
+ "boss/pds-boss-states.gc"
  )
 
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-drawable")
