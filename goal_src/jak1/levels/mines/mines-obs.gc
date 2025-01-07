@@ -2634,7 +2634,8 @@
                       arg0
                       (static-attack-info ((angle 'up-forward) (vector (-> s4-0 vector)) (shove-up (-> s4-0 shove-up)) (dist (-> self dist))))))
         (quaternion-rotate-local-x! *particle-quat* (-> self root quat) (degrees 90.0))
-        (suspend-for (seconds 0.75) (spawn (-> self activate-part) (-> self root trans)))
+        (suspend-for (seconds 0.75)
+          (spawn (-> self activate-part) (-> self root trans)))
         (kill-and-free-particles (-> self activate-part)))
       (go mines-bouncer-idle)))
 
@@ -2762,12 +2763,8 @@
   ((junglecam-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 80))
 
-(defskelgroup *bucket-wheel-sg*
-  bucket-wheel
-  bucket-wheel-lod0-jg
-  bucket-wheel-idle-ja
-  ((bucket-wheel-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 30))
+(def-actor bucket-wheel
+  :bounds (0 0 0 30))
 
 (deftype bucket-wheel (process-drawable) ()
   (:states (bucket-wheel-spinning symbol)
