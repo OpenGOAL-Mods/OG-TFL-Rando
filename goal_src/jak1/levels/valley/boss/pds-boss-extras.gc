@@ -532,19 +532,179 @@
 ;;; swingpole
 ;;;;;;;;;;;;;;;;;
 
-(deftype pds-swingpole (process-drawable)
-  ((root        collide-shape :override)
-   (edge-length float)
-   (path-pos    float)
-   (joint-track int32)
-   (speed       float)
-   (dir         vector :inline)
-   (sync        sync-info-eased :inline))
-  (:state-methods
-   idle
-   (active handle))
-  (:methods
-   (move-along-path (_type_) object)))
+(defstatehandler pds-swingpole :post ja-post)
+
+(defmethod update! ((this pds-swingpole))
+  (if (nonzero? (-> this draw)) (ja-post))
+  (cond
+    ((nonzero? (-> this path))
+     (set! (-> this path-pos)
+           (if (logtest? (-> this fact options) (fact-options wrap-phase))
+             (get-current-phase (-> this sync))
+             (get-current-phase-with-mirror (-> this sync))))
+     (let ((path-pt (new-stack-vector0)))
+       (eval-path-curve! (-> this path) path-pt (-> this path-pos) 'interp)
+       (set! (-> this speed) (* (vector-vector-distance path-pt (-> this root trans)) (-> *display* frames-per-second)))
+       (move-to-point! (-> this root) path-pt)))
+    ((>= (-> this joint-track) 0)
+     (let ((pt (new-stack-vector0))
+           (cspace (-> this parent 0 node-list data (-> this joint-track))))
+       (vector<-cspace! pt cspace)
+       (vector-normalize-copy! (-> this dir) (-> cspace bone transform vector 0) 1.0)
+       (move-to-point! (-> this root) pt))))
+  (when (nonzero? (-> this sound))
+    (vector-copy! (-> this sound trans) (-> this root trans))
+    (let ((pitch (lerp-scale -0.1 -0.05 (-> this speed) (meters 2) (meters 5)))
+          (vol (lerp-scale 0.7 1.0 (-> this speed) (meters 2) (meters 5))))
+      (set! (-> this sound pitch) (the int (* 1524.0 pitch)))
+      (set! (-> this sound volume) (the int (* 1024.0 vol))))
+    (update! (-> this sound))))
+
+(defstate hidden (pds-swingpole)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('activate) (go-virtual come-up))
+        (('deactivate) (go-virtual go-down))
+        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
+  :enter
+    (behavior ()
+      (clear-collide-with-as (-> self root))
+      (hide! self))
+  :code anim-loop
+  :post transform-post)
+
+(defstate idle (pds-swingpole)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('activate) (go-virtual come-up))
+        (('deactivate) (go-virtual go-down))
+        (('next-stage) (when (= (-> self next-state name) 'active) (go-virtual go-down)))
+        ; (('touch 'attack) (if (send-event proc 'pole-grab (-> block param 0)) (go-virtual active (process->handle proc))))
+        (('touch 'attack)
+         (when (and *target* (logtest? (-> *target* control root-prim prim-core action) (collide-action edgegrab-possible)))
+           (send-event *target* 'pole-grab self)
+           (go-virtual active (process->handle proc)))
+         #f)))
+  :code
+    (behavior ()
+      (if (nonzero? (-> self draw)) (ja-post))
+      (update-transforms! (-> self root))
+      (cond
+        ((or (nonzero? (-> self path)) (>= (-> self joint-track) 0)) (loop (update! self) (suspend)))
+        (else (logior! (-> self mask) (process-mask sleep)) (suspend)))))
+
+(defstate come-up (pds-swingpole)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('activate) (go-virtual come-up))
+        (('deactivate) (go-virtual go-down))
+        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
+  :enter
+    (behavior ()
+      (restore-collide-with-as (-> self root))
+      (show! self))
+  :trans
+    (behavior ()
+      (set! (-> self path-pos)
+            (if (logtest? (-> self fact options) (fact-options wrap-phase))
+              (get-current-phase (-> self sync))
+              (get-current-phase-with-mirror (-> self sync))))
+      (eval-path-curve! (-> self path) (-> self rise-trans) (-> self path-pos) 'interp))
+  :code
+    (behavior ()
+      (ja :group! pds-swingpole-idle-ja :num! (identity 0.0))
+      (until (< (vector-vector-distance (-> self root trans) (-> self rise-trans)) (meters 0.1))
+        (vector-seek! (-> self root trans) (-> self rise-trans) (* (-> self rise-speed) (seconds-per-frame)))
+        (suspend))
+      (go-virtual idle)))
+
+(defstate active (pds-swingpole)
+  :virtual #t
+  :event
+    (event
+      (case message
+        ; (('activate) (go-virtual come-up))
+        (('deactivate) (go-virtual go-down))
+        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
+  :code
+    (behavior ((h handle))
+      (update! self)
+      (suspend)
+      (while (and *target* (= (handle->process (-> *target* control unknown-handle10)) self))
+        (update! self)
+        (suspend))
+      (suspend-for (seconds 0.5)
+        (update! self))
+      (go-virtual idle)))
+
+(defstate go-down (pds-swingpole)
+  :virtual #t
+  :event
+    (event
+      (case message
+        (('activate) (go-virtual come-up))
+        (('deactivate) (go-virtual go-down))
+        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
+  :trans
+    (behavior ()
+      (vector-copy! (-> self rise-trans) (-> self root trans)))
+  :code
+    (behavior ()
+      (until (= (-> self root trans y) (-> self entity extra trans y))
+        (seek! (-> self root trans y) (-> self entity extra trans y) (* (-> self rise-speed) (seconds-per-frame)))
+        (suspend))
+      (go-virtual hidden)))
+
+(defmethod init-collision! ((this pds-swingpole))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (let ((csphere (new 'process 'collide-shape-prim-sphere cshape (the uint 0))))
+      (set! (-> csphere collide-as) (collide-kind powerup))
+      (set! (-> csphere collide-with) (collide-kind target))
+      (set-vector! (-> csphere local-sphere) 0.0 0.0 0.0 (meters 3))
+      (set-root-prim! cshape csphere))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape)))
+
+(defmethod init-from-entity! ((this pds-swingpole) (e entity-actor))
+  (stack-size-set! (-> this main-thread) 128)
+  (init-collision! this)
+  (vector-copy! (-> this root trans) (-> e extra trans))
+  (vector-copy! (-> this rise-trans) (-> e extra trans))
+  (quaternion-copy! (-> this root quat) (-> e quat))
+  (vector-identity! (-> this root scale))
+  (vector-y-quaternion! (-> this dir) (-> this root quat))
+  (set! (-> this joint-track) -1)
+  (initialize-skeleton this *pds-swingpole-sg* '())
+  (set! (-> this dir y) 0.0)
+  (vector-normalize! (-> this dir) 1.0)
+  (set! (-> this edge-length) (meters 2))
+  (set! (-> this rise-speed) (meters 15))
+  (set! (-> this fact) (new 'process 'fact-info this (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc)))
+  (load-params! (-> this sync) this (the uint 0) 0.0 0.2 0.2)
+  (when (nonzero? (-> this sync period))
+    (set! (-> this path) (new 'process 'curve-control this 'path DEFAULT_RES_TIME))
+    (set! (-> this path flags) DEFAULT_PATH_FLAGS))
+  ; (set! (-> this sound) (new 'process 'ambient-sound (-> this entity) (-> this root trans) 0.0))
+  (go-virtual hidden :proc this)
+  (none))
+
+; (defbehavior pds-swingpole-init-by-other pds-swingpole ((joint int))
+;   (stack-size-set! (-> self main-thread) 128)
+;   (init-collision! self)
+;   (vector-copy! (-> self root trans) (-> self parent 0 root trans))
+;   (quaternion-identity! (-> self root quat))
+;   (vector-identity! (-> self root scale))
+;   (set! (-> self joint-track) joint)
+;   (set-vector! (-> self dir) 0.0 0.0 1.0 1.0)
+;   (set! (-> self edge-length) (meters 2))
+;   (go-virtual idle))
 
 ;;;;;;;;;;;;;;;;;
 ;;; master

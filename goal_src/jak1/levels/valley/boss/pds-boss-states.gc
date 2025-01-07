@@ -15,16 +15,16 @@
 
 (defmethod random-enemy-type ((this pds-sentinel) (stage int))
   (let* ((lst (case stage
-               ((0) (-> this enemy-types-1))
-               ((1) (-> this enemy-types-2))
-               ((2) (-> this enemy-types-3))
-               (else (-> this enemy-types-1))))
-        (type-rand (case stage
-               ((0) 0.35)
-               ((1) 0.85)
-               ((2) 0.5)
-               (else 0.5)))
-        (rand-select (if (rand-vu-percent? type-rand) 0 1)))
+                ((0) (-> this enemy-types-1))
+                ((1) (-> this enemy-types-2))
+                ((2) (-> this enemy-types-3))
+                (else (-> this enemy-types-1))))
+         (type-rand (case stage
+                      ((0) 0.35)
+                      ((1) 0.85)
+                      ((2) 0.5)
+                      (else 0.5)))
+         (rand-select (if (rand-vu-percent? type-rand) 0 1)))
     (the type (-> (the symbol (ref lst rand-select)) value))))
 
 (defmethod random-nav-mesh-pos ((this pds-sentinel) (dest vector))

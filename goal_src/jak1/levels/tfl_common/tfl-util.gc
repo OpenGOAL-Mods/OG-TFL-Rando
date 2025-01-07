@@ -288,7 +288,91 @@
                            (font-flags shadow kerning large)))))))
   (none))
 
-;; TFL note: added
+(deftype pds-swingpole (process-drawable)
+  ((parent      (pointer process-drawable) :override)
+   (root        collide-shape :override)
+   (dir         vector :inline)
+   (rise-trans  vector :inline)
+   (rise-speed  float)
+   (path-pos    float)
+   (joint-track int32)
+   (speed       float)
+   (edge-length float)
+   (sync        sync-info-eased :inline))
+  (:state-methods
+   hidden
+   come-up
+   idle
+   (active handle)
+   go-down)
+  (:methods
+   (update! (_type_) object)
+   (init-collision! (_type_) object)))
+
+;; overwrite target-compute-pole for pds-swingpoles
+(defbehavior target-compute-pole target ()
+  (let* ((pole (handle->process (-> self control unknown-handle10)))
+         (pole-type (-> pole type))
+         (edge-len (case pole-type
+                     ((swingpole) (-> (the swingpole pole) edge-length))
+                     ((pds-swingpole) (-> (the pds-swingpole pole) edge-length))))
+         (pole-dir (case pole-type
+                     ((swingpole) (-> (the swingpole pole) dir))
+                     ((pds-swingpole) (-> (the pds-swingpole pole) dir))))
+         (trans (case pole-type
+                  ((swingpole) (-> (the swingpole pole) root trans))
+                  ((pds-swingpole) (-> (the pds-swingpole pole) root trans)))))
+    (vector-copy! (-> self control unknown-vector100) pole-dir)
+    (let ((s5-0 (new-stack-vector0)))
+      (let ((s3-0 (vector+float*! (new-stack-vector0) trans pole-dir edge-len))
+            (s2-0 (vector+float*! (new-stack-vector0) trans pole-dir (- edge-len))))
+        (let ((ease-vec (new-stack-vector0)))
+          (vector+! ease-vec s3-0 s2-0)
+          (vector-float*! ease-vec ease-vec 0.5)
+          (-! (-> ease-vec y) 6144.0)
+          (send-event *camera* 'ease-in 0.5 ease-vec))
+        (vector-segment-distance-point! (-> self control unknown-vector90) s3-0 s2-0 s5-0)
+        ; (if (not (time-passed? (seconds 0.05)))
+        ;   (set! (-> self control hand-to-edge-dist)
+        ;         (fmax 0.0 (fmin 1.0 (/ (vector-vector-distance s4-1 s5-0) (* 2.0 (-> s2-0 edge-length))))))
+        ;   (vector-lerp! s5-0 s4-1 s3-1 (-> self control hand-to-edge-dist)))
+        (when *display-edge-collision-marks*
+          (add-debug-vector #t
+                            (bucket-id debug-no-zbuf)
+                            trans
+                            pole-dir ; (the-as vector (&-> pole stack 16))
+                            (meters 3)
+                            (new 'static 'rgba :r #xff :b #xff :a #x80))
+          ; (add-debug-sphere #t
+          ;                   (bucket-id debug-no-zbuf)
+          ;                   trans
+          ;                   (-> pole range)
+          ;                   (new 'static 'rgba :r #xff :g #xff :a #x80))
+          (add-debug-sphere #t
+                            (bucket-id debug)
+                            (-> self control unknown-vector90)
+                            (meters 0.2)
+                            (new 'static 'rgba :r #xff :a #x80))
+          (add-debug-sphere #t (bucket-id debug-no-zbuf) s3-0 (meters 0.2) (new 'static 'rgba :g #xff :a #x80))
+          (add-debug-sphere #t (bucket-id debug-no-zbuf) s2-0 (meters 0.2) (new 'static 'rgba :g #xff :b #x40 :a #x80))
+          (add-debug-sphere #t (bucket-id debug-no-zbuf) s5-0 (meters 0.2) (new 'static 'rgba :b #xff :a #x80))))
+      (let ((s4-2 (vector-! (new-stack-vector0) s5-0 (-> self control unknown-vector90))))
+        (cond
+          ((and (< 2457.6 (vector-length s4-2)) (not (-> self control unknown-int21)))
+           (move-by-vector! (-> self control) (vector-normalize! s4-2 2457.6)))
+          (else
+           (set! (-> self control unknown-int21) (the int #t))
+           (move-to-point! (-> self control) (vector-! (new 'stack-no-clear 'vector) s5-0 (-> self control unknown-vector91)))
+           (vector-copy! (-> self control unknown-vector52) (-> self control trans))))))
+    (let ((s5-3 (vector-cross! (-> self control unknown-vector101) pole-dir (-> self control dynam gravity-normal))))
+      (if (>= 0.0 (vector-dot s5-3 (vector-z-quaternion! (new 'stack-no-clear 'vector) (-> self control unknown-quaternion00))))
+        (vector-negate! s5-3 s5-3))
+      (forward-up-nopitch->quaternion (-> self control dir-targ) s5-3 (-> self control dynam gravity-normal))))
+  (set-quaternion! (-> self control) (-> self control dir-targ))
+  (do-joint-math! self)
+  (update-transforms! (-> self control))
+  (none))
+
 (deftype warp-to-crystalc (process)
   ((state-time         time-frame)
    (timer              time-frame)
