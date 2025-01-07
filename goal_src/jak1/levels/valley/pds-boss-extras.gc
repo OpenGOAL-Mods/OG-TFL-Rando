@@ -613,7 +613,7 @@
        ((1) (send-to-actor-group self (-> self plats-2) 'activate))
        ((2) (send-to-actor-group self (-> self plats-3) 'activate))))
     (('deactivate-plats)
-     (case (1- (-> self stage))
+     (case (if (and (>= argc 1) (true? (-> block param 0))) (-> self stage) (1- (-> self stage)))
        ((0) (go-virtual send-with-delay (-> self plats-1) 'deactivate (seconds 0.25)))
        ((1) (go-virtual send-with-delay (-> self plats-2) 'deactivate (seconds 0.25)))
        ((2) (go-virtual send-with-delay (-> self plats-3) 'deactivate (seconds 0.25)))))
@@ -642,7 +642,6 @@
   :virtual #t
   :code
     (behavior ((group (array entity-actor)) (message symbol) (delay time-frame))
-      (format 0 "pds-master: send-with-delay ~e ~A ~A~%" delay message group)
       (pds-master-send-to-group-delayed group message delay)
       (go-virtual idle)))
 

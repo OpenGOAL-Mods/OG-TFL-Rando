@@ -17,7 +17,8 @@
   (let ((lst (case stage
                ((0) (-> this enemy-types-1))
                ((1) (-> this enemy-types-2))
-               ((2) (-> this enemy-types-3)))))
+               ((2) (-> this enemy-types-3))
+               (else (-> this enemy-types-1)))))
     (the type (-> (the symbol (ref lst (rand-vu-int-count (length lst)))) value))))
 
 (defmethod random-nav-mesh-pos ((this pds-sentinel) (dest vector))
@@ -41,23 +42,24 @@
                         (1+! (-> sentinel child-count))
                         (when (-> sentinel enemy-debug-draw?)
                           (add-debug-x #t (bucket-id debug-no-zbuf) (-> as-enemy root trans) (static-rgba #x80 #xff #x80 #x80))
-                          ; (add-debug-text-3d #t
-                          ;                    (bucket-id debug-no-zbuf)
-                          ;                    (symbol->string (-> as-enemy name))
-                          ;                    (-> as-enemy root trans)
-                          ;                    (font-color white)
-                          ;                    (new 'static 'vector2h :y 8))
+                          (add-debug-line #t
+                                          (bucket-id debug-no-zbuf)
+                                          (-> as-enemy root trans)
+                                          (target-pos 0)
+                                          (static-rgba 0 #xff 0 #x80)
+                                          #f
+                                          (the rgba -1))
                           (add-debug-text-sphere #t
                                                  (bucket-id debug-no-zbuf)
                                                  (-> as-enemy root trans)
-                                                 (meters 1)
+                                                 (meters 0.1)
                                                  (symbol->string (-> as-enemy name))
                                                  (static-rgba 0 #xff 0 #x80))
                           (add-debug-text-3d #t
                                              (bucket-id debug-no-zbuf)
                                              (symbol->string (-> as-enemy state name))
                                              (-> as-enemy root trans)
-                                             (font-color white)
+                                             (font-color default)
                                              (new 'static 'vector2h :y 8))))))))
     (iterate-process-tree this cnt-func *null-kernel-context*))
   (-> this child-count))
@@ -88,7 +90,7 @@
        (set! (-> as-ice part2) (create-launch-control (-> *part-group-id-table* 508) as-ice))
        (set! (-> as-ice part3) (create-launch-control (-> *part-group-id-table* 509) as-ice))
        (set! (-> as-ice part4) (create-launch-control (-> *part-group-id-table* 567) as-ice)))
-     (go ice-cube-appear))
+     (go-virtual nav-enemy-idle))
     (else (go-virtual nav-enemy-chase))))
 
 (defbehavior pds-sentinel-follow-path pds-sentinel ()
@@ -113,7 +115,7 @@
 (defevent pds-sentinel
   (case message
     (('notify) (if (= (-> block param 0) 'die) #t))
-    (('next-stage) (go-virtual damaged))
+    (('next-stage) (clean-up-enemies self) (go-virtual damaged))
     (('child-die) (send-event *pds-master* 'notify 'killed))))
 
 (defstatehandler pds-sentinel :event pds-sentinel-event-handler :post pds-sentinel-post)
@@ -179,6 +181,7 @@
   :trans pds-sentinel-follow-path
   :code
     (behavior ()
+      (send-event *pds-master* 'reset-gems)
       (when (not (= (ja-group) pds-sentinel-moving-ja))
         (ja-channel-push! 1 (seconds 0.1))
         (ja-no-eval :group! pds-sentinel-moving-ja :num! min))
@@ -249,10 +252,12 @@
   :enter
     (behavior ()
       (set-state-time)
-      (case (send-event *pds-master* 'stage)
-        ((0) (set! (-> self charging-attack-window) (seconds 30)))
-        ((1) (set! (-> self charging-attack-window) (seconds 25)))
-        ((2) (set! (-> self charging-attack-window) (seconds 20)))))
+      (set! (-> self charging-attack-window)
+            (case (send-event *pds-master* 'stage)
+              ;; for every retry, multiply attack window by 10% up to a max of 30%
+              ((0) (the int (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10)) (seconds 30))))
+              ((1) (the int (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10)) (seconds 25))))
+              ((2) (the int (* (+ 1.0 (/ (the float (min (-> self stage-retry-count) 3)) 10)) (seconds 20)))))))
   :code
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
@@ -260,12 +265,15 @@
       (until (or (not (-> self current-gem extra process)) (time-passed? (-> self charging-attack-window)))
         (ja :num! (loop!))
         (suspend))
-      (if (not (time-passed? (-> self charging-attack-window))) (go-virtual damaged) (go-virtual move-to-path))))
+      (cond
+        ((not (time-passed? (-> self charging-attack-window))) (go-virtual damaged))
+        (else (send-event *pds-master* 'deactivate-plats #t) (1+! (-> self stage-retry-count)) (go-virtual move-to-path)))))
 
 (defstate damaged (pds-sentinel)
   :virtual #t
   :code
     (behavior ()
+      (set! (-> self stage-retry-count) 0)
       (if (= (send-event *pds-master* 'stage) 3) (go-virtual die))
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
@@ -296,7 +304,6 @@
     (behavior ()
       ; (send-event (ppointer->process *tfl-music-player*) 'boss #f)
       (vector-copy! (-> self root trans) (-> self entity extra trans))
-      (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-sleep-ja :num! min)
       (process-entity-status! self (entity-perm-status complete) #t)
       (close-specific-task! (game-task valley-boss) (task-status need-reminder))
