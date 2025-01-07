@@ -98,11 +98,11 @@
   (go-virtual idle))
 
 (defevent tfl-music-player
-          (case message
-            (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
-            (('unpause) (false! *tfl-music-paused?*))
-            (('fade?) (set! *tfl-music-fade?* (the symbol (-> block param 0))))
-            (('boss) (set! *tfl-boss-music* (the symbol (-> block param 0))))))
+  (case message
+    (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
+    (('unpause) (false! *tfl-music-paused?*))
+    (('fade?) (set! *tfl-music-fade?* (the symbol (-> block param 0))))
+    (('boss) (set! *tfl-boss-music* (the symbol (-> block param 0))) (go-virtual boss-playing))))
 
 (defbehavior tfl-music-player-post tfl-music-player ()
   ;; (format 0 "POST tfl-music-player~%")
