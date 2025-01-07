@@ -212,7 +212,6 @@
   (set! (-> this charging-attack-window) (seconds 30))
   (set! (-> this stage-retry-count) 0)
   (false! (-> this patrol-backwards?))
-  (nav-mesh-connect this (-> this root) (the nav-control #f))
   (initialize-skeleton this *pds-sentinel-sg* '())
   (set-part! :part thruster-part :proc this :id 107)
   (ja-post)
