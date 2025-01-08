@@ -1585,7 +1585,7 @@
         "name": "valley-buzzer-06",
         "crate-type": "'iron",
         "eco-info": ["buzzer-info", "(game-task valley-buzzer)", 5],
-        "movie-pos": ["movie-pos", [1288.65, 45.60, 1982.40, 0.0]]
+        "movie-pos": ["movie-pos", [1609.01, 14.79, 1921.44, 0.0]]
       }
     },
     {
