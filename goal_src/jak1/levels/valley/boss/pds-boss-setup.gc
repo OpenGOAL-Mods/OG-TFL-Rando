@@ -252,7 +252,8 @@
    (target-in-arena? (_type_) symbol))
   (:state-methods
    idle
-   (send-with-delay (array entity-actor) symbol time-frame)))
+   (send-with-delay (array entity-actor) symbol time-frame)
+   activate-traps))
 
 (define *pds-master* (the pds-master #f))
 
@@ -274,7 +275,7 @@
   (set! (-> this sentinel) (the entity-actor (entity-by-name "valley-pds-sentinel-01")))
   (set! (-> this trap-central) (the entity-actor (entity-by-name "valley-pds-trap-central-01")))
   (set! (-> this door) (the entity-actor (entity-by-name "valley-pds-lab-door-01")))
-  (set! (-> this max-enemies) 12)
+  (set! (-> this max-enemies) 18)
   (set! (-> this max-active) 8)
   (set! (-> this enemies-killed) 0)
   (pds-master-actors gems traps traps-outer traps-mid traps-inner poles poles-2 poles-3 plats plats-1 plats-2 plats-3)

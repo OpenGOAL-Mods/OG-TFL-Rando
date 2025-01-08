@@ -71,9 +71,9 @@
   (-> this child-count))
 
 (defmethod clean-up-enemies ((this pds-sentinel))
-  (let ((cnt-func (lambda ((p process))
-                    (if (symbol-member? (-> p type symbol) '(babak lurkerpuppy swamp-rat kermit bonelurker ice-cube)) (deactivate p)))))
-    (iterate-process-tree this cnt-func *null-kernel-context*)))
+  (let ((kill-func (lambda ((p process))
+                     (if (symbol-member? (-> p type symbol) '(babak lurkerpuppy swamp-rat kermit bonelurker ice-cube)) (deactivate p)))))
+    (iterate-process-tree this kill-func *null-kernel-context*)))
 
 (defbehavior pds-nav-enemy-init nav-enemy ((pds pds-sentinel) (pos vector) (pt vector))
   (set! (-> self entity) (-> pds entity))
@@ -115,9 +115,9 @@
           (-> self path-pos))
   (debug-print-channels (-> self skel) (the symbol *stdcon*))
   (when (and *debug-segment*
-             (not (symbol-member? (-> self next-state name) '(dormant wake damaged die beaten)))
+             (cpad-pressed? 0 l3)
              (< (the int (send-event *pds-master* 'stage)) 3)
-             (cpad-pressed? 0 l3))
+             (not (symbol-member? (-> self next-state name) '(dormant wake damaged die beaten))))
     (send-event *pds-master* 'destroy-gem))
   (when (not (symbol-member? (-> self next-state name) '(dormant wake)))
     (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster))))
@@ -125,7 +125,15 @@
 
 (defevent pds-sentinel
   (case message
-    (('notify) (if (= (-> block param 0) 'die) #t))
+    (('notify)
+     (case (-> block param 0)
+       (('die) #t)
+       (('trap)
+        (when (= (-> self next-state name) 'charging)
+          (send-event *pds-master* 'deactivate-traps)
+          (send-event *pds-master* 'deactivate-plats #t)
+          (1+! (-> self stage-retry-count))
+          (go-virtual move-to-path)))))
     (('next-stage) (clean-up-enemies self) (go-virtual damaged))
     (('child-die) (send-event *pds-master* 'notify 'killed))))
 
@@ -244,6 +252,7 @@
   :virtual #t
   :enter
     (behavior ()
+      (send-event *pds-master* 'activate-traps)
       (set! (-> self current-gem) (-> *pds-master* gems (the int (send-event *pds-master* 'stage)))))
   :code
     (behavior ()
@@ -283,7 +292,11 @@
         (suspend))
       (cond
         ((not (time-passed? (-> self charging-attack-window))) (go-virtual damaged))
-        (else (send-event *pds-master* 'deactivate-plats #t) (1+! (-> self stage-retry-count)) (go-virtual move-to-path)))))
+        (else
+         (send-event *pds-master* 'deactivate-traps)
+         (send-event *pds-master* 'deactivate-plats #t)
+         (1+! (-> self stage-retry-count))
+         (go-virtual move-to-path)))))
 
 (defstate damaged (pds-sentinel)
   :virtual #t
@@ -293,25 +306,35 @@
       (if (= (send-event *pds-master* 'stage) 3) (go-virtual die))
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
-      (until (ja-done? 0)
-        (ja :num! (seek!))
-        (suspend))
-      (send-event *pds-master* 'deactivate-plats)
+      (let ((deactivated? #f))
+        (until (ja-done? 0)
+          (ja :num! (seek!))
+          (when (and (not deactivated?) (>= (ja-aframe-num 0) 60.0))
+            (send-event *pds-master* 'deactivate-traps)
+            (send-event *pds-master* 'deactivate-plats)
+            (true! deactivated?))
+          (suspend)))
       (go-virtual move-to-path)))
 
 (defstate die (pds-sentinel)
   :virtual #t
   :code
     (behavior ()
+      ;; TODO pov cam
+      ; (process-spawn pov-camera (-> self root trans) *sunkencam-sg* "exit-chamber-door-open" 0 self '() :to self)
       (vector-copy! (-> self death-pos) (-> *pds-master* root trans))
       (set! (-> self death-pos y) (-> self root trans y))
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-death-ja :num! min)
-      (until (ja-done? 0)
-        (ja :num! (seek!))
-        (vector-seek! (-> self root trans) (-> self death-pos) (* (meters 15.5) (seconds-per-frame)))
-        (suspend))
-      (send-event *pds-master* 'deactivate-plats)
+      (let ((deactivated? #f))
+        (until (ja-done? 0)
+          (ja :num! (seek!))
+          (when (and (not deactivated?) (>= (ja-aframe-num 0) 60.0))
+            (send-event *pds-master* 'deactivate-traps)
+            (send-event *pds-master* 'deactivate-plats)
+            (true! deactivated?))
+          (vector-seek! (-> self root trans) (-> self death-pos) (* (meters 15.5) (seconds-per-frame)))
+          (suspend)))
       (go-virtual beaten)))
 
 (defstate beaten (pds-sentinel)

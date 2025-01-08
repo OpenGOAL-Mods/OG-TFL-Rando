@@ -207,23 +207,38 @@
 ;;;;;;;;;;;;;;;;;
 
 (deftype pds-trap (process-drawable)
-  ((root        collide-shape :override)
-   (disabled?   symbol)
-   (active-part sparticle-launch-control)
-   (deadly-part sparticle-launch-control))
+  ((root              collide-shape :override)
+   (disabled?         symbol)
+   (deactivation-time time-frame)
+   (activation-time   time-frame)
+   (active-time       time-frame)
+   (active-part       sparticle-launch-control)
+   (deadly-part       sparticle-launch-control))
   (:methods
    (init-collision! (_type_) object)
    (get-skel (_type_) skeleton-group)
-   (target-rider? (_type_) symbol))
+   (target-rider? (_type_) symbol)
+   (disabled? (_type_) symbol)
+   (trigger (_type_ symbol) object))
   (:state-methods
    idle
-   active
-   deadly))
+   (active symbol)
+   (deadly symbol)))
 
 (defmethod relocate ((this pds-trap) (offset int))
   (if (nonzero? (-> this active-part)) (&+! (-> this active-part) offset))
   (if (nonzero? (-> this deadly-part)) (&+! (-> this deadly-part) offset))
   (call-parent-method this offset))
+
+(defmethod disabled? ((this pds-trap))
+  (or (-> this disabled?) (= (the int (send-event *pds-master* 'stage)) 0)))
+
+(defmethod trigger ((this pds-trap) (toggle symbol))
+  (let ((stage (the int (send-event *pds-master* 'stage))))
+    (when (> stage 0)
+      (case stage
+        ((1) (go-virtual active toggle :proc this))
+        ((2) (go-virtual deadly toggle :proc this))))))
 
 (defmethod target-rider? ((this pds-trap))
   (aif *target*
@@ -247,7 +262,10 @@
 (defmethod init-from-entity! ((this pds-trap) (e entity-actor))
   (init-collision! this)
   (process-drawable-from-entity! this e)
-  (true! (-> this disabled?))
+  (false! (-> this disabled?))
+  (set! (-> this activation-time) (seconds 3))
+  (set! (-> this active-time) (seconds 4))
+  (set! (-> this deactivation-time) (seconds 1))
   (initialize-skeleton this (get-skel this) '())
   (transform-post)
   (go-virtual idle :proc this)
@@ -260,24 +278,22 @@
       (case message
         (('enable) (false! (-> self disabled?)))
         (('disable) (true! (-> self disabled?)))
-        (('activate) (go-virtual active))
-        (('ridden) #t)))
+        (('activate) (go-virtual active #t))
+        (('deadly) (go-virtual deadly #t))
+        (('ridden) (when (not (disabled? self)) (trigger self #f)))))
+  :trans rider-trans
   :enter
     (behavior ()
       (set-state-time))
-  :trans rider-trans
   :code
     (behavior ()
-      (until (not (-> self disabled?))
-        ; (vector-seek! (-> self draw color-mult) (static-vector 1.0 1.0 1.0 1.0) (seconds-per-frame))
+      (until (time-passed? (-> self deactivation-time))
+        (vector-seek! (-> self draw color-mult)
+                      (static-vector 1.0 1.0 1.0 1.0)
+                      (/ (seconds-per-frame) (/ (the float (-> self deactivation-time)) TICKS_PER_SECOND)))
         (suspend))
-      (until (target-in-arena? *pds-master*)
-        ; (vector-seek! (-> self draw color-mult) (static-vector 1.0 1.0 1.0 1.0) (seconds-per-frame))
-        (suspend))
-      (until (time-passed? (seconds 2))
-        (vector-seek! (-> self draw color-mult) (static-vector 0.0 0.0 0.5 1.0) (/ (seconds-per-frame) 2))
-        (suspend))
-      (go-virtual active))
+      (loop
+        (suspend)))
   :post transform-post)
 
 (defstate active (pds-trap)
@@ -288,18 +304,25 @@
         (('enable) (false! (-> self disabled?)))
         (('disable) (true! (-> self disabled?)) (go-virtual idle))
         (('deactivate) (go-virtual idle))
-        (('deadly) (go-virtual deadly))
-        (('ridden) (when (target-rider? self) (send-event *target* 'attack #f (static-attack-info ((mode 'generic))))))))
+        (('ridden)
+         (when (and (target-rider? self) (time-passed? (-> self activation-time)))
+           (send-event *target* 'attack #f (static-attack-info ((mode 'generic))))
+           (send-event (-> *pds-master* sentinel extra process) 'notify 'trap)))))
   :enter
-    (behavior ()
+    (behavior ((toggle symbol))
       (set-state-time))
   :trans rider-trans
   :code
-    (behavior ()
-      (until (time-passed? (seconds 2))
-        (vector-seek! (-> self draw color-mult) (static-vector 0.5 0.0 0.0 1.0) (/ (seconds-per-frame) 2))
+    (behavior ((toggle symbol))
+      (until (time-passed? (-> self activation-time))
+        (vector-seek! (-> self draw color-mult)
+                      (static-vector 0.0 0.0 0.5 1.0)
+                      (/ (seconds-per-frame) (/ (the float (-> self activation-time)) TICKS_PER_SECOND)))
         (suspend))
-      (go-virtual deadly))
+      (cond
+        (toggle (loop (suspend)))
+        (else (suspend-for (-> self active-time))))
+      (go-virtual idle))
   :post transform-post)
 
 (defstate deadly (pds-trap)
@@ -310,19 +333,23 @@
         (('enable) (false! (-> self disabled?)))
         (('disable) (true! (-> self disabled?)) (go-virtual idle))
         (('deactivate) (go-virtual idle))
-        (('activate) (go-virtual active))
         (('ridden)
-         (when (and (target-rider? self) (not (= (-> *target* next-state name) 'target-hit)))
+         (when (and (target-rider? self) (time-passed? (-> self activation-time)) (not (= (-> *target* next-state name) 'target-hit)))
            (send-event *target* 'attack-invinc #f (static-attack-info ((mode 'death))))))))
   :enter
-    (behavior ()
+    (behavior ((toggle symbol))
       (set-state-time))
   :trans rider-trans
   :code
-    (behavior ()
-      (until (time-passed? (seconds 2))
-        (vector-seek! (-> self draw color-mult) (static-vector 1.0 1.0 1.0 1.0) (/ (seconds-per-frame) 2))
+    (behavior ((toggle symbol))
+      (until (time-passed? (-> self activation-time))
+        (vector-seek! (-> self draw color-mult)
+                      (static-vector 0.5 0.0 0.0 1.0)
+                      (/ (seconds-per-frame) (/ (the float (-> self activation-time)) TICKS_PER_SECOND)))
         (suspend))
+      (cond
+        (toggle (loop (suspend)))
+        (else (suspend-for (-> self active-time))))
       (go-virtual idle))
   :post transform-post)
 
@@ -533,7 +560,13 @@
 ;;; swingpole
 ;;;;;;;;;;;;;;;;;
 
-(defstatehandler pds-swingpole :post ja-post)
+(defevent pds-swingpole
+  (case message
+    (('activate) (go-virtual come-up))
+    (('deactivate) (go-virtual go-down))
+    (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
+
+(defstatehandler pds-swingpole :post ja-post :event pds-swingpole-event-handler)
 
 (defmethod update! ((this pds-swingpole))
   (if (nonzero? (-> this draw)) (ja-post))
@@ -563,12 +596,6 @@
 
 (defstate hidden (pds-swingpole)
   :virtual #t
-  :event
-    (event
-      (case message
-        (('activate) (go-virtual come-up))
-        (('deactivate) (go-virtual go-down))
-        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
   :enter
     (behavior ()
       (clear-collide-with-as (-> self root))
@@ -584,7 +611,6 @@
         (('activate) (go-virtual come-up))
         (('deactivate) (go-virtual go-down))
         (('next-stage) (when (= (-> self next-state name) 'active) (go-virtual go-down)))
-        ; (('touch 'attack) (if (send-event proc 'pole-grab (-> block param 0)) (go-virtual active (process->handle proc))))
         (('touch 'attack)
          (when (and *target* (logtest? (-> *target* control root-prim prim-core action) (collide-action edgegrab-possible)))
            (send-event *target* 'pole-grab self)
@@ -600,12 +626,6 @@
 
 (defstate come-up (pds-swingpole)
   :virtual #t
-  :event
-    (event
-      (case message
-        (('activate) (go-virtual come-up))
-        (('deactivate) (go-virtual go-down))
-        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
   :enter
     (behavior ()
       (restore-collide-with-as (-> self root))
@@ -627,12 +647,6 @@
 
 (defstate active (pds-swingpole)
   :virtual #t
-  :event
-    (event
-      (case message
-        ; (('activate) (go-virtual come-up))
-        (('deactivate) (go-virtual go-down))
-        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
   :code
     (behavior ((h handle))
       (update! self)
@@ -646,12 +660,6 @@
 
 (defstate go-down (pds-swingpole)
   :virtual #t
-  :event
-    (event
-      (case message
-        (('activate) (go-virtual come-up))
-        (('deactivate) (go-virtual go-down))
-        (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
   :trans
     (behavior ()
       (vector-copy! (-> self rise-trans) (-> self root trans)))
@@ -692,7 +700,7 @@
   (when (nonzero? (-> this sync period))
     (set! (-> this path) (new 'process 'curve-control this 'path DEFAULT_RES_TIME))
     (set! (-> this path flags) DEFAULT_PATH_FLAGS))
-  ; (set! (-> this sound) (new 'process 'ambient-sound (-> this entity) (-> this root trans) 0.0))
+  ; (set! (-> this sound) (new 'process 'ambient-sound (-> this entity) (-> this root trans)))
   (go-virtual hidden :proc this)
   (none))
 
@@ -775,6 +783,13 @@
     (('reset-kills) (set! (-> self enemies-killed) 0))
     (('set-max-enemies) (set! (-> self max-enemies) (the int (-> block param 0))))
     (('set-max-active) (set! (-> self max-active) (the int (-> block param 0))))
+    (('activate-traps) (go-virtual activate-traps))
+    (('deactivate-traps)
+     ; (send-to-actor self (-> self trap-central) 'enable)
+     ; (send-to-actor-group self (-> self traps-outer) 'deactivate)
+     ; (send-to-actor-group self (-> self traps-mid) 'deactivate)
+     ; (send-to-actor-group self (-> self traps-inner) 'deactivate)
+     (go-virtual idle))
     (('spawn-plats)
      (case (-> self stage)
        ((0) (send-to-actor-group self (-> self plats-1) 'activate))
@@ -793,12 +808,13 @@
 (defpost pds-master
   (if *target*
     (format *stdcon*
-            "target arena dist ~,,2m~%stage ~D~%killed ~D needed ~D remaining ~D~%"
+            "target arena dist ~,,2m~%stage ~D~%killed ~D needed ~D remaining ~D state ~A~%"
             (vector-vector-distance (-> self root trans) (target-pos 0))
             (-> self stage)
             (-> self enemies-killed)
             (-> self max-enemies)
-            (- (-> self max-enemies) (-> self enemies-killed)))))
+            (- (-> self max-enemies) (-> self enemies-killed))
+            (-> self next-state name))))
 
 (defstatehandler pds-master :event pds-master-event-handler :post pds-master-post)
 
@@ -812,6 +828,33 @@
     (behavior ((group (array entity-actor)) (message symbol) (delay time-frame))
       (pds-master-send-to-group-delayed group message delay)
       (go-virtual idle)))
+
+(defstate activate-traps (pds-master)
+  :virtual #t
+  :code
+    (behavior ()
+      (send-to-actor self (-> self trap-central) 'disable)
+      (let ((msg (case (-> self stage)
+                   ((1) 'activate)
+                   ((2) 'deadly))))
+        (send-to-actor-group self (-> self traps-outer) msg)
+        (suspend-for (seconds 1))
+        (send-to-actor-group self (-> self traps-mid) msg)
+        (suspend-for (seconds 1))
+        (send-to-actor-group self (-> self traps-inner) msg)
+        (loop
+          (send-to-actor-group self (-> self traps-outer) msg)
+          (send-to-actor-group self (-> self traps-mid) msg)
+          (send-to-actor-group self (-> self traps-inner) msg)
+          (suspend)))
+      (remove-exit)
+      (go-virtual idle))
+  :exit
+    (behavior ()
+      (send-to-actor self (-> self trap-central) 'enable)
+      (send-to-actor-group self (-> self traps-outer) 'deactivate)
+      (send-to-actor-group self (-> self traps-mid) 'deactivate)
+      (send-to-actor-group self (-> self traps-inner) 'deactivate)))
 
 ;;;;;;;;;;;;;;;;;
 ;;; door
