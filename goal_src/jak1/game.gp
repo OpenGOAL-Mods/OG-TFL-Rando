@@ -1710,6 +1710,7 @@
 (build-actor "pds-plat-square" :gen-mesh #t)
 (build-actor "pds-plat-rectangle" :gen-mesh #t)
 (build-actor "pds-swingpole" :gen-mesh #t)
+(build-actor "pds-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

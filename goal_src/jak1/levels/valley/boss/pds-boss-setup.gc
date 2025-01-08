@@ -136,6 +136,11 @@
   :art (idle-ja sleep-ja wake-ja moving-ja charging-ja damaged-ja death-ja)
   :joints (align main circle out-circle in-circle sphere top cover gun gun-cover1 gun-cover2 gun-cover3 gun-tip bot thruster core))
 
+(def-actor pds-cam
+  :bounds (0 0 0 25)
+  :art (idle-ja wake-ja death-ja)
+  :joints (align prejoint pdscam camera))
+
 (deftype tfl-arcing-shot (process-drawable)
   ((y-vel float)
    (grav  float)

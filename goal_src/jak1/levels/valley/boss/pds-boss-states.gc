@@ -160,7 +160,7 @@
     (behavior ()
       (close-specific-task! (-> self entity extra perm task) (task-status need-introduction))
       (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
-      (process-spawn pov-camera (-> self root trans) *sunkencam-sg* "exit-chamber-door-open" 0 self '() :to self))
+      (process-spawn pov-camera (-> (entity-by-name "valley-pds-master-01") extra trans) *pds-cam-sg* "wake" 0 self '() :to self))
   :code
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
@@ -321,7 +321,7 @@
   :code
     (behavior ()
       ;; TODO pov cam
-      ; (process-spawn pov-camera (-> self root trans) *sunkencam-sg* "exit-chamber-door-open" 0 self '() :to self)
+      (process-spawn pov-camera (-> (entity-by-name "valley-pds-master-01") extra trans) *pds-cam-sg* "death" 0 self '() :to self)
       (vector-copy! (-> self death-pos) (-> *pds-master* root trans))
       (set! (-> self death-pos y) (-> self root trans y))
       (ja-channel-push! 1 (seconds 0.1))
