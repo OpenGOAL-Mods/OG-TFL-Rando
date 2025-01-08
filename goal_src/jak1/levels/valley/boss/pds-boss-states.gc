@@ -119,7 +119,7 @@
              (< (the int (send-event *pds-master* 'stage)) 3)
              (not (symbol-member? (-> self next-state name) '(dormant wake damaged die beaten))))
     (send-event *pds-master* 'destroy-gem))
-  (when (not (symbol-member? (-> self next-state name) '(dormant wake)))
+  (when (not (symbol-member? (-> self next-state name) '(dormant wake beaten)))
     (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster))))
   (ja-post))
 
