@@ -194,7 +194,9 @@
       ;                (-> self root trans)
       ;                :to
       ;                *entity-pool*)
-      (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)
+      (let ((j (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)))
+        (when j
+          (logclear! (-> j 0 mask) (process-mask movie enemy))))
       (suspend)
       (ja-channel-set! 0)
       (ja-post)
