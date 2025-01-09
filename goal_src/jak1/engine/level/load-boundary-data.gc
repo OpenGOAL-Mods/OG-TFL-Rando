@@ -2062,6 +2062,22 @@
                                         ((meters 403.74) (meters 1987.2) (meters 561.1) (meters 1953.6))
                                         :fwd (checkpt "valley-after-rocks" #f)
                                         :bwd (checkpt "valley-after-rocks" #f))
+                  (static-load-boundary :flags
+                                        (player)
+                                        :top (meters 141.37)
+                                        :bot (meters -8.78)
+                                        :points
+                                        ((meters 1847.0) (meters 2099.6) (meters 1735.4) (meters 1797.9))
+                                        :fwd (checkpt "valley-end" #f)
+                                        :bwd (checkpt "valley-end" #f))
+                  (static-load-boundary :flags
+                                        (player)
+                                        :top (meters 97.50)
+                                        :bot (meters 6.14)
+                                        :points
+                                        ((meters 1910.6) (meters 1951.2) (meters 1859.3) (meters 1857.0))
+                                        :fwd (checkpt "valley-slide" #f)
+                                        :bwd (checkpt "valley-slide" #f))
                   ;; CRASH TEST TEST-ZONE3
                   (static-load-boundary :flags
                                         ()

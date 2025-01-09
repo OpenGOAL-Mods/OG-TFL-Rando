@@ -1,2 +1,526 @@
 ;;-*-Lisp-*-
 (in-package goal)
+
+;; group-id range for pds-boss : 1080-1099
+;; part-id range for pds-boss : 4100-4199
+
+(defpartgroup group-pds-shot-green
+  :id 1080
+  :duration (seconds 0.035)
+  :linger-duration (seconds 1.5)
+  :bounds (static-bspherem 0 0 0 2)
+  :parts ((sp-item 4100) (sp-item 4101) (sp-item 4102)))
+
+(defpart 4100
+  :init-specs
+  ((:texture (new 'static 'texture-id :index 4 :page #x2))
+   (:num 10.0 3.0)
+   (:x (meters -0.2) (meters 0.4))
+   (:y (meters -0.2) (meters 0.4))
+   (:z (meters -0.2) (meters 0.4))
+   (:scale-x (meters 2.5) (meters 0.5))
+   (:scale-y :copy scale-x)
+   (:r 64.0)
+   (:g 256.0)
+   (:b 32.0)
+   (:a 16.0 16.0)
+   (:scalevel-x (meters -0.03))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-g -2.0)
+   (:fade-a -0.2)
+   (:accel-y (meters 0.00002))
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.2))
+   (:next-launcher 4103)))
+
+(defpart 4101
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 0.66)
+   (:scale-x (meters 2.0) (meters 0.5))
+   (:scale-y :copy scale-x)
+   (:r 96.0)
+   (:g 256.0)
+   (:a 64.0 8.0)
+   (:scalevel-x (meters 0.0033333334))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-g -2.0)
+   (:fade-a -0.65)
+   (:timer (seconds 0.6))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.15))
+   (:next-launcher 4103)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 0) (meters 0.1))))
+
+(defpart 4102
+  :init-specs
+  ((:texture (new 'static 'texture-id :page #x2))
+   (:num 1.0 1.5)
+   (:x (meters -0.2) (meters 0.4))
+   (:y (meters -0.2) (meters 0.4))
+   (:z (meters -0.2) (meters 0.4))
+   (:scale-x (meters 3) (meters 1.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 32.0)
+   (:g 256.0)
+   (:a 16.0 32.0)
+   (:scalevel-x (meters -0.07))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -0.65)
+   (:accel-y (meters 0.00002))
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3))))
+
+(defpart 4103
+  :init-specs ((:fade-r -0.4) (:fade-g -0.2) (:fade-b -0.1)))
+
+(defpartgroup group-pds-shot-blue
+  :id 1081
+  :duration (seconds 0.035)
+  :linger-duration (seconds 1.5)
+  :bounds (static-bspherem 0 0 0 2)
+  :parts ((sp-item 4104) (sp-item 4105) (sp-item 4106)))
+
+(defpart 4104
+  :init-specs
+  ((:texture (new 'static 'texture-id :index 4 :page #x2))
+   (:num 10.0 3.0)
+   (:x (meters -0.2) (meters 0.4))
+   (:y (meters -0.2) (meters 0.4))
+   (:z (meters -0.2) (meters 0.4))
+   (:scale-x (meters 2.5) (meters 0.5))
+   (:scale-y :copy scale-x)
+   (:r 32.0)
+   (:g 128.0)
+   (:b 256.0)
+   (:a 16.0 16.0)
+   (:scalevel-x (meters -0.03))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-b -2.0)
+   (:fade-a -0.2)
+   (:accel-y (meters 0.00002))
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.2))
+   (:next-launcher 4107)))
+
+(defpart 4105
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 0.66)
+   (:scale-x (meters 2.0) (meters 0.5))
+   (:scale-y :copy scale-x)
+   (:g 128.0)
+   (:b 256.0)
+   (:a 64.0 8.0)
+   (:scalevel-x (meters 0.0033333334))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-b -2.0)
+   (:fade-a -0.65)
+   (:timer (seconds 0.6))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.15))
+   (:next-launcher 4107)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 0) (meters 0.1))))
+
+(defpart 4106
+  :init-specs
+  ((:texture (new 'static 'texture-id :page #x2))
+   (:num 1.0 1.5)
+   (:x (meters -0.2) (meters 0.4))
+   (:y (meters -0.2) (meters 0.4))
+   (:z (meters -0.2) (meters 0.4))
+   (:scale-x (meters 3) (meters 1.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:g 64.0)
+   (:b 256.0)
+   (:a 16.0 32.0)
+   (:scalevel-x (meters -0.07))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -0.65)
+   (:accel-y (meters 0.00002))
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3))))
+
+(defpart 4107
+  :init-specs ((:fade-r -0.4) (:fade-g -0.2) (:fade-b -0.1)))
+
+(defpartgroup group-pds-shot-yellow
+  :id 1082
+  :duration (seconds 0.035)
+  :linger-duration (seconds 1.5)
+  :bounds (static-bspherem 0 0 0 2)
+  :parts ((sp-item 4108) (sp-item 4109) (sp-item 4110)))
+
+(defpart 4108
+  :init-specs
+  ((:texture (new 'static 'texture-id :index 4 :page #x2))
+   (:num 10.0 3.0)
+   (:x (meters -0.2) (meters 0.4))
+   (:y (meters -0.2) (meters 0.4))
+   (:z (meters -0.2) (meters 0.4))
+   (:scale-x (meters 2.5) (meters 0.5))
+   (:scale-y :copy scale-x)
+   (:r 256.0)
+   (:g 256.0)
+   (:b 32.0)
+   (:a 16.0 16.0)
+   (:scalevel-x (meters -0.03))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-r -2.0)
+   (:fade-g -2.0)
+   (:fade-a -0.2)
+   (:accel-y (meters 0.00002))
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.2))
+   (:next-launcher 4111)))
+
+(defpart 4109
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 0.66)
+   (:scale-x (meters 2.0) (meters 0.5))
+   (:scale-y :copy scale-x)
+   (:r 256.0)
+   (:g 256.0)
+   (:a 64.0 8.0)
+   (:scalevel-x (meters 0.0033333334))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-r -2.0)
+   (:fade-g -2.0)
+   (:fade-a -0.65)
+   (:timer (seconds 0.6))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.15))
+   (:next-launcher 4111)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 0) (meters 0.1))))
+
+(defpart 4110
+  :init-specs
+  ((:texture (new 'static 'texture-id :page #x2))
+   (:num 1.0 1.5)
+   (:x (meters -0.2) (meters 0.4))
+   (:y (meters -0.2) (meters 0.4))
+   (:z (meters -0.2) (meters 0.4))
+   (:scale-x (meters 3) (meters 1.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 256.0)
+   (:g 256.0)
+   (:a 16.0 32.0)
+   (:scalevel-x (meters -0.07))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -0.65)
+   (:accel-y (meters 0.00002))
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3))))
+
+(defpart 4111
+  :init-specs ((:fade-r -0.4) (:fade-g -0.2) (:fade-b -0.1)))
+
+(defpartgroup group-pds-shot-explode-green
+  :id 1083
+  :duration (seconds 2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 6)
+  :parts
+  ((sp-item 4112 :period (seconds 2) :length (seconds 0.017))
+   (sp-item 4113 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))
+   (sp-item 4114 :period (seconds 2) :length (seconds 0.067))
+   (sp-item 4115 :fade-after (meters 120) :falloff-to (meters 120) :period (seconds 2) :length (seconds 0.067))))
+
+(defpart 4113
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 6.0)
+   (:y (meters 2.0))
+   (:scale-x (meters 0.2) (meters 0.4))
+   (:scale-y :copy scale-x)
+   (:r 32.0 32.0)
+   (:g 96.0 64.0)
+   (:b 0.0 32.0)
+   (:a 32.0 96.0)
+   (:vel-y (meters 0.026666667) (meters 0.10666667))
+   (:scalevel-x (meters -0.0016666667))
+   (:scalevel-y :copy scalevel-x)
+   (:accel-y (meters -0.00016666666) (meters -0.00016666666))
+   (:friction 0.9)
+   (:timer (seconds 1))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.1) (seconds 0.097))
+   (:next-launcher 4116)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 2) (meters 4))))
+
+(defpart 4116
+  :init-specs ((:fade-r 0.0) (:fade-g 0.0) (:fade-b 0.0) (:fade-a -1.5)))
+
+(defpart 4115
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 3.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 0.2))
+   (:rot-z (degrees 0) (degrees 180))
+   (:scale-y (meters 8))
+   (:r 32.0 32.0)
+   (:g 96.0 64.0)
+   (:b 0.0 32.0)
+   (:a 32.0 64.0)
+   (:scalevel-y (meters 0.42666668))
+   (:fade-a -1.6)
+   (:timer (seconds 0.2))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4112
+  :init-specs
+  ((:texture (starflash effects))
+   (:num 1.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 16))
+   (:scale-y :copy scale-x)
+   (:r 32.0 32.0)
+   (:g 96.0 64.0)
+   (:b 0.0 32.0)
+   (:a 96.0)
+   (:fade-a -1.7454545)
+   (:timer (seconds 0.18))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4114
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 5.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 2.5) (meters 3.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 32.0 32.0)
+   (:g 96.0 64.0)
+   (:b 0.0 32.0)
+   (:a 64.0 64.0)
+   (:vel-y (meters 0.053333335) (meters 0.013333334))
+   (:scalevel-x (meters 0.013333334))
+   (:rotvel-z (degrees -0.3) (degrees 0.6))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -1.2)
+   (:accel-y (meters 0.0002) (meters 0.0002))
+   (:friction 0.8)
+   (:timer (seconds 1.7))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.14))
+   (:next-launcher 4117)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))))
+
+(defpart 4117
+  :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
+
+(defpartgroup group-pds-shot-explode-blue
+  :id 1084
+  :duration (seconds 2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 6)
+  :parts
+  ((sp-item 4118 :period (seconds 2) :length (seconds 0.017))
+   (sp-item 4119 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))
+   (sp-item 4120 :period (seconds 2) :length (seconds 0.067))
+   (sp-item 4121 :fade-after (meters 120) :falloff-to (meters 120) :period (seconds 2) :length (seconds 0.067))))
+
+(defpart 4119
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 6.0)
+   (:y (meters 2.0))
+   (:scale-x (meters 0.2) (meters 0.4))
+   (:scale-y :copy scale-x)
+   (:r 0.0 32.0)
+   (:g 64.0 32.0)
+   (:b 96.0 64.0)
+   (:a 32.0 96.0)
+   (:vel-y (meters 0.026666667) (meters 0.10666667))
+   (:scalevel-x (meters -0.0016666667))
+   (:scalevel-y :copy scalevel-x)
+   (:accel-y (meters -0.00016666666) (meters -0.00016666666))
+   (:friction 0.9)
+   (:timer (seconds 1))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.1) (seconds 0.097))
+   (:next-launcher 4122)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 2) (meters 4))))
+
+(defpart 4122
+  :init-specs ((:fade-r 0.0) (:fade-g 0.0) (:fade-b 0.0) (:fade-a -1.5)))
+
+(defpart 4121
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 3.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 0.2))
+   (:rot-z (degrees 0) (degrees 180))
+   (:scale-y (meters 8))
+   (:r 0.0 32.0)
+   (:g 64.0 32.0)
+   (:b 96.0 64.0)
+   (:a 32.0 64.0)
+   (:scalevel-y (meters 0.42666668))
+   (:fade-a -1.6)
+   (:timer (seconds 0.2))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4118
+  :init-specs
+  ((:texture (starflash effects))
+   (:num 1.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 16))
+   (:scale-y :copy scale-x)
+   (:r 0.0 32.0)
+   (:g 64.0 32.0)
+   (:b 96.0 64.0)
+   (:a 96.0)
+   (:fade-a -1.7454545)
+   (:timer (seconds 0.18))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4120
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 5.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 2.5) (meters 3.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 0.0 32.0)
+   (:g 64.0 32.0)
+   (:b 96.0 64.0)
+   (:a 64.0 64.0)
+   (:vel-y (meters 0.053333335) (meters 0.013333334))
+   (:scalevel-x (meters 0.013333334))
+   (:rotvel-z (degrees -0.3) (degrees 0.6))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -1.2)
+   (:accel-y (meters 0.0002) (meters 0.0002))
+   (:friction 0.8)
+   (:timer (seconds 1.7))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.14))
+   (:next-launcher 4123)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))))
+
+(defpart 4123
+  :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
+
+(defpartgroup group-pds-shot-explode-yellow
+  :id 1085
+  :duration (seconds 2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 6)
+  :parts
+  ((sp-item 4124 :period (seconds 2) :length (seconds 0.017))
+   (sp-item 4125 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))
+   (sp-item 4126 :period (seconds 2) :length (seconds 0.067))
+   (sp-item 4127 :fade-after (meters 120) :falloff-to (meters 120) :period (seconds 2) :length (seconds 0.067))))
+
+(defpart 4125
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 6.0)
+   (:y (meters 2.0))
+   (:scale-x (meters 0.2) (meters 0.4))
+   (:scale-y :copy scale-x)
+   (:r 80.0 32.0)
+   (:g 80.0 32.0)
+   (:b 0.0 32.0)
+   (:a 32.0 96.0)
+   (:vel-y (meters 0.026666667) (meters 0.10666667))
+   (:scalevel-x (meters -0.0016666667))
+   (:scalevel-y :copy scalevel-x)
+   (:accel-y (meters -0.00016666666) (meters -0.00016666666))
+   (:friction 0.9)
+   (:timer (seconds 1))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.1) (seconds 0.097))
+   (:next-launcher 4128)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 2) (meters 4))))
+
+(defpart 4128
+  :init-specs ((:fade-r 0.0) (:fade-g 0.0) (:fade-b 0.0) (:fade-a -1.5)))
+
+(defpart 4127
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 3.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 0.2))
+   (:rot-z (degrees 0) (degrees 180))
+   (:scale-y (meters 8))
+   (:r 80.0 32.0)
+   (:g 80.0 32.0)
+   (:b 0.0 32.0)
+   (:a 32.0 64.0)
+   (:scalevel-y (meters 0.42666668))
+   (:fade-a -1.6)
+   (:timer (seconds 0.2))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4124
+  :init-specs
+  ((:texture (starflash effects))
+   (:num 1.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 16))
+   (:scale-y :copy scale-x)
+   (:r 80.0 32.0)
+   (:g 80.0 32.0)
+   (:b 0.0 32.0)
+   (:a 96.0)
+   (:fade-a -1.7454545)
+   (:timer (seconds 0.18))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4126
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 5.0)
+   (:y (meters 1.5))
+   (:scale-x (meters 2.5) (meters 3.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 80.0 32.0)
+   (:g 80.0 32.0)
+   (:b 0.0 32.0)
+   (:a 64.0 64.0)
+   (:vel-y (meters 0.053333335) (meters 0.013333334))
+   (:scalevel-x (meters 0.013333334))
+   (:rotvel-z (degrees -0.3) (degrees 0.6))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -1.2)
+   (:accel-y (meters 0.0002) (meters 0.0002))
+   (:friction 0.8)
+   (:timer (seconds 1.7))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.14))
+   (:next-launcher 4129)
+   (:conerot-x (degrees 0) (degrees 180))
+   (:conerot-y (degrees 0) (degrees 360))))
+
+(defpart 4129
+  :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))

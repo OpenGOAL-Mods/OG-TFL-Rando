@@ -255,7 +255,7 @@
             (let ((spawn-pos (random-nav-mesh-pos self (new-stack-vector0)))
                   (t (random-enemy-type self (the int (send-event *pds-master* 'stage))))
                   (gun (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg gun))))
-              (process-spawn pds-shot gun spawn-pos (seconds 1) (seconds 0) 0 t :to self)
+              (process-spawn pds-shot gun spawn-pos (seconds 2) (seconds 0) 0 t :to self)
               (set-time! (-> self last-spawn-time)))))
         (suspend))
       (go-virtual move-to-gem)))

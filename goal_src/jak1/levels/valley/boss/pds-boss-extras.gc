@@ -57,7 +57,7 @@
   (set! (-> self stall-time) stall-time)
   (set! (-> self rotation-offset) rot-off)
   (set! (-> self type-to-make) type-to-make)
-  (set-part! :id 963)
+  (set-part! :id 1080)
   (set-part! :part explode-part :id 964)
   (logior! (-> self draw status) (draw-status hidden))
   (go-virtual idle))
@@ -79,7 +79,22 @@
       (tfl-arcing-shot-calculate (-> self root trans)
                                  (/ (the float (- (-> *display* game-frame-counter) (-> self state-time))) (the float (-> self flight-time))))
       (if (>= (- (-> *display* game-frame-counter) (-> self state-time)) (-> self flight-time)) (go-virtual explode))
-      (spawn (-> self part) (-> self root trans)))
+      ;; (spawn (-> self part) (-> self root trans))
+      (process-spawn part-tracker
+              :init
+              part-tracker-init
+              (let ((stage (the int (send-event *pds-master* 'stage))))
+                (case stage
+                  ((0)(-> *part-group-id-table* 1080))
+                  ((1)(-> *part-group-id-table* 1081))
+                  ((2)(-> *part-group-id-table* 1082))))
+              -1
+              #f
+              #f
+              #f
+              (-> self root trans)
+              :to
+              *entity-pool*))
   :code
     (behavior ()
       (loop
@@ -91,7 +106,22 @@
   :code
     (behavior ()
       (set! (-> self state-time) (-> *display* game-frame-counter))
-      (sound-play "explosion" :vol 90 :pitch 0.0)
+      (sound-play "explosion" :vol 70 :pitch 0.0)
+      (process-spawn part-tracker
+              :init
+              part-tracker-init
+              (let ((stage (the int (send-event *pds-master* 'stage))))
+                (case stage
+                  ((0)(-> *part-group-id-table* 1083))
+                  ((1)(-> *part-group-id-table* 1084))
+                  ((2)(-> *part-group-id-table* 1085))))
+              -1
+              #f
+              #f
+              #f
+              (-> self root trans)
+              :to
+              *entity-pool*)
       (logclear! (-> self draw status) (draw-status hidden))
       (quaternion-identity! (-> self root quat))
       (let* ((enemy (case (-> self type-to-make)
@@ -111,7 +141,13 @@
                       ((0) (pickup-type eco-green))
                       ((1) (pickup-type eco-yellow))
                       ((2) (pickup-type eco-red)))))
-        (when (and (rand-vu-percent? 0.1) enemy (-> enemy 0 enemy-info))
+        (when (and (rand-vu-percent? 
+                     (case stage
+                       ((0) 0.10)
+                       ((1) 0.15)
+                       ((2) 0.25))) 
+                    enemy 
+                    (-> enemy 0 enemy-info))
           (let ((info (-> enemy 0 enemy-info)))
             (set! (-> enemy 0 fact pickup-type) ptype)
             (set! (-> info pickup-amount) 1.0)
@@ -235,7 +271,7 @@
   (process-mask-clear! (-> this mask) actor-pause)
   (initialize-skeleton this (get-skel this) '())
   (vector-copy! (-> this charging-spot) (-> e extra trans))
-  (+! (-> this charging-spot y) (meters 18.5))
+  (+! (-> this charging-spot y) (meters 14.0))
   (set! (-> this bob-amount) 1024.0)
   (set! (-> this bob-offset)
         (+ (the int (-> this root trans x)) (the int (-> this root trans y)) (the int (-> this root trans z))))
