@@ -524,3 +524,84 @@
 
 (defpart 4129
   :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
+
+(defpartgroup group-pds-shot-charging-green
+  :id 1086
+  :duration (seconds 0.01)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 6)
+  :parts
+  ((sp-item 4130 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
+
+(defpart 4130
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.5 1.5)
+   (:scale-x (meters 3.0) (meters 2.5))
+   (:scale-y :copy scale-x)
+   (:r 32.0 32.0)
+   (:g 256.0 32.0)
+   (:b 32.0 32.0)
+   (:a 32.0 64.0)
+   (:vel-x (meters -0.05) (meters 0.1))
+   (:vel-y (meters -0.05) (meters 0.2))
+   (:vel-z (meters -0.05) (meters 0.1))
+   (:scalevel-x (meters 0.15))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -2.5)
+   (:timer (seconds 0.3))
+   (:flags (bit2 bit14))))
+
+(defpartgroup group-pds-shot-charging-blue
+  :id 1087
+  :duration (seconds 0.01)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 6)
+  :parts
+  ((sp-item 4131 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
+
+(defpart 4131
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.5 1.5)
+   (:scale-x (meters 3.0) (meters 2.5))
+   (:scale-y :copy scale-x)
+   (:r 32.0 32.0)
+   (:g 128.0 32.0)
+   (:b 256.0 32.0)
+   (:a 32.0 64.0)
+   (:vel-x (meters -0.05) (meters 0.1))
+   (:vel-y (meters -0.05) (meters 0.2))
+   (:vel-z (meters -0.05) (meters 0.1))
+   (:scalevel-x (meters 0.15))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -2.5)
+   (:timer (seconds 0.3))
+   (:flags (bit2 bit14))))
+
+(defpartgroup group-pds-shot-charging-yellow
+  :id 1088
+  :duration (seconds 0.01)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 6)
+  :parts
+  ((sp-item 4131 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
+
+(defpart 4131
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.5 1.5)
+   (:scale-x (meters 3.0) (meters 2.5))
+   (:scale-y :copy scale-x)
+   (:r 256.0 32.0)
+   (:g 256.0 32.0)
+   (:b 32.0 32.0)
+   (:a 32.0 64.0)
+   (:vel-x (meters -0.05) (meters 0.1))
+   (:vel-y (meters -0.05) (meters 0.2))
+   (:vel-z (meters -0.05) (meters 0.1))
+   (:scalevel-x (meters 0.15))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -2.5)
+   (:timer (seconds 0.3))
+   (:flags (bit2 bit14))))
