@@ -43,22 +43,22 @@
    (give-powerup (_type_) object)
    (respawn-blocked? (_type_) object)
    (do-lighting! (_type_) object))
-  (:states
-   super-eco-crystal-idle
-   super-eco-crystal-break
-   super-eco-crystal-respawn))
+  (:state-methods
+   idle
+   break
+   respawn))
 
 (defskelgroup *super-eco-crystal-sg*
   dark-crystal
   dark-crystal-lod0-jg
-  -1
+  dark-crystal-idle-ja
   ((dark-crystal-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 3.4 0 3.8))
 
 (defskelgroup *super-eco-crystal-explode-sg*
   dark-crystal
   dark-crystal-explode-lod0-jg
-  -1
+  dark-crystal-explode-idle-ja
   ((dark-crystal-explode-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 -15 0 50))
 
@@ -86,14 +86,11 @@
             (new 'static 'joint-exploder-static-joint-params :joint-index 16 :parent-joint-index -1)
             (new 'static 'joint-exploder-static-joint-params :joint-index 17 :parent-joint-index -1))))
 
-;; (defmethod deactivate super-eco-crystal ((this super-eco-crystal))
-;;   (call-parent-method this)
-;;   (none)
-;;   )
+; (defmethod deactivate ((this super-eco-crystal))
+;   (call-parent-method this))
 
-;; (defmethod relocate ((this super-eco-crystal) (off int))
-;;   (call-parent-method this off)
-;;   )
+; (defmethod relocate ((this super-eco-crystal) (off int))
+;   (call-parent-method this off))
 
 (defmethod init-collision! ((this super-eco-crystal))
   (let ((cshape (new 'process 'collide-shape this (collide-list-enum usually-hit-by-player))))
@@ -107,8 +104,7 @@
       (set-root-prim! cshape prim-mesh))
     (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
     (backup-collide-with-as cshape)
-    (set! (-> this cshape) cshape))
-  (none))
+    (set! (-> this cshape) cshape)))
 
 (defbehavior super-eco-crystal-init-by-other super-eco-crystal ((pos vector) (eco-type symbol) (respawn-time int))
   (init-collision! self)
@@ -152,7 +148,7 @@
     (set! (-> self part) (create-launch-control (-> *part-group-id-table* (-> self ambient-part)) self)))
   (if (-> self color) (vector-copy! (-> self draw color-mult) (-> self color)))
   (transform-post)
-  (go super-eco-crystal-idle))
+  (go-virtual idle))
 
 (defmethod init-from-entity! super-eco-crystal
   ((this super-eco-crystal) (entity entity-actor))
@@ -196,7 +192,7 @@
     (set! (-> this part) (create-launch-control (-> *part-group-id-table* (-> this ambient-part)) this)))
   (if (-> this color) (set! (-> this draw color-mult quad) (-> this color quad)))
   (transform-post)
-  (go super-eco-crystal-idle)
+  (go-virtual idle :proc this)
   (none))
 
 (defmethod give-powerup ((this super-eco-crystal))
@@ -266,34 +262,26 @@
     (set-vector! clr r g b 1.0)
     (vector-copy! (-> this draw color-emissive) clr)
     ;; (format *stdcon* "~A crystal: flicker-speed ~f flicker-amp ~f r ~f g ~f b ~f~%" (-> this eco-type) flicker-speed flicker-amp (-> clr x) (-> clr y) (-> clr z))
-    )
-  (none))
+    ))
 
 (defmethod should-draw? ((this super-eco-crystal))
-  (= (-> this next-state name) 'super-eco-crystal-idle))
+  (= (-> this next-state name) 'idle))
 
-(defbehavior super-eco-crystal-post super-eco-crystal ()
-  (if (should-draw? self)
-    (logclear! (-> self draw status) (draw-status hidden))
-    (logior! (-> self draw status) (draw-status hidden)))
-  (ja-post)
-  (none))
+(defpost super-eco-crystal
+  (if (should-draw? self) (show! self) (hide! self))
+  (ja-post))
 
 (defstatehandler super-eco-crystal :post super-eco-crystal-post)
 
-(defstate super-eco-crystal-idle (super-eco-crystal)
+(defstate idle (super-eco-crystal)
+  :virtual #t
   :event
-    (event (case message
-             (('attack)
-              (when (symbol-member? (-> proc type symbol) '(target projectile-yellow tfl-yellow-shot))
-                (give-powerup self)
-                (go super-eco-crystal-break)))))
-  :enter
-    (behavior ()
-      (ja-channel-push! 1 0)
-      (let ((jcontrol (-> self skel root-channel 0)))
-        (joint-control-channel-group-eval! jcontrol (the art-joint-anim dark-crystal-idle-ja) num-func-identity)
-        (set! (-> jcontrol frame-num) 0.0)))
+    (event
+      (case message
+        (('attack)
+         (when (symbol-member? (-> proc type symbol) '(target projectile-yellow tfl-yellow-shot))
+           (give-powerup self)
+           (go-virtual break)))))
   :trans
     (behavior ()
       (do-lighting! self)
@@ -301,6 +289,8 @@
       (update! (-> self sound)))
   :code
     (behavior ()
+      (ja-channel-push! 1 0)
+      (ja :group! dark-crystal-idle-ja :num! (identity 0.0))
       (loop
         (quaternion-rotate-y! (-> self cshape quat) (-> self cshape quat) (* (degrees 45) (seconds-per-frame)))
         (let ((bob (-> self bob-amount)))
@@ -312,7 +302,8 @@
             (update-transforms! (-> self cshape))))
         (suspend))))
 
-(defstate super-eco-crystal-break (super-eco-crystal)
+(defstate break (super-eco-crystal)
+  :virtual #t
   :enter
     (behavior ()
       (stop! (-> self sound)))
@@ -350,12 +341,13 @@
                      *entity-pool*)
       (until (not (-> self child))
         (suspend))
-      (go super-eco-crystal-respawn)))
+      (go-virtual respawn)))
 
-(defstate super-eco-crystal-respawn (super-eco-crystal)
+(defstate respawn (super-eco-crystal)
+  :virtual #t
   :code
     (behavior ()
       (set-state-time)
       (until (and (time-passed? (-> self respawn-timer)) (not (respawn-blocked? self)))
         (suspend))
-      (go super-eco-crystal-idle)))
+      (go-virtual idle)))
