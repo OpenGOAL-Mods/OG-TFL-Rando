@@ -307,6 +307,9 @@
       (ja-no-eval :group! pds-sentinel-charging-ja :num! min)
       (until (or (not (-> self current-gem extra process)) (time-passed? (-> self charging-attack-window)))
         (ja :num! (loop!))
+        (format *stdcon*
+                "attack-window ~,,2f~%"
+                (/ (the float (- (-> self charging-attack-window) (- (current-time) (-> self state-time)))) TICKS_PER_SECOND))
         (suspend))
       (cond
         ((not (time-passed? (-> self charging-attack-window))) (go-virtual damaged))

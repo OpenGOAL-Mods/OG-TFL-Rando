@@ -768,6 +768,17 @@
     (behavior ()
       (until (= (-> self root trans y) (-> self entity extra trans y))
         (seek! (-> self root trans y) (-> self entity extra trans y) (* (-> self rise-speed) (seconds-per-frame)))
+        (if (and (= self (handle->process (-> *target* control unknown-handle10)))
+                 (< (- (-> self root trans y) (-> self entity extra trans y)) (meters 14)))
+          (with-pp
+            (protect (pp)
+              (set! pp *target*)
+              (when (symbol-member? (-> pp next-state name) '(target-pole-cycle))
+                (let ((frame (ja-aframe-num 0)))
+                  (cond
+                    ((> frame 44.0) (go-hook pp target-falling 'target-pole-cycle))
+                    ((>= frame 14.0) (go-hook pp target-pole-flip-up 28672.0 28672.0 (* 1024.0 (- 26.0 frame))))
+                    (else (go-hook pp target-pole-flip-forward 14336.0 14336.0 57344.0))))))))
         (suspend))
       (go-virtual hidden)))
 
