@@ -51,7 +51,7 @@
   (set! (-> self root) (new 'process 'trsqv))
   (vector-copy! (-> self root trans) pos)
   (initialize-skeleton self *redring-sg* '())
-  (process-mask-clear! (-> this mask) actor-pause)
+  (process-mask-clear! (-> self mask) actor-pause)
   (tfl-arcing-shot-setup pos to (meters 10))
   (set! (-> self flight-time) flight-time)
   (set! (-> self stall-time) stall-time)
