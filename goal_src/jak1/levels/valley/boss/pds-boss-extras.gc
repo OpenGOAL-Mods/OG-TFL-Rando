@@ -59,7 +59,6 @@
   (set! (-> self type-to-make) type-to-make)
   (set-part! :id 963)
   (set-part! :part explode-part :id 964)
-  ; (set! (-> self part) (create-launch-control (-> *part-group-id-table* 647) self))
   (logior! (-> self draw status) (draw-status hidden))
   (go-virtual idle))
 
@@ -77,7 +76,6 @@
                            (* 436.90668 (the float (+ (-> self rotation-offset) (-> *display* game-frame-counter))))
                            (* 291.27112 (the float (+ (-> self rotation-offset) (-> *display* game-frame-counter)))))
         (matrix->quaternion (-> self root quat) mat))
-      ; (if (< (* 0.006666667 (the float (min 150 (seconds 5)))) 1.0) (spawn (-> self part) (-> self root trans)))
       (tfl-arcing-shot-calculate (-> self root trans)
                                  (/ (the float (- (-> *display* game-frame-counter) (-> self state-time))) (the float (-> self flight-time))))
       (if (>= (- (-> *display* game-frame-counter) (-> self state-time)) (-> self flight-time)) (go-virtual explode))
@@ -132,10 +130,16 @@
   ((root          collide-shape-moving :override)
    (sentinel      entity-actor)
    (color         symbol)
-   (charging-spot vector :inline))
+   (charging-spot vector :inline)
+   (birth-time    time-frame)
+   (base          vector :inline)
+   (old-base      vector :inline)
+   (bob-offset    int64)
+   (bob-amount    float))
   (:methods
    (init-collision! (_type_) object)
-   (get-skel (_type_) skeleton-group))
+   (get-skel (_type_) skeleton-group)
+   (do-lighting (_type_) object))
   (:state-methods
    idle
    explode))
@@ -163,6 +167,67 @@
     (('blue) *pds-gem-blue-sg*)
     (else *pds-gem-green-sg*)))
 
+(defmethod do-lighting ((this pds-gem))
+  (let* ((gem-type (-> this color))
+         (flicker-speed (case gem-type
+                          (('green) 1.5)
+                          (('yellow) 1.5)
+                          (('blue) 1.5)))
+         (flicker-amp (case gem-type
+                        (('green) 1.15)
+                        (('yellow) 1.15)
+                        (('blue) 1.0)))
+         (min-blue (case gem-type
+                     (('green) 0.125)
+                     (('yellow) 0.0)
+                     (('blue) 0.7)))
+         (max-blue (case gem-type
+                     (('green) 0.25)
+                     (('yellow) 0.0)
+                     (('blue) 1.0)))
+         (min-red (case gem-type
+                    (('green 'yellow 'blue) 0.0)))
+         (max-red (case gem-type
+                    (('green 'blue) 0.0)
+                    (('yellow) 0.5)))
+         (min-green (case gem-type
+                      (('red 'blue) 0.0)
+                      (('green) 1.0)
+                      (('yellow) 0.125)))
+         (max-green (case gem-type
+                      (('green) 1.5)
+                      (('yellow) 0.375)
+                      (('blue) 0.75)))
+         (r (case gem-type
+              (('green 'blue) 0.0)
+              (('yellow)
+               (+ 0.2
+                  (lerp-clamp min-red
+                              max-red
+                              (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))))))
+         (g (lerp-clamp min-green
+                        max-green
+                        (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0))))))
+         (b (case gem-type
+              (('blue 'green)
+               (+ 0.2
+                  (lerp-clamp min-blue
+                              max-blue
+                              (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))))
+              (('yellow) 0.0)))
+         (clr (new-stack-vector0)))
+    (set-vector! clr r g b 1.0)
+    (vector-copy! (-> this draw color-emissive) clr)
+    ; (format *stdcon*
+    ;         "~A crystal: flicker-speed ~f flicker-amp ~f r ~f g ~f b ~f~%"
+    ;         (-> this color)
+    ;         flicker-speed
+    ;         flicker-amp
+    ;         (-> clr x)
+    ;         (-> clr y)
+    ;         (-> clr z))
+    ))
+
 (defmethod init-from-entity! ((this pds-gem) (e entity-actor))
   (init-collision! this)
   (process-drawable-from-entity! this e)
@@ -170,6 +235,12 @@
   (initialize-skeleton this (get-skel this) '())
   (vector-copy! (-> this charging-spot) (-> e extra trans))
   (+! (-> this charging-spot y) (meters 18.5))
+  (set! (-> this bob-amount) 1024.0)
+  (set! (-> this bob-offset)
+        (+ (the int (-> this root trans x)) (the int (-> this root trans y)) (the int (-> this root trans z))))
+  (set-time! (-> this birth-time))
+  (vector-copy! (-> this base) (-> this root trans))
+  (vector-copy! (-> this old-base) (-> this root trans))
   (transform-post)
   (go-virtual idle :proc this)
   (none))
@@ -181,6 +252,21 @@
       (case message
         (('explode) (go-virtual explode))
         (('attack) (if (= (-> proc type) target) (go-virtual explode)))))
+  :trans
+    (behavior ()
+      (when (not (= (-> *pds-master* sentinel extra process next-state name) 'charging))
+        (quaternion-slerp! (-> self root quat) (-> self root quat) (-> self entity quat) (* 5.0 (seconds-per-frame))))
+      (when (and (= (-> *pds-master* sentinel extra process next-state name) 'charging)
+                 (= (-> (the pds-sentinel (-> *pds-master* sentinel extra process)) current-gem) (-> self entity)))
+        (do-lighting self)
+        (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* (degrees 45) (seconds-per-frame)))
+        (let ((bob (-> self bob-amount)))
+          (when (< 0.0 bob)
+            (set! (-> self root trans y)
+                  (+ (-> self base y)
+                     (* bob
+                        (sin (* 109.22667 (the float (mod (+ (- (current-time) (-> self birth-time)) (-> self bob-offset)) (seconds 2))))))))
+            (update-transforms! (-> self root))))))
   :code anim-loop
   :post transform-post)
 
@@ -207,7 +293,9 @@
       ;                *entity-pool*)
       (let ((j (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)))
         (when j
-          (logclear! (-> j 0 mask) (process-mask movie enemy))))
+          (logclear! (-> j 0 mask) (process-mask movie enemy))
+          (vector-copy! (-> j 0 draw color-mult) (-> self draw color-mult))
+          (vector-copy! (-> j 0 draw color-emissive) (-> self draw color-emissive))))
       (suspend)
       (ja-channel-set! 0)
       (ja-post)
@@ -493,12 +581,9 @@
     ((-> self bouncing)
      (let ((vec (new-stack-vector0)))
        (vector-copy! vec (-> self basetrans))
-       (+! (-> vec y) (* 819.2 (update! (-> self smush))))
-       ; (move-to-point! (-> self root) vec)
-       )
+       (+! (-> vec y) (* 819.2 (update! (-> self smush)))))
      (if (not (!= (-> self smush amp) 0.0)) (set! (-> self bouncing) #f)))
-    (else ; (move-to-point! (-> self root) (-> self basetrans))
-     )))
+    (else)))
 
 (defstate come-up (pds-plat)
   :virtual #t
