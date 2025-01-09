@@ -210,9 +210,7 @@
   (true! (-> this enemy-debug-draw?))
   (set! (-> this enemy-types-1) '(babak lurkerpuppy))
   (set! (-> this enemy-types-2) '(swamp-rat kermit))
-  (set! (-> this enemy-types-3)
-        '(babak bonelurker) ; '(bonelurker ice-cube)
-        )
+  (set! (-> this enemy-types-3) '(bonelurker ice-cube))
   (set! (-> this current-gem) (the entity-actor (entity-by-name "valley-pds-gem-01")))
   (set! (-> this charging-attack-window) (seconds 30))
   (set! (-> this stage-retry-count) 0)
@@ -334,3 +332,37 @@
   (set! (-> this charging-part) (create-launch-control (-> *part-group-id-table* 298) this))
   (set! (-> this sound-id) (new-sound-id))
   (none))
+
+;; ice-cube needs a custom state to appear properly
+(defstate pds-ice-cube-appear (ice-cube)
+  :event ice-cube-default-event-handler
+  :enter
+    (behavior ()
+      (nav-enemy-method-57 self)
+      (set! (-> self ground-y) (-> self collide-info trans y))
+      (spawn (-> self part) (-> self collide-info trans))
+      (set! (-> self collide-info transv quad) (-> *null-vector* quad))
+      (set! (-> self collide-info transv y) (rand-vu-float-range 102400.0 114688.0)))
+  :trans
+    (behavior ()
+      (when (and (< (-> self collide-info trans y) (-> self ground-y)) (< (-> self collide-info transv y) 0.0))
+        (set! (-> self collide-info trans y) (-> self ground-y))
+        (set! (-> self collide-info transv quad) (-> *null-vector* quad))
+        (go ice-cube-appear-land))
+      (let* ((joints (-> self node-list))
+             (len (-> joints length)))
+        (spawn (-> self part2) (vector<-cspace! (new-stack-vector0) (-> joints data (nav-enemy-rnd-int-count len))))))
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.2))
+      (ja-no-eval :group! ice-cube-appear-jump-up-ja :num! (seek!) :frame-num 0.0)
+      (until (ja-done? 0)
+        (suspend)
+        (ja :num! (seek!)))
+      (loop
+        (suspend)))
+  :post nav-enemy-falling-post)
+
+(set! (-> ice-cube-shatter enter)
+      (lambda :behavior ice-cube ()
+        (send-event (ppointer->process (-> self parent)) 'child-die)))
