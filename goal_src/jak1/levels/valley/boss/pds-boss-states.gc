@@ -1,5 +1,11 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(defun path-distance-up-to-cvert ((this path-control) (up-to int))
+  (let ((dist 0.0))
+    (dotimes (i (min up-to (1- (-> this curve num-cverts))))
+      (+! dist (vector-vector-distance (-> this cverts i) (-> this cverts (1+ i)))))
+    dist))
+
 (defmethod deactivate ((this pds-sentinel))
   (if (nonzero? (-> this spawn-part)) (kill-and-free-particles (-> this spawn-part)))
   (if (nonzero? (-> this core-part)) (kill-and-free-particles (-> this core-part)))
@@ -58,7 +64,7 @@
                           (add-debug-text-sphere #t
                                                  (bucket-id debug-no-zbuf)
                                                  (-> as-enemy root trans)
-                                                 (meters 0.1)
+                                                 (meters 0.01)
                                                  (symbol->string (-> as-enemy name))
                                                  (static-rgba 0 #xff 0 #x80))
                           (add-debug-text-3d #t
@@ -160,7 +166,7 @@
     (behavior ()
       (close-specific-task! (-> self entity extra perm task) (task-status need-introduction))
       (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
-      (process-spawn pov-camera (-> (entity-by-name "valley-pds-master-01") extra trans) *pds-cam-sg* "wake" 0 self '() :to self))
+      (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "wake" 0 self '() :to self))
   :code
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
@@ -171,6 +177,7 @@
       ;; wait for pov-cam
       (while (-> self child)
         (suspend))
+      (set! (-> self path-pos) 0.08)
       (go-virtual move-to-path)))
 
 (defstate move-to-path (pds-sentinel)
@@ -183,15 +190,14 @@
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-moving-ja :num! min)
       (let ((pos (-> self resume-path-pos)))
-        ;; first move to path height
+        (until (and (= (-> self root trans x) (-> pos x)) (= (-> self root trans z) (-> pos z)))
+          (ja :num! (loop!))
+          (seek! (-> self root trans x) (-> pos x) (* (meters 17.5) (seconds-per-frame)))
+          (seek! (-> self root trans z) (-> pos z) (* (meters 17.5) (seconds-per-frame)))
+          (suspend))
         (until (= (-> self root trans y) (-> pos y))
           (ja :num! (loop!))
           (seek! (-> self root trans y) (-> pos y) (* (meters 17.5) (seconds-per-frame)))
-          (suspend))
-        ;; then move to x/z
-        (until (< (vector-vector-distance (-> self root trans) pos) (meters 0.1))
-          (ja :num! (loop!))
-          (vector-seek! (-> self root trans) pos (* (meters 17.5) (seconds-per-frame)))
           (suspend)))
       (go-virtual spawn-enemies)))
 
@@ -253,12 +259,25 @@
   :enter
     (behavior ()
       (send-event *pds-master* 'activate-traps)
-      (set! (-> self current-gem) (-> *pds-master* gems (the int (send-event *pds-master* 'stage)))))
+      (let* ((stage (the int (send-event *pds-master* 'stage)))
+             (idx (case stage
+                    ((0) 3)
+                    ((1) 7)
+                    ((2) 11))))
+        (set! (-> self gem-path-pos) (/ (path-distance-up-to-cvert (-> self path) idx) (path-distance (-> self path))))
+        (set! (-> self current-gem) (-> *pds-master* gems stage))))
   :code
     (behavior ()
       (when (and (-> self current-gem) (-> self current-gem extra process))
         (let* ((gem (the pds-gem (-> self current-gem extra process)))
                (pos (-> gem charging-spot)))
+          ;; move to gem cvert
+          (until (= (-> self path-pos) (-> self gem-path-pos))
+            (ja :num! (loop!))
+            (seek! (-> self path-pos) (-> self gem-path-pos) (/ (seconds-per-frame) (/ (-> self patrol-speed) 2)))
+            (eval-path-curve! (-> self path) (-> self root trans) (-> self path-pos) 'interp)
+            (suspend))
+          (send-event *pds-master* 'spawn-plats)
           (until (= (-> self root trans y) (-> pos y))
             (ja :num! (loop!))
             (seek! (-> self root trans y) (-> pos y) (* (meters 17.5) (seconds-per-frame)))
@@ -267,7 +286,6 @@
             (ja :num! (loop!))
             (vector-seek! (-> self root trans) pos (* (meters 17.5) (seconds-per-frame)))
             (suspend))))
-      (send-event *pds-master* 'spawn-plats)
       (go-virtual charging)))
 
 (defstate charging (pds-sentinel)
@@ -306,47 +324,48 @@
       (if (= (send-event *pds-master* 'stage) 3) (go-virtual die))
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
-      (let ((deactivated? #f))
-        (until (ja-done? 0)
-          (ja :num! (seek!))
-          (when (and (not deactivated?) (>= (ja-aframe-num 0) 60.0))
-            (send-event *pds-master* 'deactivate-traps)
-            (send-event *pds-master* 'deactivate-plats)
-            (true! deactivated?))
-          (suspend)))
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (when (= (ja-aframe-num 0) 60.0)
+          (send-event *pds-master* 'deactivate-traps)
+          (send-event *pds-master* 'deactivate-plats))
+        (suspend))
       (go-virtual move-to-path)))
 
 (defstate die (pds-sentinel)
   :virtual #t
   :code
     (behavior ()
-      ;; TODO pov cam
-      (process-spawn pov-camera (-> (entity-by-name "valley-pds-master-01") extra trans) *pds-cam-sg* "death" 0 self '() :to self)
-      (vector-copy! (-> self death-pos) (-> *pds-master* root trans))
-      (set! (-> self death-pos y) (-> self root trans y))
+      (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "death" 0 self '() :to self)
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-death-ja :num! min)
-      (let ((deactivated? #f))
-        (until (ja-done? 0)
-          (ja :num! (seek!))
-          (when (and (not deactivated?) (>= (ja-aframe-num 0) 60.0))
-            (send-event *pds-master* 'deactivate-traps)
-            (send-event *pds-master* 'deactivate-plats)
-            (true! deactivated?))
-          (vector-seek! (-> self root trans) (-> self death-pos) (* (meters 15.5) (seconds-per-frame)))
-          (suspend)))
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (case (ja-aframe-num 0)
+          ((60.0) (send-event *pds-master* 'deactivate-traps) (send-event *pds-master* 'deactivate-plats))
+          ((320.0)
+           (process-entity-status! self (entity-perm-status complete) #t)
+           (close-specific-task! (game-task valley-boss) (task-status need-reminder))
+           (birth-pickup-at-point (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg core))
+                                  (pickup-type fuel-cell)
+                                  (the float (-> self entity extra perm task))
+                                  #f
+                                  self
+                                  (the fact-info #f))))
+        (suspend))
       (go-virtual beaten)))
 
 (defstate beaten (pds-sentinel)
   :virtual #t
   :code
     (behavior ()
+      (ja-no-eval :group! pds-sentinel-sleep-ja :num! min)
+      (hide! self)
       (send-event (ppointer->process *tfl-music-player*) 'boss #f)
       (vector-copy! (-> self root trans) (-> self entity extra trans))
-      (ja-no-eval :group! pds-sentinel-sleep-ja :num! min)
       (process-entity-status! self (entity-perm-status complete) #t)
       (close-specific-task! (game-task valley-boss) (task-status need-reminder))
-      (when (not (task-complete? *game-info* (-> self entity extra perm task)))
+      (when (and (not (task-complete? *game-info* (-> self entity extra perm task))) (not (-> self child)))
         (birth-pickup-at-point (-> self root trans)
                                (pickup-type fuel-cell)
                                (the float (-> self entity extra perm task))
@@ -354,5 +373,4 @@
                                self
                                (the fact-info #f)))
       (loop
-        (ja :num! (loop!))
         (suspend))))

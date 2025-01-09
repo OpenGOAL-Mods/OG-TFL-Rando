@@ -163,7 +163,7 @@
    (patrol-speed           int8)
    (path-pos               float)
    (resume-path-pos        vector :inline)
-   (death-pos              vector :inline)
+   (gem-path-pos           float)
    (patrol-backwards?      symbol)
    (last-spawn-time        time-frame)
    (spawn-interval         time-frame)
