@@ -133,7 +133,7 @@
     ;; (format *stdcon* "gravity-length: ~M meters~%" (-> self control dynam gravity-length))
     (cond
       ((and (not (racer-on-ground?)) (cpad-hold? 0 l1 r1) (!= (-> self next-state name) 'target-racing-smack))
-      ;;  (format *stdcon* "In the air~%")
+       ;;  (format *stdcon* "In the air~%")
        (send-event *camera* 'reset-follow)
        (let ((new-grav 5.0))
          (cond
@@ -153,10 +153,10 @@
             (let ((backward-grav (lerp-scale SUPER_ECO_BLUE_GRAVITY_LENGTH (meters -0.9) (-> self control unknown-float01) (meters 26.0) (meters 53.0)))
                   (backward-speed (lerp-scale 60.0 58.0 (the float lefty) 165.0 255.0)))
               (set! new-grav (lerp-scale SUPER_ECO_BLUE_GRAVITY_LENGTH backward-grav (the float lefty) 165.0 255.0))
-              (seek! (-> self control unknown-vector00 x) 
+              (seek! (-> self control unknown-vector00 x)
                      (* (-> self control unknown-vector00 x) (* (seconds-per-frame) backward-speed))
                      (* (seconds-per-frame) (meters 16.0)))
-              (seek! (-> self control unknown-vector00 z) 
+              (seek! (-> self control unknown-vector00 z)
                      (* (-> self control unknown-vector00 z) (* (seconds-per-frame) backward-speed))
                      (* (seconds-per-frame) (meters 16.0))))
             (seek! (-> self racer cur-rotx)
@@ -170,9 +170,9 @@
                               0.0
                               (meters 20.0)))
             (let ((rot-from-y (lerp-scale (degrees 30) (degrees -40) (-> self control transv y) (meters -20) (meters 20))))
-                 (seek! (-> self racer cur-rotx) rot-from-y (* (seconds-per-frame) (degrees 120.0))))))
+              (seek! (-> self racer cur-rotx) rot-from-y (* (seconds-per-frame) (degrees 120.0))))))
          (if (> (-> self control transv y) (meters 10))
-             (set! new-grav (lerp-scale new-grav (+ new-grav (meters 60)) (-> self control transv y) (meters 10) (meters 35))))
+           (set! new-grav (lerp-scale new-grav (+ new-grav (meters 60)) (-> self control transv y) (meters 10) (meters 35))))
          (seek! (-> self control dynam gravity-max) (* 8.0 new-grav) (meters 16.0))
          (seek! (-> self control dynam gravity-length) new-grav (meters 2.0))
          (vector-float*! (-> self control dynam gravity)
@@ -507,9 +507,7 @@
                         (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data 10)))))
   ;; TFL note: added particles on front blade in deepsnow
   (when (and (racer-on-ground?) (= (-> self control ground-pat material) (pat-material deepsnow)))
-    (let ((racer-front (vector<-cspace! 
-                        (new 'stack-no-clear 'vector) 
-                        (-> self manipy 0 node-list data (joint-node-index racer-geo-jg mainProp))))
+    (let ((racer-front (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data (joint-node-index racer-geo-jg mainProp))))
           (speed (vector-length (-> self root transv))))
       ;; (format *stdcon* "~%~% speed:~Mm~%" (vector-length (-> self root transv)))
       (set! (-> (get-init-spec-by-id (-> *part-id-table* 3775) num) initial-valuef)
@@ -556,8 +554,8 @@
                      (-> *part-id-table* 2216))
                     ((or (= v1-61 (pat-material wood)) (= v1-61 (pat-material crwood))) (-> *part-id-table* 2217))
                     ((= v1-61 (pat-material stone)) (-> *part-id-table* 2831))
-                    ((or (= v1-61 (pat-material snow))  ;; TFL note: added racer effects for snow/deepsnow
-                         (= v1-61 (pat-material deepsnow))) 
+                    ((or (= v1-61 (pat-material snow)) ;; TFL note: added racer effects for snow/deepsnow
+                         (= v1-61 (pat-material deepsnow)))
                      (-> *part-id-table* 3774))
                     (else (-> *part-id-table* 2211)))))
       (set! (-> s5-2 y) (-> self control shadow-pos y))
@@ -716,9 +714,7 @@
                         (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data 10)))))
   ;; TFL note: added particles on front blade in deepsnow
   (when (and (racer-on-ground?) (= (-> self control ground-pat material) (pat-material deepsnow)))
-    (let ((racer-front (vector<-cspace! 
-                        (new 'stack-no-clear 'vector) 
-                        (-> self manipy 0 node-list data (joint-node-index racer-geo-jg mainProp))))
+    (let ((racer-front (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data (joint-node-index racer-geo-jg mainProp))))
           (speed (vector-length (-> self root transv))))
       ;; (format *stdcon* "~%~% speed:~Mm~%" (vector-length (-> self root transv)))
       (set! (-> (get-init-spec-by-id (-> *part-id-table* 3775) num) initial-valuef)
@@ -765,8 +761,8 @@
                      (-> *part-id-table* 2216))
                     ((or (= v1-61 (pat-material wood)) (= v1-61 (pat-material crwood))) (-> *part-id-table* 2217))
                     ((= v1-61 (pat-material stone)) (-> *part-id-table* 2831))
-                    ((or (= v1-61 (pat-material snow))  ;; TFL note: added racer effects for snow/deepsnow
-                         (= v1-61 (pat-material deepsnow))) 
+                    ((or (= v1-61 (pat-material snow)) ;; TFL note: added racer effects for snow/deepsnow
+                         (= v1-61 (pat-material deepsnow)))
                      (-> *part-id-table* 3774))
                     (else (-> *part-id-table* 2211)))))
       (set! (-> s5-2 y) (-> self control shadow-pos y))
