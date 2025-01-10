@@ -257,35 +257,34 @@
                     (< (+ killed active) (-> *pds-master* max-enemies)))
             (let* ((timer (- (current-time) (-> self last-spawn-time)))
                    (normal-timer (/ (the float timer) (-> self spawn-interval)))
-                   (stage-part-group (case (send-event *pds-master* 'stage)
+                   (stage (the int (send-event *pds-master* 'stage)))
+                   (stage-part-group (case stage
                                        ((0) 1086)
                                        ((1) 1087)
                                        ((2) 1088)))
-                   (stage-part (case (send-event *pds-master* 'stage)
+                   (stage-part (case stage
                                  ((0) 4130)
                                  ((1) 4131)
                                  ((2) 4132))))
-              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) num) initial-valuef)
-                (lerp-clamp 0.5 10.0 normal-timer))
-              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) a) initial-valuef)
-                (lerp-clamp 16.0 48.0 normal-timer))
+              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) num) initial-valuef) (lerp-clamp 0.5 10.0 normal-timer))
+              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) a) initial-valuef) (lerp-clamp 16.0 48.0 normal-timer))
               (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) scalevel-x) initial-valuef)
-                (lerp-clamp 400.0 1500.0 normal-timer))
+                    (lerp-clamp 400.0 1500.0 normal-timer))
               (process-spawn part-tracker
-                       :init
-                       part-tracker-init
-                       (-> *part-group-id-table* stage-part-group)
-                       -1
-                       #f
-                       #f
-                       #f
-                       gun
-                       :to
-                       *entity-pool*)))
+                             :init
+                             part-tracker-init
+                             (-> *part-group-id-table* stage-part-group)
+                             -1
+                             #f
+                             #f
+                             #f
+                             gun
+                             :to
+                             *entity-pool*)))
           (when (and (< active (min (- (-> *pds-master* max-enemies) killed) (-> *pds-master* max-active)))
                      (time-elapsed? (-> self last-spawn-time) (-> self spawn-interval)))
             (let ((spawn-pos (random-nav-mesh-pos self (new-stack-vector0)))
-                  (t (random-enemy-type self (the int (send-event *pds-master* 'stage)))))
+                  (t (random-enemy-type self stage)))
               (process-spawn pds-shot gun spawn-pos (seconds 2) (seconds 0) 0 t :to self)
               (set-time! (-> self last-spawn-time)))))
         (suspend))
