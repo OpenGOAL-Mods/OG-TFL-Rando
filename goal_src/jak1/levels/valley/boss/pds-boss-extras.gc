@@ -153,7 +153,7 @@
             (set! (-> info pickup-amount) 1.0)
             (set! (-> info pickup-spawn-amount) 0.0)
             (logior! (-> info options) (fact-options fade))
-            (set! (-> info fade-time) (seconds 4))))
+            (set! (-> info fade-time) (seconds 8))))
         (logclear! (-> enemy 0 mask) (process-mask actor-pause))
         (send-event *pds-master* 'notify 'spawned (ppointer->handle enemy))))
   :post ja-post)

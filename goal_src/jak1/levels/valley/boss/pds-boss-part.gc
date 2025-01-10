@@ -525,28 +525,38 @@
 (defpart 4129
   :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
 
+(defun part-tracker-track-gun-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
+  (let* ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
+         (v1-2 (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 13))))
+    (set! (-> arg2 launchrot x) (-> v1-2 x))
+    (set! (-> arg2 launchrot y) (-> v1-2 y))
+    (set! (-> arg2 launchrot z) (-> v1-2 z)))
+  0
+  (none))
+
 (defpartgroup group-pds-shot-charging-green
   :id 1086
-  :duration (seconds 0.01)
+  :duration (seconds 0.05)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
   :parts ((sp-item 4130 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
 
 (defpart 4130
   :init-specs
-  ((:texture (bigpuff effects))
-   (:num 1.0)
-   (:scale-x (meters 1.5) (meters 2.5))
-   (:scale-y :copy scale-x)
+  ((:texture (hotdot effects))
+   (:num 1.0)                           ;; controlled by the lerp
+   (:scale-x (meters 0.5) (meters 1.5))
+   (:scale-y :copy scale-x)             
    (:r 32.0 32.0)
    (:g 256.0 32.0)
    (:b 32.0 32.0)
-   (:a 32.0)
-   (:scalevel-x (meters 0.5))
+   (:a 32.0)                            ;; controlled by the lerp
+   (:scalevel-x (meters 0.5))           ;; controlled by the lerp
    (:scalevel-y :copy scalevel-x)
-   (:fade-a -3.0)
-   (:timer (seconds 0.05))
-   (:flags (bit2 bit14))))
+   (:fade-a -0.5)
+   (:timer (seconds 0.4))
+   (:flags (bit2 bit14))
+   (:func 'part-tracker-track-gun-joint)))
 
 (defpartgroup group-pds-shot-charging-blue
   :id 1087
@@ -559,7 +569,7 @@
   :init-specs
   ((:texture (bigpuff effects))
    (:num 1.0)
-   (:scale-x (meters 1.5) (meters 2.5))
+   (:scale-x (meters 0.5) (meters 1.5))
    (:scale-y :copy scale-x)
    (:r 32.0 32.0)
    (:g 128.0 32.0)
@@ -567,9 +577,10 @@
    (:a 32.0)
    (:scalevel-x (meters 0.5))
    (:scalevel-y :copy scalevel-x)
-   (:fade-a -3.0)
-   (:timer (seconds 0.3))
-   (:flags (bit2 bit14))))
+   (:fade-a -0.5)
+   (:timer (seconds 0.4))
+   (:flags (bit2 bit14))
+   (:func 'part-tracker-track-gun-joint)))
 
 (defpartgroup group-pds-shot-charging-yellow
   :id 1088
@@ -582,7 +593,7 @@
   :init-specs
   ((:texture (bigpuff effects))
    (:num 1.0)
-   (:scale-x (meters 1.5) (meters 2.5))
+   (:scale-x (meters 0.5) (meters 1.5))
    (:scale-y :copy scale-x)
    (:r 256.0 32.0)
    (:g 256.0 32.0)
@@ -590,6 +601,40 @@
    (:a 32.0)
    (:scalevel-x (meters 0.5))
    (:scalevel-y :copy scalevel-x)
-   (:fade-a -3.0)
-   (:timer (seconds 0.3))
-   (:flags (bit2 bit14))))
+   (:fade-a -0.5)
+   (:timer (seconds 0.4))
+   (:flags (bit2 bit14))
+   (:func 'part-tracker-track-gun-joint)))
+
+(defun part-tracker-track-core-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
+  (let* ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
+         (v1-2 (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 16))))
+    (set! (-> arg2 launchrot x) (-> v1-2 x))
+    (set! (-> arg2 launchrot y) (-> v1-2 y))
+    (set! (-> arg2 launchrot z) (-> v1-2 z)))
+  0
+  (none))
+
+(defpartgroup group-pds-core
+  :id 1089
+  :duration (seconds 0.05)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts
+  ((sp-item 4133 :fade-after (meters 100) :falloff-to (meters 100) :binding 4134)))
+
+(defpart 4133
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 0.6)
+   (:scale-x (meters 4) (meters 3.5))
+   (:scale-y :copy scale-x)
+   (:r 0.0)
+   (:g 128.0)
+   (:b 256.0)
+   (:a 32.0 32.0)
+   (:scalevel-x (meters -0.004))
+   (:scalevel-y :copy scalevel-x)
+   (:timer (seconds 0.20))
+   (:flags (bit2 bit3 bit14))
+   (:func 'part-tracker-track-core-joint)))

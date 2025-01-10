@@ -132,8 +132,32 @@
              (< (the int (send-event *pds-master* 'stage)) 3)
              (not (symbol-member? (-> self next-state name) '(dormant wake damaged die beaten))))
     (send-event *pds-master* 'destroy-gem))
-  (when (not (symbol-member? (-> self next-state name) '(dormant wake beaten)))
-    (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster))))
+  (when (not (symbol-member? (-> self next-state name) '(dormant beaten)))
+    (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster)))
+    (case (send-event *pds-master* 'stage)
+      ((0)
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) r) initial-valuef) 64.0 (* 128.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) g) initial-valuef) 256.0 (* 128.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) b) initial-valuef) 64.0 (* 128.0 (seconds-per-frame))))
+      ((1)
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) r) initial-valuef) 0.0 (* 128.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) g) initial-valuef) 128.0 (* 128.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) b) initial-valuef) 256.0 (* 128.0 (seconds-per-frame))))
+      ((2)
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) r) initial-valuef) 256.0 (* 128.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) g) initial-valuef) 256.0 (* 128.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) b) initial-valuef) 0.0 (* 128.0 (seconds-per-frame)))))
+    (process-spawn part-tracker
+                       :init
+                       part-tracker-init
+                       (-> *part-group-id-table* 1089)
+                       -1
+                       #f
+                       #f
+                       #f
+                       (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg core))
+                       :to
+                       *entity-pool*))
   (ja-post))
 
 (defevent pds-sentinel
@@ -267,10 +291,9 @@
                                  ((0) 4130)
                                  ((1) 4131)
                                  ((2) 4132))))
-              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) num) initial-valuef) (lerp-clamp 0.5 10.0 normal-timer))
-              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) a) initial-valuef) (lerp-clamp 16.0 48.0 normal-timer))
-              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) scalevel-x) initial-valuef)
-                    (lerp-clamp 400.0 1500.0 normal-timer))
+              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) num) initial-valuef)(lerp-clamp 0.1 1.0 normal-timer))
+              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) a) initial-valuef)(lerp-clamp 16.0 64.0 normal-timer))
+              (set! (-> (get-init-spec-by-id (-> *part-id-table* stage-part) scalevel-x) initial-valuef)(lerp-clamp 5.0 300.0 normal-timer))
               (process-spawn part-tracker
                              :init
                              part-tracker-init
