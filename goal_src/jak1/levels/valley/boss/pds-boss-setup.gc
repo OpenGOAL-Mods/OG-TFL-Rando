@@ -361,7 +361,7 @@
   (set! (-> this sound-id) (new-sound-id))
   (none))
 
-(define-extern pds-kermit-patrol (state kermit))
+(define-extern pds-kermit-patrol (state pds-kermit))
 
 (defstate pds-kermit-idle (pds-kermit)
   :event nav-enemy-default-event-handler
