@@ -525,14 +525,12 @@
 (defpart 4129
   :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
 
-(declare-type pds-sentinel process-drawable)
-
 (defun part-tracker-track-gun-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
-  (let* ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
-         (v1-2 (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 13))))
-    (set! (-> arg2 launchrot x) (-> v1-2 x))
-    (set! (-> arg2 launchrot y) (-> v1-2 y))
-    (set! (-> arg2 launchrot z) (-> v1-2 z)))
+  (let* ((sentinel (the process-drawable (-> (entity-by-name "valley-pds-sentinel-01") extra process)))
+         (tip (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 13))))
+    (set! (-> arg2 launchrot x) (-> tip x))
+    (set! (-> arg2 launchrot y) (-> tip y))
+    (set! (-> arg2 launchrot z) (-> tip z)))
   0
   (none))
 
@@ -546,14 +544,14 @@
 (defpart 4130
   :init-specs
   ((:texture (hotdot effects))
-   (:num 1.0)                           ;; controlled by the lerp
+   (:num 1.0) ;; controlled by the lerp
    (:scale-x (meters 0.5) (meters 1.5))
-   (:scale-y :copy scale-x)             
+   (:scale-y :copy scale-x)
    (:r 32.0 32.0)
    (:g 256.0 32.0)
    (:b 32.0 32.0)
-   (:a 32.0)                            ;; controlled by the lerp
-   (:scalevel-x (meters 0.5))           ;; controlled by the lerp
+   (:a 32.0) ;; controlled by the lerp
+   (:scalevel-x (meters 0.5)) ;; controlled by the lerp
    (:scalevel-y :copy scalevel-x)
    (:fade-a -0.5)
    (:timer (seconds 0.4))
@@ -609,12 +607,11 @@
    (:func 'part-tracker-track-gun-joint)))
 
 (defun part-tracker-track-core-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
-  (let* ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
-         (v1-2 (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 16))))
-    (set! (-> arg2 launchrot x) (-> v1-2 x))
-    (set! (-> arg2 launchrot y) (-> v1-2 y))
-    (set! (-> arg2 launchrot z) (-> v1-2 z)))
-  0
+  (let* ((sentinel (the process-drawable (-> (entity-by-name "valley-pds-sentinel-01") extra process)))
+         (core (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 16))))
+    (set! (-> arg2 launchrot x) (-> core x))
+    (set! (-> arg2 launchrot y) (-> core y))
+    (set! (-> arg2 launchrot z) (-> core z)))
   (none))
 
 (defpartgroup group-pds-core
@@ -622,8 +619,7 @@
   :duration (seconds 0.05)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 4133 :fade-after (meters 100) :falloff-to (meters 100) :binding 4134)))
+  :parts ((sp-item 4133 :fade-after (meters 100) :falloff-to (meters 100) :binding 4134)))
 
 (defpart 4133
   :init-specs

@@ -232,6 +232,7 @@
   (false! (-> this patrol-backwards?))
   (initialize-skeleton this *pds-sentinel-sg* '())
   (set-part! :part thruster-part :proc this :id 107)
+  (set-part! :part core-part :proc this :id 1089)
   (ja-post)
   (cond
     ((logtest? (-> this entity extra perm status) (entity-perm-status complete)) (go-virtual beaten :proc this))
