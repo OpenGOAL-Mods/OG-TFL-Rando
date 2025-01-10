@@ -432,7 +432,8 @@
       (set-state-time))
   :code
     (behavior ()
-      (ja :group! pds-trap-central-going-up-ja :num! min)
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-trap-central-going-up-ja :num! min)
       (until (time-passed? (-> self deactivation-time))
         (vector-seek! (-> self draw color-mult)
                       (static-vector 1.0 1.0 1.0 1.0)
@@ -462,7 +463,8 @@
       (set-state-time))
   :code
     (behavior ((toggle symbol))
-      (ja :group! pds-trap-central-going-down-ja :num! min)
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! pds-trap-central-going-down-ja :num! min)
       (until (time-passed? (-> self activation-time))
         (vector-seek! (-> self draw color-mult)
                       (static-vector 0.0 0.0 0.5 1.0)
@@ -470,11 +472,7 @@
         (ja :num! (seek!))
         (suspend))
       (cond
-        (toggle 
-          (ja :group! pds-trap-central-idle-down-ja :num! min)
-          (loop 
-            (ja :num! (loop!))
-            (suspend)))
+        (toggle (ja :group! pds-trap-central-idle-down-ja :num! min) (loop (ja :num! (loop!)) (suspend)))
         (else (suspend-for (-> self active-time))))
       (go-virtual idle))
   :post ja-post)
@@ -495,6 +493,7 @@
       (set-state-time))
   :code
     (behavior ((toggle symbol))
+      (ja-channel-push! 1 (seconds 0.1))
       (ja :group! pds-trap-central-going-down-ja :num! min)
       (until (time-passed? (-> self activation-time))
         (vector-seek! (-> self draw color-mult)
@@ -503,11 +502,7 @@
         (ja :num! (seek!))
         (suspend))
       (cond
-        (toggle 
-          (ja :group! pds-trap-central-idle-down-ja :num! min)
-          (loop 
-            (ja :num! (loop!))
-            (suspend)))
+        (toggle (ja :group! pds-trap-central-idle-down-ja :num! min) (loop (ja :num! (loop!)) (suspend)))
         (else (suspend-for (-> self active-time))))
       (go-virtual idle))
   :post ja-post)
