@@ -293,11 +293,18 @@
         (let* ((gem (the pds-gem (-> self current-gem extra process)))
                (pos (-> gem charging-spot)))
           ;; move to gem cvert
-          (until (= (-> self path-pos) (-> self gem-path-pos))
-            (ja :num! (loop!))
-            (seek! (-> self path-pos) (-> self gem-path-pos) (/ (seconds-per-frame) (/ (-> self patrol-speed) 2)))
-            (eval-path-curve! (-> self path) (-> self root trans) (-> self path-pos) 'interp)
-            (suspend))
+          (let ((speed (/ (fabs (- (-> self path-pos) (-> self gem-path-pos))) (/ (-> self gem-seek-time) TICKS_PER_SECOND))))
+            (until (= (-> self path-pos) (-> self gem-path-pos))
+              (ja :num! (loop!))
+              ; (format 0
+              ;         "move-to-gem gem-pos ~,,2f speed ~,,2f sub ~,,2f fabs ~,,2f~%"
+              ;         (-> self gem-path-pos)
+              ;         (1/ speed)
+              ;         (- (-> self path-pos) (-> self gem-path-pos))
+              ;         (fabs (- (-> self path-pos) (-> self gem-path-pos))))
+              (seek! (-> self path-pos) (-> self gem-path-pos) (/ (seconds-per-frame) (1/ speed)))
+              (eval-path-curve! (-> self path) (-> self root trans) (-> self path-pos) 'interp)
+              (suspend)))
           (send-event *pds-master* 'spawn-plats)
           (until (= (-> self root trans y) (-> pos y))
             (ja :num! (loop!))
