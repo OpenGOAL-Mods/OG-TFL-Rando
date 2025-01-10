@@ -211,7 +211,7 @@
   (set! (-> this spawn-interval) (seconds 2))
   (true! (-> this enemy-debug-draw?))
   (set! (-> this enemy-types-1) '(babak lurkerpuppy))
-  (set! (-> this enemy-types-2) '(swamp-rat kermit))
+  (set! (-> this enemy-types-2) '(swamp-rat pds-kermit))
   (set! (-> this enemy-types-3) '(bonelurker ice-cube))
   (set! (-> this current-gem) (the entity-actor (entity-by-name "valley-pds-gem-01")))
   (set! (-> this charging-attack-window) (seconds 30))
@@ -302,8 +302,19 @@
   (go-virtual idle :proc this)
   (none))
 
+;; enemy hacks
+
+(deftype pds-kermit (kermit) ())
+
+;; yikes...
+(defbehavior pds-kermit-test-point-in-nav-mesh? pds-kermit ((pt vector))
+  (let ((arena (sphere<-vector+r! (new 'stack 'sphere) (-> *pds-master* root trans) (meters 40)))
+        (pos (sphere<-vector+r! (new 'stack 'sphere) pt 0.0)))
+    (and (spheres-overlap? arena pos) ; (nav-control-method-16 (-> self nav) pt)
+         (< (-> pt y) (+ (-> self collide-info trans y) (-> self enemy-info notice-top))))))
+
 ;; kermit is missing two methods needed for the init...
-(defmethod initialize-collision ((this kermit))
+(defmethod initialize-collision ((this pds-kermit))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
     (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
     (set! (-> cshape reaction) default-collision-reaction)
@@ -327,7 +338,7 @@
     (set! (-> this collide-info) cshape))
   (none))
 
-(defmethod nav-enemy-method-48 ((this kermit))
+(defmethod nav-enemy-method-48 ((this pds-kermit))
   (initialize-skeleton this *kermit-sg* '())
   (set! (-> this draw origin-joint-index) (the uint 3))
   (false! (-> this airborne))
@@ -350,6 +361,146 @@
   (set! (-> this sound-id) (new-sound-id))
   (none))
 
+(define-extern pds-kermit-patrol (state kermit))
+
+(defstate pds-kermit-idle (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (-> kermit-idle
+        enter)
+  :trans
+    (behavior ()
+      (if (and *target*
+               (>= (-> self enemy-info idle-distance)
+                   (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
+        (go pds-kermit-patrol)))
+  :code
+    (-> kermit-idle
+        code)
+  :post ja-post)
+
+(defstate pds-kermit-chase (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (-> kermit-chase
+        enter)
+  :trans
+    (behavior ()
+      (kermit-set-nav-mesh-target (-> self collide-info trans))
+      (kermit-set-rotate-dir-to-player)
+      (if (pds-kermit-test-point-in-nav-mesh? (target-pos 0)) (set-state-time))
+      (kermit-tongue-pos self)
+      (vector-copy! (-> self tongue-control target-pos) (kermit-player-target-pos))
+      (when (not (-> self airborne))
+        (if (or (not *target*)
+                (< (-> self enemy-info idle-distance) (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
+          (go pds-kermit-patrol))
+        (let ((gp-1 (kermit-check-to-hit-player? 3640.889))
+              (clear? (kermit-check-tongue-is-clear?)))
+          (when gp-1
+            (if clear? (go kermit-attack) (go kermit-chase-new-position))))
+        (if (time-passed? (seconds 3)) (go kermit-give-up))))
+  :code
+    (-> kermit-chase
+        code)
+  :post kermit-post)
+
+(defstate pds-kermit-notice (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (-> kermit-notice
+        enter)
+  :trans
+    (-> kermit-notice
+        trans)
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.1))
+      (set-mode! (-> self neck) (joint-mod-handler-mode look-at))
+      (kermit-hop 0.0)
+      (go pds-kermit-chase))
+  :post kermit-post)
+
+(defstate pds-kermit-give-up (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (-> kermit-give-up
+        enter)
+  :code
+    (behavior ()
+      (go pds-kermit-patrol))
+  :post kermit-simple-post)
+
+(defstate pds-kermit-patrol (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (-> kermit-patrol
+        enter)
+  :trans
+    (behavior ()
+      (if (and (or (not *target*)
+                   (< (-> self enemy-info idle-distance) (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
+               (time-elapsed? (-> self state-time) (seconds 1)))
+        (go pds-kermit-idle))
+      (kermit-set-rotate-dir-to-nav-target)
+      (if (and (not (-> self airborne)) (pds-kermit-test-point-in-nav-mesh? (target-pos 0))) (go pds-kermit-notice))
+      (if (logtest? (nav-control-flags navcf19) (-> self nav flags)) (kermit-get-new-patrol-point)))
+  :code
+    (-> kermit-patrol
+        code)
+  :post kermit-post)
+
+(defstate pds-kermit-chase-new-position (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (behavior ()
+      (set-state-time)
+      (set! (-> self miss-count) 0)
+      (let* ((dir (kermit-get-head-dir-xz self (new-stack-vector0)))
+             (turn-dir (vector-rotate-around-y! (new-stack-vector0) dir (degrees 90)))
+             (targ (new-stack-vector0))
+             (in-mesh? #f))
+        (let ((i 0))
+          (while (and (not in-mesh?) (< i 4))
+            (vector+*! targ (-> self collide-info trans) turn-dir (rand-vu-float-range (meters -10) (meters 10)))
+            (kermit-set-nav-mesh-target targ)
+            (set! in-mesh? (pds-kermit-test-point-in-nav-mesh? (-> self nav target-pos)))
+            (1+! i)))
+        (if (not in-mesh?) (kermit-set-nav-mesh-target (-> self collide-info trans))))
+      (nav-control-method-11 (-> self nav) (-> self nav target-pos)))
+  :trans
+    (behavior ()
+      (when (not (-> self airborne))
+        (if (or (time-passed? (seconds 3))
+                (and (logtest? (nav-control-flags navcf19) (-> self nav flags)) (time-passed? (seconds 0.5))))
+          (go pds-kermit-chase))))
+  :code
+    (-> kermit-chase-new-position
+        code)
+  :post kermit-post)
+
+(defstate pds-kermit-retract-tongue (pds-kermit)
+  :event nav-enemy-default-event-handler
+  :enter
+    (-> kermit-retract-tongue
+        enter)
+  :exit
+    (-> kermit-retract-tongue
+        exit)
+  :trans
+    (behavior ()
+      (kermit-set-nav-mesh-target (-> self collide-info trans))
+      (kermit-set-rotate-dir-to-player)
+      (when (not (-> self airborne))
+        (when (time-elapsed? (-> self state-time) (seconds 2.5))
+          (kill-and-free-particles (-> self charging-part))
+          (true! (-> self charged-up))
+          (go pds-kermit-chase))))
+  :code
+    (-> kermit-retract-tongue
+        code)
+  :post kermit-post)
+
 ;; ice-cube needs a custom state to appear properly
 (defstate pds-ice-cube-appear (ice-cube)
   :event ice-cube-default-event-handler
@@ -358,13 +509,13 @@
       (nav-enemy-method-57 self)
       (set! (-> self ground-y) (-> self collide-info trans y))
       (spawn (-> self part) (-> self collide-info trans))
-      (set! (-> self collide-info transv quad) (-> *null-vector* quad))
+      (vector-copy! (-> self collide-info transv) *null-vector*)
       (set! (-> self collide-info transv y) (rand-vu-float-range 102400.0 114688.0)))
   :trans
     (behavior ()
       (when (and (< (-> self collide-info trans y) (-> self ground-y)) (< (-> self collide-info transv y) 0.0))
         (set! (-> self collide-info trans y) (-> self ground-y))
-        (set! (-> self collide-info transv quad) (-> *null-vector* quad))
+        (vector-copy! (-> self collide-info transv) *null-vector*)
         (go ice-cube-appear-land))
       (let* ((joints (-> self node-list))
              (len (-> joints length)))
