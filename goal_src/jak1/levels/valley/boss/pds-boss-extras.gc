@@ -473,7 +473,8 @@
         (('deactivate) (go-virtual idle))
         (('ridden)
          (when (and (target-rider? self) (time-passed? (-> self activation-time)) (not (= (-> *target* next-state name) 'target-hit)))
-           (send-event *target* 'attack-invinc #f (static-attack-info ((mode 'death))))))))
+           (send-event *target* 'attack-invinc #f (static-attack-info ((mode 'burnup))))
+           (pickup-collectable! (-> *target* fact) (pickup-type eco-green) -1000.0 (the handle #f))))))
   :enter
     (behavior ((toggle symbol))
       (set-state-time))
