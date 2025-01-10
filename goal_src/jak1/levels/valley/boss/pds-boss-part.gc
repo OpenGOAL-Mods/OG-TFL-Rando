@@ -530,8 +530,7 @@
   :duration (seconds 0.01)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 4130 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
+  :parts ((sp-item 4130 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
 
 (defpart 4130
   :init-specs
@@ -557,8 +556,7 @@
   :duration (seconds 0.01)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 4131 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
+  :parts ((sp-item 4131 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
 
 (defpart 4131
   :init-specs
@@ -584,8 +582,7 @@
   :duration (seconds 0.01)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 4131 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
+  :parts ((sp-item 4131 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))))
 
 (defpart 4131
   :init-specs
