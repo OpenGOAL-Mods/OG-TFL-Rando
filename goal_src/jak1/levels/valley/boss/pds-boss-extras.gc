@@ -81,20 +81,20 @@
       (if (>= (- (-> *display* game-frame-counter) (-> self state-time)) (-> self flight-time)) (go-virtual explode))
       ;; (spawn (-> self part) (-> self root trans))
       (process-spawn part-tracker
-              :init
-              part-tracker-init
-              (let ((stage (the int (send-event *pds-master* 'stage))))
-                (case stage
-                  ((0)(-> *part-group-id-table* 1080))
-                  ((1)(-> *part-group-id-table* 1081))
-                  ((2)(-> *part-group-id-table* 1082))))
-              -1
-              #f
-              #f
-              #f
-              (-> self root trans)
-              :to
-              *entity-pool*))
+                     :init
+                     part-tracker-init
+                     (-> *part-group-id-table*
+                         (case (send-event *pds-master* 'stage)
+                           ((0) 1080)
+                           ((1) 1081)
+                           ((2) 1082)))
+                     -1
+                     #f
+                     #f
+                     #f
+                     (-> self root trans)
+                     :to
+                     *entity-pool*))
   :code
     (behavior ()
       (loop
@@ -108,20 +108,20 @@
       (set! (-> self state-time) (-> *display* game-frame-counter))
       (sound-play "explosion" :vol 70 :pitch 0.0)
       (process-spawn part-tracker
-              :init
-              part-tracker-init
-              (let ((stage (the int (send-event *pds-master* 'stage))))
-                (case stage
-                  ((0)(-> *part-group-id-table* 1083))
-                  ((1)(-> *part-group-id-table* 1084))
-                  ((2)(-> *part-group-id-table* 1085))))
-              -1
-              #f
-              #f
-              #f
-              (-> self root trans)
-              :to
-              *entity-pool*)
+                     :init
+                     part-tracker-init
+                     (-> *part-group-id-table*
+                         (case (send-event *pds-master* 'stage)
+                           ((0) 1083)
+                           ((1) 1084)
+                           ((2) 1085)))
+                     -1
+                     #f
+                     #f
+                     #f
+                     (-> self root trans)
+                     :to
+                     *entity-pool*)
       (logclear! (-> self draw status) (draw-status hidden))
       (quaternion-identity! (-> self root quat))
       (let* ((enemy (case (-> self type-to-make)
@@ -141,13 +141,12 @@
                       ((0) (pickup-type eco-green))
                       ((1) (pickup-type eco-yellow))
                       ((2) (pickup-type eco-red)))))
-        (when (and (rand-vu-percent? 
-                     (case stage
-                       ((0) 0.10)
-                       ((1) 0.15)
-                       ((2) 0.25))) 
-                    enemy 
-                    (-> enemy 0 enemy-info))
+        (when (and (rand-vu-percent? (case stage
+                                       ((0) 0.10)
+                                       ((1) 0.15)
+                                       ((2) 0.25)))
+                   enemy
+                   (-> enemy 0 enemy-info))
           (let ((info (-> enemy 0 enemy-info)))
             (set! (-> enemy 0 fact pickup-type) ptype)
             (set! (-> info pickup-amount) 1.0)
