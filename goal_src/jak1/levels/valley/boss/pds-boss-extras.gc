@@ -141,10 +141,11 @@
                       ((0) (pickup-type eco-green))
                       ((1) (pickup-type eco-yellow))
                       ((2) (pickup-type eco-red)))))
-        (when (and (rand-vu-percent? (case stage
-                                       ((0) 0.10)
-                                       ((1) 0.15)
-                                       ((2) 0.25)))
+        (when (and (rand-vu-percent? (+ (-> *pds-suck-params* pickup-chance)
+                                        (case stage
+                                          ((0) 0.10)
+                                          ((1) 0.15)
+                                          ((2) 0.25))))
                    enemy
                    (-> enemy 0 enemy-info))
           (let ((info (-> enemy 0 enemy-info)))
@@ -409,6 +410,13 @@
   (go-virtual idle :proc this)
   (none))
 
+(defbehavior pds-trap-trans pds-trap ()
+  (set! (-> self activation-time) (+ (seconds 3.5) (-> *pds-suck-params* trap-activation-time)))
+  (set! (-> self active-time) (+ (seconds 3) (-> *pds-suck-params* trap-active-time)))
+  (rider-trans))
+
+(defstatehandler pds-trap :trans pds-trap-trans)
+
 (defstate idle (pds-trap)
   :virtual #t
   :event
@@ -419,7 +427,6 @@
         (('activate) (go-virtual active #t))
         (('deadly) (go-virtual deadly #t))
         (('ridden) (when (not (disabled? self)) (trigger self #f)))))
-  :trans rider-trans
   :enter
     (behavior ()
       (set-state-time))
@@ -449,7 +456,6 @@
   :enter
     (behavior ((toggle symbol))
       (set-state-time))
-  :trans rider-trans
   :code
     (behavior ((toggle symbol))
       (until (time-passed? (-> self activation-time))
@@ -477,7 +483,6 @@
   :enter
     (behavior ((toggle symbol))
       (set-state-time))
-  :trans rider-trans
   :code
     (behavior ((toggle symbol))
       (until (time-passed? (-> self activation-time))
@@ -912,9 +917,15 @@
 
 (defbehavior pds-master-send-to-group-delayed pds-master ((group (array entity-actor)) (message symbol) (delay time-frame))
   (dotimes (i (length group))
-    (format 0 "pds-master-send-to-group-delayed ~A ~A~%" message (-> group i extra process))
+    ; (format 0 "pds-master-send-to-group-delayed ~A ~A~%" message (-> group i extra process))
     (suspend-for delay)
     (send-to-actor self (-> group i) message)))
+
+(defmethod you-suck-stage ((this pds-master))
+  (cond
+    ((< (-> this death-count) 3) 0)
+    ((< (-> this death-count) 6) 1)
+    (else 2)))
 
 (defevent pds-master
   (case message
@@ -954,15 +965,40 @@
 (defpost pds-master
   (if *target*
     (format *stdcon*
-            "target arena dist ~,,2m~%stage ~D~%killed ~D needed ~D remaining ~D state ~A~%"
-            (vector-vector-distance (-> self root trans) (target-pos 0))
+            "stage ~D~%killed ~D needed ~D remaining ~D state ~A deaths ~D~%"
             (-> self stage)
             (-> self enemies-killed)
             (-> self max-enemies)
             (- (-> self max-enemies) (-> self enemies-killed))
-            (-> self next-state name))))
+            (-> self next-state name)
+            (-> self death-count))))
 
-(defstatehandler pds-master :event pds-master-event-handler :post pds-master-post)
+(defbehavior pds-master-trans pds-master ()
+  (let ((suck (you-suck-stage self)))
+    (case suck
+      ((0)
+       (set! (-> *pds-suck-params* max-enemies) 0)
+       (set! (-> *pds-suck-params* max-active) 0)
+       (set! (-> *pds-suck-params* attack-window) 0.0)
+       (set! (-> *pds-suck-params* pickup-chance) 0.0)
+       (set! (-> *pds-suck-params* trap-activation-time) (seconds 0))
+       (set! (-> *pds-suck-params* trap-active-time) (seconds 0)))
+      ((1)
+       (set! (-> *pds-suck-params* max-enemies) -2)
+       (set! (-> *pds-suck-params* max-active) -1)
+       (set! (-> *pds-suck-params* attack-window) 0.15)
+       (set! (-> *pds-suck-params* pickup-chance) 0.05)
+       (set! (-> *pds-suck-params* trap-activation-time) (seconds 0.5))
+       (set! (-> *pds-suck-params* trap-active-time) (seconds -0.5)))
+      ((2)
+       (set! (-> *pds-suck-params* max-enemies) -4)
+       (set! (-> *pds-suck-params* max-active) -2)
+       (set! (-> *pds-suck-params* attack-window) 0.3)
+       (set! (-> *pds-suck-params* pickup-chance) 0.1)
+       (set! (-> *pds-suck-params* trap-activation-time) (seconds 1))
+       (set! (-> *pds-suck-params* trap-active-time) (seconds -1))))))
+
+(defstatehandler pds-master :event pds-master-event-handler :trans pds-master-trans :post pds-master-post)
 
 (defstate idle (pds-master)
   :virtual #t
