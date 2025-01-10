@@ -49,12 +49,13 @@
   (the nav-mesh #f))
 
 (defun custom-nav-mesh-check-and-setup ((this entity-actor))
-  (awhen (res-lump-struct this 'custom-nav symbol) (set! (-> this nav-mesh) (custom-nav<-name it)) (entity-nav-login this)))
+  (awhen (res-lump-struct this 'custom-nav symbol)
+    (set! (-> this nav-mesh) (custom-nav<-name it))
+    (entity-nav-login this)))
 
 (define *nav-crystalc-ice-cube*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -114.61) :y (meters 90.20) :z (meters -3.52) :w (meters 84.92))
        :origin
@@ -427,7 +428,6 @@
 (define *nav-mines-ambush*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -431.53) :y (meters 104.7) :z (meters 1035.2) :w (meters 45.0))
        :origin
@@ -519,37 +519,37 @@
                  :adj-poly
                  (new 'static 'array uint8 3 #x5 #xff #xff)
                  :pat 0))
-     ;;   :node-count 1
-     ;;   :nodes
-     ;;   (new 'static
-     ;;        'inline-array
-     ;;        nav-node
-     ;;        1
-     ;;        (new 'static
-     ;;             'nav-node
-     ;;             :center-x (meters -1.1151)
-     ;;             :center-y (meters -0.0000)
-     ;;             :center-z (meters -0.2121)
-     ;;             :type 1
-     ;;             :parent-offset 0
-     ;;             :center
-     ;;             (new 'static 'vector :x (meters -1.1151) :y (meters -0.0000) :z (meters -0.2121) :w 0.0000)
-     ;;             :radius-x (meters 14.8436)
-     ;;             :radius-y (meters 0.0000)
-     ;;             :radius-z (meters 17.2185)
-     ;;             :left-offset 8
-     ;;             :right-offset 0
-     ;;             :num-tris 8
-     ;;             :radius
-     ;;             (new 'static 'vector :x (meters 14.8436) :y (meters 0.0000) :z (meters 17.2185) :w 0.0000)
-     ;;             :scale-x (meters 0.0673)
-     ;;             :first-tris
-     ;;             (new 'static 'array uint8 4 #x0 #x1 #x2 #x3)
-     ;;             :scale-z (meters 0.0580)
-     ;;             :last-tris
-     ;;             (new 'static 'array uint8 4 #x4 #x5 #x6 #x7)
-     ;;             :scale
-     ;;             (new 'static 'vector :x (meters 0.0673) :y 0.0000 :z (meters 0.0580) :w 0.0000)))
+       ;;   :node-count 1
+       ;;   :nodes
+       ;;   (new 'static
+       ;;        'inline-array
+       ;;        nav-node
+       ;;        1
+       ;;        (new 'static
+       ;;             'nav-node
+       ;;             :center-x (meters -1.1151)
+       ;;             :center-y (meters -0.0000)
+       ;;             :center-z (meters -0.2121)
+       ;;             :type 1
+       ;;             :parent-offset 0
+       ;;             :center
+       ;;             (new 'static 'vector :x (meters -1.1151) :y (meters -0.0000) :z (meters -0.2121) :w 0.0000)
+       ;;             :radius-x (meters 14.8436)
+       ;;             :radius-y (meters 0.0000)
+       ;;             :radius-z (meters 17.2185)
+       ;;             :left-offset 8
+       ;;             :right-offset 0
+       ;;             :num-tris 8
+       ;;             :radius
+       ;;             (new 'static 'vector :x (meters 14.8436) :y (meters 0.0000) :z (meters 17.2185) :w 0.0000)
+       ;;             :scale-x (meters 0.0673)
+       ;;             :first-tris
+       ;;             (new 'static 'array uint8 4 #x0 #x1 #x2 #x3)
+       ;;             :scale-z (meters 0.0580)
+       ;;             :last-tris
+       ;;             (new 'static 'array uint8 4 #x4 #x5 #x6 #x7)
+       ;;             :scale
+       ;;             (new 'static 'vector :x (meters 0.0673) :y 0.0000 :z (meters 0.0580) :w 0.0000)))
        :route
        (new 'static
             'inline-array
@@ -575,7 +575,6 @@
 (define *nav-energybay-puppy*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 880.36) :y (meters 37.36) :z (meters 628.24) :w (meters 66.19))
        :origin
@@ -1763,7 +1762,6 @@
 (define *nav-energybay-bully*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 804.14) :y (meters 63.83) :z (meters 889.94) :w (meters 32.02))
        :origin
@@ -1878,7 +1876,6 @@
 (define *nav-energybay-sharkey*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 793.76) :y (meters -0.27) :z (meters 844.6) :w (meters 367.87))
        :origin
@@ -2773,7 +2770,6 @@
 (define *nav-crystalc-junglefish*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -137.28) :y (meters 87.52) :z (meters -77.33) :w (meters 44.56))
        :origin
@@ -2946,7 +2942,6 @@
 (define *nav-crystalc-spider*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -324.89) :y (meters 68.26) :z (meters -107.5) :w (meters 46.45))
        :origin
@@ -3459,7 +3454,6 @@
 (define *nav-energybay-lurkercrab1*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 568.8) :y (meters 3.02) :z (meters 835.97) :w (meters 174.6))
        :origin
@@ -3853,7 +3847,6 @@
 (define *nav-energybay-lurkercrab2*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 788.26) :y (meters 4.94) :z (meters 552.72) :w (meters 170.01))
        :origin
@@ -4257,7 +4250,6 @@
 (define *nav-mines-quicksandlurker-01*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -521.43) :y (meters 134.88) :z (meters 1218.55) :w (meters 5.0))
        :origin
@@ -4327,7 +4319,6 @@
 (define *nav-mines-quicksandlurker-02*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -481.05) :y (meters 144.07) :z (meters 1228.65) :w (meters 6.61))
        :origin
@@ -4402,7 +4393,6 @@
 (define *nav-mines-quicksandlurker-03*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -390.15) :y (meters 137.72) :z (meters 1140.92) :w (meters 10.4))
        :origin
@@ -4497,7 +4487,6 @@
 (define *nav-mines-swamp-rat*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -394.37) :y (meters 137.58) :z (meters 1261.71) :w (meters 55.61))
        :origin
@@ -5898,7 +5887,6 @@
 (define *nav-mines-babak1*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -375.64) :y (meters 134.03) :z (meters 1068.83) :w (meters 45.94))
        :origin
@@ -6003,7 +5991,6 @@
 (define *nav-mines-babak2*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -399.55) :y (meters 174.8) :z (meters 746.48) :w (meters 40.79))
        :origin
@@ -6128,7 +6115,6 @@
 (define *nav-mines-babak3*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -441.06) :y (meters 147.85) :z (meters 949.83) :w (meters 83.8))
        :origin
@@ -6339,7 +6325,6 @@
 (define *nav-crescent-babak1*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 20.19) :y (meters 226.95) :z (meters 400.87) :w (meters 125.43))
        :origin
@@ -6444,7 +6429,6 @@
 (define *nav-crescent-babak2*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -276.01) :y (meters 198.82) :z (meters 804.03) :w (meters 48.34))
        :origin
@@ -6510,7 +6494,6 @@
 (define *nav-crescent-babak3*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -46.31) :y (meters 212.62) :z (meters 470.07) :w (meters 19.56))
        :origin
@@ -6576,7 +6559,6 @@
 (define *nav-crescent-babak4*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 220.44) :y (meters 241.75) :z (meters 387.21) :w (meters 55.2))
        :origin
@@ -6642,7 +6624,6 @@
 (define *nav-crescent-babak5*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 90.0) :y (meters 187.56) :z (meters 412.92) :w (meters 75.88))
        :origin
@@ -6820,7 +6801,6 @@
 (define *nav-crescent-babak6*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 239.85) :y (meters 218.7) :z (meters 451.91) :w (meters 102.5))
        :origin
@@ -6966,7 +6946,6 @@
 (define *nav-crescent-babak7*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 411.37) :y (meters 256.08) :z (meters 712.59) :w (meters 61.87))
        :origin
@@ -7041,7 +7020,6 @@
 (define *nav-crescent-babak8*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 63.8) :y (meters 256.19) :z (meters 325.61) :w (meters 83.29))
        :origin
@@ -7263,7 +7241,6 @@
 (define *nav-crescent-lurkerpuppy1*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -265.52) :y (meters 200.83) :z (meters 339.04) :w (meters 64.47))
        :origin
@@ -7348,7 +7325,6 @@
 (define *nav-crescent-lurkerpuppy2*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters -190.65) :y (meters 220.67) :z (meters 679.87) :w (meters 19.39))
        :origin
@@ -7515,7 +7491,6 @@
 (define *nav-crescent-lurkerpuppy3*
   (new 'static
        'nav-mesh
-       :custom-hacky? #t
        :bounds
        (new 'static 'sphere :x (meters 115.36) :y (meters 273.15) :z (meters 382.42) :w (meters 19.39))
        :origin
@@ -7849,60 +7824,82 @@
             (new 'static 'vector4ub :data (new 'static 'array uint8 4 #x82 #xe8 #x3 #x0)))))
 
 (define *nav-valley-boss*
-  (new 'static 'nav-mesh
-          :custom-hacky? #t
-          :bounds (new 'static 'sphere :x (meters 2075.05) :y (meters 7.93) :z (meters 1852.18) :w (meters 64.26))
-          :origin (new 'static 'vector :x (meters 2075.05) :y (meters 7.93) :z (meters 1852.18) :w 1.0000)
-          :vertex-count 6
-          :vertex (new 'static 'inline-array nav-vertex 6
+  (new 'static
+       'nav-mesh
+       :bounds
+       (new 'static 'sphere :x (meters 2075.05) :y (meters 7.93) :z (meters 1852.18) :w (meters 64.26))
+       :origin
+       (new 'static 'vector :x (meters 2075.05) :y (meters 7.93) :z (meters 1852.18) :w 1.0000)
+       :vertex-count 6
+       :vertex
+       (new 'static
+            'inline-array
+            nav-vertex
+            6
             (new 'static 'nav-vertex :x (meters -24.2884) :y (meters 0.0) :z (meters -42.0688) :w 1.0000)
             (new 'static 'nav-vertex :x (meters -48.5769) :y (meters 0.0) :z (meters 0.0) :w 1.0000)
             (new 'static 'nav-vertex :x (meters -24.2884) :y (meters 0.0) :z (meters 42.0688) :w 1.0000)
             (new 'static 'nav-vertex :x (meters 24.2884) :y (meters 0.0) :z (meters 42.0688) :w 1.0000)
             (new 'static 'nav-vertex :x (meters 48.5769) :y (meters 0.0) :z (meters -0.0) :w 1.0000)
             (new 'static 'nav-vertex :x (meters 24.2884) :y (meters 0.0) :z (meters -42.0688) :w 1.0000))
-          :poly-count 4
-          :poly (new 'static 'inline-array nav-poly 4
-            (new 'static 'nav-poly
-            :id #x0
-            :vertex (new 'static 'array uint8 3 #x2 #x4 #x5)
-            :adj-poly (new 'static 'array uint8 3 #x3 #xff #x1)
-            :pat 0)
-            (new 'static 'nav-poly
-            :id #x1
-            :vertex (new 'static 'array uint8 3 #x2 #x5 #x0)
-            :adj-poly (new 'static 'array uint8 3 #x0 #xff #x2)
-            :pat 0)
-            (new 'static 'nav-poly
-            :id #x2
-            :vertex (new 'static 'array uint8 3 #x0 #x1 #x2)
-            :adj-poly (new 'static 'array uint8 3 #xff #xff #x1)
-            :pat 0)
-            (new 'static 'nav-poly
-            :id #x3
-            :vertex (new 'static 'array uint8 3 #x2 #x3 #x4)
-            :adj-poly (new 'static 'array uint8 3 #xff #xff #x0)
-            :pat 0))
-          ;; :node-count 1
-          ;; :nodes (new 'static
-					;; 	'inline-array
-					;; 	nav-node
-					;; 	1
-					;; 	(new 'static 'nav-node
-					;; 	:type 1
-					;; 	:center-x (meters 0.0)
-					;; 	:center-y (meters 0.0)
-					;; 	:center-z (meters 0.0)
-					;; 	:center (new 'static 'vector :x (meters 0.0) :y (meters 0.0) :z (meters 0.0) :w 0.0000)
-					;; 	:radius-x (meters 52.0)
-					;; 	:radius-y (meters 0.0)
-					;; 	:radius-z (meters 52.0)
-					;; 	:radius (new 'static 'vector :x (meters 52.0) :y (meters 0.0000) :z (meters 52.0) :w 0.0000)
-					;; 	:parent-offset 0
-					;; 	:left-offset 4
-					;; 	:right-offset 0
-					;; 	:num-tris 4
-					;; 	:first-tris (new 'static 'array uint8 4 #x0 #x1 #x2 #x3)
-					;; 	:last-tris (new 'static 'array uint8 4 #x0 #x0 #x0 #x0)))
-          :route (new 'static 'inline-array vector4ub 2
-            (new 'static 'vector4ub :data (new 'static 'array uint8 4 #xef #x3f #xbe #xeb)))))
+       :poly-count 4
+       :poly
+       (new 'static
+            'inline-array
+            nav-poly
+            4
+            (new 'static
+                 'nav-poly
+                 :id #x0
+                 :vertex
+                 (new 'static 'array uint8 3 #x2 #x4 #x5)
+                 :adj-poly
+                 (new 'static 'array uint8 3 #x3 #xff #x1)
+                 :pat 0)
+            (new 'static
+                 'nav-poly
+                 :id #x1
+                 :vertex
+                 (new 'static 'array uint8 3 #x2 #x5 #x0)
+                 :adj-poly
+                 (new 'static 'array uint8 3 #x0 #xff #x2)
+                 :pat 0)
+            (new 'static
+                 'nav-poly
+                 :id #x2
+                 :vertex
+                 (new 'static 'array uint8 3 #x0 #x1 #x2)
+                 :adj-poly
+                 (new 'static 'array uint8 3 #xff #xff #x1)
+                 :pat 0)
+            (new 'static
+                 'nav-poly
+                 :id #x3
+                 :vertex
+                 (new 'static 'array uint8 3 #x2 #x3 #x4)
+                 :adj-poly
+                 (new 'static 'array uint8 3 #xff #xff #x0)
+                 :pat 0))
+       ;; :node-count 1
+       ;; :nodes (new 'static
+       ;; 	'inline-array
+       ;; 	nav-node
+       ;; 	1
+       ;; 	(new 'static 'nav-node
+       ;; 	:type 1
+       ;; 	:center-x (meters 0.0)
+       ;; 	:center-y (meters 0.0)
+       ;; 	:center-z (meters 0.0)
+       ;; 	:center (new 'static 'vector :x (meters 0.0) :y (meters 0.0) :z (meters 0.0) :w 0.0000)
+       ;; 	:radius-x (meters 52.0)
+       ;; 	:radius-y (meters 0.0)
+       ;; 	:radius-z (meters 52.0)
+       ;; 	:radius (new 'static 'vector :x (meters 52.0) :y (meters 0.0000) :z (meters 52.0) :w 0.0000)
+       ;; 	:parent-offset 0
+       ;; 	:left-offset 4
+       ;; 	:right-offset 0
+       ;; 	:num-tris 4
+       ;; 	:first-tris (new 'static 'array uint8 4 #x0 #x1 #x2 #x3)
+       ;; 	:last-tris (new 'static 'array uint8 4 #x0 #x0 #x0 #x0)))
+       :route
+       (new 'static 'inline-array vector4ub 2 (new 'static 'vector4ub :data (new 'static 'array uint8 4 #xef #x3f #xbe #xeb)))))
