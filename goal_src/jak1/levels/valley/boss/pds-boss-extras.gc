@@ -406,7 +406,7 @@
   (set! (-> this active-time) (seconds 3))
   (set! (-> this deactivation-time) (seconds 0.5))
   (initialize-skeleton this (get-skel this) '())
-  (transform-post)
+  (ja-post)
   (go-virtual idle :proc this)
   (none))
 
@@ -432,14 +432,18 @@
       (set-state-time))
   :code
     (behavior ()
+      (ja :group! pds-trap-central-going-up-ja :num! min)
       (until (time-passed? (-> self deactivation-time))
         (vector-seek! (-> self draw color-mult)
                       (static-vector 1.0 1.0 1.0 1.0)
                       (/ (seconds-per-frame) (/ (the float (-> self deactivation-time)) TICKS_PER_SECOND)))
+        (ja :num! (seek!))
         (suspend))
+      (ja :group! pds-trap-central-idle-ja :num! min)
       (loop
+        (ja :num! (loop!))
         (suspend)))
-  :post transform-post)
+  :post ja-post)
 
 (defstate active (pds-trap)
   :virtual #t
@@ -458,16 +462,22 @@
       (set-state-time))
   :code
     (behavior ((toggle symbol))
+      (ja :group! pds-trap-central-going-down-ja :num! min)
       (until (time-passed? (-> self activation-time))
         (vector-seek! (-> self draw color-mult)
                       (static-vector 0.0 0.0 0.5 1.0)
                       (/ (seconds-per-frame) (/ (the float (-> self activation-time)) TICKS_PER_SECOND)))
+        (ja :num! (seek!))
         (suspend))
       (cond
-        (toggle (loop (suspend)))
+        (toggle 
+          (ja :group! pds-trap-central-idle-down-ja :num! min)
+          (loop 
+            (ja :num! (loop!))
+            (suspend)))
         (else (suspend-for (-> self active-time))))
       (go-virtual idle))
-  :post transform-post)
+  :post ja-post)
 
 (defstate deadly (pds-trap)
   :virtual #t
@@ -485,16 +495,22 @@
       (set-state-time))
   :code
     (behavior ((toggle symbol))
+      (ja :group! pds-trap-central-going-down-ja :num! min)
       (until (time-passed? (-> self activation-time))
         (vector-seek! (-> self draw color-mult)
                       (static-vector 0.5 0.0 0.0 1.0)
                       (/ (seconds-per-frame) (/ (the float (-> self activation-time)) TICKS_PER_SECOND)))
+        (ja :num! (seek!))
         (suspend))
       (cond
-        (toggle (loop (suspend)))
+        (toggle 
+          (ja :group! pds-trap-central-idle-down-ja :num! min)
+          (loop 
+            (ja :num! (loop!))
+            (suspend)))
         (else (suspend-for (-> self active-time))))
       (go-virtual idle))
-  :post transform-post)
+  :post ja-post)
 
 (deftype pds-trap-central (pds-trap) ())
 

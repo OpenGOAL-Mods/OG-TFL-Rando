@@ -525,6 +525,8 @@
 (defpart 4129
   :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
 
+(declare-type pds-sentinel process-drawable)
+
 (defun part-tracker-track-gun-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
   (let* ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
          (v1-2 (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 13))))
