@@ -101,32 +101,32 @@
 (def-actor pds-trap-central
   :bounds (0 0 0 20)
   :art (idle-ja going-down-ja idle-down-ja going-up-ja)
-  :joints (align button part01 part02 part03 part04 part05 part06 part07))
+  :joints (align prejoint button part01 part02 part03 part04 part05 part06 part07))
 
 (def-actor pds-trap-inner
   :bounds (0 0 0 20)
   :art (idle-ja going-down-ja idle-down-ja going-up-ja)
-  :joints (align button part01 part02 part03 part04 part05 part06))
+  :joints (align prejoint button part01 part02 part03 part04 part05 part06))
 
 (def-actor pds-trap-mid-left
   :bounds (0 0 0 20)
   :art (idle-ja going-down-ja idle-down-ja going-up-ja)
-  :joints (align button part01 part02 part03 part04 part05 part06))
+  :joints (align prejoint button part01 part02 part03 part04 part05 part06))
 
 (def-actor pds-trap-mid-right
   :bounds (0 0 0 20)
   :art (idle-ja going-down-ja idle-down-ja going-up-ja)
-  :joints (align button part01 part02 part03 part04 part05 part06))
+  :joints (align prejoint button part01 part02 part03 part04 part05 part06))
 
 (def-actor pds-trap-out-left
   :bounds (0 0 0 20)
   :art (idle-ja going-down-ja idle-down-ja going-up-ja)
-  :joints (align button part01 part02 part03 part04 part05 part06 part07 part08))
+  :joints (align prejoint button part01 part02 part03 part04 part05 part06 part07 part08))
 
 (def-actor pds-trap-out-right
   :bounds (0 0 0 20)
   :art (idle-ja going-down-ja idle-down-ja going-up-ja)
-  :joints (align button part01 part02 part03 part04 part05 part06 part07 part08))
+  :joints (align prejoint button part01 part02 part03 part04 part05 part06 part07 part08))
 
 (def-actor pds-plat-circle
   :bounds (0 0 0 20))

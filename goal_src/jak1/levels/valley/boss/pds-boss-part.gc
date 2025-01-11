@@ -636,3 +636,197 @@
    (:timer (seconds 0.20))
    (:flags (bit2 bit3 bit14))
    (:func 'part-tracker-track-core-joint)))
+
+(defpartgroup group-pds-trap-pre-active
+  :id 1090
+  :duration (seconds 0.2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts ((sp-item 4134 :fade-after (meters 100) :falloff-to (meters 100))))
+
+(defpart 4134
+  :init-specs
+  ((:texture (lightning effects))
+   (:num 0.5)                           ;; controlled by the lerp
+   (:x (meters -2.5) (meters 5.0))
+   (:y (meters -0.3) (meters 0.5))
+   (:z (meters -2.5) (meters 5.0))
+   (:scale-x (meters 0.3) (meters 1.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y (meters 0.3) (meters 1.5))
+   (:r 32.0)
+   (:g 32.0 64.0)
+   (:b 200.0)
+   (:a 128.0 64.0)
+   (:fade-a -1.4)
+   (:timer (seconds 0.05))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.035))
+   (:next-launcher 146)))
+
+(defpartgroup group-pds-trap-active
+  :id 1091
+  :duration (seconds 0.2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts ((sp-item 4135 :fade-after (meters 100) :falloff-to (meters 100))
+          (sp-item 4136 :fade-after (meters 100) :falloff-to (meters 100))))
+
+(defpart 4135
+  :init-specs
+  ((:texture (lightning effects))
+   (:num 2.5)
+   (:x (meters -2.5) (meters 5.0))
+   (:y (meters -0.5) (meters 0.5))
+   (:z (meters -2.5) (meters 5.0))
+   (:scale-x (meters 0.5) (meters 2.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y (meters 0.3) (meters 1.5))
+   (:r 32.0)
+   (:g 32.0 64.0)
+   (:b 200.0)
+   (:a 128.0 64.0)
+   (:fade-a -1.4)
+   (:timer (seconds 0.05))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.035))
+   (:next-launcher 146)))
+
+(defpart 4136
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.5 0.75)
+   (:x (meters -3.0) (meters 6.0))
+   (:y (meters -1.5))
+   (:z (meters -3.0) (meters 6.0))
+   (:scale-x (meters 1.5) (meters 3.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 32.0)
+   (:g 32.0 64.0)
+   (:b 200.0)
+   (:a 32.0 32.0)
+   (:vel-y (meters 0.02) (meters 0.02))
+   (:fade-a -0.5)
+   (:timer (seconds 1.50))
+   (:flags (bit2 bit3 bit14))))
+
+(defpartgroup group-pds-trap-pre-deadly
+  :id 1092
+  :duration (seconds 0.2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts ((sp-item 4137 :fade-after (meters 100) :falloff-to (meters 100))
+          (sp-item 4139 :fade-after (meters 100) :falloff-to (meters 100))))
+
+(defpart 4137 ;; heat waves!
+  :init-specs
+  ((:num 1.0)                     ;; controlled by lerp
+   (:x (meters -3.0) (meters 6.0))
+   (:y (meters -1.5))
+   (:z (meters -3.0) (meters 6.0))
+   (:scale-x (meters 0.10) (meters 0.15))
+   (:rot-x 5)
+   (:scale-y :copy scale-x)
+   (:r 8192.0)
+   (:g 5324.8)
+   (:b 5324.8)
+   (:vel-y (meters 0.003) (meters 0.005))
+   (:fade-r 40.96)
+   (:fade-g 27.30)
+   (:fade-b 38.23)
+   (:timer (seconds 0.6))
+   (:flags (aux-list))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4138)
+   (:rotate-y (degrees 0))))
+
+(defpart 4138
+  :init-specs ((:fade-b 16.384)))
+
+(defpart 4139
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.5 0.75)                       ;; controlled by lerp
+   (:x (meters -3.0) (meters 6.0))
+   (:y (meters -1.5))
+   (:z (meters -3.0) (meters 6.0))
+   (:scale-x (meters 2.0) (meters 2.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 200.0)
+   (:g 64.0 32.0)
+   (:b 32.0)
+   (:a 16.0 32.0)
+   (:vel-y (meters 0.01) (meters 0.015))
+   (:fade-r 0.5)
+   (:fade-g -0.2)
+   (:fade-b -0.1)
+   (:fade-a -0.2)
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4140)))
+
+(defpart 4140
+  :init-specs ((:fade-r -0.5)(:fade-g -0.25)(:fade-b -0.20)(:fade-a -0.5)))
+
+(defpartgroup group-pds-trap-deadly
+  :id 1093
+  :duration (seconds 0.2)
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 64)
+  :parts ((sp-item 4141 :fade-after (meters 100) :falloff-to (meters 100))
+          (sp-item 4143 :fade-after (meters 100) :falloff-to (meters 100))))
+
+(defpart 4141 ;; heat waves!
+  :init-specs
+  ((:num 0.5)                 
+   (:x (meters -3.0) (meters 6.0))
+   (:y (meters -1.5))
+   (:z (meters -3.0) (meters 6.0))
+   (:scale-x (meters 0.10) (meters 0.15))
+   (:rot-x 5)
+   (:scale-y :copy scale-x)
+   (:r 8192.0)
+   (:g 5324.8)
+   (:b 5324.8)
+   (:vel-y (meters 0.004) (meters 0.006))
+   (:fade-r 40.96)
+   (:fade-g 27.30)
+   (:fade-b 38.23)
+   (:timer (seconds 0.6))
+   (:flags (aux-list))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4142)
+   (:rotate-y (degrees 0))))
+
+(defpart 4142
+  :init-specs ((:fade-b 16.384)))
+
+(defpart 4143
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.8)                      
+   (:x (meters -3.0) (meters 6.0))
+   (:y (meters -1.5))
+   (:z (meters -3.0) (meters 6.0))
+   (:scale-x (meters 2.0) (meters 2.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 200.0)
+   (:g 64.0 32.0)
+   (:b 32.0)
+   (:a 32.0 32.0)
+   (:vel-y (meters 0.01) (meters 0.025))
+   (:fade-r 0.5)
+   (:fade-g -0.2)
+   (:fade-b -0.1)
+   (:fade-a -0.2)
+   (:timer (seconds 1.0))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4144)))
+
+(defpart 4144
+  :init-specs ((:fade-r -0.5)(:fade-g -0.25)(:fade-b -0.20)(:fade-a -0.5)))
