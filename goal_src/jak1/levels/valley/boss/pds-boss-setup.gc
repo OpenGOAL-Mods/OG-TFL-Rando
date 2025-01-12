@@ -138,7 +138,8 @@
   :bounds (0 0 0 20))
 
 (def-actor pds-swingpole
-  :bounds (0 0 0 7.5))
+  :bounds (0 0 0 7.5)
+  :joints (align prejoint swing part01))
 
 (def-actor pds-lab-door
   :bounds (0 0 0 50))

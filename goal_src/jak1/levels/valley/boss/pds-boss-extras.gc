@@ -805,7 +805,7 @@
     (('deactivate) (go-virtual go-down))
     (('next-stage) (when (symbol-member? (-> self next-state name) '(idle active)) (go-virtual go-down)))))
 
-(defstatehandler pds-swingpole :post ja-post :event pds-swingpole-event-handler)
+(defstatehandler pds-swingpole :post pds-swingpole-post :event pds-swingpole-event-handler)
 
 (defmethod update! ((this pds-swingpole))
   (if (nonzero? (-> this draw)) (ja-post))
@@ -832,6 +832,16 @@
       (set! (-> this sound pitch) (the int (* 1524.0 pitch)))
       (set! (-> this sound volume) (the int (* 1024.0 vol))))
     (update! (-> this sound))))
+
+(defpost pds-swingpole
+  (let* ((pole-end (vector<-cspace! (new-stack-vector0) (joint-node pds-swingpole-lod0-jg part01)))
+         (pole-mid (-> self root trans))
+         (pole-length (vector-vector-distance pole-end pole-mid))
+         (pole-dir (-> self dir))
+         (pole-start (vector+float*! (new-stack-vector0) pole-mid pole-dir (- pole-length))))
+    (spawn (-> self part) pole-end)
+    (spawn (-> self part) pole-start))
+  (ja-post))
 
 (defstate hidden (pds-swingpole)
   :virtual #t
@@ -948,6 +958,7 @@
   (set! (-> this rise-speed) (meters 15))
   (set! (-> this fact) (new 'process 'fact-info this (pickup-type eco-pill-random) (-> *FACT-bank* default-pill-inc)))
   (load-params! (-> this sync) this (the uint 0) 0.0 0.2 0.2)
+  (set-part! :proc this :id 1097)
   (when (nonzero? (-> this sync period))
     (set! (-> this path) (new 'process 'curve-control this 'path DEFAULT_RES_TIME))
     (set! (-> this path flags) DEFAULT_PATH_FLAGS))
