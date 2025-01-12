@@ -175,7 +175,7 @@
   (:methods
    (init-collision! (_type_) object)
    (get-skel (_type_) skeleton-group)
-   (do-lighting (_type_) object))
+   (do-lighting (_type_ float float float) object))
   (:state-methods
    idle
    explode))
@@ -203,53 +203,48 @@
     (('blue) *pds-gem-blue-sg*)
     (else *pds-gem-green-sg*)))
 
-(defmethod do-lighting ((this pds-gem))
+(defmethod do-lighting ((this pds-gem) (speed float) (amp float) (strenght float))
   (let* ((gem-type (-> this color))
-         (flicker-speed (case gem-type
-                          (('green) 1.5)
-                          (('yellow) 1.5)
-                          (('blue) 1.5)))
-         (flicker-amp (case gem-type
-                        (('green) 1.15)
-                        (('yellow) 1.15)
-                        (('blue) 1.0)))
          (min-blue (case gem-type
-                     (('green) 0.125)
-                     (('yellow) 0.0)
-                     (('blue) 0.7)))
+                     (('green) (* 0.1 strenght))
+                     (('blue) (* 0.1 strenght))
+                     (('yellow) 0.0)))
          (max-blue (case gem-type
-                     (('green) 0.25)
-                     (('yellow) 0.0)
-                     (('blue) 1.0)))
+                     (('green) (* 0.2 strenght))
+                     (('blue) (* 0.6 strenght))
+                     (('yellow) 0.0)))
          (min-red (case gem-type
-                    (('green 'yellow 'blue) 0.0)))
+                     (('green) 0.0)
+                     (('blue) 0.0)
+                     (('yellow) (* 0.1 strenght))))
          (max-red (case gem-type
-                    (('green 'blue) 0.0)
-                    (('yellow) 0.5)))
+                    (('green) (* 0.2 strenght))
+                    (('blue) 0.0)
+                    (('yellow) (* 0.5 strenght))))
          (min-green (case gem-type
-                      (('red 'blue) 0.0)
-                      (('green) 1.0)
-                      (('yellow) 0.125)))
+                      (('green) (* 0.1 strenght))
+                      (('blue) 0.0)
+                      (('yellow) (* 0.1 strenght))))
          (max-green (case gem-type
-                      (('green) 1.5)
-                      (('yellow) 0.375)
-                      (('blue) 0.75)))
+                      (('green) (* 0.7 strenght))
+                      (('blue) (* 0.2 strenght))
+                      (('yellow) (* 0.5 strenght))))
          (r (case gem-type
               (('green 'blue) 0.0)
               (('yellow)
                (+ 0.2
                   (lerp-clamp min-red
                               max-red
-                              (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))))))
+                              (+ -0.1 (- 1.0 (* amp (/ (+ 1.0 (sin (* speed (degrees (-> *display* game-frame-counter))))) 1.0)))))))))
          (g (lerp-clamp min-green
                         max-green
-                        (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0))))))
+                        (+ -0.1 (- 1.0 (* amp (/ (+ 1.0 (sin (* speed (degrees (-> *display* game-frame-counter))))) 1.0))))))
          (b (case gem-type
               (('blue 'green)
                (+ 0.2
                   (lerp-clamp min-blue
                               max-blue
-                              (+ -0.1 (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0)))))))
+                              (+ -0.1 (- 1.0 (* amp (/ (+ 1.0 (sin (* speed (degrees (-> *display* game-frame-counter))))) 1.0)))))))
               (('yellow) 0.0)))
          (clr (new-stack-vector0)))
     (set-vector! clr r g b 1.0)
@@ -272,10 +267,16 @@
   (initialize-skeleton this (get-skel this) '())
   (vector-copy! (-> this charging-spot) (-> e extra trans))
   (+! (-> this charging-spot y) (meters 14.0))
-  (set! (-> this bob-amount) 1024.0)
+  (set! (-> this bob-amount) (meters 1.0))
   (set! (-> this bob-offset)
         (+ (the int (-> this root trans x)) (the int (-> this root trans y)) (the int (-> this root trans z))))
   (set-time! (-> this birth-time))
+  (set-part! 
+    :proc this 
+    :id (case (-> this color)
+              (('green) 1094)
+              (('blue) 1095)
+              (('yellow) 1096)))
   (vector-copy! (-> this base) (-> this root trans))
   (vector-copy! (-> this old-base) (-> this root trans))
   (transform-post)
@@ -292,10 +293,18 @@
   :trans
     (behavior ()
       (when (not (= (-> *pds-master* sentinel extra process next-state name) 'charging))
-        (quaternion-slerp! (-> self root quat) (-> self root quat) (-> self entity quat) (* 5.0 (seconds-per-frame))))
+        (do-lighting self 1.0 0.5 0.5)
+        (quaternion-slerp! (-> self root quat) (-> self root quat) (-> self entity quat) (* 5.0 (seconds-per-frame)))
+        (let ((bob (/ (-> self bob-amount) 5.0)))
+          (when (< 0.0 bob)
+            (set! (-> self root trans y)
+                  (+ (-> self base y)
+                     (* bob
+                        (sin (* 109.22667 (the float (mod (+ (- (current-time) (-> self birth-time)) (-> self bob-offset)) (seconds 2))))))))
+            (update-transforms! (-> self root)))))
       (when (and (= (-> *pds-master* sentinel extra process next-state name) 'charging)
                  (= (-> (the pds-sentinel (-> *pds-master* sentinel extra process)) current-gem) (-> self entity)))
-        (do-lighting self)
+        (do-lighting self 1.0 0.5 1.5)
         (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* (degrees 45) (seconds-per-frame)))
         (let ((bob (-> self bob-amount)))
           (when (< 0.0 bob)
@@ -303,7 +312,8 @@
                   (+ (-> self base y)
                      (* bob
                         (sin (* 109.22667 (the float (mod (+ (- (current-time) (-> self birth-time)) (-> self bob-offset)) (seconds 2))))))))
-            (update-transforms! (-> self root))))))
+            (update-transforms! (-> self root))))
+        (spawn (-> self part) (-> self root trans))))
   :code anim-loop
   :post transform-post)
 
@@ -317,17 +327,21 @@
       (clear-collide-with-as (-> self root))
       (activate! *camera-smush-control* 409.6 37 210 1.0 0.995)
       (sound-play "crystal-explode")
-      ; (process-spawn part-tracker
-      ;                :init
-      ;                part-tracker-init
-      ;                (-> *part-group-id-table* 951)
-      ;                -1
-      ;                #f
-      ;                #f
-      ;                #f
-      ;                (-> self root trans)
-      ;                :to
-      ;                *entity-pool*)
+      (process-spawn part-tracker
+                     :init
+                     part-tracker-init
+                     (-> *part-group-id-table*
+                         (case (-> self color)
+                           (('green) 1083)
+                           (('blue) 1084)
+                           (('yellow) 1085)))
+                     -1
+                     #f
+                     #f
+                     #f
+                     (-> self root trans)
+                     :to
+                     *entity-pool*)
       (let ((j (process-spawn joint-exploder (get-skel self) 2 (new 'stack 'joint-exploder-tuning 0) *pds-gem-exploder-params* :to self)))
         (when j
           (logclear! (-> j 0 mask) (process-mask movie enemy))
@@ -504,12 +518,12 @@
         (let* ((timer (- (current-time) (-> self state-time)))
                (normal-timer (/ (the float timer) (-> self activation-time))))
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4134) num) initial-valuef) (lerp-clamp 0.1 0.8 normal-timer))
-          (update-vol! (-> self sound-active) (the int (lerp-clamp 10.0 70.0 normal-timer)))
+          (update-vol! (-> self sound-active) (the int (lerp-clamp 5.0 40.0 normal-timer)))
           (update! (-> self sound-active))
           (pds-trap-spawn-part (-> self pre-active-part)))
         (suspend))
       (set-vector! (-> self draw color-mult) 0.35 0.55 2.0 1.0)
-      (update-vol! (-> self sound-active) 120)
+      (update-vol! (-> self sound-active) 60)
       (update! (-> self sound-active))
       (cond
         (toggle
@@ -555,12 +569,12 @@
                (normal-timer (/ (the float timer) (-> self activation-time))))
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4137) num) initial-valuef) (lerp-clamp 0.01 0.2 normal-timer))
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4139) num) initial-valuef) (lerp-clamp 0.0 0.25 normal-timer))
-          (update-vol! (-> self sound-deadly) (the int (lerp-clamp 10.0 60.0 normal-timer)))
+          (update-vol! (-> self sound-deadly) (the int (lerp-clamp 5.0 30.0 normal-timer)))
           (update! (-> self sound-deadly))
           (pds-trap-spawn-part (-> self pre-deadly-part)))
         (suspend))
       (set-vector! (-> self draw color-mult) 2.0 0.55 0.35 1.0)
-      (update-vol! (-> self sound-deadly) 90)
+      (update-vol! (-> self sound-deadly) 50)
       (update! (-> self sound-deadly))
       (cond
         (toggle

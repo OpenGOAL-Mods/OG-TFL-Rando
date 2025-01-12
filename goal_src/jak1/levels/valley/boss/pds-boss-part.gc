@@ -1,7 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-;; group-id range for pds-boss : 1080-1099
+;; group-id range for pds-boss : 1070-1099
 ;; part-id range for pds-boss : 4100-4199
 
 (defpartgroup group-pds-shot-green
@@ -833,3 +833,379 @@
 
 (defpart 4144
   :init-specs ((:fade-r -0.5) (:fade-g -0.25) (:fade-b -0.20) (:fade-a -0.5)))
+
+
+(defpartgroup group-pds-gem-green
+  :id 1094
+  :bounds (static-bspherem 0 5 0 5)
+  :parts
+  ((sp-item 4145
+            :fade-after (meters 80)
+            :falloff-to (meters 80)
+            :period (seconds 0.16)
+            :length (seconds 0.017)
+            :binding 4146)
+   (sp-item 4146 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4147)
+   (sp-item 4146 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4147)
+   (sp-item 4146 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4147)
+   (sp-item 4146 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4147)
+   (sp-item 4146 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4147)
+   (sp-item 4146 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4147)
+   (sp-item 4147 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4147 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4147 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4147 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4147 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4148 :fade-after (meters 100))
+   (sp-item 4149)))
+
+(defpart 4149
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.6 0.6)
+   (:x (meters -1) (meters 2))
+   (:y (meters -3.0))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 2.0) (meters 3))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 0.0 64.0)
+   (:g 92.0 32.0)
+   (:b 0.0)
+   (:a 32.0 32.0)
+   (:vel-y (meters 0.016666668) (meters 0.016666668))
+   (:rotvel-z (degrees -0.1) 1 (degrees 0.2))
+   (:fade-a -0.10666667)
+   (:timer (seconds 1))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4148
+  :init-specs
+  ((:texture (starflash effects))
+   (:num 0.1 0.3)
+   (:x (meters -1) (meters 2))
+   (:y (meters -3.0))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 1.5) (meters 1.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:g 128.0)
+   (:b 0.0)
+   (:a 64.0 32.0)
+   (:vel-y (meters 0.01) (meters 0.01))
+   (:rotvel-z (degrees -0.1) (degrees 0.1))
+   (:fade-a -0.21333334)
+   (:timer (seconds 1))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4145
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:x (meters -3) (meters 6))
+   (:y (meters -5) (meters 6))
+   (:z (meters -3) (meters 6))
+   (:scale-x (meters 0.01))
+   (:scale-y :copy scale-x)
+   (:vel-y (meters 0.008) (meters 0.006))
+   (:timer (seconds 3.5))
+   (:flags (bit3 bit14))
+   (:rotate-y (degrees 0) (degrees 360))))
+
+(defpart 4146
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:y (meters 0) (meters 16))
+   (:z (meters 0.2) (meters 0.6))
+   (:scale-x (meters 0.3) (meters 0.3))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:g 255.0)
+   (:b 0.0)
+   (:a 127.0)
+   (:omega 0.0 65536.0)
+   (:vel-x (meters 0.053333335) (meters 0.053333335))
+   (:vel-y (meters 0))
+   (:vel-z (meters 0))
+   (:fade-r -0.2)
+   (:timer (seconds 2) (seconds 0.497))
+   (:flags (bit2 bit3 bit7 bit14))
+   (:next-time (seconds 1.5) (seconds 0.497))
+   (:next-launcher 4150)))
+
+(defpart 4150
+  :init-specs ((:fade-r 0.0) (:fade-a -0.8466667) (:timer (seconds 0.5))))
+
+(defpart 4147
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:scale-x (meters 0.2))
+   (:scale-y :copy scale-x)
+   (:r 255.0)
+   (:g 255.0)
+   (:b 0.0)
+   (:a 96.0)
+   (:scalevel-x (meters -0.0006060606))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-r -2.8333333)
+   (:accel-y (meters -0.00020000001))
+   (:timer (seconds 0.1) (seconds 0.997))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4151)))
+
+(defpart 4151
+  :init-specs ((:fade-r 0.0)))
+
+(defpartgroup group-pds-gem-blue
+  :id 1095
+  :bounds (static-bspherem 0 5 0 5)
+  :parts
+  ((sp-item 4152
+            :fade-after (meters 80)
+            :falloff-to (meters 80)
+            :period (seconds 0.16)
+            :length (seconds 0.017)
+            :binding 4153)
+   (sp-item 4153 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4154)
+   (sp-item 4153 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4154)
+   (sp-item 4153 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4154)
+   (sp-item 4153 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4154)
+   (sp-item 4153 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4154)
+   (sp-item 4153 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4154)
+   (sp-item 4154 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4154 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4154 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4154 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4154 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4155 :fade-after (meters 100))
+   (sp-item 4156)))
+
+(defpart 4156
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.6 0.6)
+   (:x (meters -1) (meters 2))
+   (:y (meters -3.0))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 2.0) (meters 3))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 0.0 0.0)
+   (:g 32.0 64.0)
+   (:b 92.0 32.0)
+   (:a 32.0 32.0)
+   (:vel-y (meters 0.016666668) (meters 0.016666668))
+   (:rotvel-z (degrees -0.1) 1 (degrees 0.2))
+   (:fade-a -0.10666667)
+   (:timer (seconds 1))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4155
+  :init-specs
+  ((:texture (starflash effects))
+   (:num 0.1 0.3)
+   (:x (meters -1) (meters 2))
+   (:y (meters -3.0))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 1.5) (meters 1.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 0.0)
+   (:g 128.0)
+   (:b 128.0)
+   (:a 64.0 32.0)
+   (:vel-y (meters 0.01) (meters 0.01))
+   (:rotvel-z (degrees -0.1) (degrees 0.1))
+   (:fade-a -0.21333334)
+   (:timer (seconds 1))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4152
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:x (meters -3) (meters 6))
+   (:y (meters -5) (meters 6))
+   (:z (meters -3) (meters 6))
+   (:scale-x (meters 0.01))
+   (:scale-y :copy scale-x)
+   (:vel-y (meters 0.008) (meters 0.006))
+   (:timer (seconds 3.5))
+   (:flags (bit3 bit14))
+   (:rotate-y (degrees 0) (degrees 360))))
+
+(defpart 4153
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:y (meters 0) (meters 16))
+   (:z (meters 0.2) (meters 0.6))
+   (:scale-x (meters 0.3) (meters 0.3))
+   (:scale-y :copy scale-x)
+   (:r 0.0)
+   (:g 128.0)
+   (:b 255.0)
+   (:a 127.0)
+   (:omega 0.0 65536.0)
+   (:vel-x (meters 0.053333335) (meters 0.053333335))
+   (:vel-y (meters 0))
+   (:vel-z (meters 0))
+   (:fade-r -0.2)
+   (:timer (seconds 2) (seconds 0.497))
+   (:flags (bit2 bit3 bit7 bit14))
+   (:next-time (seconds 1.5) (seconds 0.497))
+   (:next-launcher 4157)))
+
+(defpart 4157
+  :init-specs ((:fade-r 0.0) (:fade-a -0.8466667) (:timer (seconds 0.5))))
+
+(defpart 4154
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:scale-x (meters 0.2))
+   (:scale-y :copy scale-x)
+   (:r 0.0)
+   (:g 255.0)
+   (:b 255.0)
+   (:a 96.0)
+   (:scalevel-x (meters -0.0006060606))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-r -2.8333333)
+   (:accel-y (meters -0.00020000001))
+   (:timer (seconds 0.1) (seconds 0.997))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4158)))
+
+(defpart 4158
+  :init-specs ((:fade-r 0.0)))
+
+(defpartgroup group-pds-gem-yellow
+  :id 1096
+  :bounds (static-bspherem 0 5 0 5)
+  :parts
+  ((sp-item 4159
+            :fade-after (meters 80)
+            :falloff-to (meters 80)
+            :period (seconds 0.16)
+            :length (seconds 0.017)
+            :binding 4160)
+   (sp-item 4160 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4161)
+   (sp-item 4160 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4161)
+   (sp-item 4160 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4161)
+   (sp-item 4160 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4161)
+   (sp-item 4160 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4161)
+   (sp-item 4160 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 4161)
+   (sp-item 4161 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4161 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4161 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4161 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4161 :fade-after (meters 80) :falloff-to (meters 80) :flags (start-dead))
+   (sp-item 4162 :fade-after (meters 100))
+   (sp-item 4163)))
+
+(defpart 4163
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.6 0.6)
+   (:x (meters -1) (meters 2))
+   (:y (meters -3.0))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 2.0) (meters 3))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 92.0 32.0)
+   (:g 92.0 32.0)
+   (:b 0.0 32.0)
+   (:a 32.0 32.0)
+   (:vel-y (meters 0.016666668) (meters 0.016666668))
+   (:rotvel-z (degrees -0.1) 1 (degrees 0.2))
+   (:fade-a -0.10666667)
+   (:timer (seconds 1))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4162
+  :init-specs
+  ((:texture (starflash effects))
+   (:num 0.1 0.3)
+   (:x (meters -1) (meters 2))
+   (:y (meters -3.0))
+   (:z (meters -1) (meters 2))
+   (:scale-x (meters 1.5) (meters 1.0))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:g 128.0)
+   (:b 0.0)
+   (:a 64.0 32.0)
+   (:vel-y (meters 0.01) (meters 0.01))
+   (:rotvel-z (degrees -0.1) (degrees 0.1))
+   (:fade-a -0.21333334)
+   (:timer (seconds 1))
+   (:flags (bit2 bit3 bit14))))
+
+(defpart 4159
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:x (meters -3) (meters 6))
+   (:y (meters -5) (meters 6))
+   (:z (meters -3) (meters 6))
+   (:scale-x (meters 0.01))
+   (:scale-y :copy scale-x)
+   (:vel-y (meters 0.008) (meters 0.006))
+   (:timer (seconds 3.5))
+   (:flags (bit3 bit14))
+   (:rotate-y (degrees 0) (degrees 360))))
+
+(defpart 4160
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:y (meters 0) (meters 16))
+   (:z (meters 0.2) (meters 0.6))
+   (:scale-x (meters 0.3) (meters 0.3))
+   (:scale-y :copy scale-x)
+   (:r 220.0)
+   (:g 220.0)
+   (:b 0.0)
+   (:a 127.0)
+   (:omega 0.0 65536.0)
+   (:vel-x (meters 0.053333335) (meters 0.053333335))
+   (:vel-y (meters 0))
+   (:vel-z (meters 0))
+   (:fade-r -0.2)
+   (:timer (seconds 2) (seconds 0.497))
+   (:flags (bit2 bit3 bit7 bit14))
+   (:next-time (seconds 1.5) (seconds 0.497))
+   (:next-launcher 4164)))
+
+(defpart 4164
+  :init-specs ((:fade-r 0.0) (:fade-a -0.8466667) (:timer (seconds 0.5))))
+
+(defpart 4154
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 1.0)
+   (:scale-x (meters 0.2))
+   (:scale-y :copy scale-x)
+   (:r 255.0)
+   (:g 255.0)
+   (:b 0.0)
+   (:a 96.0)
+   (:scalevel-x (meters -0.0006060606))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-r -2.8333333)
+   (:accel-y (meters -0.00020000001))
+   (:timer (seconds 0.1) (seconds 0.997))
+   (:flags (bit2 bit3 bit14))
+   (:next-time (seconds 0.3))
+   (:next-launcher 4165)))
+
+(defpart 4165
+  :init-specs ((:fade-r 0.0)))
