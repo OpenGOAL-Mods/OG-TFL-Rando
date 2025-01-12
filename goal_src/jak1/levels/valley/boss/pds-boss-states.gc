@@ -199,6 +199,7 @@
       (while (-> self child)
         (suspend))
       (set! (-> self path-pos) 0.43)
+      (send-event *pds-master* 'spawn-pickup)
       (go-virtual move-to-path)))
 
 (defstate move-to-path (pds-sentinel)
@@ -386,6 +387,7 @@
     (behavior ()
       (set! (-> self stage-retry-count) 0)
       (if (= (send-event *pds-master* 'stage) 3) (go-virtual die))
+      (send-event *pds-master* 'spawn-pickup)
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
       (until (ja-done? 0)

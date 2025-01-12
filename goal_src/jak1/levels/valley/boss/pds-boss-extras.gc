@@ -203,32 +203,32 @@
     (('blue) *pds-gem-blue-sg*)
     (else *pds-gem-green-sg*)))
 
-(defmethod do-lighting ((this pds-gem) (speed float) (amp float) (strenght float))
+(defmethod do-lighting ((this pds-gem) (speed float) (amp float) (strength float))
   (let* ((gem-type (-> this color))
          (min-blue (case gem-type
-                     (('green) (* 0.1 strenght))
-                     (('blue) (* 0.1 strenght))
+                     (('green) (* 0.1 strength))
+                     (('blue) (* 0.1 strength))
                      (('yellow) 0.0)))
          (max-blue (case gem-type
-                     (('green) (* 0.2 strenght))
-                     (('blue) (* 0.6 strenght))
+                     (('green) (* 0.2 strength))
+                     (('blue) (* 0.6 strength))
                      (('yellow) 0.0)))
          (min-red (case gem-type
-                     (('green) 0.0)
-                     (('blue) 0.0)
-                     (('yellow) (* 0.1 strenght))))
-         (max-red (case gem-type
-                    (('green) (* 0.2 strenght))
+                    (('green) 0.0)
                     (('blue) 0.0)
-                    (('yellow) (* 0.5 strenght))))
+                    (('yellow) (* 0.1 strength))))
+         (max-red (case gem-type
+                    (('green) (* 0.2 strength))
+                    (('blue) 0.0)
+                    (('yellow) (* 0.5 strength))))
          (min-green (case gem-type
-                      (('green) (* 0.1 strenght))
+                      (('green) (* 0.1 strength))
                       (('blue) 0.0)
-                      (('yellow) (* 0.1 strenght))))
+                      (('yellow) (* 0.1 strength))))
          (max-green (case gem-type
-                      (('green) (* 0.7 strenght))
-                      (('blue) (* 0.2 strenght))
-                      (('yellow) (* 0.5 strenght))))
+                      (('green) (* 0.7 strength))
+                      (('blue) (* 0.2 strength))
+                      (('yellow) (* 0.5 strength))))
          (r (case gem-type
               (('green 'blue) 0.0)
               (('yellow)
@@ -248,16 +248,7 @@
               (('yellow) 0.0)))
          (clr (new-stack-vector0)))
     (set-vector! clr r g b 1.0)
-    (vector-copy! (-> this draw color-emissive) clr)
-    ; (format *stdcon*
-    ;         "~A crystal: flicker-speed ~f flicker-amp ~f r ~f g ~f b ~f~%"
-    ;         (-> this color)
-    ;         flicker-speed
-    ;         flicker-amp
-    ;         (-> clr x)
-    ;         (-> clr y)
-    ;         (-> clr z))
-    ))
+    (vector-copy! (-> this draw color-emissive) clr)))
 
 (defmethod init-from-entity! ((this pds-gem) (e entity-actor))
   (init-collision! this)
@@ -271,12 +262,13 @@
   (set! (-> this bob-offset)
         (+ (the int (-> this root trans x)) (the int (-> this root trans y)) (the int (-> this root trans z))))
   (set-time! (-> this birth-time))
-  (set-part! 
-    :proc this 
-    :id (case (-> this color)
-              (('green) 1094)
-              (('blue) 1095)
-              (('yellow) 1096)))
+  (set-part! :proc
+             this
+             :id
+             (case (-> this color)
+               (('green) 1094)
+               (('blue) 1095)
+               (('yellow) 1096)))
   (vector-copy! (-> this base) (-> this root trans))
   (vector-copy! (-> this old-base) (-> this root trans))
   (transform-post)
@@ -1051,6 +1043,20 @@
     (('reset-kills) (set! (-> self enemies-killed) 0))
     (('set-max-enemies) (set! (-> self max-enemies) (the int (-> block param 0))))
     (('set-max-active) (set! (-> self max-active) (the int (-> block param 0))))
+    (('spawn-pickup)
+     (when (handle->process (-> self pickup))
+       (deactivate (handle->process (-> self pickup)))
+       (set! (-> self pickup) INVALID_HANDLE))
+     (set! (-> self pickup)
+           (ppointer->handle (birth-pickup-at-point (-> self root trans)
+                                                    (case (-> self stage)
+                                                      ((0) (pickup-type eco-green))
+                                                      ((1) (pickup-type eco-yellow))
+                                                      ((2) (pickup-type eco-red)))
+                                                    (-> *FACT-bank* eco-single-inc)
+                                                    #t
+                                                    *entity-pool*
+                                                    (the fact-info #f)))))
     (('activate-traps) (go-virtual activate-traps))
     (('deactivate-traps) (go-virtual idle))
     (('spawn-plats)
