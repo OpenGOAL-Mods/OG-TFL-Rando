@@ -647,7 +647,7 @@
 (defpart 4134
   :init-specs
   ((:texture (lightning effects))
-   (:num 0.5)                           ;; controlled by the lerp
+   (:num 0.5) ;; controlled by the lerp
    (:x (meters -2.5) (meters 5.0))
    (:y (meters -0.3) (meters 0.5))
    (:z (meters -2.5) (meters 5.0))
@@ -669,8 +669,9 @@
   :duration (seconds 0.2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts ((sp-item 4135 :fade-after (meters 100) :falloff-to (meters 100))
-          (sp-item 4136 :fade-after (meters 100) :falloff-to (meters 100))))
+  :parts
+  ((sp-item 4135 :fade-after (meters 100) :falloff-to (meters 100))
+   (sp-item 4136 :fade-after (meters 100) :falloff-to (meters 100))))
 
 (defpart 4135
   :init-specs
@@ -716,12 +717,13 @@
   :duration (seconds 0.2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts ((sp-item 4137 :fade-after (meters 100) :falloff-to (meters 100))
-          (sp-item 4139 :fade-after (meters 100) :falloff-to (meters 100))))
+  :parts
+  ((sp-item 4137 :fade-after (meters 100) :falloff-to (meters 100))
+   (sp-item 4139 :fade-after (meters 100) :falloff-to (meters 100))))
 
 (defpart 4137 ;; heat waves!
   :init-specs
-  ((:num 1.0)                     ;; controlled by lerp
+  ((:num 1.0) ;; controlled by lerp
    (:x (meters -3.0) (meters 6.0))
    (:y (meters -1.5))
    (:z (meters -3.0) (meters 6.0))
@@ -747,7 +749,7 @@
 (defpart 4139
   :init-specs
   ((:texture (bigpuff effects))
-   (:num 0.5 0.75)                       ;; controlled by lerp
+   (:num 0.5 0.75) ;; controlled by lerp
    (:x (meters -3.0) (meters 6.0))
    (:y (meters -1.5))
    (:z (meters -3.0) (meters 6.0))
@@ -769,19 +771,20 @@
    (:next-launcher 4140)))
 
 (defpart 4140
-  :init-specs ((:fade-r -0.5)(:fade-g -0.25)(:fade-b -0.20)(:fade-a -0.5)))
+  :init-specs ((:fade-r -0.5) (:fade-g -0.25) (:fade-b -0.20) (:fade-a -0.5)))
 
 (defpartgroup group-pds-trap-deadly
   :id 1093
   :duration (seconds 0.2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts ((sp-item 4141 :fade-after (meters 100) :falloff-to (meters 100))
-          (sp-item 4143 :fade-after (meters 100) :falloff-to (meters 100))))
+  :parts
+  ((sp-item 4141 :fade-after (meters 100) :falloff-to (meters 100))
+   (sp-item 4143 :fade-after (meters 100) :falloff-to (meters 100))))
 
 (defpart 4141 ;; heat waves!
   :init-specs
-  ((:num 0.5)                 
+  ((:num 0.5)
    (:x (meters -3.0) (meters 6.0))
    (:y (meters -1.5))
    (:z (meters -3.0) (meters 6.0))
@@ -807,7 +810,7 @@
 (defpart 4143
   :init-specs
   ((:texture (bigpuff effects))
-   (:num 0.8)                      
+   (:num 0.8)
    (:x (meters -3.0) (meters 6.0))
    (:y (meters -1.5))
    (:z (meters -3.0) (meters 6.0))
@@ -829,4 +832,4 @@
    (:next-launcher 4144)))
 
 (defpart 4144
-  :init-specs ((:fade-r -0.5)(:fade-g -0.25)(:fade-b -0.20)(:fade-a -0.5)))
+  :init-specs ((:fade-r -0.5) (:fade-g -0.25) (:fade-b -0.20) (:fade-a -0.5)))

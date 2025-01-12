@@ -431,6 +431,11 @@
   (set! (-> self active-time) (+ (seconds 3) (-> *pds-suck-params* trap-active-time)))
   (rider-trans))
 
+(defbehavior pds-trap-spawn-part pds-trap ((part sparticle-launch-control))
+  (dotimes (i (-> self node-list length))
+    (when (> i 3)
+      (spawn part (vector<-cspace! (new-stack-vector0) (-> self node-list data i))))))
+
 (defstatehandler pds-trap :trans pds-trap-trans)
 
 (defstate idle (pds-trap)
@@ -466,7 +471,7 @@
         (suspend)))
   :post ja-post)
 
- (defstate active (pds-trap)
+(defstate active (pds-trap)
   :virtual #t
   :event
     (event
@@ -475,8 +480,8 @@
         (('disable) (true! (-> self disabled?)) (go-virtual idle))
         (('deactivate) (go-virtual idle))
         (('ridden)
-         (when (and (target-rider? self) 
-                    (time-passed? (-> self activation-time)) 
+         (when (and (target-rider? self)
+                    (time-passed? (-> self activation-time))
                     (not (logtest? (-> *target* state-flags) (state-flags timed-invulnerable)))
                     (not (logtest? (-> *target* state-flags) (state-flags dying))))
            (send-event *target* 'attack #f (static-attack-info ((mode 'generic))))
@@ -501,27 +506,23 @@
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4134) num) initial-valuef) (lerp-clamp 0.1 0.8 normal-timer))
           (update-vol! (-> self sound-active) (the int (lerp-clamp 10.0 70.0 normal-timer)))
           (update! (-> self sound-active))
-          (dotimes (i (-> self node-list length))
-            (when (> i 3)
-              (spawn (-> self pre-active-part) (vector<-cspace! (new-stack-vector0) (-> self node-list data i))))))
+          (pds-trap-spawn-part (-> self pre-active-part)))
         (suspend))
       (set-vector! (-> self draw color-mult) 0.35 0.55 2.0 1.0)
       (update-vol! (-> self sound-active) 120)
       (update! (-> self sound-active))
       (cond
-        (toggle 
-          (ja :group! pds-trap-central-idle-down-ja :num! min)
-          (loop 
-            (ja :num! (loop!))
-            (dotimes (i (-> self node-list length))
-              (when (> i 3)
-                (spawn (-> self active-part) (vector<-cspace! (new-stack-vector0) (-> self node-list data i)))))
-            (suspend)))
-        (else (until (time-passed? (+ (-> self active-time) (-> self activation-time)))
-                (dotimes (i (-> self node-list length))
-                  (when (> i 3)
-                    (spawn (-> self active-part) (vector<-cspace! (new-stack-vector0) (-> self node-list data i)))))
-                (suspend))))
+        (toggle
+         (ja-channel-push! 1 (seconds 0.1))
+         (ja :group! pds-trap-central-idle-down-ja :num! min)
+         (loop
+           (ja :num! (loop!))
+           (pds-trap-spawn-part (-> self active-part))
+           (suspend)))
+        (else
+         (until (time-passed? (+ (-> self active-time) (-> self activation-time)))
+           (pds-trap-spawn-part (-> self active-part))
+           (suspend))))
       (go-virtual idle))
   :post ja-post)
 
@@ -556,27 +557,23 @@
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4139) num) initial-valuef) (lerp-clamp 0.0 0.25 normal-timer))
           (update-vol! (-> self sound-deadly) (the int (lerp-clamp 10.0 60.0 normal-timer)))
           (update! (-> self sound-deadly))
-          (dotimes (i (-> self node-list length))
-            (when (> i 3)
-              (spawn (-> self pre-deadly-part) (vector<-cspace! (new-stack-vector0) (-> self node-list data i))))))
+          (pds-trap-spawn-part (-> self pre-deadly-part)))
         (suspend))
       (set-vector! (-> self draw color-mult) 2.0 0.55 0.35 1.0)
       (update-vol! (-> self sound-deadly) 90)
       (update! (-> self sound-deadly))
       (cond
-        (toggle 
-          (ja :group! pds-trap-central-idle-down-ja :num! min)
-          (loop 
-            (ja :num! (loop!))
-            (dotimes (i (-> self node-list length))
-              (when (> i 3)
-                (spawn (-> self deadly-part) (vector<-cspace! (new-stack-vector0) (-> self node-list data i)))))
-            (suspend)))
-        (else (until (time-passed? (+ (-> self active-time) (-> self activation-time)))
-                (dotimes (i (-> self node-list length))
-                  (when (> i 3)
-                    (spawn (-> self deadly-part) (vector<-cspace! (new-stack-vector0) (-> self node-list data i)))))
-                (suspend))))
+        (toggle
+         (ja-channel-push! 1 (seconds 0.1))
+         (ja :group! pds-trap-central-idle-down-ja :num! min)
+         (loop
+           (ja :num! (loop!))
+           (pds-trap-spawn-part (-> self deadly-part))
+           (suspend)))
+        (else
+         (until (time-passed? (+ (-> self active-time) (-> self activation-time)))
+           (pds-trap-spawn-part (-> self deadly-part))
+           (suspend))))
       (go-virtual idle))
   :post ja-post)
 
