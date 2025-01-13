@@ -49,7 +49,7 @@
                       (let ((sentinel (the pds-sentinel (-> (the entity-actor (entity-by-name "valley-pds-sentinel-01")) extra process)))
                             (as-enemy (the nav-enemy p)))
                         (1+! (-> sentinel child-count))
-                        (when (-> sentinel enemy-debug-draw?)
+                        (when *pds-debug?*
                           (add-debug-x #t (bucket-id debug-no-zbuf) (-> as-enemy root trans) (static-rgba #x80 #xff #x80 #x80))
                           (add-debug-line #t
                                           (bucket-id debug-no-zbuf)
@@ -118,12 +118,15 @@
     (true! (-> self patrol-backwards?))))
 
 (defpost pds-sentinel
-  (format *stdcon*
-          "pds-sentinel: state ~A child-count ~D path-pos ~,,2f~%"
-          (-> self next-state name)
-          (child-count self)
-          (-> self path-pos))
-  (debug-print-channels (-> self skel) (the symbol *stdcon*))
+  (when (and *debug-segment* (cpad-hold? 0 l1) (cpad-pressed? 0 up))
+    (not! *pds-debug?*))
+  (when *pds-debug?*
+    (format *stdcon*
+            "pds-sentinel: state ~A child-count ~D path-pos ~,,2f~%"
+            (-> self next-state name)
+            (child-count self)
+            (-> self path-pos))
+    (debug-print-channels (-> self skel) (the symbol *stdcon*)))
   (when (and *debug-segment*
              (cpad-pressed? 0 l3)
              (< (the int (send-event *pds-master* 'stage)) 3)
@@ -372,9 +375,10 @@
       (ja-no-eval :group! pds-sentinel-charging-ja :num! min)
       (until (or (not (-> self current-gem extra process)) (time-passed? (-> self charging-attack-window)))
         (ja :num! (loop!))
-        (format *stdcon*
-                "attack-window ~,,2f~%"
-                (/ (the float (- (-> self charging-attack-window) (- (current-time) (-> self state-time)))) TICKS_PER_SECOND))
+        (if *pds-debug?*
+          (format *stdcon*
+                  "attack-window ~,,2f~%"
+                  (/ (the float (- (-> self charging-attack-window) (- (current-time) (-> self state-time)))) TICKS_PER_SECOND)))
         (suspend))
       (cond
         ((not (time-passed? (-> self charging-attack-window))) (go-virtual damaged))

@@ -778,7 +778,7 @@
                (ray-len (meters 9))
                (ray-vec (vector-float*! (new-stack-vector0) ray-dir ray-len))
                (ray-end (vector+! (new-stack-vector0) ray-origin ray-vec)))
-          (add-debug-line #t (bucket-id debug) ray-origin ray-end (static-rgba 0 #x70 0 #x80) #f (the rgba -1))
+          (if *pds-debug?* (add-debug-line #t (bucket-id debug) ray-origin ray-end (static-rgba 0 #x70 0 #x80) #f (the rgba -1)))
           (let ((u (fill-and-probe-using-line-sphere *collide-cache*
                                                      ray-origin
                                                      ray-vec
@@ -791,14 +791,15 @@
             (cond
               ((> u 0.0)
                (clear-collide-with-as (-> self root))
-               (let ((collision-pt (vector+float*! (new-stack-vector0) ray-origin ray-vec u)))
-                 (add-debug-sphere #t (bucket-id debug) collision-pt (meters 0.2) *color-orange*)
-                 (add-debug-outline-triangle #t
-                                             (bucket-id debug)
-                                             (-> tri vertex 0)
-                                             (-> tri vertex 1)
-                                             (-> tri vertex 2)
-                                             (static-rgba 0 #x40 #x80 #x80))))
+               (if *pds-debug?*
+                 (let ((collision-pt (vector+float*! (new-stack-vector0) ray-origin ray-vec u)))
+                   (add-debug-sphere #t (bucket-id debug) collision-pt (meters 0.2) *color-orange*)
+                   (add-debug-outline-triangle #t
+                                               (bucket-id debug)
+                                               (-> tri vertex 0)
+                                               (-> tri vertex 1)
+                                               (-> tri vertex 2)
+                                               (static-rgba 0 #x40 #x80 #x80)))))
               (else (restore-collide-with-as (-> self root))))))
         (when (<= (-> self root trans y) (+ (meters 0.05) (-> *pds-master* root trans y)))
           (clear-collide-with-as (-> self root)))
@@ -1288,13 +1289,9 @@
     (('deactivate-traps) (go-virtual idle))
     (('spawn-plats)
      (case (-> self stage)
-       ; ((0) (send-to-actor-group self (-> self plats-1) 'activate))
        ((0) (go-virtual send-with-delay (-> self plats-1) 'activate (seconds 0.25)))
        ((1) (send-to-actor-group self (-> self plats-2) 'activate))
-       ((2) (send-to-actor-group self (-> self plats-3) 'activate))
-       ; ((1) (go-virtual send-with-delay (-> self plats-2) 'activate (seconds 0.25)))
-       ; ((2) (go-virtual send-with-delay (-> self plats-3) 'activate (seconds 0.25)))
-       ))
+       ((2) (send-to-actor-group self (-> self plats-3) 'activate))))
     (('deactivate-plats)
      (case (if (and (>= argc 1) (true? (-> block param 0))) (-> self stage) (1- (-> self stage)))
        ((0) (go-virtual send-with-delay (-> self plats-1) 'deactivate (seconds 0.25)))
@@ -1302,7 +1299,7 @@
        ((2) (go-virtual send-with-delay (-> self plats-3) 'deactivate (seconds 0.25)))))))
 
 (defpost pds-master
-  (if *target*
+  (if (and *target* *pds-debug?*)
     (format *stdcon*
             "stage ~D~%killed ~D needed ~D remaining ~D state ~A deaths ~D~%"
             (-> self stage)

@@ -180,7 +180,6 @@
    (patrol-backwards?      symbol)
    (last-spawn-time        time-frame)
    (spawn-interval         time-frame)
-   (enemy-debug-draw?      symbol)
    (child-count            uint8)
    (enemy-types-1          pair)
    (enemy-types-2          pair)
@@ -219,7 +218,6 @@
   (set! (-> this path-pos) 0.0)
   (set! (-> this last-spawn-time) 0)
   (set! (-> this spawn-interval) (seconds 2))
-  (true! (-> this enemy-debug-draw?))
   (set! (-> this enemy-types-1) '(babak lurkerpuppy))
   (set! (-> this enemy-types-2) '(swamp-rat pds-kermit))
   (set! (-> this enemy-types-3) '(bonelurker ice-cube))
@@ -286,6 +284,8 @@
    idle
    (send-with-delay (array entity-actor) symbol time-frame)
    activate-traps))
+
+(define *pds-debug?* #f)
 
 (define *pds-master* (the pds-master #f))
 
