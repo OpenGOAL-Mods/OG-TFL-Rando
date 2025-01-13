@@ -1253,3 +1253,89 @@
    (:conerot-x (degrees 0) (degrees 360))
    (:conerot-y (degrees 0) (degrees 360))
    (:conerot-radius (meters 0.2))))
+
+(defpartgroup group-pds-sentinel-thruster
+  :id 1098
+  :bounds (static-bspherem 0 -12 0 14)
+  :parts
+  ((sp-item 4168 :fade-after (meters 60) :falloff-to (meters 60))
+   (sp-item 4169 :fade-after (meters 160) :falloff-to (meters 160))))
+
+(defpart 4168
+  :init-specs
+  ((:num 1.5)
+   (:y (meters 2.5))
+   (:rot-x 5)
+   (:r 5324.8)
+   (:g 4096.0)
+   (:b 3686.4)
+   (:vel-y (meters -0.002))
+   (:fade-b -16.383999)
+   (:timer (seconds 0.085))
+   (:flags (aux-list))
+   (:conerot-x (degrees 100) (degrees 220))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 5.0))))
+
+(defpart 4169
+  :init-specs
+  ((:texture (hotdot effects))
+   (:num 3.5)
+   (:y (meters 3.0))
+   (:scale-x (meters 2.5) (meters 3.5))
+   (:scale-y :copy scale-x)
+   (:g 0.0 64.0)
+   (:b 128.0 128.0)
+   (:a 16.0 32.0)
+   (:vel-x (meters 0.001))
+   (:vel-y (meters 0.025))
+   (:vel-z (meters 0.001))
+   (:fade-g -0.42666668)
+   (:fade-a -0.32)
+   (:accel-y (meters -0.00004))
+   (:friction 0.96)
+   (:timer (seconds 0.5))
+   (:flags (bit2 bit3))
+   (:conerot-x (degrees 120) (degrees 160))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 3.0))))
+
+(defun part-tracker-track-ring-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
+  (let* ((sentinel (the process-drawable (-> (entity-by-name "valley-pds-sentinel-01") extra process)))
+         (ring-trans (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 5)))
+         (ring-quat (matrix->quaternion (new-stack-quaternion0) (-> sentinel node-list data 5 bone transform))))
+    (set! (-> arg2 launchrot x) (-> ring-trans x))
+    (set! (-> arg2 launchrot y) (-> ring-trans y))
+    (set! (-> arg2 launchrot z) (-> ring-trans z))
+    (quaternion-rotate-local-x! ring-quat ring-quat (degrees 90))
+    (set! (-> arg2 conerot x) (-> ring-quat x))
+    (set! (-> arg2 conerot y) (-> ring-quat y))
+    (set! (-> arg2 conerot z) (-> ring-quat z)))
+  (none))
+
+(defpartgroup group-pds-sentinel-ring
+  :id 1099
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 3 0 5)
+  :parts ((sp-item 4170 :flags (is-3d))))
+
+(defpart 4170 ;; ring
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x1e :page #x2))
+   (:num 0.2)
+   (:y (meters 0))
+   (:scale-x (meters 13.0) (meters 1.5))
+   (:rot-x (degrees 90))
+   (:rot-y (degrees 0))
+   (:rot-z (degrees 0))
+   (:scale-y :copy scale-x)
+   (:r 64.0)
+   (:g 132.0)
+   (:b 255.0)
+   (:a 96.0 32.0)
+   (:scalevel-x (meters 0.02) (meters 0.02))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -0.05)
+   (:timer (seconds 0.50))
+   (:flags (bit2 bit3 bit12 bit14))
+   (:func 'part-tracker-track-ring-joint)))

@@ -192,6 +192,7 @@
    (spawn-part             sparticle-launch-control)
    (core-part              sparticle-launch-control)
    (thruster-part          sparticle-launch-control)
+   (ring-part              sparticle-launch-control)
    (explode-part           sparticle-launch-control)
    (damage-part            sparticle-launch-control)
    (death-part             sparticle-launch-control))
@@ -232,8 +233,9 @@
   (set! (-> this gem-seek-time) (seconds 2))
   (false! (-> this patrol-backwards?))
   (initialize-skeleton this *pds-sentinel-sg* '())
-  (set-part! :part thruster-part :proc this :id 107)
+  (set-part! :part thruster-part :proc this :id 1098)
   (set-part! :part core-part :proc this :id 1089)
+  (set-part! :part ring-part :proc this :id 1099)
   (ja-post)
   (cond
     ((logtest? (-> this entity extra perm status) (entity-perm-status complete)) (go-virtual beaten :proc this))

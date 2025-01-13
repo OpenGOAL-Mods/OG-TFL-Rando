@@ -10,13 +10,14 @@
   (if (nonzero? (-> this spawn-part)) (kill-and-free-particles (-> this spawn-part)))
   (if (nonzero? (-> this core-part)) (kill-and-free-particles (-> this core-part)))
   (if (nonzero? (-> this thruster-part)) (kill-and-free-particles (-> this thruster-part)))
+  (if (nonzero? (-> this ring-part)) (kill-and-free-particles (-> this ring-part)))
   (if (nonzero? (-> this explode-part)) (kill-and-free-particles (-> this explode-part)))
   (if (nonzero? (-> this damage-part)) (kill-and-free-particles (-> this damage-part)))
   (if (nonzero? (-> this death-part)) (kill-and-free-particles (-> this death-part)))
   (call-parent-method this))
 
 (defmethod relocate ((this pds-sentinel) (offset int))
-  (relocate-fields spawn-part core-part thruster-part explode-part damage-part death-part)
+  (relocate-fields spawn-part core-part thruster-part ring-part explode-part damage-part death-part)
   (call-parent-method this offset))
 
 (defmethod random-enemy-type ((this pds-sentinel) (stage int))
@@ -134,6 +135,7 @@
     (send-event *pds-master* 'destroy-gem))
   (when (not (symbol-member? (-> self next-state name) '(dormant beaten)))
     (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster)))
+    (spawn (-> self ring-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg in-circle)))
     (case (send-event *pds-master* 'stage)
       ((0)
        (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) r) initial-valuef) 64.0 (* 128.0 (seconds-per-frame)))
