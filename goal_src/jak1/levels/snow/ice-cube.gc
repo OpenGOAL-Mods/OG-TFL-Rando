@@ -46,7 +46,6 @@
    ice-cube-tired
    ice-cube-trying-to-appear))
 
-
 (defskelgroup *ice-cube-sg*
   ice-cube
   ice-cube-lod0-jg
@@ -352,7 +351,8 @@
      (cond
        ((and (= (-> arg0 type) target)
              (= (-> self cprims-type) 2)
-             (not (send-event *target* 'query 'powerup (pickup-type eco-red))))
+             ;; TFL note: added super eco case
+             (not (or (target-powerup? super-eco-red) (send-event *target* 'query 'powerup (pickup-type eco-red)))))
         (when (and (cond
                      ((= (-> arg0 type) target) (send-event arg0 'attack (-> arg3 param 0) (new 'static 'attack-info)))
                      (else
