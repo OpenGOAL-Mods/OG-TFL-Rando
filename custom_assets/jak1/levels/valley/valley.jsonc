@@ -825,12 +825,13 @@
 // Actors: PDS - plats - post fight
   {
     "trans": [2117.03, 7.61, 1828.04],
-    "etype": "pds-plat-rectangle",
-    "game_task": 0,
+    "etype": "pds-plat-postfight-rectangle",
+    "game_task": "(game-task valley-boss)",
     "quat" : [0.000, -0.500, -0.000, 0.866],
     "bsphere": [2117.03, 7.61, 1828.04, 10],
     "lump": {
       "name": "valley-pds-plat-rectangle-07",
+      "speed": ["float", 0.35],
       "path": [
         "vector3m",
         [2117.03, 7.61, 1828.04],
@@ -853,12 +854,13 @@
   },
   {
     "trans": [2039.35, 7.55, 1887.89],
-    "etype": "pds-plat-square",
-    "game_task": 0,
+    "etype": "pds-plat-postfight-square",
+    "game_task": "(game-task valley-boss)",
     "quat" : [0.000, -0.966, -0.000, 0.259],
     "bsphere": [2039.35, 7.55, 1887.89, 10],
     "lump": {
       "name": "valley-pds-plat-square-06",
+      "speed": ["float", 0.15],
       "path": [
         "vector3m",
         [2039.35, 7.55, 1887.89],
