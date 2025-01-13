@@ -516,6 +516,10 @@
     ,@body
     (none)))
 
+(defmacro deactivate-handle (handle)
+  (with-gensyms (p)
+    `(let ((,p (handle->process ,handle))) (when ,p (deactivate ,p) (set! ,handle INVALID_HANDLE)))))
+
 (defconstant INVALID_HANDLE (the handle #f))
 
 (defmacro handle->name (handle)

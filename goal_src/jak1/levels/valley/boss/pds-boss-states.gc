@@ -242,6 +242,7 @@
         (ja :num! (loop!))
         (suspend))
       (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
+      (send-event *pds-master* 'spawn-pickup)
       (go-virtual spawn-enemies)))
 
 (defstate spawn-enemies (pds-sentinel)
