@@ -361,7 +361,8 @@
    (pre-deadly-part   sparticle-launch-control)
    (deadly-part       sparticle-launch-control)
    (sound-active      ambient-sound)
-   (sound-deadly      ambient-sound))
+   (sound-deadly      ambient-sound)
+   (sound-max-dist    float))
   (:methods
    (init-collision! (_type_) object)
    (get-skel (_type_) skeleton-group)
@@ -427,6 +428,7 @@
   (set-part! :part deadly-part :proc this :id 1093)
   (set! (-> this sound-active) (new 'process 'ambient-sound 'electric-loop (-> this root trans)))
   (set! (-> this sound-deadly) (new 'process 'ambient-sound 'redsage-fires (-> this root trans)))
+  (set! (-> this sound-max-dist) (meters 25))
   (initialize-skeleton this (get-skel this) '())
   (ja-post)
   (go-virtual idle :proc this)
@@ -441,6 +443,9 @@
   (dotimes (i (-> self node-list length))
     (when (> i 3)
       (spawn part (vector<-cspace! (new-stack-vector0) (-> self node-list data i))))))
+
+(defbehavior pds-trap-can-play-sound? pds-trap ()
+  (< (vector-vector-distance (-> self root trans) (target-pos 0)) (-> self sound-max-dist)))
 
 (defstatehandler pds-trap :trans pds-trap-trans)
 
@@ -461,10 +466,8 @@
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-trap-central-going-up-ja :num! min)
-      (update-vol! (-> self sound-active) 1)
-      (update-vol! (-> self sound-deadly) 1)
-      (update! (-> self sound-active))
-      (update! (-> self sound-deadly))
+      (stop! (-> self sound-active))
+      (stop! (-> self sound-deadly))
       (until (time-passed? (-> self deactivation-time))
         (vector-seek! (-> self draw color-mult)
                       (static-vector 1.0 1.0 1.0 1.0)
@@ -510,13 +513,17 @@
         (let* ((timer (- (current-time) (-> self state-time)))
                (normal-timer (/ (the float timer) (-> self activation-time))))
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4134) num) initial-valuef) (lerp-clamp 0.1 0.8 normal-timer))
-          (update-vol! (-> self sound-active) (the int (lerp-clamp 5.0 40.0 normal-timer)))
-          (update! (-> self sound-active))
+          (cond
+            ((pds-trap-can-play-sound?)
+             (update-vol! (-> self sound-active) (the int (lerp-clamp 5.0 40.0 normal-timer)))
+             (update! (-> self sound-active)))
+            (else (stop! (-> self sound-active))))
           (pds-trap-spawn-part (-> self pre-active-part)))
         (suspend))
       (set-vector! (-> self draw color-mult) 0.35 0.55 2.0 1.0)
-      (update-vol! (-> self sound-active) 60)
-      (update! (-> self sound-active))
+      (cond
+        ((pds-trap-can-play-sound?) (update-vol! (-> self sound-active) 60) (update! (-> self sound-active)))
+        (else (stop! (-> self sound-active))))
       (cond
         (toggle
          (ja-channel-push! 1 (seconds 0.1))
@@ -561,13 +568,17 @@
                (normal-timer (/ (the float timer) (-> self activation-time))))
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4137) num) initial-valuef) (lerp-clamp 0.01 0.2 normal-timer))
           (set! (-> (get-init-spec-by-id (-> *part-id-table* 4139) num) initial-valuef) (lerp-clamp 0.0 0.25 normal-timer))
-          (update-vol! (-> self sound-deadly) (the int (lerp-clamp 5.0 30.0 normal-timer)))
-          (update! (-> self sound-deadly))
+          (cond
+            ((pds-trap-can-play-sound?)
+             (update-vol! (-> self sound-deadly) (the int (lerp-clamp 5.0 30.0 normal-timer)))
+             (update! (-> self sound-deadly)))
+            (else (stop! (-> self sound-deadly))))
           (pds-trap-spawn-part (-> self pre-deadly-part)))
         (suspend))
       (set-vector! (-> self draw color-mult) 2.0 0.55 0.35 1.0)
-      (update-vol! (-> self sound-deadly) 50)
-      (update! (-> self sound-deadly))
+      (cond
+        ((pds-trap-can-play-sound?) (update-vol! (-> self sound-deadly) 50) (update! (-> self sound-deadly)))
+        (else (stop! (-> self sound-deadly))))
       (cond
         (toggle
          (ja-channel-push! 1 (seconds 0.1))
@@ -973,6 +984,11 @@
 ;;; master
 ;;;;;;;;;;;;;;;;;
 
+(defmethod deactivate ((this pds-master))
+  (set! *pds-master* (the pds-master #f))
+  (deactivate-handle (-> this pickup))
+  (call-parent-method this))
+
 (defmethod relocate ((this pds-master) (offset int))
   (set! *pds-master* this)
   (if *pds-master* (&+! *pds-master* offset))
@@ -1029,8 +1045,6 @@
   (case message
     (('notify)
      (case (the symbol (-> block param 0))
-       (('spawned) ; (format 0 "pds-master got enemy ~A~%" (handle->process (the handle (-> block param 1))))
-        )
        (('killed) (1+! (-> self enemies-killed)))))
     (('stage) (-> self stage))
     (('reset-gems)
@@ -1044,11 +1058,14 @@
     (('set-max-enemies) (set! (-> self max-enemies) (the int (-> block param 0))))
     (('set-max-active) (set! (-> self max-active) (the int (-> block param 0))))
     (('spawn-pickup)
-     (when (handle->process (-> self pickup))
-       (deactivate (handle->process (-> self pickup)))
-       (set! (-> self pickup) INVALID_HANDLE))
-     (set! (-> self pickup)
-           (ppointer->handle (birth-pickup-at-point (-> self root trans)
+     (deactivate-handle (-> self pickup))
+     (let ((fact (new 'static 'fact-info :options (fact-options respawn) :fade-time (seconds 10)))
+           (stage (-> self stage))
+           (suck (you-suck-stage self)))
+       (case suck
+         ((0 1)
+          (let ((pickup (the (pointer eco-collectable)
+                             (birth-pickup-at-point (-> self root trans)
                                                     (case (-> self stage)
                                                       ((0) (pickup-type eco-green))
                                                       ((1) (pickup-type eco-yellow))
@@ -1056,7 +1073,20 @@
                                                     (-> *FACT-bank* eco-single-inc)
                                                     #t
                                                     *entity-pool*
-                                                    (the fact-info #f)))))
+                                                    (if (> stage 0) fact (the fact-info #f))))))
+            (when pickup
+              (if (= suck 1) (set! (-> fact fade-time) (seconds 6)))
+              (if (> stage 0) (set! (-> pickup 0 respawn-delay) (-> fact fade-time)))
+              (set! (-> self pickup) (ppointer->handle pickup)))))
+         ((2)
+          (set! (-> self pickup)
+                (ppointer->handle (process-spawn super-eco-crystal
+                                                 (vector+! (new-stack-vector0) (-> self root trans) (static-vectorm 0 1 0))
+                                                 (case stage
+                                                   ((0) 'green)
+                                                   ((1) 'yellow)
+                                                   ((2) 'red))
+                                                 999)))))))
     (('activate-traps) (go-virtual activate-traps))
     (('deactivate-traps) (go-virtual idle))
     (('spawn-plats)
