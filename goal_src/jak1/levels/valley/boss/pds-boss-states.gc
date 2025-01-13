@@ -189,18 +189,22 @@
     (behavior ()
       (close-specific-task! (-> self entity extra perm task) (task-status need-introduction))
       (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
+      (set! (-> (get-init-spec-by-id (-> *part-id-table* 4170) num) initial-valuef) 0.0)
       (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "wake" 0 self '() :to self))
   :code
     (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-wake-ja :num! min)
+      (sound-play "jngb-eggtop-seq" :id (-> self sound-id) :position (the symbol (-> self root trans)))
       (until (ja-done? 0)
         (ja :num! (seek!))
+        (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4170) num) initial-valuef) 0.2 (* 0.025 (seconds-per-frame)))
         (suspend))
       ;; wait for pov-cam
       (while (-> self child)
         (suspend))
       (set! (-> self path-pos) 0.43)
+      (sound-stop (-> self sound-id))
       (send-event *pds-master* 'spawn-pickup)
       (go-virtual move-to-path)))
 
@@ -393,6 +397,7 @@
       (send-event *pds-master* 'spawn-pickup)
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
+      (activate! *camera-smush-control* 1000.0 37 (seconds 1.0) 1.0 1.0)
       (until (ja-done? 0)
         (ja :num! (seek!))
         (when (= (ja-aframe-num 0) 60.0)
@@ -409,20 +414,50 @@
       (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "death" 0 self '() :to self)
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-death-ja :num! min)
+      (sound-play "mushroom-gen" :vol 10 :id (-> self sound-id) :position (the symbol (ear-trans)))
       (until (ja-done? 0)
         (ja :num! (seek!))
-        (case (ja-aframe-num 0)
-          ((60.0) (send-event *pds-master* 'deactivate-traps) (send-event *pds-master* 'deactivate-plats))
-          ((320.0)
-           (process-entity-status! self (entity-perm-status complete) #t)
-           (close-specific-task! (game-task valley-boss) (task-status need-reminder))
-           (sound-play "cell-prize" :vol 200 :position (the symbol (ear-trans)))
-           (birth-pickup-at-point (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg core))
-                                  (pickup-type fuel-cell)
-                                  (the float (-> self entity extra perm task))
-                                  #f
-                                  self
-                                  (the fact-info #f))))
+        (let ((frame (ja-aframe-num 0))
+              (core (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg core))))
+          (cond
+            ((and (> frame 0) (< frame 120))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) r) initial-valuef) 256.0 (* 128.0 (seconds-per-frame)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) g) initial-valuef) 0.0 (* 128.0 (seconds-per-frame)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) b) initial-valuef) 0.0 (* 128.0 (seconds-per-frame)))
+             (sound-play "mushroom-gen" :vol (+ 10 (the int frame)) :id (-> self sound-id) :position (the symbol (ear-trans)))
+             (when (= frame 60.0)
+               (send-event *pds-master* 'deactivate-traps)
+               (send-event *pds-master* 'deactivate-plats)))
+            ((and (> frame 132) (< frame 300))
+             (sound-play "mushroom-gen" :vol (+ 10 (the int frame)) :id (-> self sound-id) :position (the symbol (ear-trans)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) initial-valuef) (meters 20.0) (* (meters 4.0) (seconds-per-frame)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) random-rangef) (meters 10.0) (* (meters 1.0) (seconds-per-frame)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4170) num) initial-valuef) 0.0 (* 0.07 (seconds-per-frame))))
+            ((= frame 320.0)
+             (process-entity-status! self (entity-perm-status complete) #t)
+             (close-specific-task! (game-task valley-boss) (task-status need-reminder))
+             (sound-stop (-> self sound-id))
+             (sound-play "cell-prize" :vol 110 :position (the symbol (ear-trans)))
+             (birth-pickup-at-point core
+                                    (pickup-type fuel-cell)
+                                    (the float (-> self entity extra perm task))
+                                    #f
+                                    self
+                                    (the fact-info #f))
+             (activate! *camera-smush-control* 1600.0 37 (seconds 1.5) 1.0 1.0)
+             (sound-play "explosion" :vol 120 :position (the symbol (ear-trans)))
+             (process-spawn part-tracker
+                            :init
+                            part-tracker-init
+                            (-> *part-group-id-table* 1079)
+                            -1
+                            #f
+                            #f
+                            #f
+                            core
+                            :to
+                            *entity-pool*)
+             (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) num) initial-valuef) 0.0))))
         (suspend))
       (go-virtual beaten)))
 
