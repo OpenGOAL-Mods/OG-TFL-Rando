@@ -226,7 +226,7 @@
   (set! (-> this current-gem) (the entity-actor (entity-by-name "valley-pds-gem-01")))
   (set! (-> this charging-attack-window) (seconds 30))
   (set! (-> this stage-retry-count) 0)
-  (set! (-> this gem-seek-time) (seconds 2))
+  (set! (-> this gem-seek-time) (seconds 4.5))
   (false! (-> this patrol-backwards?))
   (initialize-skeleton this *pds-sentinel-sg* '())
   (set-part! :part thruster-part :proc this :id 1098)
