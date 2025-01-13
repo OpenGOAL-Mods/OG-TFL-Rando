@@ -834,7 +834,6 @@
 (defpart 4144
   :init-specs ((:fade-r -0.5) (:fade-g -0.25) (:fade-b -0.20) (:fade-a -0.5)))
 
-
 (defpartgroup group-pds-gem-green
   :id 1094
   :bounds (static-bspherem 0 5 0 5)
@@ -1220,7 +1219,7 @@
 (defpart 4166
   :init-specs
   ((:num 1.5)
-  ;;  (:y (meters 1))
+   ;;  (:y (meters 1))
    (:rot-x 5)
    (:r 5324.8)
    (:g 4096.0)
@@ -1237,7 +1236,7 @@
   :init-specs
   ((:texture (hotdot effects))
    (:num 2.0)
-  ;;  (:y (meters 1.5))
+   ;;  (:y (meters 1.5))
    (:scale-x (meters 1) (meters 0.5))
    (:scale-y :copy scale-x)
    (:g 0.0 64.0)

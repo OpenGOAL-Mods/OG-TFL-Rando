@@ -405,6 +405,7 @@
   :virtual #t
   :code
     (behavior ()
+      (send-event *pds-master* 'kill-pickup)
       (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "death" 0 self '() :to self)
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! pds-sentinel-death-ja :num! min)

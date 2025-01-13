@@ -1057,6 +1057,7 @@
     (('reset-kills) (set! (-> self enemies-killed) 0))
     (('set-max-enemies) (set! (-> self max-enemies) (the int (-> block param 0))))
     (('set-max-active) (set! (-> self max-active) (the int (-> block param 0))))
+    (('kill-pickup) (deactivate-handle (-> self pickup)))
     (('spawn-pickup)
      (deactivate-handle (-> self pickup))
      (let ((fact (new 'static 'fact-info :options (fact-options respawn) :fade-time (seconds 10)))
