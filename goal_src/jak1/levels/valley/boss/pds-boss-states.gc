@@ -7,17 +7,13 @@
     dist))
 
 (defmethod deactivate ((this pds-sentinel))
-  (if (nonzero? (-> this spawn-part)) (kill-and-free-particles (-> this spawn-part)))
   (if (nonzero? (-> this core-part)) (kill-and-free-particles (-> this core-part)))
   (if (nonzero? (-> this thruster-part)) (kill-and-free-particles (-> this thruster-part)))
   (if (nonzero? (-> this ring-part)) (kill-and-free-particles (-> this ring-part)))
-  (if (nonzero? (-> this explode-part)) (kill-and-free-particles (-> this explode-part)))
-  (if (nonzero? (-> this damage-part)) (kill-and-free-particles (-> this damage-part)))
-  (if (nonzero? (-> this death-part)) (kill-and-free-particles (-> this death-part)))
   (call-parent-method this))
 
 (defmethod relocate ((this pds-sentinel) (offset int))
-  (relocate-fields spawn-part core-part thruster-part ring-part explode-part damage-part death-part)
+  (relocate-fields core-part thruster-part ring-part)
   (call-parent-method this offset))
 
 (defmethod random-enemy-type ((this pds-sentinel) (stage int))
@@ -430,8 +426,12 @@
                (send-event *pds-master* 'deactivate-plats)))
             ((and (> frame 132) (< frame 300))
              (sound-play "mushroom-gen" :vol (+ 10 (the int frame)) :id (-> self sound-id) :position (the symbol (ear-trans)))
-             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) initial-valuef) (meters 20.0) (* (meters 4.0) (seconds-per-frame)))
-             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) random-rangef) (meters 10.0) (* (meters 1.0) (seconds-per-frame)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) initial-valuef)
+                    (meters 20.0)
+                    (* (meters 4.0) (seconds-per-frame)))
+             (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) random-rangef)
+                    (meters 10.0)
+                    (* (meters 1.0) (seconds-per-frame)))
              (seek! (-> (get-init-spec-by-id (-> *part-id-table* 4170) num) initial-valuef) 0.0 (* 0.07 (seconds-per-frame))))
             ((= frame 320.0)
              (process-entity-status! self (entity-perm-status complete) #t)
@@ -446,17 +446,7 @@
                                     (the fact-info #f))
              (activate! *camera-smush-control* 1600.0 37 (seconds 1.5) 1.0 1.0)
              (sound-play "explosion" :vol 120 :position (the symbol (ear-trans)))
-             (process-spawn part-tracker
-                            :init
-                            part-tracker-init
-                            (-> *part-group-id-table* 1079)
-                            -1
-                            #f
-                            #f
-                            #f
-                            core
-                            :to
-                            *entity-pool*)
+             (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 1079) -1 #f #f #f core :to *entity-pool*)
              (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) num) initial-valuef) 0.0))))
         (suspend))
       (go-virtual beaten)))

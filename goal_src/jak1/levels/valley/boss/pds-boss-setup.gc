@@ -165,7 +165,6 @@
    (stall-time      time-frame)
    (rotation-offset int64)
    (part-track      handle)
-   (explode-part    sparticle-launch-control)
    (type-to-make    type))
   (:state-methods
    idle
@@ -189,13 +188,9 @@
    (current-gem            entity-actor)
    (charging-attack-window time-frame)
    (stage-retry-count      uint8)
-   (spawn-part             sparticle-launch-control)
    (core-part              sparticle-launch-control)
    (thruster-part          sparticle-launch-control)
    (ring-part              sparticle-launch-control)
-   (explode-part           sparticle-launch-control)
-   (damage-part            sparticle-launch-control)
-   (death-part             sparticle-launch-control)
    (sound-id               sound-id))
   (:methods
    (random-enemy-type (_type_ int) type)

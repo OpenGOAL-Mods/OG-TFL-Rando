@@ -32,14 +32,6 @@
       (vector-copy! s5-0 gp-0)))
   #f)
 
-(defmethod relocate ((this pds-shot) (offset int))
-  (relocate-fields explode-part)
-  (call-parent-method this offset))
-
-(defmethod deactivate ((this pds-shot))
-  (if (nonzero? (-> this explode-part)) (kill-and-free-particles (-> this explode-part)))
-  (call-parent-method this))
-
 (defskelgroup *redring-sg*
   redring
   redring-lod0-jg
@@ -58,7 +50,6 @@
   (set! (-> self rotation-offset) rot-off)
   (set! (-> self type-to-make) type-to-make)
   (set-part! :id 1080)
-  (set-part! :part explode-part :id 964)
   (logior! (-> self draw status) (draw-status hidden))
   (go-virtual idle))
 
@@ -682,6 +673,7 @@
     (set! (-> this root) cshape)))
 
 (defmethod init-from-entity! ((this pds-plat) (e entity-actor))
+  (stack-size-set! (-> this main-thread) 384)
   (init-collision! this)
   (process-drawable-from-entity! this e)
   (process-mask-clear! (-> this mask) actor-pause)
@@ -778,6 +770,36 @@
     (behavior ()
       (until (= (-> self root trans y) (-> self entity extra trans y))
         (seek! (-> self root trans y) (-> self entity extra trans y) (* (-> self rise-speed) (seconds-per-frame)))
+        ;; downwards collision query to disable platform collision if jak is standing below
+        (let* ((tri (new 'stack-no-clear 'collide-tri-result))
+               (ray-origin (vector+! (new-stack-vector0) (-> self root trans) (static-vectorm 0 2 0)))
+               (ray-dir (vector-z-quaternion! (new-stack-vector0) (quaternion-axis-angle! (new-stack-quaternion0) 1.0 0.0 0.0 (degrees 90))))
+               ; (ray-len (- (-> self root trans y) (-> self entity extra trans y)))
+               (ray-len (meters 9))
+               (ray-vec (vector-float*! (new-stack-vector0) ray-dir ray-len))
+               (ray-end (vector+! (new-stack-vector0) ray-origin ray-vec)))
+          (add-debug-line #t (bucket-id debug) ray-origin ray-end (static-rgba 0 #x70 0 #x80) #f (the rgba -1))
+          (let ((u (fill-and-probe-using-line-sphere *collide-cache*
+                                                     ray-origin
+                                                     ray-vec
+                                                     (meters 2)
+                                                     ; (-> self root root-prim local-sphere w)
+                                                     (collide-kind target)
+                                                     self
+                                                     tri
+                                                     (new 'static 'pat-surface :noentity #x1))))
+            (cond
+              ((> u 0.0)
+               (clear-collide-with-as (-> self root))
+               (let ((collision-pt (vector+float*! (new-stack-vector0) ray-origin ray-vec u)))
+                 (add-debug-sphere #t (bucket-id debug) collision-pt (meters 0.2) *color-orange*)
+                 (add-debug-outline-triangle #t
+                                             (bucket-id debug)
+                                             (-> tri vertex 0)
+                                             (-> tri vertex 1)
+                                             (-> tri vertex 2)
+                                             (static-rgba 0 #x40 #x80 #x80))))
+              (else (restore-collide-with-as (-> self root))))))
         (when (<= (-> self root trans y) (+ (meters 0.05) (-> *pds-master* root trans y)))
           (clear-collide-with-as (-> self root)))
         (suspend))
