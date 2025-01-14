@@ -2,8 +2,8 @@
 (in-package goal)
 (deftype valley-part (part-spawner) ())
 
-;; group-id range for taiga valley : 1050-1099
-;; part-id range for taiga valley : 4000-4199
+;; group-id range for taiga valley : 1050-1069
+;; part-id range for taiga valley : 4000-4099
 
 (defpartgroup group-rolling-rock-explosion
   :id 1050
@@ -82,3 +82,207 @@
 
 (defpart 4003
   :init-specs ((:fade-a -0.22)))
+
+(defpartgroup group-valley-waterfall-1
+  :id 1051
+  :flags (always-draw)
+  :bounds (static-bspherem 0 35 0 80)
+  :parts
+  ((sp-item 4004 :fade-after (meters 160) :falloff-to (meters 160))
+   (sp-item 4005 :fade-after (meters 160) :falloff-to (meters 160))
+   (sp-item 4006 :fade-after (meters 160) :falloff-to (meters 160))
+   (sp-item 4007 :fade-after (meters 80) :falloff-to (meters 80))
+   (sp-item 4008 :fade-after (meters 160) :falloff-to (meters 160))
+   (sp-item 4009 :fade-after (meters 160) :falloff-to (meters 160))
+   (sp-item 4012 :fade-after (meters 160) :falloff-to (meters 160) :flags (is-3d))))
+
+(defpart 4004 ;; main waterfall
+  :init-specs
+  ((:texture (falls-particle effects))
+   (:num 2.5)
+   (:x (meters -28) (meters 3.5))
+   (:y (meters 72) (meters 4))
+   (:z (meters -12) (meters 24))
+   (:scale-x (meters 2.4) (meters 1.6))
+   (:scale-y (meters 1.2) (meters 0.8))
+   (:r 192.0)
+   (:g 192.0)
+   (:b 192.0)
+   (:a 32.0 16.0)
+   (:vel-x (meters 0.08) (meters 0.02))
+   (:vel-y (meters 0.02) (meters 0.02))
+   (:scalevel-x (meters 0.0073242188))
+   (:scalevel-y (meters 0.029296875))
+   (:accel-x (meters -0.00091074686))
+   (:accel-y (meters -0.0036666668) (meters -0.00066666666))
+   (:timer (seconds 2.5))
+   (:flags (bit2))
+   (:next-time (seconds 1.5))
+   (:next-launcher 4011)
+   (:launchrot-x (degrees -15) (degrees 30))
+   (:rotate-y (degrees 90))))
+
+(defpart 4005 ;; top waterfall
+  :init-specs
+  ((:texture (falls-particle effects))
+   (:num 0.9)
+   (:x (meters -28) (meters 3.5))
+   (:y (meters 70) (meters 10))
+   (:z (meters -10) (meters 20))
+   (:scale-x (meters 2.4) (meters 1.6))
+   (:scale-y (meters 1.2) (meters 0.8))
+   (:r 192.0)
+   (:g 192.0)
+   (:b 192.0)
+   (:a 32.0 16.0)
+   (:vel-x (meters 0.06) (meters 0.05))
+   (:vel-y (meters 0.02) (meters 0.015))
+   (:scalevel-x (meters 0.0073242188))
+   (:scalevel-y (meters 0.029296875))
+   (:accel-x (meters -0.00091074686))
+   (:accel-y (meters -0.0036666668) (meters -0.00066666666))
+   (:timer (seconds 1.5))
+   (:flags (bit2))
+   (:next-time (seconds 0.8))
+   (:next-launcher 4011)
+   (:launchrot-x (degrees -15) (degrees 30))
+   (:rotate-y (degrees 90))))
+
+(defpart 4006 ;; bot waterfall
+  :init-specs
+  ((:texture (falls-particle effects))
+   (:num 1.0)
+   (:x (meters -8) (meters 10))
+   (:y (meters 40) (meters 10))
+   (:z (meters -7) (meters 14))
+   (:scale-x (meters 2.4) (meters 1.6))
+   (:scale-y (meters 4.8) (meters 3.2))
+   (:r 192.0)
+   (:g 192.0)
+   (:b 192.0)
+   (:a 32.0 16.0)
+   (:vel-x (meters 0) (meters 0.026666667))
+   (:vel-y (meters -0.01) (meters 0.0033333334))
+   (:vel-z (meters -0.021666666) (meters 0.013333334))
+   (:scalevel-x (meters 0.0073242188))
+   (:scalevel-y (meters 0.029296875))
+   (:accel-y (meters -0.0036666668) (meters -0.00066666666))
+   (:timer (seconds 1.5))
+   (:flags (bit2))
+   (:next-time (seconds 1.3))
+   (:next-launcher 4011)
+   (:launchrot-x (degrees -15) (degrees 30))
+   (:rotate-y (degrees 90))))
+
+(defpart 4007 ;; Droplets 
+  :init-specs
+  ((:texture (middot effects))
+   (:num 2.5 1.0)
+   (:x (meters -28) (meters 3.5))
+   (:y (meters 75))
+   (:z (meters -10) (meters 20))
+   (:scale-x (meters 0.2) (meters 0.2))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:g 128.0)
+   (:b 128.0)
+   (:a 24.0)
+   (:vel-x (meters 0.06) (meters 0.04))
+   (:vel-y (meters 0.004) (meters 0.04))
+   (:vel-z (meters -0.006666667) (meters 0.013333334))
+   (:scalevel-x (meters -0.00024414062))
+   (:scalevel-y (meters 0.001953125))
+   (:accel-x (meters -0.00069444446))
+   (:accel-y (meters -0.0016666667) (meters -0.00083333335))
+   (:timer (seconds 2.0))
+   (:flags (bit2 bit3))
+   (:launchrot-x (degrees -20) (degrees 40))
+   (:rotate-y (degrees 90))))
+
+(defpart 4008 ;; foam waterfall
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 2.5 2.0)
+   (:x (meters -28) (meters 3.5))
+   (:y (meters 75))
+   (:z (meters -12) (meters 24))
+   (:scale-x (meters 2.5) (meters 1.2))
+   (:rot-z (degrees 0) (degrees 180))
+   (:scale-y (meters 1.2) (meters 0.8))
+   (:r 192.0)
+   (:g 192.0)
+   (:b 192.0)
+   (:a 16.0 16.0)
+   (:vel-x (meters 0.055))
+   (:vel-y (meters -0.0035) (meters 0.01))
+   (:vel-z (meters -0.0035) (meters 0.007))
+   (:scalevel-x (meters 0.0146484375))
+   (:rotvel-z (degrees -0.6) (degrees 1.2))
+   (:scalevel-y (meters 0.0146484375))
+   (:accel-x (meters -0.00029040404))
+   (:accel-y (meters -0.001) (meters -0.00025))
+   (:timer (seconds 3.5))
+   (:flags (bit2))
+   (:next-time (seconds 2.7))
+   (:next-launcher 4011)
+   (:rotate-y (degrees 90))))
+
+(defpart 4009 ;; foam bot
+  :init-specs
+  ((:texture (falls-particle-02 effects))
+   (:num 0.6)
+   (:x (meters -15) (meters 30))
+   (:y (meters -3.5))
+   (:z (meters -15) (meters 30))
+   (:scale-x (meters 12))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:g 128.0)
+   (:b 128.0)
+   (:a 0.0)
+   (:vel-x (meters -0.006666667) (meters 0.02))
+   (:vel-y (meters 0.033333335))
+   (:vel-z (meters -0.006666667) (meters 0.013333334))
+   (:scalevel-x (meters 0.006666667))
+   (:rotvel-z (degrees -0.3) (degrees 0.6))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a 1.1)
+   (:accel-y (meters 0.0000033333336))
+   (:friction 0.99)
+   (:timer (seconds 4.0))
+   (:flags (bit2))
+   (:next-time (seconds 0.2) (seconds 0.05))
+   (:next-launcher 4010)
+   (:rotate-y (degrees 90))))
+
+(defpart 4010
+  :init-specs ((:fade-a -0.16)))
+
+(defpart 4011
+  :init-specs ((:fade-a -2.6666667)))
+
+(defpart 4012
+  :init-specs
+  ((:texture (water-ring effects))
+   (:num 0.03 0.1)
+   (:x (meters -10) (meters 20))
+   (:y (meters 0.2))
+   (:z (meters -12) (meters 24))
+   (:scale-x (meters 2) (meters 4))
+   (:scale-y :copy scale-x)
+   (:r 92.0)
+   (:g 92.0)
+   (:b 92.0)
+   (:a 0.0)
+   (:scalevel-x (meters 0.06) (meters 0.10))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a 0.2)
+   (:timer (seconds 3.5))
+   (:flags (bit2 bit3))
+   (:next-time (seconds 0.7))
+   (:next-launcher 4013)
+   (:rotate-y (degrees 90))))
+
+(defpart 4013
+  :init-specs ((:fade-a -0.08)))

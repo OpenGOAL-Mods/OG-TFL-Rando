@@ -46,6 +46,7 @@
   "junglesnake-ag.go"
   "valley-rock-ag.go"
   "generic-button-ag.go"
+  "sunkencam-ag.go"
   ; title screen
   "tfl-title-ag.go"
   "logo-ag.go"

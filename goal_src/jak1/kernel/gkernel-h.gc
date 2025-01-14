@@ -504,10 +504,21 @@
     ;; otherwise don't ignore it.
     `(define ,name (lambda :name ,name :behavior ,process-type ,bindings ,@body))))
 
+;; TFL note: added
 (defmacro defevent (&key (name #f) type &rest body)
   "Define an event handler for a process."
   `(defbehavior ,(if name name (string->symbol-format "{}-event-handler" type)) ,type ((proc process) (argc int) (message symbol) (block event-message-block))
     ,@body))
+
+(defmacro defpost (&key (name #f) type &rest body)
+  "Define an event handler for a process."
+  `(defbehavior ,(if name name (string->symbol-format "{}-post" type)) ,type ()
+    ,@body
+    (none)))
+
+(defmacro deactivate-handle (handle)
+  (with-gensyms (p)
+    `(let ((,p (handle->process ,handle))) (when ,p (deactivate ,p) (set! ,handle INVALID_HANDLE)))))
 
 (defconstant INVALID_HANDLE (the handle #f))
 

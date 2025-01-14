@@ -258,12 +258,11 @@
      (set! (-> *CAMERA-bank* default-track-speed) (meters 5))
      (set! (-> *CAMERA-bank* default-track-accel) (meters 0.5)))))
 
-(defskelgroup *crc-gondola-sg*
-  crc-gondola
-  crc-gondola-lod0-jg
-  crc-gondola-idle-bottom-ja
-  ((crc-gondola-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 5 0 12))
+(def-actor crc-gondola
+  :idle idle-bottom-ja
+  :art (going-down-ja going-up-ja idle-bottom-ja idle-top-ja)
+  :joints (align main axis lever transform)
+  :bounds (0 5 0 12))
 
 (deftype crc-gondola (process-drawable)
   ((root          collide-shape-moving :override)

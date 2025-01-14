@@ -2,7 +2,7 @@
 (in-package goal)
 (deftype rolling-rock-master (process)
   ((trans            vector :inline)
-   (distance       float)
+   (distance         float)
    (path-count       int32)
    (path-array       curve-control 8)
    (scale-min        float)
@@ -17,60 +17,79 @@
   (:states
    rolling-rock-master-idle))
 
-(defskelgroup *rolling-rock-sg*
-  rolling-rock
-  rolling-rock-lod0-jg
-  rolling-rock-idle-ja
-  ((rolling-rock-lod0-mg (meters 999999)))
-  :bounds (static-spherem 0 5 0 15))
+(def-actor rolling-rock
+  :idle idle-ja
+  :art (rolling-ja idle-ja)
+  :joints
+  (align main
+         rotating
+         rock
+         rock.001
+         rock.002
+         rock.003
+         rock.004
+         rock.005
+         rock.006
+         rock.007
+         rock.008
+         rock.009
+         rock.010
+         rock.011
+         rock.012
+         rock.013
+         rock.014
+         rock.015
+         rock.016
+         rock.017
+         rock.018
+         rock.019
+         rock.020
+         rock.021
+         rock.022
+         rock.023
+         rock.024
+         rock.025)
+  :bounds (0 5 0 15))
 
-(define *rolling-rock-exploder-params*
-  (new 'static
-       'joint-exploder-static-params
-       :joints
-       (new 'static
-            'boxed-array
-            :type
-            joint-exploder-static-joint-params
-            (new 'static 'joint-exploder-static-joint-params :joint-index 4 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 5 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 6 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 7 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 8 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 9 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 10 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 11 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 12 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 13 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 14 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 15 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 16 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 17 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 18 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 19 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 20 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 21 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 22 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 23 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 24 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 25 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 26 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 27 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 28 :parent-joint-index -1)
-            (new 'static 'joint-exploder-static-joint-params :joint-index 29 :parent-joint-index -1))))
+(static-exploder-params rolling-rock
+                        (rock rock.001
+                              rock.002
+                              rock.003
+                              rock.004
+                              rock.005
+                              rock.006
+                              rock.007
+                              rock.008
+                              rock.009
+                              rock.010
+                              rock.011
+                              rock.012
+                              rock.013
+                              rock.014
+                              rock.015
+                              rock.016
+                              rock.017
+                              rock.018
+                              rock.019
+                              rock.020
+                              rock.021
+                              rock.022
+                              rock.023
+                              rock.024
+                              rock.025))
 
 (deftype rolling-rock (process-drawable)
-  ((root           collide-shape-moving :override)
-   (speed          float)
-   (path-speed     float)
-   (smooth-speed   float)
-   (path-length    float)
-   (path-pos       float)
-   (next-path-pos  float)
-   (rotate-joint   joint-mod)
-   (rotate-smooth  float)
-   (gravity-accel  float)
-   (old-trans      vector 3 :inline))
+  ((root          collide-shape-moving :override)
+   (speed         float)
+   (path-speed    float)
+   (smooth-speed  float)
+   (path-length   float)
+   (path-pos      float)
+   (next-path-pos float)
+   (rotate-joint  joint-mod)
+   (rotate-smooth float)
+   (gravity-accel float)
+   (old-trans     vector 3 :inline))
   (:methods
    (init-collision! (_type_ float) object)
    (follow-path (_type_) object)
@@ -88,7 +107,8 @@
   :bounds (static-spherem 0 -1.5 0 2)
   :shadow snow-ball-shadow-shadow-mg)
 
-(deftype rolling-rock-shadow (process-drawable) ()
+(deftype rolling-rock-shadow (process-drawable)
+  ((parent (pointer rolling-rock) :override))
   (:states
    rolling-rock-shadow-idle))
 
@@ -125,7 +145,7 @@
   (ja-channel-set! 1)
   (ja :group! snow-ball-shadow-idle-ja :num! min)
   (set! (-> self draw shadow-ctrl) *rolling-rock-shadow-control*)
-  (vector-copy! (-> self root scale) 
+  (vector-copy! (-> self root scale)
                 (vector-float*! (new-stack-vector0) (-> (the-as process-drawable (-> self parent 0)) root scale) 2.0))
   (go rolling-rock-shadow-idle)
   (none))
@@ -156,8 +176,8 @@
 (defmethod get-gravity-accel ((this rolling-rock))
   (let* ((height-diff (/ (- (-> this root trans y) (-> this old-trans 2 y)) (* (seconds-per-frame) 3)))
          (gravity (if (< height-diff 0.0)
-                      (lerp-scale 0.95 4.0 height-diff (meters 0) (meters -100))
-                      (lerp-scale 0.95 0.6 height-diff (meters 0) (meters 50)))))
+                    (lerp-scale 0.95 4.0 height-diff (meters 0) (meters -100))
+                    (lerp-scale 0.95 0.6 height-diff (meters 0) (meters 50)))))
     (seek! (-> this gravity-accel) gravity (* (seconds-per-frame) 1.2))
     ;; (format *stdcon* "~%~% height-diff: ~M ~% gravity: ~F~% gravity-accel: ~F" height-diff gravity (-> this gravity-accel))
     ))
@@ -173,47 +193,37 @@
     (eval-path-curve! (-> this path) next-pos (-> this next-path-pos) 'interp)
     (set! next-vel (/ (/ (vector-vector-distance pos next-pos) (seconds-per-frame)) 2.0))
     ;; (format *stdcon* "~%~% next-vel: ~M~%" next-vel)
-
     ;; Use height momentum to slow down or speed up:
     (get-gravity-accel this)
-
     ;; Use that next velocity to calculate a relative speed
     ;; This gives you a number you can multiply the path-speed with to keep the constant original speed
     ;; Which is then multiplied by the gravity accel to speed up/slow down the rock with gravity
     (set! relative-speed (* (/ (-> this speed) next-vel) (-> this gravity-accel)))
     ;; (format *stdcon* "relative-speed: ~F~%" relative-speed)
-
     ;; multiply the relative speed by the original path-speed to get the correct speed based on absolute velocity and gravity
     (set! (-> this smooth-speed) (* relative-speed (-> this path-speed)))
-
     ;; Use our smooth speed to set the position on the path
     (set! (-> this path-pos) (+ (-> this path-pos) (* (-> this smooth-speed) (seconds-per-frame))))
-
     ;; Use the position on the path to set the new position of the rock
     (eval-path-curve! (-> this path) new-pos (-> this path-pos) 'interp)
-
     ;; Set the rotation to follow the curve
     (let ((axis (vector-! (new-stack-vector0) pos new-pos))
           (angle (new-stack-quaternion0)))
       (quaternion-zxy! angle axis)
       (quaternion-rotate-local-y! angle angle (vector-y-angle axis))
       (set-quaternion! (-> this root) angle))
-
-    ;; Copy the new position onto the actor 
+    ;; Copy the new position onto the actor
     (vector-copy! (-> this root trans) new-pos)))
 
 (defmethod rotate-rock ((this rolling-rock))
   (let* ((vel-absolute (vector-vector-xz-distance (-> this root trans) (-> this old-trans 2)))
-        (rotate (/ (/ (- (* vel-absolute 0.6)) PI) (-> this root scale y))))
+         (rotate (/ (/ (- (* vel-absolute 0.6)) PI) (-> this root scale y))))
     ;; (format *stdcon* "vel-absolute: ~M~%" (/ vel-absolute (seconds-per-frame)))
     (seek! (-> this rotate-smooth) rotate (* (seconds-per-frame) (degrees 5.0)))
-    (quaternion-rotate-local-x! (-> this rotate-joint quat) 
-                                (-> this rotate-joint quat) 
-                                (-> this rotate-smooth)))
-  (vector-copy! (-> this old-trans 2) (-> this old-trans 1))      
-  (vector-copy! (-> this old-trans 1) (-> this old-trans 0))                        
+    (quaternion-rotate-local-x! (-> this rotate-joint quat) (-> this rotate-joint quat) (-> this rotate-smooth)))
+  (vector-copy! (-> this old-trans 2) (-> this old-trans 1))
+  (vector-copy! (-> this old-trans 1) (-> this old-trans 0))
   (vector-copy! (-> this old-trans 0) (-> this root trans)))
-
 
 (defmethod init-collision! ((this rolling-rock) (scale float))
   (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
@@ -286,25 +296,24 @@
             ;;         scale-rand
             ;;         (-> self last-path-picked))
             (process-spawn rolling-rock
-                          (-> self entity)
-                          self
-                          scale-rand
-                          (-> self path-array (- path-rand 1) name)
-                          speed-rand
-                          :to
-                          self)
+                           (-> self entity)
+                           self
+                           scale-rand
+                           (-> self path-array (- path-rand 1) name)
+                           speed-rand
+                           :to
+                           self)
             (set! (-> self last-path-picked) path-rand)))
         (suspend))))
 
 (defstate rolling-rock-rolling (rolling-rock)
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
-      (format 0 "proc type: ~A message: ~A ~%" (-> proc type) message)
+    (event
+      ; (format 0 "proc type: ~A message: ~A ~%" (-> proc type) message)
       (case message
         (('touch 'attack 'explode 'touched)
-         (format 0 "inside touch proc type: ~A~%" (-> proc type))
-         (if (= (-> proc type) target)
-           (send-event proc 'attack (-> block param 0) (static-attack-info ((mode 'deadly)))))
+         ; (format 0 "inside touch proc type: ~A~%" (-> proc type))
+         (if (= (-> proc type) target) (send-event proc 'attack (-> block param 0) (static-attack-info ((mode 'deadly)))))
          (go rolling-rock-explode))))
   :code
     (behavior ()
@@ -325,25 +334,25 @@
       (clear-collide-with-as (-> self root))
       (let ((jak-distance (vector-vector-distance (-> self root trans) (target-pos 0))))
         (when (< jak-distance (meters 25))
-          (let((smush-strenght (lerp-scale 50.0 600.0 jak-distance (meters 25) (meters 0)))
-               (smush-lenght (lerp-scale 100.0 250.0 jak-distance (meters 25) (meters 0)))
-               (buzz-strenght (lerp-scale 0.0 150.0 jak-distance (meters 25) (meters 0))))
-            ;; (format 0 "jak-distance: ~M smush-strenght: ~F smush-lenght ~F ~%" jak-distance smush-strenght smush-lenght)
-            (activate! *camera-smush-control* (* smush-strenght (-> self root scale x)) 37 (the int smush-lenght) 1.0 0.99)
-            (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 (the int buzz-strenght) (the int smush-lenght))
-            (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int buzz-strenght) (the int smush-lenght)))))
+          (let ((smush-strength (lerp-scale 50.0 600.0 jak-distance (meters 25) (meters 0)))
+                (smush-length (lerp-scale 100.0 250.0 jak-distance (meters 25) (meters 0)))
+                (buzz-strength (lerp-scale 0.0 150.0 jak-distance (meters 25) (meters 0))))
+            ;; (format 0 "jak-distance: ~M smush-strength: ~F smush-length ~F ~%" jak-distance smush-strength smush-length)
+            (activate! *camera-smush-control* (* smush-strength (-> self root scale x)) 37 (the int smush-length) 1.0 0.99)
+            (cpad-set-buzz! (-> *cpad-list* cpads 0) 0 (the int buzz-strength) (the int smush-length))
+            (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int buzz-strength) (the int smush-length)))))
       (sound-play "explosion" :vol 60)
       (process-spawn part-tracker
-                       :init
-                       part-tracker-init
-                       (-> *part-group-id-table* 1050)
-                       -1
-                       #f
-                       #f
-                       #f
-                       (-> self root trans)
-                       :to
-                       *entity-pool*)
+                     :init
+                     part-tracker-init
+                     (-> *part-group-id-table* 1050)
+                     -1
+                     #f
+                     #f
+                     #f
+                     (-> self root trans)
+                     :to
+                     *entity-pool*)
       (let ((explode (the process-drawable
                           (ppointer->process (process-spawn joint-exploder
                                                             *rolling-rock-sg*
@@ -362,11 +371,10 @@
 (defstate rolling-rock-shadow-idle (rolling-rock-shadow)
   :trans
     (behavior ()
-      (set! (-> self root trans quad) (-> (the-as process-drawable (-> self parent 0)) root trans quad))
-      (vector+! (-> self root trans) (-> self root trans) (static-vectorm 0 3 0))
-      0)
+      (vector-copy! (-> self root trans) (-> self parent 0 root trans))
+      (+! (-> self root trans y) (meters 3)))
   :code
     (behavior ()
-      (until (= (-> (the-as process-drawable (-> self parent 0)) next-state name) 'rolling-rock-explode)
+      (until (= (-> self parent 0 next-state name) 'rolling-rock-explode)
         (suspend)))
   :post ja-post)

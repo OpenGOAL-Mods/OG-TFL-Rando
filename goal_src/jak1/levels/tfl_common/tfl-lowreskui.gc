@@ -48,12 +48,8 @@
   (:methods
    (init-particles! (_type_) object :replace)))
 
-(defskelgroup *tfl-lowreskui-sg*
-  tfl-lowreskui
-  tfl-lowreskui-lod0-jg
-  tfl-lowreskui-idle-ja
-  ((tfl-lowreskui-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 1 0 3))
+(def-actor tfl-lowreskui
+  :bounds (0 1 0 3))
 
 (defbehavior hud-lowreskui-init-by-other hud-lowreskui ((info lowreskui-info))
   (set! (-> self nb-of-icons) 0)

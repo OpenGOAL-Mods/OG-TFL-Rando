@@ -1696,6 +1696,21 @@
 (build-actor "valley-rock")
 (build-actor "rolling-rock")
 (build-actor "tfl-title")
+(build-actor "pds-sentinel")
+(build-actor "pds-gem-green")
+(build-actor "pds-gem-yellow")
+(build-actor "pds-gem-blue")
+(build-actor "pds-trap-central" :gen-mesh #t)
+(build-actor "pds-trap-inner" :gen-mesh #t)
+(build-actor "pds-trap-mid-left" :gen-mesh #t)
+(build-actor "pds-trap-mid-right" :gen-mesh #t)
+(build-actor "pds-trap-out-left" :gen-mesh #t)
+(build-actor "pds-trap-out-right" :gen-mesh #t)
+(build-actor "pds-plat-circle" :gen-mesh #t)
+(build-actor "pds-plat-square" :gen-mesh #t)
+(build-actor "pds-plat-rectangle" :gen-mesh #t)
+(build-actor "pds-swingpole" :gen-mesh #t)
+(build-actor "pds-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -2216,6 +2231,10 @@
  :deps ("$OUT/obj/ticky.o")
  "valley-obs.gc"
  "valley-part.gc"
+ "boss/pds-boss-part.gc"
+ "boss/pds-boss-setup.gc"
+ "boss/pds-boss-extras.gc"
+ "boss/pds-boss-states.gc"
  )
 
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-drawable")

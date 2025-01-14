@@ -3,7 +3,7 @@
 (define *tfl-music-player-level-info*
   (new 'static 'boxed-array :type string "crystal-ca" "crescent-t" "energy-bay" "open-mines"))
 
-(define *tfl-music-player-boss-info* (new 'static 'boxed-array :type string "boss-test"))
+(define *tfl-music-player-boss-info* (new 'static 'boxed-array :type string "pds-sentinel"))
 
 (define *tfl-music-playing?* #f)
 
@@ -98,13 +98,17 @@
   (go-virtual idle))
 
 (defevent tfl-music-player
-          (case message
-            (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
-            (('unpause) (false! *tfl-music-paused?*))
-            (('fade?) (set! *tfl-music-fade?* (the symbol (-> block param 0))))
-            (('boss) (set! *tfl-boss-music* (the symbol (-> block param 0))))))
+  (case message
+    (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
+    (('unpause) (false! *tfl-music-paused?*))
+    (('fade?) (set! *tfl-music-fade?* (the symbol (-> block param 0))))
+    (('boss)
+     (let ((val (the symbol (-> block param 0))))
+       (set! *tfl-boss-music* val)
+       (when *tfl-boss-music*
+         (go-virtual boss-playing))))))
 
-(defbehavior tfl-music-player-post tfl-music-player ()
+(defpost tfl-music-player
   ;; (format 0 "POST tfl-music-player~%")
   (set! *tfl-music-fade?* (not (paused?)))
   (let ((level (aif (level-get-target-inside *level*) (-> it name) #f)))
@@ -116,8 +120,7 @@
     ;         *tfl-boss-music*)
     (when (and (!= (-> self level) level))
       (set-level! self)
-      (stop! self)))
-  (none))
+      (stop! self))))
 
 (defstatehandler tfl-music-player :event tfl-music-player-event-handler :post tfl-music-player-post)
 

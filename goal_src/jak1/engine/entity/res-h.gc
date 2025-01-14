@@ -5,6 +5,9 @@
 
 ;; res is the very generic resource storage system. See res.gc for more information.
 
+;; TFL note: added
+(defglobalconstant DEFAULT_RES_TIME -1000000000.0)
+
 ;; DECOMP BEGINS
 
 ;; the res-tag describes some data

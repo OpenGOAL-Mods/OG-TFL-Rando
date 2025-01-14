@@ -13,6 +13,9 @@
   (draw-text 3) ;; TODO - only seen it used to control debug drawing so far
   (not-found 4))
 
+;; TFL note: added
+(defconstant DEFAULT_PATH_FLAGS (path-control-flag display draw-line draw-point draw-text))
+
 ;; DECOMP BEGINS
 
 ;; A path-control is a curve that can be loaded from res-lump/entities.

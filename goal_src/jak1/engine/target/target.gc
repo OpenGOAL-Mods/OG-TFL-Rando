@@ -1544,6 +1544,7 @@
         (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
         (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length)))
       ;; TFL note: added super eco cases
+      (if (target-powerup? super-eco-red) (send-event *camera* 'reset-follow))
       (when (and (or (target-powerup? super-eco-red) (= (-> self fact eco-type) (pickup-type eco-red)))
                  (>= (-> self fact eco-level) 1.0))
         (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 70)

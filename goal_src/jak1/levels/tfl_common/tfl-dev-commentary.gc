@@ -41,19 +41,11 @@
 (defun tfl-commentary-volume ()
   (-> *tfl-dev-commentary* vol))
 
-(defskelgroup *tfl-commentary-node-sg*
-  tfl-commentary-node
-  tfl-commentary-node-lod0-jg
-  tfl-commentary-node-idle-ja
-  ((tfl-commentary-node-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 5))
+(def-actor tfl-commentary-node
+  :bounds (0 0 0 5))
 
-(defskelgroup *tfl-commentary-node-active-sg*
-  tfl-commentary-node-active
-  tfl-commentary-node-active-lod0-jg
-  tfl-commentary-node-active-idle-ja
-  ((tfl-commentary-node-active-lod0-mg (meters 9999999)))
-  :bounds (static-spherem 0 0 0 5))
+(def-actor tfl-commentary-node-active
+  :bounds (0 0 0 5))
 
 (deftype tfl-commentary-keyframes (basic)
   ((num-cmds int32)
@@ -122,9 +114,6 @@
 
 (define *tfl-commentary-node-string* (new 'debug 'string 128 (the string #f)))
 
-(defmacro deactivate-handle (handle)
-  `(let ((h (handle->process ,handle))) (when h (deactivate h) (set! ,handle INVALID_HANDLE))))
-
 (defmethod kill-all-handles! ((this tfl-commentary-node))
   (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
     (deactivate-handle (-> this proc i)))
@@ -149,8 +138,8 @@
 
 (defmethod can-activate? ((this tfl-commentary-node))
   (aif *target*
-       (and (not (logtest? (-> it state-flags) (state-flags grabbed first-person-mode)))
-            (< (vector-vector-distance (target-pos 0) (-> this root trans)) (-> this activate-range)))))
+    (and (not (logtest? (-> it state-flags) (state-flags grabbed first-person-mode)))
+         (< (vector-vector-distance (target-pos 0) (-> this root trans)) (-> this activate-range)))))
 
 (defmethod debug-print ((this tfl-commentary-node) (line symbol))
   (case line
@@ -523,8 +512,8 @@
   (none))
 
 (defevent tfl-commentary-node
-          (case message
-            (('grab) #t)))
+  (case message
+    (('grab) #t)))
 
 (defstatehandler tfl-commentary-node :event tfl-commentary-node-event-handler :post tfl-commentary-node-post)
 
