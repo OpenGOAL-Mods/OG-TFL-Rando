@@ -569,6 +569,7 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
           stop_tfl_music(false);
           // delete g_tfl_music;
           // std::terminate();
+          return;
         }
         float vol = tfl_get_music_vol();
         MiniAudioLib::ma_sound_set_volume(music, vol);
