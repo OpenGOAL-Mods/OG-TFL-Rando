@@ -49,7 +49,8 @@
    (init-particles! (_type_) object :replace)))
 
 (def-actor tfl-lowreskui
-  :bounds (0 1 0 3))
+  :bounds (0 1 0 3)
+  :texture-level 2)
 
 (defbehavior hud-lowreskui-init-by-other hud-lowreskui ((info lowreskui-info))
   (set! (-> self nb-of-icons) 0)
@@ -79,12 +80,12 @@
   ((root       collide-shape :override)
    (birth-time time-frame)
    (birth-pos  vector :inline)
-   (info       lowreskui-info)
-   (hud        (pointer hud-lowreskui)))
+   (info       lowreskui-info))
   (:methods
    (init-collision! (_type_) object)
    (collected? (_type_) symbol)
-   (collect! (_type_) object))
+   (collect! (_type_) object)
+   (activate-lowreskui-hud (_type_) (pointer hud-lowreskui)))
   (:states
    tfl-lowreskui-idle
    tfl-lowreskui-collect
@@ -110,9 +111,11 @@
   (transform-post)
   (vector-copy! (-> this birth-pos) (-> this root trans))
   (set! (-> this info) (get-lowreskui-info-by-level (-> e extra level name)))
-  (set! (-> this hud) (the (pointer hud-lowreskui) #f))
   ; (set-part! :proc this :id 63)
-  (if (collected? this) (process-entity-status! this (entity-perm-status dead) #t) (go tfl-lowreskui-idle))
+  (when (collected? this)
+    (process-entity-status! this (entity-perm-status dead) #t)
+    (go tfl-lowreskui-die))
+  (go tfl-lowreskui-idle)
   (none))
 
 (defmethod collected? ((this tfl-lowreskui))
@@ -134,8 +137,8 @@
     (logior! (-> perm status) (entity-perm-status user-set-from-cstage))
     (logior! (-> perm user-uint64) (ash 1 idx))))
 
-(defun activate-lowreskui-hud ((info lowreskui-info))
-  (process-spawn hud-lowreskui info))
+(defmethod activate-lowreskui-hud ((this tfl-lowreskui))
+  (process-spawn hud-lowreskui (-> this info) :to this))
 
 (defstate tfl-lowreskui-idle (tfl-lowreskui)
   :event
@@ -158,6 +161,10 @@
 (defstate tfl-lowreskui-die (tfl-lowreskui)
   :code
     (behavior ()
+      (hide! self)
+      (until (not (-> self child))
+        (suspend))
+      (remove-setting! 'allow-progress)
       (cleanup-for-death self)))
 
 (defstate tfl-lowreskui-collect (tfl-lowreskui)
@@ -172,13 +179,12 @@
         (logior! (-> *pc-settings* cheats-known) (pc-cheats super-eco-blue super-eco-red super-eco-yellow super-eco-green))
         ; (close-specific-task! (game-task tfl-lowreskui) (task-status invalid))
         )
-      (set! (-> self hud) (activate-lowreskui-hud (-> *lowreskui-info* (-> self info index))))
+      (activate-lowreskui-hud self)
       (set-setting! 'allow-progress #f 0.0 0)
       (until (time-elapsed? (-> self state-time) (seconds 2.5))
-        ; (set! (-> self hud) (the hud-lowreskui (ppointer->process (-> self hud))))
         ; (spawn (-> self part) (-> self root trans))
         (when (and *target* (= (-> *target* next-state name) 'target-death))
-          (goto die))
+          (go tfl-lowreskui-die))
         (let* ((lerp-timer (/ (/ (the float (- (current-time) (-> self state-time))) TICKS_PER_SECOND) 2.5))
                (bob-amount (lerp (meters 0.4) (meters 0.1) lerp-timer))
                (bob-speed 1.8)
@@ -191,8 +197,6 @@
                    fly-pos))
           (set-vector! (-> self root scale) scale-lerp scale-lerp scale-lerp 1.0))
         (suspend))
-      (label die)
-      (remove-setting! 'allow-progress)
       (go tfl-lowreskui-die))
   :post transform-post)
 
@@ -217,7 +221,7 @@
     (set-scale! fnt 0.6)
     (set-flags! fnt (font-flags shadow kerning middle middle-vert large))
     (print-game-text (lookup-text! *common-text* (-> this info text) #f) fnt #f 128 18)
-    (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug-no-zbuf))
+    (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug-no-zbuf))
       (draw-string-xy-scaled (string-format (lookup-text! *common-text* (if (not last?) (text-id tfl-lowreskui-found) (text-id tfl-lowreskui-all-found)) #f))
                              buf
                              (+ (-> this text-x) (* (-> this x-sgn) (-> this offset)) 50)
@@ -319,5 +323,5 @@
      (set! (-> this x-scale) 0.05)
      (set! (-> this y-scale) 0.05)
      (set! (-> this y-pos) -283)))
-  (format 0 "kui x ~D ~A wide ~A pal ~A~%" (-> this x-pos) (get-aspect-ratio) widescreen pal)
+  ; (format 0 "kui x ~D ~A wide ~A pal ~A~%" (-> this x-pos) (get-aspect-ratio) widescreen pal)
   (none))
