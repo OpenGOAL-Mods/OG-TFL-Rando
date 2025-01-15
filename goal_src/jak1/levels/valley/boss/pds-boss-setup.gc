@@ -209,7 +209,7 @@
    beaten))
 
 (defmethod init-from-entity! ((this pds-sentinel) (e entity-actor))
-  (stack-size-set! (-> this main-thread) 512)
+  (stack-size-set! (-> this main-thread) 384)
   (set! (-> this root) (new 'process 'trsqv))
   (process-drawable-from-entity! this e)
   (set! (-> this path) (new 'process 'path-control this 'path DEFAULT_RES_TIME))

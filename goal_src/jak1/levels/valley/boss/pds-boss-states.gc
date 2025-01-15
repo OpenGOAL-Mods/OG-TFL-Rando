@@ -471,8 +471,10 @@
         (set! (-> rot data 13) 0.0000)
         (set! (-> rot data 14) 0.0000)
         (set! (-> rot data 15) 1.0000)
-        (debug-set-camera-pos-rot! (camera-pos) rot))
-      (send-event *camera* 'change-state cam-string 0)
+        (send-event *camera* 'change-state cam-free-floating 0)
+        (vector-copy! (-> *camera-combiner* trans) (camera-pos))
+        (matrix-copy! (-> *camera-combiner* inv-camera-rot) rot)
+        (send-event *camera* 'change-state cam-string 0))
       (go-virtual beaten)))
 
 (defstate beaten (pds-sentinel)
