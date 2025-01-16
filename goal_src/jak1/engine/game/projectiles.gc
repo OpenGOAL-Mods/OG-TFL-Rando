@@ -23,7 +23,6 @@
    (rot-base     vector :inline)
    (rot-range    float)))
 
-
 (define *search-info* (new 'global 'search-info))
 
 (defun find-nearest-attackable ((arg0 vector) (arg1 float) (arg2 uint) (arg3 uint) (arg4 vector) (arg5 float))
@@ -979,14 +978,12 @@
   (set! (-> this blast-radius) (meters 8))
   (set! (-> this tween) 0.05)
   (logior! (-> this options) 2)
-  (let ((s5-0 (new 'stack-no-clear 'vector)))
-    (set! (-> s5-0 quad) (-> this root trans quad))
-    (+! (-> this root trans y) -5324.8)
-    (vector+float*! (-> this target) (-> this root trans) (-> this root transv) 2.0)
-    (set! (-> this target-base quad) (-> this target quad))
-    (logior! (-> this mask) (process-mask projectile))
-    (sound-play "yellow-fire")
-    (set! (-> this sound-id) (sound-play "yellow-buzz")))
+  (+! (-> this root trans y) -5324.8)
+  (vector+float*! (-> this target) (-> this root trans) (-> this root transv) 2.0)
+  (vector-copy! (-> this target-base) (-> this target))
+  (logior! (-> this mask) (process-mask projectile))
+  (sound-play "yellow-fire")
+  (set! (-> this sound-id) (sound-play "yellow-buzz"))
   (set! (-> this part) (create-launch-control (-> *part-group-id-table* (if (-> this fully-charged?) 960 962)) this))
   (set! (-> this explode-part) (create-launch-control (-> *part-group-id-table* 961) this))
   (none))
@@ -994,7 +991,7 @@
 (defstate projectile-impact (tfl-yellow-shot)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('touched)
          (let ((pdraw (if (and (nonzero? proc) (type-type? (-> proc type) process-drawable)) (the process-drawable proc))))
@@ -1002,7 +999,7 @@
              (let* ((root (the collide-shape (-> pdraw root)))
                     (shot-core (-> self root root-prim prim-core))
                     (proc-core (-> root root-prim prim-core))
-                    (probe (new 'stack-no-clear 'vector))
+                    (probe (new-stack-vector0))
                     (tri (new 'stack-no-clear 'collide-tri-result)))
                (vector-! probe (the vector proc-core) (the vector shot-core))
                (when (< (fill-and-probe-using-line-sphere *collide-cache*
@@ -1033,7 +1030,8 @@
         (find-overlapping-shapes (-> self root) overlap-parms))
       (suspend)
       (clear-collide-with-as (-> self root))
-      (suspend-for (seconds 2) (spawn (-> self explode-part) (-> self root trans)))
+      (suspend-for (seconds 2)
+        (spawn (-> self explode-part) (-> self root trans)))
       (kill-and-free-particles (-> self explode-part))
       (cleanup-for-death self)))
 
@@ -1048,7 +1046,7 @@
 (defstate projectile-moving (tfl-yellow-shot)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('touched)
          (when (-> self attack-mode)
@@ -1061,7 +1059,7 @@
         (('die) (if (-> self fully-charged?) (go-virtual projectile-impact) (go-virtual projectile-dissipate)))))
   :enter
     (behavior ()
-      (set-time! (-> self state-time)))
+      (set-state-time))
   ; :trans (behavior ()
   ;   (format *stdcon* "super-yellow: (cshape-moving-flags ~S)"
   ;     (begin (bit-enum->string cshape-moving-flags (-> self root status) *temp-string*) *temp-string*)
@@ -1078,7 +1076,7 @@
               (if (-> self fully-charged?) (go-virtual projectile-impact) (go-virtual projectile-dissipate)))
             ((-> self update-velocity) self)
             (let ((t (new-stack-vector0)))
-              (set! (-> t quad) (-> self root trans quad))
+              (vector-copy! t (-> self root trans))
               (fill-cache-integrate-and-collide! (-> self root) (-> self root transv) (-> self root root-prim collide-with))
               (set! (-> self old-dist (-> self old-dist-count)) (* 0.0625 (vector-vector-distance t (-> self root trans)))))
             (set! (-> self old-dist-count) (logand (+ (-> self old-dist-count) 1) 15))
@@ -1091,7 +1089,7 @@
                       (< total-dist (* (-> *display* time-adjust-ratio) (meters 0.05)))
                       ; (logtest? (-> self root status) (cshape-moving-flags twall))
                       )
-                (set! hit? #t))))
+                (true! hit?))))
           (set-time-ratios *display* (the float ratio)))
         (projectile-method-24 self)
         (suspend)))
@@ -1135,30 +1133,30 @@
   (set! (-> self notify-handle) (the handle #f))
   (set! (-> self fully-charged?) (>= charged-time SUPER_YELLOW_MAX_CHARGE_TIME))
   (set! (-> self charged-time) charged-time)
-  (format 0
-          "charge time ~D ratio ~f result ~f~%"
-          charged-time
-          (/ (the float charged-time) SUPER_YELLOW_MAX_CHARGE_TIME)
-          (* (the float (seconds 2)) (/ (the float charged-time) SUPER_YELLOW_MAX_CHARGE_TIME)))
+  ; (format 0
+  ;         "charge time ~D ratio ~f result ~f~%"
+  ;         charged-time
+  ;         (/ (the float charged-time) SUPER_YELLOW_MAX_CHARGE_TIME)
+  ;         (* (the float (seconds 2)) (/ (the float charged-time) SUPER_YELLOW_MAX_CHARGE_TIME)))
   (set! (-> self timeout)
         (the time-frame
-             (- (* (the float (seconds 1.0)) (/ (the float charged-time) SUPER_YELLOW_MAX_CHARGE_TIME)) (seconds 0.25))))
+             (- (* (the float (seconds 1)) (/ (the float charged-time) SUPER_YELLOW_MAX_CHARGE_TIME)) (seconds 0.25))))
   (countdown (i 16)
     (set! (-> self old-dist i) 4095996000.0))
   (projectile-method-26 self)
-  (set! (-> self root dynam gravity y) 1228800.0)
-  (set! (-> self root dynam gravity-length) 1228800.0)
-  (set! (-> self root dynam gravity-max) 1228800.0)
-  (set! (-> self root trans quad) (-> pos quad))
-  (set! (-> self base-trans quad) (-> pos quad))
-  (set! (-> self parent-base quad) (-> pos quad))
-  (quaternion-copy! (-> self root quat) (-> (the process-drawable (-> self parent 0)) root quat))
-  (quaternion-copy! (the quaternion (-> self parent-quat)) (-> (the process-drawable (-> self parent 0)) root quat))
+  (set! (-> self root dynam gravity y) (meters 300))
+  (set! (-> self root dynam gravity-length) (meters 300))
+  (set! (-> self root dynam gravity-max) (meters 300))
+  (vector-copy! (-> self root trans) pos)
+  (vector-copy! (-> self base-trans) pos)
+  (vector-copy! (-> self parent-base) pos)
+  (quaternion-copy! (-> self root quat) (-> self parent 0 root quat))
+  (quaternion-copy! (the quaternion (-> self parent-quat)) (-> self parent 0 root quat))
   (vector-identity! (-> self root scale))
-  (set! (-> self root transv quad) (-> vel quad))
+  (vector-copy! (-> self root transv) vel)
   (vector-normalize-copy! (-> self base-vector) vel 1.0)
   (vector+float*! (-> self target) (-> self root trans) (-> self root transv) 2.0)
-  (set! (-> self target-base quad) (-> self target quad))
+  (vector-copy! (-> self target-base) (-> self target))
   (projectile-method-27 self)
   (projectile-method-24 self)
   (when (not (type-type? (-> self type) projectile-blue))
@@ -1167,5 +1165,4 @@
       (set! (-> oo tlist) *touching-list*)
       (find-overlapping-shapes (-> self root) oo)))
   (set! (-> self event-hook) (-> (method-of-object self projectile-moving) event))
-  (projectile-method-25 self)
-  (none))
+  (projectile-method-25 self))
