@@ -92,10 +92,10 @@
    idle))
 
 (defevent tfl-title
-          (case message
-            (('attach-vol) (true! (-> self vol-attached?)))
-            (('attach) (true! (-> self logo-attached?)))
-            (('start) (true! (-> self should-start?)))))
+  (case message
+    (('attach-vol) (true! (-> self vol-attached?)))
+    (('attach) (true! (-> self logo-attached?)))
+    (('start) (true! (-> self should-start?)))))
 
 (defstatehandler tfl-title :event tfl-title-event-handler)
 
@@ -598,8 +598,7 @@
       (set-setting! 'allow-pause #f 0.0 0)
       (set-setting! 'allow-progress #f 0.0 0)
       ; (set-setting! 'border-mode #f 0.0 0)
-      (when *tfl-music-player*
-        (send-event (ppointer->process *tfl-music-player*) 'pause))
+      (send-event *tfl-music-player* 'pause)
       (apply-settings *setting-control*)
       (set-time! (-> self state-time))
       (set! (-> self manipy) (the (pointer manipy) #f))
@@ -698,8 +697,7 @@
       (remove-setting! 'sfx-volume)
       (remove-setting! 'music-volume)
       (sound-group-continue (sound-group music))
-      (when *tfl-music-player*
-        (send-event (ppointer->process *tfl-music-player*) 'unpause))
+      (send-event *tfl-music-player* 'unpause)
       (when *time-of-day-proc*
         (set! (-> *time-of-day-proc* 0 time-ratio) 18000.0)
         (set! *time-of-day-fast* #t)))

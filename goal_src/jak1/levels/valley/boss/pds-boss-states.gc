@@ -187,7 +187,7 @@
   :enter
     (behavior ()
       (close-specific-task! (-> self entity extra perm task) (task-status need-introduction))
-      (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
+      (send-event *tfl-music-player* 'boss 'pds-sentinel)
       (set! (-> (get-init-spec-by-id (-> *part-id-table* 4170) num) initial-valuef) 0.0)
       (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "wake" 0 self '() :to self))
   :code
@@ -236,7 +236,7 @@
       (set-state-time))
   :code
     (behavior ()
-      (send-event (ppointer->process *tfl-music-player*) 'boss #f)
+      (send-event *tfl-music-player* 'boss #f)
       (when (not (= (ja-group) pds-sentinel-moving-ja))
         (ja-channel-push! 1 (seconds 0.1))
         (ja-no-eval :group! pds-sentinel-moving-ja :num! min))
@@ -244,7 +244,7 @@
         (send-event *pds-master* 'reset-gems)
         (ja :num! (loop!))
         (suspend))
-      (send-event (ppointer->process *tfl-music-player*) 'boss 'pds-sentinel)
+      (send-event *tfl-music-player* 'boss 'pds-sentinel)
       (send-event *pds-master* 'spawn-pickup)
       (go-virtual spawn-enemies)))
 
@@ -483,7 +483,7 @@
     (behavior ()
       (ja-no-eval :group! pds-sentinel-sleep-ja :num! min)
       (hide! self)
-      (send-event (ppointer->process *tfl-music-player*) 'boss #f)
+      (send-event *tfl-music-player* 'boss #f)
       (vector-copy! (-> self root trans) (-> self entity extra trans))
       (process-entity-status! self (entity-perm-status complete) #t)
       (close-specific-task! (game-task valley-boss) (task-status need-reminder))
