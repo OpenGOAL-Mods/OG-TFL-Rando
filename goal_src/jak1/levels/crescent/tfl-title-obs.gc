@@ -373,6 +373,11 @@
                  :parts 15
                  :command-list
                  '((260 want-force-inside crescent-t #t)
+                  (261 kill "crescent-lurkerpuppy-001")
+                  (261 kill "crescent-lurkerpuppy-002")
+                  (261 kill "crescent-lurkerpuppy-003")
+                  (261.5 kill "crescent-lurkerpuppy-004")
+                  (261.5 kill "crescent-lurkerpuppy-005")
                   (400 want-force-inside crescent-t #f)
                   (400 display-level crescent-t display)
                   (400 save)
@@ -555,6 +560,11 @@
                  (5 want-vis cst)
                  (5 want-force-inside crescent-t #t)
                  (5 send-event self move)
+                 (115 kill "crescent-lurkerpuppy-001")
+                 (115 kill "crescent-lurkerpuppy-002")
+                 (115 kill "crescent-lurkerpuppy-003")
+                 (115 kill "crescent-lurkerpuppy-004")
+                 (115 kill "crescent-lurkerpuppy-005")
                  (115 send-event self attach)
                  (115 send-event self attach-vol)
                  (115 display-level crescent-t display-self)
