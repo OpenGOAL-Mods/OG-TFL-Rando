@@ -47,6 +47,7 @@
   "ice-cube-break-ag.go"
   "swamp-rat-ag.go"
   "kermit-ag.go"
+  "water-anim-training-ag.go"
   "valley.go"
   )
  )

@@ -6,6 +6,9 @@
 (#when PC_PORT
   (define *progress-flava* -1))
 
+;; TFL note: added
+(define-extern *tfl-music-fade?* symbol)
+
 ;; DECOMP BEGINS
 
 (defmethod update-from-engine ((this setting-data) (arg0 engine))
@@ -18,7 +21,8 @@
         (('border-mode) (set! (-> this border-mode) (the-as symbol (-> conn param1))))
         (('allow-look-around) (set! (-> this allow-look-around) (the-as symbol (-> conn param1))))
         (('ocean-off) (set! (-> this ocean-off) (the-as symbol (-> conn param1))))
-        (('music) (set! (-> this music) (the-as symbol (-> conn param1))))
+        ;; TFL note: added music fade
+        (('music) (true! *tfl-music-fade?*) (set! (-> this music) (the-as symbol (-> conn param1))))
         (('process-mask)
          (case (the-as object (-> conn param1))
            (('set) (logior! (-> this process-mask) (the-as int (-> conn param3))))

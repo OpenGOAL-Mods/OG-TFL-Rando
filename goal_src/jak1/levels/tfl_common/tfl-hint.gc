@@ -55,8 +55,8 @@
 
 (defmethod target-in-sphere? ((this tfl-hint))
   (aif *target*
-       (let ((ear (sphere<-vector+r! (new 'stack 'sphere) (ear-trans) 0.0))) (spheres-overlap? ear (-> this sphere)))
-       #f))
+    (let ((ear (sphere<-vector+r! (new 'stack 'sphere) (ear-trans) 0.0))) (spheres-overlap? ear (-> this sphere)))
+    #f))
 
 (defmethod get-sphere-color ((this tfl-hint))
   (cond
@@ -234,7 +234,7 @@
       (when (and (target-in-sphere? self) (can-play? self))
         (hint-debug (format 0 "TRANS tfl-hint-idle playing ~A~%" (-> self name)))
         (go tfl-hint-play)))
-  :code sleep-code)
+  :code anim-loop)
 
 (defstate tfl-hint-wait (tfl-hint)
   :trans
@@ -245,7 +245,7 @@
                           (- (-> self hint-data repeat-delay) (- (current-time) (-> self last-time)))))
       (when (time-elapsed? (-> self last-time) (-> self hint-data repeat-delay))
         (go tfl-hint-idle)))
-  :code sleep-code)
+  :code anim-loop)
 
 (defstate tfl-hint-play (tfl-hint)
   :enter

@@ -1257,6 +1257,7 @@
       "bsphere": [1067.67, 29.48, 1980.14, 10],
       "lump": {
         "name": "valley-robber-01",
+        "no-cell-spline-hack": ["symbol", "#t"],
         "options": ["enum-int32", "(fact-options instant-collect)"],
         "timeout": ["float", 15.0],
         "initial-spline-pos": ["float", 0.85],
@@ -1337,6 +1338,7 @@
       "bsphere": [1310.75, 49.66, 1990.62, 10],
       "lump": {
         "name": "valley-robber-02",
+        "no-cell-spline-hack": ["symbol", "#t"],
         "options": ["enum-int32", "(fact-options instant-collect)"],
         "timeout": ["float", 18.0],
         "initial-spline-pos": ["float", 0.90],
@@ -1408,6 +1410,7 @@
       "bsphere": [1418.66, 14.23, 2010.18, 10],
       "lump": {
         "name": "valley-robber-03",
+        "no-cell-spline-hack": ["symbol", "#t"],
         "options": ["enum-int32", "(fact-options instant-collect)"],
         "timeout": ["float", 9.0],
         "initial-spline-pos": ["float", 0.90],
@@ -1486,6 +1489,7 @@
       "bsphere": [1767.61, 12.27, 2027.68, 10],
       "lump": {
         "name": "valley-robber-04",
+        "no-cell-spline-hack": ["symbol", "#t"],
         "options": ["enum-int32", "(fact-options instant-collect)"],
         "timeout": ["float", 15.0],
         "initial-spline-pos": ["float", 0.95],
@@ -6855,7 +6859,7 @@
           [0.000, -1.000, -0.000, 7.211]
         ],
     "water-height": ["float", 4096.0, 2048.0, 8192.0, 1048588.0], // camera height, ?, wadledept, flags
-    "look": ["int32", 36]
+    "look": ["enum-int32", "(water-look water-anim-training-lake)"]
   }
 },
 {

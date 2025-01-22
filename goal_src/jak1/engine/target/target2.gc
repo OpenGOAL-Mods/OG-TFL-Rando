@@ -119,7 +119,6 @@
    hud-normal
    hud-waiting))
 
-
 (define *fp-hud-stack* (malloc 'global #x3800))
 
 (defmethod deactivate ((this first-person-hud))
@@ -1063,15 +1062,7 @@
           (cpad-clear! 0 square)
           (stop! (-> self super-yellow-charge-loop))
           (sound-play "bfg-fire")
-          (process-spawn tfl-yellow-shot
-                         :init
-                         tfl-yellow-shot-init-by-other
-                         (-> self entity)
-                         hand
-                         forward
-                         SUPER_YELLOW_MAX_CHARGE_TIME
-                         :to
-                         self)
+          (process-spawn tfl-yellow-shot (-> self entity) hand forward SUPER_YELLOW_MAX_CHARGE_TIME :to self)
           (send-event self
                       'shove
                       #f
@@ -1084,7 +1075,7 @@
           (cpad-clear! 0 square)
           (stop! (-> self super-yellow-charge-loop))
           (sound-play "bfg-fire")
-          (process-spawn tfl-yellow-shot :init tfl-yellow-shot-init-by-other (-> self entity) hand forward (seconds 1) :to self)
+          (process-spawn tfl-yellow-shot (-> self entity) hand forward (seconds 1) :to self)
           (send-event self
                       'shove
                       #f

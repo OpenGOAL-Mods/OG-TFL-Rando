@@ -109,6 +109,7 @@
 (defbehavior super-eco-crystal-init-by-other super-eco-crystal ((pos vector) (eco-type symbol) (respawn-time int))
   (init-collision! self)
   (logior! (-> self mask) (process-mask pause attackable))
+  (logclear! (-> self mask) (process-mask actor-pause))
   (vector-copy! (-> self cshape trans) pos)
   (quaternion-identity! (-> self cshape quat))
   (vector-identity! (-> self cshape scale))
@@ -150,12 +151,12 @@
   (transform-post)
   (go-virtual idle))
 
-(defmethod init-from-entity! super-eco-crystal
-  ((this super-eco-crystal) (entity entity-actor))
+(defmethod init-from-entity! ((this super-eco-crystal) (entity entity-actor))
   (init-collision! this)
   (process-drawable-from-entity! this entity)
   (initialize-skeleton this *super-eco-crystal-sg* '())
   (logior! (-> this mask) (process-mask pause attackable))
+  (logclear! (-> this mask) (process-mask actor-pause))
   ;; default to super blue eco and 20 second respawn
   (set! (-> this eco-type) (aif (res-lump-struct (-> this entity) 'eco-type symbol) it 'blue))
   (set! (-> this respawn-timer) (aif (res-lump-value (-> this entity) 'respawn-timer int32) (seconds it) (seconds 20)))
@@ -190,7 +191,7 @@
   (if (-> this sound-name) (set! (-> this sound) (new 'process 'ambient-sound (-> this sound-name) (-> this cshape trans))))
   (if (nonzero? (-> this ambient-part))
     (set! (-> this part) (create-launch-control (-> *part-group-id-table* (-> this ambient-part)) this)))
-  (if (-> this color) (set! (-> this draw color-mult quad) (-> this color quad)))
+  (if (-> this color) (vector-copy! (-> this draw color-mult) (-> this color)))
   (transform-post)
   (go-virtual idle :proc this)
   (none))

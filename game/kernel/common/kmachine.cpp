@@ -494,18 +494,14 @@ void pause_tfl_music(bool lerp) {
       lerp_tfl_music(tfl_get_music_vol(), true);
     }
     MiniAudioLib::ma_sound_stop(g_tfl_music);
-    // MiniAudioLib::ma_sound_uninit(g_tfl_music);
-    // delete g_tfl_music;
-    // g_tfl_music = nullptr;
-    // jak1::intern_from_c("*tfl-music-playing?*")->value = offset_of_s7();
   }
 }
 
 u32 play_tfl_music(u32 file_name, u32 volume) {
   auto music_playing = jak1::intern_from_c("*tfl-music-playing?*")->value ==
                        offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
-  auto boss = jak1::intern_from_c("*tfl-boss-music*")->value;
-  auto music_is_playing = music_playing && boss == offset_of_s7();
+  auto boss = jak1::intern_from_c("*tfl-boss-music*")->value != offset_of_s7();
+  auto music_is_playing = (music_playing && !boss) || (music_playing && boss);
   if (music_is_playing) {
     printf("TFL music is already playing!\n");
     return offset_of_s7();
@@ -547,13 +543,14 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
       while (!MiniAudioLib::ma_sound_is_playing(music)) {
         auto pause = jak1::call_goal_function_by_name("tfl-music-player-paused?");
         if (pause == offset_of_s7()) {
+          auto fade = jak1::intern_from_c("*tfl-music-fade?*")->value ==
+                      offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
           MiniAudioLib::ma_sound_start(music);
-          if (jak1::intern_from_c("*tfl-music-fade?*")->value ==
-              offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+          if (fade) {
             lerp_tfl_music(tfl_get_music_vol(), false);
           }
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(16));
       }
     };
 
@@ -567,20 +564,18 @@ u32 play_tfl_music(u32 file_name, u32 volume) {
         if (stop == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
           jak1::intern_from_c("*tfl-music-stop*")->value = offset_of_s7();
           stop_tfl_music(false);
-          // delete g_tfl_music;
-          // std::terminate();
+          return;
         }
         float vol = tfl_get_music_vol();
         MiniAudioLib::ma_sound_set_volume(music, vol);
         auto paused = jak1::call_goal_function_by_name("tfl-music-player-paused?");
-        auto fade = jak1::intern_from_c("*tfl-music-fade?*")->value ==
-                    offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
         if (paused != offset_of_s7()) {
-          // MiniAudioLib::ma_sound_stop(music);
+          auto fade = jak1::intern_from_c("*tfl-music-fade?*")->value ==
+                      offset_of_s7() + jak1_symbols::FIX_SYM_TRUE;
           pause_tfl_music(fade);
           paused_func(music);
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(16));
       }
     };
 

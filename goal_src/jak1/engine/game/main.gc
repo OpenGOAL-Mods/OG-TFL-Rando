@@ -87,6 +87,8 @@
     (if *debug-segment* (menu-respond-to-pause))
     (case *master-mode*
       (('pause)
+       ;; TFL note: added
+       (false! *tfl-music-fade?*)
        ;; request the pause mask to be set in prevent-from-run.
        ;; this will block any process with pause from running, pausing most game objects.
        (if (not *debug-pause*) (logior! (-> *setting-control* default process-mask) (process-mask pause)))
@@ -100,12 +102,16 @@
          (activate-progress *dproc* (progress-screen speedrun-options))
          (hide-progress-screen)))
       (('menu)
+       ;; TFL note: added
+       (false! *tfl-music-fade?*)
        ;; I believe these masks are just to make the progress go away work.
        (logior! (-> *setting-control* default process-mask) (process-mask menu))
        (logclear! (-> *setting-control* default process-mask) (process-mask pause progress))
        (set! *pause-lock* #f)
        (hide-progress-screen))
       (('progress)
+       ;; TFL note: added
+       (false! *tfl-music-fade?*)
        ;; allow menu to run while in progress.
        (logclear! (-> *setting-control* default process-mask) (process-mask menu))
        ;; activate the progress menu.
@@ -116,6 +122,8 @@
            (activate-progress *dproc* (progress-screen fuel-cell)))
          (if (not *progress-process*) (set-master-mode 'game))))
       (('game)
+       ;; TFL note: added
+       (false! *tfl-music-fade?*)
        ;; allow pausable/menu to run.
        (logclear! (-> *setting-control* default process-mask) (process-mask pause menu))
        (if (!= gp-0 *master-mode*) (sound-group-continue (sound-group sfx music dialog sog3 ambient sog5 sog6 sog7)))
@@ -357,8 +365,6 @@
     (blerc-init)
     ;; collide dma
     (suspend)
-    ;; TFL note: added music player
-    (process-spawn tfl-music-player)
     (while *run*
       (runs-every-frame) ;; trigger hook for mod base mod-base-change entry point
       ;; start immediately after all process updates finish.

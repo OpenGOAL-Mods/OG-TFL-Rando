@@ -1,7 +1,7 @@
 ;;-*-Lisp-*-
 (in-package goal)
 (define *tfl-music-player-level-info*
-  (new 'static 'boxed-array :type string "crystal-ca" "crescent-t" "energy-bay" "open-mines"))
+  (new 'static 'boxed-array :type string "crystal-ca" "crescent-t" "energy-bay" "open-mines" "valley"))
 
 (define *tfl-music-player-boss-info* (new 'static 'boxed-array :type string "pds-sentinel"))
 
@@ -13,7 +13,7 @@
 
 (define *tfl-music-stop* #f)
 
-(define *tfl-music-fade?* #t)
+(define *tfl-music-fade?* #f)
 
 (deftype tfl-music-player (process)
   ((level symbol))
@@ -28,7 +28,7 @@
    boss-playing
    fade))
 
-(define-perm *tfl-music-player* (pointer tfl-music-player) (the (pointer tfl-music-player) #f))
+(define-perm *tfl-music-player* tfl-music-player (the tfl-music-player #f))
 
 (defun tfl-music-player-volume ()
   (/ (-> *setting-control* current music-volume) 100.0))
@@ -83,17 +83,16 @@
   (false! *tfl-music-playing?*)
   (false! *tfl-music-stop*)
   (false! *tfl-music-paused?*)
-  (set! *tfl-music-player* (the (pointer tfl-music-player) #f))
+  (set! *tfl-music-player* (the tfl-music-player #f))
   (call-parent-method this))
 
-(defbehavior sleep-code process ()
-  (logior! (-> self mask) (process-mask sleep-code))
-  (loop
-    (suspend)))
+(defmethod relocate ((this tfl-music-player) (offset int))
+  (if *tfl-music-player* (&+! *tfl-music-player* offset))
+  (call-parent-method this offset))
 
 (defbehavior tfl-music-player-init-by-other tfl-music-player ()
+  (set! *tfl-music-player* self)
   (process-mask-clear! (-> self mask) pause menu)
-  (set! *tfl-music-player* (the (pointer tfl-music-player) (process->ppointer self)))
   (set-level! self)
   (go-virtual idle))
 
@@ -101,7 +100,6 @@
   (case message
     (('pause) (true! *tfl-music-fade?*) (true! *tfl-music-paused?*))
     (('unpause) (false! *tfl-music-paused?*))
-    (('fade?) (set! *tfl-music-fade?* (the symbol (-> block param 0))))
     (('boss)
      (let ((val (the symbol (-> block param 0))))
        (set! *tfl-boss-music* val)
@@ -109,8 +107,6 @@
          (go-virtual boss-playing))))))
 
 (defpost tfl-music-player
-  ;; (format 0 "POST tfl-music-player~%")
-  (set! *tfl-music-fade?* (not (paused?)))
   (let ((level (aif (level-get-target-inside *level*) (-> it name) #f)))
     ; (format *stdcon*
     ;         "tfl-music-player:~%level ~A~%playing? ~A~%state: ~A~%boss ~A~%"
@@ -130,7 +126,7 @@
     (behavior ()
       (until (and *target*
                   (not (= (-> *target* next-state name) 'target-continue))
-                  (aif (level-get-target-inside *level*) (not (symbol-member? (-> it status) '(loading loading-bt login))) (the level #f))
+                  (aif (level-get-target-inside *level*) (not (symbol-member? (-> it status) '(loading loading-bt login))))
                   (-> self level)
                   (tfl-level-has-music? (-> self level)))
         (suspend))
@@ -148,7 +144,7 @@
         (go-virtual boss-playing)))
   :code
     (behavior ()
-      (suspend-for (seconds 0.16))
+      (suspend-for (seconds 0.1667))
       (while *tfl-music-playing?*
         (suspend))
       (go-virtual fade)))
@@ -159,9 +155,9 @@
     (behavior ()
       (stop! self)
       (false! *tfl-music-playing?*)
-      (suspend-for (seconds 2))
+      (suspend-for (seconds 1))
       (play-boss! self)
-      (suspend-for (seconds 0.16))
+      (suspend-for (seconds 0.1667))
       (while *tfl-boss-music*
         (suspend))
       (stop! self)
@@ -175,5 +171,7 @@
     (behavior ()
       (when *tfl-music-playing?*
         (stop! self))
-      (suspend-for (seconds 0.16))
+      (suspend-for (seconds 0.1667))
       (go-virtual idle)))
+
+(if (or (zero? *tfl-music-player*) (not *tfl-music-player*)) (process-spawn tfl-music-player))
