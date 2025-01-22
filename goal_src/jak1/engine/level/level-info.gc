@@ -2732,7 +2732,7 @@
        '()
        :mood '*crescent-top-mood*
        :mood-func 'update-mood-crescent-top
-       :ocean '*ocean-map-village1*
+       :ocean '*ocean-map-crescent-t*
        :sky #t
        :sun-fade 1.0
        :continues
@@ -2963,7 +2963,7 @@
        '()
        :mood '*crescent-top-mood*
        :mood-func 'update-mood-crescent-top
-       :ocean '*ocean-map-village1*
+       :ocean '*ocean-map-crescent-t*
        :sky #f
        :sun-fade 1.0
        :continues
@@ -3060,7 +3060,7 @@
        '()
        :mood '*open-mines-mood*
        :mood-func 'update-mood-open-mines
-       :ocean '*ocean-map-village1*
+       :ocean '*ocean-map-crescent-t*
        :sky #f
        :sun-fade 1.0
        :continues
@@ -3271,7 +3271,7 @@
        '()
        :mood '*crescent-top-mood*
        :mood-func 'update-mood-crescent-top
-       :ocean '*ocean-map-village1*
+       :ocean '*ocean-map-crescent-t*
        :sky #f
        :sun-fade 1.0
        :continues
