@@ -6870,6 +6870,7 @@
   "bsphere": [1881.35, 39.67, 1897.35, 10],
   "lump": {
     "name": "valley-slide-control-01",
+    "plat-hack": "valley-pds-plat-square-06",
     "path": [
       "vector3m",
       [1882.06, 38.86, 1897.18],
