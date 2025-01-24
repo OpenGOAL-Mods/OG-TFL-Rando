@@ -452,7 +452,8 @@
   (when (not *weather-off*)
     (case (-> self current-level name)
       (('swamp) (update-rain self))
-      (('snow) (update-snow self))))
+      (('snow) (update-snow self))
+      (('valley) (update-snow-valley self)))) ;; TFL note: added an update-snow function for the end of valley
   (cond
     ((and (= (-> self control ground-pat material) (pat-material ice))
           (and (>= (-> self control unknown-float01) 204.8)

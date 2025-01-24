@@ -1586,6 +1586,16 @@
         "movie-pos": ["movie-pos", [1498.33, 32.88, 2047.41, 270.0]]
       }
     },
+    {
+      "trans": [1760.82, 104.23, 1824.45],
+      "etype": "tfl-lowreskui",
+      "game_task": "(game-task tfl-lowreskui)",
+      "quat" : [-0.000, -0.747, -0.000, -0.665],
+      "bsphere": [1760.82, 104.23, 1824.45, 10],
+      "lump": {
+        "name": "valley-tfl-lowreskui-001"
+      }
+    },
 // Actors: BUZZERS
     {
       "trans": [327.91, 60.58, 1719.45],
