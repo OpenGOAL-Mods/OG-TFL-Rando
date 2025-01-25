@@ -310,7 +310,7 @@ bool BuildActorTool::needs_run(const ToolInput& task, const PathMap& path_map) {
   }
   auto rerun = task.input.at(2) == "#t";
   std::vector<std::string> deps{task.input.at(0)};
-  return rerun || Tool::needs_run({task.input, deps, task.output, task.arg}, path_map);
+  return rerun || Tool::needs_run({deps, deps, task.output, task.arg}, path_map);
 }
 
 bool BuildActorTool::run(const ToolInput& task, const PathMap& path_map) {
