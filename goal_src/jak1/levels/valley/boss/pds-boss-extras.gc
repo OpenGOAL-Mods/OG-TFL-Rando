@@ -503,7 +503,7 @@
         (ja :num! (seek!))
         (let* ((timer (- (current-time) (-> self state-time)))
                (normal-timer (/ (the float timer) (-> self activation-time))))
-          (set! (-> (get-init-spec-by-id (-> *part-id-table* 4134) num) initial-valuef) (lerp-clamp 0.1 0.8 normal-timer))
+          (set! (-> (get-init-spec-by-id 4134 num) initial-valuef) (lerp-clamp 0.1 0.8 normal-timer))
           (cond
             ((pds-trap-can-play-sound?)
              (update-vol! (-> self sound-active) (the int (lerp-clamp 5.0 40.0 normal-timer)))
@@ -557,8 +557,8 @@
         (ja :num! (seek!))
         (let* ((timer (- (current-time) (-> self state-time)))
                (normal-timer (/ (the float timer) (-> self activation-time))))
-          (set! (-> (get-init-spec-by-id (-> *part-id-table* 4137) num) initial-valuef) (lerp-clamp 0.01 0.2 normal-timer))
-          (set! (-> (get-init-spec-by-id (-> *part-id-table* 4139) num) initial-valuef) (lerp-clamp 0.0 0.25 normal-timer))
+          (set! (-> (get-init-spec-by-id 4137 num) initial-valuef) (lerp-clamp 0.01 0.2 normal-timer))
+          (set! (-> (get-init-spec-by-id 4139 num) initial-valuef) (lerp-clamp 0.0 0.25 normal-timer))
           (cond
             ((pds-trap-can-play-sound?)
              (update-vol! (-> self sound-deadly) (the int (lerp-clamp 5.0 30.0 normal-timer)))
