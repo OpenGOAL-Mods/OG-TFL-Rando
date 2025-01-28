@@ -1,6 +1,6 @@
 ;;-*-Lisp-*-
 (in-package goal)
-(defglobalconstant LOWRESKUI_COUNT 4)
+(defglobalconstant LOWRESKUI_COUNT 5)
 
 (deftype lowreskui-info (structure)
   ((level symbol)
@@ -19,7 +19,8 @@
        (new 'static 'lowreskui-info :level 'crystal-ca :text (text-id crystalc-level) :index 0)
        (new 'static 'lowreskui-info :level 'crescent-t :text (text-id crescent-level) :index 1)
        (new 'static 'lowreskui-info :level 'energy-bay :text (text-id energy-bay-level) :index 2)
-       (new 'static 'lowreskui-info :level 'open-mines :text (text-id open-mines-level) :index 3)))
+       (new 'static 'lowreskui-info :level 'open-mines :text (text-id open-mines-level) :index 3)
+       (new 'static 'lowreskui-info :level 'valley :text (text-id valley-level) :index 4)))
 
 (defun get-lowreskui-info-by-level ((lev symbol))
   (dotimes (i LOWRESKUI_COUNT)
