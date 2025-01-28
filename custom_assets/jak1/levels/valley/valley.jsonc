@@ -7446,6 +7446,82 @@
     "name": "valley-waterfall-1",
     "art-name": "group-valley-waterfall-1"
   }
+},
+{
+  "trans": [2075.06, -59.90, 1852.18],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2075.06, -59.90, 1852.18, 10],
+  "lump": {
+    "name": "valley-fog-1",
+    "art-name": "group-valley-fog"
+  }
+},
+{
+  "trans": [623.21, -9.37, 2036.25],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [623.21, -9.37, 2036.25, 10],
+  "lump": {
+    "name": "valley-fog-2",
+    "art-name": "group-valley-fog"
+  }
+},
+{
+  "trans": [1822.73, 249.23, 1625.43],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1822.73, 249.23, 1625.43, 10],
+  "lump": {
+    "name": "valley-montain-snow-01",
+    "art-name": "group-valley-mountain-snow"
+  }
+},
+{
+  "trans": [1451.73, 254.08, 2330.75],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1451.73, 254.08, 2330.75, 10],
+  "lump": {
+    "name": "valley-montain-snow-02",
+    "art-name": "group-valley-mountain-snow"
+  }
+},
+{
+  "trans": [2211.16, 166.18, 2061.51],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2211.16, 166.18, 2061.51, 10],
+  "lump": {
+    "name": "valley-montain-snow-03",
+    "art-name": "group-valley-mountain-snow"
+  }
+},
+{
+  "trans": [1894.33, 293.46, 2274.75],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1894.33, 293.46, 2274.75, 10],
+  "lump": {
+    "name": "valley-montain-snow-04",
+    "art-name": "group-valley-mountain-snow"
+  }
+},
+{
+  "trans": [844.20, 200.28, 1693.82],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [844.20, 200.28, 1693.82, 10],
+  "lump": {
+    "name": "valley-montain-snow-05"
+  }
 }
   ]
 }

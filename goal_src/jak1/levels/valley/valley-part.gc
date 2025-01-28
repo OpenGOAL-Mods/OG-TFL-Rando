@@ -286,3 +286,74 @@
 
 (defpart 4013
   :init-specs ((:fade-a -0.08)))
+
+(defpartgroup group-valley-fog
+  :id 1052
+  :bounds (static-bspherem 64 7 0 96)
+  :parts ((sp-item 4014 :flags (is-3d))))
+
+(defpart 4014
+  :init-specs
+  ((:texture (bigpuff2 effects))
+   (:num 0.1 0.15)
+   (:x (meters -100) (meters 200))
+   (:y (meters -70) (meters 90))
+   (:z (meters -100) (meters 200))
+   (:scale-x (meters 128) (meters 64))
+   (:rot-y (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 8.0 24.0)
+   (:g 8.0 24.0)
+   (:b 8.0 24.0)
+   (:a 0.0)
+   (:scalevel-x (meters 0.01) (meters 0.006666667))
+   (:rotvel-y (degrees -0.01) (degrees 0.02))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a 0.05 0.035)
+   (:timer (seconds 10))
+   (:flags (bit2 bit14 left-multiply-quat))
+   (:next-time (seconds 1) (seconds 0.2))
+   (:next-launcher 4015)
+   (:conerot-x (degrees 90))
+   (:conerot-y (degrees 0) (degrees 360))
+   (:conerot-radius (meters 16) (meters 32))
+   (:rotate-y (degrees 25.000002))))
+
+(defpart 4015
+  :init-specs ((:fade-a 0.0) (:next-time (seconds 4) (seconds 1)) (:next-launcher 4016)))
+
+(defpart 4016
+  :init-specs ((:fade-a -0.1)))
+
+(defpartgroup group-valley-mountain-snow
+  :id 1053
+  :bounds (static-bspherem 0 -16 -32 80)
+  :parts ((sp-item 4017)))
+
+(defpart 4017
+  :init-specs
+  ((:texture (bigpuff effects))
+   (:num 0.010 0.015)
+   (:x (meters -30) (meters 60))
+   (:y (meters -40) (meters 60))
+   (:z (meters -30) (meters 60))
+   (:scale-x (meters 80) (meters 60))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 196.0 64.0)
+   (:g 196.0 64.0)
+   (:b 196.0 64.0)
+   (:a 0.0)
+   (:vel-z (meters -0.03) (meters -0.1))
+   (:scalevel-x (meters 0.05))
+   (:rotvel-z (degrees -0.10) (degrees 0.2))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a 0.13)
+   (:accel-y (meters 0.0001) (meters 0.0001))
+   (:timer (seconds 10))
+   (:flags (bit2 bit3 bit12 bit14))
+   (:next-time (seconds 0.6) (seconds 0.6))
+   (:next-launcher 4018)))
+
+(defpart 4018
+  :init-specs ((:fade-a -0.03)))
