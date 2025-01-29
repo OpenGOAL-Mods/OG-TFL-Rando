@@ -359,7 +359,7 @@
   :init-specs ((:fade-a -0.03)))
 
 (defpartgroup group-valley-butterflies
-  :id 1053
+  :id 1054
   :bounds (static-bspherem 0 0 0 30)
   :parts
   ((sp-item 4019
@@ -460,7 +460,7 @@
    (:flags (bit2 bit9 bit12))))
 
 (defpartgroup group-valley-butterfly-sitting
-  :id 1054
+  :id 1055
   :bounds (static-bspherem 0 0.2 0 0.5)
   :parts
   ((sp-item 4025 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))
@@ -518,7 +518,7 @@
   (none))
 
 (defpartgroup group-valley-birds
-  :id 1055
+  :id 1056
   :bounds (static-bspherem 0 8 0 45)
   :parts
   ((sp-item 4029 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 4030)
@@ -578,9 +578,9 @@
    (:scalevel-x (meters -0.08))
    (:timer (seconds 2))
    (:next-time (seconds 0.335))
-   (:next-launcher 3246)))
+   (:next-launcher 4033)))
 
-(defpart 3246
+(defpart 4033
   :init-specs
   ((:scale-x (meters 0))
    (:scalevel-x (meters -0.04))

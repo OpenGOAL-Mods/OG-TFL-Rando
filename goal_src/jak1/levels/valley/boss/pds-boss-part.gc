@@ -1187,7 +1187,7 @@
 (defpart 4164
   :init-specs ((:fade-r 0.0) (:fade-a -0.8466667) (:timer (seconds 0.5))))
 
-(defpart 4154
+(defpart 4161
   :init-specs
   ((:texture (hotdot effects))
    (:num 1.0)

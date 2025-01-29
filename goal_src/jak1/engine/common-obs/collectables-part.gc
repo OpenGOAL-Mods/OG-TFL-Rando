@@ -4156,26 +4156,6 @@
    (:conerot-y (degrees 0) (degrees 1440))
    (:conerot-radius (meters 1.2))))
 
-(defpart 3690
-  :init-specs
-  ((:texture (new 'static 'texture-id :index #xf :page #x2))
-   (:num 1.0 8.0)
-   (:y (meters 0))
-   (:scale-x (meters 8) (meters 4))
-   (:rot-z (degrees -720) (degrees 1440))
-   (:scale-y (meters 0.4) (meters 0.2))
-   (:r 192.0 64.0)
-   (:g 192.0 64.0)
-   (:b 128.0)
-   (:a 32.0 64.0)
-   (:scalevel-x (meters 0.08))
-   (:fade-r 0.0)
-   (:fade-g -6.4)
-   (:fade-b -4.266667)
-   (:fade-a -1.6)
-   (:timer (seconds 0.2))
-   (:flags (bit2 bit3 bit14))))
-
 (defpart 3687
   :init-specs
   ((:texture (new 'static 'texture-id :index #x3 :page #x2))
