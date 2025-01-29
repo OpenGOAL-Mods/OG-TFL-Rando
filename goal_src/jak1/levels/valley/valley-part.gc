@@ -357,3 +357,244 @@
 
 (defpart 4018
   :init-specs ((:fade-a -0.03)))
+
+(defpartgroup group-valley-butterflies
+  :id 1053
+  :bounds (static-bspherem 0 0 0 30)
+  :parts
+  ((sp-item 4019
+            :fade-after (meters 120)
+            :period (seconds 16.345)
+            :length (seconds 0.017)
+            :hour-mask #b111111100000000000111111
+            :binding 4020)
+   (sp-item 4019
+            :fade-after (meters 120)
+            :period (seconds 22.125)
+            :length (seconds 0.017)
+            :hour-mask #b111111100000000000111111
+            :binding 4020)
+   (sp-item 4019
+            :fade-after (meters 120)
+            :period (seconds 32.82)
+            :length (seconds 0.017)
+            :hour-mask #b111111100000000000111111
+            :binding 4020)
+   (sp-item 4020 :flags (start-dead launch-asap) :binding 4021)
+   (sp-item 4021 :flags (is-3d start-dead))
+   (sp-item 4020 :flags (start-dead launch-asap) :binding 4021)
+   (sp-item 4021 :flags (is-3d start-dead))
+   (sp-item 4020 :flags (start-dead launch-asap) :binding 4021)
+   (sp-item 4021 :flags (is-3d start-dead))
+   (sp-item 4020 :flags (start-dead launch-asap) :binding 4021)
+   (sp-item 4021 :flags (is-3d start-dead))
+   (sp-item 4020 :flags (start-dead launch-asap) :binding 4021)
+   (sp-item 4021 :flags (is-3d start-dead))))
+
+(defpart 4019
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 1.0)
+   (:x (meters 0) (meters 7.5))
+   (:y (meters 14) (meters 3))
+   (:scale-x (meters 1))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:a 0.0)
+   (:vel-y (meters -0.036666665))
+   (:accel-y (meters 0.00033333333))
+   (:timer (seconds 20))
+   (:flags (bit3))
+   (:next-time (seconds 1.85))
+   (:next-launcher 4022)
+   (:rotate-y (degrees 0) (degrees 360))))
+
+(defpart 4022
+  :init-specs ((:accel-y (meters 0)) (:next-time (seconds 9) (seconds 4.997)) (:next-launcher 4023)))
+
+(defpart 4023
+  :init-specs ((:accel-y (meters 0.00033333333))))
+
+(defpart 4020
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:num 1.0)
+   (:x (meters 0) (meters 16))
+   (:y (meters 0) (meters 16))
+   (:z (meters 3) (meters 1))
+   (:scale-x (meters 0.1))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:g 0.0 256.0)
+   (:b 128.0 1 128.0)
+   (:a 0.0)
+   (:omega 0.0 65536.0)
+   (:vel-x (meters -0.017777778) (meters 0.035555556))
+   (:vel-y (meters -0.0074074077) (meters 0.0148148155))
+   (:vel-z (meters 0))
+   (:timer (seconds 20))
+   (:flags (bit3 bit7))
+   (:next-time (seconds 0.5) (seconds 1.497))
+   (:next-launcher 4024)))
+
+(defpart 4024
+  :init-specs
+  ((:vel-x (meters -0.017777778) (meters 0.035555556))
+   (:vel-y (meters -0.0074074077) (meters 0.0148148155))
+   (:rotvel-z (degrees -0.2) (degrees 0.4))))
+
+(defpart 4021
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x22 :page #x2))
+   (:birth-func 'birth-func-copy-rot-color)
+   (:num 2.0)
+   (:scale-x (meters 0.9))
+   (:rot-x (degrees -60) (degrees 300))
+   (:scale-y (meters 1.3))
+   (:r 255.0)
+   (:g 255.0)
+   (:b 255.0)
+   (:a 128.0)
+   (:fade-a -8.0)
+   (:timer (seconds 0.035))
+   (:flags (bit2 bit9 bit12))))
+
+(defpartgroup group-valley-butterfly-sitting
+  :id 1054
+  :bounds (static-bspherem 0 0.2 0 0.5)
+  :parts
+  ((sp-item 4025 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))
+   (sp-item 4026 :fade-after (meters 60) :flags (is-3d bit1) :period (seconds 2) :length (seconds 0.017))))
+
+(defpart 4025
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x22 :page #x2))
+   (:num 1.0)
+   (:y (meters 0.05))
+   (:scale-x (meters 0.9))
+   (:rot-x (degrees 100.00001))
+   (:rot-y (degrees 72.5))
+   (:scale-y (meters 1.3))
+   (:r 0.0)
+   (:g 128.0)
+   (:b 255.0)
+   (:a 128.0)
+   (:rotvel-x (degrees 0.33333334))
+   (:timer (seconds 2))
+   (:flags (bit2 bit9 bit12 left-multiply-quat))
+   (:next-time (seconds 1))
+   (:next-launcher 4027)))
+
+(defpart 4027
+  :init-specs ((:rotvel-x (degrees -0.31666666))))
+
+(defpart 4026
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x22 :page #x2))
+   (:num 1.0)
+   (:y (meters 0.05))
+   (:scale-x (meters 0.9))
+   (:rot-x (degrees 80))
+   (:rot-y (degrees 72.5))
+   (:scale-y (meters 1.3))
+   (:r 0.0)
+   (:g 128.0)
+   (:b 255.0)
+   (:a 128.0)
+   (:rotvel-x (degrees -0.33333334))
+   (:timer (seconds 2))
+   (:flags (bit2 bit9 bit12 left-multiply-quat))
+   (:next-time (seconds 1))
+   (:next-launcher 4028)))
+
+(defpart 4028
+  :init-specs ((:rotvel-x (degrees 0.31666666))))
+
+(defun valley-bird-bob-func ((arg0 sparticle-system) (arg1 sparticle-cpuinfo) (arg2 vector))
+  (set! (-> arg2 y)
+        (+ (-> (the-as process-drawable (-> arg1 key proc)) root trans y)
+           (* -2048.0 (sin (* 218.45334 (the float (mod (-> *display* base-frame-counter) 300)))))))
+  0
+  (none))
+
+(defpartgroup group-valley-birds
+  :id 1055
+  :bounds (static-bspherem 0 8 0 45)
+  :parts
+  ((sp-item 4029 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 4030)
+   (sp-item 4029 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 4030)
+   (sp-item 4029 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 4030)
+   (sp-item 4030 :flags (start-dead launch-asap) :binding 4032)
+   (sp-item 4032 :flags (is-3d start-dead))
+   (sp-item 4030 :flags (start-dead launch-asap) :binding 4032)
+   (sp-item 4032 :flags (is-3d start-dead))
+   (sp-item 4030 :flags (start-dead launch-asap) :binding 4032)
+   (sp-item 4032 :flags (is-3d start-dead))))
+
+(defpart 4029
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:birth-func 'birth-func-random-next-time)
+   (:num 1.0)
+   (:x (meters -15) (meters 30))
+   (:y (meters 0) (meters 16))
+   (:z (meters -15) (meters 30))
+   (:scale-x (meters 1))
+   (:scale-y :copy scale-x)
+   (:r 128.0)
+   (:a 0.0)
+   (:timer (seconds -0.005))
+   (:flags (bit3))
+   (:userdata 199.98)
+   (:func 'valley-bird-bob-func)))
+
+(defpart 4030
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #xf :page #x2))
+   (:birth-func 'birth-func-copy-omega-to-z)
+   (:num 1.0)
+   (:x (meters 0))
+   (:y (meters 0))
+   (:z (meters 30))
+   (:scale-x (meters 0))
+   (:rot-z (degrees 0))
+   (:r 255.0)
+   (:g 255.0)
+   (:b 255.0)
+   (:a 0.0)
+   (:omega 0.0 65536.0)
+   (:vel-x (meters 0.0044444446))
+   (:vel-z (meters 0))
+   (:scalevel-x (meters 0.04))
+   (:timer (seconds 2))
+   (:flags (bit3 bit7))
+   (:func 'sparticle-seagull-moon)
+   (:next-time (seconds 0.665))
+   (:next-launcher 4031)))
+
+(defpart 4031
+  :init-specs
+  ((:scale-x (meters 8))
+   (:scalevel-x (meters -0.08))
+   (:timer (seconds 2))
+   (:next-time (seconds 0.335))
+   (:next-launcher 3246)))
+
+(defpart 3246
+  :init-specs
+  ((:scale-x (meters 0))
+   (:scalevel-x (meters -0.04))
+   (:timer (seconds 2))
+   (:next-time (seconds 0.665))
+   (:next-launcher 4031)))
+
+(defpart 4032
+  :init-specs
+  ((:texture (new 'static 'texture-id :index #x1c :page #x2))
+   (:birth-func 'birth-func-copy2-rot-color)
+   (:num 2.0)
+   (:scale-x (meters 4))
+   (:scale-y (meters 1.5))
+   (:a 128.0)
+   (:timer (seconds 0.017))
+   (:flags (bit2 bit9 bit12))))

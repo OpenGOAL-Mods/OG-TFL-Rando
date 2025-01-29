@@ -7470,6 +7470,204 @@
   }
 },
 {
+  "trans": [783.49, 29.28, 1977.65],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [783.49, 29.28, 1977.65, 10],
+  "lump": {
+    "name": "valley-butterfly-01",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [726.30, 28.72, 1990.27],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [726.30, 28.72, 1990.27, 10],
+  "lump": {
+    "name": "valley-butterfly-02",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [888.40, 21.20, 2007.85],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [888.40, 21.20, 2007.85, 10],
+  "lump": {
+    "name": "valley-butterfly-03",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [926.67, 25.57, 1912.29],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [926.67, 25.57, 1912.29, 10],
+  "lump": {
+    "name": "valley-butterfly-04",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [1042.63, 14.23, 1938.60],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1042.63, 14.23, 1938.60, 10],
+  "lump": {
+    "name": "valley-butterfly-05",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [1118.75, 30.83, 1863.75],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1118.75, 30.83, 1863.75, 10],
+  "lump": {
+    "name": "valley-butterfly-06",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [1189.41, 12.63, 1981.03],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1189.41, 12.63, 1981.03, 10],
+  "lump": {
+    "name": "valley-butterfly-07",
+    "art-name": "group-valley-butterflies"
+  }
+},
+{
+  "trans": [770.90, 33.87, 2029.64],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [770.90, 33.87, 2029.64, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-01",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [852.22, 29.52, 2003.56],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [852.22, 29.52, 2003.56, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-02",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [1007.80, 19.86, 1914.45],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1007.80, 19.86, 1914.45, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-03",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [1153.55, 22.22, 1929.10],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1153.55, 22.22, 1929.10, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-04",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [1135.10, 39.10, 2007.53],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1135.10, 39.10, 2007.53, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-05",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [1149.65, 46.90, 1821.92],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1149.65, 46.90, 1821.92, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-06",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [1082.56, 30.32, 1980.39],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1082.56, 30.32, 1980.39, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-07",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [727.19, 29.64, 1984.80],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [727.19, 29.64, 1984.80, 10],
+  "lump": {
+    "name": "valley-butterfly-sitting-08",
+    "art-name": "group-valley-butterfly-sitting"
+  }
+},
+{
+  "trans": [770.28, 95.20, 2005.17],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [770.28, 95.20, 2005.17, 10],
+  "lump": {
+    "name": "valley-bird-01",
+    "art-name": "group-valley-birds"
+  }
+},
+{
+  "trans": [962.60, 111.85, 1984.84],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [962.60, 111.85, 1984.84, 10],
+  "lump": {
+    "name": "valley-bird-02",
+    "art-name": "group-valley-birds"
+  }
+},
+{
+  "trans": [1165.23, 92.13, 1889.76],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1165.23, 92.13, 1889.76, 10],
+  "lump": {
+    "name": "valley-bird-03",
+    "art-name": "group-valley-birds"
+  }
+},
+{
   "trans": [1822.73, 249.23, 1625.43],
   "etype": "valley-part",
   "game_task": 0,
