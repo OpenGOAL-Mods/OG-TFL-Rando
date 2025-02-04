@@ -24,6 +24,133 @@
 
 (defconstant SUPER_ECO_GREEN_B (/ 96.0 256.0))
 
+(def-actor tfl-crystal-green
+  :bounds (0 0 0 2.5)
+  :joints
+  (align prejoint
+         main
+         explode
+         explode.001
+         explode.002
+         explode.003
+         explode.004
+         explode.005
+         explode.006
+         explode.007
+         explode.008
+         explode.009
+         explode.010
+         explode.011
+         explode.012
+         explode.013
+         explode.014
+         explode.015
+         explode.016
+         explode.017
+         explode.018
+         explode.019
+         explode.020
+         explode.021
+         explode.022))
+
+(def-actor tfl-crystal-red
+  :bounds (0 0 0 2.5)
+  :joints
+  (align prejoint
+         main
+         explode
+         explode.001
+         explode.002
+         explode.003
+         explode.004
+         explode.005
+         explode.006
+         explode.007
+         explode.008
+         explode.009
+         explode.010
+         explode.011
+         explode.012
+         explode.013
+         small
+         explode.014
+         explode.015
+         explode.016
+         explode.017
+         small.001
+         explode.018
+         explode.019
+         small.002
+         small.003))
+
+(def-actor tfl-crystal-blue
+  :bounds (0 0 0 2.5)
+  :joints
+  (align prejoint
+         main
+         explode
+         explode.001
+         explode.002
+         explode.003
+         explode.004
+         explode.005
+         explode.006
+         explode.007
+         explode.008
+         explode.009
+         explode.010
+         explode.011
+         explode.012
+         explode.013
+         explode.014
+         explode.015
+         explode.016
+         explode.017
+         explode.018
+         explode.019
+         explode.020
+         explode.021
+         explode.022
+         explode.023
+         small
+         explode.024
+         explode.025
+         small.001
+         small.002
+         small.003
+         small.004))
+
+(def-actor tfl-crystal-yellow
+  :bounds (0 0 0 2.5)
+  :joints
+  (align prejoint
+         main
+         explode
+         explode.001
+         explode.002
+         explode.003
+         explode.004
+         explode.005
+         explode.006
+         explode.007
+         explode.008
+         explode.009
+         explode.010
+         explode.011
+         explode.012
+         explode.013
+         explode.014
+         explode.015
+         small
+         explode.016
+         explode.017
+         explode.018
+         small.001
+         explode.019
+         explode.020
+         small.002
+         small.003))
+
 (deftype super-eco-crystal (process-drawable)
   ((cshape        collide-shape :overlay-at root)
    (birth-time    time-frame)

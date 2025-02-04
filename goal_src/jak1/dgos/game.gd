@@ -379,6 +379,10 @@
   "ef-plane-ag.go"
   ;; TFL note: added
   "super-eco-crystal.o"
+  "tfl-crystal-green-ag.go"
+  "tfl-crystal-red-ag.go"
+  "tfl-crystal-blue-ag.go"
+  "tfl-crystal-yellow-ag.go"
   "tfl-hint-data.o"
   "tfl-hint.o"
   "tfl-nav-mesh.o"

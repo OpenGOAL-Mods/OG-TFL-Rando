@@ -1711,6 +1711,10 @@
 (build-actor "pds-plat-rectangle" :gen-mesh #t)
 (build-actor "pds-swingpole" :gen-mesh #t)
 (build-actor "pds-cam")
+(build-actor "tfl-crystal-green" :gen-mesh #t)
+(build-actor "tfl-crystal-red" :gen-mesh #t)
+(build-actor "tfl-crystal-blue" :gen-mesh #t)
+(build-actor "tfl-crystal-yellow" :gen-mesh #t)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

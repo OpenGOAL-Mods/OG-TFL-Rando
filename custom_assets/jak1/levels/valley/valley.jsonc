@@ -7435,6 +7435,46 @@
   }
 },
 // Actors: VISUALS
+{
+  "trans": [1884.55, 42.96, 1889.61],
+  "etype": "tfl-crystal-green",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1884.55, 42.96, 1889.61, 10],
+  "lump": {
+    "name": "test-crystal"
+  }
+},
+{
+  "trans": [1886.40, 43.22, 1893.74],
+  "etype": "tfl-crystal-red",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1886.40, 43.22, 1893.74, 10],
+  "lump": {
+    "name": "test-crystal.001"
+  }
+},
+{
+  "trans": [1888.07, 43.33, 1897.54],
+  "etype": "tfl-crystal-blue",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1888.07, 43.33, 1897.54, 10],
+  "lump": {
+    "name": "test-crystal.002"
+  }
+},
+{
+  "trans": [1889.78, 43.08, 1901.56],
+  "etype": "tfl-crystal-yellow",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1889.78, 43.08, 1901.56, 10],
+  "lump": {
+    "name": "test-crystal.003"
+  }
+},
 // Actors: PARTICLES
 {
   "trans": [1501.04, 0.00, 2016.26],
