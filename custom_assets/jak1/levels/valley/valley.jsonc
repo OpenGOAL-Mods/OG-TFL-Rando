@@ -7718,7 +7718,162 @@
   "quat" : [0.000, 0.000, -0.000, 1.000],
   "bsphere": [844.20, 200.28, 1693.82, 10],
   "lump": {
-    "name": "valley-montain-snow-05"
+    "name": "valley-montain-snow-05",
+    "art-name": "group-valley-mountain-snow"
+  }
+},
+{
+  "trans": [1984.36, 54.40, 1788.44],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1984.36, 54.40, 1788.44, 10],
+  "lump": {
+    "name": "valley-snowdrops1-01",
+    "art-name": "group-valley-snowdrops1"
+  }
+},
+{
+  "trans": [1698.46, 68.81, 1865.01],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1698.46, 68.81, 1865.01, 10],
+  "lump": {
+    "name": "valley-snowdrops1-02",
+    "art-name": "group-valley-snowdrops1"
+  }
+},
+{
+  "trans": [764.33, 64.12, 2099.31],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [764.33, 64.12, 2099.31, 10],
+  "lump": {
+    "name": "valley-snowdrops1-03",
+    "art-name": "group-valley-snowdrops1"
+  }
+},
+{
+  "trans": [1930.68, 81.59, 1838.08],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1930.68, 81.59, 1838.08, 10],
+  "lump": {
+    "name": "valley-snowdrops2-01",
+    "art-name": "group-valley-snowdrops2"
+  }
+},
+{
+  "trans": [1877.30, 44.88, 1990.46],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1877.30, 44.88, 1990.46, 10],
+  "lump": {
+    "name": "valley-snowdrops2-02",
+    "art-name": "group-valley-snowdrops2"
+  }
+},
+{
+  "trans": [1430.26, 91.81, 2043.63],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1430.26, 91.81, 2043.63, 10],
+  "lump": {
+    "name": "valley-snowdrops2-03",
+    "art-name": "group-valley-snowdrops2"
+  }
+},
+{
+  "trans": [775.81, 67.59, 2059.58],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [775.81, 67.59, 2059.58, 10],
+  "lump": {
+    "name": "valley-snowdrops2-04",
+    "art-name": "group-valley-snowdrops2"
+  }
+},
+{
+  "trans": [1941.39, 32.81, 1929.73],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1941.39, 32.81, 1929.73, 10],
+  "lump": {
+    "name": "valley-snowdrops3-01",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [1830.33, 42.46, 1889.34],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1830.33, 42.46, 1889.34, 10],
+  "lump": {
+    "name": "valley-snowdrops3-02",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [1490.74, 45.41, 1884.59],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1490.74, 45.41, 1884.59, 10],
+  "lump": {
+    "name": "valley-snowdrops3-03",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [1859.58, 45.26, 2042.42],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1859.58, 45.26, 2042.42, 10],
+  "lump": {
+    "name": "valley-snowdrops3-04",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [1532.08, 74.49, 2043.05],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1532.08, 74.49, 2043.05, 10],
+  "lump": {
+    "name": "valley-snowdrops3-05",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [856.75, 73.13, 2066.46],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [856.75, 73.13, 2066.46, 10],
+  "lump": {
+    "name": "valley-snowdrops3-06",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [686.97, 88.65, 1906.51],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [686.97, 88.65, 1906.51, 10],
+  "lump": {
+    "name": "valley-snowdrops3-07",
+    "art-name": "group-valley-snowdrops3"
   }
 }
   ]
