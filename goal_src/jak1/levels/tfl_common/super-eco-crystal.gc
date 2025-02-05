@@ -1,28 +1,5 @@
 ;;-*-Lisp-*-
 (in-package goal)
-(defconstant SUPER_ECO_BLUE_R 0.0)
-
-(defconstant SUPER_ECO_BLUE_G 7.0)
-
-(defconstant SUPER_ECO_BLUE_B 16.0)
-
-(defconstant SUPER_ECO_YELLOW_R 3.0)
-
-(defconstant SUPER_ECO_YELLOW_G 8.0)
-
-(defconstant SUPER_ECO_YELLOW_B 0.0)
-
-(defconstant SUPER_ECO_RED_R (/ 192.0 256.0))
-
-(defconstant SUPER_ECO_RED_G (/ 80.0 256.0))
-
-(defconstant SUPER_ECO_RED_B 0.0)
-
-(defconstant SUPER_ECO_GREEN_R 0.0)
-
-(defconstant SUPER_ECO_GREEN_G 30.0)
-
-(defconstant SUPER_ECO_GREEN_B (/ 96.0 256.0))
 
 (def-actor tfl-crystal-green
   :bounds (0 0 0 2.5)
@@ -313,22 +290,18 @@
   (set! (-> self respawn-timer) (aif respawn-time (seconds it) (seconds 20)))
   (case (-> self eco-type)
     (('blue)
-     (set-vector! (-> self color) SUPER_ECO_BLUE_R SUPER_ECO_BLUE_G SUPER_ECO_BLUE_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "blue-eco-idle" :fo-max 15))
      (set! (-> self ambient-part) 952)
      (set! (-> self explode-part) 953))
     (('yellow)
-     (set-vector! (-> self color) SUPER_ECO_YELLOW_R SUPER_ECO_YELLOW_G SUPER_ECO_YELLOW_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "yel-eco-idle" :fo-max 15))
      (set! (-> self ambient-part) 954)
      (set! (-> self explode-part) 955))
     (('red)
-     (set-vector! (-> self color) SUPER_ECO_RED_R SUPER_ECO_RED_G SUPER_ECO_RED_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "red-eco-idle" :fo-max 15))
      (set! (-> self ambient-part) 956)
      (set! (-> self explode-part) 957))
     (('green)
-     (set-vector! (-> self color) SUPER_ECO_GREEN_R SUPER_ECO_GREEN_G SUPER_ECO_GREEN_B 0.0)
      (set! (-> self sound-name) (static-sound-spec "green-eco-idle" :fo-max 15))
      (set! (-> self ambient-part) 950)
      (set! (-> self explode-part) 951)))
@@ -350,22 +323,18 @@
   (set! (-> this respawn-timer) (aif (res-lump-value (-> this entity) 'respawn-timer int32) (seconds it) (seconds 20)))
   (case (-> this eco-type)
     (('blue)
-     (set-vector! (-> this color) SUPER_ECO_BLUE_R SUPER_ECO_BLUE_G SUPER_ECO_BLUE_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "blue-eco-idle" :fo-max 15))
      (set! (-> this ambient-part) 952)
      (set! (-> this explode-part) 953))
     (('yellow)
-     (set-vector! (-> this color) SUPER_ECO_YELLOW_R SUPER_ECO_YELLOW_G SUPER_ECO_YELLOW_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "yel-eco-idle" :fo-max 15))
      (set! (-> this ambient-part) 954)
      (set! (-> this explode-part) 955))
     (('red)
-     (set-vector! (-> this color) SUPER_ECO_RED_R SUPER_ECO_RED_G SUPER_ECO_RED_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "red-eco-idle" :fo-max 15))
      (set! (-> this ambient-part) 956)
      (set! (-> this explode-part) 957))
     (('green)
-     (set-vector! (-> this color) SUPER_ECO_GREEN_R SUPER_ECO_GREEN_G SUPER_ECO_GREEN_B 0.0)
      (set! (-> this sound-name) (static-sound-spec "green-eco-idle" :fo-max 15))
      (set! (-> this ambient-part) 950)
      (set! (-> this explode-part) 951)))
@@ -397,32 +366,36 @@
 
 (defmethod do-lighting! ((this super-eco-crystal))
   (let* ((eco-type (-> this eco-type))
-         (flicker-speed 0.75)
-         (flicker-amp 1.5)
+         (flicker-speed (case eco-type
+                          (('green) 0.6)
+                          (('red) 1.0)
+                          (('yellow) 0.5)
+                          (('blue) 3.0)))
+         (flicker-amp 0.5)
          (min-blue (case eco-type
-                     (('green) 0.125)
-                     (('red 'yellow) 0.0)
-                     (('blue) 0.7)))
+                     (('green 'yellow 'blue) 0.1)
+                     (('red) -0.2)))
          (max-blue (case eco-type
-                     (('green) 0.25)
-                     (('red 'yellow) 0.0)
-                     (('blue) 1.3)))
+                     (('green) 0.4)
+                     (('red) 0.1)
+                     (('yellow) 0.5)
+                     (('blue) 1.0)))
          (min-red (case eco-type
-                    (('green 'yellow 'blue) 0.0)
-                    (('red) 0.7)))
+                    (('green 'yellow 'blue) 0.1)
+                    (('red) -0.2)))
          (max-red (case eco-type
-                    (('green 'blue) 0.0)
-                    (('red) 1.3)
-                    (('yellow) 0.5)))
+                    (('green) 0.4)
+                    (('red) 0.3)
+                    (('yellow) 1.1)
+                    (('blue) 0.3)))
          (min-green (case eco-type
-                      (('red 'blue) 0.0)
-                      (('green) 1.0)
-                      (('yellow) 0.125)))
+                      (('green 'yellow 'blue) 0.1)
+                      (('red) -0.2)))
          (max-green (case eco-type
-                      (('green) 2.3)
-                      (('red) 0.3)
-                      (('yellow) 0.375)
-                      (('blue) 1.3)))
+                      (('green) 1.0)
+                      (('red) 0.1)
+                      (('yellow) 1.1)
+                      (('blue) 0.5)))
          (r (case eco-type
               (('green 'blue) 0.0)
               (('red 'yellow)
