@@ -1,6 +1,5 @@
 ;;-*-Lisp-*-
 (in-package goal)
-
 (def-actor tfl-crystal-green
   :bounds (0 0 0 2.5)
   :joints
@@ -271,7 +270,7 @@
       (set! (-> prim-mesh collide-with) (collide-kind target))
       (set! (-> prim-mesh prim-core action) (collide-action solid))
       (set! (-> prim-mesh prim-core offense) (collide-offense touch))
-      (set! (-> prim-mesh transform-index) 0)
+      (set! (-> prim-mesh transform-index) (joint-node-index tfl-crystal-blue-lod0-jg main))
       (set-vector! (-> prim-mesh local-sphere) 0.0 (meters 1.7) 0.0 (meters 2))
       (set-root-prim! cshape prim-mesh))
     (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
