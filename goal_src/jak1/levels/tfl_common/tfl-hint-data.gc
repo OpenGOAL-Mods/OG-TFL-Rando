@@ -14,6 +14,7 @@
    (target-mode       pair) ;; only play if jak is in a specific mode (empty list to ignore)
    (close-task        game-task) ;; if set, this task will be set to the cstage defined by close-task-status upon listening to the hint
    (close-task-status task-status) ;; set close-task to this specific cstage after listening to the hint
+   (play-func         (function symbol)) ;; optional arbitrary condition for playing the hint
    ))
 
 #|
@@ -35,7 +36,7 @@ examples:
 '(anim eichar-stance-loop 0): the eichar-stance-loop animation is playing on channel 0
 |#
 
-(defmacro static-hint-data (&key file-name &key (alt-names (new 'static 'boxed-array :type string)) &key (text-id (text-id zero)) &key (voicebox? #f) &key (interrupt? #f) &key (repeat? #f) &key (repeat-delay (seconds 5)) &key (task (game-task none)) &key (task-status (task-status unknown)) &key (force-playback? #f) &key (target-mode '()) &key (close-task (game-task none)) &key (close-task-status (task-status unknown)))
+(defmacro static-hint-data (&key file-name &key (alt-names (new 'static 'boxed-array :type string)) &key (text-id (text-id zero)) &key (voicebox? #f) &key (interrupt? #f) &key (repeat? #f) &key (repeat-delay (seconds 5)) &key (task (game-task none)) &key (task-status (task-status unknown)) &key (force-playback? #f) &key (target-mode '()) &key (close-task (game-task none)) &key (close-task-status (task-status unknown)) &key (play-func #f))
   `(new 'static
        'tfl-hint-data
        :file-name ,file-name
@@ -50,7 +51,8 @@ examples:
        :force-playback? ,force-playback?
        :target-mode ,target-mode
        :close-task ,close-task
-       :close-task-status ,close-task-status))
+       :close-task-status ,close-task-status
+       :play-func ,play-func))
 
 (define *tfl-hints*
   (new 'static
@@ -145,3 +147,7 @@ examples:
                          :text-id (text-id energy-bay-tfl-hint-04-SamosCrystal)
                          :voicebox? #t
                          :force-playback? #t)))
+
+(dotimes (i (length *tfl-hints*))
+  (when (not (-> *tfl-hints* i play-func))
+    (set! (-> *tfl-hints* i play-func) false-func)))
