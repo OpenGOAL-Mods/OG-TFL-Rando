@@ -89,7 +89,8 @@
     "pds-plat-square",
     "pds-plat-rectangle",
     "pds-swingpole",
-    "pds-cam"
+    "pds-cam",
+    "lab-door"
   ],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
@@ -378,7 +379,7 @@
           [2008.14, 19.20, 1853.24]
         ],
       "nav-mesh-actor": "valley-pds-master-01",
-      "movie-pos": ["movie-pos", [2075.06, 7.93, 1852.18, 0.0]]
+      "movie-pos": ["movie-pos", [2075.06, 7.93, 1852.18, -60.0]]
     }
   },
   {
@@ -7434,55 +7435,65 @@
     ]
   }
 },
+{
+  "trans": [2162.89, 9.33, 1802.22],
+  "etype": "lab-door",
+  "game_task": "(game-task valley-boss)",
+  "quat" : [0.000, 0.259, -0.000, 0.966],
+  "bsphere": [2162.89, 9.33, 1802.22, 10],
+  "lump": {
+    "name": "valley-lab-door-01"
+  }
+},
 // Actors: VISUALS
-{
-  "trans": [1884.55, 42.96, 1889.61],
-  "etype": "super-eco-crystal",
-  "game_task": 0,
-  "quat" : [0.000, 0.000, -0.000, 1.000],
-  "bsphere": [1884.55, 42.96, 1889.61, 10],
-  "lump": {
-    "name": "test-crystal",
-    "eco-type": "'green",
-    "respawn-timer": ["int32", 8]
-  }
-},
-{
-  "trans": [1886.40, 43.22, 1893.74],
-  "etype": "super-eco-crystal",
-  "game_task": 0,
-  "quat" : [0.000, 0.000, -0.000, 1.000],
-  "bsphere": [1886.40, 43.22, 1893.74, 10],
-  "lump": {
-    "name": "test-crystal.001",
-    "eco-type": "'red",
-    "respawn-timer": ["int32", 8]
-  }
-},
-{
-  "trans": [1888.07, 43.33, 1897.54],
-  "etype": "super-eco-crystal",
-  "game_task": 0,
-  "quat" : [0.000, 0.000, -0.000, 1.000],
-  "bsphere": [1888.07, 43.33, 1897.54, 10],
-  "lump": {
-    "name": "test-crystal.002",
-    "eco-type": "'blue",
-    "respawn-timer": ["int32", 8]
-  }
-},
-{
-  "trans": [1889.78, 43.08, 1901.56],
-  "etype": "super-eco-crystal",
-  "game_task": 0,
-  "quat" : [0.000, 0.000, -0.000, 1.000],
-  "bsphere": [1889.78, 43.08, 1901.56, 10],
-  "lump": {
-    "name": "test-crystal.003",
-    "eco-type": "'yellow",
-    "respawn-timer": ["int32", 8]
-  }
-},
+// {
+//   "trans": [1884.55, 42.96, 1889.61],
+//   "etype": "super-eco-crystal",
+//   "game_task": 0,
+//   "quat" : [0.000, 0.000, -0.000, 1.000],
+//   "bsphere": [1884.55, 42.96, 1889.61, 10],
+//   "lump": {
+//     "name": "test-crystal",
+//     "eco-type": "'green",
+//     "respawn-timer": ["int32", 8]
+//   }
+// },
+// {
+//   "trans": [1886.40, 43.22, 1893.74],
+//   "etype": "super-eco-crystal",
+//   "game_task": 0,
+//   "quat" : [0.000, 0.000, -0.000, 1.000],
+//   "bsphere": [1886.40, 43.22, 1893.74, 10],
+//   "lump": {
+//     "name": "test-crystal.001",
+//     "eco-type": "'red",
+//     "respawn-timer": ["int32", 8]
+//   }
+// },
+// {
+//   "trans": [1888.07, 43.33, 1897.54],
+//   "etype": "super-eco-crystal",
+//   "game_task": 0,
+//   "quat" : [0.000, 0.000, -0.000, 1.000],
+//   "bsphere": [1888.07, 43.33, 1897.54, 10],
+//   "lump": {
+//     "name": "test-crystal.002",
+//     "eco-type": "'blue",
+//     "respawn-timer": ["int32", 8]
+//   }
+// },
+// {
+//   "trans": [1889.78, 43.08, 1901.56],
+//   "etype": "super-eco-crystal",
+//   "game_task": 0,
+//   "quat" : [0.000, 0.000, -0.000, 1.000],
+//   "bsphere": [1889.78, 43.08, 1901.56, 10],
+//   "lump": {
+//     "name": "test-crystal.003",
+//     "eco-type": "'yellow",
+//     "respawn-timer": ["int32", 8]
+//   }
+// },
 // Actors: PARTICLES
 {
   "trans": [1501.04, 0.00, 2016.26],
