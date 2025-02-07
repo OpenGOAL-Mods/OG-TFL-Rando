@@ -11,6 +11,22 @@
 
 ;; TODO: there are some missing functions here...
 
+;; TFL note: added
+(defun debug-draw-cmeshes ((pd process-drawable))
+  (if (and pd
+           (-> pd root)
+           (type-type? (-> pd root type) collide-shape)
+           (-> (the collide-shape (-> pd root)) root-prim)
+           (type-type? (-> (the collide-shape (-> pd root)) root-prim type) collide-shape-prim-group))
+    (let* ((cshape (the collide-shape (-> pd root)))
+           (cgroup (the collide-shape-prim-group (-> cshape root-prim)))
+           (mesh-arr (res-lump-struct (-> pd draw jgeo extra) 'collide-mesh-group (array collide-mesh)))
+           (cnt (num-mesh cgroup (the collide-shape-prim mesh-arr))))
+      (dotimes (i (-> cgroup num-prims))
+        (let* ((prim (-> cgroup prim i))
+               (joint-idx (-> prim transform-index)))
+          (if (type-type? (-> prim type) collide-shape-prim-mesh) (debug-draw-tris (-> mesh-arr i) pd joint-idx)))))))
+
 ;; DECOMP BEGINS
 
 (defun cspace-by-name ((arg0 process-drawable) (arg1 string))
