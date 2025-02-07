@@ -144,7 +144,7 @@
 (def-actor lab-door
   :bounds (0 0 0 50)
   :art (idle-ja opening-ja open-idle-ja)
-  :joints (align prejoint door-left lock-left door-right lock-right))
+  :joints (align prejoint door-left lock-left col-left door-right lock-right col-right))
 
 (def-actor pds-sentinel
   :bounds (0 0 0 25)

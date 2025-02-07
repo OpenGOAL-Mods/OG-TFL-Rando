@@ -985,7 +985,7 @@
 (defpart 3841
   :init-specs ((:fade-b -6.826667)))
 
-(defpartgroup group-misty-bone-01
+(defpartgroup group-mines-bone-01
   :id 1014
   :duration (seconds 2)
   :flags (use-local-clock)
@@ -1209,7 +1209,7 @@
    (:flags (bit2 bit12))
    (:rotate-y (degrees 187))))
 
-(defpartgroup group-misty-bone-03
+(defpartgroup group-mines-bone-03
   :id 1015
   :duration (seconds 2)
   :flags (use-local-clock)
@@ -1377,7 +1377,7 @@
    (:flags (bit2 bit12))
    (:rotate-y (degrees 249.99998))))
 
-(defpartgroup group-misty-bone-02
+(defpartgroup group-mines-bone-02
   :id 1016
   :duration (seconds 2)
   :flags (use-local-clock)
@@ -1545,7 +1545,7 @@
    (:flags (bit2 bit12))
    (:rotate-y (degrees 114))))
 
-(defpartgroup group-misty-bone-07
+(defpartgroup group-mines-bone-07
   :id 1017
   :duration (seconds 2)
   :flags (use-local-clock)
