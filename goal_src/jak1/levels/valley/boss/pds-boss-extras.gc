@@ -1378,4 +1378,115 @@
 ;;; door
 ;;;;;;;;;;;;;;;;;
 
-(deftype pds-lab-door (process-drawable) ())
+(deftype lab-door (process-drawable)
+  ((root      collide-shape :override)
+   (open-dist float))
+  (:methods
+   (init-collision! (_type_) object)
+   (closest-pt-on-line (_type_ vector vector vector vector) vector)
+   (should-open? (_type_) symbol))
+  (:state-methods
+   idle
+   open
+   opened))
+
+(defmethod init-collision! ((this lab-door))
+  (let ((cshape (new 'process 'collide-shape this (collide-list-enum hit-by-player))))
+    (let ((cgroup (new 'process 'collide-shape-prim-group cshape (the uint 2) 0)))
+      (set! (-> cgroup prim-core collide-as) (collide-kind wall-object))
+      (set! (-> cgroup collide-with) (collide-kind target))
+      (set! (-> cgroup prim-core action) (collide-action solid))
+      (set! (-> cgroup transform-index) 0)
+      (set-vector! (-> cgroup local-sphere) 0.0 0.0 0.0 (meters 60))
+      (set-root-prim! cshape cgroup)
+      (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
+        (set! (-> mesh prim-core collide-as) (collide-kind wall-object))
+        (set! (-> mesh collide-with) (collide-kind target))
+        (set! (-> mesh prim-core action) (collide-action solid))
+        (set! (-> mesh prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh transform-index) (joint-node-index lab-door-lod0-jg door-left))
+        (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 (meters 40))
+        (append-prim cgroup mesh))
+      (let ((mesh1 (new 'process 'collide-shape-prim-mesh cshape (the uint 1) (the uint 1))))
+        (set! (-> mesh1 prim-core collide-as) (collide-kind wall-object))
+        (set! (-> mesh1 collide-with) (collide-kind target))
+        (set! (-> mesh1 prim-core action) (collide-action solid))
+        (set! (-> mesh1 prim-core offense) (collide-offense indestructible))
+        (set! (-> mesh1 transform-index) (joint-node-index lab-door-lod0-jg door-right))
+        (set-vector! (-> mesh1 local-sphere) 0.0 (meters 0) 0.0 (meters 40))
+        (append-prim cgroup mesh1)))
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (backup-collide-with-as cshape)
+    (set! (-> this root) cshape)))
+
+(defmethod init-from-entity! ((this lab-door) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (process-mask-clear! (-> this mask) actor-pause)
+  (initialize-skeleton this *lab-door-sg* '())
+  (set! (-> this open-dist) (meters 17.5))
+  (cond
+    ((not (logtest? (-> e extra perm status) (entity-perm-status complete))) (go-virtual idle :proc this))
+    ((logtest? (-> e extra perm status) (entity-perm-status complete)) (go-virtual opened :proc this))
+    (else (go-virtual opened :proc this)))
+  (none))
+
+(defmethod closest-pt-on-line ((this lab-door) (dest vector) (pt vector) (line-pt vector) (line-dir vector))
+  (let* ((pq (vector-! (new-stack-vector0) pt line-pt))
+         (t (/ (vector-dot pq line-dir) (vector-dot line-dir line-dir))))
+    (vector+! dest line-pt (vector-float*! (new-stack-vector0) line-dir t))))
+
+(defmethod should-open? ((this lab-door))
+  (when (and *target* (task-complete? *game-info* (-> this entity extra perm task)))
+    (let* ((dir (set-vector! (new-stack-vector0) (degrees 0) (degrees -60) (degrees 0) 1.0))
+           (q (quaternion-zxy! (new-stack-quaternion0) dir))
+           (line (vector+! (new-stack-vector0)
+                           (-> this root trans)
+                           (vector-normalize! (vector-z-quaternion! (new-stack-vector0) q) (meters 17.5))))
+           (closest (closest-pt-on-line this
+                                        (new-stack-vector0)
+                                        (target-pos 0)
+                                        (-> this root trans)
+                                        (vector-normalize! (vector-z-quaternion! (new-stack-vector0) q) (-> this open-dist))))
+           (dist (vector-vector-xz-distance closest (-> this root trans))))
+      (when *debug-segment*
+        (add-debug-line #t (bucket-id debug) (-> this root trans) line (static-rgba 0 #x70 0 #x80) #f (the rgba -1))
+        (add-debug-sphere #t (bucket-id debug-no-zbuf) closest (meters 0.1) (static-rgba 255 155 11 #x80))
+        (format *stdcon* "door dist ~,,2m~%" dist))
+      (< dist (-> this open-dist)))))
+
+(defstatehandler lab-door :post transform-post)
+
+(defstate idle (lab-door)
+  :virtual #t
+  :trans
+    (behavior ()
+      (when (should-open? self)
+        (go-virtual open)))
+  :code
+    (behavior ()
+      (ja :group! lab-door-idle-ja :num! (identity 0.0))
+      (loop
+        (ja :num! (loop!))
+        (suspend))))
+
+(defstate open (lab-door)
+  :virtual #t
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.1))
+      (ja-no-eval :group! lab-door-opening-ja :num! min)
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (suspend))
+      (process-entity-status! self (entity-perm-status complete) #t)
+      (go-virtual opened)))
+
+(defstate opened (lab-door)
+  :virtual #t
+  :code
+    (behavior ()
+      (ja :group! lab-door-open-idle-ja :num! min)
+      (loop
+        (ja :num! (loop!))
+        (suspend))))

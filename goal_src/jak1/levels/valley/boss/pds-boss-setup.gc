@@ -141,8 +141,10 @@
   :bounds (0 0 0 7.5)
   :joints (align prejoint swing part01))
 
-(def-actor pds-lab-door
-  :bounds (0 0 0 50))
+(def-actor lab-door
+  :bounds (0 0 0 50)
+  :art (idle-ja opening-ja open-idle-ja)
+  :joints (align prejoint door-left lock-left door-right lock-right))
 
 (def-actor pds-sentinel
   :bounds (0 0 0 25)
