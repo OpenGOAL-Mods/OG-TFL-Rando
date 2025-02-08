@@ -153,7 +153,7 @@
 
 (def-actor pds-cam
   :bounds (0 0 0 25)
-  :art (idle-ja wake-ja death-ja)
+  :art (idle-ja wake-ja death-ja lab-door-ja)
   :joints (align prejoint pdscam camera))
 
 (deftype tfl-arcing-shot (process-drawable)
