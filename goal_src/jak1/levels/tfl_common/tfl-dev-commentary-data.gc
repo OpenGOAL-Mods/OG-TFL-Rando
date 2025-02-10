@@ -10,7 +10,8 @@
   (done))
 
 (defenum tfl-commentary-dev
-  (kuitar))
+  (kuitar)
+  (pex))
 
 (deftype tfl-commentary-spawn-func (structure)
   ((name string)
@@ -27,6 +28,7 @@
 (defun tfl-commentary-dev->string ((val tfl-commentary-dev))
   (case val
     (((tfl-commentary-dev kuitar)) "Kuitar")
+    (((tfl-commentary-dev pex)) "Pex")
     (else "*unknown*")))
 
 #|
@@ -67,6 +69,7 @@ examples:
 (900 spawn 0 "super-eco-crystal0") ;; 3 seconds in, call the function that spawns a super eco crystal at index 0 in the handle list.
 (1200 send-event 0 powerup ()) ;; send a "powerup" event to the process at handle list index 0.
 (1500 go 0 super-eco-crystal-break) ;; force the process at handle list index 0 to go into the super-eco-crystal-break state.
+(1500 go-virtual 0 break) ;; force the process at handle list index 0 to go into its state method called 'break'.
 (3000 kill 0) ;; kill the process at index 0 in the handle list.
 (end release) ;; ungrab jak once the commentary playback is finished.
 |#
@@ -75,7 +78,7 @@ examples:
   `(new 'static
        'tfl-commentary-data
        :file-name ,file-name
-       :dev-name ,dev-name
+       :dev-name (tfl-commentary-dev ,dev-name)
        :description ,description
        :length (seconds ,length)
        :spawn-list
@@ -91,7 +94,8 @@ examples:
        :type
        tfl-commentary-data
        (static-commentary-data :file-name "dev00.wav"
-                               :dev-name (tfl-commentary-dev kuitar)
+                               :dev-name
+                               kuitar
                                :description "Designing Energy Bay"
                                :length 5.0
                                :cmd-list
@@ -102,7 +106,8 @@ examples:
                                 (300 pov-camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
                                 (end release)))
        (static-commentary-data :file-name "tfl-dev-crescent-control-room-kui.wav"
-                               :dev-name (tfl-commentary-dev kuitar)
+                               :dev-name
+                               kuitar
                                :description "Underground Area"
                                :length 35.0
                                :spawn-list
@@ -133,10 +138,43 @@ examples:
                                 ;  (min-y -2)
                                 ;  (tilt-adjust 6))
                                 ; (900 send-event 0 powerup (a b c 0 0.0 "test" last))
-                                (1200 go 0 super-eco-crystal-break)
-                                (1500 go 1 super-eco-crystal-break)
-                                (1800 go 2 super-eco-crystal-break)
-                                (2100 go 3 super-eco-crystal-break)
+                                (1200 go-virtual 0 break)
+                                (1500 go-virtual 1 break)
+                                (1800 go-virtual 2 break)
+                                (2100 go-virtual 3 break)
+                                (2500 kill cam-control)
+                                (9100 kill 0)
+                                (9400 kill 1)
+                                (9700 kill 2)
+                                (10000 kill 3)
+                                (end release)))
+       (static-commentary-data :file-name "tfl-dev-crescent-control-room-pex.wav"
+                               :dev-name
+                               pex
+                               :description "Underground Area"
+                               :length 35.0
+                               :spawn-list
+                               ((tfl-static-spawn-func "super-eco-crystal0"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 388.75) 'red 20)))
+                                (tfl-static-spawn-func "super-eco-crystal1"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 392.75) 'green 20)))
+                                (tfl-static-spawn-func "super-eco-crystal2"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 396.75) 'blue 20)))
+                                (tfl-static-spawn-func "super-eco-crystal3"
+                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 400.75) 'yellow 20))))
+                               :cmd-list
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (300 spawn 0 "super-eco-crystal0")
+                                (300 spawn 1 "super-eco-crystal1")
+                                (300 spawn 2 "super-eco-crystal2")
+                                (300 spawn 3 "super-eco-crystal3")
+                                (1200 go-virtual 0 break)
+                                (1500 go-virtual 1 break)
+                                (1800 go-virtual 2 break)
+                                (2100 go-virtual 3 break)
                                 (2500 kill cam-control)
                                 (9100 kill 0)
                                 (9400 kill 1)

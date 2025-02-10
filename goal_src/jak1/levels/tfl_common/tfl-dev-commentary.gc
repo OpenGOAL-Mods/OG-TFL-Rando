@@ -47,6 +47,12 @@
 (def-actor tfl-commentary-node-active
   :bounds (0 0 0 5))
 
+(def-actor tfl-commentary-node-pex
+  :bounds (0 0 0 5))
+
+(def-actor tfl-commentary-node-pex-active
+  :bounds (0 0 0 5))
+
 (deftype tfl-commentary-keyframes (basic)
   ((num-cmds int32)
    (data     time-frame :dynamic))
@@ -82,6 +88,8 @@
    (cmd-frames        tfl-commentary-keyframes))
   (:methods
    (common-init (_type_) object)
+   (get-skel (_type_ symbol) skeleton-group)
+   (lod-setup! (_type_) object)
    (init-keyframes! (_type_) object)
    (get-bg-width-for-str (_type_ string) float)
    (draw-hud (_type_) object)
@@ -255,6 +263,13 @@
     (if (string= (-> this data spawn-list i name) name) (return (the (function handle) (-> this data spawn-list i func)))))
   (the (function handle) #f))
 
+(defun find-virtual-state-by-name ((t type) (name symbol))
+  (dotimes (i (-> t allocated-length))
+    (let ((method (-> t method-table i)))
+      (when (and method (nonzero? method) (type-type? (-> method type) state))
+        (let ((as-state (the state method))) (if (= (-> as-state name) name) (return as-state))))))
+  (the state #f))
+
 (defmethod execute-single-cmd ((this tfl-commentary-node) (cmd pair))
   (format 0 "tfl-commentary-node::parse-cmd executing cmd ~A~%" cmd)
   (let* ((c (car cmd))
@@ -293,6 +308,16 @@
          (when p
            (with-pp
              (protect (pp) (set! pp p) (set! (-> pp next-state) state) (enter-state #f #f #f #f #f #f))))))
+      (('go-virtual)
+       (let* ((idx (/ (the int (ref rest 0)) 8))
+              (p (handle->process (-> this proc idx)))
+              (t (rtype-of p))
+              (state-name (the symbol (ref rest 1))))
+         (when p
+           (let ((state (find-virtual-state-by-name t state-name)))
+             (when state
+               (with-pp
+                 (protect (pp) (set! pp p) (set! (-> pp next-state) state) (enter-state #f #f #f #f #f #f))))))))
       (('kill)
        (let ((param (ref rest 0)))
          (if (binteger? param)
@@ -320,13 +345,6 @@
            (dotimes (i argc)
              (set! (-> block param i) (the uint (ref args i))))
            (send-event-function p block))))
-      (('go)
-       (let* ((idx (/ (the int (ref rest 0)) 8))
-              (p (handle->process (-> this proc idx)))
-              (state (the state (-> (the symbol (ref rest 1)) value))))
-         (when p
-           (with-pp
-             (protect (pp) (set! pp p) (set! (-> pp next-state) state) (enter-state #f #f #f #f #f #f))))))
       (('cam-control)
        (set! (-> this cam-control)
              (ppointer->handle (process-spawn tfl-cam-control (parse-cam-control! this (-> this cam-control-parms) (the pair rest))))))
@@ -364,6 +382,8 @@
      (if (handle->process (-> this pov-cam)) (send-event (handle->process (-> this pov-cam)) 'abort))
      (process-release? *target*)
      (set! (-> this pov-cam) INVALID_HANDLE)
+     (cpad-clear! 0 l2)
+     (cpad-clear! 0 circle)
      (go-virtual idle :proc this))))
 
 (defun rminutes ((time time-frame))
@@ -454,14 +474,7 @@
 (defmethod common-init ((this tfl-commentary-node))
   (stack-size-set! (-> this main-thread) 512)
   (set! (-> this root) (new 'process 'trsqv))
-  (logior! (-> this mask) (process-mask actor-pause))
-  (initialize-skeleton this *tfl-commentary-node-sg* '())
-  (setup-lods! (-> this inactive-look) *tfl-commentary-node-sg* (-> this draw art-group) (-> this entity))
-  (setup-lods! (-> this active-look)
-               *tfl-commentary-node-active-sg*
-               (art-group-get-by-name (-> *level* level-default) "tfl-commentary-node-active")
-               (-> this entity))
-  (set-look! this 'inactive)
+  (process-mask-set! (-> this mask) actor-pause)
   (set! (-> this pov-cam) INVALID_HANDLE)
   (set! (-> this cam-control) INVALID_HANDLE)
   (set! (-> this cam-control-parms) (new 'process 'tfl-cam-control-init-params))
@@ -469,11 +482,48 @@
     (set! (-> this proc i) INVALID_HANDLE))
   (set! (-> this hud) INVALID_HANDLE))
 
+(defmethod get-skel ((this tfl-commentary-node) (mode symbol))
+  (let ((dev (-> this data dev-name)))
+    (case mode
+      (('inactive)
+       (case dev
+         (((tfl-commentary-dev pex)) *tfl-commentary-node-pex-sg*)
+         (else *tfl-commentary-node-sg*)))
+      (('active)
+       (case dev
+         (((tfl-commentary-dev pex)) *tfl-commentary-node-pex-active-sg*)
+         (else *tfl-commentary-node-active-sg*)))
+      (else
+       (case dev
+         (((tfl-commentary-dev pex)) *tfl-commentary-node-pex-sg*)
+         (else *tfl-commentary-node-sg*))))))
+
+(defmethod lod-setup! ((this tfl-commentary-node))
+  (let ((skel-inactive (get-skel this 'inactive))
+        (skel-active (get-skel this 'active))
+        (ag-name-inactive (case (-> this data dev-name)
+                            (((tfl-commentary-dev pex)) "tfl-commentary-node-pex")
+                            (else "tfl-commentary-node")))
+        (ag-name-active (case (-> this data dev-name)
+                          (((tfl-commentary-dev pex)) "tfl-commentary-node-pex-active")
+                          (else "tfl-commentary-node-active"))))
+    (initialize-skeleton this skel-inactive '())
+    (setup-lods! (-> this inactive-look)
+                 skel-inactive
+                 (art-group-get-by-name (-> *level* level-default) ag-name-inactive)
+                 (-> this entity))
+    (setup-lods! (-> this active-look)
+                 skel-active
+                 (art-group-get-by-name (-> *level* level-default) ag-name-active)
+                 (-> this entity)))
+  (set-look! this 'inactive))
+
 (defmethod init-from-entity! ((this tfl-commentary-node) (ent entity-actor))
   (common-init this)
   (process-drawable-from-entity! this ent)
   (set! (-> this sound-to-play) (aif (res-lump-struct ent 'filename string) it (the string #f)))
   (set! (-> this data) (get-commentary-data this))
+  (lod-setup! this)
   (set! (-> this activate-range) (res-lump-float ent 'radius :default (meters 6)))
   (set! (-> this cmd-frames) (new 'process 'tfl-commentary-keyframes (length (-> this data cmd-list))))
   (init-keyframes! this)
@@ -493,6 +543,7 @@
   (quaternion-identity! (-> self root quat))
   (set! (-> self sound-to-play) sound)
   (set! (-> self data) (get-commentary-data self))
+  (lod-setup! self)
   (set! (-> self activate-range) r)
   (set! (-> self cmd-frames) (new 'process 'tfl-commentary-keyframes (length (-> self data cmd-list))))
   (init-keyframes! self)
@@ -550,24 +601,24 @@
         (let ((y (new 'stack 'vector2h))
               (y-inc! (lambda ((y vector2h)) (+! (-> y y) 8) y)))
           (when (not *display-tfl-commentary-marks*)
-            (add-debug-text-3d #t
-                               (bucket-id debug-no-zbuf)
-                               (tfl-commentary-dev->string (-> self data dev-name))
-                               (-> self root trans)
-                               (font-color cyan)
-                               y)
-            (add-debug-text-3d #t
-                               (bucket-id debug-no-zbuf)
-                               (-> self data description)
-                               (-> self root trans)
-                               (font-color orange)
-                               (y-inc! y))
-            (add-debug-text-3d #t
-                               (bucket-id debug-no-zbuf)
-                               (time->string self)
-                               (-> self root trans)
-                               (font-color progress-memcard)
-                               (y-inc! y))))))
+            (add-text-3d #t
+                         (bucket-id debug-no-zbuf)
+                         (tfl-commentary-dev->string (-> self data dev-name))
+                         (-> self root trans)
+                         (font-color cyan)
+                         y)
+            (add-text-3d #t
+                         (bucket-id debug-no-zbuf)
+                         (-> self data description)
+                         (-> self root trans)
+                         (font-color orange)
+                         (y-inc! y))
+            (add-text-3d #t
+                         (bucket-id debug-no-zbuf)
+                         (time->string self)
+                         (-> self root trans)
+                         (font-color progress-memcard)
+                         (y-inc! y))))))
   :code
     (behavior ()
       (until (and (can-activate? self) (cpad-pressed? 0 circle))
@@ -591,7 +642,7 @@
       ; (play-tfl-commentary (-> self data file-name) (-> *tfl-dev-commentary* vol))
       ;; TODO positioning relative to aspect ratio
       (when (not (-> self hud))
-        (let ((manipy (the manipy (-> (manipy-spawn (static-vector 0.0 0.0 0.0 1.0) #f *tfl-commentary-node-sg* #f :to self) 0))))
+        (let ((manipy (the manipy (-> (manipy-spawn (static-vector 0.0 0.0 0.0 1.0) #f (get-skel self 'active) #f :to self) 0))))
           (when manipy
             (set! (-> self hud) (process->handle manipy))
             (set! (-> manipy draw dma-add-func) dma-add-process-drawable-hud-merc)

@@ -752,12 +752,14 @@
   ((length           int32)
    (allocated-length int32)))
 
+(defconstant MAX_TEXT_3DS 32)
+
 ;; allocate draw buffers
-(define *text-3ds* (the (inline-array text-3d) (malloc 'global (* 16 (psize-of text-3d)))))
+(define *text-3ds* (the (inline-array text-3d) (malloc 'global (* MAX_TEXT_3DS (psize-of text-3d)))))
 
 (define *text-3d-trk* (new 'static 'text-tracking-thang))
 
-(set! (-> *text-3d-trk* allocated-length) 16)
+(set! (-> *text-3d-trk* allocated-length) MAX_TEXT_3DS)
 
 (dotimes (i (-> *text-3d-trk* allocated-length))
   (set! (-> *text-3ds* i str) (new 'global 'string 80 (the string #f))))
@@ -767,7 +769,7 @@
   (let ((pos (new 'stack-no-clear 'vector4w)))
     (set! (-> pos quad) (the uint128 0))
     (when (transform-point-qword! pos location)
-      (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) bucket)
+      (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) bucket)
         (let ((fnt (new 'stack
                         'font-context
                         *font-default-matrix*
@@ -793,8 +795,7 @@
 
 (defun draw-text-3d-buffers ()
   (dotimes (i (-> *text-3d-trk* length))
-    (let ((t (-> *debug-text-3ds* i)))
-      (internal-draw-text-3d (-> t bucket) (-> t str) (-> t pos) (-> t color) (-> t offset))))
+    (let ((t (-> *text-3ds* i))) (internal-draw-text-3d (-> t bucket) (-> t str) (-> t pos) (-> t color) (-> t offset))))
   #f)
 
 (defun add-text-3d ((draw? symbol) (bucket bucket-id) (str string) (pos vector) (color font-color) (offset vector2h))
@@ -805,7 +806,7 @@
          (when t
            (set! (-> t flags) 0)
            (set! (-> t bucket) bucket)
-           (set! (-> t pos quad) (-> pos quad))
+           (vector-copy! (-> t pos) pos)
            (cond
              (offset (set! (-> t offset x) (-> offset x)) (set! (-> t offset y) (-> offset y)))
              (else (set! (-> t offset x) 0) (set! (-> t offset y) 0) 0))
