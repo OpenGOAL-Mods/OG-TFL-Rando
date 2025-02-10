@@ -1688,6 +1688,8 @@
 (build-actor "turbineblade")
 (build-actor "tfl-commentary-node")
 (build-actor "tfl-commentary-node-active")
+(build-actor "tfl-commentary-node-pex")
+(build-actor "tfl-commentary-node-pex-active")
 (build-actor "bucket-wheel")
 (build-actor "crc-gondola" :gen-mesh #t)
 (build-actor "tfl-lowreskui")
