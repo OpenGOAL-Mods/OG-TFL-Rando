@@ -1,6 +1,6 @@
 ;;-*-Lisp-*-
 (in-package goal)
-(deftype valley-part (part-spawner) ())
+(deftype valley-part (tfl-part-spawner) ())
 
 ;; group-id range for taiga valley : 1050-1069
 ;; part-id range for taiga valley : 4000-4099
@@ -948,3 +948,39 @@
 
 (defpart 4037
   :init-specs ((:fade-a -0.42666668)))
+
+(defpartgroup group-valley-vent-smoke
+  :id 1060
+  :bounds (static-bspherem 0 -16 -32 80)
+  :parts ((sp-item 4038)))
+
+(defpart 4038
+  :init-specs
+  ((:texture (bigpuff2 effects))
+   (:birth-func 'birth-func-set-quat)
+   (:num 0.1 0.3)
+   (:x (meters -3.5) (meters 7))
+   (:y (meters -3.5) (meters 7))
+   (:z (meters -3.5) (meters 7))
+   (:scale-x (meters 3.5) (meters 6.5))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 32.0 6.0)
+   (:g 32.0 4.0)
+   (:b 32.0 4.0)
+   (:a 64.0 64.0)
+   (:vel-x (meters -0.035) (meters 0.02))
+   (:vel-z (meters 0.0))
+   (:scalevel-x (meters 0.015))
+   (:rotvel-z (degrees -0.10) (degrees 0.2))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -0.05)
+   (:accel-y (meters 0.00015) (meters 0.0002))
+   (:friction 0.996)
+   (:timer (seconds 8))
+   (:flags (bit2 bit3 bit12 bit14))
+   (:next-time (seconds 1.5) (seconds 3.5))
+   (:next-launcher 4039)))
+
+(defpart 4039
+  :init-specs ((:fade-a -0.2)))

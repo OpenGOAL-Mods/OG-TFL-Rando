@@ -7815,6 +7815,39 @@
   }
 },
 {
+  "trans": [2187.03, 50.12, 1831.71],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2187.03, 50.12, 1831.71, 10],
+  "lump": {
+    "name": "valley-snowdrops1-04",
+    "art-name": "group-valley-snowdrops1"
+  }
+},
+{
+  "trans": [2022.35, 57.25, 1960.42],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2022.35, 57.25, 1960.42, 10],
+  "lump": {
+    "name": "valley-snowdrops1-05",
+    "art-name": "group-valley-snowdrops1"
+  }
+},
+{
+  "trans": [1786.60, 102.25, 1815.86],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1786.60, 102.25, 1815.86, 10],
+  "lump": {
+    "name": "valley-snowdrops1-06",
+    "art-name": "group-valley-snowdrops1"
+  }
+},
+{
   "trans": [1930.68, 81.59, 1838.08],
   "etype": "valley-part",
   "game_task": 0,
@@ -7855,6 +7888,28 @@
   "bsphere": [775.81, 67.59, 2059.58, 10],
   "lump": {
     "name": "valley-snowdrops2-04",
+    "art-name": "group-valley-snowdrops2"
+  }
+},
+{
+  "trans": [2147.91, 30.48, 1935.57],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2147.91, 30.48, 1935.57, 10],
+  "lump": {
+    "name": "valley-snowdrops2-05",
+    "art-name": "group-valley-snowdrops2"
+  }
+},
+{
+  "trans": [2067.51, 53.67, 1957.98],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2067.51, 53.67, 1957.98, 10],
+  "lump": {
+    "name": "valley-snowdrops2-06",
     "art-name": "group-valley-snowdrops2"
   }
 },
@@ -7933,6 +7988,110 @@
   "lump": {
     "name": "valley-snowdrops3-07",
     "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [2130.90, 30.77, 1945.95],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2130.90, 30.77, 1945.95, 10],
+  "lump": {
+    "name": "valley-snowdrops3-08",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [2095.29, 7.62, 1766.50],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2095.29, 7.62, 1766.50, 10],
+  "lump": {
+    "name": "valley-snowdrops3-09",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [2091.05, 52.70, 1959.65],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [2091.05, 52.70, 1959.65, 10],
+  "lump": {
+    "name": "valley-snowdrops3-10",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [1782.49, 102.51, 1821.64],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [1782.49, 102.51, 1821.64, 10],
+  "lump": {
+    "name": "valley-snowdrops3-11",
+    "art-name": "group-valley-snowdrops3"
+  }
+},
+{
+  "trans": [220.73, 216.15, 794.67],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.000, -0.000, 1.000],
+  "bsphere": [220.73, 216.15, 794.67, 10],
+  "lump": {
+    "name": "valley-vent-smoke-01",
+    "art-name": "group-valley-vent-smoke",
+    "copy-quat": ["symbol", "#t"]
+  }
+},
+{
+  "trans": [70.23, 164.93, 970.28],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.015, 0.973, 0.004, 0.228],
+  "bsphere": [70.23, 164.93, 970.28, 10],
+  "lump": {
+    "name": "valley-vent-smoke-02",
+    "art-name": "group-valley-vent-smoke",
+    "copy-quat": ["symbol", "#t"]
+  }
+},
+{
+  "trans": [55.28, 161.23, 1224.03],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [-0.025, 1.000, -0.000, 0.014],
+  "bsphere": [55.28, 161.23, 1224.03, 10],
+  "lump": {
+    "name": "valley-vent-smoke-03",
+    "art-name": "group-valley-vent-smoke",
+    "copy-quat": ["symbol", "#t"]
+  }
+},
+{
+  "trans": [212.23, 131.19, 1312.64],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.033, -0.186, 0.170, -0.967],
+  "bsphere": [212.23, 131.19, 1312.64, 10],
+  "lump": {
+    "name": "valley-vent-smoke-04",
+    "art-name": "group-valley-vent-smoke",
+    "copy-quat": ["symbol", "#t"]
+  }
+},
+{
+  "trans": [322.30, 90.74, 1768.58],
+  "etype": "valley-part",
+  "game_task": 0,
+  "quat" : [0.000, 0.979, -0.000, -0.204],
+  "bsphere": [322.30, 90.74, 1768.58, 10],
+  "lump": {
+    "name": "valley-vent-smoke-05",
+    "art-name": "group-valley-vent-smoke",
+    "copy-quat": ["symbol", "#t"]
   }
 }
   ]
