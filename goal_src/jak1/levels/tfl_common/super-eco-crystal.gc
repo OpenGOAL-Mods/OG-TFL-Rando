@@ -2,6 +2,7 @@
 (in-package goal)
 (def-actor tfl-crystal-green
   :bounds (0 0 0 2.5)
+  :texture-level 2
   :joints
   (align prejoint
          main
@@ -31,6 +32,7 @@
 
 (def-actor tfl-crystal-red
   :bounds (0 0 0 2.5)
+  :texture-level 2
   :joints
   (align prejoint
          main
@@ -61,6 +63,7 @@
 
 (def-actor tfl-crystal-blue
   :bounds (0 0 0 2.5)
+  :texture-level 2
   :joints
   (align prejoint
          main
@@ -98,6 +101,7 @@
 
 (def-actor tfl-crystal-yellow
   :bounds (0 0 0 2.5)
+  :texture-level 2
   :joints
   (align prejoint
          main
