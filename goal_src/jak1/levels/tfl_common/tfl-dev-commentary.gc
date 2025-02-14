@@ -120,7 +120,7 @@
 (defmacro commentary-debug (&rest body)
   `(#if TFL_COMMENTARY_DEBUG (begin   ,@body) (empty)))
 
-(define *tfl-commentary-node-string* (new 'debug 'string 128 (the string #f)))
+(define *tfl-commentary-node-string* (new 'global 'string 128 (the string #f)))
 
 (defmethod kill-all-handles! ((this tfl-commentary-node))
   (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
