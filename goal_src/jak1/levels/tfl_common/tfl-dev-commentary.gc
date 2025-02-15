@@ -524,7 +524,7 @@
   (set! (-> this sound-to-play) (aif (res-lump-struct ent 'filename string) it (the string #f)))
   (set! (-> this data) (get-commentary-data this))
   (lod-setup! this)
-  (set! (-> this activate-range) (res-lump-float ent 'radius :default (meters 6)))
+  (set! (-> this activate-range) (res-lump-float ent 'radius :default (meters 3.5)))
   (set! (-> this cmd-frames) (new 'process 'tfl-commentary-keyframes (length (-> this data cmd-list))))
   (init-keyframes! this)
   (ja-post)

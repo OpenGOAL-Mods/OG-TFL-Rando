@@ -5774,6 +5774,118 @@
         "name": "open-mines-truster-08",
         "art-name": "group-mines-truster"
       }
+    },
+// Actors: HINT
+// Actors: DEV COMMENTARY
+    {
+      "trans": [-396.57, 178.02, 732.06],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-396.57, 178.02, 732.06, 10],
+      "lump": {
+        "name": "open-mines-kui-minesfeel",
+        "filename": "kui-minesfeel.mp3"
+      }
+    },
+    {
+      "trans": [-408.67, 130.32, 857.91],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-408.67, 130.32, 857.91, 10],
+      "lump": {
+        "name": "open-mines-kui-dropplat",
+        "filename": "kui-dropplat.mp3"
+      }
+    },
+    {
+      "trans": [-356.40, 195.59, 744.23],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-356.40, 195.59, 744.23, 10],
+      "lump": {
+        "name": "open-mines-kui-kegfeatures",
+        "filename": "kui-kegfeatures.mp3"
+      }
+    },
+    {
+      "trans": [-528.95, 143.58, 997.16],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-528.95, 143.58, 997.16, 10],
+      "lump": {
+        "name": "open-mines-kui-kegmaze",
+        "filename": "kui-kegmaze.mp3"
+      }
+    },
+    {
+      "trans": [-486.01, 147.87, 960.63],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-486.01, 147.87, 960.63, 10],
+      "lump": {
+        "name": "open-mines-kui-backupblue",
+        "filename": "kui-backupblue.mp3"
+      }
+    },
+    {
+      "trans": [-430.38, 106.69, 1030.14],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-430.38, 106.69, 1030.14, 10],
+      "lump": {
+        "name": "open-mines-kui-minesambush",
+        "filename": "kui-minesambush.mp3"
+      }
+    },
+    {
+      "trans": [-436.07, 147.14, 1112.86],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-436.07, 147.14, 1112.86, 10],
+      "lump": {
+        "name": "open-mines-kui-bouncer",
+        "filename": "kui-bouncer.mp3"
+      }
+    },
+    {
+      "trans": [-439.15, 156.51, 1038.26],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-439.15, 156.51, 1038.26, 10],
+      "lump": {
+        "name": "open-mines-kui-excavator",
+        "filename": "kui-excavator.mp3"
+      }
+    },
+    {
+      "trans": [-430.11, 137.39, 1148.38],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-430.11, 137.39, 1148.38, 10],
+      "lump": {
+        "name": "open-mines-kui-minecarts",
+        "filename": "kui-minecarts.mp3"
+      }
+    },
+    {
+      "trans": [-393.17, 140.07, 1141.74],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-393.17, 140.07, 1141.74, 10],
+      "lump": {
+        "name": "open-mines-kui-quicksandlurker",
+        "filename": "kui-quicksandlurker.mp3"
+      }
     }
   ],
 

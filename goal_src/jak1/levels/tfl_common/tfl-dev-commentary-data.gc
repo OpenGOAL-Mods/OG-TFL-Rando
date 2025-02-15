@@ -180,4 +180,344 @@ examples:
                                 (9400 kill 1)
                                 (9700 kill 2)
                                 (10000 kill 3)
-                                (end release)))))
+                                (end release)))
+        (static-commentary-data :file-name "kui-intro.mp3" ;; Crystal Cave dev commentary
+                               :dev-name
+                               kuitar
+                               :description "Humble beginnings"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-warpgate.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Thrown in a new place"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-setpiece.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Grand reveal"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-flow.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Flow and Speedrunning"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-cavelayout.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Layout to avoid backtracking"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-hiddenyellow.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Breaking players prior assumptions"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-customcamera.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Creating custom camera movements"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-jaklighting.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Shiny Jak"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-ship.mp3"
+                               :dev-name
+                               kuitar
+                               :description "How did this get down here?"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-electricarc.mp3"
+                               :dev-name
+                               kuitar
+                               :description "One of many flamepots edit"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-sculptedwalls.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Sculpting and texturing the walls"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-infested.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Multiple ambiences"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-fireflypart.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Particles, particles everywhere"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-topinfested.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Multi purpose gameplay"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-oneway.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Design philosophy on intended routes"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-gondola.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A complex first custom actor"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-gondolafog.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A thick fog for depth"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-cavelighting.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Baked and edited lighting"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-supergreen.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Exciting new powerups"
+                               :length 10.0) ;; TODO: Spawn and explode all the other 3 crystals
+        (static-commentary-data :file-name "kui-crescententry.mp3" ;; Crescent top dev commentary
+                               :dev-name
+                               kuitar
+                               :description "Not overwhelming the player"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-crescentreveal.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Checking both sides before crossing"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-pillarfly.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Visible but out of reach"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-hybridlevel.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A hybrid level design challenge"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-robotchallenge.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Turning up the difficulty"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-rocks.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Thousands and thousands of rocks"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-undergroundsurprise.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A hidden surprise"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-lavachallenge.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Think before you jump"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-bigcable.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Big cables for big clues"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-orbcachechallenge.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Do it again but faster"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-enbjump.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A long way down"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-hiddinglevels.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A seamless world"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-enblanding.mp3" ;; Energy Bay dev commentary
+                               :dev-name
+                               kuitar
+                               :description "Landing in Energy Bay"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-coloredcable.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A trail of breadcrumbs"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-zoomerplayground.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Dropping into a Zoomer playground"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-redecofoot.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Teaching super red eco"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-redecozoomer.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Nitro powered Zoomer"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-boulder.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Fixing some mistakes"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-greenring.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A hybrid challenge for a hybrid level"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-greenmiss.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A case of the invisible ring"
+                               :length 10.0) ;; TODO: Spawn a ring in the old spot
+        (static-commentary-data :file-name "kui-balloonlurker.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Overlapping multiple objectives"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-lowreskui.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A secret dev pic you can collect"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-minesfeel.mp3" ;; Open Mines dev commentary
+                               :dev-name
+                               kuitar
+                               :description "An industrial and machinery feel"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-dropplat.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Think before you jump part 2"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-kegfeatures.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A decent into res lump madness"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-kegmaze.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A deadly maze"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-backupblue.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Combating frustration"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-minesambush.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Learning new mechanics in a hectic battle"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-bouncer.mp3"
+                               :dev-name
+                               kuitar
+                               :description "flamepot without the flame"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-excavator.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A problem of scale"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-minecarts.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Constrained design"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-quicksandlurker.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Creating an aimbot"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-valleyboulder.mp3" ;; Taiga Valley dev commentary
+                               :dev-name
+                               kuitar
+                               :description "An explosive start"
+                               :length 10.0)  ;; TODO: add loops of the boulder exploding animation with pause before/after
+        (static-commentary-data :file-name "kui-progression.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Giving TFL its own collectable count"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-valleyspiral.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Hidding loads"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-rollingrocks.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A dynamic obstacle"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-ecochoice.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Insert matrix pill choice meme here"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-superblue.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Falling with style"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-deepgap.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Creating custom ocean maps"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-valleyvisual.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A striking visual change"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-flyinglurker.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Combining old enemies with new mechanics"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-snowtransition.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Abusing vertex alpha for smooth transitions"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-zoomerparticle.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Dynamic particles"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-iceslide.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A slide into your doom"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-pdsvisuals.mp3"
+                               :dev-name
+                               kuitar
+                               :description "The defense system visuals"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-pdscode.mp3"
+                               :dev-name
+                               kuitar
+                               :description "The defense system code"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-pdsmechanic.mp3"
+                               :dev-name
+                               kuitar
+                               :description "The defense system mechanics"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-pdstrap.mp3"
+                               :dev-name
+                               kuitar
+                               :description "The defense system traps"
+                               :length 10.0)
+        (static-commentary-data :file-name "kui-valleydoor.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A time consuming project"
+                               :length 10.0)))

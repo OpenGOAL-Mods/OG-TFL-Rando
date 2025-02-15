@@ -4420,6 +4420,121 @@
       "lump": {
         "name": "energy-bay-turbine-04"
       }
+    },
+// Actors: DEV COMMENTARY
+    {
+      "trans": [521.70, 49.99, 688.42],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [521.70, 49.99, 688.42, 10],
+      "lump": {
+        "name": "energy-bay-kui-enblanding",
+        "filename": "kui-enblanding.mp3"
+      }
+    },
+    {
+      "trans": [899.46, 69.11, 678.98],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [899.46, 69.11, 678.98, 10],
+      "lump": {
+        "name": "energy-bay-kui-coloredcable",
+        "filename": "kui-coloredcable.mp3"
+      }
+    },
+    {
+      "trans": [862.82, 78.83, 767.89],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [862.82, 78.83, 767.89, 10],
+      "lump": {
+        "name": "energy-bay-kui-zoomerplayground",
+        "filename": "kui-zoomerplayground.mp3"
+      }
+    },
+    {
+      "trans": [742.56, 7.12, 959.99],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [742.56, 7.12, 959.99, 10],
+      "lump": {
+        "name": "energy-bay-kui-redecofoot",
+        "filename": "kui-redecofoot.mp3"
+      }
+    },
+    {
+      "trans": [663.42, 35.87, 796.57],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [663.42, 35.87, 796.57, 10],
+      "lump": {
+        "name": "energy-bay-kui-redecozoomer",
+        "filename": "kui-redecozoomer.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [677.71, 2.17, 707.79],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [677.71, 2.17, 707.79, 10],
+      "lump": {
+        "name": "energy-bay-kui-boulder",
+        "filename": "kui-boulder.mp3",
+        "radius":["meters", 5.0]
+      }
+    },
+    {
+      "trans": [583.19, 34.49, 614.32],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [583.19, 34.49, 614.32, 10],
+      "lump": {
+        "name": "energy-bay-kui-greenring",
+        "filename": "kui-greenring.mp3"
+      }
+    },
+    {
+      "trans": [564.39, 27.74, 968.31],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [564.39, 27.74, 968.31, 10],
+      "lump": {
+        "name": "energy-bay-kui-greenmiss",
+        "filename": "kui-greenmiss.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [720.83, 12.78, 839.26],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [720.83, 12.78, 839.26, 10],
+      "lump": {
+        "name": "energy-bay-kui-balloonlurker",
+        "filename": "kui-balloonlurker.mp3",
+        "radius":["meters", 5.0]
+      }
+    },
+    {
+      "trans": [782.33, 26.34, 521.68],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [782.33, 26.34, 521.68, 10],
+      "lump": {
+        "name": "energy-bay-kui-lowreskui",
+        "filename": "kui-lowreskui.mp3"
+      }
     }
   ],
   "ambients": [
