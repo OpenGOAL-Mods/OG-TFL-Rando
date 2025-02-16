@@ -36,22 +36,28 @@
 
 (define *tfl-dev-commentary-playing?* (-> *tfl-dev-commentary* playing?))
 
+(define *tfl-commentary-stop?* #f)
+
 (define *display-tfl-commentary-marks* #f)
 
 (defun tfl-commentary-volume ()
   (-> *tfl-dev-commentary* vol))
 
 (def-actor tfl-commentary-node
-  :bounds (0 0 0 5))
+  :bounds (0 0 0 5)
+  :texture-level 2)
 
 (def-actor tfl-commentary-node-active
-  :bounds (0 0 0 5))
+  :bounds (0 0 0 5)
+  :texture-level 2)
 
 (def-actor tfl-commentary-node-pex
-  :bounds (0 0 0 5))
+  :bounds (0 0 0 5)
+  :texture-level 2)
 
 (def-actor tfl-commentary-node-pex-active
-  :bounds (0 0 0 5))
+  :bounds (0 0 0 5)
+  :texture-level 2)
 
 (deftype tfl-commentary-keyframes (basic)
   ((num-cmds int32)
@@ -85,6 +91,7 @@
    (cam-control       handle)
    (proc              handle TFL_COMMENTARY_MAX_HANDLES)
    (hud               handle)
+   (manipy            handle TFL_COMMENTARY_MAX_HANDLES)
    (cmd-frames        tfl-commentary-keyframes))
   (:methods
    (common-init (_type_) object)
@@ -124,12 +131,13 @@
 
 (defmethod kill-all-handles! ((this tfl-commentary-node))
   (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
-    (deactivate-handle (-> this proc i)))
+    (deactivate-handle (-> this proc i))
+    (deactivate-handle (-> this manipy i)))
   (deactivate-handle (-> this cam-control))
   (deactivate-handle (-> this hud)))
 
 (defmethod deactivate ((this tfl-commentary-node))
-  (if (-> this pov-cam) (deactivate (handle->process (-> this pov-cam))))
+  (deactivate-handle (-> this pov-cam))
   (kill-all-handles! this)
   (call-parent-method this))
 
@@ -213,6 +221,9 @@
   `(if (binteger? ,val) (the float (/ (the int ,val) 8)) (the float (-> (the bfloat ,val) data))))
 
 (defmethod parse-cmd-vec! ((this tfl-commentary-node) (vec vector) (cmd pair))
+  (when (= (ref cmd 1) 'root)
+    (vector-copy! vec (-> this root trans))
+    (return vec))
   (set! (-> vec x) (meters (unbox-bfloat-or-binteger (ref cmd 1))))
   (set! (-> vec y) (meters (unbox-bfloat-or-binteger (ref cmd 2))))
   (set! (-> vec z) (meters (unbox-bfloat-or-binteger (ref cmd 3))))
@@ -325,15 +336,17 @@
              (deactivate (handle->process (-> this proc (/ (the int param) 8))))
              (set! (-> this proc (/ (the int param) 8)) INVALID_HANDLE))
            (case param
-             (('cam-control) (if (handle->process (-> this cam-control)) (deactivate (handle->process (-> this cam-control)))))
+             (('cam-control) (deactivate-handle (-> this cam-control)))
+             (('manipy) (let ((idx (/ (the int (ref rest 1)) 8))) (deactivate-handle (-> this manipy idx))))
              (('pov-cam)
               (when (handle->process (-> this pov-cam))
                 (send-event (handle->process (-> this pov-cam)) 'abort)
                 ; (process-release? *target*)
                 ))))))
-      (('send-event)
+      (('send-event 'manipy-event)
        (let* ((idx (/ (the int (ref rest 0)) 8))
-              (p (handle->process (-> this proc idx)))
+              (handles (if (= c 'send-event) (-> this proc) (-> this manipy)))
+              (p (handle->process (-> handles idx)))
               (msg (the symbol (ref rest 1)))
               (args (the pair (ref rest 2)))
               (argc (length args))
@@ -345,6 +358,12 @@
            (dotimes (i argc)
              (set! (-> block param i) (the uint (ref args i))))
            (send-event-function p block))))
+      (('manipy-spawn)
+       (let ((idx (/ (the int (ref rest 0)) 8))
+             (sg (the symbol (ref rest 1)))
+             (vec (the pair (ref rest 2))))
+         (set! (-> this manipy idx)
+               (ppointer->handle (manipy-spawn (parse-cmd-vec! this (new-stack-vector0) vec) #f (-> sg value) #f :to this)))))
       (('cam-control)
        (set! (-> this cam-control)
              (ppointer->handle (process-spawn tfl-cam-control (parse-cam-control! this (-> this cam-control-parms) (the pair rest))))))
@@ -378,7 +397,7 @@
     ((and (cpad-hold? 0 l2) (cpad-pressed? 0 down))
      (set! (-> *tfl-dev-commentary* vol) (fmax 0.0 (- (-> *tfl-dev-commentary* vol) 0.1))))
     ((and (cpad-hold? 0 l2) (cpad-pressed? 0 circle))
-     ; (stop-tfl-commentary)
+     (true! *tfl-commentary-stop?*)
      (if (handle->process (-> this pov-cam)) (send-event (handle->process (-> this pov-cam)) 'abort))
      (process-release? *target*)
      (set! (-> this pov-cam) INVALID_HANDLE)
@@ -404,19 +423,29 @@
   (let ((ctx (new 'stack 'font-context *font-default-matrix* 0 0 0.0 (font-color default) (font-flags shadow kerning))))
     (get-string-length str ctx)))
 
+(defun dbg-percent-bar ((draw? symbol) (bucket bucket-id) (x int) (y int) (percent float) (clr rgba))
+  (if (not draw?) (return #f))
+  (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) bucket)
+    (draw-sprite2d-xy buf x y 255 14 (static-rgba 0 0 0 #x40))
+    (draw-sprite2d-xy buf x (+ y 2) (the int (* 255.0 percent)) 10 clr))
+  #f)
+
 (defmethod draw-hud ((this tfl-commentary-node))
-  (mlet ((HUD_Y 45)
-         (BOX_HEIGHT (+ (* 6 8) 4)))
-    (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
+  (let* ((HUD_Y 45)
+         (ELTS 6)
+         (BOX_HEIGHT (+ (* ELTS 8) 4))
+         (longest-str (fmax (get-bg-width-for-str this
+                                                  (string-format "L2 + Circle: ~3LStop Playback~0L"
+                                                                 (-> this data description)
+                                                                 (tfl-commentary-dev->string (-> this data dev-name))))
+                            (get-bg-width-for-str this
+                                                  (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name)))))))
+    (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug))
       ;; bg box
       (draw-sprite2d-xy buf
                         13
                         (- HUD_Y 2)
-                        (the int
-                             (* (+ (get-bg-width-for-str this
-                                                         (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name))))
-                                   7.0)
-                                (-> *video-parms* relative-x-scale)))
+                        (the int (* (+ longest-str 7.0) (-> *video-parms* relative-x-scale)))
                         (the int (* (the float BOX_HEIGHT) (-> *video-parms* relative-y-scale)))
                         (static-rgba 0 0 0 #x50))
       (draw-string-xy (string-format "~4L~S~0L (~8L~S~0L)" (-> this data description) (tfl-commentary-dev->string (-> this data dev-name)))
@@ -464,12 +493,12 @@
                       167
                       (font-color default)
                       (font-flags shadow kerning)))
-    (debug-percent-bar #t
-                       (bucket-id debug)
-                       120
-                       150
-                       (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
-                       (static-rgba #xff 80 0 #x80))))
+    (dbg-percent-bar #t
+                     (bucket-id debug)
+                     120
+                     150
+                     (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
+                     (static-rgba #xff 80 0 #x80))))
 
 (defmethod common-init ((this tfl-commentary-node))
   (stack-size-set! (-> this main-thread) 512)
@@ -479,7 +508,8 @@
   (set! (-> this cam-control) INVALID_HANDLE)
   (set! (-> this cam-control-parms) (new 'process 'tfl-cam-control-init-params))
   (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
-    (set! (-> this proc i) INVALID_HANDLE))
+    (set! (-> this proc i) INVALID_HANDLE)
+    (set! (-> this manipy i) INVALID_HANDLE))
   (set! (-> this hud) INVALID_HANDLE))
 
 (defmethod get-skel ((this tfl-commentary-node) (mode symbol))
@@ -629,6 +659,7 @@
   :virtual #t
   :enter
     (behavior ()
+      (add-setting! 'allow-progress #f 0.0 0)
       (set! *tfl-commentary-semaphore* self)
       (set-time! (-> self play-time))
       (set! (-> self cur-frame) 0)
@@ -639,7 +670,7 @@
       (draw-hud self))
   :code
     (behavior ()
-      ; (play-tfl-commentary (-> self data file-name) (-> *tfl-dev-commentary* vol))
+      (play-tfl-commentary (-> self data file-name) (-> *tfl-dev-commentary* vol))
       ;; TODO positioning relative to aspect ratio
       (when (not (-> self hud))
         (let ((manipy (the manipy (-> (manipy-spawn (static-vector 0.0 0.0 0.0 1.0) #f (get-skel self 'active) #f :to self) 0))))
@@ -649,13 +680,12 @@
             (set-vector! (-> manipy root trans) 1000.0 -400.0 0.0 1.0)
             (set-vector! (-> manipy root scale) 0.05 0.05 0.05 1.0)
             (process-mask-set! (-> manipy mask) pause)
-            (process-mask-clear! (-> manipy mask) menu progress)
+            (process-mask-clear! (-> manipy mask) movie menu progress)
             (set! (-> manipy root trans z) 2048.0)
             (send-event manipy
                         'trans-hook
                         (lambda :behavior manipy ()
-                          (let ((root (-> self root)))
-                            (quaternion-rotate-y! (-> root quat) (-> root quat) (degrees (* 30.0 (seconds-per-frame))))))))))
+                          (quaternion-rotate-y! (-> self root quat) (-> self root quat) (degrees (* 30.0 (seconds-per-frame)))))))))
       (until (time-elapsed? (-> self play-time) (-> self data length))
         (hide-hud-quick)
         (set! (-> self cur-frame) (- (current-time) (-> self play-time)))
@@ -674,4 +704,5 @@
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume)
       (remove-setting! 'dialog-volume)
+      (remove-setting! 'allow-progress)
       (kill-all-handles! self)))

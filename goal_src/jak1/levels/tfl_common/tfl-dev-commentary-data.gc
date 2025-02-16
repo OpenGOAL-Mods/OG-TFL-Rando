@@ -53,9 +53,19 @@ command list:
 - spawn: spawn a process. you can spawn up to TFL_COMMENTARY_MAX_HANDLES processes.
          the first parameter is the index of the process in the handle list.
          the second parameter is the name of a function pointer in the spawn-list for that commentary node.
+         it should return a handle to the spawned process.
+- manipy: spawn a manipy. like with the spawn command, you can have up to TFL_COMMENTARY_MAX_HANDLES manipys active.
+          parameters are:
+  - idx: index of the manipy in the list.
+  - skelgroup: a skeleton-group to set the manipy's model.
+  - trans: vector to set the root trans position of the manipy.
 - kill: kill a spawned process by its index in the handle list. also used to kill a cam-control or a pov-cam.
-- send-event: send an event to a process.
+- send-event/manipy-event: send an event to a process or a manipy spawned by a commentary node. args are:
+  - idx: the index of the process/manipy in the list.
+  - message: the event message.
+  - args: a list containing all the arguments, if available. if there are no args, use an empty list.
 - go: make a process go to a state.
+- go-virtual: make a process enter a virtual state.
 
 examples:
 (start grab) ;; grab jak at the start
@@ -67,10 +77,13 @@ examples:
 (600 cam-control (cam-dest 91.5 186.5 394.75) (move-timer 1.2) (max-z 24) (push-z 20) (max-y 10) (min-y -2) (tilt-adjust 6)) ;; spawn a tfl-cam-control with the given parameters.
 (800 kill cam-control) ;; kill the current cam-control.
 (900 spawn 0 "super-eco-crystal0") ;; 3 seconds in, call the function that spawns a super eco crystal at index 0 in the handle list.
+(900 manipy-spawn 0 *tfl-crystal-red-sg* (vectorm root)) ;; spawn a manipy with the super red eco crystal model at the commentary node's position.
+(905 manipy-event 0 anim-mode (loop)) ;; send an event to the manipy at idx 0 with the message 'anim-mode and 'loop as the first arg.
 (1200 send-event 0 powerup ()) ;; send a "powerup" event to the process at handle list index 0.
 (1500 go 0 super-eco-crystal-break) ;; force the process at handle list index 0 to go into the super-eco-crystal-break state.
 (1500 go-virtual 0 break) ;; force the process at handle list index 0 to go into its state method called 'break'.
 (3000 kill 0) ;; kill the process at index 0 in the handle list.
+(3000 kill manipy 0) ;; kill the manipy at index 0 in the handle list.
 (end release) ;; ungrab jak once the commentary playback is finished.
 |#
 
@@ -188,7 +201,20 @@ examples:
                                :description "Humble Beginnings"
                                :length 41.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (600 manipy-spawn 0 *tfl-crystal-red-sg* (vectorm root))
+                                (605 manipy-event 0 anim-mode (loop))
+                                (610
+                                 manipy-event
+                                 0
+                                 trans-hook
+                                 (,(lambda :behavior manipy ()
+                                    (quaternion-rotate-z! (-> self root quat) (-> self root quat) (degrees (* 90.0 (seconds-per-frame)))))))
+                                (3000 kill manipy 0)
+                                (end release)))
        (static-commentary-data :file-name "kui-warpgate.mp3"
                                :dev-name
                                kuitar
@@ -231,7 +257,13 @@ examples:
                                :length 34.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
-       (static-commentary-data :file-name "kui-jaklighting.mp3" :dev-name kuitar :description "Shiny Jak" :length 23.0)
+       (static-commentary-data :file-name "kui-jaklighting.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Shiny Jak"
+                               :length 23.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-ship.mp3"
                                :dev-name
                                kuitar
