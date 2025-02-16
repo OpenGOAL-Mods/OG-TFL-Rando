@@ -590,7 +590,9 @@ MiniAudioLib::ma_sound* g_tfl_commentary;
 
 void stop_tfl_commentary() {
   MiniAudioLib::ma_sound_stop(g_tfl_commentary);
+  MiniAudioLib::ma_sound_uninit(g_tfl_commentary);
   delete g_tfl_commentary;
+  g_tfl_commentary = nullptr;
   jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
 }
 
@@ -609,9 +611,9 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
     printf("Playing commentary: %s\n", name_str.c_str());
 
     auto* node = new MiniAudioLib::ma_sound;
-    auto hint_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0,
+    auto comm_result = MiniAudioLib::ma_sound_init_from_file(&g_ma_engine_tfl, path.c_str(), 0,
                                                              nullptr, nullptr, node);
-    if (hint_result != MiniAudioLib::MA_SUCCESS) {
+    if (comm_result != MiniAudioLib::MA_SUCCESS) {
       printf("Failed to load: %s\n", path.c_str());
       jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
       delete node;
@@ -640,6 +642,12 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
 
     auto play_func = [&node, &paused_func] {
       while (MiniAudioLib::ma_sound_is_playing(node) && !MiniAudioLib::ma_sound_at_end(node)) {
+        auto stop = jak1::intern_from_c("*tfl-commentary-stop?*")->value;
+        if (stop == offset_of_s7() + jak1_symbols::FIX_SYM_TRUE) {
+          jak1::intern_from_c("*tfl-commentary-stop?*")->value = offset_of_s7();
+          stop_tfl_commentary();
+          return;
+        }
         auto volume = jak1::call_goal_function_by_name("tfl-commentary-volume");
         float vol;
         memcpy(&vol, &volume, 4);
@@ -649,18 +657,13 @@ u32 play_tfl_commentary(u32 file_name, float volume) {
           MiniAudioLib::ma_sound_stop(node);
           paused_func(node);
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(32));
       }
     };
 
     play_func();
 
-    MiniAudioLib::ma_sound_stop(node);
-    MiniAudioLib::ma_sound_uninit(node);
-    delete node;
-    node = nullptr;
-
-    jak1::intern_from_c("*tfl-commentary-playing?*")->value = offset_of_s7();
+    stop_tfl_commentary();
   });
 
   commentary_thread.detach();
