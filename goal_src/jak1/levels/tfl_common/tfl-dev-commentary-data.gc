@@ -185,97 +185,97 @@ examples:
                                :dev-name
                                kuitar
                                :description "Humble beginnings"
-                               :length 10.0)
+                               :length 41.0)
         (static-commentary-data :file-name "kui-warpgate.mp3"
                                :dev-name
                                kuitar
                                :description "Thrown in a new place"
-                               :length 10.0)
+                               :length 30.0)
         (static-commentary-data :file-name "kui-setpiece.mp3"
                                :dev-name
                                kuitar
                                :description "Grand reveal"
-                               :length 10.0)
+                               :length 30.0)
         (static-commentary-data :file-name "kui-flow.mp3"
                                :dev-name
                                kuitar
                                :description "Flow and Speedrunning"
-                               :length 10.0)
+                               :length 29.0)
         (static-commentary-data :file-name "kui-cavelayout.mp3"
                                :dev-name
                                kuitar
                                :description "Layout to avoid backtracking"
-                               :length 10.0)
+                               :length 20.0)
         (static-commentary-data :file-name "kui-hiddenyellow.mp3"
                                :dev-name
                                kuitar
                                :description "Breaking players prior assumptions"
-                               :length 10.0)
+                               :length 22.0)
         (static-commentary-data :file-name "kui-customcamera.mp3"
                                :dev-name
                                kuitar
                                :description "Creating custom camera movements"
-                               :length 10.0)
+                               :length 34.0)
         (static-commentary-data :file-name "kui-jaklighting.mp3"
                                :dev-name
                                kuitar
                                :description "Shiny Jak"
-                               :length 10.0)
+                               :length 23.0)
         (static-commentary-data :file-name "kui-ship.mp3"
                                :dev-name
                                kuitar
                                :description "How did this get down here?"
-                               :length 10.0)
+                               :length 24.0)
         (static-commentary-data :file-name "kui-electricarc.mp3"
                                :dev-name
                                kuitar
                                :description "One of many flamepots edit"
-                               :length 10.0)
+                               :length 28.0)
         (static-commentary-data :file-name "kui-sculptedwalls.mp3"
                                :dev-name
                                kuitar
                                :description "Sculpting and texturing the walls"
-                               :length 10.0)
+                               :length 18.0)
         (static-commentary-data :file-name "kui-infested.mp3"
                                :dev-name
                                kuitar
                                :description "Multiple ambiences"
-                               :length 10.0)
+                               :length 31.0)
         (static-commentary-data :file-name "kui-fireflypart.mp3"
                                :dev-name
                                kuitar
                                :description "Particles, particles everywhere"
-                               :length 10.0)
+                               :length 27.0)
         (static-commentary-data :file-name "kui-topinfested.mp3"
                                :dev-name
                                kuitar
                                :description "Multi purpose gameplay"
-                               :length 10.0)
+                               :length 33.0)
         (static-commentary-data :file-name "kui-oneway.mp3"
                                :dev-name
                                kuitar
                                :description "Design philosophy on intended routes"
-                               :length 10.0)
+                               :length 35.0)
         (static-commentary-data :file-name "kui-gondola.mp3"
                                :dev-name
                                kuitar
                                :description "A complex first custom actor"
-                               :length 10.0)
+                               :length 42.0)
         (static-commentary-data :file-name "kui-gondolafog.mp3"
                                :dev-name
                                kuitar
                                :description "A thick fog for depth"
-                               :length 10.0)
+                               :length 17.0)
         (static-commentary-data :file-name "kui-cavelighting.mp3"
                                :dev-name
                                kuitar
                                :description "Baked and edited lighting"
-                               :length 10.0)
+                               :length 29.0)
         (static-commentary-data :file-name "kui-supergreen.mp3"
                                :dev-name
                                kuitar
                                :description "Exciting new powerups"
-                               :length 10.0) ;; TODO: Spawn and explode all the other 3 crystals
+                               :length 25.0) ;; TODO: Spawn and explode all the other 3 crystals
         (static-commentary-data :file-name "kui-crescententry.mp3" ;; Crescent top dev commentary
                                :dev-name
                                kuitar
