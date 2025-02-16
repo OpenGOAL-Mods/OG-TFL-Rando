@@ -181,343 +181,466 @@ examples:
                                 (9700 kill 2)
                                 (10000 kill 3)
                                 (end release)))
-        (static-commentary-data :file-name "kui-intro.mp3" ;; Crystal Cave dev commentary
+       ;; Crystal Cave dev commentary
+       (static-commentary-data :file-name "kui-intro.mp3"
                                :dev-name
                                kuitar
-                               :description "Humble beginnings"
-                               :length 41.0)
-        (static-commentary-data :file-name "kui-warpgate.mp3"
+                               :description "Humble Beginnings"
+                               :length 41.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-warpgate.mp3"
                                :dev-name
                                kuitar
-                               :description "Thrown in a new place"
-                               :length 30.0)
-        (static-commentary-data :file-name "kui-setpiece.mp3"
+                               :description "Thrown in a New Place"
+                               :length 30.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-setpiece.mp3"
                                :dev-name
                                kuitar
-                               :description "Grand reveal"
-                               :length 30.0)
-        (static-commentary-data :file-name "kui-flow.mp3"
+                               :description "Grand Reveal"
+                               :length 30.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-flow.mp3"
                                :dev-name
                                kuitar
                                :description "Flow and Speedrunning"
-                               :length 29.0)
-        (static-commentary-data :file-name "kui-cavelayout.mp3"
+                               :length 29.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-cavelayout.mp3"
                                :dev-name
                                kuitar
-                               :description "Layout to avoid backtracking"
-                               :length 20.0)
-        (static-commentary-data :file-name "kui-hiddenyellow.mp3"
+                               :description "Layout to Avoid Backtracking"
+                               :length 20.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-hiddenyellow.mp3"
                                :dev-name
                                kuitar
-                               :description "Breaking players prior assumptions"
-                               :length 22.0)
-        (static-commentary-data :file-name "kui-customcamera.mp3"
+                               :description "Breaking the Player's Prior Assumptions"
+                               :length 22.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-customcamera.mp3"
                                :dev-name
                                kuitar
-                               :description "Creating custom camera movements"
-                               :length 34.0)
-        (static-commentary-data :file-name "kui-jaklighting.mp3"
+                               :description "Creating Custom Camera Movements"
+                               :length 34.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-jaklighting.mp3" :dev-name kuitar :description "Shiny Jak" :length 23.0)
+       (static-commentary-data :file-name "kui-ship.mp3"
                                :dev-name
                                kuitar
-                               :description "Shiny Jak"
-                               :length 23.0)
-        (static-commentary-data :file-name "kui-ship.mp3"
+                               :description "How Did This Get Down Here?"
+                               :length 24.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-electricarc.mp3"
                                :dev-name
                                kuitar
-                               :description "How did this get down here?"
-                               :length 24.0)
-        (static-commentary-data :file-name "kui-electricarc.mp3"
+                               :description "One Of Many Flamepot Edits"
+                               :length 28.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-sculptedwalls.mp3"
                                :dev-name
                                kuitar
-                               :description "One of many flamepots edit"
-                               :length 28.0)
-        (static-commentary-data :file-name "kui-sculptedwalls.mp3"
+                               :description "Sculpting and Texturing the Walls"
+                               :length 18.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-infested.mp3"
                                :dev-name
                                kuitar
-                               :description "Sculpting and texturing the walls"
-                               :length 18.0)
-        (static-commentary-data :file-name "kui-infested.mp3"
+                               :description "Multiple Ambiences"
+                               :length 31.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-fireflypart.mp3"
                                :dev-name
                                kuitar
-                               :description "Multiple ambiences"
-                               :length 31.0)
-        (static-commentary-data :file-name "kui-fireflypart.mp3"
+                               :description "Particles, Particles Everywhere"
+                               :length 27.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-topinfested.mp3"
                                :dev-name
                                kuitar
-                               :description "Particles, particles everywhere"
-                               :length 27.0)
-        (static-commentary-data :file-name "kui-topinfested.mp3"
+                               :description "Multi-Purpose Gameplay"
+                               :length 33.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-oneway.mp3"
                                :dev-name
                                kuitar
-                               :description "Multi purpose gameplay"
-                               :length 33.0)
-        (static-commentary-data :file-name "kui-oneway.mp3"
+                               :description "Design Philosophy on Intended Routes"
+                               :length 35.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-gondola.mp3"
                                :dev-name
                                kuitar
-                               :description "Design philosophy on intended routes"
-                               :length 35.0)
-        (static-commentary-data :file-name "kui-gondola.mp3"
+                               :description "A Complex First Custom Actor"
+                               :length 42.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-gondolafog.mp3"
                                :dev-name
                                kuitar
-                               :description "A complex first custom actor"
-                               :length 42.0)
-        (static-commentary-data :file-name "kui-gondolafog.mp3"
+                               :description "A Thick Fog for Depth"
+                               :length 17.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-cavelighting.mp3"
                                :dev-name
                                kuitar
-                               :description "A thick fog for depth"
-                               :length 17.0)
-        (static-commentary-data :file-name "kui-cavelighting.mp3"
+                               :description "Baked and Edited Lighting"
+                               :length 29.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-supergreen.mp3"
                                :dev-name
                                kuitar
-                               :description "Baked and edited lighting"
-                               :length 29.0)
-        (static-commentary-data :file-name "kui-supergreen.mp3"
+                               :description "Exciting New Powerups"
+                               :length 25.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release))) ;; TODO: Spawn and explode all the other 3 crystals
+       ;; Crescent top dev commentary
+       (static-commentary-data :file-name "kui-crescententry.mp3"
                                :dev-name
                                kuitar
-                               :description "Exciting new powerups"
-                               :length 25.0) ;; TODO: Spawn and explode all the other 3 crystals
-        (static-commentary-data :file-name "kui-crescententry.mp3" ;; Crescent top dev commentary
+                               :description "Not Overwhelming the Player"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-crescentreveal.mp3"
                                :dev-name
                                kuitar
-                               :description "Not overwhelming the player"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-crescentreveal.mp3"
+                               :description "Checking Both Sides Before Crossing"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-pillarfly.mp3"
                                :dev-name
                                kuitar
-                               :description "Checking both sides before crossing"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-pillarfly.mp3"
+                               :description "Visible, but Out of Reach"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-hybridlevel.mp3"
                                :dev-name
                                kuitar
-                               :description "Visible but out of reach"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-hybridlevel.mp3"
+                               :description "A Hybrid Level Design Challenge"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-robotchallenge.mp3"
                                :dev-name
                                kuitar
-                               :description "A hybrid level design challenge"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-robotchallenge.mp3"
+                               :description "Turning up the Difficulty"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-rocks.mp3"
                                :dev-name
                                kuitar
-                               :description "Turning up the difficulty"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-rocks.mp3"
+                               :description "Thousands and Thousands of Rocks"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-undergroundsurprise.mp3"
                                :dev-name
                                kuitar
-                               :description "Thousands and thousands of rocks"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-undergroundsurprise.mp3"
+                               :description "A Hidden Surprise"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-lavachallenge.mp3"
                                :dev-name
                                kuitar
-                               :description "A hidden surprise"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-lavachallenge.mp3"
+                               :description "Think Before You Jump"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-bigcable.mp3"
                                :dev-name
                                kuitar
-                               :description "Think before you jump"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-bigcable.mp3"
+                               :description "Big Cables for Big Clues"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-orbcachechallenge.mp3"
                                :dev-name
                                kuitar
-                               :description "Big cables for big clues"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-orbcachechallenge.mp3"
+                               :description "Do It Again, but Faster"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-enbjump.mp3" :dev-name kuitar :description "A Long Way Down" :length 10.0)
+       (static-commentary-data :file-name "kui-hiddinglevels.mp3"
                                :dev-name
                                kuitar
-                               :description "Do it again but faster"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-enbjump.mp3"
-                               :dev-name
-                               kuitar
-                               :description "A long way down"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-hiddinglevels.mp3"
-                               :dev-name
-                               kuitar
-                               :description "A seamless world"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-enblanding.mp3" ;; Energy Bay dev commentary
+                               :description "A Seamless World"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       ;; Energy Bay dev commentary
+       (static-commentary-data :file-name "kui-enblanding.mp3"
                                :dev-name
                                kuitar
                                :description "Landing in Energy Bay"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-coloredcable.mp3"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-coloredcable.mp3"
                                :dev-name
                                kuitar
-                               :description "A trail of breadcrumbs"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-zoomerplayground.mp3"
+                               :description "A Trail of Breadcrumbs"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-zoomerplayground.mp3"
                                :dev-name
                                kuitar
-                               :description "Dropping into a Zoomer playground"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-redecofoot.mp3"
+                               :description "Dropping Into a Zoomer Playground"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-redecofoot.mp3"
                                :dev-name
                                kuitar
-                               :description "Teaching super red eco"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-redecozoomer.mp3"
+                               :description "Teaching Super Red Eco"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-redecozoomer.mp3"
                                :dev-name
                                kuitar
-                               :description "Nitro powered Zoomer"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-boulder.mp3"
+                               :description "Nitro-Powered Zoomer"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-boulder.mp3"
                                :dev-name
                                kuitar
-                               :description "Fixing some mistakes"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-greenring.mp3"
+                               :description "Fixing Some Mistakes"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-greenring.mp3"
                                :dev-name
                                kuitar
-                               :description "A hybrid challenge for a hybrid level"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-greenmiss.mp3"
+                               :description "A Hybrid Challenge for a Hybrid Level"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-greenmiss.mp3"
                                :dev-name
                                kuitar
-                               :description "A case of the invisible ring"
-                               :length 10.0) ;; TODO: Spawn a ring in the old spot
-        (static-commentary-data :file-name "kui-balloonlurker.mp3"
+                               :description "A Case of the Invisible Ring"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release))) ;; TODO: Spawn a ring in the old spot
+       (static-commentary-data :file-name "kui-balloonlurker.mp3"
                                :dev-name
                                kuitar
-                               :description "Overlapping multiple objectives"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-lowreskui.mp3"
+                               :description "Overlapping Multiple Objectives"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-lowreskui.mp3"
                                :dev-name
                                kuitar
-                               :description "A secret dev pic you can collect"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-minesfeel.mp3" ;; Open Mines dev commentary
+                               :description "A Secret Dev Pic You Can Collect"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       ;; Open Mines dev commentary
+       (static-commentary-data :file-name "kui-minesfeel.mp3"
                                :dev-name
                                kuitar
-                               :description "An industrial and machinery feel"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-dropplat.mp3"
+                               :description "An Industrial and Machinery Feel"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-dropplat.mp3"
                                :dev-name
                                kuitar
-                               :description "Think before you jump part 2"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-kegfeatures.mp3"
+                               :description "Think Before You Jump, Part 2"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-kegfeatures.mp3"
                                :dev-name
                                kuitar
-                               :description "A decent into res lump madness"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-kegmaze.mp3"
+                               :description "A Descent Into res-lump Madness"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-kegmaze.mp3"
                                :dev-name
                                kuitar
                                :description "A deadly maze"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-backupblue.mp3"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-backupblue.mp3"
                                :dev-name
                                kuitar
-                               :description "Combating frustration"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-minesambush.mp3"
+                               :description "Combatting Frustration"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-minesambush.mp3"
                                :dev-name
                                kuitar
-                               :description "Learning new mechanics in a hectic battle"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-bouncer.mp3"
+                               :description "Learning New Mechanics in a Hectic Battle"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-bouncer.mp3"
                                :dev-name
                                kuitar
-                               :description "flamepot without the flame"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-excavator.mp3"
+                               :description "Flamepot Without the Flame"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-excavator.mp3"
                                :dev-name
                                kuitar
-                               :description "A problem of scale"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-minecarts.mp3"
+                               :description "A Problem of Scale"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-minecarts.mp3"
                                :dev-name
                                kuitar
-                               :description "Constrained design"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-quicksandlurker.mp3"
+                               :description "Constrained Design"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-quicksandlurker.mp3"
                                :dev-name
                                kuitar
-                               :description "Creating an aimbot"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-valleyboulder.mp3" ;; Taiga Valley dev commentary
+                               :description "Creating an Aimbot"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       ;; Taiga Valley dev commentary
+       (static-commentary-data :file-name "kui-valleyboulder.mp3"
                                :dev-name
                                kuitar
-                               :description "An explosive start"
-                               :length 10.0)  ;; TODO: add loops of the boulder exploding animation with pause before/after
-        (static-commentary-data :file-name "kui-progression.mp3"
+                               :description "An Explosive Start"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release))) ;; TODO: add loops of the boulder exploding animation with pause before/after
+       (static-commentary-data :file-name "kui-progression.mp3"
                                :dev-name
                                kuitar
-                               :description "Giving TFL its own collectable count"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-valleyspiral.mp3"
+                               :description "Giving TFL Its Own Collectable Count"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-valleyspiral.mp3"
                                :dev-name
                                kuitar
-                               :description "Hidding loads"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-rollingrocks.mp3"
+                               :description "Hiding Loads"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-rollingrocks.mp3"
                                :dev-name
                                kuitar
-                               :description "A dynamic obstacle"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-ecochoice.mp3"
+                               :description "A Dynamic Obstacle"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-ecochoice.mp3"
                                :dev-name
                                kuitar
-                               :description "Insert matrix pill choice meme here"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-superblue.mp3"
+                               :description "Insert Matrix Pill Choice Meme Here"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-superblue.mp3" :dev-name kuitar :description "Falling With Style" :length 10.0)
+       (static-commentary-data :file-name "kui-deepgap.mp3"
                                :dev-name
                                kuitar
-                               :description "Falling with style"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-deepgap.mp3"
+                               :description "Creating Custom Ocean Maps"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-valleyvisual.mp3"
                                :dev-name
                                kuitar
-                               :description "Creating custom ocean maps"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-valleyvisual.mp3"
+                               :description "A Striking Visual Change"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-flyinglurker.mp3"
                                :dev-name
                                kuitar
-                               :description "A striking visual change"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-flyinglurker.mp3"
+                               :description "Combining Old Enemies With New Mechanics"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-snowtransition.mp3"
                                :dev-name
                                kuitar
-                               :description "Combining old enemies with new mechanics"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-snowtransition.mp3"
+                               :description "Abusing Vertex Alpha for Smooth Transitions"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-zoomerparticle.mp3"
                                :dev-name
                                kuitar
-                               :description "Abusing vertex alpha for smooth transitions"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-zoomerparticle.mp3"
+                               :description "Dynamic Particles"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-iceslide.mp3"
                                :dev-name
                                kuitar
-                               :description "Dynamic particles"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-iceslide.mp3"
+                               :description "A slide Into Your Doom"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-pdsvisuals.mp3"
                                :dev-name
                                kuitar
-                               :description "A slide into your doom"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-pdsvisuals.mp3"
+                               :description "The Defense System Visuals"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-pdscode.mp3"
                                :dev-name
                                kuitar
-                               :description "The defense system visuals"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-pdscode.mp3"
+                               :description "The Defense System Code"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-pdsmechanic.mp3"
                                :dev-name
                                kuitar
-                               :description "The defense system code"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-pdsmechanic.mp3"
+                               :description "The Defense System Mechanics"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-pdstrap.mp3"
                                :dev-name
                                kuitar
-                               :description "The defense system mechanics"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-pdstrap.mp3"
+                               :description "The Defense System Traps"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "kui-valleydoor.mp3"
                                :dev-name
                                kuitar
-                               :description "The defense system traps"
-                               :length 10.0)
-        (static-commentary-data :file-name "kui-valleydoor.mp3"
-                               :dev-name
-                               kuitar
-                               :description "A time consuming project"
-                               :length 10.0)))
+                               :description "A Time Consuming Project"
+                               :length 10.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))))
