@@ -6636,11 +6636,11 @@
       }
     },
     {
-      "trans": [-237.66, 214.77, 644.36],
+      "trans": [-202.23, 230.62, 704.75],
       "etype": "tfl-commentary-node",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [-237.66, 214.77, 644.36, 10],
+      "bsphere": [-202.23, 230.62, 704.75, 10],
       "lump": {
         "name": "crescent-commentary-kui-robotchallenge",
         "filename": "kui-robotchallenge.mp3"
