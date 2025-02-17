@@ -752,8 +752,8 @@
             :scale #t
             :option-disabled-func
             (lambda ()
-              (defun-extern tfl-collected-cell-count (function int))
-              (defun-extern tfl-total-cell-count (function int))
+              (defun-extern tfl-collected-cell-count int)
+              (defun-extern tfl-total-cell-count int)
               (< (tfl-collected-cell-count) (tfl-total-cell-count)))
             :param3 (game-option-menu tfl-commentary))
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
