@@ -106,94 +106,6 @@ examples:
        'boxed-array
        :type
        tfl-commentary-data
-       (static-commentary-data :file-name "dev00.wav"
-                               :dev-name
-                               kuitar
-                               :description "Designing Energy Bay"
-                               :length 5.0
-                               :cmd-list
-                               '((start grab)
-                                (start music 5.0)
-                                (start sfx 5.0)
-                                (start dialog 5.0)
-                                (300 pov-camera *village2cam-sg* (vectorm 859.0 220.0 691.0) "elevator-at-bottom-going-up")
-                                (end release)))
-       (static-commentary-data :file-name "tfl-dev-crescent-control-room-kui.wav"
-                               :dev-name
-                               kuitar
-                               :description "Underground Area"
-                               :length 35.0
-                               :spawn-list
-                               ((tfl-static-spawn-func "super-eco-crystal0"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 388.75) 'red 20)))
-                                (tfl-static-spawn-func "super-eco-crystal1"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 392.75) 'green 20)))
-                                (tfl-static-spawn-func "super-eco-crystal2"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 396.75) 'blue 20)))
-                                (tfl-static-spawn-func "super-eco-crystal3"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 400.75) 'yellow 20))))
-                               :cmd-list
-                               '((start grab)
-                                (start music 5.0)
-                                (start sfx 5.0)
-                                (start dialog 5.0)
-                                (300 spawn 0 "super-eco-crystal0")
-                                (300 spawn 1 "super-eco-crystal1")
-                                (300 spawn 2 "super-eco-crystal2")
-                                (300 spawn 3 "super-eco-crystal3")
-                                ; (600
-                                ;  cam-control
-                                ;  (cam-dest 91.5 186.5 394.75)
-                                ;  (move-timer 1.2)
-                                ;  (max-z 24)
-                                ;  (push-z 20)
-                                ;  (max-y 10)
-                                ;  (min-y -2)
-                                ;  (tilt-adjust 6))
-                                ; (900 send-event 0 powerup (a b c 0 0.0 "test" last))
-                                (1200 go-virtual 0 break)
-                                (1500 go-virtual 1 break)
-                                (1800 go-virtual 2 break)
-                                (2100 go-virtual 3 break)
-                                (2500 kill cam-control)
-                                (9100 kill 0)
-                                (9400 kill 1)
-                                (9700 kill 2)
-                                (10000 kill 3)
-                                (end release)))
-       (static-commentary-data :file-name "tfl-dev-crescent-control-room-pex.wav"
-                               :dev-name
-                               pex
-                               :description "Underground Area"
-                               :length 35.0
-                               :spawn-list
-                               ((tfl-static-spawn-func "super-eco-crystal0"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 388.75) 'red 20)))
-                                (tfl-static-spawn-func "super-eco-crystal1"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 392.75) 'green 20)))
-                                (tfl-static-spawn-func "super-eco-crystal2"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 396.75) 'blue 20)))
-                                (tfl-static-spawn-func "super-eco-crystal3"
-                                                       (ppointer->handle (process-spawn super-eco-crystal (static-vectorm 91.5 186.5 400.75) 'yellow 20))))
-                               :cmd-list
-                               '((start grab)
-                                (start music 5.0)
-                                (start sfx 5.0)
-                                (start dialog 5.0)
-                                (300 spawn 0 "super-eco-crystal0")
-                                (300 spawn 1 "super-eco-crystal1")
-                                (300 spawn 2 "super-eco-crystal2")
-                                (300 spawn 3 "super-eco-crystal3")
-                                (1200 go-virtual 0 break)
-                                (1500 go-virtual 1 break)
-                                (1800 go-virtual 2 break)
-                                (2100 go-virtual 3 break)
-                                (2500 kill cam-control)
-                                (9100 kill 0)
-                                (9400 kill 1)
-                                (9700 kill 2)
-                                (10000 kill 3)
-                                (end release)))
        ;; Crystal Cave dev commentary
        (static-commentary-data :file-name "kui-intro.mp3"
                                :dev-name
@@ -812,7 +724,7 @@ examples:
                               (target -167.6921 92.3146 -122.1137 0.0000 -0.6875 0.0000 0.7260)
                               (camera -172.5523 96.3916 -115.2153 -0.8687 -0.0000 -0.4952 0.0896 0.9834 -0.1572 0.4870 -0.1809 -0.8544)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-10-Kuitar" 
+       (static-continue-point "tfl-comm-10-Kuitar"
                               ()
                               (target -87.4895 98.9150 26.3324 0.0000 0.9759 0.0000 -0.2180)
                               (camera -78.6485 104.0613 17.5447 0.6165 0.0000 0.7873 -0.1023 0.9915 0.0801 -0.7806 -0.1300 0.6113)

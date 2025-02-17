@@ -32,7 +32,7 @@
 
 (define-perm *tfl-dev-commentary*
              tfl-dev-commentary-settings
-             (new 'static 'tfl-dev-commentary-settings :enabled? #t :vol 1.0))
+             (new 'static 'tfl-dev-commentary-settings :enabled? #f :vol 1.0))
 
 (define *tfl-dev-commentary-playing?* (-> *tfl-dev-commentary* playing?))
 

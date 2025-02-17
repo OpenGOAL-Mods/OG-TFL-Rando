@@ -1,5 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(defmacro kill-pds-sentinel ()
+  `(go-process (process-by-ename "valley-pds-sentinel-01") (method-of-type pds-sentinel beaten)))
+
 (defun path-distance-up-to-cvert ((this path-control) (up-to int))
   (let ((dist 0.0))
     (dotimes (i (min up-to (1- (-> this curve num-cverts))))
