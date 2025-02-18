@@ -2343,6 +2343,19 @@
          ;; holding left. sliders use hold.
          (cond
            ((cpad-pressed? 0 left)
+            ;; TFL note: fast scroll for commentary menu
+            (when (and (>= (-> obj option-index) 1)
+                       (not (-> obj selected-option))
+                       (= (-> obj display-state) (progress-screen tfl-commentary)))
+              (if (!= (length options) 1) (sound-play "cursor-up-down"))
+              (set! (-> obj last-option-index-change) (-> *display* real-frame-counter))
+              (set! (-> obj option-index) (max (- (-> obj option-index) 10) 0))
+              (set! (-> *progress-scroll* transition) 0.0)
+              (set! (-> *progress-scroll* direction) PROGRESS_SCROLL_DIR_UP)
+              (set! (-> *progress-scroll* start-index)
+                    (cond
+                      ((<= (-> obj option-index) 4) 0)
+                      (else (max (- (-> obj option-index) 5) 0)))))
             ;; navigate left.
             (when (or (-> obj selected-option) (= (-> options (-> obj option-index) option-type) (game-option-type yes-no)))
               (let ((sound? #f))
@@ -2432,6 +2445,20 @@
          ;; holding right
          (cond
            ((cpad-pressed? 0 right)
+            ;; TFL note: fast scroll for commentary menu
+            (let ((last-idx (1- (length options))))
+              (when (and (< (-> obj option-index) last-idx)
+                         (not (-> obj selected-option))
+                         (= (-> obj display-state) (progress-screen tfl-commentary)))
+                (if (!= (length options) 1) (sound-play "cursor-up-down"))
+                (set! (-> obj last-option-index-change) (-> *display* real-frame-counter))
+                (set! (-> obj option-index) (min (+ (-> obj option-index) 10) last-idx))
+                (set! (-> *progress-scroll* transition) 0.0)
+                (set! (-> *progress-scroll* direction) PROGRESS_SCROLL_DIR_DOWN)
+                (set! (-> *progress-scroll* start-index)
+                      (cond
+                        ((>= (-> obj option-index) (- last-idx 6)) (- last-idx 6))
+                        (else (min (-> obj option-index) (- last-idx 6)))))))
             ;; pressed right
             (when (or (-> obj selected-option) (= (-> options (-> obj option-index) option-type) (game-option-type yes-no)))
               (let ((sound? #f))
