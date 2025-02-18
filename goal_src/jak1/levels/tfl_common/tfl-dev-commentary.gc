@@ -227,8 +227,9 @@
 
 (defmethod parse-cmd-vec! ((this tfl-commentary-node) (vec vector) (cmd pair))
   (when (= (ref cmd 1) 'root)
-    (vector-copy! vec (-> this root trans))
-    (return vec))
+    (return (vector-copy! vec (-> this root trans))))
+  (when (= (ref cmd 1) 'entity)
+    (return (vector-copy! vec (-> (entity-by-name (the string (ref cmd 2))) extra trans))))
   (set! (-> vec x) (meters (unbox-bfloat-or-binteger (ref cmd 1))))
   (set! (-> vec y) (meters (unbox-bfloat-or-binteger (ref cmd 2))))
   (set! (-> vec z) (meters (unbox-bfloat-or-binteger (ref cmd 3))))
@@ -372,8 +373,6 @@
       (('cam-control)
        (set! (-> this cam-control)
              (ppointer->handle (process-spawn tfl-cam-control (parse-cam-control! this (-> this cam-control-parms) (the pair rest))))))
-      ; (('go-virtual))
-      ; (('text)) ;; draw text on-screen
       (else (format 0 "tfl-commentary-node::parse-cmd unhandled cmd ~A~%" c) #t))))
 
 (defmethod execute-cmds ((this tfl-commentary-node) (cmds pair))

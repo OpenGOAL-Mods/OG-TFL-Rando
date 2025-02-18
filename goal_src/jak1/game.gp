@@ -2153,6 +2153,7 @@
  ;; prefix
  "levels/tfl_common/"
  :deps ("$OUT/obj/pov-camera.o" "$OUT/obj/super-eco-crystal.o" "$OUT/obj/tfl-cam-control.o")
+ "tfl-dev-commentary-actors.gc"
  "tfl-dev-commentary-data.gc"
  "tfl-dev-commentary.gc"
  )

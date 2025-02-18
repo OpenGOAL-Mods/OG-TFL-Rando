@@ -712,11 +712,6 @@
         (ja :num! (seek! max 0.6)))
       (go-virtual pov-camera-done-playing)))
 
-(def-actor valley-rock
-  :idle idle-ja
-  :art (explode-ja idle-ja)
-  :bounds (0 5 0 200))
-
 (deftype valley-rock (process-drawable)
   ((root collide-shape :override))
   (:methods
@@ -852,7 +847,7 @@
   :post
     (behavior ()
       (when (-> self move-to?)
-        (set! (-> self move-to?) #f)
-        (set! (-> self root trans quad) (-> self move-to-pos quad))
+        (false! (-> self move-to?))
+        (vector-copy! (-> self root trans) (-> self move-to-pos))
         (quaternion-copy! (-> self root quat) (-> self move-to-quat))
         (rider-post))))
