@@ -1647,7 +1647,7 @@
         "name": "valley-buzzer-04",
         "crate-type": "'iron",
         "eco-info": ["buzzer-info", "(game-task valley-buzzer)", 3],
-        "movie-pos": ["movie-pos", [504.95, 52.73, 1975.38, 0.0]]
+        "movie-pos": ["movie-pos", [504.95, 52.73, 1975.38, -160.0]]
       }
     },
     {
@@ -1660,7 +1660,7 @@
         "name": "valley-buzzer-05",
         "crate-type": "'iron",
         "eco-info": ["buzzer-info", "(game-task valley-buzzer)", 4],
-        "movie-pos": ["movie-pos", [1288.65, 45.60, 1982.40, 0.0]]
+        "movie-pos": ["movie-pos", [1288.65, 45.60, 1982.40, -90.0]]
       }
     },
     {
@@ -1673,7 +1673,7 @@
         "name": "valley-buzzer-06",
         "crate-type": "'iron",
         "eco-info": ["buzzer-info", "(game-task valley-buzzer)", 5],
-        "movie-pos": ["movie-pos", [1609.01, 14.79, 1921.44, 0.0]]
+        "movie-pos": ["movie-pos", [1609.01, 14.79, 1921.44, 180.0]]
       }
     },
     {
@@ -1686,7 +1686,7 @@
         "name": "valley-buzzer-07",
         "crate-type": "'iron",
         "eco-info": ["buzzer-info", "(game-task valley-buzzer)", 6],
-        "movie-pos": ["movie-pos", [1867.09, 37.67, 1908.61, 0.0]]
+        "movie-pos": ["movie-pos", [1867.09, 37.67, 1908.61, -60.0]]
       }
     },
 // Actors: CRATES
