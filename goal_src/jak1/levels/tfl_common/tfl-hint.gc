@@ -165,7 +165,7 @@
          ;; play hints or forced playback are enabled
          (or (-> *setting-control* current play-hints) (-> this hint-data force-playback?))
          ;; check for arbitrary special condition
-         (if (and (-> this hint-data play-func) (!= (-> this hint-data play-func) false-func)) ((-> this hint-data play-func)))
+         (if (and (-> this hint-data play-func) (!= (-> this hint-data play-func) false-func)) ((-> this hint-data play-func)) #t)
          ;; check for target mode
          (check-target-mode this)
          ;; volume >0 or subtitles
