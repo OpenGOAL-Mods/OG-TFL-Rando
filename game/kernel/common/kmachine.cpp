@@ -448,7 +448,7 @@ void lerp_tfl_music(float vol, bool pause) {
     while (val >= 0.01f) {
       val = lerp(start, end, 1.0f - time_elapsed);
       MiniAudioLib::ma_sound_set_volume(g_tfl_music, std::min<float>(1.f, val));
-      printf("Fading out music volume: %f\n", val);
+      // printf("Fading out music volume: %f\n", val);
       time_elapsed -= 0.01f;
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
@@ -460,7 +460,7 @@ void lerp_tfl_music(float vol, bool pause) {
     while (val < vol) {
       val = lerp(start, end, time_elapsed);
       MiniAudioLib::ma_sound_set_volume(g_tfl_music, std::min<float>(1.f, val));
-      printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
+      // printf("Fading in music volume: %f (target volume: %f)\n", val, vol);
       time_elapsed += 0.01f;
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }

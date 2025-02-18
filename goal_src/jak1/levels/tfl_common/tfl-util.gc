@@ -41,6 +41,16 @@
           (1+! cnt))))
     cnt))
 
+(defun tfl-give-all-cells ()
+  (let ((tfl-task-start (game-task crystalc-middle))
+        (tfl-task-end (game-task max))
+        (cell? (lambda ((task game-task)) (not (nmember (string->symbol (game-task->string task)) TFL_NO_CELL_TASKS)))))
+    (dotimes (i (- tfl-task-end tfl-task-start))
+      (let ((task (+ tfl-task-start (the game-task i))))
+        (when (cell? task)
+          (close-specific-task! task (task-status need-resolution))
+          (send-event *target* 'get-pickup (pickup-type fuel-cell) (the float task)))))))
+
 (defun tfl-collected-money-count ()
   (let ((cnt 0))
     (dotimes (i (length TFL_LEVELS))

@@ -78,6 +78,7 @@
 (deftype tfl-commentary-node (process-drawable)
   ((sound-to-play     string)
    (length            float)
+   (node-idx          int16)
    (last-time         time-frame)
    (play-time         time-frame)
    (activate-range    float)
@@ -116,6 +117,8 @@
    (parse-cmd-vec! (_type_ vector pair) vector)
    (parse-cam-control! (_type_ tfl-cam-control-init-params pair) tfl-cam-control-init-params)
    (spawn-func-by-name (_type_ string) (function handle))
+   (valid-node? (_type_ int) symbol)
+   (warp-to-node (_type_ int) object)
    (kill-all-handles! (_type_) object))
   (:state-methods
    hidden
@@ -147,9 +150,11 @@
   (call-parent-method this off))
 
 (defmethod get-commentary-data ((this tfl-commentary-node))
-  (dotimes (i (-> *tfl-commentary-nodes* length))
-    (if (string= (-> this sound-to-play) (-> *tfl-commentary-nodes* i file-name))
-      (return (the tfl-commentary-data (-> *tfl-commentary-nodes* i)))))
+  (let ((idx 0))
+    (dotimes (i (length *tfl-commentary-nodes*))
+      (when (string= (-> this sound-to-play) (-> *tfl-commentary-nodes* i file-name))
+        (set! (-> this node-idx) i)
+        (return (the tfl-commentary-data (-> *tfl-commentary-nodes* i))))))
   (the tfl-commentary-data #f))
 
 (defmethod can-activate? ((this tfl-commentary-node))
@@ -500,6 +505,12 @@
                      (/ (the float (- (current-time) (-> this play-time))) (the float (-> this data length)))
                      (static-rgba #xff 80 0 #x80))))
 
+(defmethod valid-node? ((this tfl-commentary-node) (idx int))
+  (and (> idx -1) (< idx (length *tfl-commentary-nodes*))))
+
+(defmethod warp-to-node ((this tfl-commentary-node) (idx int))
+  (if (valid-node? this idx) (start 'play (-> *tfl-commentary-continues* idx))))
+
 (defmethod common-init ((this tfl-commentary-node))
   (stack-size-set! (-> this main-thread) 512)
   (set! (-> this root) (new 'process 'trsqv))
@@ -507,6 +518,7 @@
   (set! (-> this pov-cam) INVALID_HANDLE)
   (set! (-> this cam-control) INVALID_HANDLE)
   (set! (-> this cam-control-parms) (new 'process 'tfl-cam-control-init-params))
+  (set! (-> this node-idx) -1)
   (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
     (set! (-> this proc i) INVALID_HANDLE)
     (set! (-> this manipy i) INVALID_HANDLE))
@@ -623,6 +635,13 @@
   :trans
     (behavior ()
       (when (can-activate? self)
+        (cond
+          ((and *target* (time-elapsed? (-> *target* state-time) (seconds 0.032)) (cpad-pressed? 0 left))
+           (cpad-clear! 0 left)
+           (warp-to-node self (1- (-> self node-idx))))
+          ((and *target* (time-elapsed? (-> *target* state-time) (seconds 0.032)) (cpad-pressed? 0 right))
+           (cpad-clear! 0 right)
+           (warp-to-node self (1+ (-> self node-idx)))))
         (let ((fnt (new 'stack 'font-context *font-default-matrix* 32 160 0.0 (font-color default) (font-flags shadow kerning))))
           (set-width! fnt 440)
           (set-height! fnt 80)
@@ -648,6 +667,12 @@
                          (time->string self)
                          (-> self root trans)
                          (font-color progress-memcard)
+                         (y-inc! y))
+            (add-text-3d #t
+                         (bucket-id debug-no-zbuf)
+                         "Left/Right to Go to Prev/Next Node"
+                         (-> self root trans)
+                         (font-color white)
                          (y-inc! y))))))
   :code
     (behavior ()
