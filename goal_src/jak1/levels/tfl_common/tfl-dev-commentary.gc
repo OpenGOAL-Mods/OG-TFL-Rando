@@ -657,7 +657,7 @@
                          y)
             (add-text-3d #t
                          (bucket-id debug-no-zbuf)
-                         (-> self data description)
+                         (string-format "~D: ~S" (1+ (-> self node-idx)) (-> self data description))
                          (-> self root trans)
                          (font-color orange)
                          (y-inc! y))
