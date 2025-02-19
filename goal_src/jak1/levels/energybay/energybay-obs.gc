@@ -246,6 +246,7 @@
 (defmethod init-from-entity! ((this turbineblade) (e entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
   (process-drawable-from-entity! this e)
+  (process-mask-clear! (-> this mask) actor-pause)
   (initialize-skeleton this *turbineblade-sg* '())
   (cond
     ((task-complete? *game-info* (-> this entity extra perm task)) (go turbineblade-spinning #t))
