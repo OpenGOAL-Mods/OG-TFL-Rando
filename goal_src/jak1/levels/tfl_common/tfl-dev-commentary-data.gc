@@ -128,8 +128,8 @@ examples:
                                 (300
                                  proc
                                  0
-                                 (trans ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from code~%")))
-                                 (code ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from trans~%")))
+                                 (trans ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from trans~%")))
+                                 (code ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from code~%")))
                                  (post ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from post~%"))))
                                 (end release)))
        (static-commentary-data :file-name "kui-intro.mp3"

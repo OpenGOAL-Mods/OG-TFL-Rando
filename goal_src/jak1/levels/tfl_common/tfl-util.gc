@@ -438,6 +438,21 @@
 
 (if (not (process-by-name "warp-to-crystalc" *active-pool*)) (process-spawn warp-to-crystalc))
 
+(defbehavior tfl-dev-commentary-available-proc process ()
+  (until (and (not (movie?)) (>= (tfl-collected-cell-count) (tfl-total-cell-count)))
+    (suspend))
+  (let ((time (current-time)))
+    (until (or *progress-process* (time-elapsed? time (seconds 7.5)))
+      (let ((fnt (new 'stack 'font-context *font-default-matrix* 56 55 0.0 (font-color default) (font-flags shadow kerning))))
+        (set-width! fnt 400)
+        (set-height! fnt 96)
+        (set-scale! fnt 1.0)
+        (set-flags! fnt (font-flags shadow kerning middle large))
+        (print-game-text (lookup-text! *common-text* (text-id tfl-dev-commentary-unlocked-0) #f) fnt #f 128 22)
+        (+! (-> fnt origin y) 75.0)
+        (print-game-text (lookup-text! *common-text* (text-id tfl-dev-commentary-unlocked-1) #f) fnt #f 128 22))
+      (suspend))))
+
 (deftype tfl-part-spawner (part-spawner) ()
   (:states
    tfl-part-spawner-active))
