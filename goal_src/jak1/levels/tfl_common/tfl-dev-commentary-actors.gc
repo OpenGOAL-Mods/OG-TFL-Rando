@@ -1,5 +1,36 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(deftype tfl-commentary-proc (process)
+  ((state-time  time-frame)
+   (trans-hook0 (function none :behavior tfl-commentary-proc))
+   (code-hook0  (function object :behavior tfl-commentary-proc))
+   (post-hook0  (function none :behavior tfl-commentary-proc)))
+  (:state-methods
+   idle))
+
+(defbehavior tfl-commentary-proc-init-by-other tfl-commentary-proc ((trans (function none :behavior tfl-commentary-proc))
+              (code (function object :behavior tfl-commentary-proc))
+              (post (function none :behavior tfl-commentary-proc)))
+  (set! (-> self trans-hook0) trans)
+  (set! (-> self code-hook0) code)
+  (set! (-> self post-hook0) post)
+  (go-virtual idle))
+
+(defstate idle (tfl-commentary-proc)
+  :virtual #t
+  :trans
+    (behavior ()
+      (if (-> self trans-hook0) ((-> self trans-hook0))))
+  :code
+    (behavior ()
+      (set-state-time)
+      (loop
+        (if (-> self code-hook0) ((-> self code-hook0)))
+        (suspend)))
+  :post
+    (behavior ()
+      (if (-> self post-hook0) ((-> self post-hook0)))))
+
 (def-actor valley-rock
   :idle idle-ja
   :art (explode-ja idle-ja)
