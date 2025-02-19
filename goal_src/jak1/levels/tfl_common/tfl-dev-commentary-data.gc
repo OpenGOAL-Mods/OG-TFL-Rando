@@ -331,7 +331,13 @@ examples:
                                :length 22.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
-       (static-commentary-data :file-name "kui-enbjump.mp3" :dev-name kuitar :description "A Long Way Down" :length 19.0)
+       (static-commentary-data :file-name "kui-enbjump.mp3"
+                               :dev-name
+                               kuitar
+                               :description "A Long Way Down"
+                               :length 19.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-hiddinglevels.mp3"
                                :dev-name
                                kuitar
@@ -694,11 +700,11 @@ examples:
        'boxed-array
        :type
        continue-point
-       (static-continue-point "tfl-comm-0-Kuitar" 
+       (static-continue-point "tfl-comm-0-kuitar"
                               ()
                               (target -4.0701 99.1599 3.0370 -0.0000 -0.5267 -0.0000 -0.8500)
                               (camera -4.9601 104.1162 14.7769 -0.9813 -0.0000 -0.1923 0.0248 0.9916 -0.1268 0.1906 -0.1292 -0.9730)
-                              (load 'crc 'crescent-t 'display 'crystal-ca 'display))
+                              (load 'crc 'crystal-ca 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-1-kuitar"
                               ()
                               (target 1.0770 99.2756 7.2674 0.0000 0.4490 0.0000 0.8935)
