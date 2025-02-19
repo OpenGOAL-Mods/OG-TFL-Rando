@@ -371,6 +371,7 @@
            (case param
              (('cam-control) (deactivate-handle (-> this cam-control)))
              (('manipy) (let ((idx (/ (the int (ref rest 1)) 8))) (deactivate-handle (-> this manipy idx))))
+             (('proc) (let ((idx (/ (the int (ref rest 1)) 8))) (deactivate-handle (-> this comm-proc idx))))
              (('pov-cam)
               (when (handle->process (-> this pov-cam))
                 (send-event (handle->process (-> this pov-cam)) 'abort)
