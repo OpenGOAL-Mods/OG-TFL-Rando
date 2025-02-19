@@ -722,6 +722,7 @@
          (tfl-comm-entry)
          (tfl-comm-entry)
          (tfl-comm-entry)
+         (tfl-comm-entry)
          (tfl-comm-entry)))
   (dotimes (i (length *tfl-commentary-nodes*))
     (let ((entry (-> *tfl-commentary-options* (1+ i))))
@@ -731,7 +732,7 @@
               (1+ i)
               (string-upcase (-> *tfl-commentary-nodes* i description) (clear *temp-string*))
               (string-upcase (tfl-commentary-dev->string (-> *tfl-commentary-nodes* i dev-name)) (clear *temp-string2*)))))
-  (set! (-> *tfl-commentary-options* 69) ; (1- (length *tfl-commentary-nodes*))
+  (set! (-> *tfl-commentary-options* 70) ; (1- (length *tfl-commentary-nodes*))
         (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t))
   (true! *tfl-commentary-options-defined?*))
 
