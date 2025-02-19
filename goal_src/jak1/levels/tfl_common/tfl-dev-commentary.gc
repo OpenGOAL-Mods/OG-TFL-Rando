@@ -662,7 +662,7 @@
       (set-look! self 'inactive))
   :trans
     (behavior ()
-      (when (and (-> self should-release?) (time-elapsed? (-> self exit-time) (seconds 0.2)))
+      (when (and (-> self should-release?) (time-elapsed? (-> self exit-time) (seconds 0.1)))
         (cpad-clear! 0 l2 circle)
         (false! (-> self should-release?))
         (process-release? *target*))
