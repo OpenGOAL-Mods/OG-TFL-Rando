@@ -2149,15 +2149,6 @@
    )
  )
 
-(goal-src-sequence
- ;; prefix
- "levels/tfl_common/"
- :deps ("$OUT/obj/pov-camera.o" "$OUT/obj/super-eco-crystal.o" "$OUT/obj/tfl-cam-control.o")
- "tfl-dev-commentary-actors.gc"
- "tfl-dev-commentary-data.gc"
- "tfl-dev-commentary.gc"
- )
-
 ;; Custom or Modified Code
 (goal-src "pc/features/autosplit-h.gc")
 (goal-src "pc/features/autosplit.gc" "autosplit-h" "task-control-h" "progress-static")
@@ -2196,11 +2187,14 @@
 (goal-src-sequence
  ;; prefix
  "levels/tfl_common/"
- :deps ("$OUT/obj/joint-exploder.o")
+ :deps ("$OUT/obj/joint-exploder.o" "$OUT/obj/pov-camera.o")
  "super-eco-crystal.gc"
+ "tfl-cam-control.gc"
+ "tfl-dev-commentary-actors.gc"
+ "tfl-dev-commentary-data.gc"
+ "tfl-dev-commentary.gc"
  "tfl-hint-data.gc"
  "tfl-hint.gc"
- "tfl-cam-control.gc"
  "tfl-util.gc"
  "tfl-lowreskui.gc"
  )
