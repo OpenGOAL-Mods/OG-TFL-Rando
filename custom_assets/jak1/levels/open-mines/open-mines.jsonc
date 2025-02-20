@@ -5776,6 +5776,114 @@
       }
     },
 // Actors: HINT
+    {
+      "trans": [-485.36, 162.91, 846.67],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-485.36, 162.91, 846.67, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-01-KeiraMetal",
+        "filename": "open-mines-tfl-hint-01-KeiraMetal.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [-414.72, 128.89, 857.66],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-414.72, 128.89, 857.66, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-02-DaxterDropplat",
+        "filename": "open-mines-tfl-hint-02-DaxterDropplat.wav",
+        "radius": ["meters", 5.0]
+      }
+    },
+    {
+      "trans": [-639.06, 141.88, 1040.45],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-639.06, 141.88, 1040.45, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-03-DaxterKeg",
+        "filename": "open-mines-tfl-hint-03-DaxterKeg.wav",
+        "radius": ["meters", 10.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-04-DaxterAmbush1",
+        "filename": "open-mines-tfl-hint-04-DaxterAmbush1.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-05-DaxterAmbush2",
+        "filename": "open-mines-tfl-hint-05-DaxterAmbush2.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-06-DaxterAmbush3",
+        "filename": "open-mines-tfl-hint-06-DaxterAmbush3.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-07-DaxterAmbush4",
+        "filename": "open-mines-tfl-hint-07-DaxterAmbush4.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-485.67, 134.38, 1163.92],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-485.67, 134.38, 1163.92, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-08-SamosDark",
+        "filename": "open-mines-tfl-hint-08-SamosDark.wav",
+        "radius": ["meters", 30.0]
+      }
+    },
+    {
+      "trans": [-429.31, 149.83, 1096.31],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-429.31, 149.83, 1096.31, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-09-KeiraExcavator",
+        "filename": "open-mines-tfl-hint-09-KeiraExcavator.wav",
+        "radius": ["meters", 8.0]
+      }
+    },
 // Actors: DEV COMMENTARY
     {
       "trans": [-396.57, 178.02, 732.06],

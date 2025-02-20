@@ -6590,6 +6590,30 @@
         "radius": ["meters", 25.0]
       }
     },
+    {
+      "trans": [-255.36, 201.18, 809.40],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-255.36, 201.18, 809.40, 10],
+      "lump": {
+        "name": "crescent-tfl-hint-15-KeiraSignal",
+        "filename": "crescent-tfl-hint-15-KeiraSignal.wav",
+        "radius": ["meters", 30.0]
+      }
+    },
+    {
+      "trans": [413.44, 255.47, 740.70],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [413.44, 255.47, 740.70, 10],
+      "lump": {
+        "name": "crescent-tfl-hint-16-KeiraDown",
+        "filename": "crescent-tfl-hint-16-KeiraDown.wav",
+        "radius": ["meters", 30.0]
+      }
+    },
 // Actors: DEV COMMENTARY
     {
       "trans": [-256.16, 213.17, 337.06],

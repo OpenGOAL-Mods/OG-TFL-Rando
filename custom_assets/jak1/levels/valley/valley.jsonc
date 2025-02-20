@@ -8095,6 +8095,78 @@
   }
 },
 // Actors: HINT
+    {
+      "trans": [162.31, 166.90, 790.29],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [162.31, 166.90, 790.29, 10],
+      "lump": {
+        "name": "valley-tfl-hint-01-DaxterAvalanche",
+        "filename": "valley-tfl-hint-01-DaxterAvalanche.wav",
+        "radius": ["meters", 20.0]
+      }
+    },
+    {
+      "trans": [131.84, 77.47, 1145.78],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [131.84, 77.47, 1145.78, 10],
+      "lump": {
+        "name": "valley-tfl-hint-02-SecretIntrusion",
+        "filename": "valley-tfl-hint-02-SecretIntrusion.wav",
+        "radius": ["meters", 60.0]
+      }
+    },
+    {
+      "trans": [659.09, 66.29, 2077.37],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [659.09, 66.29, 2077.37, 10],
+      "lump": {
+        "name": "valley-tfl-hint-03-DaxterFlying",
+        "filename": "valley-tfl-hint-03-DaxterFlying.wav",
+        "radius": ["meters", 50.0]
+      }
+    },
+    {
+      "trans": [811.30, 31.80, 1998.66],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [811.30, 31.80, 1998.66, 10],
+      "lump": {
+        "name": "valley-tfl-hint-04-KeiraCrystal",
+        "filename": "valley-tfl-hint-04-KeiraCrystal.wav",
+        "radius": ["meters", 20.0]
+      }
+    },
+    {
+      "trans": [2074.57, 7.93, 1852.37],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [2074.57, 7.93, 1852.37, 10],
+      "lump": {
+        "name": "valley-tfl-hint-05-SentinelDaxter",
+        "filename": "valley-tfl-hint-05-SentinelDaxter.wav",
+        "radius": ["meters", 50.0]
+      }
+    },
+    {
+      "trans": [2074.57, 7.93, 1852.37],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [2074.57, 7.93, 1852.37, 10],
+      "lump": {
+        "name": "valley-tfl-hint-06-DaxterGem",
+        "filename": "valley-tfl-hint-06-DaxterGem.wav",
+        "radius": ["meters", 50.0]
+      }
+    },
 // Actors: DEV COMMENTARY
     {
       "trans": [225.67, 203.44, 605.81],

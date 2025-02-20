@@ -128,6 +128,18 @@ examples:
                          :task-status (task-status need-hint)
                          :voicebox? #t
                          :force-playback? #t)
+       (static-hint-data :file-name "crescent-tfl-hint-15-KeiraSignal.wav"
+                         :text-id (text-id crescent-tfl-hint-15-KeiraSignal)
+                         :task (game-task energy-bay-turbine1)
+                         :task-status (task-status need-hint)
+                         :voicebox? #t
+                         :force-playback? #t)
+       (static-hint-data :file-name "crescent-tfl-hint-16-KeiraDown.wav"
+                         :text-id (text-id crescent-tfl-hint-16-KeiraDown)
+                         :task (game-task energy-bay-turbine1)
+                         :task-status (task-status need-hint)
+                         :voicebox? #t
+                         :force-playback? #t)
        (static-hint-data :file-name "energy-bay-tfl-hint-01-daxTurbine1.wav"
                          :text-id (text-id energy-bay-tfl-hint-01-daxTurbine1)
                          :task (game-task energy-bay-turbine1)
@@ -146,7 +158,77 @@ examples:
        (static-hint-data :file-name "energy-bay-tfl-hint-04-SamosCrystal.wav"
                          :text-id (text-id energy-bay-tfl-hint-04-SamosCrystal)
                          :voicebox? #t
-                         :force-playback? #t)))
+                         :force-playback? #t)
+       (static-hint-data :file-name "energy-bay-tfl-hint-05-KeiraTurbine.wav"
+                         :text-id (text-id energy-bay-tfl-hint-05-KeiraTurbine)
+                         :task (game-task energy-bay-turbine1)
+                         :task-status (task-status need-hint)
+                         :force-playback? #t)
+       (static-hint-data :file-name "energy-bay-tfl-hint-06-DaxterRock.wav" ;; If the rock is alive/idle and NO red eco
+                         :text-id (text-id energy-bay-tfl-hint-06-DaxterRock)
+                         :task (game-task energy-bay-turbine4)
+                         :task-status (task-status need-hint)
+                         :force-playback? #t)
+       (static-hint-data :file-name "energy-bay-tfl-hint-07-DaxterRed.wav" ;; If the rock is alive/idle and red eco
+                         :text-id (text-id energy-bay-tfl-hint-07-DaxterRed)
+                         :task (game-task energy-bay-turbine4)
+                         :task-status (task-status need-hint)
+                         :force-playback? #t)
+       (static-hint-data :file-name "energy-bay-tfl-hint-08-DaxterBreak.wav"  ;; While the rock is exploding
+                         :text-id (text-id energy-bay-tfl-hint-08-DaxterBreak)
+                         :task (game-task energy-bay-turbine4)
+                         :task-status (task-status need-hint)
+                         :force-playback? #t)
+       (static-hint-data :file-name "open-mines-tfl-hint-01-KeiraMetal.wav"
+                         :text-id (text-id open-mines-tfl-hint-01-KeiraMetal)
+                         :voicebox? #t
+                         :force-playback? #t)
+       (static-hint-data :file-name "open-mines-tfl-hint-02-DaxterDropplat.wav" ;; when the dropplat go up
+                         :text-id (text-id open-mines-tfl-hint-02-DaxterDropplat)
+                         :force-playback? #f)
+       (static-hint-data :file-name "open-mines-tfl-hint-03-DaxterKeg.wav"
+                         :text-id (text-id open-mines-tfl-hint-03-DaxterKeg)
+                         :force-playback? #f)
+       (static-hint-data :file-name "open-mines-tfl-hint-04-DaxterAmbush1.wav" ;; After 20 kills in the ambush
+                         :text-id (text-id open-mines-tfl-hint-04-DaxterAmbush1)
+                         :force-playback? #f)
+       (static-hint-data :file-name "open-mines-tfl-hint-05-DaxterAmbush2.wav" ;; After 30 kills in the ambush
+                         :text-id (text-id open-mines-tfl-hint-05-DaxterAmbush2)
+                         :force-playback? #f)
+       (static-hint-data :file-name "open-mines-tfl-hint-06-DaxterAmbush3.wav" ;; After 40 kills in the ambush
+                         :text-id (text-id open-mines-tfl-hint-06-DaxterAmbush3)
+                         :force-playback? #f)
+       (static-hint-data :file-name "open-mines-tfl-hint-07-DaxterAmbush4.wav" ;; After 50 kills in the ambush
+                         :text-id (text-id open-mines-tfl-hint-07-DaxterAmbush4)
+                         :force-playback? #f)
+       (static-hint-data :file-name "open-mines-tfl-hint-08-SamosDark.wav"
+                         :text-id (text-id open-mines-tfl-hint-08-SamosDark)
+                         :voicebox? #t
+                         :force-playback? #t)
+       (static-hint-data :file-name "open-mines-tfl-hint-09-KeiraExcavator.wav"
+                         :text-id (text-id open-mines-tfl-hint-09-KeiraExcavator)
+                         :voicebox? #t
+                         :force-playback? #t)
+       (static-hint-data :file-name "valley-tfl-hint-01-DaxterAvalanche.wav"
+                         :text-id (text-id valley-tfl-hint-01-DaxterAvalanche)
+                         :force-playback? #t)
+       (static-hint-data :file-name "valley-tfl-hint-02-SecretIntrusion.wav"
+                         :text-id (text-id valley-tfl-hint-02-SecretIntrusion)
+                         :voicebox? #t
+                         :force-playback? #t)
+       (static-hint-data :file-name "valley-tfl-hint-03-DaxterFlying.wav" ;; With super blue eco? maybe not needed
+                         :text-id (text-id valley-tfl-hint-03-DaxterFlying)
+                         :force-playback? #t)
+       (static-hint-data :file-name "valley-tfl-hint-04-KeiraCrystal.wav"
+                         :text-id (text-id valley-tfl-hint-04-KeiraCrystal)
+                         :voicebox? #t
+                         :force-playback? #t)
+       (static-hint-data :file-name "valley-tfl-hint-05-SentinelDaxter.wav" ;; During/after? the waking up animation
+                         :text-id (text-id valley-tfl-hint-05-SentinelDaxter)
+                         :force-playback? #t)
+       (static-hint-data :file-name "valley-tfl-hint-06-DaxterGem.wav" ;; During 1st parkour phase
+                         :text-id (text-id valley-tfl-hint-06-DaxterGem)
+                         :force-playback? #f)))
 
 (dotimes (i (length *tfl-hints*))
   (when (not (-> *tfl-hints* i play-func))
