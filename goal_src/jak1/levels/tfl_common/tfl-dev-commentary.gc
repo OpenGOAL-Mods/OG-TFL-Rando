@@ -150,6 +150,9 @@
 (defmethod relocate ((this tfl-commentary-node) (off int))
   (if (nonzero? (-> this cmd-frames)) (&+! (-> this cmd-frames) off))
   (if (nonzero? (-> this cam-control-parms)) (&+! (-> this cam-control-parms) off))
+  (when (= (-> this next-state name) 'playing)
+    (set! *tfl-commentary-semaphore* this)
+    (if *tfl-commentary-semaphore* (&+! *tfl-commentary-semaphore* off)))
   (call-parent-method this off))
 
 (defmethod get-commentary-data ((this tfl-commentary-node))
