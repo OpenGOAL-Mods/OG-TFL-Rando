@@ -1,7 +1,9 @@
 ;;-*-Lisp-*-
 (in-package goal)
 (deftype tfl-commentary-proc (process)
-  ((state-time  time-frame)
+  ((parent      (pointer tfl-commentary-node) :override)
+   (proc-idx    int8)
+   (state-time  time-frame)
    (trans-hook0 (function none :behavior tfl-commentary-proc))
    (code-hook0  (function object :behavior tfl-commentary-proc))
    (post-hook0  (function none :behavior tfl-commentary-proc)))
@@ -10,11 +12,17 @@
 
 (defbehavior tfl-commentary-proc-init-by-other tfl-commentary-proc ((trans (function none :behavior tfl-commentary-proc))
               (code (function object :behavior tfl-commentary-proc))
-              (post (function none :behavior tfl-commentary-proc)))
+              (post (function none :behavior tfl-commentary-proc))
+              (idx int))
   (set! (-> self trans-hook0) trans)
   (set! (-> self code-hook0) code)
   (set! (-> self post-hook0) post)
+  (set! (-> self proc-idx) idx)
   (go-virtual idle))
+
+(defmethod deactivate ((this tfl-commentary-proc))
+  (set! (-> this parent 0 comm-proc (-> this proc-idx)) INVALID_HANDLE)
+  (call-parent-method this))
 
 (defstate idle (tfl-commentary-proc)
   :virtual #t

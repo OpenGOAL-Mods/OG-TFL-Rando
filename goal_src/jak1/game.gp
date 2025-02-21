@@ -2190,9 +2190,10 @@
  :deps ("$OUT/obj/joint-exploder.o" "$OUT/obj/pov-camera.o")
  "super-eco-crystal.gc"
  "tfl-cam-control.gc"
- "tfl-dev-commentary-actors.gc"
- "tfl-dev-commentary-data.gc"
- "tfl-dev-commentary.gc"
+ "commentary/tfl-dev-commentary-h.gc"
+ "commentary/tfl-dev-commentary-actors.gc"
+ "commentary/tfl-dev-commentary-data.gc"
+ "commentary/tfl-dev-commentary.gc"
  "tfl-hint-data.gc"
  "tfl-hint.gc"
  "tfl-util.gc"
