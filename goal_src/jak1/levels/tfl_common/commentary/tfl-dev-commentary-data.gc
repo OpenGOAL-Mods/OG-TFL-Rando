@@ -264,7 +264,7 @@ examples:
                                kuitar
                                :description "A Complex First Custom Actor"
                                :length 41.0
-                               :cmd-list ;; TODO: making the gondola go up then down with jak on it
+                               :cmd-list
                                '((start grab)
                                 (start music 5.0)
                                 (start sfx 5.0)
