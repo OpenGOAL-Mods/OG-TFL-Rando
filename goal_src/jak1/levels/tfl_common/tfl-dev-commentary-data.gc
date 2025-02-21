@@ -439,49 +439,49 @@ examples:
                                :dev-name
                                kuitar
                                :description "An Industrial and Machinery Feel"
-                               :length 10.0
+                               :length 16.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-dropplat.mp3"
                                :dev-name
                                kuitar
                                :description "Think Before You Jump, Part 2"
-                               :length 10.0
+                               :length 38.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-kegfeatures.mp3"
                                :dev-name
                                kuitar
                                :description "A Descent Into res-lump Madness"
-                               :length 10.0
+                               :length 54.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-kegmaze.mp3"
                                :dev-name
                                kuitar
                                :description "A deadly maze"
-                               :length 10.0
+                               :length 25.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-backupblue.mp3"
                                :dev-name
                                kuitar
                                :description "Combatting Frustration"
-                               :length 10.0
+                               :length 32.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-minesambush.mp3"
                                :dev-name
                                kuitar
                                :description "Learning New Mechanics in a Hectic Battle"
-                               :length 10.0
+                               :length 106.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-bouncer.mp3"
                                :dev-name
                                kuitar
                                :description "Flamepot Without the Flame"
-                               :length 10.0
+                               :length 21.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-excavator.mp3"
@@ -495,14 +495,14 @@ examples:
                                :dev-name
                                kuitar
                                :description "Constrained Design"
-                               :length 10.0
+                               :length 33.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-quicksandlurker.mp3"
                                :dev-name
                                kuitar
                                :description "Creating an Aimbot"
-                               :length 10.0
+                               :length 39.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        ;; Taiga Valley dev commentary
