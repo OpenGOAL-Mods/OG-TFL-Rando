@@ -452,14 +452,14 @@ examples:
        (static-commentary-data :file-name "kui-kegfeatures.mp3"
                                :dev-name
                                kuitar
-                               :description "A Descent Into res-lump Madness"
+                               :description "A Descent Into \c12res-lump\c12 Madness"
                                :length 54.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-kegmaze.mp3"
                                :dev-name
                                kuitar
-                               :description "A deadly maze"
+                               :description "A Deadly Maze"
                                :length 25.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
@@ -488,7 +488,7 @@ examples:
                                :dev-name
                                kuitar
                                :description "A Problem of Scale"
-                               :length 10.0
+                               :length 22.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-minecarts.mp3"
