@@ -4072,7 +4072,7 @@
       "bsphere": [686.12, -1.97, 701.01, 10],
       "lump": {
         "name": "energy-bay-tfl-hint-08-DaxterBreak",
-        "filename": "energy-bay-tfl-hint-04-SamosCrystal.wav",
+        "filename": "energy-bay-tfl-hint-08-DaxterBreak.wav",
         "radius": ["meters", 15.0]
       }
     },
