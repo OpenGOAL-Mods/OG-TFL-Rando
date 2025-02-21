@@ -1279,7 +1279,7 @@
          ((2)
           (set! (-> self pickup)
                 (ppointer->handle (process-spawn super-eco-crystal
-                                                 (vector+! (new-stack-vector0) (-> self root trans) (static-vectorm 0 1 0))
+                                                 (vector+! (new-stack-vector0) (-> self root trans) (static-vectorm 0 2 0))
                                                  (case stage
                                                    ((0) 'green)
                                                    ((1) 'yellow)

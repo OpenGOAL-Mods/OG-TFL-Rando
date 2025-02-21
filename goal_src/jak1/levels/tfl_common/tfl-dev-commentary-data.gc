@@ -48,12 +48,17 @@ command list:
 - pov-cam: spawn a pov-camera. parameters are:
   - skelgroup: skeleton-group of the camera (make sure the level has the art group and the skelgroup loaded)
   - trans: vector to set the camera position
-  - cam-name: name of the camera animation to player.
+  - cam-name: name of the camera animation to play.
 - cam-control: spawn a tfl-cam-control.
 - spawn: spawn a process. you can spawn up to TFL_COMMENTARY_MAX_HANDLES processes.
          the first parameter is the index of the process in the handle list.
          the second parameter is the name of a function pointer in the spawn-list for that commentary node.
          it should return a handle to the spawned process.
+- part: spawn a part-tracker. you can spawn up to TFL_COMMENTARY_MAX_HANDLES of them.
+        the first arg is the index in the handle list.
+        the second arg can be either the name of the part group or the id.
+        the third arg is the position.
+        there are two optional args: duration and a particle callback function.
 - proc: spawn a tfl-commentary-proc, a process that can be given state handler hooks. you can have up to TFL_COMMENTARY_MAX_HANDLES of them.
         first arg is the index for it in the handle list.
         then, you can have up to three optional args, each of them a list, consisting of either 'code', 'trans' or 'post' and then a lambda
@@ -91,6 +96,7 @@ examples:
 (3300 proc 0
   (code ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from code~%")))
   (trans ,(lambda :behavior tfl-commentary-proc () (format *stdcon* "hi from trans~%")))) ;; spawn a tfl-commentary-proc with code and trans hooks
+(3300 part 0 group-dark-eco-pool-nasty (vectorm root) (duration 5)) ;; spawn a part-tracker using the given part group
 (end kill proc 0) ;; kill the first tfl-commentary-proc in the list
 (end release) ;; ungrab jak once the commentary playback is finished.
 |#
