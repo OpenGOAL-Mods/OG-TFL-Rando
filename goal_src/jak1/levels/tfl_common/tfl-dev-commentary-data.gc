@@ -41,7 +41,8 @@ there are two special cases: "start" (execute command at the beginning of playba
 
 command list:
 - grab: lock jak in place.
-- release: release jak if he was grabbed.
+- release: set a flag for jak to be released once the commentary node has finished playing.
+- force-release: force jak to be released as soon as the command is executed.
 - music: set music volume.
 - sfx: set sfx volume.
 - dialog: set dialog volume.
