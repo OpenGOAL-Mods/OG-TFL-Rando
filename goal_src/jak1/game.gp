@@ -1718,6 +1718,7 @@
 (build-actor "tfl-crystal-blue" :gen-mesh #t)
 (build-actor "tfl-crystal-yellow" :gen-mesh #t)
 (build-actor "lab-door" :gen-mesh #t)
+(build-actor "crc-dev-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

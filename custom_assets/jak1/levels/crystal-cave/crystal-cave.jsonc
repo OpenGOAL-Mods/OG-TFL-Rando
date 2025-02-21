@@ -52,7 +52,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["crc-gondola"],
+  "custom_models": ["crc-gondola","crc-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -4265,11 +4265,11 @@
       }
     },
     {
-      "trans": [-298.90, 95.47, 31.18],
+      "trans": [-298.64, 97.08, 37.71],
       "etype": "tfl-commentary-node",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [-298.90, 95.47, 31.18, 10],
+      "bsphere": [-298.64, 97.08, 37.71, 10],
       "lump": {
         "name":"crystalc-commentary-kui-gondola",
         "filename": "kui-gondola.mp3"

@@ -142,7 +142,12 @@ examples:
                                :description "Grand Reveal"
                                :length 29.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab) 
+                                 (start music 5.0)
+                                 (start sfx 5.0)
+                                 (start dialog 5.0)
+                                 (5600 pov-cam *crc-dev-cam-sg* (vectorm root) "setpiece")
+                                 (end release)))
        (static-commentary-data :file-name "kui-flow.mp3"
                                :dev-name
                                kuitar
@@ -209,8 +214,13 @@ examples:
                                kuitar
                                :description "Sculpting and Texturing the Walls"
                                :length 17.0
-                               :cmd-list ;; TODO: add camera pan of some of the walls
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               :cmd-list
+                               '((start grab)
+                                 (start music 5.0)
+                                 (start sfx 5.0)
+                                 (start dialog 5.0)
+                                 (900 pov-cam *crc-dev-cam-sg* (vectorm root) "sculptedwalls")
+                                 (end release)))
        (static-commentary-data :file-name "kui-infested.mp3"
                                :dev-name
                                kuitar
@@ -224,14 +234,24 @@ examples:
                                :description "Particles, Particles Everywhere"
                                :length 26.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                 (start music 5.0)
+                                 (start sfx 5.0)
+                                 (start dialog 5.0)
+                                 (450 pov-cam *crc-dev-cam-sg* (vectorm root) "fireflypart")
+                                 (end release)))
        (static-commentary-data :file-name "kui-topinfested.mp3"
                                :dev-name
                                kuitar
                                :description "Multi-Purpose Gameplay"
                                :length 32.0
-                               :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               :cmd-list ;; TODO: respawn all 3 orb crates or dummy ones
+                               '((start grab)
+                                 (start music 5.0)
+                                 (start sfx 5.0)
+                                 (start dialog 5.0)
+                                 (1800 pov-cam *crc-dev-cam-sg* (vectorm root) "topinfested")
+                                 (end release)))
        (static-commentary-data :file-name "kui-oneway.mp3"
                                :dev-name
                                kuitar
@@ -244,7 +264,7 @@ examples:
                                kuitar
                                :description "A Complex First Custom Actor"
                                :length 41.0
-                               :cmd-list
+                               :cmd-list ;; TODO: making the gondola go up then down with jak on it
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-gondolafog.mp3"
                                :dev-name
@@ -252,7 +272,12 @@ examples:
                                :description "A Thick Fog for Depth"
                                :length 16.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                 (start music 5.0)
+                                 (start sfx 5.0)
+                                 (start dialog 5.0)
+                                 (1200 pov-cam *crc-dev-cam-sg* (vectorm root) "gondolafog")
+                                 (end release)))
        (static-commentary-data :file-name "kui-cavelighting.mp3"
                                :dev-name
                                kuitar
@@ -809,7 +834,7 @@ examples:
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-16-kuitar"
                               ()
-                              (target -300.6123 93.4786 29.9230 -0.0000 0.4429 -0.0000 0.8965)
+                              (target -299.4500 95.1400 36.5600 -0.0000 0.4429 -0.0000 0.8965)
                               (camera -299.0076 98.6292 17.5264 0.9967 0.0000 0.0800 -0.0092 0.9933 0.1148 -0.0794 -0.1151 0.9901)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-17-kuitar"
