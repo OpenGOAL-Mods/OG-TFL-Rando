@@ -4028,6 +4028,54 @@
         "radius": ["meters", 10.0]
       }
     },
+    {
+      "trans": [646.68, 49.27, 532.46],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [646.68, 49.27, 532.46, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-05-KeiraTurbine",
+        "filename": "energy-bay-tfl-hint-05-KeiraTurbine.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [678.57, -1.97, 714.67],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [678.57, -1.97, 714.67, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-06-DaxterRock",
+        "filename": "energy-bay-tfl-hint-06-DaxterRock.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [673.17, -1.97, 727.16],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [673.17, -1.97, 727.16, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-07-DaxterRed",
+        "filename": "energy-bay-tfl-hint-07-DaxterRed.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [686.12, -1.97, 701.01],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [686.12, -1.97, 701.01, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-08-DaxterBreak",
+        "filename": "energy-bay-tfl-hint-04-SamosCrystal.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
 // Actors: PARTICLES
     {
       "trans": [485.58, 55.73, 786.36], // translation
