@@ -50,7 +50,13 @@
 
 (defun custom-nav-mesh-check-and-setup ((this entity-actor))
   (awhen (res-lump-struct this 'custom-nav symbol)
-    (set! (-> this nav-mesh) (custom-nav<-name it))
+    (let ((nav (custom-nav<-name it)))
+      ;; reset the nav spheres every time this mesh is accessed.
+      ;; not doing this would cause the spheres to become invalid and not get cleared when the game is reset.
+      ;; we have to do this as these are static nav meshes, unlike vanilla ones that get loaded and unloaded
+      ;; as part of the level heap.
+      (set! (-> nav static-sphere) (the (inline-array nav-sphere) 0))
+      (set! (-> this nav-mesh) nav))
     (entity-nav-login this)))
 
 (define *nav-crystalc-ice-cube*
