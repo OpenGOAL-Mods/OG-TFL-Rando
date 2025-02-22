@@ -149,6 +149,7 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
+                                (start reset-actor crystalc-crate-wood-02)
                                 (400
                                  proc
                                  0
@@ -157,6 +158,7 @@ examples:
                                            (when (= (-> it next-state name) 'wait)
                                              (go-process it (method-of-type crate die) #f (the int (pickup-type eco-yellow)))))
                                          (deactivate self))))
+                                (end reset-actor crystalc-crate-wood-02)
                                 (end release)))
        (static-commentary-data :file-name "kui-customcamera.mp3"
                                :dev-name

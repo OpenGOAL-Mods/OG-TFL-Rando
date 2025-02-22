@@ -31,6 +31,24 @@
     (((tfl-commentary-dev pex)) "Pex")
     (else "*unknown*")))
 
+(defun reset-actor ((name string) (mode symbol))
+  (let ((e (the entity-actor (entity-by-name name))))
+    (when e
+      (let* ((status (case mode
+                       (('life 'debug 'try) (entity-perm-status bit-9 complete user-set-from-cstage bit-3 dead bit-1 bit-0))
+                       (('game) (entity-perm-status bit-10 bit-9 real-complete complete user-set-from-cstage bit-4 bit-3 dead bit-1 bit-0))
+                       (else (entity-perm-status bit-10 bit-9 complete user-set-from-cstage bit-4 bit-3 dead bit-1 bit-0))))
+             (task (-> e extra perm task))
+             (task-perm (-> *game-info* task-perm-list data task))
+             (entity-perm (lookup-entity-perm-by-aid *game-info* (the actor-id (-> e aid)))))
+        (kill! e)
+        (update-perm! (-> e extra perm) mode status)
+        (if (> task 0) (update-perm! task-perm mode status))
+        (if entity-perm (update-perm! entity-perm mode status))
+        (when (and (= mode 'game) (> task 0))
+          (reset! (-> *task-controls* task) mode #f)
+          (first-any (-> *task-controls* task) #f))))))
+
 ;; overridden to disable grabbing jak, this is handled by commands instead
 (deftype commentary-camera (pov-camera) ())
 

@@ -89,10 +89,12 @@
          (len (length cmds)))
     (dotimes (i len)
       (let* ((cmd (the pair (ref cmds i)))
-             (frame (car cmd)))
-        (case frame
-          (('start) (set! (-> this cmd-frames data i) (seconds 0)))
-          (('end) (set! (-> this cmd-frames data i) (-> this data length)))
+             (frame (car cmd))
+             (val (if (pair? frame) (unbox-bfloat-or-binteger (cadr (the pair frame))))))
+        (cond
+          ((= frame 'start) (set! (-> this cmd-frames data i) (seconds 0)))
+          ((= frame 'end) (set! (-> this cmd-frames data i) (-> this data length)))
+          ((pair? frame) (set! (-> this cmd-frames data i) (the time-frame (seconds val))))
           (else (set! (-> this cmd-frames data i) (/ (the time-frame frame) 8))))))))
 
 (defmacro unbox-bfloat-or-binteger (val)
@@ -224,6 +226,10 @@
              (code (the (function object :behavior tfl-commentary-proc) (aif (find-car-in-list 'code rest) (cadr it))))
              (post (the (function none :behavior tfl-commentary-proc) (aif (find-car-in-list 'post rest) (cadr it)))))
          (set! (-> this comm-proc idx) (ppointer->handle (process-spawn tfl-commentary-proc trans code post :to this)))))
+      (('reset-actor)
+       (let ((name (the symbol (ref rest 0)))
+             (mode (the symbol (ref rest 1))))
+         (if (null? mode) (reset-actor (symbol->string name) 'life) (reset-actor (symbol->string name) mode))))
       (('go)
        (let* ((idx (/ (the int (ref rest 0)) 8))
               (p (handle->process (-> this proc idx)))
