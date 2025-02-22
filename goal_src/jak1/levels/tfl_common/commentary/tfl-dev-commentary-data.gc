@@ -229,7 +229,10 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                (1800 pov-cam *crc-dev-cam-sg* (vectorm root) "topinfested")
+                                ((seconds 3.5) reset-actor crystalc-crate-steel-07 game)
+                                ((seconds 3.8) reset-actor crystalc-crate-steel-08 game)
+                                ((seconds 6.0) pov-cam *crc-dev-cam-sg* (vectorm root) "topinfested")
+                                ((seconds 9.0) reset-actor crystalc-crate-steel-09 game)
                                 (end release)))
        (static-commentary-data :file-name "kui-oneway.mp3"
                                :dev-name
@@ -316,28 +319,48 @@ examples:
                                :description "Not Overwhelming the Player"
                                :length 17.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 8.0) pov-cam *cst-dev-cam-sg* (vectorm root) "crescententry")
+                                (end release)))
        (static-commentary-data :file-name "kui-crescentreveal.mp3"
                                :dev-name
                                kuitar
                                :description "Checking Both Sides Before Crossing"
                                :length 30.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 14.0) pov-cam *cst-dev-cam-sg* (vectorm root) "crescentreveal")
+                                (end release)))
        (static-commentary-data :file-name "kui-pillarfly.mp3"
                                :dev-name
                                kuitar
                                :description "Visible, but Out of Reach"
                                :length 15.0
-                               :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               :cmd-list ;; TODO: scout fly crate that appear and then disappear
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 6.0) pov-cam *cst-dev-cam-sg* (vectorm root) "pillarfly")
+                                (end release)))
        (static-commentary-data :file-name "kui-hybridlevel.mp3"
                                :dev-name
                                kuitar
                                :description "A Hybrid Level Design Challenge"
                                :length 50.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 32.0) pov-cam *cst-dev-cam-sg* (vectorm root) "hybridlevel")
+                                (end release)))
        (static-commentary-data :file-name "kui-robotchallenge.mp3"
                                :dev-name
                                kuitar
@@ -351,14 +374,24 @@ examples:
                                :description "Thousands and Thousands of Rocks"
                                :length 36.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 2.0) pov-cam *cst-dev-cam-sg* (vectorm root) "rocks")
+                                (end release)))
        (static-commentary-data :file-name "kui-undergroundsurprise.mp3"
                                :dev-name
                                kuitar
                                :description "A Hidden Surprise"
                                :length 17.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 5.0) pov-cam *cst-dev-cam-sg* (vectorm root) "undergroundsurprise")
+                                (end release)))
        (static-commentary-data :file-name "kui-lavachallenge.mp3"
                                :dev-name
                                kuitar
@@ -372,7 +405,12 @@ examples:
                                :description "Big Cables for Big Clues"
                                :length 19.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 9.0) pov-cam *cst-dev-cam-sg* (vectorm root) "bigcable")
+                                (end release)))
        (static-commentary-data :file-name "kui-orbcachechallenge.mp3"
                                :dev-name
                                kuitar
@@ -386,14 +424,27 @@ examples:
                                :description "A Long Way Down"
                                :length 19.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 5.0) pov-cam *cst-dev-cam-sg* (vectorm root) "enbjump")
+                                (end release)))
        (static-commentary-data :file-name "kui-hiddinglevels.mp3"
                                :dev-name
                                kuitar
                                :description "A Seamless World"
                                :length 38.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 11.0) pov-cam *cst-dev-cam-sg* (vectorm root) "hiddinglevels")
+                                ((seconds 16) proc 0 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines #f) (deactivate self))))
+                                ((seconds 21) proc 0 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines 'display) (deactivate self))))
+                                (end proc 0 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines 'display) (deactivate self))))
+                                (end release)))
        ;; Energy Bay dev commentary
        (static-commentary-data :file-name "kui-enblanding.mp3"
                                :dev-name
@@ -906,7 +957,7 @@ examples:
                               (load 'cst 'crescent-t 'display 'energy-bay 'display-no-wait))
        (static-continue-point "tfl-comm-31-kuitar"
                               ()
-                              (target -285.0184 198.6132 809.1641 0.0000 0.0865 0.0000 -0.9962)
+                              (target -278.5100 198.8100 825.6600 0.0000 0.0865 0.0000 -0.9962)
                               (camera -273.3229 203.6602 806.0029 0.3237 -0.0000 0.9461 -0.1081 0.9934 0.0370 -0.9399 -0.1142 0.3216)
                               (load 'cst 'crescent-t 'display 'open-mines 'display-no-wait))
        (static-continue-point "tfl-comm-32-kuitar"

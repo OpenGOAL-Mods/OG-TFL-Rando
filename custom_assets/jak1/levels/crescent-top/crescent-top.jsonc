@@ -55,7 +55,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock"],
+  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock", "cst-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -6739,11 +6739,11 @@
       }
     },
     {
-      "trans": [-285.04, 200.64, 811.58],
+      "trans": [-279.10, 200.64, 827.44],
       "etype": "tfl-commentary-node",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [-285.04, 200.64, 811.58, 10],
+      "bsphere": [-279.10, 200.64, 827.44, 10],
       "lump": {
         "name": "crescent-commentary-kui-hiddinglevels",
         "filename": "kui-hiddinglevels.mp3",

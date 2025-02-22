@@ -851,3 +851,8 @@
         (vector-copy! (-> self root trans) (-> self move-to-pos))
         (quaternion-copy! (-> self root quat) (-> self move-to-quat))
         (rider-post))))
+
+(def-actor cst-dev-cam
+  :bounds (0 0 0 25)
+  :art (idle-ja crescententry-ja crescentreveal-ja pillarfly-ja hybridlevel-ja rocks-ja undergroundsurprise-ja bigcable-ja enbjump-ja hiddinglevels-ja)
+  :joints (align prejoint cst-dev-cam camera))

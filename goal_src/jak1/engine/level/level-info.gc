@@ -135,7 +135,7 @@
        'level-load-info
        :index 2
        :name 'village1
-       :customname "GREEN SAGE'S HUT"
+       :customname "GREEN SAGE\c12S HUT"
        ;; TFL note: custom type for the portal name
        :visname 'village1-vis
        :nickname 'vi1
@@ -693,7 +693,7 @@
        'level-load-info
        :index 8
        :name 'village2
-       :customname "BLUE SAGE'S HUT"
+       :customname "BLUE SAGE\c12S HUT"
        ;; TFL note: custom type for the portal name
        :visname 'village2-vis
        :nickname 'vi2
@@ -1310,7 +1310,7 @@
        'level-load-info
        :index 14
        :name 'village3
-       :customname "RED SAGE'S HUT"
+       :customname "RED SAGE\c12S HUT"
        ;; TFL note: custom type for the portal name
        :visname 'village3-vis
        :nickname 'vi3
@@ -1930,7 +1930,7 @@
        'level-load-info
        :index 20
        :name 'citadel
-       :customname "GOL AND MAIA'S CITADEL"
+       :customname "GOL AND MAIA\c12S CITADEL"
        ;; TFL note: custom type for the portal name
        :visname 'citadel-vis
        :nickname 'cit
