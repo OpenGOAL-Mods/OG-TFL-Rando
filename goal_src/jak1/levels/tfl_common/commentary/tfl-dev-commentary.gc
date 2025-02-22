@@ -84,6 +84,9 @@
     (('inactive) (lods-assign! (-> this draw) (-> this inactive-look)))
     (('active) (lods-assign! (-> this draw) (-> this active-look)))))
 
+(defmacro unbox-bfloat-or-binteger (val)
+  `(if (binteger? ,val) (the float (/ (the int ,val) 8)) (the float (-> (the bfloat ,val) data))))
+
 (defmethod init-keyframes! ((this tfl-commentary-node))
   (let* ((cmds (-> this data cmd-list))
          (len (length cmds)))
@@ -96,9 +99,6 @@
           ((= frame 'end) (set! (-> this cmd-frames data i) (-> this data length)))
           ((pair? frame) (set! (-> this cmd-frames data i) (the time-frame (seconds val))))
           (else (set! (-> this cmd-frames data i) (/ (the time-frame frame) 8))))))))
-
-(defmacro unbox-bfloat-or-binteger (val)
-  `(if (binteger? ,val) (the float (/ (the int ,val) 8)) (the float (-> (the bfloat ,val) data))))
 
 (defmethod parse-cmd-vec! ((this tfl-commentary-node) (vec vector) (cmd pair))
   (when (= (ref cmd 1) 'root)

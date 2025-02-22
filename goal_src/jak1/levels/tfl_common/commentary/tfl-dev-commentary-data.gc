@@ -846,8 +846,8 @@ examples:
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-19-kuitar"
                               ()
-                              (target -223.7386 65.5830 -108.2291 -0.0000 0.7847 0.0000 -0.6198)
-                              (camera -217.9434 69.9752 -100.5025 -0.7938 0.0000 0.6081 -0.0920 0.9884 -0.1202 -0.6010 -0.1514 -0.7847)
+                              (target -224.5220 65.5601 -107.4197 0.0000 0.9534 -0.0000 -0.3014)
+                              (camera -227.2707 70.2353 -97.0587 -0.9728 0.0000 -0.2312 0.0307 0.9911 -0.1291 0.2292 -0.1327 -0.9642)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-20-kuitar"
                               ()
