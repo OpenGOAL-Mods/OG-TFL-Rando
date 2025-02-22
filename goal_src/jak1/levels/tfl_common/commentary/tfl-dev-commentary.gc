@@ -427,7 +427,7 @@
 (defmethod common-init ((this tfl-commentary-node))
   (stack-size-set! (-> this main-thread) 512)
   (set! (-> this root) (new 'process 'trsqv))
-  (process-mask-set! (-> this mask) actor-pause)
+  (process-mask-clear! (-> this mask) actor-pause)
   (set! (-> this pov-cam) INVALID_HANDLE)
   (set! (-> this cam-control) INVALID_HANDLE)
   (set! (-> this cam-control-parms) (new 'process 'tfl-cam-control-init-params))
