@@ -818,7 +818,13 @@
       (cleanup-for-death self))
   :post ja-post)
 
-(deftype valley-rock-button (basebutton) ())
+(deftype valley-rock-button (basebutton)
+  ((last-press-time time-frame))
+  (:methods
+   (can-press? (_type_) symbol)))
+
+(defmethod can-press? ((this valley-rock-button))
+  (and (not (task-closed? (game-task valley-end) (task-status need-hint))) (>= (tfl-collected-cell-count) 20)))
 
 (defstate basebutton-up-idle (valley-rock-button)
   :virtual #t
@@ -828,9 +834,9 @@
         (('attack)
          (case (-> block param 1)
            (('flop)
+            (set-time! (-> self last-press-time))
             ;; TFL note: remove this if we can get it to work in task-control.gc
-            (if (and (not (task-closed? (game-task valley-end) (task-status need-hint))) (>= (tfl-collected-cell-count) 20))
-              (close-specific-task! (game-task valley-end) (task-status need-hint)))
+            (if (can-press? self) (close-specific-task! (game-task valley-end) (task-status need-hint)))
             (when (task-closed? (game-task valley-end) (task-status need-hint))
               (basebutton-method-29 self (-> self event-going-down) (-> self notify-actor))
               (sound-play "silo-button")
@@ -842,6 +848,20 @@
       (press! self #f))
   :trans
     (behavior ()
+      (when (and (not (can-press? self)) (not (time-elapsed? (-> self last-press-time) (seconds 5))))
+        (let ((fnt (new 'stack
+                        'font-context
+                        *font-default-matrix*
+                        32
+                        (if *tfl-hint-semaphore* 140 160)
+                        0.0
+                        (font-color default)
+                        (font-flags shadow kerning))))
+          (set-width! fnt 448)
+          (set-height! fnt 80)
+          (set-scale! fnt 0.8)
+          (set-flags! fnt (font-flags shadow kerning middle large))
+          (print-game-text (lookup-text! *common-text* (text-id valley-rock-button-need-cells) #f) fnt #f 128 22)))
       (if (-> self move-to?) (rider-trans)))
   :code anim-loop
   :post
@@ -854,5 +874,14 @@
 
 (def-actor cst-dev-cam
   :bounds (0 0 0 25)
-  :art (idle-ja crescententry-ja crescentreveal-ja pillarfly-ja hybridlevel-ja rocks-ja undergroundsurprise-ja bigcable-ja enbjump-ja hiddinglevels-ja)
+  :art
+  (idle-ja crescententry-ja
+           crescentreveal-ja
+           pillarfly-ja
+           hybridlevel-ja
+           rocks-ja
+           undergroundsurprise-ja
+           bigcable-ja
+           enbjump-ja
+           hiddinglevels-ja)
   :joints (align prejoint cst-dev-cam camera))
