@@ -164,7 +164,7 @@ examples:
                                :dev-name
                                kuitar
                                :description "Creating Custom Camera Movements"
-                               :length 33.0
+                               :length 34.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-jaklighting.mp3"
@@ -441,9 +441,17 @@ examples:
                                 (start sfx 5.0)
                                 (start dialog 5.0)
                                 ((seconds 11.0) pov-cam *cst-dev-cam-sg* (vectorm root) "hiddinglevels")
-                                ((seconds 16) proc 0 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines #f) (deactivate self))))
-                                ((seconds 21) proc 0 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines 'display) (deactivate self))))
-                                (end proc 0 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines 'display) (deactivate self))))
+                                ((seconds 16)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines #f) (deactivate self))))
+                                ((seconds 21)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines 'display) (deactivate self))))
+                                (end proc
+                                     0
+                                     (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'open-mines 'display) (deactivate self))))
                                 (end release)))
        ;; Energy Bay dev commentary
        (static-commentary-data :file-name "kui-enblanding.mp3"
@@ -634,7 +642,13 @@ examples:
                                :length 17.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
-       (static-commentary-data :file-name "kui-superblue.mp3" :dev-name kuitar :description "Falling With Style" :length 70.0)
+       (static-commentary-data :file-name "kui-superblue.mp3"
+                               :dev-name
+                               kuitar
+                               :description "Falling With Style"
+                               :length 70.0
+                               :cmd-list
+                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-deepgap.mp3"
                                :dev-name
                                kuitar
@@ -681,7 +695,7 @@ examples:
                                :dev-name
                                kuitar
                                :description "The Defense System Visuals"
-                               :length 42.0
+                               :length 43.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-pdscode.mp3"
