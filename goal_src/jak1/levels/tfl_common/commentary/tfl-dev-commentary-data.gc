@@ -592,7 +592,7 @@ examples:
                                :dev-name
                                kuitar
                                :description "An Explosive Start"
-                               :length 25.0
+                               :length 20.0
                                :spawn-list
                                ((tfl-static-spawn-func "valley-rock0"
                                                        (ppointer->handle (process-spawn valley-rock-commentary (the entity-actor (entity-by-name "crescent-valley-rock-01"))))))
@@ -610,106 +610,106 @@ examples:
                                :dev-name
                                kuitar
                                :description "Giving TFL Its Own Collectable Count"
-                               :length 10.0
+                               :length 47.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-valleyspiral.mp3"
                                :dev-name
                                kuitar
                                :description "Hiding Loads"
-                               :length 10.0
+                               :length 34.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-rollingrocks.mp3"
                                :dev-name
                                kuitar
                                :description "A Dynamic Obstacle"
-                               :length 10.0
+                               :length 100.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-ecochoice.mp3"
                                :dev-name
                                kuitar
                                :description "Insert Matrix Pill Choice Meme Here"
-                               :length 10.0
+                               :length 17.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
-       (static-commentary-data :file-name "kui-superblue.mp3" :dev-name kuitar :description "Falling With Style" :length 10.0)
+       (static-commentary-data :file-name "kui-superblue.mp3" :dev-name kuitar :description "Falling With Style" :length 70.0)
        (static-commentary-data :file-name "kui-deepgap.mp3"
                                :dev-name
                                kuitar
                                :description "Creating Custom Ocean Maps"
-                               :length 10.0
+                               :length 32.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-valleyvisual.mp3"
                                :dev-name
                                kuitar
                                :description "A Striking Visual Change"
-                               :length 10.0
+                               :length 38.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-flyinglurker.mp3"
                                :dev-name
                                kuitar
                                :description "Combining Old Enemies With New Mechanics"
-                               :length 10.0
+                               :length 38.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-snowtransition.mp3"
                                :dev-name
                                kuitar
                                :description "Abusing Vertex Alpha for Smooth Transitions"
-                               :length 10.0
+                               :length 26.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-zoomerparticle.mp3"
                                :dev-name
                                kuitar
                                :description "Dynamic Particles"
-                               :length 10.0
+                               :length 45.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-iceslide.mp3"
                                :dev-name
                                kuitar
                                :description "A slide Into Your Doom"
-                               :length 10.0
+                               :length 32.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-pdsvisuals.mp3"
                                :dev-name
                                kuitar
                                :description "The Defense System Visuals"
-                               :length 10.0
+                               :length 42.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-pdscode.mp3"
                                :dev-name
                                kuitar
                                :description "The Defense System Code"
-                               :length 10.0
+                               :length 41.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-pdsmechanic.mp3"
                                :dev-name
                                kuitar
                                :description "The Defense System Mechanics"
-                               :length 10.0
+                               :length 79.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-pdstrap.mp3"
                                :dev-name
                                kuitar
                                :description "The Defense System Traps"
-                               :length 10.0
+                               :length 59.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-valleydoor.mp3"
                                :dev-name
                                kuitar
                                :description "A Time Consuming Project"
-                               :length 10.0
+                               :length 116.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))))
 
