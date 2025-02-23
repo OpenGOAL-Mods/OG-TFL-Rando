@@ -3556,7 +3556,7 @@
     },
     {
       "trans": [588.81, 7.31, 984.05], // translation
-      "etype": "FAKE-tfl-race-ring", // actor type
+      "etype": "process-hidden", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0.0, 0.0, 0.0, 1.0], // quaternion
       "bsphere": [588.81, 7.31, 984.05, 10], // bounding sphere

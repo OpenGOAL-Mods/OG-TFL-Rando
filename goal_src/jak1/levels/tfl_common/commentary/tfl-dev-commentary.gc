@@ -1,5 +1,8 @@
 ;;-*-Lisp-*-
 (in-package goal)
+(defmethod run-logic? ((this tfl-commentary-node))
+  #t)
+
 (defmethod kill-all-handles! ((this tfl-commentary-node))
   (dotimes (i TFL_COMMENTARY_MAX_HANDLES)
     (deactivate-handle (-> this proc i))

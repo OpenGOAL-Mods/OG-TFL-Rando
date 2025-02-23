@@ -521,50 +521,64 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                ((seconds 2.0) part 0
-                                               group-rolling-ring-green
-                                               (vectorm entity energy-bay-race-ring-01-start)
-                                               (callback race-ring-commentary-green-part-rotation-callback)
-                                               (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-01-start"))))
+                                ((seconds 2.0)
+                                 part
+                                 0
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-01-start)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-01-start"))))
                                 ((seconds 12.0) pov-cam *enb-dev-cam-sg* (vectorm root) "greenring")
-																((seconds 12.1) part 0
-                                               group-rolling-ring-green
-                                               (vectorm entity energy-bay-race-ring-01-start)
-                                               (callback race-ring-commentary-green-part-rotation-callback)
-                                               (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-01-start"))))
+                                ((seconds 12.1)
+                                 part
+                                 0
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-01-start)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-01-start"))))
                                 ((seconds 15.2) kill part 0)
-                                ((seconds 15.0) part 1
-                                                group-rolling-ring-green
-                                                (vectorm entity energy-bay-race-ring-02)
-                                                (callback race-ring-commentary-green-part-rotation-callback)
-                                                (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-02"))))
+                                ((seconds 15.0)
+                                 part
+                                 1
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-02)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-02"))))
                                 ((seconds 17.2) kill part 1)
-                                ((seconds 17.0) part 0
-                                                group-rolling-ring-green
-                                                (vectorm entity energy-bay-race-ring-03)
-                                                (callback race-ring-commentary-green-part-rotation-callback)
-                                                (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-03"))))
+                                ((seconds 17.0)
+                                 part
+                                 0
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-03)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-03"))))
                                 ((seconds 19.2) kill part 0)
-                                ((seconds 19.0) part 1
-                                                group-rolling-ring-green
-                                                (vectorm entity energy-bay-race-ring-04)
-                                                (callback race-ring-commentary-green-part-rotation-callback)
-                                                (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-04"))))
+                                ((seconds 19.0)
+                                 part
+                                 1
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-04)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-04"))))
                                 ((seconds 21.7) kill part 1)
-                                ((seconds 21.5) part 0
-                                                group-rolling-ring-green
-                                                (vectorm entity energy-bay-race-ring-05)
-                                                (callback race-ring-commentary-green-part-rotation-callback)
-                                                (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-05"))))
+                                ((seconds 21.5)
+                                 part
+                                 0
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-05)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-05"))))
                                 ((seconds 22.5) kill part 0)
-                                ((seconds 22.0) part 1
-                                                group-rolling-ring-green
-                                                (vectorm entity energy-bay-race-ring-06)
-                                                (callback race-ring-commentary-green-part-rotation-callback)
-                                                (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-06"))))
+                                ((seconds 22.0)
+                                 part
+                                 1
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-06)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-06"))))
                                 ((seconds 25.0) kill part 1)
-																(end kill part 0)
-																(end kill part 1)
+                                (end kill part 0)
+                                (end kill part 1)
                                 (end release)))
        (static-commentary-data :file-name "kui-greenmiss.mp3"
                                :dev-name
@@ -577,21 +591,25 @@ examples:
                                 (start sfx 5.0)
                                 (start dialog 5.0)
                                 ((seconds 5.0) pov-cam *enb-dev-cam-sg* (vectorm root) "greenmiss")
-																((seconds 5.5) part 0
-                                               group-rolling-ring-green
-                                               (vectorm entity energy-bay-race-ring-11-old)
-                                               (callback race-ring-commentary-green-part-rotation-callback)
-                                               (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-11-old")))
-																							 (duration 14))
-                                ((seconds 17.5) part 1
-                                                group-rolling-ring-green
-                                                (vectorm entity energy-bay-race-ring-11)
-                                                (callback race-ring-commentary-green-part-rotation-callback)
-                                                (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-11"))))
-																((seconds 17.7) kill part 0)
+                                ((seconds 5.5)
+                                 part
+                                 0
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-11-old)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-11-old")))
+                                 (duration 14))
+                                ((seconds 17.5)
+                                 part
+                                 1
+                                 group-rolling-ring-green
+                                 (vectorm entity energy-bay-race-ring-11)
+                                 (callback race-ring-commentary-green-part-rotation-callback)
+                                 (userdata ,(lambda () (entity-by-name "energy-bay-race-ring-11"))))
+                                ((seconds 17.7) kill part 0)
                                 ((seconds 22.5) kill part 1)
-																(end kill part 0)
-																(end kill part 1)
+                                (end kill part 0)
+                                (end kill part 1)
                                 (end release)))
        (static-commentary-data :file-name "kui-balloonlurker.mp3"
                                :dev-name
@@ -611,16 +629,14 @@ examples:
                                 (start sfx 5.0)
                                 (start dialog 5.0)
                                 ((seconds 18.0) pov-cam *enb-dev-cam-sg* (vectorm root) "lowreskui")
-																((seconds 18.0) manipy-spawn 0 *tfl-lowreskui-sg* (vectorm entity energy-bay-tfl-lowreskui-001))
-                                ((seconds 18.1) manipy-event 0 anim-mode (loop))
-                                ((seconds 18.2)
+                                ((seconds 18.0) manipy-spawn 0 *tfl-lowreskui-sg* (vectorm entity energy-bay-tfl-lowreskui-001))
+                                ((seconds 19)
                                  manipy-event
                                  0
                                  trans-hook
                                  (,(lambda :behavior manipy ()
-																 		;; (if (process-by-ename "energy-bay-tfl-lowreskui-001") (send-event self 'draw #f))
-																		(send-event self 'draw #f)
-                                    (quaternion-rotate-z! (-> self root quat) (-> self root quat) (degrees (* 90.0 (seconds-per-frame)))))))
+                                    (if (process-by-ename "energy-bay-tfl-lowreskui-001") (send-event self 'draw #f))
+                                    (quaternion-rotate-y! (-> self root quat) (-> self root quat) (degrees (* 90.0 (seconds-per-frame)))))))
                                 (end kill manipy 0)
                                 (end release)))
        ;; Open Mines dev commentary
