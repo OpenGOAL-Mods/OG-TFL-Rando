@@ -49,6 +49,20 @@
           (reset! (-> *task-controls* task) mode #f)
           (first-any (-> *task-controls* task) #f))))))
 
+;; custom callback for the ring part trackers
+(defun race-ring-commentary-green-part-rotation-callback ((arg0 part-tracker))
+  (let ((rot (res-lump-float (the entity-actor (-> arg0 userdata)) 'rot-y)))
+    (set! (-> *part-id-table* 3400 init-specs 15 initial-valuef) rot)
+    (set! (-> *part-id-table* 3401 init-specs 15 initial-valuef) rot)
+    (set! (-> *part-id-table* 3402 init-specs 4 initial-valuef) (+ -182.04445 rot))
+    (set! (-> *part-id-table* 3403 init-specs 4 initial-valuef) rot)
+    (set! (-> *part-id-table* 3404 init-specs 17 initial-valuef) rot)
+    (set! (-> *part-id-table* 3405 init-specs 4 initial-valuef) rot)
+    (set! (-> *part-id-table* 3406 init-specs 4 initial-valuef) rot)
+    (set! (-> *part-id-table* 3410 init-specs 17 initial-valuef) rot)
+    (set! (-> *part-id-table* 3411 init-specs 4 initial-valuef) rot))
+  (none))
+
 ;; overridden to disable grabbing jak, this is handled by commands instead
 (deftype commentary-camera (pov-camera) ())
 

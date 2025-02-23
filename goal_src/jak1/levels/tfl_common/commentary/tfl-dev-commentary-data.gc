@@ -29,7 +29,7 @@ command list:
         the first arg is the index in the handle list.
         the second arg can be either the name of the part group or the id.
         the third arg is the position.
-        there are two optional args: duration and a particle callback function.
+        there are three optional args: duration, userdata and a particle callback function.
 - proc: spawn a tfl-commentary-proc, a process that can be given state handler hooks. you can have up to TFL_COMMENTARY_MAX_HANDLES of them.
         first arg is the index for it in the handle list.
         then, you can have up to three optional args, each of them a list, consisting of either 'code', 'trans' or 'post' and then a lambda

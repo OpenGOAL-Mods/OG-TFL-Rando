@@ -104,7 +104,7 @@
   (when (= (ref cmd 1) 'root)
     (return (vector-copy! vec (-> this root trans))))
   (when (= (ref cmd 1) 'entity)
-    (return (vector-copy! vec (-> (entity-by-name (the string (ref cmd 2))) extra trans))))
+    (return (vector-copy! vec (-> (entity-by-name (symbol->string (the symbol (ref cmd 2)))) extra trans))))
   (set! (-> vec x) (meters (unbox-bfloat-or-binteger (ref cmd 1))))
   (set! (-> vec y) (meters (unbox-bfloat-or-binteger (ref cmd 2))))
   (set! (-> vec z) (meters (unbox-bfloat-or-binteger (ref cmd 3))))
@@ -205,7 +205,8 @@
              (part (the object (ref rest 1)))
              (vec (the pair (ref rest 2)))
              (duration (aif (find-car-in-list 'duration rest) (begin   (let ((val (unbox-bfloat-or-binteger (cadr it)))) (seconds val))) -1))
-             (callback (aif (find-car-in-list 'callback rest) (cadr it))))
+             (callback (aif (find-car-in-list 'callback rest) (cadr it)))
+             (userdata (aif (find-car-in-list 'userdata rest) (cadr it))))
          (set! (-> this parts idx)
                (ppointer->handle (process-spawn part-tracker
                                                 :init
@@ -214,8 +215,8 @@
                                                   (lookup-part-group-by-name (symbol->string part))
                                                   (-> *part-group-id-table* (/ (the int part) 8)))
                                                 duration
-                                                callback
-                                                #f
+                                                (if (= (-> (the basic callback) type) function) callback (-> (the symbol callback) value))
+                                                ((the (function object) userdata))
                                                 #f
                                                 (parse-cmd-vec! this (new-stack-vector0) vec)
                                                 :to
