@@ -215,8 +215,8 @@
                                                   (lookup-part-group-by-name (symbol->string part))
                                                   (-> *part-group-id-table* (/ (the int part) 8)))
                                                 duration
-                                                (if (= (-> (the basic callback) type) function) callback (-> (the symbol callback) value))
-                                                ((the (function object) userdata))
+                                                (aif callback (if (= (-> (the basic it) type) function) it (-> (the symbol it) value)))
+                                                (aif userdata ((the (function object) it)))
                                                 #f
                                                 (parse-cmd-vec! this (new-stack-vector0) vec)
                                                 :to
