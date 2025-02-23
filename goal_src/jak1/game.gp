@@ -1720,6 +1720,7 @@
 (build-actor "lab-door" :gen-mesh #t)
 (build-actor "crc-dev-cam")
 (build-actor "cst-dev-cam")
+(build-actor "enb-dev-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

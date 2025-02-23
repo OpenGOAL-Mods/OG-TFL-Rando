@@ -51,7 +51,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["turbineblade"],
+  "custom_models": ["turbineblade", "enb-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -3552,6 +3552,17 @@
         "alt-actor": "energy-bay-race-ring-01-start",
         "next-actor": "energy-bay-race-ring-12",
         "prev-actor": "energy-bay-race-ring-10"
+      }
+    },
+    {
+      "trans": [588.81, 7.31, 984.05], // translation
+      "etype": "FAKE-tfl-race-ring", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0.0, 0.0, 0.0, 1.0], // quaternion
+      "bsphere": [588.81, 7.31, 984.05, 10], // bounding sphere
+      "lump": {
+        "name": "energy-bay-race-ring-11-old",
+        "rot-y": ["meters", 5.5111]
       }
     },
     {

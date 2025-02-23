@@ -292,3 +292,8 @@
       (logior! (-> self mask) (process-mask sleep))
       (suspend))
   :post ja-post)
+
+(def-actor enb-dev-cam
+  :bounds (0 0 0 25)
+  :art (idle-ja coloredcable-ja redecofoot-ja boulder-ja greenring-ja greenmiss-ja lowreskui-ja)
+  :joints (align prejoint enb-dev-cam camera))
