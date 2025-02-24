@@ -439,6 +439,7 @@
 (if (not (process-by-name "warp-to-crystalc" *active-pool*)) (process-spawn warp-to-crystalc))
 
 (defbehavior tfl-dev-commentary-available-proc process ()
+  (if (>= (tfl-collected-cell-count) (tfl-total-cell-count)) (deactivate self))
   (until (and (not (movie?)) (>= (tfl-collected-cell-count) (tfl-total-cell-count)))
     (suspend))
   (let ((time (current-time)))
