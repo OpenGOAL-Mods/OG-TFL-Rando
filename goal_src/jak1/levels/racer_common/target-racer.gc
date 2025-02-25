@@ -18,6 +18,8 @@
 
 (defconstant SUPER_ECO_BLUE_GRAVITY_LENGTH (meters 4.0))
 
+(define *red_particle_hack* #f)
+
 ;; DECOMP BEGINS
 
 (define *racer-mods*
@@ -556,7 +558,7 @@
                     ((= v1-61 (pat-material stone)) (-> *part-id-table* 2831))
                     ((or (= v1-61 (pat-material snow)) ;; TFL note: added racer effects for snow/deepsnow
                          (= v1-61 (pat-material deepsnow)))
-                     (-> *part-id-table* 3774))
+                     (if *red_particle_hack* (-> *part-id-table* 2211) (-> *part-id-table* 3774)))
                     (else (-> *part-id-table* 2211)))))
       (set! (-> s5-2 y) (-> self control shadow-pos y))
       (if (nonzero? a1-13) (launch-particles :system (if gp-4 *sp-particle-system-3d* *sp-particle-system-2d*) a1-13 s5-2)))

@@ -949,14 +949,46 @@ examples:
                                :description "Abusing Vertex Alpha for Smooth Transitions"
                                :length 26.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 10.0) pov-cam *val-dev-cam-sg* (vectorm root) "snowtransition")
+                                (end release)))
        (static-commentary-data :file-name "kui-zoomerparticle.mp3"
                                :dev-name
                                kuitar
                                :description "Dynamic Particles"
                                :length 45.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 1.0)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (if (not (on-racer?)) (send-event *target* 'change-mode 'racing #f))
+                                         (deactivate self))))
+                                ((seconds 7.0)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																 				 (define-extern *red_particle_hack* symbol)
+                                         (set! *red_particle_hack* #t)
+                                         (deactivate self))))
+																((seconds 21.5)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																 				 (define-extern *red_particle_hack* symbol)
+                                         (set! *red_particle_hack* #f)
+                                         (deactivate self))))))
+                                :run-on-end
+                               	(lambda ()
+																  (define-extern *red_particle_hack* symbol)
+																	(go-process *target* target-racing-get-off (process->handle *target*))
+                                  (set! *red_particle_hack* #f))
        (static-commentary-data :file-name "kui-iceslide.mp3"
                                :dev-name
                                kuitar

@@ -380,5 +380,6 @@
   (idle-ja valleyboulder-ja
            ecochoice-ja
            superblue-ja
-           valleyvisual-ja)
+           valleyvisual-ja
+           snowtransition-ja)
   :joints (align prejoint val-dev-cam camera))
