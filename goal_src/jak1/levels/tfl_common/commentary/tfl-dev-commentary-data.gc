@@ -72,7 +72,7 @@ examples:
 (end release) ;; ungrab jak once the commentary playback is finished.
 |#
 
-(defmacro static-commentary-data (&key file-name &key dev-name &key description &key (length 0.0) &key (spawn-list ()) &key (cmd-list '()))
+(defmacro static-commentary-data (&key file-name &key dev-name &key description &key (length 0.0) &key (spawn-list ()) &key (cmd-list '()) &key (run-on-end #f))
   `(new 'static
        'tfl-commentary-data
        :file-name ,file-name
@@ -81,7 +81,8 @@ examples:
        :length (seconds ,length)
        :spawn-list
        (new 'static 'boxed-array :type tfl-commentary-spawn-func ,@spawn-list)
-       :cmd-list ,cmd-list))
+       :cmd-list ,cmd-list
+       :run-on-end ,run-on-end))
 
 (defmacro tfl-static-spawn-func (name &rest body)
   `(new 'static 'tfl-commentary-spawn-func :name ,name :func (lambda () ,@body)))
@@ -585,7 +586,7 @@ examples:
                                kuitar
                                :description "A Case of the Invisible Ring"
                                :length 24.0
-                               :cmd-list ;; TODO: Spawn a ring in the old spot
+                               :cmd-list
                                '((start grab)
                                 (start music 5.0)
                                 (start sfx 5.0)
@@ -623,7 +624,7 @@ examples:
                                kuitar
                                :description "A Secret Dev Pic You Can Collect"
                                :length 26.0
-                               :cmd-list ;; TODO: fix manipy rotation and hidding if lowreskui is there
+                               :cmd-list
                                '((start grab)
                                 (start music 5.0)
                                 (start sfx 5.0)
@@ -661,14 +662,14 @@ examples:
                                        1
                                        (code ,(lambda :behavior tfl-commentary-proc ()
                                                (define-extern tfl2-drop-plat-idle (state process))
-                                               (aif (the process (process-by-ename "open-mines-citb-drop-plat-01")) (go-process it tfl2-drop-plat-idle))
+                                               (aif (process-by-ename "open-mines-citb-drop-plat-01") (go-process it tfl2-drop-plat-idle))
                                                (deactivate self))))
                                 ((seconds 16.0)
                                  proc
                                  1
                                  (code ,(lambda :behavior tfl-commentary-proc ()
                                          (define-extern tfl2-drop-plat-active (state process))
-                                         (aif (the process (process-by-ename "open-mines-citb-drop-plat-01")) (go-process it tfl2-drop-plat-active))
+                                         (aif (process-by-ename "open-mines-citb-drop-plat-01") (go-process it tfl2-drop-plat-active))
                                          (deactivate self))))
                                 ((seconds 21.5) pov-cam *opm-dev-cam-sg* (vectorm root) "dropplat")
                                 (end release)))
@@ -710,7 +711,7 @@ examples:
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
                                          (define-extern opm-bone-bridge-fall (state symbol process))
-                                         (awhen (the process (process-by-ename "open-mines-opm-bone-bridge-02"))
+                                         (awhen (process-by-ename "open-mines-opm-bone-bridge-02")
                                            (process-mask-clear! (-> it mask) platform)
                                            (go-process it opm-bone-bridge-fall #f))
                                          (deactivate self))))
@@ -718,15 +719,15 @@ examples:
                                  proc
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-                                         (awhen (the process (process-by-ename "open-mines-opm-bone-bridge-03"))
+                                         (awhen (process-by-ename "open-mines-opm-bone-bridge-03")
                                            (process-mask-clear! (-> it mask) platform)
                                            (go-process it opm-bone-bridge-fall #f))
                                          (deactivate self))))
                                 (end proc
                                      1
                                      (code ,(lambda :behavior tfl-commentary-proc ()
-                                             (aif (the process (process-by-ename "open-mines-opm-bone-bridge-02")) (process-mask-set! (-> it mask) platform))
-                                             (aif (the process (process-by-ename "open-mines-opm-bone-bridge-03")) (process-mask-set! (-> it mask) platform))
+                                             (aif (process-by-ename "open-mines-opm-bone-bridge-02") (process-mask-set! (-> it mask) platform))
+                                             (aif (process-by-ename "open-mines-opm-bone-bridge-03") (process-mask-set! (-> it mask) platform))
                                              (deactivate self))))
                                 (end release)))
        (static-commentary-data :file-name "kui-minesambush.mp3"
@@ -750,8 +751,8 @@ examples:
                                  proc
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-                                         (define-extern mines-bouncer-activate (state process))
-                                         (aif (the process (process-by-ename "open-mines-bouncer-04")) (go-process it mines-bouncer-activate))
+                                         (define-extern mines-bouncer-activate (state uint process))
+                                         (aif (process-by-ename "open-mines-bouncer-04") (go-process it mines-bouncer-activate (the uint #f)))
                                          (deactivate self))))
                                 (end release)))
        (static-commentary-data :file-name "kui-excavator.mp3"
@@ -830,10 +831,9 @@ examples:
                                  proc
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley #f) (deactivate self))))
-                                (end
-                                 proc
-                                 0
-                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley 'display) (deactivate self))))
+                                (end proc
+                                     0
+                                     (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley 'display) (deactivate self))))
                                 (end release)))
        (static-commentary-data :file-name "kui-rollingrocks.mp3"
                                :dev-name
@@ -879,15 +879,20 @@ examples:
                                 ((seconds 5.0)
                                  proc
                                  0
-                                 (code ,(lambda :behavior tfl-commentary-proc () (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-village1*) (deactivate self))))
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-village1*)
+                                         (deactivate self))))
                                 ((seconds 26.5)
                                  proc
                                  0
-                                 (code ,(lambda :behavior tfl-commentary-proc () (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*) (deactivate self))))
-                                (end
-                                 proc
-                                 0
-                                 (code ,(lambda :behavior tfl-commentary-proc () (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*) (deactivate self))))
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*)
+                                         (deactivate self))))
+                                (end proc
+                                     0
+                                     (code ,(lambda :behavior tfl-commentary-proc ()
+                                             (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*)
+                                             (deactivate self))))
                                 (end release)))
        (static-commentary-data :file-name "kui-valleyvisual.mp3"
                                :dev-name
@@ -912,14 +917,11 @@ examples:
                                 (start sfx 5.0)
                                 (start dialog 5.0)
                                 ((seconds 1.5) reset-actor valley-robber-01 game)
-                                (end
-                                 proc
-                                 0
-                                 (code ,(lambda :behavior tfl-commentary-proc ()
-                                         (define-extern robber-dead (state process))
-                                         (aif (the process (process-by-ename "valley-robber-01")) (go-process it robber-dead))
-                                         (deactivate self))))
-                                (end release)))
+                                (end release))
+                               :run-on-end
+                               (lambda ()
+                                 (define-extern robber-dead (state process))
+                                 (aif (process-by-ename "valley-robber-01") (go-process it robber-dead))))
        (static-commentary-data :file-name "kui-snowtransition.mp3"
                                :dev-name
                                kuitar

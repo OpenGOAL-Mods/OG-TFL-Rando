@@ -23,6 +23,7 @@
    (description string) ;; short description
    (length      time-frame) ;; length of sound clip
    (spawn-list  (array tfl-commentary-spawn-func)) ;; list of function pointers for spawning special processes
+   (run-on-end  (function object)) ;; function to run when playback is skipped or ends normally
    (cmd-list    pair))) ;; list of commands to do specific stuff like enabling pov cameras, spawning objects, etc.
 
 (defun tfl-commentary-dev->string ((val tfl-commentary-dev))

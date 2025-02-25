@@ -323,6 +323,8 @@
      (if (handle->process (-> this pov-cam)) (send-event (handle->process (-> this pov-cam)) 'abort))
      (when (has-cmds-at-frame? this (-> this data length))
        (execute-cmds-at-frame this (-> this data length)))
+     (when (-> this data run-on-end)
+       ((-> this data run-on-end)))
      (set! (-> this pov-cam) INVALID_HANDLE)
      (cpad-clear! 0 l2 circle)
      (go-virtual idle :proc this))))
@@ -644,6 +646,8 @@
       ;; run last cmd if available
       (when (has-cmds-at-frame? self (-> self data length))
         (execute-cmds-at-frame self (-> self data length)))
+      (when (-> self data run-on-end)
+        ((-> self data run-on-end)))
       (go-virtual idle))
   :exit
     (behavior ()
