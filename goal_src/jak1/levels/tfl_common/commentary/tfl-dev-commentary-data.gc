@@ -343,12 +343,20 @@ examples:
                                kuitar
                                :description "Visible, but Out of Reach"
                                :length 15.0
-                               :cmd-list ;; TODO: scout fly crate that appear and then disappear
+                               :spawn-list
+                               ((tfl-static-spawn-func "crate-buzzer"
+                                                       (let ((e (the entity-actor (entity-by-name "crescent-crate-buzzer-02"))))
+                                                         (if (not (-> e extra process))
+                                                           (ppointer->handle (process-spawn crate-buzzer-commentary e (-> e extra trans) 'iron))
+                                                           INVALID_HANDLE))))
+                               :cmd-list
                                '((start grab)
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
                                 ((seconds 6.0) pov-cam *cst-dev-cam-sg* (vectorm root) "pillarfly")
+                                ((seconds 6.5) spawn 0 "crate-buzzer")
+                                (end kill 0)
                                 (end release)))
        (static-commentary-data :file-name "kui-hybridlevel.mp3"
                                :dev-name
@@ -974,21 +982,17 @@ examples:
                                  proc
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-																 				 (define-extern *red_particle_hack* symbol)
-                                         (set! *red_particle_hack* #t)
+                                         (define-extern *tfl-comm-red-particle-hack* symbol)
+                                         (true! *tfl-comm-red-particle-hack*)
                                          (deactivate self))))
-																((seconds 21.5)
+                                ((seconds 21.5)
                                  proc
                                  0
-                                 (code ,(lambda :behavior tfl-commentary-proc ()
-																 				 (define-extern *red_particle_hack* symbol)
-                                         (set! *red_particle_hack* #f)
-                                         (deactivate self))))))
-                                :run-on-end
-                               	(lambda ()
-																  (define-extern *red_particle_hack* symbol)
-																	(go-process *target* target-racing-get-off (process->handle *target*))
-                                  (set! *red_particle_hack* #f))
+                                 (code ,(lambda :behavior tfl-commentary-proc () (false! *tfl-comm-red-particle-hack*) (deactivate self)))))
+                               :run-on-end
+                               (lambda ()
+                                 (go-process *target* target-racing-get-off INVALID_HANDLE)
+                                 (false! *tfl-comm-red-particle-hack*)))
        (static-commentary-data :file-name "kui-iceslide.mp3"
                                :dev-name
                                kuitar
