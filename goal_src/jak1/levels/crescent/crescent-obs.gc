@@ -883,5 +883,6 @@
            undergroundsurprise-ja
            bigcable-ja
            enbjump-ja
-           hiddinglevels-ja)
+           hiddinglevels-ja
+           valleyspiral-ja)
   :joints (align prejoint cst-dev-cam camera))

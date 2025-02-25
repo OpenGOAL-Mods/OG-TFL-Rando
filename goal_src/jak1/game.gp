@@ -1722,6 +1722,7 @@
 (build-actor "cst-dev-cam")
 (build-actor "enb-dev-cam")
 (build-actor "opm-dev-cam")
+(build-actor "val-dev-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

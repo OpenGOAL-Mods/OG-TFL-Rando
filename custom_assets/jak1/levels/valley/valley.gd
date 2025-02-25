@@ -49,6 +49,7 @@
   "swamp-rat-ag.go"
   "kermit-ag.go"
   "water-anim-training-ag.go"
+  "val-dev-cam-ag.go"
   "valley.go"
   )
  )

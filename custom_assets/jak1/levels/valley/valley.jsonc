@@ -8192,18 +8192,6 @@
       }
     },
     {
-      "trans": [192.12, 182.71, 717.52],
-      "etype": "tfl-commentary-node",
-      "game_task": 0,
-      "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [192.12, 182.71, 717.52, 10],
-      "lump": {
-        "name": "valley-kui-valleyspiral",
-        "filename": "kui-valleyspiral.mp3",
-        "radius":["meters", 6.0]
-      }
-    },
-    {
       "trans": [138.89, 135.66, 872.55],
       "etype": "tfl-commentary-node",
       "game_task": 0,

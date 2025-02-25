@@ -785,7 +785,7 @@ examples:
                                :dev-name
                                kuitar
                                :description "An Explosive Start"
-                               :length 20.0
+                               :length 21.0
                                :spawn-list
                                ((tfl-static-spawn-func "valley-rock0"
                                                        (ppointer->handle (process-spawn valley-rock-commentary (the entity-actor (entity-by-name "crescent-valley-rock-01"))))))
@@ -794,9 +794,10 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                (300 spawn 0 "valley-rock0")
-                                (2000 send-event 0 anim-speed (0.5))
-                                (5000 send-event 0 anim-speed (1.0))
+                                (start spawn 0 "valley-rock0")
+                                ((seconds 1) pov-cam *val-dev-cam-sg* (vectorm root) "valleyboulder")
+                                ((seconds 6) send-event 0 anim-speed (0.25))
+                                ((seconds 16) send-event 0 anim-speed (1.0))
                                 (end kill 0)
                                 (end release)))
        (static-commentary-data :file-name "kui-progression.mp3"
@@ -812,7 +813,28 @@ examples:
                                :description "Hiding Loads"
                                :length 34.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 14.0) pov-cam *cst-dev-cam-sg* (vectorm root) "valleyspiral")
+                                ((seconds 14.5)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley #f) (deactivate self))))
+                                ((seconds 18)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley 'display) (deactivate self))))
+                                ((seconds 22.5)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley #f) (deactivate self))))
+                                (end
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (load-state-want-display-level 'valley 'display) (deactivate self))))
+                                (end release)))
        (static-commentary-data :file-name "kui-rollingrocks.mp3"
                                :dev-name
                                kuitar
@@ -826,35 +848,78 @@ examples:
                                :description "Insert Matrix Pill Choice Meme Here"
                                :length 17.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 2.0) pov-cam *val-dev-cam-sg* (vectorm root) "ecochoice")
+                                (end release)))
        (static-commentary-data :file-name "kui-superblue.mp3"
                                :dev-name
                                kuitar
                                :description "Falling With Style"
                                :length 70.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 47.0) pov-cam *val-dev-cam-sg* (vectorm root) "superblue")
+                                (end release)))
        (static-commentary-data :file-name "kui-deepgap.mp3"
                                :dev-name
                                kuitar
                                :description "Creating Custom Ocean Maps"
                                :length 32.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 5.0)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-village1*) (deactivate self))))
+                                ((seconds 26.5)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*) (deactivate self))))
+                                (end
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc () (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*) (deactivate self))))
+                                (end release)))
        (static-commentary-data :file-name "kui-valleyvisual.mp3"
                                :dev-name
                                kuitar
                                :description "A Striking Visual Change"
                                :length 38.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 7.0) pov-cam *val-dev-cam-sg* (vectorm root) "valleyvisual")
+                                (end release)))
        (static-commentary-data :file-name "kui-flyinglurker.mp3"
                                :dev-name
                                kuitar
                                :description "Combining Old Enemies With New Mechanics"
                                :length 38.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 1.5) reset-actor valley-robber-01 game)
+                                (end
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (define-extern robber-dead (state process))
+                                         (aif (the process (process-by-ename "valley-robber-01")) (go-process it robber-dead))
+                                         (deactivate self))))
+                                (end release)))
        (static-commentary-data :file-name "kui-snowtransition.mp3"
                                :dev-name
                                kuitar
