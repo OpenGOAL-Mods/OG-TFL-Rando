@@ -179,6 +179,7 @@ examples:
                          :task (game-task energy-bay-turbine4)
                          :task-status (task-status need-hint)
                          :force-playback? #t
+                         :interrupt? #t
                          ;; If the rock is alive/idle and red eco
                          :play-func
                          (lambda ()

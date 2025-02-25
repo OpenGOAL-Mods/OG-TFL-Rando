@@ -957,7 +957,7 @@
 (defpart 4038
   :init-specs
   ((:texture (bigpuff2 effects))
-   (:birth-func 'birth-func-set-quat)
+   ; (:birth-func 'birth-func-copy-quat)
    (:num 0.1 0.3)
    (:x (meters -3.5) (meters 7))
    (:y (meters -3.5) (meters 7))
@@ -982,7 +982,4 @@
    (:next-launcher 4039)))
 
 (defpart 4039
-  :init-specs ((:fade-r 0.2)
-   (:fade-g 0.2)
-   (:fade-b 0.2)
-   (:fade-a -0.12 0.02)))
+  :init-specs ((:fade-r 0.2) (:fade-g 0.2) (:fade-b 0.2) (:fade-a -0.12 0.02)))

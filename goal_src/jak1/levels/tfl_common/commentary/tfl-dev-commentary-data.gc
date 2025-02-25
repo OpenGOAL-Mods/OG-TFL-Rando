@@ -657,21 +657,18 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                (start
-                                 proc
-                                 1
-                                 (code ,(lambda :behavior tfl-commentary-proc ()
-																 				 (define-extern tfl2-drop-plat-idle (state process))
-                                         (aif (the process (process-by-ename "open-mines-citb-drop-plat-01"))
-                                           (go-process it tfl2-drop-plat-idle))
-                                         (deactivate self))))
+                                (start proc
+                                       1
+                                       (code ,(lambda :behavior tfl-commentary-proc ()
+                                               (define-extern tfl2-drop-plat-idle (state process))
+                                               (aif (the process (process-by-ename "open-mines-citb-drop-plat-01")) (go-process it tfl2-drop-plat-idle))
+                                               (deactivate self))))
                                 ((seconds 16.0)
                                  proc
                                  1
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-																				 (define-extern tfl2-drop-plat-active (state process))
-                                         (aif (the process (process-by-ename "open-mines-citb-drop-plat-01"))
-                                           (go-process it tfl2-drop-plat-active))
+                                         (define-extern tfl2-drop-plat-active (state process))
+                                         (aif (the process (process-by-ename "open-mines-citb-drop-plat-01")) (go-process it tfl2-drop-plat-active))
                                          (deactivate self))))
                                 ((seconds 21.5) pov-cam *opm-dev-cam-sg* (vectorm root) "dropplat")
                                 (end release)))
@@ -712,18 +709,25 @@ examples:
                                  proc
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-																 				 (define-extern opm-bone-bridge-fall (state process))
-                                         (aif (the process (process-by-ename "open-mines-opm-bone-bridge-02"))
-                                           (go-process it opm-bone-bridge-fall))
+                                         (define-extern opm-bone-bridge-fall (state symbol process))
+                                         (awhen (the process (process-by-ename "open-mines-opm-bone-bridge-02"))
+                                           (process-mask-clear! (-> it mask) platform)
+                                           (go-process it opm-bone-bridge-fall #f))
                                          (deactivate self))))
                                 ((seconds 24.5)
                                  proc
-                                 1
+                                 0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-																 				 (define-extern opm-bone-bridge-fall (state process))
-                                         (aif (the process (process-by-ename "open-mines-opm-bone-bridge-02"))
-                                           (go-process it opm-bone-bridge-fall))
+                                         (awhen (the process (process-by-ename "open-mines-opm-bone-bridge-03"))
+                                           (process-mask-clear! (-> it mask) platform)
+                                           (go-process it opm-bone-bridge-fall #f))
                                          (deactivate self))))
+                                (end proc
+                                     1
+                                     (code ,(lambda :behavior tfl-commentary-proc ()
+                                             (aif (the process (process-by-ename "open-mines-opm-bone-bridge-02")) (process-mask-set! (-> it mask) platform))
+                                             (aif (the process (process-by-ename "open-mines-opm-bone-bridge-03")) (process-mask-set! (-> it mask) platform))
+                                             (deactivate self))))
                                 (end release)))
        (static-commentary-data :file-name "kui-minesambush.mp3"
                                :dev-name
@@ -746,9 +750,8 @@ examples:
                                  proc
                                  0
                                  (code ,(lambda :behavior tfl-commentary-proc ()
-																 				 (define-extern mines-bouncer-activate (state process))
-                                         (aif (the process (process-by-ename "open-mines-bouncer-04"))
-                                           (go-process it mines-bouncer-activate))
+                                         (define-extern mines-bouncer-activate (state process))
+                                         (aif (the process (process-by-ename "open-mines-bouncer-04")) (go-process it mines-bouncer-activate))
                                          (deactivate self))))
                                 (end release)))
        (static-commentary-data :file-name "kui-excavator.mp3"
