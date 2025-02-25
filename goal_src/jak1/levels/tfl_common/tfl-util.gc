@@ -376,6 +376,14 @@
   (update-transforms! (-> self control))
   (none))
 
+;; overwrite hide-bottom-hud to hide hud-bike-red-boost
+(defun hide-bottom-hud ()
+  (when *target*
+    (dotimes (i 4)
+      (if (-> *hud-parts* parts (+ i 4)) (send-event (ppointer->process (-> *hud-parts* parts (+ i 4))) 'hide)))
+    (send-event (ppointer->process (-> *hud-parts-pc* bike-red-boost)) 'hide))
+  (none))
+
 (deftype warp-to-crystalc (process)
   ((state-time         time-frame)
    (timer              time-frame)

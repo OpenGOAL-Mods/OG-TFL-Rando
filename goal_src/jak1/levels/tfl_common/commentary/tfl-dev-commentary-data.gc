@@ -735,8 +735,29 @@ examples:
                                kuitar
                                :description "Learning New Mechanics in a Hectic Battle"
                                :length 106.0
-                               :cmd-list ;; TODO: Spawn particles when they're being talked about/ Making jak do the animations if possible?
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               :spawn-list
+                               ((tfl-static-spawn-func "running-blast"
+                                                       (ppointer->handle (process-spawn target-commentary
+                                                                                        (static-vectorm -427.8091 110.0 1034.7623)
+                                                                                        (new 'static 'quaternion :x 0.0 :y 0.7939 :z 0.0 :w 0.608)
+                                                                                        'idle)))
+                                (tfl-static-spawn-func "jumping-blast"
+                                                       (ppointer->handle (process-spawn target-commentary
+                                                                                        (static-vectorm -434.1316 111.0 1035.2501)
+                                                                                        (new 'static 'quaternion :x 0.0 :y 0.994 :z 0.0 :w -0.0322)
+                                                                                        'jumping-blast))))
+                               :cmd-list
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 3) spawn 0 "running-blast")
+                                ((seconds 5) send-event 0 go (running-blast))
+                                ((seconds 10) send-event 0 part (#f))
+                                ((seconds 11) spawn 1 "jumping-blast")
+                                ((seconds 14) send-event 0 end ())
+                                ((seconds 17) send-event 1 end ())
+                                (end release)))
        (static-commentary-data :file-name "kui-bouncer.mp3"
                                :dev-name
                                kuitar
