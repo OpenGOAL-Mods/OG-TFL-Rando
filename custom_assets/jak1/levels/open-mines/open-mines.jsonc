@@ -76,7 +76,7 @@
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
 
-  "custom_models": ["bucket-wheel"],
+  "custom_models": ["bucket-wheel","opm-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -2919,34 +2919,34 @@
     },
     {
       "trans": [-435.56, 174.41, 748.66], // translation
-      "etype": "mis-bone-bridge", // actor type
+      "etype": "opm-bone-bridge", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [-0.041, 0.864, 0.118, 0.487], // quaternion
       "bsphere": [-435.56, 174.41, 748.66, 10], // bounding sphere
       "lump": {
-        "name": "open-mines-mis-bone-bridge-01",
+        "name": "open-mines-opm-bone-bridge-01",
         "scale": ["float", 1.2]
       }
     },
     {
       "trans": [-496.16, 148.67, 921.28], // translation
-      "etype": "mis-bone-bridge", // actor type
+      "etype": "opm-bone-bridge", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0.002, 0.999, -0.035, 0.012], // quaternion
       "bsphere": [-496.16, 148.67, 921.28, 10], // bounding sphere
       "lump": {
-        "name": "open-mines-mis-bone-bridge-02",
+        "name": "open-mines-opm-bone-bridge-02",
         "scale": ["float", 1.1]
       }
     },
     {
       "trans": [-491.13, 145.63, 961.5], // translation
-      "etype": "mis-bone-bridge", // actor type
+      "etype": "opm-bone-bridge", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0.043, 0.129, -0.017, 0.991], // quaternion
       "bsphere": [-491.13, 145.63, 961.5, 10], // bounding sphere
       "lump": {
-        "name": "open-mines-mis-bone-bridge-03",
+        "name": "open-mines-opm-bone-bridge-03",
         "scale": ["float", 1.2]
       }
     },
@@ -5908,11 +5908,11 @@
       }
     },
     {
-      "trans": [-356.40, 195.59, 744.23],
+      "trans": [-360.85, 167.95, 823.39],
       "etype": "tfl-commentary-node",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [-356.40, 195.59, 744.23, 10],
+      "bsphere": [-360.85, 167.95, 823.39, 10],
       "lump": {
         "name": "open-mines-kui-kegfeatures",
         "filename": "kui-kegfeatures.mp3"

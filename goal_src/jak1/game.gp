@@ -1721,6 +1721,7 @@
 (build-actor "crc-dev-cam")
 (build-actor "cst-dev-cam")
 (build-actor "enb-dev-cam")
+(build-actor "opm-dev-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code

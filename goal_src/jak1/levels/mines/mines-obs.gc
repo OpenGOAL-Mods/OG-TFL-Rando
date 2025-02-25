@@ -1,17 +1,17 @@
 ;;-*-Lisp-*-
 (in-package goal)
 
-(deftype mis-bone-bridge (process-drawable)
+(deftype opm-bone-bridge (process-drawable)
   ((root             collide-shape-moving :override)
    (particle-group   sparticle-launch-group)
    (player-attack-id int32)
    (fall-anim-index  int32)
    (hit-points       int8))
   (:states
-   mis-bone-bridge-bump
-   (mis-bone-bridge-fall symbol)
-   mis-bone-bridge-hit
-   mis-bone-bridge-idle))
+   opm-bone-bridge-bump
+   (opm-bone-bridge-fall symbol)
+   opm-bone-bridge-hit
+   opm-bone-bridge-idle))
 
 (defskelgroup *mis-bone-bridge-sg*
   mis-bone-bridge
@@ -20,7 +20,7 @@
   ((mis-bone-bridge-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 15 0 40))
 
-(defbehavior mis-bone-bridge-event-handler mis-bone-bridge ((arg0 process) (arg1 int) (arg2 symbol) (arg3 event-message-block))
+(defbehavior opm-bone-bridge-event-handler opm-bone-bridge ((arg0 process) (arg1 int) (arg2 symbol) (arg3 event-message-block))
   (case arg2
     (('attack)
      (let ((s5-0 (-> arg3 param 2))
@@ -35,11 +35,11 @@
                (f1-1 (vector-dot a0-4 v1-4)))
            (cond
              ((and (< 0.0 f1-1) (< (fabs (* 0.5 f0-3)) f1-1))
-              (if (send-event *target* 'query 'powerup (pickup-type eco-red)) (go mis-bone-bridge-fall #f) (go mis-bone-bridge-hit)))
-             (else (go mis-bone-bridge-bump) #f))))))))
+              (if (send-event *target* 'query 'powerup (pickup-type eco-red)) (go opm-bone-bridge-fall #f) (go opm-bone-bridge-hit)))
+             (else (go opm-bone-bridge-bump) #f))))))))
 
-(defstate mis-bone-bridge-idle (mis-bone-bridge)
-  :event mis-bone-bridge-event-handler
+(defstate opm-bone-bridge-idle (opm-bone-bridge)
+  :event opm-bone-bridge-event-handler
   :code
     (behavior ()
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -49,8 +49,8 @@
         (suspend)))
   :post transform-post)
 
-(defstate mis-bone-bridge-bump (mis-bone-bridge)
-  :event mis-bone-bridge-event-handler
+(defstate opm-bone-bridge-bump (opm-bone-bridge)
+  :event opm-bone-bridge-event-handler
   :trans rider-trans
   :code
     (behavior ()
@@ -58,24 +58,24 @@
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek!)))
-      (go mis-bone-bridge-idle))
+      (go opm-bone-bridge-idle))
   :post rider-post)
 
-(defstate mis-bone-bridge-hit (mis-bone-bridge)
-  :event mis-bone-bridge-event-handler
+(defstate opm-bone-bridge-hit (opm-bone-bridge)
+  :event opm-bone-bridge-event-handler
   :trans rider-trans
   :code
     (behavior ()
       (+! (-> self hit-points) -1)
-      (if (zero? (-> self hit-points)) (go mis-bone-bridge-fall #f))
+      (if (zero? (-> self hit-points)) (go opm-bone-bridge-fall #f))
       (ja-no-eval :group! mis-bone-bridge-kicked-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek!)))
-      (go mis-bone-bridge-idle))
+      (go opm-bone-bridge-idle))
   :post rider-post)
 
-(defstate mis-bone-bridge-fall (mis-bone-bridge)
+(defstate opm-bone-bridge-fall (opm-bone-bridge)
   :trans rider-trans
   :code
     (behavior ((arg0 symbol))
@@ -104,7 +104,7 @@
         (suspend)))
   :post rider-post)
 
-(defmethod init-from-entity! ((this mis-bone-bridge) (arg0 entity-actor))
+(defmethod init-from-entity! ((this opm-bone-bridge) (arg0 entity-actor))
   (logior! (-> this mask) (process-mask platform))
   (let ((s4-0 (new 'process 'collide-shape-moving this (collide-list-enum hit-by-others))))
     (set! (-> s4-0 dynam) (copy *standard-dynamics* 'process))
@@ -157,8 +157,8 @@
       (else (set! (-> this fall-anim-index) 2) (set! (-> this particle-group) (-> *part-group-id-table* 1014)))))
   (set! (-> this hit-points) 3)
   (if (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status complete)))
-    (go mis-bone-bridge-fall #t)
-    (go mis-bone-bridge-idle))
+    (go opm-bone-bridge-fall #t)
+    (go opm-bone-bridge-idle))
   (none))
 
 (define *bone-platform-constants*
@@ -2179,3 +2179,8 @@
     ((task-complete? *game-info* (-> this entity extra perm task)) (cleanup-for-death this) (deactivate this))
     (else (go mines-boulder-idle)))
   (none))
+
+(def-actor opm-dev-cam
+  :bounds (0 0 0 25)
+  :art (idle-ja dropplat-ja kegmaze-ja backupblue-ja backupblue2-ja excavator-ja)
+  :joints (align prejoint opm-dev-cam camera))

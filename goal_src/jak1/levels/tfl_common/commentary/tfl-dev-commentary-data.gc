@@ -644,7 +644,7 @@ examples:
                                :dev-name
                                kuitar
                                :description "An Industrial and Machinery Feel"
-                               :length 16.0
+                               :length 16.5
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-dropplat.mp3"
@@ -653,7 +653,28 @@ examples:
                                :description "Think Before You Jump, Part 2"
                                :length 38.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (start
+                                 proc
+                                 1
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																 				 (define-extern tfl2-drop-plat-idle (state process))
+                                         (aif (the process (process-by-ename "open-mines-citb-drop-plat-01"))
+                                           (go-process it tfl2-drop-plat-idle))
+                                         (deactivate self))))
+                                ((seconds 16.0)
+                                 proc
+                                 1
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																				 (define-extern tfl2-drop-plat-active (state process))
+                                         (aif (the process (process-by-ename "open-mines-citb-drop-plat-01"))
+                                           (go-process it tfl2-drop-plat-active))
+                                         (deactivate self))))
+                                ((seconds 21.5) pov-cam *opm-dev-cam-sg* (vectorm root) "dropplat")
+                                (end release)))
        (static-commentary-data :file-name "kui-kegfeatures.mp3"
                                :dev-name
                                kuitar
@@ -667,35 +688,81 @@ examples:
                                :description "A Deadly Maze"
                                :length 25.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 10.0) pov-cam *opm-dev-cam-sg* (vectorm root) "kegmaze")
+                                (end release)))
        (static-commentary-data :file-name "kui-backupblue.mp3"
                                :dev-name
                                kuitar
                                :description "Combatting Frustration"
                                :length 32.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (start reset-actor open-mines-opm-bone-bridge-02 game)
+                                (start reset-actor open-mines-opm-bone-bridge-03 game)
+                                ((seconds 1.0) pov-cam *opm-dev-cam-sg* (vectorm root) "backupblue")
+                                ((seconds 15.5) pov-cam *opm-dev-cam-sg* (vectorm root) "backupblue2")
+                                ((seconds 19.5)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																 				 (define-extern opm-bone-bridge-fall (state process))
+                                         (aif (the process (process-by-ename "open-mines-opm-bone-bridge-02"))
+                                           (go-process it opm-bone-bridge-fall))
+                                         (deactivate self))))
+                                ((seconds 24.5)
+                                 proc
+                                 1
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																 				 (define-extern opm-bone-bridge-fall (state process))
+                                         (aif (the process (process-by-ename "open-mines-opm-bone-bridge-02"))
+                                           (go-process it opm-bone-bridge-fall))
+                                         (deactivate self))))
+                                (end release)))
        (static-commentary-data :file-name "kui-minesambush.mp3"
                                :dev-name
                                kuitar
                                :description "Learning New Mechanics in a Hectic Battle"
                                :length 106.0
-                               :cmd-list
+                               :cmd-list ;; TODO: Spawn particles when they're being talked about/ Making jak do the animations if possible?
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-bouncer.mp3"
                                :dev-name
                                kuitar
                                :description "Flamepot Without the Flame"
-                               :length 21.0
+                               :length 21.5
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 21.0)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+																 				 (define-extern mines-bouncer-activate (state process))
+                                         (aif (the process (process-by-ename "open-mines-bouncer-04"))
+                                           (go-process it mines-bouncer-activate))
+                                         (deactivate self))))
+                                (end release)))
        (static-commentary-data :file-name "kui-excavator.mp3"
                                :dev-name
                                kuitar
                                :description "A Problem of Scale"
                                :length 22.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 14.5) pov-cam *opm-dev-cam-sg* (vectorm root) "excavator")
+                                (end release)))
        (static-commentary-data :file-name "kui-minecarts.mp3"
                                :dev-name
                                kuitar
@@ -929,347 +996,347 @@ examples:
        'boxed-array
        :type
        continue-point
-       (static-continue-point "tfl-comm-0-kuitar"
+       (static-continue-point "tfl-comm-start-kuitar"
                               ()
                               (target -4.0701 99.1599 3.0370 -0.0000 -0.5267 -0.0000 -0.8500)
                               (camera -4.9601 104.1162 14.7769 -0.9813 -0.0000 -0.1923 0.0248 0.9916 -0.1268 0.1906 -0.1292 -0.9730)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-1-kuitar"
+       (static-continue-point "tfl-comm-intro-kuitar"
                               ()
                               (target 1.0770 99.2756 7.2674 0.0000 0.4490 0.0000 0.8935)
                               (camera 2.1623 103.1533 -0.3924 0.9961 0.0000 0.0874 -0.0171 0.9805 0.1956 -0.0857 -0.1964 0.9767)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-2-kuitar"
+       (static-continue-point "tfl-comm-warpgate-kuitar"
                               ()
                               (target 3.3602 99.8223 0.1913 0.0000 -0.9837 0.0000 0.1792)
                               (camera -3.3739 103.9986 5.9318 -0.7060 -0.0000 -0.7081 0.1199 0.9855 -0.1196 0.6979 -0.1694 -0.6958)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-3-kuitar"
+       (static-continue-point "tfl-comm-setpiece-kuitar"
                               ()
                               (target -47.3696 93.2715 16.1107 0.0000 0.3720 -0.0000 -0.9282)
                               (camera -37.1840 97.8761 18.5743 -0.1880 -0.0000 0.9821 -0.1340 0.9906 -0.0256 -0.9729 -0.1364 -0.1863)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-4-kuitar"
+       (static-continue-point "tfl-comm-flow-kuitar"
                               ()
                               (target -59.0255 97.1039 3.1608 0.0000 -0.8614 0.0000 0.5077)
                               (camera -64.5341 102.1162 13.8073 -0.9363 0.0000 -0.3509 0.0415 0.9929 -0.1108 0.3484 -0.1183 -0.9298)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-5-kuitar"
+       (static-continue-point "tfl-comm-cavelayout-kuitar"
                               ()
                               (target -125.2827 92.8506 0.4581 -0.0000 0.4757 0.0000 -0.8795)
                               (camera -116.3213 97.6300 7.0782 -0.5298 0.0000 0.8480 -0.1073 0.9919 -0.0670 -0.8412 -0.1266 -0.5256)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-6-kuitar"
+       (static-continue-point "tfl-comm-hiddenyellow-kuitar"
                               ()
                               (target -155.0466 104.1974 -52.2298 0.0000 0.7208 0.0000 0.6930)
                               (camera -163.4745 109.3476 -61.4612 0.7211 0.0000 -0.6927 0.0807 0.9931 0.0840 0.6880 -0.1165 0.7162)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-7-kuitar"
+       (static-continue-point "tfl-comm-customcamera-kuitar"
                               ()
                               (target -110.5810 90.4724 -106.4125 0.0000 0.9683 0.0000 0.2496)
                               (camera -122.4140 95.6012 -110.1641 0.2012 0.0000 -0.9795 0.1138 0.9932 0.0233 0.9729 -0.1162 0.1998)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-8-kuitar"
+       (static-continue-point "tfl-comm-jaklighting-kuitar"
                               ()
                               (target -133.1939 88.2318 -97.8716 0.0000 0.1596 0.0000 0.9871)
                               (camera -132.4126 92.4282 -88.9813 -0.9982 0.0000 0.0583 -0.0097 0.9860 -0.1662 -0.0575 -0.1665 -0.9843)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-9-kuitar"
+       (static-continue-point "tfl-comm-ship-kuitar"
                               ()
                               (target -160.9559 89.3338 -109.6158 0.0000 0.7987 0.0000 0.6016)
                               (camera -164.0645 94.4783 -97.5086 -0.9557 0.0000 -0.2943 0.0337 0.9934 -0.1096 0.2923 -0.1146 -0.9494)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-10-kuitar"
+       (static-continue-point "tfl-comm-electricarc-kuitar"
                               ()
                               (target -167.6921 92.3146 -122.1137 0.0000 -0.6875 0.0000 0.7260)
                               (camera -172.5523 96.3916 -115.2153 -0.8687 -0.0000 -0.4952 0.0896 0.9834 -0.1572 0.4870 -0.1809 -0.8544)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-11-kuitar"
+       (static-continue-point "tfl-comm-sculptedwalls-kuitar"
                               ()
                               (target -87.4895 98.9150 26.3324 0.0000 0.9759 0.0000 -0.2180)
                               (camera -78.6485 104.0613 17.5447 0.6165 0.0000 0.7873 -0.1023 0.9915 0.0801 -0.7806 -0.1300 0.6113)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-12-kuitar"
+       (static-continue-point "tfl-comm-infested-kuitar"
                               ()
                               (target -242.1059 66.9511 -116.1071 0.0000 -0.9180 0.0000 0.3965)
                               (camera -230.8886 71.8018 -118.0078 0.1374 -0.0000 0.9905 -0.1218 0.9924 0.0168 -0.9829 -0.1229 0.1363)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-13-kuitar"
+       (static-continue-point "tfl-comm-fireflypart-kuitar"
                               ()
                               (target -308.8220 71.5187 -138.1942 0.0000 -0.8051 0.0000 0.5930)
                               (camera -298.4685 78.9177 -150.3361 0.7112 -0.0000 0.7029 -0.1387 0.9803 0.1403 -0.6890 -0.1973 0.6972)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-14-kuitar"
+       (static-continue-point "tfl-comm-topinfested-kuitar"
                               ()
                               (target -248.7007 97.8067 -117.8435 0.0000 -0.9874 -0.0000 0.1578)
                               (camera -236.6843 102.8290 -117.4282 -0.1141 -0.0000 0.9934 -0.1156 0.9931 -0.0132 -0.9867 -0.1164 -0.1133)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-15-kuitar"
+       (static-continue-point "tfl-comm-oneway-kuitar"
                               ()
                               (target -300.4993 97.9174 -17.3855 -0.0000 -0.6376 0.0000 0.7703)
                               (camera -293.2703 103.0610 -7.1830 -0.7765 0.0000 0.6300 -0.0718 0.9934 -0.0885 -0.6259 -0.1140 -0.7714)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-16-kuitar"
+       (static-continue-point "tfl-comm-gondola-kuitar"
                               ()
                               (target -299.4500 95.1400 36.5600 -0.0000 0.4429 -0.0000 0.8965)
                               (camera -299.0076 98.6292 17.5264 0.9967 0.0000 0.0800 -0.0092 0.9933 0.1148 -0.0794 -0.1151 0.9901)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-17-kuitar"
+       (static-continue-point "tfl-comm-gondolafog-kuitar"
                               ()
                               (target -300.6480 93.0402 54.3543 0.0000 -0.5855 0.0000 -0.8106)
                               (camera -302.2655 97.7519 43.5864 0.9787 0.0000 -0.2052 0.0266 0.9915 0.1271 0.2035 -0.1299 0.9704)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-18-kuitar"
+       (static-continue-point "tfl-comm-cavelighting-kuitar"
                               ()
                               (target -322.5571 97.8853 -60.3370 0.0000 -0.9779 0.0000 -0.2090)
                               (camera -327.8845 102.9957 -49.1851 -0.9018 -0.0000 -0.4320 0.0523 0.9926 -0.1093 0.4288 -0.1212 -0.8952)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-19-kuitar"
+       (static-continue-point "tfl-comm-supergreen-kuitar"
                               ()
                               (target -224.5220 65.5601 -107.4197 0.0000 0.9534 -0.0000 -0.3014)
                               (camera -227.2707 70.2353 -97.0587 -0.9728 0.0000 -0.2312 0.0307 0.9911 -0.1291 0.2292 -0.1327 -0.9642)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-20-kuitar"
+       (static-continue-point "tfl-comm-crescententry-kuitar"
                               ()
                               (target -258.5575 211.1642 337.7040 0.0000 0.6695 0.0000 0.7427)
                               (camera -268.5614 216.3004 345.1157 -0.5844 -0.0000 -0.8114 0.0958 0.9929 -0.0690 0.8057 -0.1181 -0.5803)
                               (load 'cst 'crescent-t 'display 'crystal-ca 'display))
-       (static-continue-point "tfl-comm-21-kuitar"
+       (static-continue-point "tfl-comm-crescentreveal-kuitar"
                               ()
                               (target -209.7118 250.4257 415.8578 -0.0000 0.8620 -0.0000 0.5067)
                               (camera -217.2500 255.5759 405.8867 0.7256 0.0000 -0.6880 0.0804 0.9931 0.0848 0.6832 -0.1169 0.7207)
                               (load 'cst 'crescent-t 'display 'crystal-ca 'display))
-       (static-continue-point "tfl-comm-22-kuitar"
+       (static-continue-point "tfl-comm-pillarfly-kuitar"
                               ()
                               (target -220.0308 228.7955 330.5047 0.0000 0.8158 0.0000 0.5782)
                               (camera -207.6835 233.9053 330.7468 -0.0686 -0.0000 0.9976 -0.1494 0.9887 -0.0102 -0.9863 -0.1498 -0.0678)
                               (load 'cst 'crescent-t 'display 'crystal-ca '#f))
-       (static-continue-point "tfl-comm-23-kuitar"
+       (static-continue-point "tfl-comm-hybridlevel-kuitar"
                               ()
                               (target -101.5520 238.9094 397.8230 0.0000 0.9232 0.0000 0.3841)
                               (camera -113.8458 244.0547 395.5626 0.1457 0.0000 -0.9893 0.1146 0.9932 0.0168 0.9826 -0.1158 0.1447)
                               (load 'cst 'crescent-t 'display 'crystal-ca '#f))
-       (static-continue-point "tfl-comm-24-kuitar"
+       (static-continue-point "tfl-comm-robotchallenge-kuitar"
                               ()
                               (target -200.1397 228.6097 703.8685 0.0000 -0.6233 0.0000 0.7819)
                               (camera -193.5557 233.7597 714.4935 -0.8022 -0.0000 0.5970 -0.0684 0.9934 -0.0919 -0.5931 -0.1145 -0.7969)
                               (load 'cst 'crescent-t 'display 'open-mines 'display-no-wait))
-       (static-continue-point "tfl-comm-25-kuitar"
+       (static-continue-point "tfl-comm-rocks-kuitar"
                               ()
                               (target -265.7053 213.8442 497.7673 -0.0000 0.4102 0.0000 -0.9119)
                               (camera -255.1571 219.0019 504.4783 -0.4568 0.0000 0.8895 -0.1032 0.9932 -0.0530 -0.8835 -0.1160 -0.4537)
                               (load 'cst 'crescent-t 'display 'crystal-ca '#f))
-       (static-continue-point "tfl-comm-26-kuitar"
+       (static-continue-point "tfl-comm-undergroundsurprise-kuitar"
                               ()
                               (target 82.2418 184.4218 397.0649 0.0000 0.9561 0.0000 0.2929)
                               (camera 86.9775 189.1536 406.9179 -0.9217 -0.0000 0.3876 -0.0502 0.9915 -0.1195 -0.3843 -0.1297 -0.9140)
                               (load 'cst 'crescent-t 'display 'energy-bay '#f))
-       (static-continue-point "tfl-comm-27-kuitar"
+       (static-continue-point "tfl-comm-lavachallenge-kuitar"
                               ()
                               (target 1.8714 178.8700 415.5564 0.0000 0.9641 -0.0000 -0.2652)
                               (camera -0.2558 184.0202 427.8736 -0.9871 -0.0000 -0.1597 0.0191 0.9928 -0.1182 0.1586 -0.1197 -0.9800)
                               (load 'cst 'crescent-t 'display 'energy-bay '#f))
-       (static-continue-point "tfl-comm-28-kuitar"
+       (static-continue-point "tfl-comm-bigcable-kuitar"
                               ()
                               (target 266.8728 245.3075 416.0377 -0.0000 0.9413 -0.0000 0.3375)
                               (camera 254.9216 250.3039 416.2387 -0.0416 0.0000 -0.9991 0.1149 0.9933 -0.0047 0.9924 -0.1150 -0.0413)
                               (load 'cst 'crescent-t 'display 'energy-bay '#f))
-       (static-continue-point "tfl-comm-29-kuitar"
+       (static-continue-point "tfl-comm-orbcachechallenge-kuitar"
                               ()
                               (target 341.0808 269.0969 570.0359 -0.0000 0.9873 -0.0000 0.1584)
                               (camera 329.7556 274.2344 564.8515 0.3033 0.0000 -0.9528 0.1174 0.9923 0.0374 0.9455 -0.1233 0.3010)
                               (load 'cst 'crescent-t 'display 'energy-bay 'display-no-wait))
-       (static-continue-point "tfl-comm-30-kuitar"
+       (static-continue-point "tfl-comm-enbjump-kuitar"
                               ()
                               (target 439.1967 266.4609 682.3214 0.0000 0.5709 0.0000 0.8209)
                               (camera 426.7241 271.6111 683.1409 -0.0654 0.0000 -0.9978 0.1207 0.9926 -0.0079 0.9905 -0.1210 -0.0649)
                               (load 'cst 'crescent-t 'display 'energy-bay 'display-no-wait))
-       (static-continue-point "tfl-comm-31-kuitar"
+       (static-continue-point "tfl-comm-hiddinglevels-kuitar"
                               ()
                               (target -278.5100 198.8100 825.6600 0.0000 0.0865 0.0000 -0.9962)
                               (camera -273.3229 203.6602 806.0029 0.3237 -0.0000 0.9461 -0.1081 0.9934 0.0370 -0.9399 -0.1142 0.3216)
                               (load 'cst 'crescent-t 'display 'open-mines 'display-no-wait))
-       (static-continue-point "tfl-comm-32-kuitar"
+       (static-continue-point "tfl-comm-enblanding-kuitar"
                               ()
                               (target 521.5041 47.9882 687.0366 0.0000 -0.1760 0.0000 0.9843)
                               (camera 510.8432 52.7184 689.4254 -0.1142 0.0000 -0.9934 0.1312 0.9912 -0.0150 0.9847 -0.1320 -0.1132)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-33-kuitar"
+       (static-continue-point "tfl-comm-coloredcable-kuitar"
                               ()
                               (target 901.1264 67.1035 677.4464 0.0000 0.5234 0.0000 -0.8520)
                               (camera 906.0986 72.2535 665.9729 0.9142 -0.0000 0.4051 -0.0484 0.9928 0.1092 -0.4022 -0.1195 0.9076)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-34-kuitar"
+       (static-continue-point "tfl-comm-zoomerplayground-kuitar"
                               ()
                               (target 862.0332 76.8513 765.9419 -0.0000 -0.0481 0.0000 0.9988)
                               (camera 874.2352 81.9382 765.0194 0.1820 0.0000 0.9832 -0.1149 0.9931 0.0212 -0.9765 -0.1169 0.1807)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-35-kuitar"
+       (static-continue-point "tfl-comm-redecofoot-kuitar"
                               ()
                               (target 743.0956 5.1191 962.6651 -0.0000 -0.9984 0.0000 0.0552)
                               (camera 731.1956 10.1206 963.6864 -0.2055 0.0000 -0.9786 0.1171 0.9928 -0.0246 0.9716 -0.1197 -0.2040)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-36-kuitar"
+       (static-continue-point "tfl-comm-redecozoomer-kuitar"
                               ()
                               (target 660.7462 33.8691 797.3210 -0.0000 -0.7217 -0.0000 -0.6921)
                               (camera 663.7123 38.9330 809.1325 -0.9921 0.0000 0.1254 -0.0156 0.9921 -0.1240 -0.1244 -0.1250 -0.9843)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-37-kuitar"
+       (static-continue-point "tfl-comm-boulder-kuitar"
                               ()
                               (target 678.8675 5.0000 709.2868 0.0000 0.9700 -0.0000 -0.2427)
                               (camera 672.6211 3.6771 718.0076 -0.8465 -0.0000 -0.5322 0.0708 0.9910 -0.1127 0.5275 -0.1331 -0.8390)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-38-kuitar"
+       (static-continue-point "tfl-comm-greenring-kuitar"
                               ()
                               (target 583.6340 32.4882 616.3140 -0.0000 -0.9998 -0.0000 -0.0153)
                               (camera 572.1363 37.6382 621.2281 -0.4530 0.0000 -0.8915 0.1020 0.9934 -0.0518 0.8856 -0.1145 -0.4500)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-39-kuitar"
+       (static-continue-point "tfl-comm-greenmiss-kuitar"
                               ()
                               (target 561.6658 26.3382 966.9204 0.0000 -0.5720 0.0000 -0.8202)
                               (camera 560.7152 30.9235 956.6143 0.9878 0.0000 -0.1551 0.0217 0.9901 0.1384 0.1536 -0.1401 0.9781)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-40-kuitar"
+       (static-continue-point "tfl-comm-balloonlurker-kuitar"
                               ()
                               (target 720.3052 10.8476 836.4913 0.0000 -0.1518 0.0000 0.9884)
                               (camera 732.0301 15.9288 839.9816 -0.1688 0.0000 0.9856 -0.1183 0.9927 -0.0202 -0.9785 -0.1200 -0.1675)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-41-kuitar"
+       (static-continue-point "tfl-comm-lowreskui-kuitar"
                               ()
                               (target 783.5673 24.8252 519.4224 0.0000 0.2403 0.0000 -0.9706)
                               (camera 794.6807 29.8738 524.2384 -0.2878 -0.0000 0.9576 -0.1133 0.9929 -0.0340 -0.9509 -0.1184 -0.2858)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-42-kuitar"
+       (static-continue-point "tfl-comm-minesfeel-kuitar"
                               ()
                               (target -398.6016 176.0251 731.9875 0.0000 0.6786 0.0000 0.7344)
                               (camera -394.0955 181.1602 720.3870 0.9691 0.0000 0.2465 -0.0315 0.9917 0.1241 -0.2445 -0.1281 0.9611)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-43-kuitar"
+       (static-continue-point "tfl-comm-dropplat-kuitar"
                               ()
                               (target -406.4961 128.2344 858.6596 0.0000 -0.8754 0.0000 0.4833)
                               (camera -403.9414 132.7944 868.6610 -0.9655 0.0000 0.2600 -0.0360 0.9903 -0.1337 -0.2575 -0.1385 -0.9562)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-44-kuitar"
+       (static-continue-point "tfl-comm-kegfeatures-kuitar"
                               ()
-                              (target -354.0448 194.1496 744.5811 0.0000 0.9053 0.0000 -0.4247)
+                              (target -362.9600 165.9300 823.9000 0.0000 0.9053 0.0000 -0.4247)
                               (camera -363.9569 199.2880 752.1236 -0.6981 0.0000 -0.7159 0.0904 0.9919 -0.0881 0.7101 -0.1263 -0.6925)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-45-kuitar"
+       (static-continue-point "tfl-comm-kegmaze-kuitar"
                               ()
                               (target -529.7602 141.6047 999.4689 0.0000 -0.9963 0.0000 0.0857)
                               (camera -518.6172 146.3955 999.7648 -0.1291 -0.0000 0.9916 -0.1270 0.9917 -0.0165 -0.9834 -0.1281 -0.1280)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-46-kuitar"
+       (static-continue-point "tfl-comm-backupblue-kuitar"
                               ()
                               (target -483.7660 145.8698 960.3164 0.0000 0.7372 -0.0000 -0.6756)
                               (camera -484.9863 150.7405 971.7274 -0.9999 0.0000 0.0125 -0.0015 0.9922 -0.1241 -0.0124 -0.1241 -0.9921)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-47-kuitar"
+       (static-continue-point "tfl-comm-minesambush-kuitar"
                               ()
                               (target -432.3206 104.7288 1029.7108 0.0000 0.5186 0.0000 0.8549)
                               (camera -430.7525 109.8873 1017.3093 0.9988 0.0000 0.0470 -0.0054 0.9933 0.1150 -0.0467 -0.1151 0.9922)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-48-kuitar"
+       (static-continue-point "tfl-comm-bouncer-kuitar"
                               ()
                               (target -437.7335 145.1367 1111.2320 -0.0000 0.3478 -0.0000 0.9375)
                               (camera -434.5975 150.2343 1099.3356 0.9756 -0.0000 0.2195 -0.0252 0.9933 0.1123 -0.2180 -0.1151 0.9691)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-49-kuitar"
+       (static-continue-point "tfl-comm-excavator-kuitar"
                               ()
                               (target -440.6327 154.5097 1038.9340 -0.0000 0.7320 -0.0000 0.6812)
                               (camera -446.6388 159.6585 1027.9764 0.8436 -0.0000 -0.5368 0.0616 0.9933 0.0969 0.5332 -0.1149 0.8380)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-50-kuitar"
+       (static-continue-point "tfl-comm-minecarts-kuitar"
                               ()
                               (target -432.4731 135.4236 1147.5178 -0.0000 -0.4546 -0.0000 -0.8906)
                               (camera -434.3685 140.1029 1136.9494 0.9818 0.0000 -0.1898 0.0251 0.9912 0.1299 0.1881 -0.1323 0.9731)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-51-kuitar"
+       (static-continue-point "tfl-comm-quicksandlurker-kuitar"
                               ()
                               (target -393.4942 138.0742 1143.8055 0.0000 0.9992 0.0000 -0.0390)
                               (camera -403.6177 142.6040 1144.8175 -0.2144 0.0000 -0.9767 0.1411 0.9895 -0.0309 0.9664 -0.1444 -0.2121)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-52-kuitar"
+       (static-continue-point "tfl-comm-valleyboulder-kuitar"
                               ()
                               (target 223.6721 201.5803 603.6143 0.0000 0.3403 0.0000 0.9402)
                               (camera 227.9890 206.6946 592.0191 0.9538 0.0000 0.3001 -0.0343 0.9934 0.1091 -0.2982 -0.1143 0.9476)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-53-kuitar"
+       (static-continue-point "tfl-comm-progression-kuitar"
                               ()
                               (target 214.7769 211.8245 579.0827 0.0000 0.4490 0.0000 0.8934)
                               (camera 216.1533 216.9764 566.6588 0.9980 0.0000 0.0625 -0.0072 0.9933 0.1152 -0.0621 -0.1154 0.9913)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-54-kuitar"
+       (static-continue-point "tfl-comm-valleyspiral-kuitar"
                               ()
                               (target 190.5546 181.1191 716.0067 -0.0000 -0.5417 -0.0000 -0.8405)
                               (camera 184.6894 185.8180 725.0742 -0.7758 0.0000 -0.6308 0.0844 0.9910 -0.1038 0.6252 -0.1337 -0.7688)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-55-kuitar"
+       (static-continue-point "tfl-comm-rollingrocks-kuitar"
                               ()
                               (target 141.3616 133.9860 872.2202 -0.0000 0.5314 0.0000 -0.8470)
                               (camera 143.6825 139.1461 859.9375 0.9762 -0.0000 0.2165 -0.0253 0.9931 0.1143 -0.2150 -0.1171 0.9695)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-56-kuitar"
+       (static-continue-point "tfl-comm-ecochoice-kuitar"
                               ()
                               (target 167.5521 162.6450 762.8490 -0.0000 0.5980 -0.0000 0.8014)
                               (camera 168.5352 167.3636 752.0192 0.9999 -0.0000 -0.0137 0.0018 0.9911 0.1329 0.0136 -0.1329 0.9910)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-57-kuitar"
+       (static-continue-point "tfl-comm-superblue-kuitar"
                               ()
                               (target 528.8985 43.0962 2082.1972 0.0000 -0.5264 0.0000 -0.8502)
                               (camera 517.5277 48.0070 2084.5075 -0.1920 0.0000 -0.9813 0.1183 0.9926 -0.0231 0.9742 -0.1206 -0.1906)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-58-kuitar"
+       (static-continue-point "tfl-comm-deepgap-kuitar"
                               ()
                               (target 600.0919 21.5849 1941.8336 0.0000 0.6286 0.0000 -0.7777)
                               (camera 595.0484 26.0855 1933.1171 0.9181 0.0000 -0.3961 0.0579 0.9892 0.1342 0.3918 -0.1462 0.9083)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-59-kuitar"
+       (static-continue-point "tfl-comm-valleyvisual-kuitar"
                               ()
                               (target 820.5649 33.9909 1998.9160 0.0000 0.1115 0.0000 0.9937)
                               (camera 808.2850 39.1036 2000.6170 -0.0215 0.0000 -0.9997 0.1169 0.9931 -0.0025 0.9929 -0.1169 -0.0213)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-60-kuitar"
+       (static-continue-point "tfl-comm-flyinglurker-kuitar"
                               ()
                               (target 1057.7050 28.5273 1982.2037 -0.0000 -0.4541 -0.0000 -0.8909)
                               (camera 1045.3941 33.6533 1980.6411 0.1283 0.0000 -0.9917 0.1191 0.9927 0.0154 0.9845 -0.1201 0.1274)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-61-kuitar"
+       (static-continue-point "tfl-comm-snowtransition-kuitar"
                               ()
                               (target 1506.7379 4.2263 1924.3790 -0.0000 -0.9757 -0.0000 -0.2187)
                               (camera 1494.9685 9.2284 1926.5623 -0.2168 0.0000 -0.9762 0.1118 0.9934 -0.0248 0.9697 -0.1145 -0.2154)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-62-kuitar"
+       (static-continue-point "tfl-comm-zoomerparticle-kuitar"
                               ()
                               (target 1819.7745 2.3041 1960.9335 0.0000 -0.0940 0.0000 -0.9955)
                               (camera 1824.0720 6.9158 1951.3748 0.9149 0.0000 0.4036 -0.0551 0.9906 0.1249 -0.3998 -0.1365 0.9063)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-63-kuitar"
+       (static-continue-point "tfl-comm-iceslide-kuitar"
                               ()
                               (target 1882.4154 40.1124 1893.5311 0.0000 -0.9998 0.0000 -0.0157)
                               (camera 1870.7188 45.2617 1897.9355 -0.4209 0.0000 -0.9070 0.1037 0.9934 -0.0481 0.9011 -0.1143 -0.4181)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-64-kuitar"
+       (static-continue-point "tfl-comm-pdsvisuals-kuitar"
                               ()
                               (target 2062.9362 7.9300 1892.2940 0.0000 0.9722 0.0000 0.2338)
                               (camera 2051.4472 13.0800 1897.2420 -0.4030 0.0000 -0.9151 0.1091 0.9928 -0.0480 0.9086 -0.1192 -0.4001)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-65-kuitar"
+       (static-continue-point "tfl-comm-pdscode-kuitar"
                               ()
                               (target 2085.3737 7.9300 1891.6774 0.0000 0.9725 0.0000 0.2328)
                               (camera 2073.8979 13.0800 1896.6405 -0.4044 0.0000 -0.9145 0.1092 0.9928 -0.0483 0.9079 -0.1194 -0.4015)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-66-kuitar"
+       (static-continue-point "tfl-comm-pdsmechanic-kuitar"
                               ()
                               (target 2103.1696 7.9300 1881.9338 0.0000 0.9995 0.0000 -0.0289)
                               (camera 2094.5957 13.0800 1891.0373 -0.7397 0.0000 -0.6729 0.0793 0.9930 -0.0872 0.6682 -0.1179 -0.7345)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-67-kuitar"
+       (static-continue-point "tfl-comm-pdstrap-kuitar"
                               ()
                               (target 2114.7675 7.9300 1864.7468 0.0000 0.9686 0.0000 -0.2483)
                               (camera 2108.6088 13.0799 1875.6245 -0.8910 -0.0000 -0.4539 0.0526 0.9932 -0.1032 0.4509 -0.1159 -0.8850)
                               (load 'val 'valley 'display 'crescent-t 'display))
-       (static-continue-point "tfl-comm-68-kuitar"
+       (static-continue-point "tfl-comm-valleydoor-kuitar"
                               ()
                               (target 2166.2231 9.3261 1803.1859 0.0000 -0.9998 0.0000 -0.0179)
                               (camera 2155.8745 14.4761 1810.1951 -0.5888 -0.0000 -0.8082 0.0939 0.9932 -0.0684 0.8027 -0.1162 -0.5848)
