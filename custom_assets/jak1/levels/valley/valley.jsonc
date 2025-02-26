@@ -8352,6 +8352,21 @@
         "name": "valley-kui-valleydoor",
         "filename": "kui-valleydoor.mp3"
       }
+    },
+    {
+      "trans": [2085.0, 0.0, 1915.0],
+      "etype": "pds-swingpole",
+      "game_task": 0,
+      "quat" : [0.5, 0.5, -0.5, 0.5],
+      "bsphere": [2085.0, 0.0, 1915.0, 10],
+      "lump": {
+        "name": "valley-pds-swingpole-commentary",
+        "sync": ["float", 4.0, 0.0],
+        "path": ["vector3m",
+          [2085.0, 10.0, 1915.0],
+          [2085.0, 20.0, 1915.0]
+        ]
+      }
     }
   ]
 }

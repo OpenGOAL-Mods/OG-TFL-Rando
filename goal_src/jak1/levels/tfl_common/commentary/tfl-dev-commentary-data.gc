@@ -1035,8 +1035,22 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                ((seconds 10.0)) ;; spawn and move up and down a pole til 18s
-                                (end release)))
+                                ((seconds 10.0)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (aif (process-by-ename "valley-pds-swingpole-commentary") (send-event it 'activate))
+                                         (deactivate self))))
+                                ((seconds 18.0)
+                                 proc
+                                 0
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (aif (process-by-ename "valley-pds-swingpole-commentary") (send-event it 'deactivate))
+                                         (deactivate self))))
+                                (end release))
+                               :run-on-end
+                               (lambda ()
+                                 (aif (process-by-ename "valley-pds-swingpole-commentary") (send-event it 'deactivate))))
        (static-commentary-data :file-name "kui-pdsmechanic.mp3"
                                :dev-name
                                kuitar
