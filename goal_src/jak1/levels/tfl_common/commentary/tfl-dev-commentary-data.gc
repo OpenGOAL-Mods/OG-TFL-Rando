@@ -1507,13 +1507,13 @@ examples:
                               (load 'val 'valley 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-pdsvisuals-kuitar"
                               ()
-                              (target 2062.9362 7.9300 1892.2940 0.0000 0.9722 0.0000 0.2338)
-                              (camera 2051.4472 13.0800 1897.2420 -0.4030 0.0000 -0.9151 0.1091 0.9928 -0.0480 0.9086 -0.1192 -0.4001)
+                              (target 2062.1188 7.9300 1890.6343 0.0000 -0.7006 0.0000 -0.7135)
+                              (camera 2062.2519 12.8804 1878.8496 0.9941 -0.0000 -0.1076 0.0130 0.9926 0.1201 0.1069 -0.1208 0.9868)
                               (load 'val 'valley 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-pdscode-kuitar"
                               ()
-                              (target 2085.3737 7.9300 1891.6774 0.0000 0.9725 0.0000 0.2328)
-                              (camera 2073.8979 13.0800 1896.6405 -0.4044 0.0000 -0.9145 0.1092 0.9928 -0.0483 0.9079 -0.1194 -0.4015)
+                              (target 2084.1813 7.9300 1890.9584 0.0000 0.8989 0.0000 -0.4380)
+                              (camera 2081.7504 13.0567 1878.7871 0.9938 -0.0000 -0.1108 0.0159 0.9896 0.1426 0.1097 -0.1434 0.9835)
                               (load 'val 'valley 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-pdsmechanic-kuitar"
                               ()
