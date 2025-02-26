@@ -486,3 +486,119 @@
             (ja-post)
             (suspend)))
         (set! (-> self root trans y) (-> self base y)))))
+
+(def-actor pds-sentinel
+  :bounds (0 0 0 25)
+  :art (idle-ja sleep-ja wake-ja moving-ja charging-ja damaged-ja death-ja)
+  :joints (align main circle out-circle in-circle sphere top cover gun gun-cover1 gun-cover2 gun-cover3 gun-tip bot thruster core))
+
+(defun pds-reset-part ()
+  (set! (-> (get-init-spec-by-id 4133 scale-x) initial-valuef) (meters 4.0))
+  (set! (-> (get-init-spec-by-id 4133 scale-x) random-rangef) (meters 3.5))
+  (set! (-> (get-init-spec-by-id 4133 r) initial-valuef) 64.0)
+  (set! (-> (get-init-spec-by-id 4133 g) initial-valuef) 256.0)
+  (set! (-> (get-init-spec-by-id 4133 b) initial-valuef) 64.0)
+  (set! (-> (get-init-spec-by-id 4133 num) initial-valuef) 0.6)
+  (set! (-> (get-init-spec-by-id 4170 num) initial-valuef) 0.2))
+
+(deftype pds-sentinel-commentary (process-drawable)
+  ((thruster-part   sparticle-launch-control)
+   (core-part       sparticle-launch-control)
+   (ring-part       sparticle-launch-control)
+   (green-gun-part  sparticle-launch-control)
+   (yellow-gun-part sparticle-launch-control)
+   (red-gun-part    sparticle-launch-control)
+   (spawn-parts?    symbol)
+   (part-color-mode symbol)
+   (pause-anim?     symbol))
+  (:state-methods
+   idle
+   damaged))
+
+(defmethod deactivate ((this pds-sentinel-commentary))
+  (if (nonzero? (-> this thruster-part)) (kill-and-free-particles (-> this thruster-part)))
+  (if (nonzero? (-> this core-part)) (kill-and-free-particles (-> this core-part)))
+  (if (nonzero? (-> this ring-part)) (kill-and-free-particles (-> this ring-part)))
+  (if (nonzero? (-> this green-gun-part)) (kill-and-free-particles (-> this green-gun-part)))
+  (if (nonzero? (-> this yellow-gun-part)) (kill-and-free-particles (-> this yellow-gun-part)))
+  (if (nonzero? (-> this red-gun-part)) (kill-and-free-particles (-> this red-gun-part)))
+  (pds-reset-part)
+  (call-parent-method this))
+
+(defmethod relocate ((this pds-sentinel-commentary) (offset int))
+  (relocate-fields core-part thruster-part ring-part green-gun-part yellow-gun-part red-gun-part)
+  (call-parent-method this offset))
+
+(defbehavior pds-sentinel-commentary-init-by-other pds-sentinel-commentary ((pos vector))
+  (pds-reset-part)
+  (set! (-> self root) (new 'process 'trsqv))
+  (vector-copy! (-> self root trans) pos)
+  (initialize-skeleton self *pds-sentinel-sg* '())
+  (quaternion-identity! (-> self root quat))
+  (quaternion-rotate-y! (-> self root quat) (-> self root quat) (degrees -90))
+  (set-part! :part thruster-part :id 1098)
+  (set-part! :part core-part :id 1089)
+  (set-part! :part ring-part :id 1099)
+  (set-part! :part green-gun-part :id 1086)
+  (set-part! :part yellow-gun-part :id 1087)
+  (set-part! :part red-gun-part :id 1088)
+  (false! (-> self spawn-parts?))
+  (false! (-> self pause-anim?))
+  (set! (-> self part-color-mode) 'green)
+  (go-virtual idle))
+
+(defevent pds-sentinel-commentary
+  (case message
+    (('color-mode) (set! (-> self part-color-mode) (the symbol (-> block param 0))))
+    (('part) (set! (-> self spawn-parts?) (the symbol (-> block param 0))))
+    (('toggle-anim) (not! (-> self pause-anim?)))))
+
+(defpost pds-sentinel-commentary
+  (when (-> self spawn-parts?)
+    (spawn (-> self thruster-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg thruster)))
+    (spawn (-> self ring-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg in-circle)))
+    (case (-> self part-color-mode)
+      (('green)
+       (spawn (-> self green-gun-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg gun-tip)))
+       (seek! (-> (get-init-spec-by-id 4133 r) initial-valuef) 64.0 (* 192.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id 4133 g) initial-valuef) 256.0 (* 192.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id 4133 b) initial-valuef) 64.0 (* 192.0 (seconds-per-frame))))
+      (('blue)
+       (spawn (-> self yellow-gun-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg gun-tip)))
+       (seek! (-> (get-init-spec-by-id 4133 r) initial-valuef) 0.0 (* 192.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id 4133 g) initial-valuef) 128.0 (* 192.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id 4133 b) initial-valuef) 256.0 (* 192.0 (seconds-per-frame))))
+      (('yellow)
+       (spawn (-> self red-gun-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg gun-tip)))
+       (seek! (-> (get-init-spec-by-id 4133 r) initial-valuef) 256.0 (* 192.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id 4133 g) initial-valuef) 256.0 (* 192.0 (seconds-per-frame)))
+       (seek! (-> (get-init-spec-by-id 4133 b) initial-valuef) 0.0 (* 192.0 (seconds-per-frame)))))
+    (spawn (-> self core-part) (vector<-cspace! (new-stack-vector0) (joint-node pds-sentinel-lod0-jg core))))
+  (ja-post))
+
+(defstatehandler pds-sentinel-commentary
+                 :event
+                 pds-sentinel-commentary-event-handler
+                 :post
+                 pds-sentinel-commentary-post)
+
+(defstate idle (pds-sentinel-commentary)
+  :virtual #t
+  :code
+    (behavior ()
+      (if (= (ja-group) pds-sentinel-damaged-ja) (ja-channel-push! 1 (seconds 0.075)))
+      (ja-no-eval :group! pds-sentinel-moving-ja :num! min)
+      (loop
+        (ja :num! (loop! (if (-> self pause-anim?) 0.0 1.0)))
+        (suspend))))
+
+(defstate damaged (pds-sentinel-commentary)
+  :virtual #t
+  :code
+    (behavior ()
+      (ja-channel-push! 1 (seconds 0.075))
+      (ja-no-eval :group! pds-sentinel-damaged-ja :num! min)
+      (until (ja-done? 0)
+        (ja :num! (seek!))
+        (suspend))
+      (go-virtual idle)))

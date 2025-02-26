@@ -526,7 +526,11 @@
   :init-specs ((:fade-r -0.6) (:fade-g -0.6) (:fade-b -0.6) (:fade-a -0.5)))
 
 (defun part-tracker-track-gun-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
-  (let* ((sentinel (the process-drawable (-> (entity-by-name "valley-pds-sentinel-01") extra process)))
+  (let* ((sentinel (the process-drawable
+                        (aif (process-by-ename "valley-pds-sentinel-01")
+                          (if (and (= (-> it next-state name) 'beaten) (-> *tfl-dev-commentary* enabled?))
+                            (process-by-name "pds-sentinel-commentary" *active-pool*)
+                            it))))
          (tip (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 13))))
     (set! (-> arg2 launchrot x) (-> tip x))
     (set! (-> arg2 launchrot y) (-> tip y))
@@ -607,7 +611,11 @@
    (:func 'part-tracker-track-gun-joint)))
 
 (defun part-tracker-track-core-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
-  (let* ((sentinel (the process-drawable (-> (entity-by-name "valley-pds-sentinel-01") extra process)))
+  (let* ((sentinel (the process-drawable
+                        (aif (process-by-ename "valley-pds-sentinel-01")
+                          (if (and (= (-> it next-state name) 'beaten) (-> *tfl-dev-commentary* enabled?))
+                            (process-by-name "pds-sentinel-commentary" *active-pool*)
+                            it))))
          (core (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 16))))
     (set! (-> arg2 launchrot x) (-> core x))
     (set! (-> arg2 launchrot y) (-> core y))
@@ -1300,7 +1308,11 @@
    (:conerot-radius (meters 3.0))))
 
 (defun part-tracker-track-ring-joint ((arg0 int) (arg1 sparticle-cpuinfo) (arg2 sparticle-launchinfo))
-  (let* ((sentinel (the process-drawable (-> (entity-by-name "valley-pds-sentinel-01") extra process)))
+  (let* ((sentinel (the process-drawable
+                        (aif (process-by-ename "valley-pds-sentinel-01")
+                          (if (and (= (-> it next-state name) 'beaten) (-> *tfl-dev-commentary* enabled?))
+                            (process-by-name "pds-sentinel-commentary" *active-pool*)
+                            it))))
          (ring-trans (vector<-cspace! (new-stack-vector0) (-> sentinel node-list data 5)))
          (ring-quat (matrix->quaternion (new-stack-quaternion0) (-> sentinel node-list data 5 bone transform))))
     (set! (-> arg2 launchrot x) (-> ring-trans x))
@@ -1365,8 +1377,7 @@
    (sp-item 4183 :flags (start-dead))
    (sp-item 4183 :flags (start-dead))
    (sp-item 4183 :flags (start-dead))
-   (sp-item 4176 :period (seconds 3) :length (seconds 0.067))
-   ))
+   (sp-item 4176 :period (seconds 3) :length (seconds 0.067))))
 
 (defpart 4174 ;; flying rocks
   :init-specs
