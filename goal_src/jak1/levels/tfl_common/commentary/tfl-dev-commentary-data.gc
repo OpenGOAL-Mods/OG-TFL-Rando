@@ -999,21 +999,39 @@ examples:
                                :description "A slide Into Your Doom"
                                :length 32.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 12.0) pov-cam *val-dev-cam-sg* (vectorm root) "iceslide")
+                                (end release)))
        (static-commentary-data :file-name "kui-pdsvisuals.mp3"
                                :dev-name
                                kuitar
                                :description "The Defense System Visuals"
                                :length 43.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 2.0)) ;; Spawn a sentinel in idle animation right ouside the arena near node
+                                ((seconds 12.0)) ;; Take a hit animation
+                                ((seconds 26.0)) ;; Gun particle/core/ring particle
+                                ((seconds 36.0)) ;; Change core particles color
+                                (end release)))
        (static-commentary-data :file-name "kui-pdscode.mp3"
                                :dev-name
                                kuitar
                                :description "The Defense System Code"
                                :length 41.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                ((seconds 10.0)) ;; spawn and move up and down a pole til 18s
+                                (end release)))
        (static-commentary-data :file-name "kui-pdsmechanic.mp3"
                                :dev-name
                                kuitar
@@ -1027,7 +1045,29 @@ examples:
                                :description "The Defense System Traps"
                                :length 59.0
                                :cmd-list
-                               '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+                               '((start grab)
+                                (start music 5.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+																((seconds 30.0)
+                                 proc
+                                 1
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (aif (process-by-ename "valley-pds-trap-out-right-03") (send-event it 'temp-activate))
+                                         (deactivate self))))
+																((seconds 49.0)
+                                 proc
+                                 1
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (aif (process-by-ename "valley-pds-trap-mid-left-03") (send-event it 'temp-activate))
+                                         (deactivate self))))
+																((seconds 54.0)
+                                 proc
+                                 1
+                                 (code ,(lambda :behavior tfl-commentary-proc ()
+                                         (aif (process-by-ename "valley-pds-trap-mid-right-03") (send-event it 'temp-deadly))
+                                         (deactivate self))))
+																(end release)))
        (static-commentary-data :file-name "kui-valleydoor.mp3"
                                :dev-name
                                kuitar

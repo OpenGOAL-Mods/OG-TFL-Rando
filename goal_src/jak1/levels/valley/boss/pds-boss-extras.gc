@@ -449,6 +449,8 @@
         (('disable) (true! (-> self disabled?)))
         (('activate) (go-virtual active #t))
         (('deadly) (go-virtual deadly #t))
+        (('temp-activate) (go-virtual active #f))
+        (('temp-deadly) (go-virtual deadly #f))
         (('ridden) (when (not (disabled? self)) (trigger self #f)))))
   :enter
     (behavior ()

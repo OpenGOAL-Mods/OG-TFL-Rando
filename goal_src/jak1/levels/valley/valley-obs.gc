@@ -381,5 +381,6 @@
            ecochoice-ja
            superblue-ja
            valleyvisual-ja
-           snowtransition-ja)
+           snowtransition-ja
+           iceslide-ja)
   :joints (align prejoint val-dev-cam camera))
