@@ -155,8 +155,8 @@
   :code
     (behavior ()
       (stop! self)
-      (false! *tfl-music-playing?*)
-      (suspend-for (seconds 1))
+      (until (not *tfl-music-playing?*)
+        (suspend))
       (play-boss! self)
       (suspend-for (seconds 0.1667))
       (while *tfl-boss-music*
