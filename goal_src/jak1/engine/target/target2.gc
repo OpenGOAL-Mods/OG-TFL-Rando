@@ -1012,7 +1012,8 @@
   (let* ((time (current-time))
          (ja-group (if jumping? eichar-yellow-jumping-blast-ja eichar-yellow-running-blast-ja))
          (running-start-loop-frame 8.0)
-         (charge-time (seconds 1.6)))
+         (charge-time (seconds 1.6))
+         (fire-id (new-sound-id)))
     (ja-channel-push! 1 (seconds 0.075))
     (if jumping?
       (ja-no-eval :group! ja-group :num! (seek! max 0.2))
@@ -1061,7 +1062,7 @@
                    (time-elapsed? (-> self control super-yellow-charge-time) SUPER_YELLOW_MAX_CHARGE_TIME))
           (cpad-clear! 0 square)
           (stop! (-> self super-yellow-charge-loop))
-          (sound-play "bfg-fire")
+          (sound-play "bfg-fire" :id fire-id)
           (process-spawn tfl-yellow-shot (-> self entity) hand forward SUPER_YELLOW_MAX_CHARGE_TIME :to self)
           (send-event self
                       'shove
@@ -1074,7 +1075,7 @@
                    (time-elapsed? (-> self control super-yellow-charge-time) SUPER_YELLOW_MAX_CHARGE_TIME))
           (cpad-clear! 0 square)
           (stop! (-> self super-yellow-charge-loop))
-          (sound-play "bfg-fire")
+          (sound-play "bfg-fire" :id fire-id)
           (process-spawn tfl-yellow-shot (-> self entity) hand forward (seconds 1) :to self)
           (send-event self
                       'shove
@@ -1084,6 +1085,7 @@
     (stop! (-> self super-yellow-charge-loop))
     (false! (-> self control super-yellow-charge-loop))
     (target-super-yellow-part-reset)
+    (sound-stop fire-id)
     (if (not (time-elapsed? (-> self control super-yellow-charge-time) SUPER_YELLOW_MAX_CHARGE_TIME))
       (target-super-yellow-uncharged (- (current-time) (-> self control super-yellow-charge-time)) jumping?))))
 

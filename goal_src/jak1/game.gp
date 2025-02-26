@@ -218,15 +218,15 @@
     )
   )
 
-(defmacro build-custom-level (name)
+(defmacro build-custom-level (name &key (force-run #f) &key (gen-fr3 #t))
   (let* ((path (string-append "custom_assets/jak1/levels/" name "/" name ".jsonc")))
-    `(defstep :in ,path
+    `(defstep :in '(,path ,(symbol->string force-run) ,(symbol->string gen-fr3))
               :tool 'build-level
               :out '(,(string-append "$OUT/obj/" name ".go")))))
 
-(defmacro build-actor (name &key (gen-mesh #f))
+(defmacro build-actor (name &key (gen-mesh #f) &key (force-run #f) &key (texture-bucket 0))
   (let* ((path (string-append "custom_assets/jak1/models/custom_levels/" name ".glb")))
-    `(defstep :in '(,path ,(symbol->string gen-mesh))
+    `(defstep :in '(,path ,(symbol->string gen-mesh) ,(symbol->string force-run) ,(if (integer? texture-bucket) (int->string texture-bucket) (symbol->string texture-bucket)))
               :tool 'build-actor
               :out '(,(string-append "$OUT/obj/" name "-ag.go")))))
 
@@ -1688,13 +1688,15 @@
 (build-actor "turbineblade")
 (build-actor "tfl-commentary-node")
 (build-actor "tfl-commentary-node-active")
+(build-actor "tfl-commentary-node-pex")
+(build-actor "tfl-commentary-node-pex-active")
 (build-actor "bucket-wheel")
 (build-actor "crc-gondola" :gen-mesh #t)
 (build-actor "tfl-lowreskui")
 (build-actor "observatory-ring")
 (build-actor "observatory-lens")
 (build-actor "valley-rock")
-(build-actor "rolling-rock")
+(build-actor "rolling-rock" :texture-bucket #f)
 (build-actor "tfl-title")
 (build-actor "pds-sentinel")
 (build-actor "pds-gem-green")
@@ -1711,6 +1713,16 @@
 (build-actor "pds-plat-rectangle" :gen-mesh #t)
 (build-actor "pds-swingpole" :gen-mesh #t)
 (build-actor "pds-cam")
+(build-actor "tfl-crystal-green" :gen-mesh #t)
+(build-actor "tfl-crystal-red" :gen-mesh #t)
+(build-actor "tfl-crystal-blue" :gen-mesh #t)
+(build-actor "tfl-crystal-yellow" :gen-mesh #t)
+(build-actor "lab-door" :gen-mesh #t)
+(build-actor "crc-dev-cam")
+(build-actor "cst-dev-cam")
+(build-actor "enb-dev-cam")
+(build-actor "opm-dev-cam")
+(build-actor "val-dev-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
@@ -2142,14 +2154,6 @@
    )
  )
 
-(goal-src-sequence
- ;; prefix
- "levels/tfl_common/"
- :deps ("$OUT/obj/pov-camera.o" "$OUT/obj/super-eco-crystal.o" "$OUT/obj/tfl-cam-control.o")
- "tfl-dev-commentary-data.gc"
- "tfl-dev-commentary.gc"
- )
-
 ;; Custom or Modified Code
 (goal-src "pc/features/autosplit-h.gc")
 (goal-src "pc/features/autosplit.gc" "autosplit-h" "task-control-h" "progress-static")
@@ -2188,11 +2192,15 @@
 (goal-src-sequence
  ;; prefix
  "levels/tfl_common/"
- :deps ("$OUT/obj/joint-exploder.o")
+ :deps ("$OUT/obj/joint-exploder.o" "$OUT/obj/pov-camera.o")
  "super-eco-crystal.gc"
+ "tfl-cam-control.gc"
+ "commentary/tfl-dev-commentary-h.gc"
+ "commentary/tfl-dev-commentary-actors.gc"
+ "commentary/tfl-dev-commentary-data.gc"
+ "commentary/tfl-dev-commentary.gc"
  "tfl-hint-data.gc"
  "tfl-hint.gc"
- "tfl-cam-control.gc"
  "tfl-util.gc"
  "tfl-lowreskui.gc"
  )

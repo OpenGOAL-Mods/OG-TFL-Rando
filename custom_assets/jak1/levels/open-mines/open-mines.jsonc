@@ -76,11 +76,7 @@
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
 
-  "custom_models": [
-    "tfl-commentary-node",
-    "tfl-commentary-node-active",
-    "bucket-wheel"
-  ],
+  "custom_models": ["bucket-wheel","opm-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -2923,34 +2919,34 @@
     },
     {
       "trans": [-435.56, 174.41, 748.66], // translation
-      "etype": "mis-bone-bridge", // actor type
+      "etype": "opm-bone-bridge", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [-0.041, 0.864, 0.118, 0.487], // quaternion
       "bsphere": [-435.56, 174.41, 748.66, 10], // bounding sphere
       "lump": {
-        "name": "open-mines-mis-bone-bridge-01",
+        "name": "open-mines-opm-bone-bridge-01",
         "scale": ["float", 1.2]
       }
     },
     {
       "trans": [-496.16, 148.67, 921.28], // translation
-      "etype": "mis-bone-bridge", // actor type
+      "etype": "opm-bone-bridge", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0.002, 0.999, -0.035, 0.012], // quaternion
       "bsphere": [-496.16, 148.67, 921.28, 10], // bounding sphere
       "lump": {
-        "name": "open-mines-mis-bone-bridge-02",
+        "name": "open-mines-opm-bone-bridge-02",
         "scale": ["float", 1.1]
       }
     },
     {
       "trans": [-491.13, 145.63, 961.5], // translation
-      "etype": "mis-bone-bridge", // actor type
+      "etype": "opm-bone-bridge", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0.043, 0.129, -0.017, 0.991], // quaternion
       "bsphere": [-491.13, 145.63, 961.5, 10], // bounding sphere
       "lump": {
-        "name": "open-mines-mis-bone-bridge-03",
+        "name": "open-mines-opm-bone-bridge-03",
         "scale": ["float", 1.2]
       }
     },
@@ -5777,6 +5773,226 @@
       "lump": {
         "name": "open-mines-truster-08",
         "art-name": "group-mines-truster"
+      }
+    },
+// Actors: HINT
+    {
+      "trans": [-485.36, 162.91, 846.67],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-485.36, 162.91, 846.67, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-01-KeiraMetal",
+        "filename": "open-mines-tfl-hint-01-KeiraMetal.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [-414.72, 128.89, 857.66],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-414.72, 128.89, 857.66, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-02-DaxterDropplat",
+        "filename": "open-mines-tfl-hint-02-DaxterDropplat.wav",
+        "radius": ["meters", 5.0]
+      }
+    },
+    {
+      "trans": [-639.06, 141.88, 1040.45],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-639.06, 141.88, 1040.45, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-03-DaxterKeg",
+        "filename": "open-mines-tfl-hint-03-DaxterKeg.wav",
+        "radius": ["meters", 10.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-04-DaxterAmbush1",
+        "filename": "open-mines-tfl-hint-04-DaxterAmbush1.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-05-DaxterAmbush2",
+        "filename": "open-mines-tfl-hint-05-DaxterAmbush2.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-06-DaxterAmbush3",
+        "filename": "open-mines-tfl-hint-06-DaxterAmbush3.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-431.72, 104.87, 1027.91],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-431.72, 104.87, 1027.91, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-07-DaxterAmbush4",
+        "filename": "open-mines-tfl-hint-07-DaxterAmbush4.wav",
+        "radius": ["meters", 40.0]
+      }
+    },
+    {
+      "trans": [-485.67, 134.38, 1163.92],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-485.67, 134.38, 1163.92, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-08-SamosDark",
+        "filename": "open-mines-tfl-hint-08-SamosDark.wav",
+        "radius": ["meters", 30.0]
+      }
+    },
+    {
+      "trans": [-429.31, 149.83, 1096.31],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-429.31, 149.83, 1096.31, 10],
+      "lump": {
+        "name": "open-mines-tfl-hint-09-KeiraExcavator",
+        "filename": "open-mines-tfl-hint-09-KeiraExcavator.wav",
+        "radius": ["meters", 8.0]
+      }
+    },
+// Actors: DEV COMMENTARY
+    {
+      "trans": [-396.57, 178.02, 732.06],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-396.57, 178.02, 732.06, 10],
+      "lump": {
+        "name": "open-mines-kui-minesfeel",
+        "filename": "kui-minesfeel.mp3"
+      }
+    },
+    {
+      "trans": [-408.67, 130.32, 857.91],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-408.67, 130.32, 857.91, 10],
+      "lump": {
+        "name": "open-mines-kui-dropplat",
+        "filename": "kui-dropplat.mp3"
+      }
+    },
+    {
+      "trans": [-360.85, 167.95, 823.39],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-360.85, 167.95, 823.39, 10],
+      "lump": {
+        "name": "open-mines-kui-kegfeatures",
+        "filename": "kui-kegfeatures.mp3"
+      }
+    },
+    {
+      "trans": [-528.95, 143.58, 997.16],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-528.95, 143.58, 997.16, 10],
+      "lump": {
+        "name": "open-mines-kui-kegmaze",
+        "filename": "kui-kegmaze.mp3"
+      }
+    },
+    {
+      "trans": [-486.01, 147.87, 960.63],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-486.01, 147.87, 960.63, 10],
+      "lump": {
+        "name": "open-mines-kui-backupblue",
+        "filename": "kui-backupblue.mp3"
+      }
+    },
+    {
+      "trans": [-430.38, 106.69, 1030.14],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-430.38, 106.69, 1030.14, 10],
+      "lump": {
+        "name": "open-mines-kui-minesambush",
+        "filename": "kui-minesambush.mp3"
+      }
+    },
+    {
+      "trans": [-436.07, 147.14, 1112.86],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-436.07, 147.14, 1112.86, 10],
+      "lump": {
+        "name": "open-mines-kui-bouncer",
+        "filename": "kui-bouncer.mp3"
+      }
+    },
+    {
+      "trans": [-439.15, 156.51, 1038.26],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-439.15, 156.51, 1038.26, 10],
+      "lump": {
+        "name": "open-mines-kui-excavator",
+        "filename": "kui-excavator.mp3"
+      }
+    },
+    {
+      "trans": [-430.11, 137.39, 1148.38],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-430.11, 137.39, 1148.38, 10],
+      "lump": {
+        "name": "open-mines-kui-minecarts",
+        "filename": "kui-minecarts.mp3"
+      }
+    },
+    {
+      "trans": [-393.17, 140.07, 1141.74],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-393.17, 140.07, 1141.74, 10],
+      "lump": {
+        "name": "open-mines-kui-quicksandlurker",
+        "filename": "kui-quicksandlurker.mp3"
       }
     }
   ],

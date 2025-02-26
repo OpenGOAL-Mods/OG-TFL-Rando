@@ -11205,6 +11205,99 @@
        :data
        (new 'static 'inline-array ocean-mid-mask 2 (new 'static 'ocean-mid-mask) (new 'static 'ocean-mid-mask))))
 
+;; TFL note: Custom ocean-mid-indices for crescent-top
+(define *ocean-mid-indices-crescent-t*
+  (new 'static
+       'ocean-mid-indices
+       :data
+       (new 'static
+            'array
+            uint16
+            36
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #xF          ;;15
+            #x10         ;;16
+            #x0
+            #x0
+            #x0
+            #x0
+            #x15         ;;21
+            #x16         ;;22
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #x0
+            #xFFFF       ;;31
+            #xFFFF       ;;32
+            #x0
+            #x22         ;;34
+            #x23         ;;35
+            #x24)))      ;;36
+
+;; TFL note: Custom ocean-mid-masks for crescent-top
+(define *ocean-mid-masks-crescent-t*
+  (new 'static
+       'ocean-mid-masks
+       :data
+       (new 'static
+            'inline-array
+            ocean-mid-mask
+            37
+            (new 'static 'ocean-mid-mask)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #xFEFEFEFEFE000000)   ;;15
+            (new 'static 'ocean-mid-mask :dword #x303030303000000)    ;;16
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #xFEFEFEFE)           ;;21
+            (new 'static 'ocean-mid-mask :dword #x3030303)            ;;22
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #xffffffffffffffff)   ;;31
+            (new 'static 'ocean-mid-mask :dword #xffffffffffffffff)   ;;32
+            (new 'static 'ocean-mid-mask :dword #x0)
+            (new 'static 'ocean-mid-mask :dword #xF0F0F0F0F0000000)   ;;34
+            (new 'static 'ocean-mid-mask :dword #x3F3F3F3F3F3F0000)   ;;35
+            (new 'static 'ocean-mid-mask :dword #xF0F0F8F8F800))))    ;;36
+
 (define *ocean-map-village1*
   (new 'static
        'ocean-map
@@ -11264,3 +11357,24 @@
 (set! (-> *ocean-map-sunken* ocean-trans-indices) *ocean-trans-indices-sunken*)
 
 (set! (-> *ocean-map-sunken* ocean-near-indices) *ocean-near-indices-sunken*)
+
+;; TFL note: custom crescent-top ocean-map definition
+(define *ocean-map-crescent-t*
+  (new 'static
+       'ocean-map
+       :start-corner
+       (new 'static 'vector :x (meters -2304.0) :z (meters -2304.0) :w 1.0)
+       :far-color
+       (new 'static 'vector :x 1.505882 :y 45.678432 :z 56.72157)))
+
+(set! (-> *ocean-map-crescent-t* ocean-spheres) *ocean-spheres-village1*)
+
+(set! (-> *ocean-map-crescent-t* ocean-colors) *ocean-colors-village1*)
+
+(set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*)
+
+(set! (-> *ocean-map-crescent-t* ocean-mid-indices) *ocean-mid-indices-crescent-t*)
+
+(set! (-> *ocean-map-crescent-t* ocean-trans-indices) *ocean-trans-indices-village1*)
+
+(set! (-> *ocean-map-crescent-t* ocean-near-indices) *ocean-near-indices-village1*)

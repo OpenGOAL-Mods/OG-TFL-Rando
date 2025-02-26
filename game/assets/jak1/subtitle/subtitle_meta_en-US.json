@@ -7214,7 +7214,2701 @@
         "speaker": ""
       }
     ],
-    "tfl-dev-crescent-control-room-kui.wav": [
+    "kui-enblanding.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1152,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2262,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3228,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4434,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5471,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6773,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7788,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-sculptedwalls.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1170,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2418,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3810,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4902,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-lavachallenge.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1038,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2196,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3168,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4290,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5466,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-ship.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1212,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2328,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3690,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4662,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5892,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-supergreen.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1026,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2190,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3420,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4524,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5454,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6558,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-undergroundsurprise.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1146,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2022,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3240,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4410,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-cavelayout.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1290,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2502,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3744,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4890,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-rocks.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1314,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2808,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4008,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5106,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6708,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8040,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9126,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10470,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-greenmiss.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1110,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2142,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3258,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4314,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5502,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6516,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-cavelighting.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1344,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2460,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3822,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4973,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6390,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7944,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-lowreskui.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1128,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2274,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3396,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4512,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5826,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6894,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-infested.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1038,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2394,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3720,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5106,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6371,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7788,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-gondola.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1044,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2526,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3876,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5423,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6768,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8004,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9570,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10902,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-coloredcable.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1080,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2520,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3654,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4973,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5952,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7254,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8454,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9594,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10830,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 12054,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-customcamera.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1410,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2604,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3678,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4788,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6282,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7386,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8598,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9947,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-gondolafog.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1188,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2430,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3780,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-crescententry.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1038,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2322,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3606,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4752,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-setpiece.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1170,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2256,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3534,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5154,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6300,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7440,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8592,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-electricarc.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1158,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2280,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3420,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4823,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6042,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7421,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-crescentreveal.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1038,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2298,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3822,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5028,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6371,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7673,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8772,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-hybridlevel.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1320,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2568,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3911,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5070,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6221,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7560,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8556,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9768,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10836,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11922,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13350,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14478,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-balloonlurker.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1014,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2370,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3485,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4764,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6173,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7278,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8298,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9564,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10584,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11652,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 12792,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-pillarfly.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1008,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2124,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3132,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4140,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-warpgate.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1536,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2850,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4008,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5670,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7182,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-bigcable.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1320,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2435,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3840,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5136,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-flow.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1230,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2370,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3696,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4782,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6246,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7223,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8286,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-topinfested.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 996,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2058,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3324,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4380,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5634,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7002,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8171,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9402,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-redecofoot.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1355,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2520,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4938,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6030,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7494,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8712,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10110,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11166,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 12222,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13464,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14682,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-greenring.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1194,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2328,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4662,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5802,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6996,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7998,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-oneway.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1272,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2460,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3810,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4794,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6186,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7260,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8604,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9750,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-intro.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1332,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3510,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4884,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6156,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8070,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9954,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11447,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-boulder.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1086,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2154,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3348,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4314,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5556,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6720,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7854,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8916,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10158,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-fireflypart.mp3": [
+      {
+        "clear": false,
+        "frame_start": 186,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1326,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2916,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4338,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5526,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6792,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-hiddinglevels.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1176,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2616,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4020,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5273,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6534,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7578,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8574,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9786,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10890,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-hiddenyellow.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1217,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2580,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3761,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4854,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6066,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-redecozoomer.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1278,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2256,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3504,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4644,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5790,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-jaklighting.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 996,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2244,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3378,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4536,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5826,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-start.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1284,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2382,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3780,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4806,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6096,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7152,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8304,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9708,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10860,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-enbjump.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1164,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2310,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3516,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4686,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5621,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-robotchallenge.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1188,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2274,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3360,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4602,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5454,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6618,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7680,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9210,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10350,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-orbcachechallenge.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1122,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2280,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3522,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4800,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5796,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-zoomerplayground.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1290,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2424,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3678,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4788,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5910,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7056,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-excavator.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1332,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2706,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4044,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5196,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6276,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-dropplat.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1128,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2394,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3720,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4542,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5838,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7296,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8334,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9558,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10847,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-bouncer.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1212,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2370,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3606,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4800,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5868,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-minecarts.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1320,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2520,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3834,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5178,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6516,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7926,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9168,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-quicksandlurker.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1296,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2496,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3630,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5028,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6288,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7421,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9096,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10308,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-minesfeel.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1128,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2538,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3918,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-minesambush.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1284,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2376,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3611,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5028,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6126,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7416,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8532,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9618,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11070,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 12180,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13608,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14550,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15780,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 16908,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 18066,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 19398,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 20634,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 22230,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 23454,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 24798,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 26142,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 27390,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 28518,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 29850,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 30804,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-backupblue.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1104,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2196,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3258,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4284,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5556,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6690,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8094,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9192,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-kegmaze.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1128,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2406,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3552,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4884,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6078,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7254,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-kegfeatures.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1524,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2544,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3768,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4884,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6168,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7632,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9018,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10284,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11688,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13110,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14316,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15372,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-ecochoice.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1296,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2598,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3600,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4938,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-valleyspiral.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1380,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2766,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4050,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5298,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6486,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7788,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8886,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10092,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-pdsmechanic.mp3": [
       {
         "clear": false,
         "frame_start": 0,
@@ -7229,49 +9923,1163 @@
       },
       {
         "clear": false,
+        "frame_start": 2334,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3635,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4884,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6360,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7638,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8820,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10164,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11760,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13043,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14334,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15750,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 16866,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 18192,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 19476,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 20406,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 21876,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 23136,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-valleyvisual.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1212,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
         "frame_start": 2400,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 3600,
+        "frame_start": 3840,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 4800,
+        "frame_start": 5214,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 6000,
+        "frame_start": 6168,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 7200,
+        "frame_start": 7458,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 8400,
+        "frame_start": 8796,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 9600,
+        "frame_start": 9786,
         "offscreen": true,
         "speaker": "KUITAR"
       },
       {
         "clear": false,
-        "frame_start": 10800,
+        "frame_start": 11010,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-valleyboulder.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1355,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2502,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3648,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4932,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-deepgap.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1248,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2382,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3768,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4920,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6048,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7344,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8562,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-progression.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1608,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2808,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4050,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5334,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6642,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7806,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9114,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10218,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11628,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13212,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-snowtransition.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1272,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2346,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3546,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4998,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6282,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7440,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-superblue.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1182,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2526,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3918,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5358,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6504,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7740,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9240,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10470,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11700,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 12930,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14172,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15197,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 16572,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 17700,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 18882,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 20010,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-rollingrocks.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1158,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2706,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4152,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5202,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6528,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7686,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8802,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10547,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11886,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13050,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 14412,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15647,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 17256,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 18318,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 19578,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 20640,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 21780,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 22961,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 24030,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 25002,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 26538,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 27756,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 29064,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-zoomerparticle.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1230,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2268,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3450,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4734,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6102,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7350,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8406,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9516,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10697,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11934,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13026,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-flyinglurker.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1146,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2190,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3228,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4338,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5742,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7008,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8328,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9582,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10788,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-pdscode.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1194,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2610,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4044,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5358,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6654,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7836,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9024,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10332,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11736,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-valleydoor.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1380,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2808,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4122,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5568,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7230,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8850,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10158,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11946,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13500,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15282,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 16866,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 18108,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 19632,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 21138,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 22572,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 23706,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 25014,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 26676,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 28416,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 29627,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 31038,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 32502,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 33348,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 34620,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-iceslide.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1205,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2418,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3732,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4986,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6204,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7068,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8250,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9504,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-pdstrap.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1314,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2346,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3635,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 4973,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6444,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7548,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 8928,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10158,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11514,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 12852,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 13992,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 15426,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 16572,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      }
+    ],
+    "kui-pdsvisuals.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 1092,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 2418,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 3996,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 5196,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 6408,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 7854,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 9108,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 10440,
+        "offscreen": true,
+        "speaker": "KUITAR"
+      },
+      {
+        "clear": false,
+        "frame_start": 11838,
         "offscreen": true,
         "speaker": "KUITAR"
       }

@@ -633,6 +633,109 @@
               (none)))
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
+;; TFL note: added
+(define-perm *tfl-commentary-options-defined?* symbol #f)
+
+(defmacro tfl-comm-entry ()
+  `(new 'static
+       'game-option
+       :option-type (game-option-type tfl-commentary-entry)
+       :name (text-id progress-tfl-commentary-option)
+       :scale #t
+       :option-disabled-func
+       (lambda ()
+         (not (-> *tfl-dev-commentary* enabled?)))))
+
+(unless *tfl-commentary-options-defined?*
+  (define *tfl-commentary-options*
+    (new 'static
+         'boxed-array
+         :type
+         game-option
+         :length 70
+         :allocated-length 70
+         (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id tfl-dev-commentary) :scale #t)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)))
+  (dotimes (i (length *tfl-commentary-nodes*))
+    (let ((entry (-> *tfl-commentary-options* (1+ i))))
+      (set! (-> entry name-override) (new 'global 'string 96 (the string #f)))
+      (format (-> entry name-override)
+              "~D: ~S (~S)" ; (lookup-text! *common-text* (text-id progress-tfl-commentary-option) #f)
+              (1+ i)
+              (string-upcase (-> *tfl-commentary-nodes* i description) (clear *temp-string*))
+              (string-upcase (tfl-commentary-dev->string (-> *tfl-commentary-nodes* i dev-name)) (clear *temp-string2*)))))
+  (set! (-> *tfl-commentary-options* 70) ; (1- (length *tfl-commentary-nodes*))
+        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t))
+  (true! *tfl-commentary-options-defined?*))
+
 (define *misc-options*
   (new 'static
        'boxed-array
@@ -642,7 +745,18 @@
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id discord-rpc) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id cutscene-skips) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id speedrunner-mode) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id tfl-dev-commentary) :scale #t) ;; TFL note: added
+       ;; TFL note: added
+       (new 'static
+            'game-option
+            :option-type (game-option-type menu)
+            :name (text-id tfl-dev-commentary)
+            :scale #t
+            :option-disabled-func
+            (lambda ()
+              (defun-extern tfl-collected-cell-count int)
+              (defun-extern tfl-total-cell-count int)
+              (< (tfl-collected-cell-count) (tfl-total-cell-count)))
+            :param3 (game-option-menu tfl-commentary))
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *gfx-ps2-options*
@@ -2103,6 +2217,7 @@
   (set! (-> *options-remap* (progress-screen speedrun-options)) *speedrun-options*)
   (set! (-> *options-remap* (progress-screen speedrun-il-options)) *speedrun-il-options*)
   (set! (-> *options-remap* (progress-screen speedrun-cat-ext-options)) *speedrun-cat-ext-options*)
+  (set! (-> *options-remap* (progress-screen tfl-commentary)) *tfl-commentary-options*) ;; TFL note: added
   ;; set default params
   (set! (-> *progress-state* aspect-ratio-choice) (get-aspect-ratio))
   (set! (-> *progress-state* video-mode-choice) (get-video-mode))
@@ -2135,7 +2250,6 @@
   (set! (-> *misc-options* 1 value-to-modify) (&-> *pc-settings* discord-rpc?))
   (set! (-> *misc-options* 2 value-to-modify) (&-> *pc-settings* skip-movies?))
   (set! (-> *misc-options* 3 value-to-modify) (&-> *pc-settings* speedrunner-mode?))
-  (set! (-> *misc-options* 4 value-to-modify) (&-> *tfl-dev-commentary* enabled?)) ;; TFL note: added
   (set! (-> *camera-options* 0 value-to-modify) (&-> *pc-settings* first-camera-h-inverted?))
   (set! (-> *camera-options* 1 value-to-modify) (&-> *pc-settings* first-camera-v-inverted?))
   (set! (-> *camera-options* 2 value-to-modify) (&-> *pc-settings* third-camera-h-inverted?))
@@ -2162,6 +2276,8 @@
   (set! (-> *sound-options-pc* 0 value-to-modify) (&-> *pc-settings* memcard-volume-sfx))
   (set! (-> *sound-options-pc* 1 value-to-modify) (&-> *pc-settings* memcard-volume-music))
   (set! (-> *sound-options-pc* 2 value-to-modify) (&-> *pc-settings* memcard-volume-dialog))
+  ;; TFL note: added
+  (set! (-> *tfl-commentary-options* 0 value-to-modify) (&-> *tfl-dev-commentary* enabled?))
   (dotimes (i (1- (-> *cheats* length)))
     (set! (-> *cheats* i value-to-modify) (&-> *progress-carousell* symbol-backup)))
   ;(set! (-> *sound-options-pc* 3 value-to-modify) (&-> *pc-settings* music-fadein?))
@@ -2228,6 +2344,19 @@
          ;; holding left. sliders use hold.
          (cond
            ((cpad-pressed? 0 left)
+            ;; TFL note: fast scroll for commentary menu
+            (when (and (>= (-> obj option-index) 1)
+                       (not (-> obj selected-option))
+                       (= (-> obj display-state) (progress-screen tfl-commentary)))
+              (if (!= (length options) 1) (sound-play "cursor-up-down"))
+              (set! (-> obj last-option-index-change) (-> *display* real-frame-counter))
+              (set! (-> obj option-index) (max (- (-> obj option-index) 10) 0))
+              (set! (-> *progress-scroll* transition) 0.0)
+              (set! (-> *progress-scroll* direction) PROGRESS_SCROLL_DIR_UP)
+              (set! (-> *progress-scroll* start-index)
+                    (cond
+                      ((<= (-> obj option-index) 4) 0)
+                      (else (max (- (-> obj option-index) 5) 0)))))
             ;; navigate left.
             (when (or (-> obj selected-option) (= (-> options (-> obj option-index) option-type) (game-option-type yes-no)))
               (let ((sound? #f))
@@ -2262,7 +2391,7 @@
                    (set! (-> obj language-transition) #t)
                    (set! (-> obj language-direction) #t)
                    (set! sound? #t))
-                  (((game-option-type confirmation))
+                  (((game-option-type confirmation) (game-option-type tfl-commentary-entry)) ;; TFL note: added condition
                    (set! sound? (!= (-> *progress-state* on-off-backup) #t))
                    (set! (-> *progress-state* on-off-backup) #t))
                   (((game-option-type display-mode)
@@ -2317,6 +2446,20 @@
          ;; holding right
          (cond
            ((cpad-pressed? 0 right)
+            ;; TFL note: fast scroll for commentary menu
+            (let ((last-idx (1- (length options))))
+              (when (and (< (-> obj option-index) last-idx)
+                         (not (-> obj selected-option))
+                         (= (-> obj display-state) (progress-screen tfl-commentary)))
+                (if (!= (length options) 1) (sound-play "cursor-up-down"))
+                (set! (-> obj last-option-index-change) (-> *display* real-frame-counter))
+                (set! (-> obj option-index) (min (+ (-> obj option-index) 10) last-idx))
+                (set! (-> *progress-scroll* transition) 0.0)
+                (set! (-> *progress-scroll* direction) PROGRESS_SCROLL_DIR_DOWN)
+                (set! (-> *progress-scroll* start-index)
+                      (cond
+                        ((>= (-> obj option-index) (- last-idx 6)) (- last-idx 6))
+                        (else (min (-> obj option-index) (- last-idx 6)))))))
             ;; pressed right
             (when (or (-> obj selected-option) (= (-> options (-> obj option-index) option-type) (game-option-type yes-no)))
               (let ((sound? #f))
@@ -2345,7 +2488,7 @@
                    (set! (-> obj language-transition) #t)
                    (set! (-> obj language-direction) #f)
                    (set! sound? #t))
-                  (((game-option-type confirmation))
+                  (((game-option-type confirmation) (game-option-type tfl-commentary-entry)) ;; TFL note: added condition
                    (set! sound? (!= (-> *progress-state* on-off-backup) #f))
                    (set! (-> *progress-state* on-off-backup) #f))
                   (((game-option-type display-mode)
@@ -2721,6 +2864,14 @@
             (if (= (-> options (-> obj option-index) option-type) (game-option-type confirmation))
               (if (-> *progress-state* on-off-backup) (sound-play "menu-stats") (sound-play "cursor-options"))
               (sound-play "start-options"))
+            ;; TFL note: added
+            (if (= (-> options (-> obj option-index) option-type) (game-option-type tfl-commentary-entry))
+              (if (-> *progress-state* on-off-backup)
+                (begin
+                  (sound-play "menu-stats")
+                  (start 'play (-> *tfl-commentary-continues* (1- (-> obj option-index))))
+                  (set-master-mode 'game)))
+              (sound-play "start-options"))
             (set! (-> obj selected-option) #f)
             (case (-> options (-> obj option-index) option-type)
               (((game-option-type cheat-toggle))
@@ -3070,6 +3221,9 @@
                   (set! (-> font origin x) (the float (- option-x (-> obj left-x-offset))))
                   (set! (-> font origin y) (the float (+ y-off -8)))
                   (set-scale! font 0.6)
+                  (when (= (-> options index option-type) (game-option-type tfl-commentary-entry))
+                    (set-scale! font 0.4)
+                    (print-game-text (-> options index name-override) font #f 128 22))
                   ;; we use the binding name for the selected text header
                   (if (= (-> options index option-type) (game-option-type binding-assignment))
                     ;; display timeout in seconds
@@ -3083,9 +3237,22 @@
                         (set! (-> obj selected-option) #f)
                         (sound-play "cursor-options"))
                       (print-game-text (string-format "~S (~4L~D~0L)" (-> options index name-override) time-left) font #f 128 22))
-                    (print-game-text (lookup-text! *common-text* (-> options index name) #f) font #f 128 22))
+                    ;; TFL note: added condition
+                    (if (!= (-> options index option-type) (game-option-type tfl-commentary-entry))
+                      (print-game-text (lookup-text! *common-text* (-> options index name) #f) font #f 128 22)))
                   (set! option-y (+ y-off 7))
                   (case (-> options index option-type)
+                    ;; TFL note: added
+                    (((game-option-type tfl-commentary-entry))
+                     (if (-> *progress-state* on-off-backup)
+                       (set! option-str
+                             (string-format "~30L~S~0L ~S"
+                                            (lookup-text! *common-text* (text-id progress-tfl-dev-commentary-warp) #f)
+                                            (lookup-text! *common-text* (text-id progress-tfl-dev-commentary-cancel) #f)))
+                       (set! option-str
+                             (string-format "~0L~S ~30L~S"
+                                            (lookup-text! *common-text* (text-id progress-tfl-dev-commentary-warp) #f)
+                                            (lookup-text! *common-text* (text-id progress-tfl-dev-commentary-cancel) #f)))))
                     (((game-option-type slider))
                      ;; draw a slider and its text.
                      ;; this ugliness is just decompiler stuff. all it does is fade the alpha according to value.
@@ -3217,6 +3384,9 @@
                       (game-option-type confirmation))
                      ;; slider and aspect ratio options just show their text
                      (set! option-str (lookup-text! *common-text* (-> options index name) #f)))
+                    ;; TFL note: added
+                    (((game-option-type tfl-commentary-entry))
+                     (if (nonzero? (-> options index name-override)) (set! option-str (-> options index name-override))))
                     (((game-option-type on-off) (game-option-type aspect-native))
                      ;; on-off options show their text + on or off
                      (set! option-str
@@ -3466,6 +3636,7 @@
             (((progress-screen music-player)) (hide-progress-icons) (draw-options self 128 21 0.82))
             (((progress-screen flava-player)) (hide-progress-icons) (draw-options self 128 21 0.82))
             (((progress-screen speedrun-options)) (hide-progress-icons) (draw-notice-screen self) (draw-options self 155 20 0.6))
+            (((progress-screen tfl-commentary)) (hide-progress-icons) (draw-options self 115 25 0.45)) ;; TFL note: added
             (((progress-screen camera-options)
               (progress-screen checkpoint-select)
               (progress-screen speedrun-il-options)

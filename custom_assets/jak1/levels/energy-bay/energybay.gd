@@ -34,6 +34,7 @@
   "village1cam-ag.go"
   "village-cam-ag.go"
   "mistycam-ag.go"
+  "enb-dev-cam-ag.go"
   "energy-bay.go"
   )
  )

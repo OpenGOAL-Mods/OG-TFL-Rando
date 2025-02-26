@@ -36,6 +36,7 @@
   "pds-plat-rectangle-ag.go"
   "pds-swingpole-ag.go"
   "pds-cam-ag.go"
+  "lab-door-ag.go"
   "redring-ag.go"
   "snow-ball-ag.go"
   "dark-crystal-ag.go"
@@ -48,6 +49,7 @@
   "swamp-rat-ag.go"
   "kermit-ag.go"
   "water-anim-training-ag.go"
+  "val-dev-cam-ag.go"
   "valley.go"
   )
  )

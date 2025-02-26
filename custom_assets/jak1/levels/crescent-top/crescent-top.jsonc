@@ -55,7 +55,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["tfl-commentary-node", "tfl-commentary-node-active", "observatory-ring", "observatory-lens", "valley-rock"],
+  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock", "cst-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -154,7 +154,8 @@
             [49.20, 223.60, 440.27, 2.35],
             [55.50, 225.29, 433.51, 2.35],
             [-21.90, 229.97, 366.84, 2.38],
-            [73.93, 227.33, 457.06, 7.60]
+            [73.93, 227.33, 457.06, 7.60],
+            [-287.12, 199.16, 799.66, 2.94]
           ]
       }
     },
@@ -222,10 +223,7 @@
             [-280.57, 198.61, 797.14],
             [-293.32, 198.67, 789.18]
           ],
-        "custom-nav": ["symbol", "crescent-babak1"],
-        "nav-mesh-sphere": ["vector4m",
-            [-287.12, 199.16, 799.66, 2.94]
-          ]
+        "nav-mesh-actor": "crescent-babak-001"
       }
     },
     {
@@ -6588,6 +6586,178 @@
         "name": "crescent-tfl-hint-14-KeiraCable2",
         "filename": "crescent-tfl-hint-13-KeiraCable.wav",
         "radius": ["meters", 25.0]
+      }
+    },
+    {
+      "trans": [-255.36, 201.18, 809.40],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-255.36, 201.18, 809.40, 10],
+      "lump": {
+        "name": "crescent-tfl-hint-15-KeiraSignal",
+        "filename": "crescent-tfl-hint-15-KeiraSignal.wav",
+        "radius": ["meters", 30.0]
+      }
+    },
+    {
+      "trans": [413.44, 255.47, 740.70],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [413.44, 255.47, 740.70, 10],
+      "lump": {
+        "name": "crescent-tfl-hint-16-KeiraDown",
+        "filename": "crescent-tfl-hint-16-KeiraDown.wav",
+        "radius": ["meters", 30.0]
+      }
+    },
+// Actors: DEV COMMENTARY
+    {
+      "trans": [-256.16, 213.17, 337.06],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-256.16, 213.17, 337.06, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-crescententry",
+        "filename": "kui-crescententry.mp3"
+      }
+    },
+    {
+      "trans": [-207.98, 252.42, 414.97],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-207.98, 252.42, 414.97, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-crescentreveal",
+        "filename": "kui-crescentreveal.mp3"
+      }
+    },
+    {
+      "trans": [-217.50, 230.80, 329.78],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-217.50, 230.80, 329.78, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-pillarfly",
+        "filename": "kui-pillarfly.mp3"
+      }
+    },
+    {
+      "trans": [-100.09, 241.13, 396.47],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-100.09, 241.13, 396.47, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-hybridlevel",
+        "filename": "kui-hybridlevel.mp3"
+      }
+    },
+    {
+      "trans": [-202.23, 230.62, 704.75],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-202.23, 230.62, 704.75, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-robotchallenge",
+        "filename": "kui-robotchallenge.mp3"
+      }
+    },
+    {
+      "trans": [-267.47, 215.58, 499.78],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-267.47, 215.58, 499.78, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-rocks",
+        "filename": "kui-rocks.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [83.63, 186.42, 396.43],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [83.63, 186.42, 396.43, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-undergroundsurprise",
+        "filename": "kui-undergroundsurprise.mp3"
+      }
+    },
+    {
+      "trans": [0.87, 180.91, 414.25],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [0.87, 180.91, 414.25, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-lavachallenge",
+        "filename": "kui-lavachallenge.mp3"
+      }
+    },
+    {
+      "trans": [268.88, 246.56, 413.79],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [268.88, 246.56, 413.79, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-bigcable",
+        "filename": "kui-bigcable.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [342.00, 271.08, 568.23],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [342.00, 271.08, 568.23, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-orbcachechallenge",
+        "filename": "kui-orbcachechallenge.mp3"
+      }
+    },
+    {
+      "trans": [440.14, 268.46, 683.36],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [440.14, 268.46, 683.36, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-enbjump",
+        "filename": "kui-enbjump.mp3"
+      }
+    },
+    {
+      "trans": [-279.10, 200.64, 827.44],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-279.10, 200.64, 827.44, 10],
+      "lump": {
+        "name": "crescent-commentary-kui-hiddinglevels",
+        "filename": "kui-hiddinglevels.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [192.12, 182.71, 717.52],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [192.12, 182.71, 717.52, 10],
+      "lump": {
+        "name": "valley-kui-valleyspiral",
+        "filename": "kui-valleyspiral.mp3",
+        "radius":["meters", 6.0]
       }
     }
   ],

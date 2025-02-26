@@ -281,6 +281,8 @@
   "process-taskable.o"
   "pov-camera.o"
   "tfl-cam-control.o" ;; TFL note: added
+  "tfl-dev-commentary-h.o" ;; TFL note: added
+  "tfl-dev-commentary-actors.o" ;; TFL note: added
   "tfl-dev-commentary-data.o" ;; TFL note: added
   "tfl-dev-commentary.o" ;; TFL note: added
   "powerups.o"
@@ -379,11 +381,17 @@
   "ef-plane-ag.go"
   ;; TFL note: added
   "super-eco-crystal.o"
+  "tfl-crystal-green-ag.go"
+  "tfl-crystal-red-ag.go"
+  "tfl-crystal-blue-ag.go"
+  "tfl-crystal-yellow-ag.go"
   "tfl-hint-data.o"
   "tfl-hint.o"
   "tfl-nav-mesh.o"
   "tfl-commentary-node-ag.go"
   "tfl-commentary-node-active-ag.go"
+  "tfl-commentary-node-pex-ag.go"
+  "tfl-commentary-node-pex-active-ag.go"
   "tfl-util.o"
   "tfl-lowreskui.o"
   "tfl-lowreskui-ag.go"

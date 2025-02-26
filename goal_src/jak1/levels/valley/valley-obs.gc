@@ -353,14 +353,9 @@
                      (-> self root trans)
                      :to
                      *entity-pool*)
-      (let ((explode (the process-drawable
-                          (ppointer->process (process-spawn joint-exploder
-                                                            *rolling-rock-sg*
-                                                            3
-                                                            (new 'stack 'joint-exploder-tuning 0)
-                                                            *rolling-rock-exploder-params*
-                                                            :to
-                                                            self))))))
+      (let ((explode (process-spawn joint-exploder *rolling-rock-sg* 2 (new 'stack 'joint-exploder-tuning 0) *rolling-rock-exploder-params* :to self)))
+        (when explode
+          (logclear! (-> explode 0 mask) (process-mask movie enemy))))
       (suspend)
       (ja-channel-set! 0)
       (ja-post)
@@ -378,3 +373,14 @@
       (until (= (-> self parent 0 next-state name) 'rolling-rock-explode)
         (suspend)))
   :post ja-post)
+
+(def-actor val-dev-cam
+  :bounds (0 0 0 25)
+  :art
+  (idle-ja valleyboulder-ja
+           ecochoice-ja
+           superblue-ja
+           valleyvisual-ja
+           snowtransition-ja
+           iceslide-ja)
+  :joints (align prejoint val-dev-cam camera))

@@ -461,14 +461,14 @@
                                    (-> disp frames (-> disp on-screen) frame global-buf))
                                  base)))
           ;; debug drawing
+          ;; TFL note: added
+          (draw-text-3d-buffers)
           (when *debug-segment*
             (#when PC_PORT
               (if *display-pad-debug* (debug-pad-display (-> *cpad-list* cpads 0)))
               (when (and (or (= *master-mode* 'game) (= *master-mode* 'pause)) (-> *entity-debug-inspect* entity))
                 (define-extern entity-inspect-draw (function entity-debug-inspect object))
                 (entity-inspect-draw *entity-debug-inspect*)))
-            ;; TFL note: added
-            (draw-text-3d-buffers)
             (debug-draw-buffers) ;; lines/text
             ;; debug dma
             (with-dma-buffer-add-bucket ((debug-buf (-> disp frames (-> disp on-screen) frame debug-buf)) (bucket-id debug-no-zbuf))

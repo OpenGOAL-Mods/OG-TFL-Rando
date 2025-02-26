@@ -252,6 +252,19 @@
            (when arg3
              (load-game! *game-info* arg3)
              (set! arg2 (get-or-create-continue! *game-info*)))
+           ;; TFL note: added
+           (defun-extern tfl-collected-cell-count int)
+           (defun-extern tfl-total-cell-count int)
+           (define-extern tfl-dev-commentary-available-proc (function object :behavior process))
+           (cond
+             ((and (< (tfl-collected-cell-count) (tfl-total-cell-count))
+                   (not (process-by-name "tfl-dev-commentary-available-proc" *active-pool*)))
+              (process-spawn-function process
+                :name "tfl-dev-commentary-available-proc"
+                tfl-dev-commentary-available-proc))
+             ((and (>= (tfl-collected-cell-count) (tfl-total-cell-count))
+                   (process-by-name "tfl-dev-commentary-available-proc" *active-pool*))
+              (kill-by-name "tfl-dev-commentary-available-proc" *active-pool*)))
            (suspend)
            (start arg0 arg2)
            (none))

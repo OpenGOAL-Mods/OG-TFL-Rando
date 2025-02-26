@@ -27,6 +27,9 @@
   (dotimes (i (- tfl-task-end tfl-task-start))
     (let ((task (+ tfl-task-start (the game-task i)))) (when (cell? task) (1+! (-> *tfl-counts* cell))))))
 
+(defun tfl-total-cell-count ()
+  (-> *tfl-counts* cell))
+
 (defun tfl-collected-cell-count ()
   (let ((tfl-task-start (game-task crystalc-middle))
         (tfl-task-end (game-task max))
@@ -37,6 +40,16 @@
         (when (and (cell? task) (task-complete? *game-info* task))
           (1+! cnt))))
     cnt))
+
+(defun tfl-give-all-cells ()
+  (let ((tfl-task-start (game-task crystalc-middle))
+        (tfl-task-end (game-task max))
+        (cell? (lambda ((task game-task)) (not (nmember (string->symbol (game-task->string task)) TFL_NO_CELL_TASKS)))))
+    (dotimes (i (- tfl-task-end tfl-task-start))
+      (let ((task (+ tfl-task-start (the game-task i))))
+        (when (cell? task)
+          (close-specific-task! task (task-status need-resolution))
+          (send-event *target* 'get-pickup (pickup-type fuel-cell) (the float task)))))))
 
 (defun tfl-collected-money-count ()
   (let ((cnt 0))
@@ -363,6 +376,14 @@
   (update-transforms! (-> self control))
   (none))
 
+;; overwrite hide-bottom-hud to hide hud-bike-red-boost
+(defun hide-bottom-hud ()
+  (when *target*
+    (dotimes (i 4)
+      (if (-> *hud-parts* parts (+ i 4)) (send-event (ppointer->process (-> *hud-parts* parts (+ i 4))) 'hide)))
+    (send-event (ppointer->process (-> *hud-parts-pc* bike-red-boost)) 'hide))
+  (none))
+
 (deftype warp-to-crystalc (process)
   ((state-time         time-frame)
    (timer              time-frame)
@@ -424,3 +445,77 @@
       ))
 
 (if (not (process-by-name "warp-to-crystalc" *active-pool*)) (process-spawn warp-to-crystalc))
+
+(defbehavior tfl-dev-commentary-available-proc process ()
+  (if (>= (tfl-collected-cell-count) (tfl-total-cell-count)) (deactivate self))
+  (until (and (aif (process-by-ename "valley-lab-door-01") (= (-> it next-state name) 'opened) #t)
+              (not (movie?))
+              (>= (tfl-collected-cell-count) (tfl-total-cell-count)))
+    (suspend))
+  (let ((time (current-time)))
+    (until (or *progress-process* (time-elapsed? time (seconds 7.5)))
+      (let ((fnt (new 'stack 'font-context *font-default-matrix* 56 55 0.0 (font-color default) (font-flags shadow kerning))))
+        (set-width! fnt 400)
+        (set-height! fnt 96)
+        (set-scale! fnt 1.0)
+        (set-flags! fnt (font-flags shadow kerning middle large))
+        (print-game-text (lookup-text! *common-text* (text-id tfl-dev-commentary-unlocked-0) #f) fnt #f 128 22)
+        (+! (-> fnt origin y) 75.0)
+        (print-game-text (lookup-text! *common-text* (text-id tfl-dev-commentary-unlocked-1) #f) fnt #f 128 22))
+      (suspend))))
+
+(deftype tfl-part-spawner (part-spawner) ()
+  (:states
+   tfl-part-spawner-active))
+
+(defstate tfl-part-spawner-active (tfl-part-spawner)
+  :event
+    (event
+      (case message
+        (('stop) (process-entity-status! self (entity-perm-status complete) #t) (false! (-> self enable)) #t)
+        (('start) (process-entity-status! self (entity-perm-status complete) #f) (true! (-> self enable)) #t)
+        (('trans) (vector-copy! (-> self root trans) (the vector (-> block param 0))))))
+  :code
+    (behavior ()
+      (loop
+        (when (-> self enable)
+          (spawn (-> self part) (-> self root trans))
+          (if (nonzero? (-> self sound)) (update! (-> self sound))))
+        (suspend))))
+
+(defmethod init-from-entity! ((this tfl-part-spawner) (e entity-actor))
+  (stack-size-set! (-> this main-thread) 256)
+  (process-mask-set! (-> this mask) ambient)
+  (set! (-> this root) (new 'process 'trsqv))
+  (process-drawable-from-entity! this e)
+  (process-mask-clear! (-> this mask) actor-pause)
+  (set! (-> this radius) 12288.0)
+  (set! (-> this enable)
+        (not (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status complete)))))
+  (set! (-> this sound) (new 'process 'ambient-sound (-> this entity) (-> this root trans)))
+  (let ((group-name (the object "#f")))
+    (let ((group-ptr (the (pointer sparticle-launch-group) #f))
+          (tag (new 'static 'res-tag)))
+      (let* ((art-ptr-ptr (res-lump-data e 'art-name (pointer (pointer sparticle-launch-group)) :tag-ptr (& tag)))
+             (art-ptr (-> art-ptr-ptr 0)))
+        (cond
+          ((part-group-pointer? art-ptr) (set! group-ptr (-> art-ptr-ptr 0)))
+          ((= (-> art-ptr -1) string)
+           (set! group-name art-ptr)
+           (set! group-ptr (lookup-part-group-pointer-by-name (the string group-name)))
+           (if group-ptr (set! (-> art-ptr-ptr 0) group-ptr)))
+          ((= (-> art-ptr -1) symbol)
+           ;; og:preserve-this
+           (set! group-name (symbol->string (the symbol art-ptr)))
+           (set! group-ptr (lookup-part-group-pointer-by-name (the string group-name)))
+           (if group-ptr (set! (-> art-ptr-ptr 0) group-ptr)))
+          (else (go process-drawable-art-error (the string art-ptr)))))
+      (set! (-> this mode) group-ptr)
+      (when group-ptr
+        (let ((group (-> group-ptr 0)))
+          (when (and (nonzero? group) (= (-> group type) sparticle-launch-group))
+            (set! (-> this part) (create-launch-control group this))
+            (go tfl-part-spawner-active)))))
+    ; (if (res-lump-struct (-> this entity) 'copy-quat symbol) (quaternion-copy! *particle-quat* (-> this root quat)))
+    (go process-drawable-art-error (the string group-name)))
+  (none))

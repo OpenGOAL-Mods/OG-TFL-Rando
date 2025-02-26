@@ -49,7 +49,9 @@
       (set! (-> a1-1 param 0) (the-as uint 'powerup))
       (set! (-> a1-1 param 1) (the-as uint 2))
       (cond
-        ((or (send-event-function *target* a1-1)
+        ;; TFL note: added super red eco case
+        ((or (send-event *target* 'query 'powerup (pickup-type eco-red))
+             (send-event *target* 'query 'powerup (pickup-type super-eco-red))
              (= (-> arg1 param 1) 'explode)
              (= (-> arg0 type symbol) 'tfl-yellow-shot) ;; TFL note: added condition for charged super yellow eco shot
              )

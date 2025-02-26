@@ -74,6 +74,7 @@
   "swamp-bat-ag.go"
   "driller-lurker-ag.go"
   "junglecam-ag.go"
+  "opm-dev-cam-ag.go"
   "open-mines.go"
   )
  )

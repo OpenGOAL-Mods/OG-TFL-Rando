@@ -141,17 +141,14 @@
   :bounds (0 0 0 7.5)
   :joints (align prejoint swing part01))
 
-(def-actor pds-lab-door
-  :bounds (0 0 0 50))
-
-(def-actor pds-sentinel
-  :bounds (0 0 0 25)
-  :art (idle-ja sleep-ja wake-ja moving-ja charging-ja damaged-ja death-ja)
-  :joints (align main circle out-circle in-circle sphere top cover gun gun-cover1 gun-cover2 gun-cover3 gun-tip bot thruster core))
+(def-actor lab-door
+  :bounds (0 0 0 50)
+  :art (idle-ja opening-ja open-idle-ja)
+  :joints (align prejoint door-left lock-left col-left door-right lock-right col-right))
 
 (def-actor pds-cam
   :bounds (0 0 0 25)
-  :art (idle-ja wake-ja death-ja)
+  :art (idle-ja wake-ja death-ja lab-door-ja)
   :joints (align prejoint pdscam camera))
 
 (deftype tfl-arcing-shot (process-drawable)
@@ -297,15 +294,6 @@
                (set! (-> this ,x) (new 'process 'boxed-array entity-actor (entity-actor-count e (quote ,x))))
                (fill-actor-arr this (-> this ,x) e (quote ,x))))
            lumps)))
-
-(defun pds-reset-part ()
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) initial-valuef) (meters 4.0))
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) scale-x) random-rangef) (meters 3.5))
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) r) initial-valuef) 64.0)
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) g) initial-valuef) 256.0)
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) b) initial-valuef) 64.0)
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4133) num) initial-valuef) 0.6)
-  (set! (-> (get-init-spec-by-id (-> *part-id-table* 4170) num) initial-valuef) 0.2))
 
 (defmethod init-from-entity! ((this pds-master) (e entity-actor))
   (set! *pds-master* this)

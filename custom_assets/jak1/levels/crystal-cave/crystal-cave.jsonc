@@ -52,11 +52,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": [
-    "tfl-commentary-node",
-    "tfl-commentary-node-active",
-    "crc-gondola"
-  ],
+  "custom_models": ["crc-gondola","crc-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -4089,6 +4085,227 @@
         "name": "crystalc-tfl-hint-06-daxUseGondola",
         "filename": "crystalc-tfl-hint-06-daxUseGondola.wav",
         "radius": ["meters", 9.0]
+      }
+    },
+// Actors: DEV COMMENTARY
+    {
+      "trans": [-4.49, 101.23, 1.90],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-4.49, 101.23, 1.90, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-start",
+        "filename": "kui-start.mp3"
+      }
+    },
+    {
+      "trans": [2.91, 101.42, 7.52],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [2.91, 101.42, 7.52, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-intro",
+        "filename": "kui-intro.mp3"
+      }
+    },
+    {
+      "trans": [3.44, 101.86, -1.50],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [3.44, 101.86, -1.50, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-warpgate",
+        "filename": "kui-warpgate.mp3"
+      }
+    },
+    {
+      "trans": [-48.81, 95.31, 18.02],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-48.81, 95.31, 18.02, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-setpiece",
+        "filename": "kui-setpiece.mp3"
+      }
+    },
+    {
+      "trans": [-60.15, 98.26, 2.98],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-60.15, 98.26, 2.98, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-flow",
+        "filename": "kui-flow.mp3"
+      }
+    },
+    {
+      "trans": [-126.73, 94.94, 1.00],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-126.73, 94.94, 1.00, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-cavelayout",
+        "filename": "kui-cavelayout.mp3"
+      }
+    },
+    {
+      "trans": [-152.61, 106.18, -53.11],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-152.61, 106.18, -53.11, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-hiddenyellow",
+        "filename": "kui-hiddenyellow.mp3"
+      }
+    },
+    {
+      "trans": [-109.68, 92.63, -107.92],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-109.68, 92.63, -107.92, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-customcamera",
+        "filename": "kui-customcamera.mp3"
+      }
+    },
+    {
+      "trans": [-134.84, 89.40, -98.75],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-134.84, 89.40, -98.75, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-jaklighting",
+        "filename": "kui-jaklighting.mp3"
+      }
+    },
+    {
+      "trans": [-158.80, 91.58, -109.67],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-158.80, 91.58, -109.67, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-ship",
+        "filename": "kui-ship.mp3"
+      }
+    },
+    {
+      "trans": [-169.36, 94.22, -123.04],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-169.36, 94.22, -123.04, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-electricarc",
+        "filename": "kui-electricarc.mp3"
+      }
+    },
+    {
+      "trans": [-89.47, 100.67, 26.51],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-89.47, 100.67, 26.51, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-sculptedwalls",
+        "filename": "kui-sculptedwalls.mp3"
+      }
+    },
+    {
+      "trans": [-243.72, 68.90, -117.40],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-243.72, 68.90, -117.40, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-infested",
+        "filename": "kui-infested.mp3"
+      }
+    },
+    {
+      "trans": [-310.36, 73.79, -139.19],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-310.36, 73.79, -139.19, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-fireflypart",
+        "filename": "kui-fireflypart.mp3"
+      }
+    },
+    {
+      "trans": [-248.76, 100.02, -119.82],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-248.76, 100.02, -119.82, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-topinfested",
+        "filename": "kui-topinfested.mp3"
+      }
+    },
+    {
+      "trans": [-302.11, 100.18, -16.95],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-302.11, 100.18, -16.95, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-oneway",
+        "filename": "kui-oneway.mp3"
+      }
+    },
+    {
+      "trans": [-298.64, 97.08, 37.71],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-298.64, 97.08, 37.71, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-gondola",
+        "filename": "kui-gondola.mp3"
+      }
+    },
+    {
+      "trans": [-298.85, 95.04, 55.67],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-298.85, 95.04, 55.67, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-gondolafog",
+        "filename": "kui-gondolafog.mp3"
+      }
+    },
+    {
+      "trans": [-320.95, 99.81, -61.83],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-320.95, 99.81, -61.83, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-cavelighting",
+        "filename": "kui-cavelighting.mp3"
+      }
+    },
+    {
+      "trans": [-225.81, 67.55, -108.00],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-225.81, 67.55, -108.00, 10],
+      "lump": {
+        "name":"crystalc-commentary-kui-supergreen",
+        "filename": "kui-supergreen.mp3"
       }
     }
   ],

@@ -220,120 +220,6 @@
    die
    idle))
 
-(defpartgroup group-chainmine-explode
-  :id 542
-  :flags (use-local-clock)
-  :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2132 :period (seconds 2) :length (seconds 0.017))
-   (sp-item 2133 :period (seconds 2) :length (seconds 0.135))
-   (sp-item 2134 :period (seconds 2) :length (seconds 0.067))
-   (sp-item 2135 :period (seconds 2) :length (seconds 0.067))))
-
-(defpart 2133
-  :init-specs
-  ((:texture (new 'static 'texture-id :index #xf :page #x2))
-   (:num 8.0)
-   (:y (meters 0))
-   (:scale-x (meters 0.4) (meters 0.8))
-   (:scale-y :copy scale-x)
-   (:r 192.0 64.0)
-   (:g 192.0 64.0)
-   (:b 128.0)
-   (:a 32.0 96.0)
-   (:vel-y (meters 0.053333335) (meters 0.21333334))
-   (:scalevel-x (meters -0.0026666666))
-   (:scalevel-y :copy scalevel-x)
-   (:fade-g -2.1333334)
-   (:fade-b -1.4222223)
-   (:accel-y (meters -0.00016666666) (meters -0.00016666666))
-   (:friction 0.9)
-   (:timer (seconds 1))
-   (:flags (bit2 bit14))
-   (:next-time (seconds 0.1) (seconds 0.297))
-   (:next-launcher 2136)
-   (:conerot-x (degrees 0) (degrees 180))
-   (:conerot-y (degrees 0) (degrees 360))
-   (:conerot-radius (meters 2) (meters 4))))
-
-(defpart 2136
-  :init-specs ((:fade-r 0.0) (:fade-g 0.0) (:fade-b 0.0) (:fade-a -1.0666667)))
-
-(defpart 2135
-  :init-specs
-  ((:texture (new 'static 'texture-id :index #xf :page #x2))
-   (:num 6.0)
-   (:y (meters 0))
-   (:scale-x (meters 0.4))
-   (:rot-z (degrees 0) (degrees 180))
-   (:scale-y (meters 16))
-   (:r 255.0)
-   (:g 196.0)
-   (:b 64.0)
-   (:a 32.0 64.0)
-   (:scalevel-y (meters 1.04))
-   (:fade-g -3.2666667)
-   (:fade-b -1.0666667)
-   (:fade-a -1.6)
-   (:timer (seconds 0.2))
-   (:flags (bit2 bit3 bit14))))
-
-(defpart 2132
-  :init-specs
-  ((:texture (new 'static 'texture-id :index #x12 :page #x2))
-   (:num 1.0)
-   (:y (meters 0))
-   (:scale-x (meters 32))
-   (:scale-y :copy scale-x)
-   (:r 255.0)
-   (:g 192.0 32.0)
-   (:b 128.0)
-   (:a 128.0)
-   (:fade-a -2.3272727)
-   (:timer (seconds 0.18))
-   (:flags (bit2 bit3 bit14))))
-
-(defpart 2134
-  :init-specs
-  ((:texture (new 'static 'texture-id :page #x2))
-   (:num 16.0)
-   (:scale-x (meters 4) (meters 2))
-   (:rot-z (degrees 0) (degrees 360))
-   (:scale-y :copy scale-x)
-   (:r 255.0)
-   (:g 128.0 64.0)
-   (:b 128.0)
-   (:a 64.0 64.0)
-   (:vel-y (meters 0.08) (meters 0.04))
-   (:scalevel-x (meters 0.02))
-   (:rotvel-z (degrees -0.6) (degrees 1.2))
-   (:scalevel-y :copy scalevel-x)
-   (:fade-a -0.28444445)
-   (:accel-y (meters 0.00016666666) (meters 0.00016666666))
-   (:friction 0.8)
-   (:timer (seconds 1.7))
-   (:flags (bit2 bit14))
-   (:next-time (seconds 0.14))
-   (:next-launcher 2137)
-   (:conerot-x (degrees 0) (degrees 180))
-   (:conerot-y (degrees 0) (degrees 360))
-   (:conerot-radius (meters 0) (meters 2))))
-
-(defpart 2137
-  :init-specs ((:fade-r -1.0666667) (:fade-g -1.0666667) (:fade-b -2.1166666) (:next-time (seconds 0.2)) (:next-launcher 2138)))
-
-(defpart 2138
-  :init-specs
-  ((:fade-r -0.5688889)
-   (:fade-g -0.28444445)
-   (:fade-b 0.0)
-   (:fade-a -0.21333334)
-   (:next-time (seconds 0.75))
-   (:next-launcher 2139)))
-
-(defpart 2139
-  :init-specs ((:fade-r 0.0) (:fade-g 0.0) (:fade-b 0.0)))
-
 (defskelgroup *chainmine-sg*
   chainmine
   chainmine-lod0-jg
@@ -353,7 +239,7 @@
       (let ((gp-1 (new 'stack-no-clear 'vector)))
         (set! (-> gp-1 quad) (-> self root trans quad))
         (+! (-> gp-1 y) -73728.0)
-        (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 542) 600 #f #f #f gp-1 :to *entity-pool*))
+        (process-spawn part-tracker :init part-tracker-init (-> *part-group-id-table* 873) 600 #f #f #f gp-1 :to *entity-pool*))
       (suspend)
       (set! (-> self state-time) (-> *display* base-frame-counter))
       (until (>= (- (-> *display* base-frame-counter) (-> self state-time)) (seconds 1))
@@ -826,11 +712,6 @@
         (ja :num! (seek! max 0.6)))
       (go-virtual pov-camera-done-playing)))
 
-(def-actor valley-rock
-  :idle idle-ja
-  :art (explode-ja idle-ja)
-  :bounds (0 5 0 200))
-
 (deftype valley-rock (process-drawable)
   ((root collide-shape :override))
   (:methods
@@ -937,7 +818,13 @@
       (cleanup-for-death self))
   :post ja-post)
 
-(deftype valley-rock-button (basebutton) ())
+(deftype valley-rock-button (basebutton)
+  ((last-press-time time-frame))
+  (:methods
+   (can-press? (_type_) symbol)))
+
+(defmethod can-press? ((this valley-rock-button))
+  (and (not (task-closed? (game-task valley-end) (task-status need-hint))) (>= (tfl-collected-cell-count) 20)))
 
 (defstate basebutton-up-idle (valley-rock-button)
   :virtual #t
@@ -947,9 +834,9 @@
         (('attack)
          (case (-> block param 1)
            (('flop)
+            (set-time! (-> self last-press-time))
             ;; TFL note: remove this if we can get it to work in task-control.gc
-            (if (and (not (task-closed? (game-task valley-end) (task-status need-hint))) (>= (tfl-collected-cell-count) 20))
-              (close-specific-task! (game-task valley-end) (task-status need-hint)))
+            (if (can-press? self) (close-specific-task! (game-task valley-end) (task-status need-hint)))
             (when (task-closed? (game-task valley-end) (task-status need-hint))
               (basebutton-method-29 self (-> self event-going-down) (-> self notify-actor))
               (sound-play "silo-button")
@@ -961,12 +848,41 @@
       (press! self #f))
   :trans
     (behavior ()
+      (when (and (not (can-press? self)) (not (time-elapsed? (-> self last-press-time) (seconds 5))))
+        (let ((fnt (new 'stack
+                        'font-context
+                        *font-default-matrix*
+                        32
+                        (if *tfl-hint-semaphore* 140 160)
+                        0.0
+                        (font-color default)
+                        (font-flags shadow kerning))))
+          (set-width! fnt 448)
+          (set-height! fnt 80)
+          (set-scale! fnt 0.8)
+          (set-flags! fnt (font-flags shadow kerning middle large))
+          (print-game-text (lookup-text! *common-text* (text-id valley-rock-button-need-cells) #f) fnt #f 128 22)))
       (if (-> self move-to?) (rider-trans)))
   :code anim-loop
   :post
     (behavior ()
       (when (-> self move-to?)
-        (set! (-> self move-to?) #f)
-        (set! (-> self root trans quad) (-> self move-to-pos quad))
+        (false! (-> self move-to?))
+        (vector-copy! (-> self root trans) (-> self move-to-pos))
         (quaternion-copy! (-> self root quat) (-> self move-to-quat))
         (rider-post))))
+
+(def-actor cst-dev-cam
+  :bounds (0 0 0 25)
+  :art
+  (idle-ja crescententry-ja
+           crescentreveal-ja
+           pillarfly-ja
+           hybridlevel-ja
+           rocks-ja
+           undergroundsurprise-ja
+           bigcable-ja
+           enbjump-ja
+           hiddinglevels-ja
+           valleyspiral-ja)
+  :joints (align prejoint cst-dev-cam camera))

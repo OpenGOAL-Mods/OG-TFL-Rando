@@ -51,11 +51,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": [
-    "turbineblade",
-    "tfl-commentary-node",
-    "tfl-commentary-node-active"
-  ],
+  "custom_models": ["turbineblade", "enb-dev-cam"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -2325,71 +2321,71 @@
       }
     },
     {
-      "trans": [565.53, 11.21, 670.39], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [565.53, 11.21, 670.39, 10], // bounding sphere
+      "trans": [558.74, 28.68, 617.81],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [558.74, 28.68, 617.81, 10],
       "lump": {
         "name": "energy-bay-money-120"
       }
     },
     {
-      "trans": [569.38, 13.46, 658.65], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [569.38, 13.46, 658.65, 10], // bounding sphere
+      "trans": [561.34, 30.10, 612.61],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [561.34, 30.10, 612.61, 10],
       "lump": {
         "name": "energy-bay-money-121"
       }
     },
     {
-      "trans": [570.42, 17.2, 645.12], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [570.42, 17.2, 645.12, 10], // bounding sphere
+      "trans": [564.46, 31.72, 608.05],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [564.46, 31.72, 608.05, 10],
       "lump": {
         "name": "energy-bay-money-122"
       }
     },
     {
-      "trans": [563.13, 21.67, 637.01], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [563.13, 21.67, 637.01, 10], // bounding sphere
+      "trans": [485.87, 45.92, 642.21],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [485.87, 45.92, 642.21, 10],
       "lump": {
         "name": "energy-bay-money-123"
       }
     },
     {
-      "trans": [553.23, 26.96, 630.67], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [553.23, 26.96, 630.67, 10], // bounding sphere
+      "trans": [483.38, 45.92, 651.88],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [483.38, 45.92, 651.88, 10],
       "lump": {
         "name": "energy-bay-money-124"
       }
     },
     {
-      "trans": [540.99, 32.39, 628.63], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [540.99, 32.39, 628.63, 10], // bounding sphere
+      "trans": [482.98, 45.92, 661.80],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [482.98, 45.92, 661.80, 10],
       "lump": {
         "name": "energy-bay-money-125"
       }
     },
     {
-      "trans": [527.03, 37.58, 629.74], // translation
-      "etype": "money", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [527.03, 37.58, 629.74, 10], // bounding sphere
+      "trans": [484.53, 45.92, 672.11],
+      "etype": "money",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [484.53, 45.92, 672.11, 10],
       "lump": {
         "name": "energy-bay-money-126"
       }
@@ -3559,6 +3555,17 @@
       }
     },
     {
+      "trans": [588.81, 7.31, 984.05], // translation
+      "etype": "process-hidden", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0.0, 0.0, 0.0, 1.0], // quaternion
+      "bsphere": [588.81, 7.31, 984.05, 10], // bounding sphere
+      "lump": {
+        "name": "energy-bay-race-ring-11-old",
+        "rot-y": ["meters", 5.5111]
+      }
+    },
+    {
       "trans": [626.32, 4.71, 1042.3], // translation
       "etype": "tfl-race-ring", // actor type
       "game_task": 133, // associated game task (for powercells, etc)
@@ -4032,6 +4039,54 @@
         "radius": ["meters", 10.0]
       }
     },
+    {
+      "trans": [646.68, 49.27, 532.46],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [646.68, 49.27, 532.46, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-05-KeiraTurbine",
+        "filename": "energy-bay-tfl-hint-05-KeiraTurbine.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [678.57, -1.97, 714.67],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [678.57, -1.97, 714.67, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-06-DaxterRock",
+        "filename": "energy-bay-tfl-hint-06-DaxterRock.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [673.17, -1.97, 727.16],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [673.17, -1.97, 727.16, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-07-DaxterRed",
+        "filename": "energy-bay-tfl-hint-07-DaxterRed.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [686.12, -1.97, 701.01],
+      "etype": "tfl-hint",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [686.12, -1.97, 701.01, 10],
+      "lump": {
+        "name": "energy-bay-tfl-hint-08-DaxterBreak",
+        "filename": "energy-bay-tfl-hint-08-DaxterBreak.wav",
+        "radius": ["meters", 15.0]
+      }
+    },
 // Actors: PARTICLES
     {
       "trans": [485.58, 55.73, 786.36], // translation
@@ -4423,6 +4478,121 @@
       "bsphere": [744.14, 26.52, 759.8, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-turbine-04"
+      }
+    },
+// Actors: DEV COMMENTARY
+    {
+      "trans": [521.70, 49.99, 688.42],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [521.70, 49.99, 688.42, 10],
+      "lump": {
+        "name": "energy-bay-kui-enblanding",
+        "filename": "kui-enblanding.mp3"
+      }
+    },
+    {
+      "trans": [899.46, 69.11, 678.98],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [899.46, 69.11, 678.98, 10],
+      "lump": {
+        "name": "energy-bay-kui-coloredcable",
+        "filename": "kui-coloredcable.mp3"
+      }
+    },
+    {
+      "trans": [862.82, 78.83, 767.89],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [862.82, 78.83, 767.89, 10],
+      "lump": {
+        "name": "energy-bay-kui-zoomerplayground",
+        "filename": "kui-zoomerplayground.mp3"
+      }
+    },
+    {
+      "trans": [742.56, 7.12, 959.99],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [742.56, 7.12, 959.99, 10],
+      "lump": {
+        "name": "energy-bay-kui-redecofoot",
+        "filename": "kui-redecofoot.mp3"
+      }
+    },
+    {
+      "trans": [663.42, 35.87, 796.57],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [663.42, 35.87, 796.57, 10],
+      "lump": {
+        "name": "energy-bay-kui-redecozoomer",
+        "filename": "kui-redecozoomer.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [677.71, 2.17, 707.79],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [677.71, 2.17, 707.79, 10],
+      "lump": {
+        "name": "energy-bay-kui-boulder",
+        "filename": "kui-boulder.mp3",
+        "radius":["meters", 5.0]
+      }
+    },
+    {
+      "trans": [583.19, 34.49, 614.32],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [583.19, 34.49, 614.32, 10],
+      "lump": {
+        "name": "energy-bay-kui-greenring",
+        "filename": "kui-greenring.mp3"
+      }
+    },
+    {
+      "trans": [564.39, 27.74, 968.31],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [564.39, 27.74, 968.31, 10],
+      "lump": {
+        "name": "energy-bay-kui-greenmiss",
+        "filename": "kui-greenmiss.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
+      "trans": [720.83, 12.78, 839.26],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [720.83, 12.78, 839.26, 10],
+      "lump": {
+        "name": "energy-bay-kui-balloonlurker",
+        "filename": "kui-balloonlurker.mp3",
+        "radius":["meters", 5.0]
+      }
+    },
+    {
+      "trans": [782.33, 26.34, 521.68],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [782.33, 26.34, 521.68, 10],
+      "lump": {
+        "name": "energy-bay-kui-lowreskui",
+        "filename": "kui-lowreskui.mp3"
       }
     }
   ],

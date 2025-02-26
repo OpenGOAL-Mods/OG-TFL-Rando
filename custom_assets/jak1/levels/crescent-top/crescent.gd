@@ -47,6 +47,7 @@
   "valley-rock-ag.go"
   "generic-button-ag.go"
   "sunkencam-ag.go"
+  "cst-dev-cam-ag.go"
   ; title screen
   "tfl-title-ag.go"
   "logo-ag.go"

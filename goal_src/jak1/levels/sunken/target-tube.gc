@@ -677,7 +677,10 @@
       (set! (-> self pos) 0.2))
   :trans
     (behavior ()
-      (if (and (and *target* (>= 81920.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
+      (if (and (let* ((plat (the process-drawable (process-by-ename (res-lump-struct (-> self entity) 'plat-hack string))))
+                      (riders (aif plat (the collide-sticky-rider-group (-> (the collide-shape (-> plat root)) riders)))))
+                 (if riders (zero? (-> riders num-riders)))) ;; TFL note: added hack to check if you're riding specific platform in the lump
+               (and *target* (>= 81920.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                (and (< 0.0 (vector-dot (vector-! (new 'stack-no-clear 'vector) (-> *target* control trans) (-> self trans)) (-> self rot)))
                     (send-event *target* 'change-mode 'tube self)))
         (go-virtual slide-control-ride)))
