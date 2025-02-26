@@ -922,7 +922,10 @@ examples:
                                      (code ,(lambda :behavior tfl-commentary-proc ()
                                              (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*)
                                              (deactivate self))))
-                                (end release)))
+                                (end release))
+                               :run-on-end
+                               (lambda ()
+                                 (set! (-> *ocean-map-crescent-t* ocean-mid-masks) *ocean-mid-masks-crescent-t*)))
        (static-commentary-data :file-name "kui-valleyvisual.mp3"
                                :dev-name
                                kuitar
