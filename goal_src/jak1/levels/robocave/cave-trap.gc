@@ -121,6 +121,8 @@
                 (return #f))))))))
   #f)
 
+(defun-extern in-tfl-level? object)
+
 (defstate cave-trap-idle (cave-trap)
   :event cave-trap-default-event-handler
   :trans
