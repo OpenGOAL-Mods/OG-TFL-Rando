@@ -456,8 +456,11 @@
           (!= (-> self current-level name) 'lavatube)
           (!= (-> self current-level name) 'crescent-t)
           (!= (-> self current-level name) 'energy-bay)
-          (!= (-> self current-level name) 'open-mines)) ;; TFL note: adding TFL levels to explode when stuck
+          (!= (-> self current-level name) 'open-mines)
+          (!= (-> self current-level name) 'valley)) ;; TFL note: adding TFL levels to explode when stuck
      #f)
+    ((and (= *cheat-mode* 'debug) (cpad-hold? (-> self control unknown-cpad-info00 number) r2) (not *pause-lock*))
+     (set-time! (-> self racer unstuck-time))) ;; TFL note: don't explode if debug flight
     ((or (logtest? (-> self control status) (cshape-moving-flags onground))
          (< 12288.0 (vector-length (-> self control transv))))
      (let ((v0-5 (the-as object (current-time)))) (set! (-> self racer unstuck-time) (the-as time-frame v0-5)) v0-5))
