@@ -2866,11 +2866,10 @@
               (sound-play "start-options"))
             ;; TFL note: added
             (if (= (-> options (-> obj option-index) option-type) (game-option-type tfl-commentary-entry))
-              (if (-> *progress-state* on-off-backup)
-                (begin
-                  (sound-play "menu-stats")
-                  (start 'play (-> *tfl-commentary-continues* (1- (-> obj option-index))))
-                  (set-master-mode 'game)))
+              (when (-> *progress-state* on-off-backup)
+                (sound-play "menu-stats")
+                (start 'play (-> *tfl-commentary-continues* (1- (-> obj option-index))))
+                (set-master-mode 'game))
               (sound-play "start-options"))
             (set! (-> obj selected-option) #f)
             (case (-> options (-> obj option-index) option-type)
