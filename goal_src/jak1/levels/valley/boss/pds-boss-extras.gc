@@ -705,8 +705,16 @@
   :virtual #t
   :enter
     (behavior ()
-      (clear-collide-with-as (-> self root))
-      (hide! self))
+      (clear-collide-with-as (-> self root)))
+  :trans
+    (behavior ()
+      (set! (-> self path-pos)
+            (if (logtest? (-> self fact options) (fact-options wrap-phase))
+              (get-current-phase (-> self sync))
+              (get-current-phase-with-mirror (-> self sync))))
+      (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
+      (set! (-> self basetrans y) (- (-> *pds-master* root trans y) (meters 1)))
+      (plat-trans))
   :code anim-loop
   :post transform-post)
 
@@ -717,15 +725,13 @@
      (let ((vec (new-stack-vector0)))
        (vector-copy! vec (-> self basetrans))
        (+! (-> vec y) (* 819.2 (update! (-> self smush)))))
-     (if (not (!= (-> self smush amp) 0.0)) (set! (-> self bouncing) #f)))
-    (else)))
+     (if (not (!= (-> self smush amp) 0.0)) (false! (-> self bouncing))))))
 
 (defstate come-up (pds-plat)
   :virtual #t
   :enter
     (behavior ()
-      (restore-collide-with-as (-> self root))
-      (show! self))
+      (restore-collide-with-as (-> self root)))
   :trans
     (behavior ()
       (set! (-> self path-pos)
