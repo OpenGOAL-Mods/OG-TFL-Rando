@@ -652,9 +652,15 @@
          'boxed-array
          :type
          game-option
-         :length 70
-         :allocated-length 70
+         :length 76
+         :allocated-length 76
          (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id tfl-dev-commentary) :scale #t)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
+         (tfl-comm-entry)
          (tfl-comm-entry)
          (tfl-comm-entry)
          (tfl-comm-entry)
@@ -732,7 +738,7 @@
               (1+ i)
               (string-upcase (-> *tfl-commentary-nodes* i description) (clear *temp-string*))
               (string-upcase (tfl-commentary-dev->string (-> *tfl-commentary-nodes* i dev-name)) (clear *temp-string2*)))))
-  (set! (-> *tfl-commentary-options* 70) ; (1- (length *tfl-commentary-nodes*))
+  (set! (-> *tfl-commentary-options* 76) ; (1- (length *tfl-commentary-nodes*))
         (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t))
   (true! *tfl-commentary-options-defined?*))
 

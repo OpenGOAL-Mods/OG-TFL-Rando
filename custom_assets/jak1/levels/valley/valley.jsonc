@@ -8264,6 +8264,18 @@
       }
     },
     {
+      "trans": [1284.96, 46.21, 1966.34],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [1284.96, 46.21, 1966.34, 10],
+      "lump": {
+        "name": "valley-pex-taigavalley",
+        "filename": "pex-taigavalley.mp3",
+        "radius":["meters", 6.0]
+      }
+    },
+    {
       "trans": [1508.36, 6.94, 1921.73],
       "etype": "tfl-commentary-node",
       "game_task": 0,
@@ -8340,6 +8352,17 @@
       "lump": {
         "name": "valley-kui-pdstrap",
         "filename": "kui-pdstrap.mp3"
+      }
+    },
+    {
+      "trans": [2114.33, 9.93, 1842.75],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [2114.33, 9.93, 1842.75, 10],
+      "lump": {
+        "name": "valley-pex-pdssentinel",
+        "filename": "pex-pdssentinel.mp3"
       }
     },
     {

@@ -5897,6 +5897,17 @@
       }
     },
     {
+      "trans": [-477.26, 172.73, 804.23],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-477.26, 172.73, 804.23, 10],
+      "lump": {
+        "name": "open-mines-pex-openmines",
+        "filename": "pex-openmines.mp3"
+      }
+    },
+    {
       "trans": [-408.67, 130.32, 857.91],
       "etype": "tfl-commentary-node",
       "game_task": 0,

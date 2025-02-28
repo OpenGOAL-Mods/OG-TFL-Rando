@@ -4166,6 +4166,17 @@
       }
     },
     {
+      "trans": [-143.65, 105.57, -34.75],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-143.65, 105.57, -34.75, 10],
+      "lump": {
+        "name":"crystalc-commentary-pex-crystalcave",
+        "filename": "pex-crystalcave.mp3"
+      }
+    },
+    {
       "trans": [-109.68, 92.63, -107.92],
       "etype": "tfl-commentary-node",
       "game_task": 0,

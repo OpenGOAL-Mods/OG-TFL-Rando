@@ -4493,6 +4493,17 @@
       }
     },
     {
+      "trans": [673.20, 39.06, 635.89],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [673.20, 39.06, 635.89, 10],
+      "lump": {
+        "name": "energy-bay-pex-energybay",
+        "filename": "pex-energybay.mp3"
+      }
+    },
+    {
       "trans": [899.46, 69.11, 678.98],
       "etype": "tfl-commentary-node",
       "game_task": 0,
