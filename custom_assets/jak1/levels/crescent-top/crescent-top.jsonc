@@ -48,7 +48,7 @@
     "logo-black-ag",
     "logo-cam-ag",
     "logo-volumes-ag",
-    "ndi-ag",
+    // "ndi-ag", // removed because of merc replacement setup
     "ndi-cam-ag",
     "ndi-volumes-ag"
   ],
@@ -6700,6 +6700,17 @@
       "lump": {
         "name": "crescent-commentary-kui-lavachallenge",
         "filename": "kui-lavachallenge.mp3"
+      }
+    },
+    {
+      "trans": [115.73, 270.67, 396.43],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [115.73, 270.67, 396.43, 10],
+      "lump": {
+        "name": "crescent-commentary-pex-crescenttop",
+        "filename": "pex-crescenttop.mp3"
       }
     },
     {
