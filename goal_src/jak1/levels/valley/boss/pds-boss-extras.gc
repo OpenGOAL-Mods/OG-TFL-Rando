@@ -1453,7 +1453,7 @@
            (q (quaternion-zxy! (new-stack-quaternion0) dir))
            (line (vector+! (new-stack-vector0)
                            (-> this root trans)
-                           (vector-normalize! (vector-z-quaternion! (new-stack-vector0) q) (meters 17.5))))
+                           (vector-normalize! (vector-z-quaternion! (new-stack-vector0) q) (-> this open-dist))))
            (closest (closest-pt-on-line this
                                         (new-stack-vector0)
                                         (target-pos 0)
@@ -1493,10 +1493,6 @@
           (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "lab-door" 0 self '() :to self))
         (until (ja-done? 0)
           (ja :num! (seek!))
-          (let ((frame (ja-aframe-num 0)))
-            (cond
-              ((= frame 0))
-              ((= frame 0))))
           (suspend))
         (logior! (-> plat mask) (process-mask platform))
         (go-virtual opened))))
@@ -1512,4 +1508,22 @@
       (ja :group! lab-door-open-idle-ja :num! min)
       (loop
         (ja :num! (loop!))
+        (let ((sphere (static-bspherem 2186.04 9.33 1802.57 3)))
+          (when *debug-segment*
+            (add-debug-sphere #t (bucket-id debug-no-zbuf) (the vector sphere) (-> sphere w) (static-rgba #xff #xff 0 #x80)))
+          (when (and *target* (spheres-overlap? (sphere<-vector+r! (new 'stack 'sphere) (target-pos 0) 0.0) sphere))
+            (let ((fnt (new 'stack
+                            'font-context
+                            *font-default-matrix*
+                            56
+                            (if *hint-semaphore* 140 160)
+                            0.0
+                            (font-color default)
+                            (font-flags shadow kerning))))
+              (set-width! fnt 440)
+              (set-height! fnt 80)
+              (set-scale! fnt 0.85)
+              (set-flags! fnt (font-flags shadow kerning large))
+              (print-game-text (lookup-text! *common-text* (text-id lab-door-warp-to-geyser) #f) fnt #f 128 22))
+            (if (cpad-pressed? 0 circle) (start 'play (get-continue-by-name *game-info* "training-warp")))))
         (suspend))))
