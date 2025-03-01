@@ -8054,7 +8054,7 @@
   "bsphere": [70.23, 164.93, 970.28, 10],
   "lump": {
     "name": "valley-vent-smoke-02",
-    "art-name": "group-valley-vent-smoke",
+    "art-name": "group-valley-vent-smoke2",
     "copy-quat": ["symbol", "#t"]
   }
 },
@@ -8066,7 +8066,7 @@
   "bsphere": [55.28, 161.23, 1224.03, 10],
   "lump": {
     "name": "valley-vent-smoke-03",
-    "art-name": "group-valley-vent-smoke",
+    "art-name": "group-valley-vent-smoke3",
     "copy-quat": ["symbol", "#t"]
   }
 },
@@ -8090,7 +8090,7 @@
   "bsphere": [322.30, 90.74, 1768.58, 10],
   "lump": {
     "name": "valley-vent-smoke-05",
-    "art-name": "group-valley-vent-smoke",
+    "art-name": "group-valley-vent-smoke3",
     "copy-quat": ["symbol", "#t"]
   }
 },
