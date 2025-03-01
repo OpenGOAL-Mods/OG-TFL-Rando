@@ -1359,7 +1359,7 @@
   :virtual #t
   :code
     (behavior ()
-      (send-to-actor self (-> self trap-central) 'disable)
+      (send-to-actor-group self (-> self traps) 'disable)
       (let ((msg (case (-> self stage)
                    ((1) 'activate)
                    ((2) 'deadly))))
@@ -1377,7 +1377,7 @@
       (go-virtual idle))
   :exit
     (behavior ()
-      (send-to-actor self (-> self trap-central) 'enable)
+      (send-to-actor-group self (-> self traps) 'enable)
       (send-to-actor-group self (-> self traps-outer) 'deactivate)
       (send-to-actor-group self (-> self traps-mid) 'deactivate)
       (send-to-actor-group self (-> self traps-inner) 'deactivate)))
