@@ -1501,9 +1501,6 @@
   :virtual #t
   :code
     (behavior ()
-      ; (if (not (logtest? (-> self entity extra perm status) (entity-perm-status complete)))
-      ;   (process-spawn-function process
-      ;     tfl-dev-commentary-available-proc))
       (process-entity-status! self (entity-perm-status complete) #t)
       (ja :group! lab-door-open-idle-ja :num! min)
       (loop
