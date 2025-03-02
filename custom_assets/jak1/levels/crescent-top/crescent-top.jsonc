@@ -55,7 +55,7 @@
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock", "cst-dev-cam"],
+  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock", "cst-dev-cam", "tfl-title-logo"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -6042,21 +6042,21 @@
     },
     // Title screen
     {
-      "trans": [60.2279, 244.954, 435.654],
+      "trans": [47.76, -191.56, 325.28],
       "etype": "camera-start",
       "game_task": "(game-task none)",
       "quat" : [0, 0, 0, 1],
-      "bsphere": [60.2279, 244.954, 435.654, 10],
+      "bsphere": [47.76, -191.56, 325.28, 10],
       "lump": {
         "name": "camera-start-55"
       }
     },
     {
-      "trans": [60.2279, -200.0, 435.654], // "trans": [60.2279, 244.954, 435.654],
+      "trans": [47.76, -191.56, 325.28], // "trans": [60.2279, 244.954, 435.654],
       "etype": "tfl-logo",
       "game_task": "(game-task none)",
       "quat" : [0, 0, 0.707, -0.707],
-      "bsphere": [60.2279, 244.954, 435.654, 10],
+      "bsphere": [47.76, -191.56, 325.28, 10],
       "lump": {
         "name": "tfl-logo-1"
       }
