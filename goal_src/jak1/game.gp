@@ -1723,6 +1723,8 @@
 (build-actor "enb-dev-cam")
 (build-actor "opm-dev-cam")
 (build-actor "val-dev-cam")
+(build-actor "title-logo")
+(build-actor "title-cam")
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Game Engine Code
