@@ -522,6 +522,10 @@
                  (-> this eco-level)
                  0.0 ;; we don't have this kind of eco.
                  )))
+     ;; TFL note: don't reset eco if we have super eco and pick up the normal variant
+     (when (and (> (-> this eco-level) 0.0) (= (- (-> this eco-type) kind) 9))
+       (set! amount 0.0)
+       (set! kind (-> this eco-type)))
      ;; new type of eco. Reset and use the new type.
      (when (!= (-> this eco-type) kind)
        ;; as far as I can tell, the eco-level isn't really used other than just 1 or 0.
