@@ -59,7 +59,8 @@
 
 (deftype tfl-title-logo (process-drawable)
   ((parent (pointer process-drawable) :override)
-   (start? symbol))
+   (start? symbol)
+   (moved? symbol))
   (:state-methods
    idle
    burst
@@ -69,21 +70,33 @@
   (set! (-> self root) (new 'process 'trsqv))
   (vector-copy! (-> self root trans) pos)
   (initialize-skeleton self *tfl-title-logo-sg* '())
+  (set! (-> self draw global-effect) (draw-effect title))
+  (process-mask-set! (-> self mask) pause progress)
   (false! (-> self start?))
+  (false! (-> self moved?))
   (go-virtual idle))
 
 (defpost tfl-title-logo
-  (let* ((q (new-stack-quaternion0))
-         (c (-> self parent 0 node-list data (joint-node-index tfl-title-cam-lod0-jg camera)))
+  (debug-print-channels (-> self skel) (the symbol *stdcon*))
+  ; (draw-joint-spheres self)
+  (let* ((c (-> self parent 0 node-list data (joint-node-index tfl-title-cam-lod0-jg camera)))
          (t (-> c bone transform))
-         (trans (vector<-cspace! (new-stack-vector0) c)))
-    (matrix->quaternion q t)
-    ; (quaternion-rotate-x! q q (degrees 90))
-    (quaternion->matrix t q)
-    (vector-copy! (-> t vector 3) trans))
-  (vector<-cspace! (-> self draw origin)
-                   (-> self parent 0 node-list data (joint-node-index tfl-title-cam-lod0-jg camera)))
-  (add-debug-text-sphere #t (bucket-id debug-no-zbuf) (-> self root trans) (meters 0.5) "tfl-title-logo" *color-magenta*)
+         (cc (-> self node-list data (joint-node-index tfl-title-logo-lod0-jg main)))
+         (trans (-> cc bone transform vector 3)))
+    (cspace<-cspace! cc c)
+    (matrix->quaternion (-> self root quat) t)
+    (vector-copy! (-> self root trans) trans)
+    ; (add-debug-text-sphere #t
+    ;                        (bucket-id debug-no-zbuf)
+    ;                        (-> cc bone transform vector 3)
+    ;                        (meters 0.5)
+    ;                        "tfl-title-logo-main"
+    ;                        *color-magenta*)
+    ; (add-debug-text-sphere #t (bucket-id debug-no-zbuf) trans (meters 0.5) "tfl-title-cam" *color-green*) ;
+    )
+  (if *progress-process*
+    (logior! (-> self draw status) (draw-status skip-bones))
+    (logclear! (-> self draw status) (draw-status skip-bones)))
   (ja-post))
 
 (defstatehandler tfl-title-logo :post tfl-title-logo-post)
@@ -110,6 +123,9 @@
       (ja :group! tfl-title-logo-burst-ja :num! min)
       (until (ja-done? 0)
         (ja :num! (seek!))
+        (when (and (not (-> self moved?)) (>= (ja-aframe-num 0) 210.0))
+          (true! (-> self moved?))
+          (send-event (-> self parent 0) 'move))
         (suspend))
       (go-virtual fly)))
 
@@ -210,6 +226,7 @@
    (logo-attached? symbol)
    (vol-attached?  symbol)
    (should-start?  symbol)
+   (moved?         symbol)
    (cam            handle))
   (:state-methods
    idle))
@@ -218,7 +235,8 @@
   (case message
     (('attach-vol) (true! (-> self vol-attached?)))
     (('attach) (true! (-> self logo-attached?)))
-    (('start) (true! (-> self should-start?)))))
+    (('start) (true! (-> self should-start?)))
+    (('move) (vector-copy! (-> self root trans) (static-vectorm -230.29 244.05 354.34)) (true! (-> self moved?)))))
 
 (defstatehandler tfl-title :event tfl-title-event-handler)
 
@@ -251,11 +269,11 @@
       (send-event (handle->process (-> self cam)) 'mask 0)
       (until (-> self should-start?)
         (suspend))
-      (until (ja-done? 0)
-        (ja :num! (seek!))
+      (until (-> self moved?)
+        (ja :num! (loop!))
         (suspend))
       (ja :group! tfl-title-cam-fly-ja :num! min)
-      (vector-copy! (-> self root trans) (static-vectorm -230.29 244.05 354.34))
+      ; (vector-copy! (-> self root trans) (static-vectorm -230.29 244.05 354.34))
       (loop
         (if (not (paused?)) (ja :num! (loop!)))
         (suspend)))
