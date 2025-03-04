@@ -71,29 +71,20 @@
   (vector-copy! (-> self root trans) pos)
   (initialize-skeleton self *tfl-title-logo-sg* '())
   (set! (-> self draw global-effect) (draw-effect title))
-  (process-mask-set! (-> self mask) pause progress)
+  (process-mask-clear! (-> self mask) pause progress menu)
   (false! (-> self start?))
   (false! (-> self moved?))
   (go-virtual idle))
 
 (defpost tfl-title-logo
   (debug-print-channels (-> self skel) (the symbol *stdcon*))
-  ; (draw-joint-spheres self)
   (let* ((c (-> self parent 0 node-list data (joint-node-index tfl-title-cam-lod0-jg camera)))
          (t (-> c bone transform))
          (cc (-> self node-list data (joint-node-index tfl-title-logo-lod0-jg main)))
          (trans (-> cc bone transform vector 3)))
     (cspace<-cspace! cc c)
     (matrix->quaternion (-> self root quat) t)
-    (vector-copy! (-> self root trans) trans)
-    ; (add-debug-text-sphere #t
-    ;                        (bucket-id debug-no-zbuf)
-    ;                        (-> cc bone transform vector 3)
-    ;                        (meters 0.5)
-    ;                        "tfl-title-logo-main"
-    ;                        *color-magenta*)
-    ; (add-debug-text-sphere #t (bucket-id debug-no-zbuf) trans (meters 0.5) "tfl-title-cam" *color-green*) ;
-    )
+    (vector-copy! (-> self root trans) trans))
   (if *progress-process*
     (logior! (-> self draw status) (draw-status skip-bones))
     (logclear! (-> self draw status) (draw-status skip-bones)))
@@ -109,8 +100,6 @@
   :code
     (behavior ()
       (ja :group! tfl-title-logo-idle-ja :num! min)
-      ; (until (-> self start?)
-      ;   (suspend))
       (go-virtual burst)))
 
 (defstate burst (tfl-title-logo)
@@ -122,8 +111,8 @@
     (behavior ()
       (ja :group! tfl-title-logo-burst-ja :num! min)
       (until (ja-done? 0)
-        (ja :num! (seek!))
-        (when (and (not (-> self moved?)) (>= (ja-aframe-num 0) 210.0))
+        (if (not (paused?)) (ja :num! (seek!)))
+        (when (and (not (-> self moved?)) (>= (ja-aframe-num 0) 100.0))
           (true! (-> self moved?))
           (send-event (-> self parent 0) 'move))
         (suspend))
@@ -345,7 +334,7 @@
 (defstate idle (tfl-logo-slave)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('blend-shape)
          (cond
@@ -379,7 +368,7 @@
 (defstate tfl-startup (tfl-logo)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('update) (remove-setting! 'process-mask))
         (('move) (vector-copy! (-> self root trans) (-> (entity-by-name "camera-start-55") extra trans)))
@@ -436,10 +425,10 @@
                   (261 kill "crescent-lurkerpuppy-003")
                   (261.5 kill "crescent-lurkerpuppy-004")
                   (261.5 kill "crescent-lurkerpuppy-005")
-                  (315 want-force-inside crescent-t #f)
-                  (315 display-level crescent-t display)
-                  (315 save)
-                  (400 set! *spawn-actors* #t))))
+                  (400 want-force-inside crescent-t #f)
+                  (400 display-level crescent-t display)
+                  (400 save)
+                  (500 set! *spawn-actors* #t))))
       (ja-play-spooled-anim (-> self anim)
                             (the art-joint-anim #f)
                             (the art-joint-anim #f)
@@ -522,7 +511,7 @@
 (defstate ndi (tfl-logo)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('blackout) (set-setting! 'bg-a 'abs 1.0 0))))
   :enter
@@ -618,16 +607,16 @@
                  (5 want-vis cst)
                  (5 want-force-inside crescent-t #t)
                  (5 send-event self move)
-                 (115 kill "crescent-lurkerpuppy-001")
-                 (115 kill "crescent-lurkerpuppy-002")
-                 (115 kill "crescent-lurkerpuppy-003")
-                 (115 kill "crescent-lurkerpuppy-004")
-                 (115 kill "crescent-lurkerpuppy-005")
-                 (115 send-event self attach)
-                 (115 send-event self attach-vol)
-                 (115 display-level crescent-t display-self)
-                 (115 send-event self start)
-                 (115 save))))
+                 (100 kill "crescent-lurkerpuppy-001")
+                 (100 kill "crescent-lurkerpuppy-002")
+                 (100 kill "crescent-lurkerpuppy-003")
+                 (100 kill "crescent-lurkerpuppy-004")
+                 (100 kill "crescent-lurkerpuppy-005")
+                 (100 send-event self attach)
+                 (100 send-event self attach-vol)
+                 (100 display-level crescent-t display-self)
+                 (100 send-event self start)
+                 (100 save))))
      (set! (-> self draw origin-joint-index) (the uint 3)))
     (('ndi)
      (set! (-> *time-of-day-context* title-light-group dir1 levels x) 1.0)
@@ -754,7 +743,7 @@
 
 (defstate target-title-wait (target)
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('play) (go target-title-play))
         (('reset) (deactivate (-> self manipy 0)))
