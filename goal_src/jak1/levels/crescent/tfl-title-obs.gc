@@ -77,7 +77,6 @@
   (go-virtual idle))
 
 (defpost tfl-title-logo
-  (debug-print-channels (-> self skel) (the symbol *stdcon*))
   (let* ((c (-> self parent 0 node-list data (joint-node-index tfl-title-cam-lod0-jg camera)))
          (t (-> c bone transform))
          (cc (-> self node-list data (joint-node-index tfl-title-logo-lod0-jg main)))
@@ -161,69 +160,17 @@
   (if (nonzero? (-> this main-joint)) (&+! (-> this main-joint) offset))
   (call-parent-method this offset))
 
-(def-actor tfl-title
-  :bounds (0 0 0 5.5)
-  :joints
-  (align camera
-         mid
-         main
-         jd
-         text
-         wall1
-         wall2
-         wall3
-         wall4
-         wall5
-         wall6
-         wall7
-         wall8
-         wall9
-         wall10
-         wall11
-         wall12
-         wall13
-         wall14
-         wall15
-         wall16
-         wall17
-         wall18
-         wall19
-         wall20
-         wall21
-         wall22
-         wall23
-         wall24
-         wall25
-         wall26
-         wall27
-         wall28
-         wall29
-         wall30
-         wall31
-         wall32
-         wall33
-         wall34
-         wall35
-         wall36
-         wall37
-         wall38
-         wall39))
-
 (deftype tfl-title (process-drawable)
-  ((parent         (pointer tfl-logo) :override)
-   (logo           handle)
-   (logo-attached? symbol)
-   (vol-attached?  symbol)
-   (should-start?  symbol)
-   (moved?         symbol)
-   (cam            handle))
+  ((parent        (pointer tfl-logo) :override)
+   (logo          handle)
+   (should-start? symbol)
+   (moved?        symbol)
+   (cam           handle))
   (:state-methods
    idle))
 
 (defevent tfl-title
   (case message
-    (('attach-vol) (true! (-> self vol-attached?)))
-    (('attach) (true! (-> self logo-attached?)))
     (('start) (true! (-> self should-start?)))
     (('move) (vector-copy! (-> self root trans) (static-vectorm -230.29 244.05 354.34)) (true! (-> self moved?)))))
 
@@ -231,8 +178,6 @@
 
 (defbehavior tfl-title-init-by-other tfl-title ()
   (false! (-> self should-start?))
-  (false! (-> self logo-attached?))
-  (false! (-> self vol-attached?))
   (set! (-> self root) (new 'process 'trsqv))
   (vector-copy! (-> self root trans) (-> (entity-by-name "camera-start-55") extra trans))
   (initialize-skeleton self *tfl-title-cam-sg* '())
@@ -251,8 +196,6 @@
       (suspend)
       (ja-channel-set! 1)
       (ja :group! tfl-title-cam-idle-ja :num! min)
-      ; (until (and (-> self vol-attached?) (-> self logo-attached?))
-      ;   (suspend))
       (set! (-> self cam)
             (ppointer->handle (process-spawn othercam self (joint-node-index tfl-title-cam-lod0-jg camera) #t #f :to self)))
       (send-event (handle->process (-> self cam)) 'mask 0)
@@ -262,7 +205,6 @@
         (ja :num! (loop!))
         (suspend))
       (ja :group! tfl-title-cam-fly-ja :num! min)
-      ; (vector-copy! (-> self root trans) (static-vectorm -230.29 244.05 354.34))
       (loop
         (if (not (paused?)) (ja :num! (loop!)))
         (suspend)))
@@ -371,12 +313,6 @@
     (event
       (case message
         (('update) (remove-setting! 'process-mask))
-        (('move) (vector-copy! (-> self root trans) (-> (entity-by-name "camera-start-55") extra trans)))
-        (('attach) (send-event (handle->process (-> self tfl-anim)) 'attach))
-        (('attach-vol)
-         ; (deactivate (handle->process (-> self camera)))
-         ; (deactivate (handle->process (-> self camera-anim)))
-         (send-event (handle->process (-> self tfl-anim)) 'attach-vol))
         (('start) (send-event (handle->process (-> self tfl-anim)) 'start))))
   :exit
     (behavior ()
@@ -399,18 +335,6 @@
       (set-setting! 'bg-a 'abs 0.0 0)
       (set! (-> self tfl-anim) (ppointer->handle (process-spawn tfl-title :to self)))
       (suspend)
-      (send-event (handle->process (-> self tfl-anim)) 'attach)
-      ; (set! (-> self camera-anim) (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-cam-sg* :to self)))
-      ; (set! (-> self camera)
-      ;       (ppointer->handle (process-spawn othercam (handle->process (-> self camera-anim)) 4 #t 'logo :to (handle->process (-> self camera-anim)))))
-      ; (send-event (handle->process (-> self camera)) 'mask 0)
-      (if (= (-> *setting-control* default language) (language-enum japanese))
-        (set! (-> self volumes)
-              (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-volumes-japan-sg* :to self)))
-        (set! (-> self volumes) (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-volumes-sg* :to self))))
-      (send-event (handle->process (-> self volumes)) 'origin-joint-index 3)
-      (set! (-> self black) (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-black-sg* :to self)))
-      (send-event (handle->process (-> self black)) 'origin-joint-index 3)
       (set! (-> self anim) (-> self next-anim))
       (set! (-> self next-anim)
             (new 'static
@@ -436,8 +360,6 @@
       (false! *spawn-actors*)
       (add-setting! 'process-mask 'set 0.0 (process-mask progress))
       (apply-settings *setting-control*)
-      (deactivate (handle->process (-> self black)))
-      (deactivate (handle->process (-> self volumes)))
       (send-event (ppointer->process (-> self parent)) 'wait)
       (send-event self 'update)
       (ja-channel-set! 1)
@@ -450,7 +372,6 @@
       (go-virtual tfl-idle))
   :post
     (behavior ()
-      ; (debug-print-channels (-> self skel) (the symbol *stdcon*))
       (if *progress-process*
         (logior! (-> self draw status) (draw-status skip-bones))
         (logclear! (-> self draw status) (draw-status skip-bones)))
@@ -606,14 +527,11 @@
                  (5 display-level crescent-t special)
                  (5 want-vis cst)
                  (5 want-force-inside crescent-t #t)
-                 (5 send-event self move)
                  (100 kill "crescent-lurkerpuppy-001")
                  (100 kill "crescent-lurkerpuppy-002")
                  (100 kill "crescent-lurkerpuppy-003")
                  (100 kill "crescent-lurkerpuppy-004")
                  (100 kill "crescent-lurkerpuppy-005")
-                 (100 send-event self attach)
-                 (100 send-event self attach-vol)
                  (100 display-level crescent-t display-self)
                  (100 send-event self start)
                  (100 save))))

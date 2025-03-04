@@ -49,7 +49,6 @@
   "sunkencam-ag.go"
   "cst-dev-cam-ag.go"
   ; title screen
-  "tfl-title-ag.go"
   "tfl-title-logo-ag.go"
   "tfl-title-cam-ag.go"
   "logo-ag.go"
