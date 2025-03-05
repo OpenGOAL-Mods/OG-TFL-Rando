@@ -3581,15 +3581,15 @@
       }
     },
     {
-      "trans": [697.54, 4.71, 1084.8], // translation
+      "trans": [706.24, 4.72, 1093.16], // translation
       "etype": "tfl-race-ring", // actor type
       "game_task": 133, // associated game task (for powercells, etc)
       "quat": [0.0, 0.0, 0.0, 1.0], // quaternion
-      "bsphere": [697.54, 4.71, 1084.8, 10], // bounding sphere
+      "bsphere": [706.24, 4.72, 1093.16, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-race-ring-13",
         "timeout": ["float", 8.0],
-        "rot-y": ["meters", 6.0],
+        "rot-y": ["meters", 4.533],
         "alt-actor": "energy-bay-race-ring-01-start",
         "next-actor": "energy-bay-race-ring-14",
         "prev-actor": "energy-bay-race-ring-12"
