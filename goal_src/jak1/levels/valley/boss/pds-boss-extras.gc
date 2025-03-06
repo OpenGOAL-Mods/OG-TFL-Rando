@@ -162,7 +162,8 @@
    (base          vector :inline)
    (old-base      vector :inline)
    (bob-offset    int64)
-   (bob-amount    float))
+   (bob-amount    float)
+   (bob-damp      float))
   (:methods
    (init-collision! (_type_) object)
    (get-skel (_type_) skeleton-group)
@@ -252,6 +253,7 @@
   (set! (-> this bob-amount) (meters 1.0))
   (set! (-> this bob-offset)
         (+ (the int (-> this root trans x)) (the int (-> this root trans y)) (the int (-> this root trans z))))
+  (set! (-> this bob-damp) 5.0)
   (set-time! (-> this birth-time))
   (set-part! :proc
              this
@@ -278,7 +280,8 @@
       (when (not (= (-> *pds-master* sentinel extra process next-state name) 'charging))
         (do-lighting self 1.0 0.5 0.5)
         (quaternion-slerp! (-> self root quat) (-> self root quat) (-> self entity quat) (* 5.0 (seconds-per-frame)))
-        (let ((bob (/ (-> self bob-amount) 5.0)))
+        (seek! (-> self bob-damp) 5.0 (* (seconds-per-frame) 2.0))
+        (let ((bob (/ (-> self bob-amount) (-> self bob-damp))))
           (when (< 0.0 bob)
             (set! (-> self root trans y)
                   (+ (-> self base y)
@@ -289,7 +292,8 @@
                  (= (-> (the pds-sentinel (-> *pds-master* sentinel extra process)) current-gem) (-> self entity)))
         (do-lighting self 1.0 0.5 1.5)
         (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* (degrees 45) (seconds-per-frame)))
-        (let ((bob (-> self bob-amount)))
+        (seek! (-> self bob-damp) 1.0 (* (seconds-per-frame) 2.0))
+        (let ((bob (/ (-> self bob-amount) (-> self bob-damp))))
           (when (< 0.0 bob)
             (set! (-> self root trans y)
                   (+ (-> self base y)
