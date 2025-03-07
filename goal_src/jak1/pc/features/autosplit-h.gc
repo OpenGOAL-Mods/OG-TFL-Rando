@@ -169,6 +169,64 @@
    (com-misty-muse               uint8)
    (com-rolling-moles            uint8)
    (com-rolling-race             uint8)
+   ;; TFL note: added
+   ;; total counts
+   (tfl-cell                     uint32)
+   (tfl-money                    uint32)
+   (tfl-buzzer                   uint32)
+   ;; money
+   (crystalc-money               uint8)
+   (crescent-money               uint8)
+   (energybay-money              uint8)
+   (mines-money                  uint8)
+   (valley-money                 uint8)
+   ;; buzzer
+   (crystalc-buzzer              uint8)
+   (crescent-buzzer              uint8)
+   (energybay-buzzer             uint8)
+   (mines-buzzer                 uint8)
+   (valley-buzzer                uint8)
+   ;; resolution tasks
+   ;; crystalc
+   (res-crystalc-middle          uint8)
+   (res-crystalc-river           uint8)
+   (res-crystalc-ship            uint8)
+   (res-crystalc-shrooms         uint8)
+   (res-crystalc-buzzer          uint8)
+   (res-crystalc-hidden          uint8)
+   (res-crystalc-gondola         uint8)
+   ;; crescent
+   (res-crescent-observatory     uint8)
+   (res-crescent-robot           uint8)
+   (res-crescent-lava            uint8)
+   (res-crescent-zoomer          uint8)
+   (res-crescent-orange-ring     uint8)
+   (res-crescent-buzzer          uint8)
+   ;; energybay
+   (res-energy-bay-turbine1      uint8)
+   (res-energy-bay-turbine2      uint8)
+   (res-energy-bay-turbine3      uint8)
+   (res-energy-bay-turbine4      uint8)
+   (res-energy-bay-kill          uint8)
+   (res-energy-bay-green-ring    uint8)
+   (res-energy-bay-buzzer        uint8)
+   ;; mines
+   (res-open-mines-drop-plat     uint8)
+   (res-open-mines-kegs          uint8)
+   (res-open-mines-minecarts     uint8)
+   (res-open-mines-ambush        uint8)
+   (res-open-mines-excavator     uint8)
+   (res-open-mines-hole          uint8)
+   (res-open-mines-buzzer        uint8)
+   ;; valley
+   (res-valley-end               uint8)
+   (res-valley-hidden            uint8)
+   (res-valley-kill              uint8)
+   (res-valley-boss              uint8)
+   (res-valley-buzzer            uint8)
+   ;; misc
+   (tfl-lowreskui                uint8)
+   (lab-door-opened              uint8)
    ;; end marker just to make things look nice in a memory view
    (end-marker                   uint8 4)))
 

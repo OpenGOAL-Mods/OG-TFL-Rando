@@ -164,7 +164,7 @@ examples:
        (static-commentary-data :file-name "pex-crystalcave.mp3"
                                :dev-name
                                pex
-                               :description "Music to my crystals"
+                               :description "Music to My Crystals"
                                :length 37.0
                                :cmd-list
                                '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
@@ -418,7 +418,7 @@ examples:
        (static-commentary-data :file-name "pex-crescenttop.mp3"
                                :dev-name
                                pex
-                               :description "The music goes on an adventure"
+                               :description "The Music Goes On An Adventure"
                                :length 41.0
                                :cmd-list
                                '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
@@ -487,7 +487,7 @@ examples:
        (static-commentary-data :file-name "pex-energybay.mp3"
                                :dev-name
                                pex
-                               :description "Music between sea and turbines"
+                               :description "Music Between Sea and Turbines"
                                :length 44.0
                                :cmd-list
                                '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
@@ -680,7 +680,7 @@ examples:
        (static-commentary-data :file-name "pex-openmines.mp3"
                                :dev-name
                                pex
-                               :description "Mining for dangerous notes"
+                               :description "Mining For Dangerous Notes"
                                :length 39.0
                                :cmd-list
                                '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
@@ -988,7 +988,7 @@ examples:
        (static-commentary-data :file-name "pex-taigavalley.mp3"
                                :dev-name
                                pex
-                               :description "The sounds of the Taiga"
+                               :description "The Sounds of the Taiga"
                                :length 48.0
                                :cmd-list
                                '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
@@ -1131,7 +1131,7 @@ examples:
        (static-commentary-data :file-name "pex-pdssentinel.mp3"
                                :dev-name
                                pex
-                               :description "Orchestral overflow"
+                               :description "Orchestral Overflow"
                                :length 58.0
                                :cmd-list
                                '((start grab)
