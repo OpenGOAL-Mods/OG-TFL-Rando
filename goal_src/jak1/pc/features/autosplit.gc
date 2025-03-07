@@ -364,8 +364,8 @@
                                   valley-kill
                                   valley-boss
                                   valley-buzzer)
-  (autosplit-flag-task-status-closed! (valley-rock-explosion valley-end need-hint))
-  (autosplit-flag-task-status-closed! (res-crystalc-gondola crystalc-gondola need-resolution))
+  (autosplit-flag-task-status-closed! (valley-rock-explosion valley-end need-hint)
+                                      (res-crystalc-gondola crystalc-gondola need-resolution))
   (aif (process-by-ename "valley-lab-door-01")
     (if (= (-> it next-state name) 'opened) (set! (-> *autosplit-info-jak1* lab-door-opened) 1)))
   (let ((launcher (the process-drawable (process-by-ename "crescent-launcher-03"))))
