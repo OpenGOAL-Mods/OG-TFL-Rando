@@ -28,8 +28,7 @@
 (defmacro autosplit-flag-task-status-closed! (&rest tasks)
   `(begin
     ,@(apply (lambda (x)
-             `(set! (-> *autosplit-info-jak1* ,field-name)
-                   (if (task-closed? *game-info* (game-task ,(car x)) (task-status ,(cadr x))) 1 0)))
+             `(set! (-> *autosplit-info-jak1* ,(car x)) (if (task-closed? (game-task ,(cadr x)) (task-status ,(caddr x))) 1 0)))
            tasks)))
 
 (defmacro autosplit-set-money-per-level! (&key (suffix money) &rest lvls)
@@ -317,6 +316,7 @@
   (defun-extern tfl-collected-money-count int)
   (defun-extern tfl-collected-buzzer-count int)
   (defun-extern lowreskui-collected-count int)
+  (defun-extern anim-playing? process-drawable string int symbol)
   (set! (-> *autosplit-info-jak1* tfl-cell) (tfl-collected-cell-count))
   (set! (-> *autosplit-info-jak1* tfl-money) (tfl-collected-money-count))
   (set! (-> *autosplit-info-jak1* tfl-buzzer) (tfl-collected-buzzer-count))
@@ -339,7 +339,6 @@
                                   crystalc-shrooms
                                   crystalc-buzzer
                                   crystalc-hidden
-                                  crystalc-gondola
                                   crescent-observatory
                                   crescent-robot
                                   crescent-lava
@@ -365,8 +364,16 @@
                                   valley-kill
                                   valley-boss
                                   valley-buzzer)
+  (autosplit-flag-task-status-closed! (valley-rock-explosion valley-end need-hint))
+  (autosplit-flag-task-status-closed! (res-crystalc-gondola crystalc-gondola need-resolution))
   (aif (process-by-ename "valley-lab-door-01")
     (if (= (-> it next-state name) 'opened) (set! (-> *autosplit-info-jak1* lab-door-opened) 1)))
+  (let ((launcher (the process-drawable (process-by-ename "crescent-launcher-03"))))
+    (if (and *target*
+             launcher
+             (< (vector-vector-distance (-> *target* control trans) (-> launcher root trans)) (meters 25))
+             (anim-playing? *target* "eichar-launch-jump" (the int #f)))
+      (set! (-> *autosplit-info-jak1* energy-bay-launcher) 1)))
   ;; end
   (none))
 
