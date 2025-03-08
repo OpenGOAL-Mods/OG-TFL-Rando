@@ -3985,8 +3985,8 @@
         "move-timer": ["float", 1.6],
         "max-z": ["meters", 27],
         "push-z": ["meters", 25],
-        "max-y": ["meters", 10],
-        "tilt-adjust": ["degrees", 15]
+        "max-y": ["meters", 10]
+        // "tilt-adjust": ["degrees", 15]
       }
     },
     {
@@ -4010,8 +4010,8 @@
         "move-timer": ["float", 1.2],
         "max-z": ["meters", 25],
         "push-z": ["meters", 22],
-        "max-y": ["meters", 10],
-        "tilt-adjust": ["degrees", 6]
+        "max-y": ["meters", 10]
+        // "tilt-adjust": ["degrees", 6]
       }
     },
 // Actors: HINTS
