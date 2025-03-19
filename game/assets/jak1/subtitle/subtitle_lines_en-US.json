@@ -3731,6 +3731,76 @@
     "energy-bay-tfl-hint-04-SamosCrystal.wav": [
       "BY THE PRECURSORS! THIS CRYSTAL IS EMITTING SO MUCH ECO,",
       "IT'S SATURATING ALL MY MEASURING TOOLS!"
+    ],
+    "energy-bay-tfl-hint-05-KeiraTurbine.wav": [
+      "THESE TURBINES IN THE DISTANCE MUST BE THE POWER SOURCE OF THIS PLACE. REACH ONE",
+      "ON FOOT AND I CAN SEND YOU THE ZOOMER."
+    ],
+    "energy-bay-tfl-hint-06-DaxterRock.wav": [
+      "THIS BOULDER LOOKS VERY WEAK. WE NEED TO FIND A WAY TO BURST THROUGH IT."
+    ],
+    "valley-tfl-hint-02-SecretIntrusion.wav": [
+      "HI, SORRY TO INTRUDE ON YOUR COMMUNICATOR'S CHANNEL. THE BROKEN PORTAL IN THE",
+      "CRYSTAL CAVES MUST HAVE SENT OUT A SIGNAL TO THE MAIN LANDS. I SEE YOU'VE",
+      "ALREADY MANAGED TO RESTORE POWER AND CLEAR OUT THE DEBRIS TO THE VALLEY. LISTEN,",
+      "I DON'T HAVE A LOT OF TIME RIGHT NOW, BUT YOU'RE CURRENTLY ON YOUR WAY TO SOME",
+      "OLD PRECURSOR FACILITIES. IT IS, HOWEVER, WELL GUARDED. I WOULD SUGGEST GOING",
+      "BACK BEFORE YOU HAVE TO FACE... THAT... THING."
+    ],
+    "valley-tfl-hint-03-DaxterFlying.wav": [
+      "UM, JAK, WE'RE ACTUALLY FLYING!"
+    ],
+    "energy-bay-tfl-hint-08-DaxterBreak.wav": [
+      "NOW THAT'S WHAT I'M TALKING ABOUT!"
+    ],
+    "open-mines-tfl-hint-04-DaxterAmbush1.wav": [
+      "UM, JAK, THOSE SPAWNERS ARE POPPING OUT TROUBLE!"
+    ],
+    "crescent-tfl-hint-16-KeiraDown.wav": [
+      "THE ENERGY SIGNALS ARE COMING FROM SOMEWHERE DOWN HERE. YOU NEED TO FIND A WAY",
+      "TO GO DOWN AND REACTIVATE THE POWER SOURCE, JAK."
+    ],
+    "valley-tfl-hint-04-KeiraCrystal.wav": [
+      "THESE ECO CRYSTALS SEEM TO ALSO INTERACT WITH THE ZOOMER IN UNEXPECTED WAYS. I'M",
+      "SURE I CAN UTILIZE THEM FOR SOME NEW DEVICES."
+    ],
+    "open-mines-tfl-hint-02-DaxterDropplat.wav": [
+      "LOOKS LIKE WE GOTTA DO THIS IN JUST THE RIGHT ORDER!"
+    ],
+    "open-mines-tfl-hint-09-KeiraExcavator.wav": [
+      "THIS MACHINERY IS IMPRESSIVE. I WONDER IF IT'S STILL ACTIVE."
+    ],
+    "valley-tfl-hint-05-SentinelDaxter.wav": [
+      "INTRUDER DETECTED. ALL WEAPONS ENGAGED.",
+      "UH, JAK, I THINK WE ARE THE INTRUDERS!"
+    ],
+    "open-mines-tfl-hint-06-DaxterAmbush3.wav": [
+      "CHARGE IT UP, JAK. GIVE 'EM THE OL' ONE-TWO PUNCH."
+    ],
+    "valley-tfl-hint-01-DaxterAvalanche.wav": [
+      "UH-OH, I THINK WE JUST CAUSED A ROCK SLIDE!"
+    ],
+    "open-mines-tfl-hint-01-KeiraMetal.wav": [
+      "THE PRECURSORS MUST HAVE USED THIS PLACE TO MINE THE METAL FOR ALL THOSE ROBOTS",
+      "AND CONSTRUCTIONS."
+    ],
+    "open-mines-tfl-hint-05-DaxterAmbush2.wav": [
+      "THIS YELLOW ECO SHOULD PACK ENOUGH PUNCH TO TAKE OUT THOSE SPAWNERS."
+    ],
+    "open-mines-tfl-hint-07-DaxterAmbush4.wav": [
+      "BREAK THOSE SPAWNERS, JAK!"
+    ],
+    "open-mines-tfl-hint-03-DaxterKeg.wav": [
+      "UNLESS YOU WANT TO BE CRISPY, WE GOT TO FIND A WAY TO SHUT THESE FLAMES OFF."
+    ],
+    "crescent-tfl-hint-15-KeiraSignal.wav": [
+      "JAK, I'M GETTING SOME ENERGY SIGNALS FROM THE OTHER SIDE OF THIS HILLTOP."
+    ],
+    "energy-bay-tfl-hint-07-DaxterRed.wav": [
+      "RED ECO TIME, BABY! LET IT ON, JAK!"
+    ],
+    "valley-tfl-hint-06-DaxterGem.wav": [
+      "QUICK, JAK, BREAK THAT GEM!"
     ]
   },
   "speakers": {
@@ -3762,6 +3832,7 @@
     "WOMAN": "WOMAN",
     "YELLOW SAGE": "YELLOW SAGE",
     "KUITAR": "KUITAR",
-    "PEX": "PEX"
+    "PEX": "PEX",
+    "SENTINEL": "SENTINEL"
   }
 }
