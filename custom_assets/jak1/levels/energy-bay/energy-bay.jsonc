@@ -3711,7 +3711,8 @@
         "timeout": ["float", 8.0],
         "rot-y": ["meters", 4.0888],
         "alt-actor": "energy-bay-race-ring-01-start",
-        "prev-actor": "energy-bay-race-ring-20"
+        "prev-actor": "energy-bay-race-ring-20",
+        "movie-pos":["movie-pos", [815.47, 1.0, 587.51, 115.0]]
       }
     },
 
@@ -4064,11 +4065,11 @@
       }
     },
     {
-      "trans": [673.17, -1.97, 727.16],
+      "trans": [670.07, -1.97, 738.94],
       "etype": "tfl-hint",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [673.17, -1.97, 727.16, 10],
+      "bsphere": [670.07, -1.97, 738.94, 10],
       "lump": {
         "name": "energy-bay-tfl-hint-07-DaxterRed",
         "filename": "energy-bay-tfl-hint-07-DaxterRed.wav",
@@ -4076,11 +4077,11 @@
       }
     },
     {
-      "trans": [686.12, -1.97, 701.01],
+      "trans": [695.57, -1.97, 692.65],
       "etype": "tfl-hint",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [686.12, -1.97, 701.01, 10],
+      "bsphere": [695.57, -1.97, 692.65, 10],
       "lump": {
         "name": "energy-bay-tfl-hint-08-DaxterBreak",
         "filename": "energy-bay-tfl-hint-08-DaxterBreak.wav",
