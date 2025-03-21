@@ -198,7 +198,7 @@
     //   }
     // },
     {
-      "trans": [722.78, 15, 836.12], // translation // TFL TODO: move this
+      "trans": [722.78, 15, 836.12], // translation 
       "etype": "balloon-fuelcell", // actor type
       "game_task": 132, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
@@ -3581,15 +3581,15 @@
       }
     },
     {
-      "trans": [697.54, 4.71, 1084.8], // translation
+      "trans": [706.24, 4.72, 1093.16], // translation
       "etype": "tfl-race-ring", // actor type
       "game_task": 133, // associated game task (for powercells, etc)
       "quat": [0.0, 0.0, 0.0, 1.0], // quaternion
-      "bsphere": [697.54, 4.71, 1084.8, 10], // bounding sphere
+      "bsphere": [706.24, 4.72, 1093.16, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-race-ring-13",
         "timeout": ["float", 8.0],
-        "rot-y": ["meters", 6.0],
+        "rot-y": ["meters", 4.533],
         "alt-actor": "energy-bay-race-ring-01-start",
         "next-actor": "energy-bay-race-ring-14",
         "prev-actor": "energy-bay-race-ring-12"
@@ -3711,7 +3711,8 @@
         "timeout": ["float", 8.0],
         "rot-y": ["meters", 4.0888],
         "alt-actor": "energy-bay-race-ring-01-start",
-        "prev-actor": "energy-bay-race-ring-20"
+        "prev-actor": "energy-bay-race-ring-20",
+        "movie-pos":["movie-pos", [815.47, 1.0, 587.51, 115.0]]
       }
     },
 
@@ -4064,11 +4065,11 @@
       }
     },
     {
-      "trans": [673.17, -1.97, 727.16],
+      "trans": [670.07, -1.97, 738.94],
       "etype": "tfl-hint",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [673.17, -1.97, 727.16, 10],
+      "bsphere": [670.07, -1.97, 738.94, 10],
       "lump": {
         "name": "energy-bay-tfl-hint-07-DaxterRed",
         "filename": "energy-bay-tfl-hint-07-DaxterRed.wav",
@@ -4076,11 +4077,11 @@
       }
     },
     {
-      "trans": [686.12, -1.97, 701.01],
+      "trans": [695.57, -1.97, 692.65],
       "etype": "tfl-hint",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [686.12, -1.97, 701.01, 10],
+      "bsphere": [695.57, -1.97, 692.65, 10],
       "lump": {
         "name": "energy-bay-tfl-hint-08-DaxterBreak",
         "filename": "energy-bay-tfl-hint-08-DaxterBreak.wav",
@@ -4490,6 +4491,17 @@
       "lump": {
         "name": "energy-bay-kui-enblanding",
         "filename": "kui-enblanding.mp3"
+      }
+    },
+    {
+      "trans": [673.20, 39.06, 635.89],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [673.20, 39.06, 635.89, 10],
+      "lump": {
+        "name": "energy-bay-pex-energybay",
+        "filename": "pex-energybay.mp3"
       }
     },
     {

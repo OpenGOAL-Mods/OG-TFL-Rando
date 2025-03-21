@@ -183,7 +183,7 @@
 
 (defmethod init-from-entity! ((this tfl-hint) (ent entity-actor))
   (set! (-> this root) (new 'process 'trsqv))
-  (logior! (-> this mask) (process-mask actor-pause))
+  (process-mask-clear! (-> this mask) actor-pause)
   (vector-copy! (-> this root trans) (-> ent extra trans))
   (vector-identity! (-> this root scale))
   (set! (-> this sound-to-play) (aif (res-lump-struct ent 'filename string) it (the string #f)))
@@ -199,7 +199,7 @@
 
 (defbehavior tfl-hint-init-by-other tfl-hint ((sound string) (pos vector) (r float))
   (set! (-> self root) (new 'process 'trsqv))
-  (logior! (-> self mask) (process-mask actor-pause))
+  (process-mask-clear! (-> self mask) actor-pause)
   (vector-copy! (-> self root trans) pos)
   (vector-identity! (-> self root scale))
   (set! (-> self sound-to-play) sound)

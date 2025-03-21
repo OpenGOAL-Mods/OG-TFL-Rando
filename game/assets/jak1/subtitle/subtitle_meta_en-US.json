@@ -11083,6 +11083,312 @@
         "offscreen": true,
         "speaker": "KUITAR"
       }
+    ],
+    "pex-taigavalley.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 1650,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 3185,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 5123,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 6576,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 8832,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 10764,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 12510,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 13932,
+        "offscreen": true,
+        "speaker": "PEX"
+      }
+    ],
+    "pex-pdssentinel.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 1848,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 3342,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 5262,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 7002,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 8652,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 10308,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 11958,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 13662,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 15042,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 16542,
+        "offscreen": true,
+        "speaker": "PEX"
+      }
+    ],
+    "pex-energybay.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 1638,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 3516,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 5670,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 7823,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 9612,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 10962,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 12588,
+        "offscreen": true,
+        "speaker": "PEX"
+      }
+    ],
+    "pex-crystalcave.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 1554,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 3342,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 4926,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 6612,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 8100,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 9690,
+        "offscreen": true,
+        "speaker": "PEX"
+      }
+    ],
+    "pex-openmines.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 1650,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 3648,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 5154,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 6762,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 8610,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 10470,
+        "offscreen": true,
+        "speaker": "PEX"
+      }
+    ],
+    "pex-crescenttop.mp3": [
+      {
+        "clear": false,
+        "frame_start": 0,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 1770,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 3558,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 5190,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 6840,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 8814,
+        "offscreen": true,
+        "speaker": "PEX"
+      },
+      {
+        "clear": false,
+        "frame_start": 10752,
+        "offscreen": true,
+        "speaker": "PEX"
+      }
     ]
   },
   "hints": {
@@ -17712,7 +18018,7 @@
       ]
     },
     "energy-bay-tfl-hint-01-daxTurbine1.wav": {
-      "id": "b11",
+      "id": "b13",
       "lines": [
         {
           "clear": false,
@@ -17722,7 +18028,7 @@
       ]
     },
     "energy-bay-tfl-hint-02-daxClosed.wav": {
-      "id": "b12",
+      "id": "b14",
       "lines": [
         {
           "clear": false,
@@ -17732,7 +18038,7 @@
       ]
     },
     "energy-bay-tfl-hint-03-daxTurbine4.wav": {
-      "id": "b13",
+      "id": "b15",
       "lines": [
         {
           "clear": false,
@@ -17742,7 +18048,7 @@
       ]
     },
     "energy-bay-tfl-hint-04-SamosCrystal.wav": {
-      "id": "b14",
+      "id": "b16",
       "lines": [
         {
           "clear": false,
@@ -17753,6 +18059,271 @@
           "clear": false,
           "frame_start": 1550,
           "speaker": "SAMOS"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-05-KeiraTurbine.wav": {
+      "id": "b17",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1422,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-06-DaxterRock.wav": {
+      "id": "b18",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "valley-tfl-hint-02-SecretIntrusion.wav": {
+      "id": "b25",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "???"
+        },
+        {
+          "clear": false,
+          "frame_start": 1716,
+          "speaker": "???"
+        },
+        {
+          "clear": false,
+          "frame_start": 3702,
+          "speaker": "???"
+        },
+        {
+          "clear": false,
+          "frame_start": 5382,
+          "speaker": "???"
+        },
+        {
+          "clear": false,
+          "frame_start": 6960,
+          "speaker": "???"
+        },
+        {
+          "clear": false,
+          "frame_start": 9504,
+          "speaker": "???"
+        }
+      ]
+    },
+    "valley-tfl-hint-03-DaxterFlying.wav": {
+      "id": "b26",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-08-DaxterBreak.wav": {
+      "id": "b1a",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-04-DaxterAmbush1.wav": {
+      "id": "b1e",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "valley-tfl-hint-04-KeiraCrystal.wav": {
+      "id": "b27",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1614,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-02-DaxterDropplat.wav": {
+      "id": "b1c",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-09-KeiraExcavator.wav": {
+      "id": "b23",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "valley-tfl-hint-05-SentinelDaxter.wav": {
+      "id": "b28",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "SENTINEL"
+        },
+        {
+          "clear": false,
+          "frame_start": 1200,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-06-DaxterAmbush3.wav": {
+      "id": "b20",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "valley-tfl-hint-01-DaxterAvalanche.wav": {
+      "id": "b24",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-01-KeiraMetal.wav": {
+      "id": "b1b",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1248,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-05-DaxterAmbush2.wav": {
+      "id": "b1f",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-07-DaxterAmbush4.wav": {
+      "id": "b21",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-03-DaxterKeg.wav": {
+      "id": "b1d",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-15-KeiraSignal.wav": {
+      "id": "b11",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "energy-bay-tfl-hint-07-DaxterRed.wav": {
+      "id": "b19",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
+    },
+    "crescent-tfl-hint-16-KeiraDown.wav": {
+      "id": "b12",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "KEIRA"
+        },
+        {
+          "clear": false,
+          "frame_start": 1374,
+          "speaker": "KEIRA"
+        }
+      ]
+    },
+    "open-mines-tfl-hint-08-SamosDark.wav": {
+      "id": "b22",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 1070,
+          "speaker": "SAMOS"
+        }
+      ]
+    },
+    "valley-tfl-hint-06-DaxterGem.wav": {
+      "id": "b29",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
         }
       ]
     }

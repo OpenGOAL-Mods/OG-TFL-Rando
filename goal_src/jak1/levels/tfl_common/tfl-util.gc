@@ -384,16 +384,6 @@
     (send-event (ppointer->process (-> *hud-parts-pc* bike-red-boost)) 'hide))
   (none))
 
-(deftype warp-to-crystalc (process)
-  ((state-time         time-frame)
-   (timer              time-frame)
-   (last-activate-time time-frame)
-   (cooldown           time-frame))
-  (:methods
-   (print-text (_type_) object))
-  (:state-methods
-   idle))
-
 (defbehavior warp-to-crystalc-init-by-other warp-to-crystalc ()
   (set! (-> self state-time) 0)
   (set! (-> self last-activate-time) 0)
@@ -443,8 +433,6 @@
           (deactivate self)))
       ; (suspend-for (-> self cooldown))
       ))
-
-(if (not (process-by-name "warp-to-crystalc" *active-pool*)) (process-spawn warp-to-crystalc))
 
 (defbehavior tfl-dev-commentary-available-proc process ()
   (if (>= (tfl-collected-cell-count) (tfl-total-cell-count)) (deactivate self))

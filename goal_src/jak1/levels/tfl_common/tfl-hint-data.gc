@@ -168,7 +168,6 @@ examples:
                          :text-id (text-id energy-bay-tfl-hint-06-DaxterRock)
                          :task (game-task energy-bay-turbine4)
                          :task-status (task-status need-hint)
-                         :force-playback? #t
                          ;; If the rock is alive/idle and NO red eco
                          :play-func
                          (lambda ()
@@ -178,7 +177,6 @@ examples:
                          :text-id (text-id energy-bay-tfl-hint-07-DaxterRed)
                          :task (game-task energy-bay-turbine4)
                          :task-status (task-status need-hint)
-                         :force-playback? #t
                          :interrupt? #t
                          ;; If the rock is alive/idle and red eco
                          :play-func
@@ -215,36 +213,37 @@ examples:
        (static-hint-data :file-name "open-mines-tfl-hint-03-DaxterKeg.wav" :text-id (text-id open-mines-tfl-hint-03-DaxterKeg))
        (static-hint-data :file-name "open-mines-tfl-hint-04-DaxterAmbush1.wav"
                          :text-id (text-id open-mines-tfl-hint-04-DaxterAmbush1)
+                         :force-playback? #t
+                         ;; After 5 kills in the ambush
+                         :play-func
+                         (lambda ()
+                           (aif (process-by-ename "open-mines-battlecontroller-01")
+                             (when (= (-> it next-state name) 'battlecontroller-active)
+                               (let ((kill-count (-> (the (pointer int16) (&+ it 196))))) (>= kill-count 5))))))
+       (static-hint-data :file-name "open-mines-tfl-hint-05-DaxterAmbush2.wav"
+                         :text-id (text-id open-mines-tfl-hint-05-DaxterAmbush2)
                          ;; After 20 kills in the ambush
                          :play-func
                          (lambda ()
                            (aif (process-by-ename "open-mines-battlecontroller-01")
                              (when (= (-> it next-state name) 'battlecontroller-active)
                                (let ((kill-count (-> (the (pointer int16) (&+ it 196))))) (>= kill-count 20))))))
-       (static-hint-data :file-name "open-mines-tfl-hint-05-DaxterAmbush2.wav"
-                         :text-id (text-id open-mines-tfl-hint-05-DaxterAmbush2)
+       (static-hint-data :file-name "open-mines-tfl-hint-06-DaxterAmbush3.wav"
+                         :text-id (text-id open-mines-tfl-hint-06-DaxterAmbush3)
                          ;; After 30 kills in the ambush
                          :play-func
                          (lambda ()
                            (aif (process-by-ename "open-mines-battlecontroller-01")
                              (when (= (-> it next-state name) 'battlecontroller-active)
                                (let ((kill-count (-> (the (pointer int16) (&+ it 196))))) (>= kill-count 30))))))
-       (static-hint-data :file-name "open-mines-tfl-hint-06-DaxterAmbush3.wav"
-                         :text-id (text-id open-mines-tfl-hint-06-DaxterAmbush3)
+       (static-hint-data :file-name "open-mines-tfl-hint-07-DaxterAmbush4.wav"
+                         :text-id (text-id open-mines-tfl-hint-07-DaxterAmbush4)
                          ;; After 40 kills in the ambush
                          :play-func
                          (lambda ()
                            (aif (process-by-ename "open-mines-battlecontroller-01")
                              (when (= (-> it next-state name) 'battlecontroller-active)
                                (let ((kill-count (-> (the (pointer int16) (&+ it 196))))) (>= kill-count 40))))))
-       (static-hint-data :file-name "open-mines-tfl-hint-07-DaxterAmbush4.wav"
-                         :text-id (text-id open-mines-tfl-hint-07-DaxterAmbush4)
-                         ;; After 50 kills in the ambush
-                         :play-func
-                         (lambda ()
-                           (aif (process-by-ename "open-mines-battlecontroller-01")
-                             (when (= (-> it next-state name) 'battlecontroller-active)
-                               (let ((kill-count (-> (the (pointer int16) (&+ it 196))))) (>= kill-count 50))))))
        (static-hint-data :file-name "open-mines-tfl-hint-08-SamosDark.wav"
                          :text-id (text-id open-mines-tfl-hint-08-SamosDark)
                          :voicebox? #t

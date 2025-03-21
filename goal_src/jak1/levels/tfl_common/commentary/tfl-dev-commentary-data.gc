@@ -161,6 +161,13 @@ examples:
                                          (deactivate self))))
                                 (end reset-actor crystalc-crate-wood-02)
                                 (end release)))
+       (static-commentary-data :file-name "pex-crystalcave.mp3"
+                               :dev-name
+                               pex
+                               :description "Music to My Crystals"
+                               :length 37.0
+                               :cmd-list
+                               '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-customcamera.mp3"
                                :dev-name
                                kuitar
@@ -408,6 +415,13 @@ examples:
                                :length 20.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "pex-crescenttop.mp3"
+                               :dev-name
+                               pex
+                               :description "The Music Goes On An Adventure"
+                               :length 41.0
+                               :cmd-list
+                               '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-bigcable.mp3"
                                :dev-name
                                kuitar
@@ -470,6 +484,13 @@ examples:
                                :length 28.0
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "pex-energybay.mp3"
+                               :dev-name
+                               pex
+                               :description "Music Between Sea and Turbines"
+                               :length 44.0
+                               :cmd-list
+                               '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-coloredcable.mp3"
                                :dev-name
                                kuitar
@@ -656,6 +677,13 @@ examples:
                                :length 16.5
                                :cmd-list
                                '((start grab) (start music 5.0) (start sfx 5.0) (start dialog 5.0) (end release)))
+       (static-commentary-data :file-name "pex-openmines.mp3"
+                               :dev-name
+                               pex
+                               :description "Mining For Dangerous Notes"
+                               :length 39.0
+                               :cmd-list
+                               '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-dropplat.mp3"
                                :dev-name
                                kuitar
@@ -744,27 +772,30 @@ examples:
                                :description "Learning New Mechanics in a Hectic Battle"
                                :length 106.0
                                :spawn-list
-                               ((tfl-static-spawn-func "running-blast"
+                               ((tfl-static-spawn-func "target-blast-part"
                                                        (ppointer->handle (process-spawn target-commentary
-                                                                                        (static-vectorm -427.8091 110.0 1034.7623)
-                                                                                        (new 'static 'quaternion :x 0.0 :y 0.7939 :z 0.0 :w 0.608)
+                                                                                        (vector+! (new-stack-vector0) (target-pos 0) (static-vectorm 4.0 1.5 0.0))
+                                                                                        (new 'static 'quaternion :x 0.0 :y 0.0 :z 0.0 :w 1.0)
                                                                                         'idle)))
-                                (tfl-static-spawn-func "jumping-blast"
+                                (tfl-static-spawn-func "target-blast"
                                                        (ppointer->handle (process-spawn target-commentary
-                                                                                        (static-vectorm -434.1316 111.0 1035.2501)
-                                                                                        (new 'static 'quaternion :x 0.0 :y 0.994 :z 0.0 :w -0.0322)
-                                                                                        'jumping-blast))))
+                                                                                        (vector+! (new-stack-vector0) (target-pos 0) (static-vectorm -4.0 1.5 0.0))
+                                                                                        (new 'static 'quaternion :x 0.0 :y 0.0 :z 0.0 :w 1.0)
+                                                                                        'idle))))
                                :cmd-list
                                '((start grab)
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                ((seconds 3) spawn 0 "running-blast")
-                                ((seconds 5) send-event 0 go (running-blast))
-                                ((seconds 10) send-event 0 part (#f))
-                                ((seconds 11) spawn 1 "jumping-blast")
-                                ((seconds 14) send-event 0 end ())
-                                ((seconds 17) send-event 1 end ())
+                                ((seconds 73) spawn 0 "target-blast-part")
+                                ((seconds 73) spawn 1 "target-blast")
+                                ((seconds 80) send-event 1 part (#f))
+                                ((seconds 82) send-event 0 go (running-blast))
+                                ((seconds 82) send-event 1 go (running-blast))
+                                ((seconds 94) send-event 0 end ())
+                                ((seconds 94) send-event 1 end ())
+                                ((seconds 95) send-event 0 go (jumping-blast))
+                                ((seconds 95) send-event 1 go (jumping-blast))
                                 (end release)))
        (static-commentary-data :file-name "kui-bouncer.mp3"
                                :dev-name
@@ -954,6 +985,13 @@ examples:
                                (lambda ()
                                  (define-extern robber-dead (state process))
                                  (aif (process-by-ename "valley-robber-01") (go-process it robber-dead))))
+       (static-commentary-data :file-name "pex-taigavalley.mp3"
+                               :dev-name
+                               pex
+                               :description "The Sounds of the Taiga"
+                               :length 48.0
+                               :cmd-list
+                               '((start grab) (start music 30.0) (start sfx 5.0) (start dialog 5.0) (end release)))
        (static-commentary-data :file-name "kui-snowtransition.mp3"
                                :dev-name
                                kuitar
@@ -1090,6 +1128,26 @@ examples:
                                          (aif (process-by-ename "valley-pds-trap-mid-right-03") (send-event it 'temp-deadly))
                                          (deactivate self))))
                                 (end release)))
+       (static-commentary-data :file-name "pex-pdssentinel.mp3"
+                               :dev-name
+                               pex
+                               :description "Orchestral Overflow"
+                               :length 58.0
+                               :cmd-list
+                               '((start grab)
+                                (start music 25.0)
+                                (start sfx 5.0)
+                                (start dialog 5.0)
+                                (start proc
+                                       0
+                                       (code ,(lambda :behavior tfl-commentary-proc ()
+                                               (process-spawn-function process
+                                                 (lambda :behavior process ()
+                                                   (send-event *tfl-music-player* 'boss 'pds-sentinel)
+                                                   (suspend-for (seconds 176))
+                                                   (send-event *tfl-music-player* 'boss #f)))
+                                               (deactivate self))))
+                                (end release)))
        (static-commentary-data :file-name "kui-valleydoor.mp3"
                                :dev-name
                                kuitar
@@ -1220,6 +1278,11 @@ examples:
                               (target -155.0466 104.1974 -52.2298 0.0000 0.7208 0.0000 0.6930)
                               (camera -163.4745 109.3476 -61.4612 0.7211 0.0000 -0.6927 0.0807 0.9931 0.0840 0.6880 -0.1165 0.7162)
                               (load 'crc 'crystal-ca 'display 'crescent-t 'display))
+       (static-continue-point "tfl-comm-crystalcave-pex"
+                              ()
+                              (target -142.2289 103.4574 -35.3331 -0.0000 -0.4301 0.0000 0.9027)
+                              (camera -131.3228 108.6073 -29.2258 -0.4204 0.0000 0.9073 -0.1034 0.9934 -0.0479 -0.9014 -0.1140 -0.4176)
+                              (load 'crc 'crystal-ca 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-customcamera-kuitar"
                               ()
                               (target -110.5810 90.4724 -106.4125 0.0000 0.9683 0.0000 0.2496)
@@ -1325,6 +1388,11 @@ examples:
                               (target 1.8714 178.8700 415.5564 0.0000 0.9641 -0.0000 -0.2652)
                               (camera -0.2558 184.0202 427.8736 -0.9871 -0.0000 -0.1597 0.0191 0.9928 -0.1182 0.1586 -0.1197 -0.9800)
                               (load 'cst 'crescent-t 'display 'energy-bay '#f))
+       (static-continue-point "tfl-comm-crescenttop-pex"
+                              ()
+                              (target 114.1140 268.6823 397.3395 -0.0000 0.9998 0.0000 -0.0172)
+                              (camera 103.4259 273.5458 393.4047 0.2353 -0.0000 -0.9719 0.1255 0.9916 0.0303 0.9637 -0.1291 0.2333)
+                              (load 'cst 'crescent-t 'display 'crystal-ca '#f))
        (static-continue-point "tfl-comm-bigcable-kuitar"
                               ()
                               (target 266.8728 245.3075 416.0377 -0.0000 0.9413 -0.0000 0.3375)
@@ -1349,6 +1417,11 @@ examples:
                               ()
                               (target 521.5041 47.9882 687.0366 0.0000 -0.1760 0.0000 0.9843)
                               (camera 510.8432 52.7184 689.4254 -0.1142 0.0000 -0.9934 0.1312 0.9912 -0.0150 0.9847 -0.1320 -0.1132)
+                              (load 'enb 'energy-bay 'display 'crescent-t 'display))
+       (static-continue-point "tfl-comm-energybay-pex"
+                              ()
+                              (target 672.0963 37.0944 634.2346 -0.0000 0.0654 0.0000 -0.9978)
+                              (camera 663.1793 41.7675 640.1066 -0.4669 0.0000 -0.8842 0.1202 0.9907 -0.0635 0.8760 -0.1360 -0.4625)
                               (load 'enb 'energy-bay 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-coloredcable-kuitar"
                               ()
@@ -1399,6 +1472,11 @@ examples:
                               ()
                               (target -398.6016 176.0251 731.9875 0.0000 0.6786 0.0000 0.7344)
                               (camera -394.0955 181.1602 720.3870 0.9691 0.0000 0.2465 -0.0315 0.9917 0.1241 -0.2445 -0.1281 0.9611)
+                              (load 'opm 'open-mines 'display 'crescent-t 'display))
+       (static-continue-point "tfl-comm-openmines-pex"
+                              ()
+                              (target -475.9962 170.9164 802.7721 0.0000 -0.4462 0.0000 0.8949)
+                              (camera -481.7075 175.2613 795.2122 0.8621 0.0000 -0.5067 0.0799 0.9874 0.1360 0.5003 -0.1578 0.8513)
                               (load 'opm 'open-mines 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-dropplat-kuitar"
                               ()
@@ -1490,6 +1568,11 @@ examples:
                               (target 1057.7050 28.5273 1982.2037 -0.0000 -0.4541 -0.0000 -0.8909)
                               (camera 1045.3941 33.6533 1980.6411 0.1283 0.0000 -0.9917 0.1191 0.9927 0.0154 0.9845 -0.1201 0.1274)
                               (load 'val 'valley 'display 'crescent-t 'display))
+       (static-continue-point "tfl-comm-taigavalley-pex"
+                              ()
+                              (target 1283.9693 44.2466 1968.8925 0.0000 -0.9959 0.0000 -0.0902)
+                              (camera 1293.9382 48.7322 1968.2246 -0.0494 0.0000 0.9987 -0.1482 0.9889 -0.0073 -0.9877 -0.1484 -0.0488)
+                              (load 'val 'valley 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-snowtransition-kuitar"
                               ()
                               (target 1506.7379 4.2263 1924.3790 -0.0000 -0.9757 -0.0000 -0.2187)
@@ -1524,6 +1607,11 @@ examples:
                               ()
                               (target 2114.7675 7.9300 1864.7468 0.0000 0.9686 0.0000 -0.2483)
                               (camera 2108.6088 13.0799 1875.6245 -0.8910 -0.0000 -0.4539 0.0526 0.9932 -0.1032 0.4509 -0.1159 -0.8850)
+                              (load 'val 'valley 'display 'crescent-t 'display))
+       (static-continue-point "tfl-comm-pdssentinel-pex"
+                              ()
+                              (target 2114.1633 7.9300 1844.7132 0.0000 -0.9964 0.0000 -0.0846)
+                              (camera 2102.3808 13.0800 1848.9063 -0.3794 0.0000 -0.9251 0.1067 0.9933 -0.0437 0.9190 -0.1153 -0.3769)
                               (load 'val 'valley 'display 'crescent-t 'display))
        (static-continue-point "tfl-comm-valleydoor-kuitar"
                               ()

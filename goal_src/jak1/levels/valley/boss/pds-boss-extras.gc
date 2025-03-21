@@ -144,7 +144,7 @@
             (set! (-> info pickup-amount) 1.0)
             (set! (-> info pickup-spawn-amount) 0.0)
             (logior! (-> info options) (fact-options fade))
-            (set! (-> info fade-time) (seconds 8))))
+            (set! (-> info fade-time) (seconds 12))))
         (logclear! (-> enemy 0 mask) (process-mask actor-pause))
         (send-event *pds-master* 'notify 'spawned (ppointer->handle enemy))))
   :post ja-post)
@@ -162,7 +162,8 @@
    (base          vector :inline)
    (old-base      vector :inline)
    (bob-offset    int64)
-   (bob-amount    float))
+   (bob-amount    float)
+   (bob-damp      float))
   (:methods
    (init-collision! (_type_) object)
    (get-skel (_type_) skeleton-group)
@@ -252,6 +253,7 @@
   (set! (-> this bob-amount) (meters 1.0))
   (set! (-> this bob-offset)
         (+ (the int (-> this root trans x)) (the int (-> this root trans y)) (the int (-> this root trans z))))
+  (set! (-> this bob-damp) 5.0)
   (set-time! (-> this birth-time))
   (set-part! :proc
              this
@@ -278,7 +280,8 @@
       (when (not (= (-> *pds-master* sentinel extra process next-state name) 'charging))
         (do-lighting self 1.0 0.5 0.5)
         (quaternion-slerp! (-> self root quat) (-> self root quat) (-> self entity quat) (* 5.0 (seconds-per-frame)))
-        (let ((bob (/ (-> self bob-amount) 5.0)))
+        (seek! (-> self bob-damp) 5.0 (* (seconds-per-frame) 2.0))
+        (let ((bob (/ (-> self bob-amount) (-> self bob-damp))))
           (when (< 0.0 bob)
             (set! (-> self root trans y)
                   (+ (-> self base y)
@@ -289,7 +292,8 @@
                  (= (-> (the pds-sentinel (-> *pds-master* sentinel extra process)) current-gem) (-> self entity)))
         (do-lighting self 1.0 0.5 1.5)
         (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* (degrees 45) (seconds-per-frame)))
-        (let ((bob (-> self bob-amount)))
+        (seek! (-> self bob-damp) 1.0 (* (seconds-per-frame) 2.0))
+        (let ((bob (/ (-> self bob-amount) (-> self bob-damp))))
           (when (< 0.0 bob)
             (set! (-> self root trans y)
                   (+ (-> self base y)
@@ -705,8 +709,16 @@
   :virtual #t
   :enter
     (behavior ()
-      (clear-collide-with-as (-> self root))
-      (hide! self))
+      (clear-collide-with-as (-> self root)))
+  :trans
+    (behavior ()
+      (set! (-> self path-pos)
+            (if (logtest? (-> self fact options) (fact-options wrap-phase))
+              (get-current-phase (-> self sync))
+              (get-current-phase-with-mirror (-> self sync))))
+      (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
+      (set! (-> self basetrans y) (- (-> *pds-master* root trans y) (meters 1)))
+      (plat-trans))
   :code anim-loop
   :post transform-post)
 
@@ -717,15 +729,13 @@
      (let ((vec (new-stack-vector0)))
        (vector-copy! vec (-> self basetrans))
        (+! (-> vec y) (* 819.2 (update! (-> self smush)))))
-     (if (not (!= (-> self smush amp) 0.0)) (set! (-> self bouncing) #f)))
-    (else)))
+     (if (not (!= (-> self smush amp) 0.0)) (false! (-> self bouncing))))))
 
 (defstate come-up (pds-plat)
   :virtual #t
   :enter
     (behavior ()
-      (restore-collide-with-as (-> self root))
-      (show! self))
+      (restore-collide-with-as (-> self root)))
   :trans
     (behavior ()
       (set! (-> self path-pos)
@@ -1353,7 +1363,7 @@
   :virtual #t
   :code
     (behavior ()
-      (send-to-actor self (-> self trap-central) 'disable)
+      (send-to-actor-group self (-> self traps) 'disable)
       (let ((msg (case (-> self stage)
                    ((1) 'activate)
                    ((2) 'deadly))))
@@ -1371,7 +1381,7 @@
       (go-virtual idle))
   :exit
     (behavior ()
-      (send-to-actor self (-> self trap-central) 'enable)
+      (send-to-actor-group self (-> self traps) 'enable)
       (send-to-actor-group self (-> self traps-outer) 'deactivate)
       (send-to-actor-group self (-> self traps-mid) 'deactivate)
       (send-to-actor-group self (-> self traps-inner) 'deactivate)))
@@ -1447,7 +1457,7 @@
            (q (quaternion-zxy! (new-stack-quaternion0) dir))
            (line (vector+! (new-stack-vector0)
                            (-> this root trans)
-                           (vector-normalize! (vector-z-quaternion! (new-stack-vector0) q) (meters 17.5))))
+                           (vector-normalize! (vector-z-quaternion! (new-stack-vector0) q) (-> this open-dist))))
            (closest (closest-pt-on-line this
                                         (new-stack-vector0)
                                         (target-pos 0)
@@ -1487,10 +1497,6 @@
           (process-spawn pov-camera (-> *pds-master* root trans) *pds-cam-sg* "lab-door" 0 self '() :to self))
         (until (ja-done? 0)
           (ja :num! (seek!))
-          (let ((frame (ja-aframe-num 0)))
-            (cond
-              ((= frame 0))
-              ((= frame 0))))
           (suspend))
         (logior! (-> plat mask) (process-mask platform))
         (go-virtual opened))))
@@ -1499,11 +1505,26 @@
   :virtual #t
   :code
     (behavior ()
-      ; (if (not (logtest? (-> self entity extra perm status) (entity-perm-status complete)))
-      ;   (process-spawn-function process
-      ;     tfl-dev-commentary-available-proc))
       (process-entity-status! self (entity-perm-status complete) #t)
       (ja :group! lab-door-open-idle-ja :num! min)
       (loop
         (ja :num! (loop!))
+        (let ((sphere (static-bspherem 2186.04 9.33 1802.57 3)))
+          (when *debug-segment*
+            (add-debug-sphere #t (bucket-id debug-no-zbuf) (the vector sphere) (-> sphere w) (static-rgba #xff #xff 0 #x80)))
+          (when (and *target* (spheres-overlap? (sphere<-vector+r! (new 'stack 'sphere) (target-pos 0) 0.0) sphere))
+            (let ((fnt (new 'stack
+                            'font-context
+                            *font-default-matrix*
+                            56
+                            (if *hint-semaphore* 140 160)
+                            0.0
+                            (font-color default)
+                            (font-flags shadow kerning))))
+              (set-width! fnt 440)
+              (set-height! fnt 80)
+              (set-scale! fnt 0.85)
+              (set-flags! fnt (font-flags shadow kerning large))
+              (print-game-text (lookup-text! *common-text* (text-id lab-door-warp-to-geyser) #f) fnt #f 128 22))
+            (if (cpad-pressed? 0 circle) (start 'play (get-continue-by-name *game-info* "training-warp")))))
         (suspend))))

@@ -142,6 +142,17 @@
   "Get the permanent storage for a game-task"
   (-> this task-perm-list data arg0))
 
+;; TFL note: added
+(deftype warp-to-crystalc (process)
+  ((state-time         time-frame)
+   (timer              time-frame)
+   (last-activate-time time-frame)
+   (cooldown           time-frame))
+  (:methods
+   (print-text (_type_) object))
+  (:state-methods
+   idle))
+
 (defmethod initialize! ((this game-info) (cause symbol) (save-to-load game-save) (continue-point-override string))
   "Initialize the game-info.
     The cause can be 'dead if you die, or 'game to reset everything.
@@ -256,6 +267,8 @@
            (defun-extern tfl-collected-cell-count int)
            (defun-extern tfl-total-cell-count int)
            (define-extern tfl-dev-commentary-available-proc (function object :behavior process))
+           (define-extern warp-to-crystalc-init-by-other (function object :behavior warp-to-crystalc))
+           (if (not (process-by-name "warp-to-crystalc" *active-pool*)) (process-spawn warp-to-crystalc))
            (cond
              ((and (< (tfl-collected-cell-count) (tfl-total-cell-count))
                    (not (process-by-name "tfl-dev-commentary-available-proc" *active-pool*)))
@@ -286,7 +299,8 @@
      (if (>= amount 0.0) (seek! (-> this life) (-> this life-max) amount) (seek! (-> this life) 0.0 (- amount)))
      (-> this life))
     (('money)
-     (if (and (< 0.0 amount) (= (+ (-> this money) amount) (-> *GAME-bank* money-task-inc)))
+     (defun-extern in-tfl-level? object) ;; TFL note: added condition for outside TFL
+     (if (and (< 0.0 amount) (= (+ (-> this money) amount) (-> *GAME-bank* money-task-inc)) (not (in-tfl-level?)))
        ;; got enough orbs to trade, display a hint
        (level-hint-spawn (text-id sidekick-reminder-money) "sksp0014" (the-as entity #f) *entity-pool* (game-task none)))
      ;; need to update the various orb counters
@@ -508,6 +522,10 @@
                  (-> this eco-level)
                  0.0 ;; we don't have this kind of eco.
                  )))
+     ;; TFL note: don't reset eco if we have super eco and pick up the normal variant
+     (when (and (> (-> this eco-level) 0.0) (= (- (-> this eco-type) kind) 9))
+       (set! amount 0.0)
+       (set! kind (-> this eco-type)))
      ;; new type of eco. Reset and use the new type.
      (when (!= (-> this eco-type) kind)
        ;; as far as I can tell, the eco-level isn't really used other than just 1 or 0.

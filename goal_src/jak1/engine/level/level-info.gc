@@ -3245,7 +3245,7 @@
        :bsp-mask #xffffffffffffffff
        :bsphere
        (new 'static 'sphere :x (meters -728.157) :y (meters 142.26) :z (meters 1186.1) :w (meters 500.0))
-       :buzzer 0
+       :buzzer 143
        :bottom-height (meters 60.0)
        :run-packages
        '()
@@ -3352,7 +3352,7 @@
              :lev1 'valley
              :disp1 'display))
        :tasks
-       '() ;TFL note: TODO
+       '(145 146 147 148 149)
        :priority 100
        :load-commands
        '()
@@ -3361,7 +3361,7 @@
        :bsp-mask #xffffffffffffffff
        :bsphere
        (new 'static 'sphere :x (meters 285.33) :y (meters 90.025) :z (meters 1653.1) :w (meters 800.0))
-       :buzzer 0
+       :buzzer 149
        :bottom-height (meters -20.0)
        :run-packages
        '()

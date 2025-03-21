@@ -5797,15 +5797,15 @@
       "lump": {
         "name": "open-mines-tfl-hint-02-DaxterDropplat",
         "filename": "open-mines-tfl-hint-02-DaxterDropplat.wav",
-        "radius": ["meters", 5.0]
+        "radius": ["meters", 15.0]
       }
     },
     {
-      "trans": [-639.06, 141.88, 1040.45],
+      "trans": [-586.31, 141.88, 1036.82],
       "etype": "tfl-hint",
       "game_task": 0,
       "quat" : [0.000, 0.000, -0.000, 1.000],
-      "bsphere": [-639.06, 141.88, 1040.45, 10],
+      "bsphere": [-586.31, 141.88, 1036.82, 10],
       "lump": {
         "name": "open-mines-tfl-hint-03-DaxterKeg",
         "filename": "open-mines-tfl-hint-03-DaxterKeg.wav",
@@ -5894,6 +5894,17 @@
       "lump": {
         "name": "open-mines-kui-minesfeel",
         "filename": "kui-minesfeel.mp3"
+      }
+    },
+    {
+      "trans": [-477.26, 172.73, 804.23],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [-477.26, 172.73, 804.23, 10],
+      "lump": {
+        "name": "open-mines-pex-openmines",
+        "filename": "pex-openmines.mp3"
       }
     },
     {

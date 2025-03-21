@@ -18,6 +18,38 @@
   "Given a field name in the autosplitter struct, and a [[game-task]] name to check, sets either a 0 or a 1"
   `(set! (-> *autosplit-info-jak1* ,field-name) (if (task-complete? *game-info* (game-task ,task-name)) 1 0)))
 
+(defmacro autosplit-flag-tasks-complete! (&key (prefix res) &rest tasks)
+  `(begin
+    ,@(apply (lambda (x)
+             `(set! (-> *autosplit-info-jak1* ,(string->symbol-format "{}-{}" prefix x))
+                   (if (task-complete? *game-info* (game-task ,x)) 1 0)))
+           tasks)))
+
+(defmacro autosplit-flag-task-status-closed! (&rest tasks)
+  `(begin
+    ,@(apply (lambda (x)
+             `(set! (-> *autosplit-info-jak1* ,(car x)) (if (task-closed? (game-task ,(cadr x)) (task-status ,(caddr x))) 1 0)))
+           tasks)))
+
+(defmacro autosplit-set-money-per-level! (&key (suffix money) &rest lvls)
+  `(begin
+    ,@(apply (lambda (x)
+             `(set! (-> *autosplit-info-jak1* ,(string->symbol-format "{}-{}" (car x) suffix))
+                   (-> *game-info* money-per-level (level-task-data-index ,(cadr x)))))
+           lvls)))
+
+(defmacro autosplit-set-buzzer-per-level! (&key (suffix buzzer) &rest lvls)
+  `(begin
+    ,@(apply (lambda (x)
+             `(set! (-> *autosplit-info-jak1* ,(string->symbol-format "{}-{}" (car x) suffix))
+                   (buzzer-count *game-info*
+                                 (-> *level-task-data*
+                                     (level-task-data-index ,(cadr x))
+                                     task-info
+                                     (-> *level-task-data* (level-task-data-index ,(cadr x)) buzzer-task-index)
+                                     task-id))))
+           lvls)))
+
 (defun update-autosplit-info-jak1 ()
   ;; general statistics
   (set! (-> *autosplit-info-jak1* num-power-cells) (the int (-> *game-info* fuel)))
@@ -279,6 +311,69 @@
         (if (task-closed? (game-task rolling-moles) (task-status need-reminder)) 1 0))
   (set! (-> *autosplit-info-jak1* com-rolling-race)
         (if (task-closed? (game-task rolling-race) (task-status need-reminder)) 1 0))
+  ;; TFL note: added
+  (defun-extern tfl-collected-cell-count int)
+  (defun-extern tfl-collected-money-count int)
+  (defun-extern tfl-collected-buzzer-count int)
+  (defun-extern lowreskui-collected-count int)
+  (defun-extern anim-playing? process-drawable string int symbol)
+  (set! (-> *autosplit-info-jak1* tfl-cell) (tfl-collected-cell-count))
+  (set! (-> *autosplit-info-jak1* tfl-money) (tfl-collected-money-count))
+  (set! (-> *autosplit-info-jak1* tfl-buzzer) (tfl-collected-buzzer-count))
+  (set! (-> *autosplit-info-jak1* tfl-lowreskui) (lowreskui-collected-count))
+  (let ((in-blackout? (>= (-> *game-info* blackout-time) (current-time))))
+    (when (not in-blackout?)
+      (autosplit-set-money-per-level! (crystalc crystal-ca)
+                                      (crescent crescent-t)
+                                      (energybay energy-bay)
+                                      (mines open-mines)
+                                      (valley valley))
+      (autosplit-set-buzzer-per-level! (crystalc crystal-ca)
+                                       (crescent crescent-t)
+                                       (energybay energy-bay)
+                                       (mines open-mines)
+                                       (valley valley))))
+  (autosplit-flag-tasks-complete! crystalc-middle
+                                  crystalc-river
+                                  crystalc-ship
+                                  crystalc-shrooms
+                                  crystalc-buzzer
+                                  crystalc-hidden
+                                  crescent-observatory
+                                  crescent-robot
+                                  crescent-lava
+                                  crescent-zoomer
+                                  crescent-orange-ring
+                                  crescent-buzzer
+                                  energy-bay-turbine1
+                                  energy-bay-turbine2
+                                  energy-bay-turbine3
+                                  energy-bay-turbine4
+                                  energy-bay-kill
+                                  energy-bay-green-ring
+                                  energy-bay-buzzer
+                                  open-mines-drop-plat
+                                  open-mines-kegs
+                                  open-mines-minecarts
+                                  open-mines-ambush
+                                  open-mines-excavator
+                                  open-mines-hole
+                                  open-mines-buzzer
+                                  valley-end
+                                  valley-hidden
+                                  valley-kill
+                                  valley-boss
+                                  valley-buzzer)
+  (autosplit-flag-task-status-closed! (valley-rock-explosion valley-end need-hint)
+                                      (res-crystalc-gondola crystalc-gondola need-resolution))
+  (aif (process-by-ename "valley-lab-door-01")
+    (if (= (-> it next-state name) 'opened) (set! (-> *autosplit-info-jak1* lab-door-opened) 1)))
+  (let ((launcher (the process-drawable (process-by-ename "crescent-launcher-03"))))
+    (if (and *target*
+             launcher
+             (< (vector-vector-distance (-> *target* control trans) (-> launcher root trans)) (meters 25))
+             (anim-playing? *target* "eichar-launch-jump" (the int #f)))
+      (set! (-> *autosplit-info-jak1* energy-bay-launcher) 1)))
   ;; end
   (none))
 

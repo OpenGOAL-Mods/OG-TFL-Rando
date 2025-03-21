@@ -1,47 +1,17 @@
 ;;-*-Lisp-*-
 (in-package goal)
-(deftype tfl-logo (process-drawable)
-  ((camera      handle)
-   (camera-anim handle)
-   (tfl-anim    handle)
-   (volumes     handle)
-   (black       handle)
-   (target      handle)
-   (sidekick    handle)
-   (main-joint  joint-mod)
-   (anim        spool-anim)
-   (next-anim   spool-anim)
-   (done?       symbol))
-  (:state-methods
-   idle
-   startup
-   tfl-idle
-   tfl-startup
-   hidden
-   ndi))
-
-(defmethod relocate ((this tfl-logo) (offset int))
-  (if (nonzero? (-> this main-joint)) (&+! (-> this main-joint) offset))
-  (call-parent-method this offset))
-
-(deftype tfl-logo-slave (process-drawable)
-  ((parent     (pointer tfl-logo) :override)
-   (main-joint joint-mod))
-  (:state-methods
-   idle))
-
-(defmethod relocate ((this tfl-logo-slave) (offset int))
-  (if (nonzero? (-> this main-joint)) (&+! (-> this main-joint) offset))
-  (call-parent-method this offset))
-
-(def-actor tfl-title
-  :bounds (0 0 0 5.5)
+(def-actor tfl-title-logo
+  :bounds (0 0 0 25)
+  :art (idle-ja burst-ja fly-ja)
   :joints
-  (align camera
-         mid
+  (align prejoint
          main
+         logo-main
          jd
          text
+         volumeBase
+         volume
+         wall-main
          wall1
          wall2
          wall3
@@ -82,135 +52,159 @@
          wall38
          wall39))
 
+(def-actor tfl-title-cam
+  :bounds (0 0 0 25)
+  :art (idle-ja fly-ja)
+  :joints (align prejoint title-cam camera))
+
+(deftype tfl-title-logo (process-drawable)
+  ((parent (pointer process-drawable) :override)
+   (start? symbol)
+   (moved? symbol))
+  (:state-methods
+   idle
+   burst
+   fly))
+
+(defbehavior tfl-title-logo-init-by-other tfl-title-logo ((pos vector))
+  (set! (-> self root) (new 'process 'trsqv))
+  (vector-copy! (-> self root trans) pos)
+  (initialize-skeleton self *tfl-title-logo-sg* '())
+  (set! (-> self draw global-effect) (draw-effect title))
+  (process-mask-clear! (-> self mask) pause progress menu)
+  (false! (-> self start?))
+  (false! (-> self moved?))
+  (go-virtual idle))
+
+(defpost tfl-title-logo
+  (let* ((c (-> self parent 0 node-list data (joint-node-index tfl-title-cam-lod0-jg camera)))
+         (t (-> c bone transform))
+         (cc (-> self node-list data (joint-node-index tfl-title-logo-lod0-jg main)))
+         (trans (-> cc bone transform vector 3)))
+    (cspace<-cspace! cc c)
+    (matrix->quaternion (-> self root quat) t)
+    (vector-copy! (-> self root trans) trans))
+  (if *progress-process*
+    (logior! (-> self draw status) (draw-status skip-bones))
+    (logclear! (-> self draw status) (draw-status skip-bones)))
+  (ja-post))
+
+(defstatehandler tfl-title-logo :post tfl-title-logo-post)
+
+(defstate idle (tfl-title-logo)
+  :virtual #t
+  :enter
+    (behavior ()
+      (hide! self))
+  :code
+    (behavior ()
+      (ja :group! tfl-title-logo-idle-ja :num! min)
+      (go-virtual burst)))
+
+(defstate burst (tfl-title-logo)
+  :virtual #t
+  :enter
+    (behavior ()
+      (show! self))
+  :code
+    (behavior ()
+      (ja :group! tfl-title-logo-burst-ja :num! min)
+      (until (ja-done? 0)
+        (if (not (paused?)) (ja :num! (seek!)))
+        (when (and (not (-> self moved?)) (>= (ja-aframe-num 0) 100.0))
+          (true! (-> self moved?))
+          (send-event (-> self parent 0) 'move))
+        (suspend))
+      (go-virtual fly)))
+
+(defstate fly (tfl-title-logo)
+  :virtual #t
+  :code
+    (behavior ()
+      (ja :group! tfl-title-logo-fly-ja :num! min)
+      (loop
+        (ja :num! (loop!))
+        (suspend))))
+
+(deftype tfl-logo (process-drawable)
+  ((camera      handle)
+   (camera-anim handle)
+   (tfl-anim    handle)
+   (volumes     handle)
+   (black       handle)
+   (target      handle)
+   (sidekick    handle)
+   (main-joint  joint-mod)
+   (anim        spool-anim)
+   (next-anim   spool-anim)
+   (done?       symbol))
+  (:state-methods
+   idle
+   startup
+   tfl-idle
+   tfl-startup
+   hidden
+   ndi))
+
+(defmethod relocate ((this tfl-logo) (offset int))
+  (if (nonzero? (-> this main-joint)) (&+! (-> this main-joint) offset))
+  (call-parent-method this offset))
+
+(deftype tfl-logo-slave (process-drawable)
+  ((parent     (pointer tfl-logo) :override)
+   (main-joint joint-mod))
+  (:state-methods
+   idle))
+
+(defmethod relocate ((this tfl-logo-slave) (offset int))
+  (if (nonzero? (-> this main-joint)) (&+! (-> this main-joint) offset))
+  (call-parent-method this offset))
+
 (deftype tfl-title (process-drawable)
-  ((parent         (pointer logo) :override)
-   (logo-attached? symbol)
-   (vol-attached?  symbol)
-   (should-start?  symbol)
-   (cam            handle))
+  ((parent        (pointer tfl-logo) :override)
+   (logo          handle)
+   (should-start? symbol)
+   (moved?        symbol)
+   (cam           handle))
   (:state-methods
    idle))
 
 (defevent tfl-title
   (case message
-    (('attach-vol) (true! (-> self vol-attached?)))
-    (('attach) (true! (-> self logo-attached?)))
-    (('start) (true! (-> self should-start?)))))
+    (('start) (true! (-> self should-start?)))
+    (('move) (vector-copy! (-> self root trans) (static-vectorm -230.29 244.05 354.34)) (true! (-> self moved?)))))
 
 (defstatehandler tfl-title :event tfl-title-event-handler)
 
 (defbehavior tfl-title-init-by-other tfl-title ()
   (false! (-> self should-start?))
-  (false! (-> self logo-attached?))
-  (false! (-> self vol-attached?))
   (set! (-> self root) (new 'process 'trsqv))
   (vector-copy! (-> self root trans) (-> (entity-by-name "camera-start-55") extra trans))
-  (initialize-skeleton self *tfl-title-sg* '())
+  (initialize-skeleton self *tfl-title-cam-sg* '())
   (process-mask-clear! (-> self mask) progress pause)
   (go-virtual idle))
-
-(defmacro tfl-title-align-to-cam (proc jg q &rest bones)
-  `(begin
-    ,@(apply (lambda (x)
-             `(begin
-               ; (format 0
-               ;         "align cam proc idx ~D title idx ~D bone ~`cspace`P title bone ~`cspace`P~%"
-               ;         (joint-node-index ,jg ,x)
-               ;         (joint-node-index tfl-title-lod0-jg ,x)
-               ;         (-> ,proc node-list data (joint-node-index ,jg ,x))
-               ;         (joint-node tfl-title-lod0-jg ,x))
-               (quaternion->matrix (-> ,proc node-list data (joint-node-index ,jg ,x) bone transform) ,q)
-               (vector<-cspace! (-> ,proc node-list data (joint-node-index ,jg ,x) bone transform vector 3)
-                                (joint-node tfl-title-lod0-jg ,x))))
-           bones)))
 
 (defstate idle (tfl-title)
   :virtual #t
   :enter
     (behavior ()
       ;; othercam uses the bone scale to calculate fov
-      (set-vector! (-> self node-list data (joint-node-index tfl-title-lod0-jg camera) bone scale) 1.0 1.0 1.0 1.0))
-  :trans
-    (behavior ()
-      (when (-> self logo-attached?)
-        ;; hack to rotate camera bone 90 degrees in x
-        (let* ((q (new-stack-quaternion0))
-               (c (joint-node tfl-title-lod0-jg camera))
-               (t (-> c bone transform))
-               (trans (vector<-cspace! (new-stack-vector0) c)))
-          (matrix->quaternion q t)
-          (quaternion-rotate-x! q q (degrees 90))
-          (quaternion->matrix t q)
-          (vector-copy! (-> t vector 3) trans)
-          ;; align the logo with the camera
-          (let ((title (-> self parent 0)))
-            ;; volumes and black
-            (when (and (-> self vol-attached?) (handle->process (-> title volumes)) (handle->process (-> title black)))
-              (let ((black (the tfl-logo-slave (handle->process (-> title black))))
-                    (vol (the tfl-logo-slave (handle->process (-> title volumes)))))
-                ; (tfl-title-align-to-cam black
-                ;                         logo-black-lod0-jg
-                ;                         q
-                ;                         main
-                ;                         jd
-                ;                         text
-                ;                         wall1
-                ;                         wall2
-                ;                         wall3
-                ;                         wall4
-                ;                         wall5
-                ;                         wall6
-                ;                         wall7
-                ;                         wall8
-                ;                         wall9
-                ;                         wall10
-                ;                         wall11
-                ;                         wall12
-                ;                         wall13
-                ;                         wall14
-                ;                         wall15
-                ;                         wall16
-                ;                         wall17
-                ;                         wall18
-                ;                         wall19
-                ;                         wall20
-                ;                         wall21
-                ;                         wall22
-                ;                         wall23
-                ;                         wall24
-                ;                         wall25
-                ;                         wall26
-                ;                         wall27
-                ;                         wall29
-                ;                         wall30
-                ;                         wall31
-                ;                         wall32
-                ;                         wall33
-                ;                         wall34
-                ;                         wall35
-                ;                         wall36
-                ;                         wall37
-                ;                         wall38
-                ;                         wall39)
-                ; (tfl-title-align-to-cam vol logo-volumes-english-lod0-jg q)
-                ; (let ((cspace (-> black node-list data 3)))
-                ;   (quaternion->matrix (-> cspace bone transform) q)
-                ;   (vector<-cspace! (-> cspace bone transform vector 3) (joint-node tfl-title-lod0-jg main)))
-                ))
-            (when (-> self vol-attached?)
-              (tfl-title-align-to-cam title logo-english-lod0-jg q main jd text))))))
+      (set-vector! (-> self node-list data (joint-node-index tfl-title-cam-lod0-jg camera) bone scale) 1.0 1.0 1.0 1.0))
   :code
     (behavior ()
+      (set! (-> self logo) (ppointer->handle (process-spawn tfl-title-logo (-> self root trans) :to self)))
+      (suspend)
       (ja-channel-set! 1)
-      (ja :group! tfl-title-idle-ja :num! min)
-      (ja-post)
-      (until (and (-> self vol-attached?) (-> self logo-attached?))
-        (suspend))
+      (ja :group! tfl-title-cam-idle-ja :num! min)
       (set! (-> self cam)
-            (ppointer->handle (process-spawn othercam self (joint-node-index tfl-title-lod0-jg camera) #t #f :to self)))
+            (ppointer->handle (process-spawn othercam self (joint-node-index tfl-title-cam-lod0-jg camera) #t #f :to self)))
       (send-event (handle->process (-> self cam)) 'mask 0)
       (until (-> self should-start?)
         (suspend))
+      (until (-> self moved?)
+        (ja :num! (loop!))
+        (suspend))
+      (ja :group! tfl-title-cam-fly-ja :num! min)
       (loop
         (if (not (paused?)) (ja :num! (loop!)))
         (suspend)))
@@ -282,7 +276,7 @@
 (defstate idle (tfl-logo-slave)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('blend-shape)
          (cond
@@ -295,11 +289,6 @@
       (ja-post)
       (loop
         (clone-anim-once (ppointer->handle (-> self parent)) (the int (-> self draw origin-joint-index)) #t "")
-        ; (if (and (-> self main-joint) (nonzero? (-> self main-joint)))
-        ;   (set-trs! (-> self main-joint)
-        ;             (-> self parent 0 main-joint trans)
-        ;             (the quaternion #f)
-        ;             (-> self parent 0 main-joint scale)))
         (suspend))))
 
 (defbehavior tfl-logo-slave-init-by-other tfl-logo-slave ((e entity-actor) (skel skeleton-group))
@@ -321,15 +310,9 @@
 (defstate tfl-startup (tfl-logo)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('update) (remove-setting! 'process-mask))
-        (('move) (vector-copy! (-> self root trans) (-> (entity-by-name "camera-start-55") extra trans)))
-        (('attach) (send-event (handle->process (-> self tfl-anim)) 'attach))
-        (('attach-vol)
-         (deactivate (handle->process (-> self camera)))
-         (deactivate (handle->process (-> self camera-anim)))
-         (send-event (handle->process (-> self tfl-anim)) 'attach-vol))
         (('start) (send-event (handle->process (-> self tfl-anim)) 'start))))
   :exit
     (behavior ()
@@ -352,18 +335,6 @@
       (set-setting! 'bg-a 'abs 0.0 0)
       (set! (-> self tfl-anim) (ppointer->handle (process-spawn tfl-title :to self)))
       (suspend)
-      (send-event (handle->process (-> self tfl-anim)) 'attach)
-      (set! (-> self camera-anim) (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-cam-sg* :to self)))
-      (set! (-> self camera)
-            (ppointer->handle (process-spawn othercam (handle->process (-> self camera-anim)) 4 #t 'logo :to (handle->process (-> self camera-anim)))))
-      (send-event (handle->process (-> self camera)) 'mask 0)
-      (if (= (-> *setting-control* default language) (language-enum japanese))
-        (set! (-> self volumes)
-              (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-volumes-japan-sg* :to self)))
-        (set! (-> self volumes) (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-volumes-sg* :to self))))
-      (send-event (handle->process (-> self volumes)) 'origin-joint-index 3)
-      (set! (-> self black) (ppointer->handle (process-spawn tfl-logo-slave (-> self entity) *logo-black-sg* :to self)))
-      (send-event (handle->process (-> self black)) 'origin-joint-index 3)
       (set! (-> self anim) (-> self next-anim))
       (set! (-> self next-anim)
             (new 'static
@@ -389,8 +360,6 @@
       (false! *spawn-actors*)
       (add-setting! 'process-mask 'set 0.0 (process-mask progress))
       (apply-settings *setting-control*)
-      (deactivate (handle->process (-> self black)))
-      (deactivate (handle->process (-> self volumes)))
       (send-event (ppointer->process (-> self parent)) 'wait)
       (send-event self 'update)
       (ja-channel-set! 1)
@@ -403,7 +372,6 @@
       (go-virtual tfl-idle))
   :post
     (behavior ()
-      ; (debug-print-channels (-> self skel) (the symbol *stdcon*))
       (if *progress-process*
         (logior! (-> self draw status) (draw-status skip-bones))
         (logclear! (-> self draw status) (draw-status skip-bones)))
@@ -464,7 +432,7 @@
 (defstate ndi (tfl-logo)
   :virtual #t
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('blackout) (set-setting! 'bg-a 'abs 1.0 0))))
   :enter
@@ -559,17 +527,14 @@
                  (5 display-level crescent-t special)
                  (5 want-vis cst)
                  (5 want-force-inside crescent-t #t)
-                 (5 send-event self move)
-                 (115 kill "crescent-lurkerpuppy-001")
-                 (115 kill "crescent-lurkerpuppy-002")
-                 (115 kill "crescent-lurkerpuppy-003")
-                 (115 kill "crescent-lurkerpuppy-004")
-                 (115 kill "crescent-lurkerpuppy-005")
-                 (115 send-event self attach)
-                 (115 send-event self attach-vol)
-                 (115 display-level crescent-t display-self)
-                 (115 send-event self start)
-                 (115 save))))
+                 (100 kill "crescent-lurkerpuppy-001")
+                 (100 kill "crescent-lurkerpuppy-002")
+                 (100 kill "crescent-lurkerpuppy-003")
+                 (100 kill "crescent-lurkerpuppy-004")
+                 (100 kill "crescent-lurkerpuppy-005")
+                 (100 display-level crescent-t display-self)
+                 (100 send-event self start)
+                 (100 save))))
      (set! (-> self draw origin-joint-index) (the uint 3)))
     (('ndi)
      (set! (-> *time-of-day-context* title-light-group dir1 levels x) 1.0)
@@ -696,7 +661,7 @@
 
 (defstate target-title-wait (target)
   :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (event
       (case message
         (('play) (go target-title-play))
         (('reset) (deactivate (-> self manipy 0)))

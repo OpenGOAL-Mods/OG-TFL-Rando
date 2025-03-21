@@ -850,9 +850,9 @@
   :event
     (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
-        (('touch)
+        (('touch 'attack)
          (send-event proc
-                     'attack-or-shove
+                     (if (= message 'touch)'attack-or-shove 'attack)
                      (-> block param 0)
                      (static-attack-info ((mode 'burn) (shove-back (meters 6)) (shove-up (meters 3))))))
         (('trigger) (set! (-> self activated) 0))

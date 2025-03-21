@@ -48,14 +48,14 @@
     "logo-black-ag",
     "logo-cam-ag",
     "logo-volumes-ag",
-    "ndi-ag",
+    // "ndi-ag", // removed because of merc replacement setup
     "ndi-cam-ag",
     "ndi-volumes-ag"
   ],
 
   // If you have any custom models in the "custom_assets/jak1/models" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock", "cst-dev-cam"],
+  "custom_models": ["observatory-ring", "observatory-lens", "valley-rock", "cst-dev-cam", "tfl-title-logo"],
 
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
@@ -2451,44 +2451,44 @@
       }
     },
     {
-      "trans": [-66.52, 230.02, 361.3], // translation
-      "etype": "crate", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0.004, -0.734, -0.013, 0.629], // quaternion
-      "bsphere": [-66.52, 230.02, 361.3, 10], // bounding sphere
+      "trans": [-66.52, 229.91, 361.30],
+      "etype": "crate",
+      "game_task": 0,
+      "quat" : [-0.025, -0.735, 0.011, 0.626],
+      "bsphere": [-66.52, 229.91, 361.30, 10],
       "lump": {
         "name": "crescent-crate-wood-07",
         "crate-type": "'wood"
       }
     },
     {
-      "trans": [-66.92, 230.01, 363.9], // translation
-      "etype": "crate", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0.004, -0.734, -0.013, 0.629], // quaternion
-      "bsphere": [-66.92, 230.01, 363.9, 10], // bounding sphere
+      "trans": [-66.93, 229.84, 363.90],
+      "etype": "crate",
+      "game_task": 0,
+      "quat" : [0.020, -0.744, -0.016, 0.616],
+      "bsphere": [-66.93, 229.84, 363.90, 10],
       "lump": {
         "name": "crescent-crate-wood-08",
         "crate-type": "'wood"
       }
     },
     {
-      "trans": [-63.8, 230.02, 361.72], // translation
-      "etype": "crate", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0.004, -0.734, -0.013, 0.629], // quaternion
-      "bsphere": [-63.8, 230.02, 361.72, 10], // bounding sphere
+      "trans": [-63.80, 229.82, 361.72],
+      "etype": "crate",
+      "game_task": 0,
+      "quat" : [-0.027, -0.723, 0.005, 0.640],
+      "bsphere": [-63.80, 229.82, 361.72, 10],
       "lump": {
         "name": "crescent-crate-wood-09",
         "crate-type": "'wood"
       }
     },
     {
-      "trans": [-64.2, 230.0, 364.33], // translation
-      "etype": "crate", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0.004, -0.734, -0.013, 0.629], // quaternion
-      "bsphere": [-64.2, 230.0, 364.33, 10], // bounding sphere
+      "trans": [-64.21, 229.90, 364.32],
+      "etype": "crate",
+      "game_task": 0,
+      "quat" : [0.011, -0.738, -0.019, 0.624],
+      "bsphere": [-64.21, 229.90, 364.32, 10],
       "lump": {
         "name": "crescent-crate-wood-10",
         "crate-type": "'wood"
@@ -6042,21 +6042,21 @@
     },
     // Title screen
     {
-      "trans": [60.2279, 244.954, 435.654],
+      "trans": [47.76, -191.56, 325.28],
       "etype": "camera-start",
       "game_task": "(game-task none)",
       "quat" : [0, 0, 0, 1],
-      "bsphere": [60.2279, 244.954, 435.654, 10],
+      "bsphere": [47.76, -191.56, 325.28, 10],
       "lump": {
         "name": "camera-start-55"
       }
     },
     {
-      "trans": [60.2279, -200.0, 435.654], // "trans": [60.2279, 244.954, 435.654],
+      "trans": [47.76, -191.56, 325.28], // "trans": [60.2279, 244.954, 435.654],
       "etype": "tfl-logo",
       "game_task": "(game-task none)",
       "quat" : [0, 0, 0.707, -0.707],
-      "bsphere": [60.2279, 244.954, 435.654, 10],
+      "bsphere": [47.76, -191.56, 325.28, 10],
       "lump": {
         "name": "tfl-logo-1"
       }
@@ -6700,6 +6700,17 @@
       "lump": {
         "name": "crescent-commentary-kui-lavachallenge",
         "filename": "kui-lavachallenge.mp3"
+      }
+    },
+    {
+      "trans": [115.73, 270.67, 396.43],
+      "etype": "tfl-commentary-node",
+      "game_task": 0,
+      "quat" : [0.000, 0.000, -0.000, 1.000],
+      "bsphere": [115.73, 270.67, 396.43, 10],
+      "lump": {
+        "name": "crescent-commentary-pex-crescenttop",
+        "filename": "pex-crescenttop.mp3"
       }
     },
     {

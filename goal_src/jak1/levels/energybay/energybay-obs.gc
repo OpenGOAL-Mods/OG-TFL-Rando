@@ -277,11 +277,35 @@
             ((= task (game-task energy-bay-turbine1))
              (process-spawn pov-camera (static-vectorm 859 220 691) *village2cam-sg* "elevator-at-bottom-going-up" 5 #f '() :to self))
             ((and hints? (= task (game-task energy-bay-turbine2)))
-             (process-spawn pov-camera (static-vectorm 550 17 747) *village-cam-sg* "vi3-button-cam" 5 #f '() :to self))
+             (process-spawn pov-camera 
+                            (static-vectorm 550 17 747)
+                            *village-cam-sg*
+                            "vi3-button-cam"
+                            5
+                            #f
+                            '((80 send-event "energy-bay-iris-door-02" trigger)) 
+                            :to 
+                            self))
             ((and hints? (= task (game-task energy-bay-turbine3)))
-             (process-spawn pov-camera (static-vectorm 878 17 858) *village-cam-sg* "vi2-button-cam" 5 #f '() :to self))
+             (process-spawn pov-camera 
+                            (static-vectorm 878 17 858)
+                            *village-cam-sg*
+                            "vi2-button-cam"
+                            5
+                            #f
+                            '((90 send-event "energy-bay-iris-door-04" trigger)) 
+                            :to 
+                            self))
             ((and hints? (= task (game-task energy-bay-turbine4)))
-             (process-spawn pov-camera (static-vectorm 455 55 715) *village1cam-sg* "anim" 5 #f '() :to self))))
+             (process-spawn pov-camera 
+                            (static-vectorm 455 55 715)
+                            *village1cam-sg*
+                            "anim"
+                            5
+                            #f
+                            '((65 send-event "energy-bay-iris-door-01" trigger)) 
+                            :to 
+                            self))))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0))
       (suspend-for (seconds 0.5))
       (process-entity-status! self (entity-perm-status complete) #t)
