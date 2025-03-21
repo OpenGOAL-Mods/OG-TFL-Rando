@@ -198,7 +198,7 @@
     //   }
     // },
     {
-      "trans": [722.78, 15, 836.12], // translation // TFL TODO: move this
+      "trans": [722.78, 15, 836.12], // translation 
       "etype": "balloon-fuelcell", // actor type
       "game_task": 132, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
