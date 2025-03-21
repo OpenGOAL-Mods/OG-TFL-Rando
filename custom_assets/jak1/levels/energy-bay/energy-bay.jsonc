@@ -135,7 +135,7 @@
       "bsphere": [863.67, 112.84, 930.24, 10], // bounding sphere
       "lump": {
         "name": "energy-bay-turbineblade-03",
-        "movie-pos": ["vector4m", [859.96, 72.318, 919.67, 4.24]]
+        "movie-pos": ["movie-pos", [859.96, 72.318, 919.67, 140.0]]
       }
     },
     {
