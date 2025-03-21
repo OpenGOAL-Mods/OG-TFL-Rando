@@ -18301,6 +18301,31 @@
           "speaker": "KEIRA"
         }
       ]
+    },
+    "open-mines-tfl-hint-08-SamosDark.wav": {
+      "id": "b22",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "SAMOS"
+        },
+        {
+          "clear": false,
+          "frame_start": 1070,
+          "speaker": "SAMOS"
+        }
+      ]
+    },
+    "valley-tfl-hint-06-DaxterGem.wav": {
+      "id": "b29",
+      "lines": [
+        {
+          "clear": false,
+          "frame_start": 0,
+          "speaker": "DAXTER"
+        }
+      ]
     }
   }
 }

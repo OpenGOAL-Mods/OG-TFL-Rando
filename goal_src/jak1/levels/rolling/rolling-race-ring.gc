@@ -20,7 +20,6 @@
    race-ring-idle
    race-ring-wait))
 
-
 (defpartgroup group-rolling-ring
   :id 457
   :linger-duration (seconds 0)
@@ -948,8 +947,7 @@
 
 (deftype tfl-race-ring (race-ring) ())
 
-(defmethod init-from-entity! tfl-race-ring
-  ((this tfl-race-ring) (entity entity-actor))
+(defmethod init-from-entity! ((this tfl-race-ring) (entity entity-actor))
   (if (not (entity-actor-lookup entity 'next-actor 0)) (stack-size-set! (-> this main-thread) 512))
   (set! (-> this root) (new 'process 'trsqv))
   (process-drawable-from-entity! this entity)

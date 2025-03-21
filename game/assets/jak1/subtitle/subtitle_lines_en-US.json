@@ -3800,7 +3800,11 @@
       "RED ECO TIME, BABY! LET IT ON, JAK!"
     ],
     "valley-tfl-hint-06-DaxterGem.wav": [
-      "QUICK, JAK, BREAK THAT GEM!"
+      "HURRY, JAK, BREAK THE STONE!"
+    ],
+    "open-mines-tfl-hint-08-SamosDark.wav": [
+      "THIS AMOUNT OF DARK ECO IS NOT NATURAL, JAK.",
+      "SOMETHING VERY STRANGE HAPPENED IN THAT MINE."
     ]
   },
   "speakers": {
