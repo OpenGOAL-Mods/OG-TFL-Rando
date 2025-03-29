@@ -1010,14 +1010,27 @@ examples:
                                 (start music 5.0)
                                 (start sfx 5.0)
                                 (start dialog 5.0)
-                                ((seconds 1.5) reset-actor valley-robber-01 game)
-                                (end release))
-                               :run-on-end
-                               (lambda ()
-                                 (define-extern robber-dead (state process))
-                                 (aif (process-by-ename "valley-robber-01") (go-process it robber-dead))
-                                 (if (not (task-complete? *game-info* (game-task valley-kill)))
-                                   (close-specific-task! (game-task valley-kill) (task-status need-resolution)))))
+                                ((seconds 0.5) manipy-spawn 0 *robber-sg* (static-vectorm 1067 45 1977))
+                                ((seconds 1.0)
+                                 manipy-event
+                                 0
+                                 trans-hook
+                                 (,(lambda :behavior manipy ()
+                                    (define-extern *robber-shadow-control* shadow-control)
+                                    (let ((timer (- (current-time) (-> (the tfl-commentary-node (ppointer->process (-> self parent))) play-time))))
+                                      (cond
+                                        ((= timer (seconds 1.5)) (set! (-> self draw shadow-ctrl) *robber-shadow-control*))
+                                        ((and (> timer (seconds 1.5)) (< timer (seconds 8.0)))
+                                         (vector-seek! (-> self root trans) (static-vectorm 1067 29 1977) (meters (* 6.0 (seconds-per-frame)))))
+                                        ((and (> timer (seconds 18.0)) (< timer (seconds 22.0)))
+                                         (vector-seek! (-> self root trans) (static-vectorm 1067 43 1977) (meters (* 8.0 (seconds-per-frame)))))
+                                        ((and (> timer (seconds 24.0)) (< timer (seconds 28.0)))
+                                         (vector-seek! (-> self root trans) (static-vectorm 1066 43 1992) (meters (* 8.0 (seconds-per-frame)))))
+                                        ((and (> timer (seconds 30.0)) (< timer (seconds 34.0)))
+                                         (vector-seek! (-> self root trans) (static-vectorm 1060 43 1967) (meters (* 8.0 (seconds-per-frame)))))))
+                                    (quaternion-rotate-y! (-> self root quat) (-> self root quat) (degrees (* 20.0 (seconds-per-frame)))))))
+                                (end kill manipy 0)
+                                (end release)))
        (static-commentary-data :file-name "pex-taigavalley.mp3"
                                :dev-name
                                pex
