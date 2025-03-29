@@ -1290,9 +1290,10 @@
         (mark-text-as-seen *game-info* (text-id mines-ambush-super-yellow-hint))
         (process-spawn-function process
           (lambda :behavior process ()
-            (until (search-process-tree *active-pool*
-                                        (lambda ((p process))
-                                          (let ((as-yellow (the tfl-yellow-shot p))) (and (= (-> as-yellow type) tfl-yellow-shot) (-> as-yellow fully-charged?)))))
+            (until (or (logtest? (-> (entity-by-name "open-mines-battlecontroller-01") extra perm status) (entity-perm-status complete))
+                       (search-process-tree *active-pool*
+                                            (lambda ((p process))
+                                              (let ((as-yellow (the tfl-yellow-shot p))) (and (= (-> as-yellow type) tfl-yellow-shot) (-> as-yellow fully-charged?))))))
               (let ((fnt (new 'stack
                               'font-context
                               *font-default-matrix*
