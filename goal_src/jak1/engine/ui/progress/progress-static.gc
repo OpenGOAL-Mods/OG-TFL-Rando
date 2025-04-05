@@ -319,6 +319,8 @@
        (level-task-data-index valley) ;; Open Mines ;28
        ))
 
+;; maps goal language ID to its name string ID
+(define *language-name-remap*
   (new 'static
        'boxed-array
        :type

@@ -183,7 +183,13 @@
    (unknown-soundid01         sound-id :offset 18988)
    (unknown-int34             int32 :offset 18992)
    (unknown-int35             int32 :offset 18996)
-   (unknown-int36             int32 :offset 19000)))
+   (unknown-int36             int32 :offset 19000)
+   ;; TFL note: added
+   (super-yellow-charge-time            time-frame)
+   (super-yellow-scatter-last-fire-time time-frame)
+   (super-yellow-scatter-count          int32)
+   (super-yellow-charge-loop            symbol)
+   (super-yellow-fp-last-fire-time      time-frame)))
 
 (defmethod update! ((this collide-history) (cshape collide-shape-moving) (xs vector) (transv vector) (transv-out vector))
   "Update the collide-history element."
