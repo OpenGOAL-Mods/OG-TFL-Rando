@@ -4,6 +4,7 @@
 
 #include "goalc/build_actor/common/animation_processing.h"
 #include "goalc/build_actor/common/art_types.h"
+#include "goalc/build_actor/common/build_actor.h"
 #include "goalc/build_level/collide/common/collide_common.h"
 
 namespace jak1 {
@@ -12,22 +13,6 @@ namespace jak1 {
 // development, joint animations were stored separately per joint. However, all joint animations use
 // the "compressed" format, which combines data for all joints into a single structure.
 // By jak 2, they had cleaned this up, but for Jak 1, we have to deal with this weirdness.
-
-struct Joint {
-  std::string name;
-  s32 number;
-  int parent;
-  math::Matrix4f bind_pose{};
-
-  Joint(const std::string& name, int number, int parent, math::Matrix4f bind_pose) {
-    this->name = name;
-    this->number = number;
-    this->parent = parent;
-    this->bind_pose = bind_pose;
-  }
-
-  size_t generate(DataObjectGenerator& gen) const;
-};
 
 // basic
 // This is one of those weird leftover types.
@@ -227,7 +212,7 @@ struct ArtGroup : Art {
   FileInfo info;
   std::vector<std::shared_ptr<ArtElement>> elts;
   std::map<int, size_t> joint_map;
-  tfrag3::MercModel* model;
+  int merc_effect_count;
 
   explicit ArtGroup(const std::string& file_name) {
     info.file_type = "art-group";

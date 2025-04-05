@@ -11,7 +11,7 @@
 
 (defconstant HUD_ICON_COUNT 6)
 
-(defconstant HUD_PART_PC_AMOUNT 2)
+(defconstant HUD_PART_PC_AMOUNT 2) ;; TFL note: increased from 1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; hud processes and parts
@@ -45,6 +45,7 @@
    (kill-all-icons (_type_) int)
    (update-display-status (_type_ symbol entity int symbol) int)))
 
+;; TFL note: added
 (deftype hud-bike-red-boost (hud-pc)
   ((kicked? symbol)
    (ready?  symbol)))
@@ -60,7 +61,7 @@
 ;;;----------------------------------------------
 
 ;; all of the pc hud elements
-(define *hud-parts-pc* (new 'static 'hud-parts-pc :battle-enemy #f :bike-red-boost #f))
+(define *hud-parts-pc* (new 'static 'hud-parts-pc :battle-enemy #f :bike-red-boost #f)) ;; TFL note: added bike-red-boost
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;  hud macros
@@ -533,6 +534,7 @@
   (deactivate-hud-pc)
   (set! (-> *hud-parts-pc* battle-enemy)
         (process-spawn hud-battle-enemy :init hud-init-by-other 0 :from *pc-dead-pool* :to tree))
+  ;; TFL note: added bike-red-boost
   (set! (-> *hud-parts-pc* bike-red-boost)
         (process-spawn hud-bike-red-boost :init hud-init-by-other 0 :from *pc-dead-pool* :to tree))
   0)

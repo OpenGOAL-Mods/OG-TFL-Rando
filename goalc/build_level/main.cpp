@@ -63,10 +63,10 @@ int main(int argc, char** argv) {
       jak1::run_build_level(input_json, output_file, "jak1/", gen_fr3);
       break;
     case GameVersion::Jak2:
-      jak2::run_build_level(input_json, output_file, "jak2/");
+      jak2::run_build_level(input_json, output_file, "jak2/", gen_fr3);
       break;
     case GameVersion::Jak3:
-      jak3::run_build_level(input_json, output_file, "jak3/");
+      jak3::run_build_level(input_json, output_file, "jak3/", gen_fr3);
       break;
     default:
       ASSERT_NOT_REACHED_MSG("unsupported game version");

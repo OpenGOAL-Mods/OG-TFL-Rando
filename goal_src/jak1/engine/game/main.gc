@@ -349,7 +349,7 @@
 (defbehavior display-loop process ()
   "the main 'display loop' in GOAL. v-sync is done in this function, so all frames start and end here."
   ;; increase our stack size.
-  (stack-size-set! (-> self main-thread) 1024)
+  (stack-size-set! (-> self main-thread) 1024) ;; TFL note: increased
   (let ((disp *display*))
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Pre loop initialization

@@ -93,33 +93,33 @@
 ;; These are stored in level-info.gc which is always loaded, so this should have all the information required
 ;; to do a level load.
 (deftype level-load-info (basic)
-  ((name-list           symbol 3 :offset-assert 4)
-   (index               int32 :offset-assert 16) ;; the level number (starting with 1?)
-   (name                symbol :offset 4) ;; symbol with full name, like "misty"
-   (visname             symbol :offset 8) ;; symbol with vis file name, like "misty-vis"
-   (nickname            symbol :offset 12) ;; 3 letter name for DGO, like "mis"
-   (packages            pair :offset-assert 20) ;; list of symbols, usually empty or the level name
-   (sound-banks         pair :offset-assert 24) ;; require sound bank files (list of symbols)
-   (music-bank          symbol :offset-assert 28) ;; name of level music
-   (ambient-sounds      pair :offset-assert 32) ;; always empty list.
-   (mood                symbol :offset-assert 36) ;; mood object name
-   (mood-func           symbol :offset-assert 40) ;; mood update function name
-   (ocean               symbol :offset-assert 44) ;; ocean map object
-   (sky                 symbol :offset-assert 48) ;; boolean to enable sky
-   (sun-fade            float :offset-assert 52) ;; sun/sky setting
-   (continues           pair :offset-assert 56) ;; list of checkpoints
-   (tasks               pair :offset-assert 60) ;; list of boxed integers for tasks
-   (priority            int32 :offset-assert 64) ;; either 100 or 200
-   (load-commands       pair :offset-assert 68) ;; ??
-   (alt-load-commands   pair :offset-assert 72) ;; ??
-   (bsp-mask            uint64 :offset-assert 80) ;; ?? unused
-   (bsphere             sphere :offset-assert 88) ;; boundings sphere of level?
-   (buzzer              int32 :offset-assert 92) ;; which task is the scout fly?
-   (bottom-height       meters :offset-assert 96)
-   (run-packages        pair :offset-assert 100) ;; possibly unused?
-   (prev-level          basic :offset-assert 104) ;; unused
-   (next-level          basic :offset-assert 108) ;; unused
-   (wait-for-load       symbol :offset-assert 112)
+  ((name-list         symbol 3)
+   (index             int32) ;; the level number (starting with 1?)
+   (name              symbol :overlay-at (-> name-list 0))
+   (visname           symbol :overlay-at (-> name-list 1))
+   (nickname          symbol :overlay-at (-> name-list 2))
+   (packages          pair)
+   (sound-banks       pair)
+   (music-bank        symbol)
+   (ambient-sounds    pair)
+   (mood              symbol)
+   (mood-func         symbol)
+   (ocean             symbol)
+   (sky               symbol)
+   (sun-fade          float)
+   (continues         pair)
+   (tasks             pair)
+   (priority          int32)
+   (load-commands     pair)
+   (alt-load-commands pair)
+   (bsp-mask          uint64)
+   (bsphere           sphere)
+   (buzzer            int32)
+   (bottom-height     meters)
+   (run-packages      pair)
+   (prev-level        basic)
+   (next-level        basic)
+   (wait-for-load     symbol)
    (customname          string) ;; TFL note: Added these 3 types for custom name in portal, orb count and buzzer count in custom levels
    (custom-orb-count    int)
    (custom-buzzer-count int)))

@@ -6,8 +6,6 @@
 #include "decompiler/level_extractor/BspHeader.h"
 #include "decompiler/level_extractor/extract_collide_frags.h"
 #include "decompiler/level_extractor/extract_level.h"
-#include "decompiler/level_extractor/BspHeader.h"
-#include "decompiler/level_extractor/extract_level.h"
 #include "decompiler/level_extractor/extract_merc.h"
 #include "goalc/build_level/collide/jak1/collide_bvh.h"
 #include "goalc/build_level/collide/jak1/collide_pack.h"
@@ -339,7 +337,7 @@ bool run_build_level(const std::string& input_file,
   // Save the PC level
   if (gen_fr3) {
     save_pc_data(file.name, pc_level,
-               file_util::get_jak_project_dir() / "out" / output_prefix / "fr3");
+                 file_util::get_jak_project_dir() / "out" / output_prefix / "fr3");
   }
 
   return true;
