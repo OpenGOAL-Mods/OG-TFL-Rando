@@ -17,7 +17,6 @@
   "orb-cache-top-ag.go"
   "sun-iris-door-ag.go"
   "shortcut-boulder-ag.go"
-  "dark-crystal-ag.go"
   "balloonlurker-ag.go"
   "race-ring-ag.go"
   "lurkerworm-ag.go"
