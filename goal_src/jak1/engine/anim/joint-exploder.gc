@@ -45,8 +45,10 @@
   ((joint-index        int16)
    (parent-joint-index int16)))
 
+
 (deftype joint-exploder-static-params (basic)
   ((joints (array joint-exploder-static-joint-params))))
+
 
 (deftype joint-exploder-joint (structure)
   ((next        int16)

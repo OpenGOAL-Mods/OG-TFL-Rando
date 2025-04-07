@@ -59,7 +59,6 @@
   "caveelevator-ag.go"
   "mayorgears-ag.go"
   "trainingcam-ag.go"
-  "dark-crystal-ag.go"
   "citb-generator-ag.go"
   "lurkerm-piston-ag.go"
   "citb-disc-ag.go"

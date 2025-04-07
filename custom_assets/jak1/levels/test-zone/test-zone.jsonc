@@ -60,6 +60,7 @@
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Note: You will still have to add them to your level's .gd file.
+  // "art_groups": ["plat-ag"],
   "art_groups": ["babak-ag", "plat-ag", "plat-eco-ag"],
 
   // If you have any custom models in the "custom_assets/jak1/models/custom_levels" folder that you want to use in your level, add them to this list.
@@ -69,12 +70,8 @@
   // Any textures you want to include in your custom level. This is mainly useful for things such as the zoomer HUD,
   // sky textures and cases where you want to use objects drawn with the generic renderer,
   // which also requires you to set a texture remap table and a list of tpages.
-  // sky textures and cases where you want to use objects drawn with the generic renderer,
-  // which also requires you to set a texture remap table and a list of tpages.
   // To get a list of all the textures, you can extract all of the game's textures
   // by setting "save_texture_pngs" to true in the decompiler config.
-  // The format is ["tpage-name", "texture-name1", "texture-name2", ...].
-  // If you want all textures from a tpage, you can just do ["tpage-name"].
   // The format is ["tpage-name", "texture-name1", "texture-name2", ...].
   // If you want all textures from a tpage, you can just do ["tpage-name"].
   "textures": [
@@ -180,7 +177,7 @@
       "trans": [-7.3159, 1.0468, 20.3499],
       "etype": "babak",
       "game_task": 0,
-      "quat": [0, 0, 0, 1],
+      "quat" : [0, 0, 0, 1],
       "bsphere": [-7.3159, 1.0468, 20.3499, 10],
       "lump": {
         "name": "test-babak",
@@ -189,17 +186,15 @@
         "idle-distance": ["meters", 50.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 20.0],
-        "path": [
-          "vector3m", // I am pretty sure game will crash if there is no path for an enemy. So just add one. You can use "path-actor" if you want to use another actor's path.
-          [-7.3159, 1.0468, 20.3499],
-          [-2.3607, 1.0468, 12.8255],
-          [-9.7266, 1.0468, 14.4445],
-          [-7.3159, 1.0468, 20.3499]
-        ],
-        "nav-mesh-sphere": [
-          "vector4m", // You can define spheres that will be added to the navmesh of the enemy. Enemies of the navmesh will avoid these spheres - like they avoid each other.
+        "path": ["vector3m", // I am pretty sure game will crash if there is no path for an enemy. So just add one. You can use "path-actor" if you want to use another actor's path.
+            [-7.3159, 1.0468, 20.3499],
+            [-2.3607, 1.0468, 12.8255],
+            [-9.7266, 1.0468, 14.4445],
+            [-7.3159, 1.0468, 20.3499]
+          ],
+        "nav-mesh-sphere": ["vector4m", // You can define spheres that will be added to the navmesh of the enemy. Enemies of the navmesh will avoid these spheres - like they avoid each other.
           [-5.3159, 1.0468, 16.3499, 1.0]
-        ]
+          ]
       }
     },
     {
@@ -221,8 +216,7 @@
       "bsphere": [0.0, 50.0, 10.0, 10],
       "lump": {
         "name": "linear-plat-0",
-        "path": [
-          "vector4m",
+        "path": ["vector4m",
           [0.0, 50.0, 10.0, 1.0],
           [0.0, 50.0, 10.0, 1.0],
           [0.0, 60.0, 10.0, 1.0],
@@ -230,9 +224,8 @@
           [0.0, 50.0, 10.0, 1.0],
           [0.0, 60.0, 10.0, 1.0],
           [0.0, 50.0, 10.0, 1.0]
-        ],
-        "timings": [
-          "float",
+          ],
+        "timings": ["float",
           0.0, // offset before starting
           2.0, // down to up (out)
           2.0, // up to down (out)
@@ -240,7 +233,7 @@
           2.0, // down to up (back)
           2.0, // up to down (back)
           0.0 // immediately start back up
-        ],
+          ],
         "sync": ["float", 14, 0.0]
       }
     },
@@ -253,8 +246,7 @@
       "bsphere": [0.0, 50.0, 17.0, 10],
       "lump": {
         "name": "linear-plat-1",
-        "path": [
-          "vector4m",
+        "path": ["vector4m",
           [0.0, 50.0, 17.0, 1.0],
           [0.0, 50.0, 17.0, 1.0],
           [0.0, 60.0, 17.0, 1.0],
@@ -263,8 +255,7 @@
           [0.0, 60.0, 17.0, 1.0],
           [0.0, 50.0, 17.0, 1.0]
         ],
-        "timings": [
-          "float",
+        "timings": ["float",
           1.0, // offset before starting
           2.0, // down to up (out)
           2.0, // up to down (out)
@@ -272,7 +263,7 @@
           2.0, // down to up (back)
           2.0, // up to down (back)
           1.0 // immediately start back up
-        ],
+          ],
         "sync": ["float", 14, 0.0]
       }
     },
@@ -285,8 +276,7 @@
       "bsphere": [0.0, 50.0, 24.0, 10],
       "lump": {
         "name": "linear-plat-2",
-        "path": [
-          "vector4m",
+        "path": ["vector4m",
           [0.0, 50.0, 24.0, 1.0],
           [0.0, 50.0, 24.0, 1.0],
           [0.0, 60.0, 24.0, 1.0],
@@ -294,9 +284,8 @@
           [0.0, 50.0, 24.0, 1.0],
           [0.0, 60.0, 24.0, 1.0],
           [0.0, 50.0, 24.0, 1.0]
-        ],
-        "timings": [
-          "float",
+          ],
+        "timings": ["float",
           2.0, // offset before starting
           2.0, // down to up (out)
           2.0, // up to down (out)
@@ -304,7 +293,7 @@
           2.0, // down to up (back)
           2.0, // up to down (back)
           2.0 // immediately start back up
-        ],
+          ],
         "sync": ["float", 14, 0.0]
       }
     },
@@ -317,8 +306,7 @@
       "bsphere": [0.0, 50.0, 31.0, 10],
       "lump": {
         "name": "linear-plat-3",
-        "path": [
-          "vector4m",
+        "path": ["vector4m",
           [0.0, 50.0, 31.0, 1.0],
           [0.0, 50.0, 31.0, 1.0],
           [0.0, 60.0, 31.0, 1.0],
@@ -327,8 +315,7 @@
           [0.0, 60.0, 31.0, 1.0],
           [0.0, 50.0, 31.0, 1.0]
         ],
-        "timings": [
-          "float",
+        "timings": ["float",
           3.0, // offset before starting
           2.0, // down to up (out)
           2.0, // up to down (out)
@@ -336,9 +323,10 @@
           2.0, // down to up (back)
           2.0, // up to down (back)
           0.0 // immediately start back up
-        ],
+          ],
         "sync": ["float", 14, 0.0]
       }
     }
+
   ]
 }

@@ -57,7 +57,6 @@
     "cavecrusher-ag",
     "caveelevator-ag",
     "bonelurker-ag",
-    "dark-crystal-ag",
     "silostep-ag",
     "citb-generator-ag",
     "lurkerm-piston-ag",
@@ -236,7 +235,6 @@
       "bsphere": [-521.41, 134.78, 1219.1, 10],
       "lump": {
         "name": "open-mines-quicksandlurker-01",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 45.0],
         "idle-distance": ["meters", 55.0],
         "cam-vert": ["meters", 8.0],
@@ -266,7 +264,6 @@
       "bsphere": [-481.3, 144.07, 1229.1, 10],
       "lump": {
         "name": "open-mines-quicksandlurker-02",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 45.0],
         "idle-distance": ["meters", 55.0],
         "cam-vert": ["meters", 8.0],
@@ -285,7 +282,8 @@
         "spit-predict": ["float", 0.75],
         "projectile-speed": ["meters", 13.0],
         "projectile-rand": ["float", 0.3],
-        "custom-nav": ["symbol", "mines-quicksandlurker-02"]
+        "custom-nav": ["symbol", "mines-quicksandlurker-02"],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -296,7 +294,6 @@
       "bsphere": [-387.13, 137.39, 1140.5, 10],
       "lump": {
         "name": "open-mines-quicksandlurker-03",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 45.0],
         "idle-distance": ["meters", 55.0],
         "cam-vert": ["meters", 8.0],
@@ -315,7 +312,8 @@
         "spit-predict": ["float", 1.0],
         "projectile-speed": ["meters", 13.0],
         "projectile-rand": ["float", 0.5],
-        "custom-nav": ["symbol", "mines-quicksandlurker-03"]
+        "custom-nav": ["symbol", "mines-quicksandlurker-03"],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -326,7 +324,6 @@
       "bsphere": [-409.19, 138.62, 1253.3, 10],
       "lump": {
         "name": "open-mines-swamp-rat-01",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
@@ -338,7 +335,8 @@
           [-405.04, 138.43, 1252.2]
         ],
         "custom-nav": ["symbol", "mines-swamp-rat"],
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -349,14 +347,14 @@
       "bsphere": [-416.76, 138.84, 1255.9, 10],
       "lump": {
         "name": "open-mines-swamp-rat-02",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-swamp-rat-01",
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -367,14 +365,14 @@
       "bsphere": [-414.44, 138.02, 1244.7, 10],
       "lump": {
         "name": "open-mines-swamp-rat-03",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-swamp-rat-01",
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -385,7 +383,6 @@
       "bsphere": [-401.11, 132.99, 1281.8, 10],
       "lump": {
         "name": "open-mines-swamp-rat-04",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
@@ -397,7 +394,8 @@
           [-419.99, 135.97, 1270.2]
         ],
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -408,14 +406,14 @@
       "bsphere": [-416.11, 135.43, 1272.1, 10],
       "lump": {
         "name": "open-mines-swamp-rat-05",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-swamp-rat-04",
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -426,7 +424,6 @@
       "bsphere": [-367.83, 131.76, 1270.1, 10],
       "lump": {
         "name": "open-mines-swamp-rat-06",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
@@ -438,7 +435,8 @@
           [-366.79, 131.3, 1255.3]
         ],
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -449,14 +447,14 @@
       "bsphere": [-367.65, 131.41, 1255.9, 10],
       "lump": {
         "name": "open-mines-swamp-rat-07",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-swamp-rat-06",
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -467,14 +465,14 @@
       "bsphere": [-384.14, 130.2, 1249.2, 10],
       "lump": {
         "name": "open-mines-swamp-rat-08",
-        "vis-dist": ["meters", 200.0],
         "cam-notice-dist": ["meters", 15.0],
         "idle-distance": ["meters", 60.0],
         "cam-vert": ["meters", 8.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-swamp-rat-06",
         "nav-mesh-actor": "open-mines-swamp-rat-01",
-        "scale": ["float", 0.6]
+        "scale": ["float", 0.6],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -570,7 +568,8 @@
           [-0.048, -0.989, -0.136, -278.813],
           [-0.016, 0.999, -0.046, 93.896],
           [0.73, 0.0, 0.684, 563.955]
-        ]
+        ],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -666,7 +665,8 @@
           [-0.048, -0.989, -0.136, -278.813],
           [-0.016, 0.999, -0.046, 93.896],
           [0.73, 0.0, 0.684, 563.955]
-        ]
+        ],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -700,7 +700,8 @@
           [-379.51, 135.35, 1063.98, 3.8],
           [-373.43, 134.16, 1076.19, 4.2],
           [-385.66, 132.79, 1111.54, 5.2]
-        ]
+        ],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -716,7 +717,8 @@
         "cam-vert": ["meters", 5.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-babak-01",
-        "nav-mesh-actor": "open-mines-babak-01"
+        "nav-mesh-actor": "open-mines-babak-01",
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -732,7 +734,8 @@
         "cam-vert": ["meters", 5.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-babak-01",
-        "nav-mesh-actor": "open-mines-babak-01"
+        "nav-mesh-actor": "open-mines-babak-01",
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -755,7 +758,8 @@
           [-385.13, 176.18, 742.74]
         ],
         "custom-nav": ["symbol", "mines-babak2"],
-        "nav-mesh-sphere": ["vector4m", [-401.88, 175.7, 740.98, 3.5]]
+        "nav-mesh-sphere": ["vector4m", [-401.88, 175.7, 740.98, 3.5]],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -771,7 +775,8 @@
         "cam-vert": ["meters", 5.0],
         "cam-horz": ["meters", 10.0],
         "path-actor": "open-mines-babak-04",
-        "nav-mesh-actor": "open-mines-babak-04"
+        "nav-mesh-actor": "open-mines-babak-04",
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -802,7 +807,8 @@
           [-414.3, 154.11, 931.18, 4.0],
           [-410.21, 154.11, 935.32, 4.0],
           [-407.24, 154.11, 929.26, 6.0]
-        ]
+        ],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -823,7 +829,8 @@
           [-403.78, 147.51, 951.93],
           [-416.31, 149.3, 939.76]
         ],
-        "nav-mesh-actor": "open-mines-babak-06"
+        "nav-mesh-actor": "open-mines-babak-06",
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -843,7 +850,8 @@
         ],
         "driller-lurker": ["float", 0.62, 1.0, 90.0],
         "options": 131072,
-        "stop-light-control": ["symbol", "#t"]
+        "stop-light-control": ["symbol", "#t"],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -864,7 +872,8 @@
         ],
         "driller-lurker": ["float", 0.3, 1.0, -90.0],
         "options": 131072,
-        "stop-light-control": ["symbol", "#t"]
+        "stop-light-control": ["symbol", "#t"],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -886,7 +895,8 @@
         ],
         "driller-lurker": ["float", 0.25, 1.0, 35.0],
         "options": 131072,
-        "stop-light-control": ["symbol", "#t"]
+        "stop-light-control": ["symbol", "#t"],
+        "vis-dist-hack":["meters", 400.0]
       }
     },
 // Actors: CELLS
@@ -3655,11 +3665,11 @@
     },
 // Actors: AMBUSH
     {
-      "trans": [-430.06, 105.06, 1046.6], // translation
+      "trans": [-430.05, 106.56, 1049.4], // translation
       "etype": "pickup-spawner", // actor type
       "game_task": 140, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-430.06, 105.06, 1046.6, 10], // bounding sphere
+      "bsphere": [-430.05, 106.56, 1049.4, 10], // bounding sphere
       "lump": {
         "name": "open-mines-pickup-spawner-01",
         "eco-info": ["int32", 3, 1],
@@ -4162,7 +4172,8 @@
         "name": "open-mines-dark-eco-pool-01",
         "water-height": ["float", 4096.0, 2048.0, 8192.0, 1572868.0], // camera height, ?, wadledept, flags (wt20 19 3)
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4184,7 +4195,8 @@
         ],
         "water-height": ["float", 4096.0, 2048.0, 8192.0, 1572868.0], // camera height, ?, wadledept, flags (wt20 19 3)
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4196,7 +4208,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-03",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4208,7 +4221,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-04",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4220,7 +4234,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-05",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4232,7 +4247,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-06",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4244,7 +4260,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-07",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4265,7 +4282,8 @@
           [0.000, 1.000, -0.000, 120.773]
         ],
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4277,7 +4295,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-09",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4289,7 +4308,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-10",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4301,7 +4321,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-11",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4322,7 +4343,8 @@
           [0.000, 1.000, -0.000, 136.318]
         ],
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4334,7 +4356,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-13",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4346,7 +4369,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-14",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4370,7 +4394,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-16",
         "look": ["int32", 32],
-        "scale": ["float", 1.5, 1.2, 1.5]
+        "scale": ["float", 1.5, 1.2, 1.5],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4382,7 +4407,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-17",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4394,7 +4420,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-18",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4406,7 +4433,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-19",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4418,7 +4446,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-20",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4430,7 +4459,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-21",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4442,7 +4472,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-22",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4464,7 +4495,8 @@
           [0.663, 0.000, 0.748, 656.288]
         ],
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4476,7 +4508,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-24",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4488,7 +4521,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-25",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4500,7 +4534,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-26",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4512,7 +4547,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-27",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4524,7 +4560,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-28",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4536,7 +4573,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-29",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4548,7 +4586,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-30",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4560,7 +4599,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-31",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4572,7 +4612,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-32",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4584,7 +4625,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-33",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4596,7 +4638,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-34",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4608,7 +4651,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-35",
         "look": ["int32", 32],
-        "scale": ["float", 2.2, 1.5, 2.2]
+        "scale": ["float", 2.2, 1.5, 2.2],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4620,7 +4664,8 @@
       "lump": {
         "name": "open-mines-dark-eco-pool-36",
         "look": ["int32", 32],
-        "scale": ["float", 2.6, 1.5, 2.6]
+        "scale": ["float", 2.6, 1.5, 2.6],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4642,7 +4687,6 @@
         "name": "open-mines-mud-01",
         "water-height": ["float", 556154.88, 2048.0, 8192.0, 1310724.0], // camera height, ?, wadledept, flags (wt20 19 3)
         "look": ["int32", 31],
-        "vis-dist": ["meters", 200.0],
         "scale": ["float", 0.865]
       }
     },
@@ -4665,7 +4709,6 @@
         "name": "open-mines-mud-02",
         "water-height": ["float", 593797.12, 2048.0, 8192.0, 1310724.0], // camera height, ?, wadledept, flags (wt20 19 3)
         "look": ["int32", 31],
-        "vis-dist": ["meters", 200.0],
         "scale": ["float", 0.865]
       }
     },
@@ -4688,7 +4731,6 @@
         "name": "open-mines-mud-03",
         "water-height": ["float", 566845.44, 2048.0, 8192.0, 1310724.0], // camera height, ?, wadledept, flags (wt20 19 3)
         "look": ["int32", 28],
-        "vis-dist": ["meters", 200.0],
         "scale": ["float", 0.9]
       }
     },
@@ -4776,7 +4818,8 @@
         "keg-frequency": ["float", 1.0], // Default: 1.0
         "collision-in-chute": ["int32", 0], // Default: 0 (off)
         "jump-before-smush": ["float", 1.0], // height before the smush Default: 1.0
-        "smush-vector": ["float", 0.8] // # of vector before smushing Default: 2.5
+        "smush-vector": ["float", 0.8], // # of vector before smushing Default: 2.5
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4805,7 +4848,8 @@
         "keg-frequency": ["float", 1.0], // Default: 1.0
         "collision-in-chute": ["int32", 0], // Default: 0 (off)
         "jump-before-smush": ["float", 1.0], // height before the smush Default: 1.0
-        "smush-vector": ["float", 0.8] // # of vector before smushing Default: 2.5
+        "smush-vector": ["float", 0.8], // # of vector before smushing Default: 2.5
+        "vis-dist-hack":["meters", 364.0]
       }
     },
     {
@@ -4834,7 +4878,8 @@
         "keg-frequency": ["float", 1.0], // Default: 1.0
         "collision-in-chute": ["int32", 0], // Default: 0 (off)
         "jump-before-smush": ["float", 1.0], // height before the smush Default: 1.0
-        "smush-vector": ["float", 0.8] // # of vector before smushing Default: 2.5
+        "smush-vector": ["float", 0.8], // # of vector before smushing Default: 2.5
+        "vis-dist-hack":["meters", 215.0]
       }
     },
     {
@@ -5420,7 +5465,8 @@
         "name": "open-mines-smokeVent-left-02",
         "art-name": "group-mines-smokeVent-left",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -5446,7 +5492,8 @@
         "name": "open-mines-smokeVent-left-04",
         "art-name": "group-mines-smokeVent-left",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -5498,7 +5545,8 @@
         "name": "open-mines-smokeVent-right-02",
         "art-name": "group-mines-smokeVent-right",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -5511,7 +5559,8 @@
         "name": "open-mines-smokeVent-right-03",
         "art-name": "group-mines-smokeVent-right",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -5537,7 +5586,8 @@
         "name": "open-mines-smokeVent-right-05",
         "art-name": "group-mines-smokeVent-right",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -5550,7 +5600,8 @@
         "name": "open-mines-smokeVent-right-06",
         "art-name": "group-mines-smokeVent-right",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -5574,7 +5625,8 @@
       "bsphere": [-402.33, 148.72, 1235.29, 10],
       "lump": {
         "name": "open-mines-torchlight-01",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5585,7 +5637,8 @@
       "bsphere": [-418.98, 151.87, 1230.07, 10],
       "lump": {
         "name": "open-mines-torchlight-02",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5596,7 +5649,8 @@
       "bsphere": [-416.32, 155.71, 1257.28, 10],
       "lump": {
         "name": "open-mines-torchlight-03",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5607,7 +5661,8 @@
       "bsphere": [-437.35, 152.77, 1289.46, 10],
       "lump": {
         "name": "open-mines-torchlight-04",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5618,7 +5673,8 @@
       "bsphere": [-429.42, 163.69, 1320.46, 10],
       "lump": {
         "name": "open-mines-torchlight-05",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5629,7 +5685,8 @@
       "bsphere": [-392.42, 148.67, 1327.94, 10],
       "lump": {
         "name": "open-mines-torchlight-06",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5640,7 +5697,8 @@
       "bsphere": [-379.66, 134.12, 1335.72, 10],
       "lump": {
         "name": "open-mines-torchlight-07",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5651,7 +5709,8 @@
       "bsphere": [-359.73, 151.17, 1327.06, 10],
       "lump": {
         "name": "open-mines-torchlight-08",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5662,7 +5721,8 @@
       "bsphere": [-359.76, 163.38, 1279.16, 10],
       "lump": {
         "name": "open-mines-torchlight-09",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5673,7 +5733,8 @@
       "bsphere": [-377.07, 150.47, 1251.17, 10],
       "lump": {
         "name": "open-mines-torchlight-10",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5684,7 +5745,8 @@
       "bsphere": [-389.3, 139.01, 1251.17, 10],
       "lump": {
         "name": "open-mines-torchlight-11",
-        "art-name": "group-mines-torchlight"
+        "art-name": "group-mines-torchlight",
+        "vis-dist-hack":["meters", 250.0]
       }
     },
     {
@@ -5695,7 +5757,8 @@
       "bsphere": [-404.82, 154.64, 921.49, 10],
       "lump": {
         "name": "open-mines-truster-01",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5706,7 +5769,8 @@
       "bsphere": [-399.63, 153.84, 927.58, 10],
       "lump": {
         "name": "open-mines-truster-02",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5717,7 +5781,8 @@
       "bsphere": [-410.27, 152.74, 936.53, 10],
       "lump": {
         "name": "open-mines-truster-03",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5728,7 +5793,8 @@
       "bsphere": [-415.47, 153.54, 930.44, 10],
       "lump": {
         "name": "open-mines-truster-04",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5739,7 +5805,8 @@
       "bsphere": [-508.15, 146.82, 968.78, 10],
       "lump": {
         "name": "open-mines-truster-05",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5750,7 +5817,8 @@
       "bsphere": [-513.35, 147.2, 964.56, 10],
       "lump": {
         "name": "open-mines-truster-06",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5761,7 +5829,8 @@
       "bsphere": [-520.63, 144.81, 973.31, 10],
       "lump": {
         "name": "open-mines-truster-07",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5772,7 +5841,8 @@
       "bsphere": [-515.44, 144.43, 977.53, 10],
       "lump": {
         "name": "open-mines-truster-08",
-        "art-name": "group-mines-truster"
+        "art-name": "group-mines-truster",
+        "vis-dist-hack":["meters", 100.0]
       }
     },
 // Actors: HINT

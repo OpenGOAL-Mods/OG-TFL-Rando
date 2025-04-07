@@ -39,7 +39,6 @@
   "lab-door-ag.go"
   "redring-ag.go"
   "snow-ball-ag.go"
-  "dark-crystal-ag.go"
   "robber-ag.go"
   "babak-ag.go"
   "lurkerpuppy-ag.go"

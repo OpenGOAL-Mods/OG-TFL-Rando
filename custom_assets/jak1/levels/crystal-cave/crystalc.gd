@@ -9,7 +9,6 @@
   "villagep-obs.o"
   "crystalc-obs.o"
   "crystalc-part.o"
-  "dark-crystal-ag.go"
   "water-anim-training-ag.go"
   "plat-ag.go"
   "flutflut-plat-med-ag.go"

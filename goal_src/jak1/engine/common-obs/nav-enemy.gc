@@ -8,7 +8,7 @@
 (require "engine/common-obs/nav-enemy-h.gc")
 (declare-type battlecontroller process-drawable)
 
-(define-extern freeze (state nav-enemy))
+(define-extern freeze (state nav-enemy)) ;; TFL note: added
 
 ;; DECOMP BEGINS
 

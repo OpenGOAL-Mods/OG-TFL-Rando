@@ -156,7 +156,8 @@
             [-21.90, 229.97, 366.84, 2.38],
             [73.93, 227.33, 457.06, 7.60],
             [-287.12, 199.16, 799.66, 2.94]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -179,7 +180,8 @@
             [-21.05, 230.08, 344.37],
             [-2.73, 229.86, 359.83]
           ],
-        "nav-mesh-actor": "crescent-babak-001"
+        "nav-mesh-actor": "crescent-babak-001",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -202,7 +204,8 @@
             [43.29, 219.99, 454.39],
             [45.58, 223.39, 432.63]
           ],
-        "nav-mesh-actor": "crescent-babak-001"
+        "nav-mesh-actor": "crescent-babak-001",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -223,7 +226,8 @@
             [-280.57, 198.61, 797.14],
             [-293.32, 198.67, 789.18]
           ],
-        "nav-mesh-actor": "crescent-babak-001"
+        "nav-mesh-actor": "crescent-babak-001",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -244,7 +248,8 @@
             [-38.35, 212.80, 468.25],
             [-35.67, 212.48, 469.97]
           ],
-        "custom-nav": ["symbol", "crescent-babak3"]
+        "custom-nav": ["symbol", "crescent-babak3"],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -265,7 +270,8 @@
             [228.36, 234.91, 367.55],
             [231.26, 236.35, 373.76]
           ],
-        "custom-nav": ["symbol", "crescent-babak4"]
+        "custom-nav": ["symbol", "crescent-babak4"],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -298,7 +304,8 @@
             [70.28, 185.89, 407.36, 4.67],
             [93.67, 187.67, 407.36, 4.67]
           ],
-        "light-index": ["int32", 1]
+        "light-index": ["int32", 1],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -322,7 +329,8 @@
             [133.87, 196.69, 432.58]
           ],
         "nav-mesh-actor":"crescent-babak-007",
-        "light-index": ["int32", 1]
+        "light-index": ["int32", 1],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -353,7 +361,8 @@
             [149.03, 207.00, 437.11, 12.37],
             [148.95, 204.62, 406.34, 14.44],
             [259.89, 221.83, 466.00, 3.87]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -374,7 +383,8 @@
             [259.26, 217.21, 456.04],
             [267.41, 221.25, 460.97],
             [273.50, 225.55, 469.30]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -395,7 +405,8 @@
             [279.06, 227.64, 469.18],
             [286.60, 231.99, 474.78],
             [300.23, 236.84, 472.49]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -420,7 +431,8 @@
         "nav-mesh-sphere": ["vector4m",
             [385.12, 260.52, 712.91, 15.74],
             [442.51, 256.94, 710.75, 10.95]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -444,7 +456,8 @@
         "custom-nav": ["symbol", "crescent-babak8"],
         "nav-mesh-sphere": ["vector4m",
             [48.67, 254.31, 321.16, 16.20]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -465,7 +478,8 @@
             [30.46, 255.77, 304.71],
             [34.09, 255.30, 309.97]
           ],
-        "nav-mesh-actor":"crescent-babak-013"
+        "nav-mesh-actor":"crescent-babak-013",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -486,7 +500,8 @@
             [90.52, 273.46, 297.52],
             [91.07, 272.68, 289.08]
           ],
-        "nav-mesh-actor":"crescent-babak-013"
+        "nav-mesh-actor":"crescent-babak-013",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -528,7 +543,8 @@
             [-293.95, 202.04, 345.62, 3.44],
             [-249.66, 200.91, 299.01, 3.86],
             [-252.09, 200.91, 300.71, 3.63]
-          ]
+          ],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -551,7 +567,8 @@
             [-265.69, 199.40, 380.38],
             [-257.05, 198.94, 378.25]
           ],
-        "nav-mesh-actor":"crescent-lurkerpuppy-001"
+        "nav-mesh-actor":"crescent-lurkerpuppy-001",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -572,7 +589,8 @@
             [-241.67, 198.94, 345.47],
             [-235.46, 198.94, 356.05]
           ],
-        "nav-mesh-actor":"crescent-lurkerpuppy-001"
+        "nav-mesh-actor":"crescent-lurkerpuppy-001",
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -593,7 +611,8 @@
             [-186.50, 220.76, 684.37],
             [-193.83, 220.04, 676.77]
           ],
-        "custom-nav": ["symbol", "crescent-lurkerpuppy2"]
+        "custom-nav": ["symbol", "crescent-lurkerpuppy2"],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -614,7 +633,8 @@
             [108.66, 268.52, 396.72],
             [104.83, 268.37, 390.43]
           ],
-        "custom-nav": ["symbol", "crescent-lurkerpuppy3"]
+        "custom-nav": ["symbol", "crescent-lurkerpuppy3"],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -625,7 +645,8 @@
       "bsphere": [198.79, 231.70, 317.90, 10],
       "lump": {
         "name":"crescent-junglesnake-001",
-        "scale":["float", 0.7]
+        "scale":["float", 0.7],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -636,7 +657,8 @@
       "bsphere": [-37.61, 208.07, 514.26, 10],
       "lump": {
         "name":"crescent-junglesnake-002",
-        "scale":["float", 0.7]
+        "scale":["float", 0.7],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -647,7 +669,8 @@
       "bsphere": [-64.90, 231.08, 326.68, 10],
       "lump": {
         "name":"crescent-junglesnake-003",
-        "scale":["float", 0.7]
+        "scale":["float", 0.7],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -658,7 +681,8 @@
       "bsphere": [-111.08, 231.08, 325.59, 10],
       "lump": {
         "name":"crescent-junglesnake-004",
-        "scale":["float", 0.9]
+        "scale":["float", 0.9],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
 // Actors: CELLS
@@ -4212,7 +4236,8 @@
         "name": "crescent-part-butterfly-01",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4225,7 +4250,8 @@
         "name": "crescent-part-butterfly-02",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4238,7 +4264,8 @@
         "name": "crescent-part-butterfly-03",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4251,7 +4278,8 @@
         "name": "crescent-part-butterfly-04",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4264,7 +4292,8 @@
         "name": "crescent-part-butterfly-05",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4277,7 +4306,8 @@
         "name": "crescent-part-butterfly-06",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4290,7 +4320,8 @@
         "name": "crescent-part-butterfly-07",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4303,7 +4334,8 @@
         "name": "crescent-part-butterfly-08",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4316,7 +4348,8 @@
         "name": "crescent-part-butterfly-09",
         "art-name": "group-crescent-butterflies",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4329,7 +4362,8 @@
         "name": "crescent-part-butterfly-sitting-01",
         "art-name": "group-crescent-butterfly-sitting",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4342,7 +4376,8 @@
         "name": "crescent-part-butterfly-sitting-02",
         "art-name": "group-crescent-butterfly-sitting",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4355,7 +4390,8 @@
         "name": "crescent-part-butterfly-sitting-03",
         "art-name": "group-crescent-butterfly-sitting",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 500.0]
       }
     },
     {
@@ -4420,7 +4456,8 @@
         "name": "crescent-part-downtube-01",
         "art-name": "group-crescent-downtubeA",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 800.0]
       }
     },
     {
@@ -4433,7 +4470,8 @@
         "name": "crescent-part-downtube-02",
         "art-name": "group-crescent-downtubeA",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 800.0]
       }
     },
     {
@@ -4446,7 +4484,8 @@
         "name": "crescent-part-downtube-03",
         "art-name": "group-crescent-downtubeB",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 800.0]
       }
     },
     {
@@ -4459,7 +4498,8 @@
         "name": "crescent-part-downtube-04",
         "art-name": "group-crescent-downtubeC",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 800.0]
       }
     },
     {
@@ -4472,7 +4512,8 @@
         "name": "crescent-part-downtube-05",
         "art-name": "group-crescent-downtubeD",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 800.0]
       }
     },
     {
@@ -4485,7 +4526,8 @@
         "name": "crescent-part-bubbletube-01",
         "art-name": "group-crescent-bubbletube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -4498,7 +4540,8 @@
         "name": "crescent-part-lava-01",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4511,7 +4554,8 @@
         "name": "crescent-part-lava-02",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4524,7 +4568,8 @@
         "name": "crescent-part-lava-03",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4537,7 +4582,8 @@
         "name": "crescent-part-lava-04",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4550,7 +4596,8 @@
         "name": "crescent-part-lava-05",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4563,7 +4610,8 @@
         "name": "crescent-part-lava-06",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4576,7 +4624,8 @@
         "name": "crescent-part-lava-07",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4589,7 +4638,8 @@
         "name": "crescent-part-lava-08",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4602,7 +4652,8 @@
         "name": "crescent-part-lava-09",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4615,7 +4666,8 @@
         "name": "crescent-part-lava-10",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4628,7 +4680,8 @@
         "name": "crescent-part-lava-11",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4641,7 +4694,8 @@
         "name": "crescent-part-lava-12",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4654,7 +4708,8 @@
         "name": "crescent-part-lava-13",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4667,7 +4722,8 @@
         "name": "crescent-part-lava-14",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4680,7 +4736,8 @@
         "name": "crescent-part-lava-15",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4693,7 +4750,8 @@
         "name": "crescent-part-lava-16",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4706,7 +4764,8 @@
         "name": "crescent-part-lava-17",
         "art-name": "group-crescent-lava-20x20",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 200.0]
       }
     },
     {
@@ -4784,7 +4843,8 @@
         "name": "crescent-part-small-heatwave-01",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 700.0]
       }
     },
     {
@@ -4797,7 +4857,8 @@
         "name": "crescent-part-small-heatwave-02",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 700.0]
       }
     },
     {
@@ -4810,7 +4871,8 @@
         "name": "crescent-part-small-heatwave-03",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 700.0]
       }
     },
     {
@@ -4823,7 +4885,8 @@
         "name": "crescent-part-small-heatwave-04",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4836,7 +4899,8 @@
         "name": "crescent-part-small-heatwave-05",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4849,7 +4913,8 @@
         "name": "crescent-part-small-heatwave-06",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4862,7 +4927,8 @@
         "name": "crescent-part-small-heatwave-07",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4875,7 +4941,8 @@
         "name": "crescent-part-small-heatwave-08",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4888,7 +4955,8 @@
         "name": "crescent-part-small-heatwave-09",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4901,7 +4969,8 @@
         "name": "crescent-part-small-heatwave-10",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4914,7 +4983,8 @@
         "name": "crescent-part-small-heatwave-11",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4927,7 +4997,8 @@
         "name": "crescent-part-small-heatwave-12",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4940,7 +5011,8 @@
         "name": "crescent-part-small-heatwave-13",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4953,7 +5025,8 @@
         "name": "crescent-part-small-heatwave-14",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4966,7 +5039,8 @@
         "name": "crescent-part-small-heatwave-15",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4979,7 +5053,8 @@
         "name": "crescent-part-small-heatwave-16",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -4992,7 +5067,8 @@
         "name": "crescent-part-small-heatwave-17",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -5005,7 +5081,8 @@
         "name": "crescent-part-small-heatwave-18",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 600.0]
       }
     },
     {
@@ -5018,7 +5095,8 @@
         "name": "crescent-part-small-heatwave-19",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5031,7 +5109,8 @@
         "name": "crescent-part-small-heatwave-20",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5044,7 +5123,8 @@
         "name": "crescent-part-small-heatwave-21",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5057,7 +5137,8 @@
         "name": "crescent-part-small-heatwave-22",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5070,7 +5151,8 @@
         "name": "crescent-part-small-heatwave-23",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5083,7 +5165,8 @@
         "name": "crescent-part-small-heatwave-24",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5096,7 +5179,8 @@
         "name": "crescent-part-small-heatwave-25",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5109,7 +5193,8 @@
         "name": "crescent-part-small-heatwave-26",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 850.0]
       }
     },
     {
@@ -5122,7 +5207,8 @@
         "name": "crescent-part-small-heatwave-27",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5135,7 +5221,8 @@
         "name": "crescent-part-small-heatwave-28",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5148,7 +5235,8 @@
         "name": "crescent-part-small-heatwave-29",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5161,7 +5249,8 @@
         "name": "crescent-part-small-heatwave-30",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5174,7 +5263,8 @@
         "name": "crescent-part-small-heatwave-31",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5187,7 +5277,8 @@
         "name": "crescent-part-small-heatwave-32",
         "art-name": "group-crescent-small-heatwave",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -5239,7 +5330,8 @@
         "name": "crescent-part-lavatube-01",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5252,7 +5344,8 @@
         "name": "crescent-part-lavatube-02",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5265,7 +5358,8 @@
         "name": "crescent-part-lavatube-03",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5278,7 +5372,8 @@
         "name": "crescent-part-lavatube-04",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5291,7 +5386,8 @@
         "name": "crescent-part-lavatube-05",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5304,7 +5400,8 @@
         "name": "crescent-part-lavatube-06",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5317,7 +5414,8 @@
         "name": "crescent-part-lavatube-07",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5330,7 +5428,8 @@
         "name": "crescent-part-lavatube-08",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5343,7 +5442,8 @@
         "name": "crescent-part-lavatube-09",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5356,7 +5456,8 @@
         "name": "crescent-part-lavatube-10",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5369,7 +5470,8 @@
         "name": "crescent-part-lavatube-11",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5382,7 +5484,8 @@
         "name": "crescent-part-lavatube-12",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5395,7 +5498,8 @@
         "name": "crescent-part-lavatube-13",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5408,7 +5512,8 @@
         "name": "crescent-part-lavatube-14",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5421,7 +5526,8 @@
         "name": "crescent-part-lavatube-15",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5434,7 +5540,8 @@
         "name": "crescent-part-lavatube-16",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5447,7 +5554,8 @@
         "name": "crescent-part-lavatube-17",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {
@@ -5460,7 +5568,8 @@
         "name": "crescent-part-lavatube-18",
         "art-name": "group-crescent-lavatube",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 450.0]
       }
     },
     {

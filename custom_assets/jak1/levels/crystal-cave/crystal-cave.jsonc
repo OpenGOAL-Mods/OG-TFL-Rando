@@ -43,7 +43,6 @@
     "breakaway-left-ag",
     "breakaway-mid-ag",
     "breakaway-right-ag",
-    "dark-crystal-ag",
     "ice-cube-ag",
     "junglefish-ag",
     "baby-spider-ag",
@@ -127,7 +126,8 @@
       "bsphere": [-59.13, 67.35, -115.35, 10], // bounding sphere
       "lump": {
         "name": "crystalc-fuel-cell-02", // river cell
-        "eco-info": ["int32", 6, 118]
+        "eco-info": ["int32", 6, 118],
+        "movie-pos": ["movie-pos", [-59.13, 65.15, -115.35, 140.0]]
       }
     },
     {
@@ -2632,7 +2632,8 @@
         "art-name": "group-crystalc-waterfall-01",
         "effect-param": ["float", 11.0, 40.0, 12.0, 80.0], // ??, ??, ??, ??
         "cycle-speed": ["float", -1.0, 0.0],
-        "vis-dist": ["meters", 200.0]
+        "vis-dist": ["meters", 200.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2646,7 +2647,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2660,7 +2662,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2674,7 +2677,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2688,7 +2692,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2702,7 +2707,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2716,7 +2722,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2730,7 +2737,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2744,7 +2752,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2758,7 +2767,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2772,7 +2782,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2786,7 +2797,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2800,7 +2812,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2814,7 +2827,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2828,7 +2842,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2842,7 +2857,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2856,7 +2872,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2870,7 +2887,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-ground",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2884,7 +2902,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 50.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2898,7 +2917,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0],
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2912,7 +2932,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2926,7 +2947,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2940,7 +2962,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2954,7 +2977,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2968,7 +2992,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2982,7 +3007,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -2996,7 +3022,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3010,7 +3037,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3024,7 +3052,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-big",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3038,7 +3067,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3052,7 +3082,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3066,7 +3097,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3080,7 +3112,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3094,7 +3127,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3108,7 +3142,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3122,7 +3157,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3136,7 +3172,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3150,7 +3187,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3164,7 +3202,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3178,7 +3217,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3192,7 +3232,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-bad-shroom-small",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3206,7 +3247,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-godrays-01",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 280.0]
       }
     },
     {
@@ -3220,7 +3262,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-waterfall-02",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3234,7 +3277,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-waterfall-03",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3248,7 +3292,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-waterfall-03",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3262,7 +3307,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-waterfall-04",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3276,7 +3322,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-waterfall-05",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3290,7 +3337,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-1",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3304,7 +3352,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-2",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3318,7 +3367,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-3",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3332,7 +3382,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-1",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3346,7 +3397,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-2",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3360,7 +3412,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-3",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3374,7 +3427,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-1",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3388,7 +3442,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-1",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3402,7 +3457,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-cavedrip-2",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     } /*  //big crystal rays to redo
     {
@@ -3430,7 +3486,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-precursor-bot",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3444,7 +3501,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-portal-flicker",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3458,7 +3516,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-portal-flicker",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3472,7 +3531,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-truster-right",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3486,7 +3546,8 @@
         "effect-name": "waterfall",
         "art-name": "group-crystalc-truster-left",
         "effect-param": ["float", 10.0, 20.0, 10.0, 10.0], // ??, ??, ??, ??
-        "cycle-speed": ["float", -1.0, 0.0]
+        "cycle-speed": ["float", -1.0, 0.0],
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3497,7 +3558,8 @@
       "bsphere": [-307.84, 80.3, -94.6, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-01",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3508,7 +3570,8 @@
       "bsphere": [-309.55, 75.18, -137.95, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-02",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3519,7 +3582,8 @@
       "bsphere": [-345.84, 111.97, -62.97, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-03",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3530,7 +3594,8 @@
       "bsphere": [-303.27, 87.04, -157.72, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-04",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3541,7 +3606,8 @@
       "bsphere": [-145.51, 109.87, -51.44, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-05",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3552,7 +3618,8 @@
       "bsphere": [-86.76, 110.63, -30.1, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-06",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3563,7 +3630,8 @@
       "bsphere": [-130.79, 111.59, 33.29, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-07",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3574,7 +3642,8 @@
       "bsphere": [-219.65, 123.24, 13.21, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-08",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     {
@@ -3585,7 +3654,8 @@
       "bsphere": [-320.73, 105.82, 7.96, 10.0], // bounding sphere
       "lump": {
         "name": "crystalc-fireflies-09",
-        "art-name": "group-crystalc-fireflies"
+        "art-name": "group-crystalc-fireflies",
+        "vis-dist-hack":["meters", 300.0]
       }
     },
     // other particles : fireflies from citadel's sage cages or the muse or green eco-pill

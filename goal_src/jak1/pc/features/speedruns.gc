@@ -4,7 +4,13 @@
 (require "engine/game/task/game-task-h.gc")
 (require "pc/pckernel-common.gc")
 (require "pc/features/autosplit-h.gc")
-(define *speedrun-info* (new 'static 'speedrun-info-jak1 :should-display? #t :needs-post-blackout-setup? #f))
+(define *speedrun-info* 
+  (new 'static 'speedrun-info-jak1 
+    :should-display? #t 
+    :needs-post-blackout-setup? #f 
+    :category (speedrun-category tfl-game)
+    )
+  )
 
 (define *has-landed?* #f)
 
@@ -462,7 +468,7 @@
                    (= (-> *target* next-state name) 'target-hit-ground)))
       (true! *has-landed?*))
     (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id subtitle))
-      (draw-string-xy (string-format "Speedrunner Mode ~%ModBase ~S / ~S ~%Category: ~S ~%Cutscene Skips ~A~%Has Landed? ~A"
+      (draw-string-xy (string-format "Speedrunner Mode ~%TFL ~S / ~S ~%Category: ~S ~%Cutscene Skips ~A~%Has Landed? ~A"
                                      *pc-settings-built-sha* *mod-version-text*
                                      (enum->string speedrun-category (-> *speedrun-info* category))
                                      (-> *pc-settings* skip-movies?)

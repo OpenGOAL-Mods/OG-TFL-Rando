@@ -7,10 +7,8 @@
 #include "Entity.h"
 #include "FileInfo.h"
 #include "ambient.h"
-#include "build_level.h"
 
 #include "common/common_types.h"
-#include "common/dma/gs.h"
 
 #include "goalc/build_level/collide/common/collide_common.h"
 #include "goalc/build_level/collide/jak1/collide_bvh.h"
