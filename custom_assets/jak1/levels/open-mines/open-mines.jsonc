@@ -3665,11 +3665,11 @@
     },
 // Actors: AMBUSH
     {
-      "trans": [-430.06, 105.06, 1046.6], // translation
+      "trans": [-430.05, 106.56, 1049.4], // translation
       "etype": "pickup-spawner", // actor type
       "game_task": 140, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-430.06, 105.06, 1046.6, 10], // bounding sphere
+      "bsphere": [-430.05, 106.56, 1049.4, 10], // bounding sphere
       "lump": {
         "name": "open-mines-pickup-spawner-01",
         "eco-info": ["int32", 3, 1],

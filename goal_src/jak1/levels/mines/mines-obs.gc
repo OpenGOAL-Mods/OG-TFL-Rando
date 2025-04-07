@@ -1501,7 +1501,8 @@
   (process-drawable-from-entity! this arg0)
   (battle-spawner-method-21 this)
   (let ((v1-4 (entity-actor-lookup (-> this entity) 'state-actor 0)))
-    (if (not v1-4) (set! v1-4 (-> this entity)))
+    (if (not (logtest? (-> (entity-by-name "open-mines-battlecontroller-01") extra perm status) (entity-perm-status complete)))
+      (logclear! (-> this entity extra perm status) (entity-perm-status complete)))
     (if (logtest? (-> v1-4 extra perm status) (entity-perm-status complete)) (go battle-spawner-broken) (go battle-spawner-idle)))
   (none))
 

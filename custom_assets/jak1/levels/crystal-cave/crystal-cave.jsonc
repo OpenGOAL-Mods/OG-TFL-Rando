@@ -126,7 +126,8 @@
       "bsphere": [-59.13, 67.35, -115.35, 10], // bounding sphere
       "lump": {
         "name": "crystalc-fuel-cell-02", // river cell
-        "eco-info": ["int32", 6, 118]
+        "eco-info": ["int32", 6, 118],
+        "movie-pos": ["movie-pos", [-59.13, 65.15, -115.35, 140.0]]
       }
     },
     {

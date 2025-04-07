@@ -316,7 +316,8 @@
        (level-task-data-index crystal-ca) ;; TFL note: Crystal cave ;24
        (level-task-data-index crescent-t) ;; Crescent top ;25
        (level-task-data-index energy-bay) ;; Energy bay ;26
-       (level-task-data-index valley) ;; Open Mines ;28
+       (level-task-data-index open-mines) ;; Open Mines ;27
+       (level-task-data-index valley) ;; Taig Valley ;28
        ))
 
 ;; maps goal language ID to its name string ID
