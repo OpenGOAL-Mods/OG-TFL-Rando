@@ -279,7 +279,15 @@
   :enter
     (behavior ()
       (set! (-> self control unknown-surface00) *walk-mods*)
-      (set-time! (-> self state-time)))
+      (set-time! (-> self state-time))
+      ;; TFL note: added boss skip checkpoint that put you on the zoomer and reset game
+      (when (and (string= (-> (get-or-create-continue! *game-info*) name) "valley-boss-skip-practice")
+                 (< (vector-vector-distance (-> self control trans) (static-vectorm 1327.7430 5.9855 1900.4825)) (meters 0.1)))
+        (set! (-> *game-info* mode) 'debug)
+        (initialize! *game-info* 'game (the-as game-save #f) (the-as string #f))
+        (set! (-> *game-info* mode) 'play)
+        (format 0 "boss-skip-practice ~%boss-skip-practice ~%boss-skip-practice ~%boss-skip-practice ~%")
+        (send-event *target* 'change-mode 'racing #f)))
   :exit
     (behavior ()
       (set! (-> self control unknown-float81) 0.0)
