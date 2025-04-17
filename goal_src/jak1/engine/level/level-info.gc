@@ -3350,6 +3350,25 @@
              :lev0 'crescent-t
              :disp0 'display
              :lev1 'valley
+             :disp1 'display)
+          (new 'static
+             'continue-point
+             :name "valley-boss-skip-practice"
+             :level 'valley
+             :trans
+             (new 'static 'vector :x (meters 1327.7430) :y (meters 5.9855) :z (meters 1900.4825) :w 1.0)
+             :quat
+             (new 'static 'quaternion :x 0.0 :y 0.5929 :z 0.0 :w 0.8052)
+             :camera-trans
+             (new 'static 'vector :x (meters 1320.9847) :y (meters 12.6273) :z (meters 1898.5665) :w 1.0)
+             :camera-rot
+             (new 'static 'array float 9 0.2748 0.0000 -0.9614 0.2589 0.9630 0.0740 0.9259 -0.2693 0.2646)
+             :load-commands
+             '()
+             :vis-nick 'val
+             :lev0 'crescent-t
+             :disp0 'display
+             :lev1 'valley
              :disp1 'display))
        :tasks
        '(145 146 147 148 149)

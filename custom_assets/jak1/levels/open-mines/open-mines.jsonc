@@ -282,8 +282,8 @@
         "spit-predict": ["float", 0.75],
         "projectile-speed": ["meters", 13.0],
         "projectile-rand": ["float", 0.3],
-        "custom-nav": ["symbol", "mines-quicksandlurker-02"],
-        "vis-dist-hack":["meters", 100.0]
+        "custom-nav": ["symbol", "mines-quicksandlurker-02"]
+        // "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -312,8 +312,8 @@
         "spit-predict": ["float", 1.0],
         "projectile-speed": ["meters", 13.0],
         "projectile-rand": ["float", 0.5],
-        "custom-nav": ["symbol", "mines-quicksandlurker-03"],
-        "vis-dist-hack":["meters", 100.0]
+        "custom-nav": ["symbol", "mines-quicksandlurker-03"]
+        // "vis-dist-hack":["meters", 100.0]
       }
     },
     {
@@ -335,8 +335,8 @@
           [-405.04, 138.43, 1252.2]
         ],
         "custom-nav": ["symbol", "mines-swamp-rat"],
-        "scale": ["float", 0.6],
-        "vis-dist-hack":["meters", 400.0]
+        "scale": ["float", 0.6]
+        // "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -700,8 +700,8 @@
           [-379.51, 135.35, 1063.98, 3.8],
           [-373.43, 134.16, 1076.19, 4.2],
           [-385.66, 132.79, 1111.54, 5.2]
-        ],
-        "vis-dist-hack":["meters", 400.0]
+        ]
+        // "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -758,8 +758,8 @@
           [-385.13, 176.18, 742.74]
         ],
         "custom-nav": ["symbol", "mines-babak2"],
-        "nav-mesh-sphere": ["vector4m", [-401.88, 175.7, 740.98, 3.5]],
-        "vis-dist-hack":["meters", 400.0]
+        "nav-mesh-sphere": ["vector4m", [-401.88, 175.7, 740.98, 3.5]]
+        // "vis-dist-hack":["meters", 400.0]
       }
     },
     {
@@ -807,8 +807,8 @@
           [-414.3, 154.11, 931.18, 4.0],
           [-410.21, 154.11, 935.32, 4.0],
           [-407.24, 154.11, 929.26, 6.0]
-        ],
-        "vis-dist-hack":["meters", 400.0]
+        ]
+        // "vis-dist-hack":["meters", 400.0]
       }
     },
     {
