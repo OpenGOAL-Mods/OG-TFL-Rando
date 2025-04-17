@@ -312,7 +312,7 @@
   :virtual #t
   :enter
     (behavior ()
-      (format 0 "~D : GEM BROKEN: ~P ~%" (current-time) (-> self color))
+      ;; (format 0 "~D : GEM BROKEN: ~P ~%" (current-time) (-> self color))
       (send-event *pds-master* 'gem-destroyed))
   :code
     (behavior ()
@@ -1206,7 +1206,7 @@
 (defmethod relocate ((this pds-master) (offset int))
   (set! *pds-master* this)
   (if *pds-master* (&+! *pds-master* offset))
-  (format 0 "before relocate: plats-1: #x~X plats-2: #x~X plats-3: #x~X gems: #x~X ~%" (-> this plats-1) (-> this plats-2) (-> this plats-3) (-> this gems))
+  ;; (format 0 "before relocate: plats-1: #x~X plats-2: #x~X plats-3: #x~X gems: #x~X ~%" (-> this plats-1) (-> this plats-2) (-> this plats-3) (-> this gems))
   (relocate-fields root
                    link
                    gems
@@ -1221,7 +1221,7 @@
                    poles
                    poles-2
                    poles-3)
-  (format 0 "~D : after relocate: plats-1: #x~X plats-2: #x~X plats-3: #x~X gems: #x~X ~%"  (current-time) (-> this plats-1) (-> this plats-2) (-> this plats-3) (-> this gems))
+  ;; (format 0 "~D : after relocate: plats-1: #x~X plats-2: #x~X plats-3: #x~X gems: #x~X ~%"  (current-time) (-> this plats-1) (-> this plats-2) (-> this plats-3) (-> this gems))
   (call-parent-method this offset))
 
 (defmethod fill-actor-arr ((this pds-master) (arr (array entity-actor)) (e entity-actor) (lump symbol))
@@ -1230,7 +1230,7 @@
   arr)
 
 (defmethod send-to-actor ((this pds-master) (e entity-actor) (message symbol))
-  (format 0 "~D : send-to-actor entity: #x~X ~%" (current-time) e)
+  ;; (format 0 "~D : send-to-actor entity: #x~X ~%" (current-time) e)
   (when (and e (-> e extra process))
     (send-event (-> e extra process) message)))
 
@@ -1249,7 +1249,7 @@
 (defbehavior pds-master-send-to-group-delayed pds-master ((group (array entity-actor)) (message symbol) (delay time-frame))
   (dotimes (i (length group))
     ; (format 0 "pds-master-send-to-group-delayed ~A ~A~%" message (-> group i extra process))
-    (format 0 "~D : pds-master-send-to-group-delayed: #x~X ~%" (current-time) group)
+    ;; (format 0 "~D : pds-master-send-to-group-delayed: #x~X ~%" (current-time) group)
     (suspend-for delay)
     (send-to-actor self (-> group i) message)))
 
