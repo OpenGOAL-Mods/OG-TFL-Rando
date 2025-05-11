@@ -1,5 +1,414 @@
 [
     {
+        "label": "create_output_dir",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "download_release",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "finalize_bundle",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "get_args",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "override_binaries_and_assets",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "patch_mod_timestamp_and_version_info",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "create_output_dir",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "download_release",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "finalize_bundle",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "get_args",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "override_binaries_and_assets",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "patch_mod_timestamp_and_version_info",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "create_output_dir",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "download_release",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "finalize_bundle",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "get_args",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "override_binaries_and_assets",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "patch_mod_timestamp_and_version_info",
+        "importPath": "common",
+        "description": "common",
+        "isExtraImport": true,
+        "detail": "common",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "JSONEncoder",
+        "importPath": "json",
+        "description": "json",
+        "isExtraImport": true,
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "JSONEncoder",
+        "importPath": "json",
+        "description": "json",
+        "isExtraImport": true,
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "importPath": "glob",
+        "description": "glob",
+        "isExtraImport": true,
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "importPath": "glob",
+        "description": "glob",
+        "isExtraImport": true,
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "rmtree",
+        "importPath": "shutil",
+        "description": "shutil",
+        "isExtraImport": true,
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "tarfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tarfile",
+        "description": "tarfile",
+        "detail": "tarfile",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
         "label": "numpy",
         "kind": 6,
         "isExtraImport": true,
@@ -137,48 +546,6 @@
         "description": "bpy.types",
         "isExtraImport": true,
         "detail": "bpy.types",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "JSONEncoder",
-        "importPath": "json",
-        "description": "json",
-        "isExtraImport": true,
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "JSONEncoder",
-        "importPath": "json",
-        "description": "json",
-        "isExtraImport": true,
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "os",
-        "description": "os",
-        "isExtraImport": true,
-        "detail": "os",
         "documentation": {}
     },
     {
@@ -325,31 +692,6 @@
         "importPath": "argparse",
         "description": "argparse",
         "detail": "argparse",
-        "documentation": {}
-    },
-    {
-        "label": "glob",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "glob",
-        "description": "glob",
-        "detail": "glob",
-        "documentation": {}
-    },
-    {
-        "label": "glob",
-        "importPath": "glob",
-        "description": "glob",
-        "isExtraImport": true,
-        "detail": "glob",
-        "documentation": {}
-    },
-    {
-        "label": "glob",
-        "importPath": "glob",
-        "description": "glob",
-        "isExtraImport": true,
-        "detail": "glob",
         "documentation": {}
     },
     {
@@ -923,32 +1265,6 @@
         "documentation": {}
     },
     {
-        "label": "shutil",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "shutil",
-        "description": "shutil",
-        "detail": "shutil",
-        "documentation": {}
-    },
-    {
-        "label": "rmtree",
-        "importPath": "shutil",
-        "description": "shutil",
-        "isExtraImport": true,
-        "detail": "shutil",
-        "documentation": {}
-    },
-    {
-        "label": "zipfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "zipfile",
-        "description": "zipfile",
-        "detail": "zipfile",
-        "documentation": {}
-    },
-    {
         "label": "pprint",
         "kind": 6,
         "isExtraImport": true,
@@ -958,30 +1274,12 @@
         "documentation": {}
     },
     {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
-        "documentation": {}
-    },
-    {
         "label": "requests",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "requests",
         "description": "requests",
         "detail": "requests",
-        "documentation": {}
-    },
-    {
-        "label": "urllib.request",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "urllib.request",
-        "description": "urllib.request",
-        "detail": "urllib.request",
         "documentation": {}
     },
     {
@@ -1008,143 +1306,6 @@
         "importPath": "logging",
         "description": "logging",
         "detail": "logging",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "datetime",
-        "description": "datetime",
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -3131,6 +3292,132 @@
         "description": "enum",
         "isExtraImport": true,
         "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": ".github.scripts.create-mod-release.bundle-linux",
+        "description": ".github.scripts.create-mod-release.bundle-linux",
+        "peekOfCode": "args = get_args(\"linux\")\nprint(args)\n# Create our output directory\ncreate_output_dir(args, \"linux\")\n# Download the Release\ndownload_release(args, \"linux\", is_zip=False)\n# Override any files\noverride_binaries_and_assets(args, \"linux\")\n# Replace placeholder text with mod version and timestamp\npatch_mod_timestamp_and_version_info(args, \"linux\")",
+        "detail": ".github.scripts.create-mod-release.bundle-linux",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": ".github.scripts.create-mod-release.bundle-macos",
+        "description": ".github.scripts.create-mod-release.bundle-macos",
+        "peekOfCode": "args = get_args(\"macos-intel\")\nprint(args)\n# Create our output directory\ncreate_output_dir(args, \"macos-intel\")\n# Download the Release\ndownload_release(args, \"macos-intel\", is_zip=False)\n# Override any files\noverride_binaries_and_assets(args, \"macos-intel\")\n# Replace placeholder text with mod version and timestamp\npatch_mod_timestamp_and_version_info(args, \"macos-intel\")",
+        "detail": ".github.scripts.create-mod-release.bundle-macos",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": ".github.scripts.create-mod-release.bundle-windows",
+        "description": ".github.scripts.create-mod-release.bundle-windows",
+        "peekOfCode": "args = get_args(\"windows\")\nprint(args)\n# Create our output directory\ncreate_output_dir(args, \"windows\")\n# Download or Build the Release\ndownload_release(args, \"windows\", is_zip=True)\n# Override any files\noverride_binaries_and_assets(args, \"windows\")\n# Replace placeholder text with mod version and timestamp\npatch_mod_timestamp_and_version_info(args, \"windows\")",
+        "detail": ".github.scripts.create-mod-release.bundle-windows",
+        "documentation": {}
+    },
+    {
+        "label": "default_asset_prefix",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def default_asset_prefix(platform):\n    if platform == \"windows\":\n        return \"opengoal-windows\"\n    elif platform == \"linux\":\n        return \"opengoal-linux\"\n    elif platform == \"macos-intel\":\n        return \"opengoal-macos-intel\"\n    elif platform == \"macos-arm\":\n        return \"opengoal-macos-arm\"\n    else:",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "get_args",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def get_args(platform):\n    return {\n        \"outputDir\": os.getenv(\"outputDir\"),\n        \"versionName\": os.getenv(\"versionName\"),\n        \"toolingRepo\": os.getenv(\"toolingRepo\"),\n        \"toolingReleaseAssetPrefix\": os.getenv(\n            \"toolingReleaseAssetPrefix\", default_asset_prefix(platform)\n        ),\n        \"toolingVersion\": os.getenv(\"toolingVersion\")\n    }",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "create_output_dir",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def create_output_dir(args, dir_name):\n    if os.path.exists(os.path.join(args[\"outputDir\"], dir_name)):\n        print(\n            \"Expected output directory already exists, clearing it - {}\".format(\n                os.path.join(args[\"outputDir\"], dir_name)\n            )\n        )\n        os.rmdir(os.path.join(args[\"outputDir\"], dir_name))\n    os.makedirs(os.path.join(args[\"outputDir\"], dir_name), exist_ok=True)\ndef download_release(args, out_folder, is_zip=True):",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "download_release",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def download_release(args, out_folder, is_zip=True):\n    toolingRepo = args[\"toolingRepo\"]\n    tooling_version = args[\"toolingVersion\"]\n    if tooling_version == \"latest\":\n        # Get the latest release\n        with urllib.request.urlopen(\n            f\"https://api.github.com/repos/{toolingRepo}/releases/latest\"\n        ) as response:\n            data = json.loads(response.read().decode())\n            tooling_version = data[\"tag_name\"]",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "override_binaries_and_assets",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def override_binaries_and_assets(args, out_folder):\n    # Copy-in Mod Assets\n    customAssetsDir = \"./custom_assets\"\n    if os.path.exists(customAssetsDir):\n        shutil.copytree(\n            customAssetsDir,\n            os.path.join(args[\"outputDir\"], out_folder, \"data\", \"custom_assets\"),\n            dirs_exist_ok=True,\n        )\n    goalSourceDir = \"./goal_src\"",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "patch_mod_timestamp_and_version_info",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def patch_mod_timestamp_and_version_info(args, out_folder):\n    try:\n        mod_settings_files = glob.glob(f\"{args['outputDir']}/{out_folder}/data/goal_src/**/mod-settings.gc\", recursive=True)\n        for settings_file_path in mod_settings_files:\n            file = open(settings_file_path, \"r\")\n            file_data = file.read()\n            file.close()\n            # Check if the placeholder string is present in the file\n            if \"%MODVERSIONPLACEHOLDER%\" in file_data:\n                # Replace the placeholder string with the version and date string",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "finalize_bundle",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.common",
+        "description": ".github.scripts.create-mod-release.common",
+        "peekOfCode": "def finalize_bundle(args, out_folder, is_zip=True):\n    if is_zip:\n        shutil.make_archive(\n            f\"{out_folder}-{args['versionName']}\",\n            \"zip\",\n            os.path.join(args[\"outputDir\"], out_folder),\n        )\n        os.makedirs(os.path.join(args[\"outputDir\"], \"dist\"), exist_ok=True)\n        shutil.move(\n            f\"{out_folder}-{args['versionName']}.zip\",",
+        "detail": ".github.scripts.create-mod-release.common",
+        "documentation": {}
+    },
+    {
+        "label": "split_comma_sep_val",
+        "kind": 2,
+        "importPath": ".github.scripts.create-mod-release.emit-metadata",
+        "description": ".github.scripts.create-mod-release.emit-metadata",
+        "peekOfCode": "def split_comma_sep_val(str):\n    if \",\" not in str:\n        return [str]\n    return str.split(\",\")\n# Validate supported games list\ngames = split_comma_sep_val(os.getenv(\"SUPPORTED_GAMES\"))\nif len(games) == 0:\n    print(\"SUPPORTED_GAMES list is empty\")\n    exit(1)\nfor game in games:",
+        "detail": ".github.scripts.create-mod-release.emit-metadata",
+        "documentation": {}
+    },
+    {
+        "label": "games",
+        "kind": 5,
+        "importPath": ".github.scripts.create-mod-release.emit-metadata",
+        "description": ".github.scripts.create-mod-release.emit-metadata",
+        "peekOfCode": "games = split_comma_sep_val(os.getenv(\"SUPPORTED_GAMES\"))\nif len(games) == 0:\n    print(\"SUPPORTED_GAMES list is empty\")\n    exit(1)\nfor game in games:\n    if game != \"jak1\" and game != \"jak2\" and game != \"jak3\" and game != \"jakx\":\n        print(\"SUPPORTED_GAMES contains invalid game: \", game)\n        exit(1)\n# Input has been validated, create metadata.json\nmetadata = {",
+        "detail": ".github.scripts.create-mod-release.emit-metadata",
+        "documentation": {}
+    },
+    {
+        "label": "metadata",
+        "kind": 5,
+        "importPath": ".github.scripts.create-mod-release.emit-metadata",
+        "description": ".github.scripts.create-mod-release.emit-metadata",
+        "peekOfCode": "metadata = {\n    \"schemaVersion\": os.getenv(\"SCHEMA_VERSION\"),\n    \"version\": os.getenv(\"VERSION\").removeprefix(\"v\"),\n    \"supportedGames\": games,\n    \"publishedDate\": datetime.now().isoformat(),\n}\nwith open(\"{}/metadata.json\".format(os.getenv(\"OUT_DIR\")), \"w\", encoding=\"utf-8\") as f:\n    print(\n        \"Writing the following metadata: {}\".format(\n            json.dumps(metadata, indent=2, ensure_ascii=False)",
+        "detail": ".github.scripts.create-mod-release.emit-metadata",
+        "documentation": {}
+    },
+    {
+        "label": "patch_mod_timestamp",
+        "kind": 2,
+        "importPath": ".github.scripts.releases.replace-mod-version-timestamp",
+        "description": ".github.scripts.releases.replace-mod-version-timestamp",
+        "peekOfCode": "def patch_mod_timestamp(goal_src_path):\n    try:\n        mod_settings_files = glob.glob(f\"{goal_src_path}/**/mod-settings.gc\", recursive=True)\n        for settings_file_path in mod_settings_files:\n            file = open(settings_file_path, \"r\")\n            file_data = file.read()\n            file.close()\n            # Check if the placeholder string is present in the file\n            if \"%MODVERSIONPLACEHOLDER%\" in file_data:\n                # Replace the placeholder string with the version and date string",
+        "detail": ".github.scripts.releases.replace-mod-version-timestamp",
         "documentation": {}
     },
     {
