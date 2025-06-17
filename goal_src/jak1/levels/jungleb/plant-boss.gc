@@ -1112,6 +1112,9 @@
   :event plant-boss-generic-event-handler
   :code
     (behavior ((arg0 symbol))
+      (if (-> *challenges-settings* challenges-pacifist?)
+        (reset-all)
+        )
       (logclear! (-> self mask) (process-mask actor-pause))
       (set! (-> self neck flex-blend) 0.0)
       (set! (-> self body flex-blend) 0.0)

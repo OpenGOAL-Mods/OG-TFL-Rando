@@ -23,6 +23,12 @@
 
 (defun runs-every-frame ()
   ;;(increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
+  
+  (randomizer-run-each-frame)
+  (jak-size-run-each-frame)
+  (mods-common-run-each-frame)
+  (localmulti-run-eachframe)
+
   (if *show-input-display* (input-display-on) (input-display-off))
   ;; ensure orb-placer is spawned/killed as requested, debug menu is updated
   (when *debug-segment*
@@ -35,14 +41,20 @@
     (when from-cache?
       ;; Code here runs only if the orb was from an orb cache
       )
-    (when (not from-cache?)
-      ;; Code here runs only if the orb was NOT from an orb cache
-      ))
+    ;; if the randomizer is on AND set to warp on orbs AND this isn't from an orb cache, warp the target.
+    ;; see orb-cache.gc for how those warps are handled
+    (when (and (-> *randomizer-settings* checkpoint-randomizer?)
+               (-> *randomizer-settings* warp-on-orb?)
+               (not from-cache?))
+      (orchestrateCheckpointWarp 1)))
   (none))
 
 (defun runs-on-fly-pickup ()
-  ;; Code here runs on any scout fly pickup
-  (none))
+  ;; Code here runs on any non final scout fly pickup
+  (when (and (-> *randomizer-settings* checkpoint-randomizer?) (-> *randomizer-settings* warp-on-buzzer?))
+    (orchestrateCheckpointWarp 1))
+  (none)
+  )
 
 (defun runs-on-cell-pickup ((cell-event symbol))
   (case cell-event
@@ -57,6 +69,15 @@
 (defun runs-on-eco-pickup ((eco-type pickup-type) (parent process-tree))
   (let* ((from-vent? (and parent (type-type? (-> parent type) vent))))
     ;; Code here runs as soon as you pickup ANY eco
+    (when (and (-> *randomizer-settings* checkpoint-randomizer?)
+               (or
+                (and (-> *randomizer-settings* warp-on-green-eco?) (= eco-type (pickup-type eco-green)))
+                (and (-> *randomizer-settings* warp-on-green-eco?) (= eco-type (pickup-type eco-pill)))
+                (and (-> *randomizer-settings* warp-on-blue-eco?) (= eco-type (pickup-type eco-blue)))
+                (and (-> *randomizer-settings* warp-on-red-eco?) (= eco-type (pickup-type eco-red)))
+                (and (-> *randomizer-settings* warp-on-yellow-eco?) (= eco-type (pickup-type eco-yellow)))))
+      (orchestrateCheckpointWarp 1))
+
     (case eco-type
       (((pickup-type eco-yellow))
        ;; Code here runs as soon as you pickup yellow eco

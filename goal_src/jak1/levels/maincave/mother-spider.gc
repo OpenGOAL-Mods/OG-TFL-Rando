@@ -962,6 +962,9 @@
       (mother-spider-method-29 self #f #f))
   :code
     (behavior ()
+      (if (-> *challenges-settings* challenges-pacifist?)
+        (reset-all)
+        )
       (let ((v1-2 (-> self entity extra perm)))
         (logior! (-> v1-2 status) (entity-perm-status user-set-from-cstage))
         (set! (-> v1-2 user-int8 0) 1))
@@ -982,6 +985,9 @@
       (mother-spider-method-29 self #f #f))
   :code
     (behavior ()
+      (if (-> *challenges-settings* challenges-pacifist?)
+        (reset-all)
+        )
       (let ((v1-2 (-> self entity extra perm)))
         (logior! (-> v1-2 status) (entity-perm-status user-set-from-cstage))
         (set! (-> v1-2 user-int8 0) 1))

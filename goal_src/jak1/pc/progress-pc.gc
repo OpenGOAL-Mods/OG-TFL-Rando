@@ -106,6 +106,10 @@
 ;; pad remap stuff
 (define *progress-pad-timeout* (the-as time-frame 0)) ;; timeout for remap buttons
 
+(def-progress-carousell *carousell-rng-lib* (rand-vu knuth))
+(def-progress-carousell *carousell-checkpoint-logic* (logic-random-checkpoint logic-random-level))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  MENU OPTIONS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -115,12 +119,20 @@
        'boxed-array
        :type
        game-option
+       ;; un-comment this section to add save+load option
+       (new 'static
+            'game-option
+            :option-type (game-option-type menu)
+            :name (text-id save-and-load-game)
+            :scale #t
+            :param3 (game-option-menu save-and-load-game))
        (new 'static
             'game-option
             :option-type (game-option-type menu)
             :name (text-id game-options)
             :scale #t
             :param3 (game-option-menu game-settings))
+       (new 'static 'game-option :option-type (game-option-type menu) :name (text-id mod-options) :scale #t :param3 (game-option-menu mod-options))
        (new 'static
             'game-option
             :option-type (game-option-type menu)
@@ -164,12 +176,20 @@
        'boxed-array
        :type
        game-option
+       ;; un-comment this section to add save+load option
+       (new 'static
+            'game-option
+            :option-type (game-option-type menu)
+            :name (text-id save-and-load-game)
+            :scale #t
+            :param3 (game-option-menu save-and-load-game))
        (new 'static
             'game-option
             :option-type (game-option-type menu)
             :name (text-id game-options)
             :scale #t
             :param3 (game-option-menu game-settings))
+       (new 'static 'game-option :option-type (game-option-type menu) :name (text-id mod-options) :scale #t :param3 (game-option-menu mod-options))
        (new 'static
             'game-option
             :option-type (game-option-type menu)
@@ -213,6 +233,74 @@
             :scale #t
             :param3 (game-option-menu quit))
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
+
+(define *options-pc*
+  (new 'static 'boxed-array :type game-option
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id game-options) :scale #t :param3 (game-option-menu game-settings))
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id mod-options) :scale #t :param3 (game-option-menu mod-options))
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id graphic-options) :scale #t :param3 (game-option-menu graphic-settings))
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id sound-options) :scale #t :param3 (game-option-menu sound-settings))
+    (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)
+    )
+  )
+
+(define *mod-options* (new 'static 'boxed-array :type game-option
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id checkpoint-randomizer) :scale #t :param3 (game-option-menu randomizer-main-options))
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id custom-challenges) :scale #t :param3 (game-option-menu challenges-options))
+    ;; (new 'static 'game-option :option-type (game-option-type rng-lib) :name (text-id rng-lib) :scale #t)
+    ;; (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id mod-powercellcutscenes) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id additional-checkpoints) :scale #t :param3 (game-option-menu additional-checkpoint-options))
+    (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)
+    )
+  )
+
+(define *randomizer-main-options* (new 'static 'boxed-array :type game-option
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-randomizer) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type use-random-seed?) :name (text-id use-random-seed?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type checkpoint-logic) :name (text-id checkpoint-logic) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type menu) :name (text-id randomizer-warp-options) :scale #t :param3 (game-option-menu randomizer-warp-options))
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id show-warp-counter?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)
+    )
+  )
+
+(define *randomizer-warp-options* (new 'static 'boxed-array :type game-option
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpcells?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warporbs?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpbuzzer?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpgreeneco?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpblueeco?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpredeco?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpyelloweco?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpecovents?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-warpdeath?) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type slider) :name (text-id item-count-to-trigger-warp) :scale #t :param1 1.0 :param2 100.0 :slider-step-size 1.0)
+    (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)
+    )
+  )
+
+(define *challenges-options* (new 'static 'boxed-array :type game-option
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id challenges-orbless) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id challenges-damageless) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id challenges-pacifist) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id challenges-bonkless) :scale #t)
+    ;; (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id challenges-hardcore) :scale #t)
+    ;; (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id challenges-casual) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)
+    )
+  )
+
+(define *additional-checkpoint-options* (new 'static 'boxed-array :type game-option
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-training-far) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-village1-far) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-beach-pelican) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-beach-far) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-jungle-far) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-swamp-flutflut) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id checkpoint-village3-cart) :scale #t)
+    (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)
+    )
+  )
 
 (define *game-options-pc*
   (new 'static
@@ -405,6 +493,21 @@
             :slider-show-decimal? #t)
        (new 'static
             'game-option
+            :option-type (game-option-type slider)
+            :name (text-id input-opts-analog-sensitivity)
+            :scale #t
+            :param1 50.0
+            :param2 200.0
+            :slider-step-size 1.0
+            :slider-show-decimal? #f
+            :on-change
+            (lambda ((val object))
+              (let ((val-float (the-as float val)))
+                (pc-set-axis-scale! (/ val-float 100.0))
+                (set! (-> *pc-settings* stick-sensitivity) val-float)
+                (none))))
+       (new 'static
+            'game-option
             :option-type (game-option-type on-off)
             :name (text-id input-opts-ignore-controller-win-focus)
             :scale #t
@@ -435,6 +538,20 @@
             :option-disabled-func
             (lambda ()
               (not (pc-current-controller-has-led?))))
+       (new 'static
+            'game-option
+            :option-type (game-option-type on-off)
+            :name (text-id input-opts-controller-pressure-sensitivity)
+            :scale #t
+            :on-change
+            (lambda ((val object))
+              (let ((val-sym (the-as symbol val)))
+                (pc-set-pressure-sensitivity-enabled! val-sym)
+                (set! (-> *pc-settings* pressure-sensitivity-enabled?) val-sym)
+                (none)))
+            :option-disabled-func
+            (lambda ()
+              (not (pc-current-controller-has-pressure-sensitivity?))))
        (new 'static
             'game-option
             :option-type (game-option-type confirmation)
@@ -878,58 +995,58 @@
        :type
        game-option
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-reset-current-run) :scale #t)
+       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-rando-run) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-full-game) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-tfl-game) :scale #t) ;; TFL note: speedrun reset
-       (new 'static
-            'game-option
-            :option-type (game-option-type menu)
-            :name (text-id speedrun-new-individual-level)
-            :scale #t
-            :param3 (game-option-menu speedrun-il-options))
-       (new 'static
-            'game-option
-            :option-type (game-option-type menu)
-            :name (text-id speedrun-new-cat-ext)
-            :scale #t
-            :param3 (game-option-menu speedrun-cat-ext-options))
+      ;;  (new 'static
+      ;;       'game-option
+      ;;       :option-type (game-option-type menu)
+      ;;       :name (text-id speedrun-new-individual-level)
+      ;;       :scale #t
+      ;;       :param3 (game-option-menu speedrun-il-options))
+      ;;  (new 'static
+      ;;       'game-option
+      ;;       :option-type (game-option-type menu)
+      ;;       :name (text-id speedrun-new-cat-ext)
+      ;;       :scale #t
+      ;;       :param3 (game-option-menu speedrun-cat-ext-options))
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
-(define *speedrun-il-options*
-  (new 'static
-       'boxed-array
-       :type
-       game-option
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-training) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village1) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-beach) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-jungle) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-misty) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-firecanyon) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village2) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-sunken) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-swamp) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-rolling) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-ogre) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village3) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-snow) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-cave) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-lavatube) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-citadel) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
+;; (define *speedrun-il-options*
+;;   (new 'static
+;;        'boxed-array
+;;        :type
+;;        game-option
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-training) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village1) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-beach) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-jungle) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-misty) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-firecanyon) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village2) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-sunken) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-swamp) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-rolling) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-ogre) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village3) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-snow) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-cave) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-lavatube) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-citadel) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
-(define *speedrun-cat-ext-options*
-  (new 'static
-       'boxed-array
-       :type
-       game-option
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-full-game) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-tfl-game) :scale #t) ;; TFL note: speedrun reset
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-game-plus) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub1-100) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub2-100) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub3-100) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-all-cutscenes) :scale #t)
-       (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
+;; (define *speedrun-cat-ext-options*
+;;   (new 'static
+;;        'boxed-array
+;;        :type
+;;        game-option
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-full-game) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-tfl-game) :scale #t) ;; TFL note: speedrun reset
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-game-plus) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub1-100) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub2-100) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub3-100) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-all-cutscenes) :scale #t)
+;;        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *secrets-title*
   (new 'static
@@ -1240,7 +1357,10 @@
                                   catalan
                                   icelandic
                                   polish
-                                  lithuanian))
+                                  lithuanian
+                                  czech
+                                  croatian
+                                  galician))
 
 (define *text-languages*
   (static-text-list-array english
@@ -1259,7 +1379,10 @@
                           dutch
                           hungarian
                           polish
-                          lithuanian))
+                          lithuanian
+                          czech
+                          croatian
+                          galician))
 
 (define *subtitle-languages*
   (static-text-list-array english
@@ -1274,7 +1397,10 @@
                           danish
                           dutch
                           polish
-                          lithuanian))
+                          lithuanian
+                          czech
+                          croatian
+                          galician))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  DYNAMIC MENU THINGS
@@ -2177,9 +2303,11 @@
   (set! (-> *options-remap* (progress-screen memcard-not-formatted)) *ok-options*)
   (set! (-> *options-remap* (progress-screen memcard-format)) *yes-no-options*)
   (set! (-> *options-remap* (progress-screen memcard-data-exists)) *yes-no-options*)
+  (set! (-> *options-remap* (progress-screen memcard-data-exists-save-and-load)) *yes-no-options*)
   (set! (-> *options-remap* (progress-screen memcard-insert)) *ok-options*)
   (set! (-> *options-remap* (progress-screen load-game)) *load-options*)
   (set! (-> *options-remap* (progress-screen save-game)) *save-options*)
+  (set! (-> *options-remap* (progress-screen save-and-load-game)) *save-and-load-options*)
   (set! (-> *options-remap* (progress-screen save-game-title)) *save-options-title*)
   (set! (-> *options-remap* (progress-screen memcard-error-loading)) *ok-options*)
   (set! (-> *options-remap* (progress-screen memcard-error-saving)) *ok-options*)
@@ -2189,7 +2317,7 @@
   (set! (-> *options-remap* (progress-screen memcard-removed)) *ok-options*)
   (set! (-> *options-remap* (progress-screen memcard-no-data)) *yes-no-options*)
   (set! (-> *options-remap* (progress-screen title)) *title-pc*)
-  (set! (-> *options-remap* (progress-screen settings-title)) *options*)
+  (set! (-> *options-remap* (progress-screen settings-title)) *options-pc*)
   (set! (-> *options-remap* (progress-screen auto-save)) *ok-options*)
   (set! (-> *options-remap* (progress-screen pal-change-to-60hz)) *yes-no-options*)
   (set! (-> *options-remap* (progress-screen pal-now-60hz)) *yes-no-options*)
@@ -2217,12 +2345,17 @@
   (set! (-> *options-remap* (progress-screen checkpoint-select)) *checkpoint-select-options*)
   (set! (-> *options-remap* (progress-screen music-player)) *music-player-options*)
   (set! (-> *options-remap* (progress-screen flava-player)) *temp-options*)
+  (set! (-> *options-remap* (progress-screen randomizer-main-options))    *randomizer-main-options*)
+  (set! (-> *options-remap* (progress-screen randomizer-warp-options))    *randomizer-warp-options*)
+  (set! (-> *options-remap* (progress-screen challenges-options))         *challenges-options*)
+  (set! (-> *options-remap* (progress-screen mod-options))                *mod-options*)
   (set! (-> *options-remap* (progress-screen memcard-disable-auto-save)) *yes-no-options*)
   (set! (-> *options-remap* (progress-screen memcard-auto-save-disabled)) *ok-options*)
   (set! (-> *options-remap* (progress-screen monitor)) *temp-options*)
+  (set! (-> *options-remap* (progress-screen additional-checkpoint-options)) *additional-checkpoint-options*)
   (set! (-> *options-remap* (progress-screen speedrun-options)) *speedrun-options*)
-  (set! (-> *options-remap* (progress-screen speedrun-il-options)) *speedrun-il-options*)
-  (set! (-> *options-remap* (progress-screen speedrun-cat-ext-options)) *speedrun-cat-ext-options*)
+  ;; (set! (-> *options-remap* (progress-screen speedrun-il-options)) *speedrun-il-options*)
+  ;; (set! (-> *options-remap* (progress-screen speedrun-cat-ext-options)) *speedrun-cat-ext-options*)
   (set! (-> *options-remap* (progress-screen tfl-commentary)) *tfl-commentary-options*) ;; TFL note: added
   ;; set default params
   (set! (-> *progress-state* aspect-ratio-choice) (get-aspect-ratio))
@@ -2256,6 +2389,45 @@
   (set! (-> *misc-options* 1 value-to-modify) (&-> *pc-settings* discord-rpc?))
   (set! (-> *misc-options* 2 value-to-modify) (&-> *pc-settings* skip-movies?))
   (set! (-> *misc-options* 3 value-to-modify) (&-> *pc-settings* speedrunner-mode?))
+  
+  ;;Randomizer menu
+  (set! (-> *randomizer-main-options* 0 value-to-modify) (&-> *randomizer-settings* checkpoint-randomizer?))
+  (set! (-> *randomizer-main-options* 1 value-to-modify) (&-> *randomizer-settings* use-random-seed?))
+  (set! (-> *randomizer-main-options* 2 value-to-modify) (&-> *progress-carousell* int-backup)) ;; checkpoint-logic
+  ;; index 3 - randomizer-warp-options menu
+  (set! (-> *randomizer-main-options* 4 value-to-modify) (&-> *randomizer-settings* show-warp-counter?))
+
+  (set! (-> *randomizer-warp-options* 0 value-to-modify) (&-> *randomizer-settings* warp-on-cell?))
+  (set! (-> *randomizer-warp-options* 1 value-to-modify) (&-> *randomizer-settings* warp-on-orb?))
+  (set! (-> *randomizer-warp-options* 2 value-to-modify) (&-> *randomizer-settings* warp-on-buzzer?))
+  (set! (-> *randomizer-warp-options* 3 value-to-modify) (&-> *randomizer-settings* warp-on-green-eco?))
+  (set! (-> *randomizer-warp-options* 4 value-to-modify) (&-> *randomizer-settings* warp-on-blue-eco?))
+  (set! (-> *randomizer-warp-options* 5 value-to-modify) (&-> *randomizer-settings* warp-on-red-eco?))
+  (set! (-> *randomizer-warp-options* 6 value-to-modify) (&-> *randomizer-settings* warp-on-yellow-eco?))
+  (set! (-> *randomizer-warp-options* 7 value-to-modify) (&-> *randomizer-settings* warp-on-eco-vents?))
+  (set! (-> *randomizer-warp-options* 8 value-to-modify) (&-> *randomizer-settings* warp-on-death?))
+  (set! (-> *randomizer-warp-options* 9 value-to-modify) (&-> *randomizer-settings* collectables-needed-to-warp))
+
+  ;;Challenges menu
+  (set! (-> *challenges-options* 0 value-to-modify) (&-> *challenges-settings* challenges-orbless?))
+  (set! (-> *challenges-options* 1 value-to-modify) (&-> *challenges-settings* challenges-damageless?))
+  (set! (-> *challenges-options* 2 value-to-modify) (&-> *challenges-settings* challenges-pacifist?))
+  (set! (-> *challenges-options* 3 value-to-modify) (&-> *challenges-settings* challenges-bonkless?))
+  ;; (set! (-> *challenges-options* 4 value-to-modify) (&-> *challenges-settings* challenges-hardcore?))
+  ;; (set! (-> *challenges-options* 5 value-to-modify) (&-> *challenges-settings* challenges-casual?))
+  
+  ;;mod settings
+  ;; (set! (-> *mod-options* 2 value-to-modify) (&-> *progress-carousell* int-backup)) ;; RNG Lib
+  ;; (set! (-> *mod-options* 3 value-to-modify) (&-> *mods-settings* mod-powercellcutscenes?))
+
+  (set! (-> *additional-checkpoint-options* 0 value-to-modify) (&-> *mods-settings* checkpoint-training-far))
+  (set! (-> *additional-checkpoint-options* 1 value-to-modify) (&-> *mods-settings* checkpoint-village1-far))
+  (set! (-> *additional-checkpoint-options* 2 value-to-modify) (&-> *mods-settings* checkpoint-beach-pelican))
+  (set! (-> *additional-checkpoint-options* 3 value-to-modify) (&-> *mods-settings* checkpoint-beach-far))
+  (set! (-> *additional-checkpoint-options* 4 value-to-modify) (&-> *mods-settings* checkpoint-jungle-far))
+  (set! (-> *additional-checkpoint-options* 5 value-to-modify) (&-> *mods-settings* checkpoint-swamp-flutflut))
+  (set! (-> *additional-checkpoint-options* 6 value-to-modify) (&-> *mods-settings* checkpoint-village3-cart))
+
   (set! (-> *camera-options* 0 value-to-modify) (&-> *pc-settings* first-camera-h-inverted?))
   (set! (-> *camera-options* 1 value-to-modify) (&-> *pc-settings* first-camera-v-inverted?))
   (set! (-> *camera-options* 2 value-to-modify) (&-> *pc-settings* third-camera-h-inverted?))
@@ -2263,10 +2435,12 @@
   ;; input options
   (set! (-> *controller-options* 1 value-to-modify) (&-> *pc-settings* memcard-vibration?))
   (set! (-> *controller-options* 2 value-to-modify) (&-> *pc-settings* stick-deadzone))
-  (set! (-> *controller-options* 3 value-to-modify) (&-> *pc-settings* ignore-controller-win-unfocused?))
-  (set! (-> *controller-options* 4 value-to-modify) (&-> *pc-settings* controller-led-hp?))
-  (set! (-> *controller-options* 5 value-to-modify) (&-> *pc-settings* controller-led-eco?))
-  (set! (-> *controller-options* 6 value-to-modify) (&-> *pc-settings* controller-led-heat?))
+  (set! (-> *controller-options* 3 value-to-modify) (&-> *pc-settings* stick-sensitivity))
+  (set! (-> *controller-options* 4 value-to-modify) (&-> *pc-settings* ignore-controller-win-unfocused?))
+  (set! (-> *controller-options* 5 value-to-modify) (&-> *pc-settings* controller-led-hp?))
+  (set! (-> *controller-options* 6 value-to-modify) (&-> *pc-settings* controller-led-eco?))
+  (set! (-> *controller-options* 7 value-to-modify) (&-> *pc-settings* controller-led-heat?))
+  (set! (-> *controller-options* 8 value-to-modify) (&-> *pc-settings* pressure-sensitivity-enabled?))
   (set! (-> *mouse-options* 0 value-to-modify) (&-> *pc-settings* mouse-camera?))
   (set! (-> *mouse-options* 1 value-to-modify) (&-> *pc-settings* mouse-xsens))
   (set! (-> *mouse-options* 2 value-to-modify) (&-> *pc-settings* mouse-ysens))
@@ -2279,14 +2453,20 @@
   (set! (-> *gfx-ps2-options* 2 value-to-modify) (&-> *pc-settings* ps2-parts?))
   (set! (-> *gfx-ps2-options* 3 value-to-modify) (&-> *pc-settings* force-envmap?))
   (set! (-> *gfx-ps2-options* 4 value-to-modify) (&-> *pc-settings* ps2-actor-vis?))
+
   (set! (-> *sound-options-pc* 0 value-to-modify) (&-> *pc-settings* memcard-volume-sfx))
   (set! (-> *sound-options-pc* 1 value-to-modify) (&-> *pc-settings* memcard-volume-music))
   (set! (-> *sound-options-pc* 2 value-to-modify) (&-> *pc-settings* memcard-volume-dialog))
   ;; TFL note: added
   (set! (-> *tfl-commentary-options* 0 value-to-modify) (&-> *tfl-dev-commentary* enabled?))
   (dotimes (i (1- (-> *cheats* length)))
-    (set! (-> *cheats* i value-to-modify) (&-> *progress-carousell* symbol-backup)))
-  ;(set! (-> *sound-options-pc* 3 value-to-modify) (&-> *pc-settings* music-fadein?))
+      (set! (-> *cheats* i value-to-modify) (&-> *progress-carousell* symbol-backup))
+    )
+  (set! (-> *cheats* 8 value-to-modify) (&-> *challenges-settings* challenges-smalljak?))
+  (set! (-> *cheats* 9 value-to-modify) (&-> *challenges-settings* challenges-bigjak?))
+  (set! (-> *cheats* 10 value-to-modify) (&-> *challenges-settings* challenges-flatjak?))
+  (set! (-> *cheats* 11 value-to-modify) (&-> *challenges-settings* challenges-paperjak?))
+  
   (set! (-> *progress-carousell* aspect-native-choice) (-> *pc-settings* use-vis?))
   ;; scroll stuff!
   (progress-scroll-reset)
@@ -2370,6 +2550,7 @@
                   (((game-option-type on-off)
                     (game-option-type yes-no)
                     (game-option-type normal-inverted)
+                    (game-option-type use-random-seed?)
                     (game-option-type aspect-native)
                     (game-option-type cheat-toggle))
                    ;; pressed left on an on/off yes/no option
@@ -2407,7 +2588,10 @@
                     (game-option-type speaker)
                     (game-option-type frame-rate)
                     (game-option-type language-subtitles)
-                    (game-option-type language-text))
+                    (game-option-type language-text)
+                    (game-option-type rng-lib)
+                    (game-option-type checkpoint-logic)
+                    )
                    ;; a carousell like language
                    (if (> (-> (the-as (pointer int) (-> options (-> obj option-index) value-to-modify))) 0)
                      (+! (-> (the-as (pointer int) (-> options (-> obj option-index) value-to-modify))) -1)
@@ -2441,6 +2625,9 @@
                       (set! sound? #t)))))
                 ;; play sound
                 (when sound?
+                  ;; if the option has an explicit on-change function, call it
+                  (when (nonzero? (-> options (-> obj option-index) on-change))
+                    ((-> options (-> obj option-index) on-change) (-> (the-as (pointer float) (-> options (-> obj option-index) value-to-modify)))))
                   (let ((vol 100.0))
                     (case (-> options (-> obj option-index) name)
                       (((text-id music-volume) (text-id speech-volume))
@@ -2473,6 +2660,7 @@
                   (((game-option-type on-off)
                     (game-option-type yes-no)
                     (game-option-type normal-inverted)
+                    (game-option-type use-random-seed?)
                     (game-option-type aspect-native)
                     (game-option-type cheat-toggle))
                    ;; play sound if it was on 'yes' because we're going to 'no' now
@@ -2504,7 +2692,10 @@
                     (game-option-type speaker)
                     (game-option-type frame-rate)
                     (game-option-type language-subtitles)
-                    (game-option-type language-text))
+                    (game-option-type language-text)
+                    (game-option-type rng-lib)
+                    (game-option-type checkpoint-logic)
+                    )
                    ;; same thing as before. if at last, go to first. otherwise, keep going forward.
                    (if (< (-> (the-as (pointer int) (-> options (-> obj option-index) value-to-modify)))
                           (1- (length (-> *progress-carousell* current-carousell))))
@@ -2534,6 +2725,9 @@
                             (-> options (-> obj option-index) param2))
                       (set! sound? #t)))))
                 (when sound?
+                  ;; if the option has an explicit on-change function, call it
+                  (when (nonzero? (-> options (-> obj option-index) on-change))
+                    ((-> options (-> obj option-index) on-change) (-> (the-as (pointer float) (-> options (-> obj option-index) value-to-modify)))))
                   (let ((vol 100.0))
                     (case (-> options (-> obj option-index) name)
                       (((text-id music-volume) (text-id speech-volume))
@@ -2552,8 +2746,9 @@
                      (-> *progress-state* slider-backup)))
               (((game-option-type language))
                (set! (-> (the-as (pointer language-enum) (-> options (-> obj option-index) value-to-modify)))
-                     (-> *progress-state* language-backup)))
-              (((game-option-type on-off) (game-option-type normal-inverted))
+                     (-> *progress-state* language-backup))
+               )
+              (((game-option-type on-off) (game-option-type normal-inverted) (game-option-type use-random-seed?))
                (set! (-> (the-as (pointer symbol) (-> options (-> obj option-index) value-to-modify)))
                      (-> *progress-state* on-off-backup))))
             ;; ding
@@ -2562,6 +2757,7 @@
            ((or (can-go-back? obj)
                 (= (-> obj display-state) (progress-screen load-game))
                 (= (-> obj display-state) (progress-screen save-game))
+                (= (-> obj display-state) (progress-screen save-and-load-game))
                 (= (-> obj display-state) (progress-screen save-game-title)))
             ;; no option selected, go back
             (cpad-clear! 0 square)
@@ -2597,7 +2793,7 @@
                   (sound-play "select-option")
                   (set! (-> obj next-display-state) (the-as progress-screen (-> options (-> obj option-index) param3)))
                   (case (-> obj next-display-state)
-                    (((progress-screen load-game) (progress-screen save-game) (progress-screen save-game-title))
+                    (((progress-screen load-game) (progress-screen save-game) (progress-screen save-and-load-game) (progress-screen save-game-title))
                      (set! (-> obj next-display-state) (set-memcard-screen obj (-> obj next-display-state))))))))
               ((= (-> options (-> obj option-index) option-type) (game-option-type button))
                ;; a button. what?
@@ -2671,8 +2867,10 @@
                  (((text-id speedrun-reset-current-run)) (progress-fast-save-and-start-speedrun (the-as speedrun-category #f)))
                  ;; Full game runs
                  (((text-id speedrun-new-full-game)) (progress-fast-save-and-start-speedrun (speedrun-category full-game)))
-                 ;; TFL note: speedrun reset Full game runs
-                 (((text-id speedrun-new-tfl-game)) (progress-fast-save-and-start-speedrun (speedrun-category tfl-game)))
+                 ;; Randomizer defaults run
+                 (((text-id speedrun-new-rando-run)) 
+                  (reset *randomizer-settings*)
+                  (progress-fast-save-and-start-speedrun (speedrun-category tfl-game)))
                  ;; Individual Levels
                  (((text-id speedrun-il-training)) (progress-fast-save-and-start-speedrun (speedrun-category il-training)))
                  (((text-id speedrun-il-village1)) (progress-fast-save-and-start-speedrun (speedrun-category il-village1)))
@@ -2785,7 +2983,7 @@
                  (((game-option-type language))
                   (set! (-> *progress-state* language-backup)
                         (-> (the-as (pointer language-enum) (-> options (-> obj option-index) value-to-modify)))))
-                 (((game-option-type on-off) (game-option-type normal-inverted))
+                 (((game-option-type on-off) (game-option-type normal-inverted) (game-option-type use-random-seed?))
                   (set! (-> *progress-state* on-off-backup)
                         (-> (the-as (pointer symbol) (-> options (-> obj option-index) value-to-modify)))))
                  (((game-option-type confirmation)) (set! (-> *progress-state* on-off-backup) #f))
@@ -2839,8 +3037,17 @@
                       (if (= (-> *subtitle-languages* i) cur-lang) (set! (-> *progress-carousell* int-backup) i)))))
                  (((game-option-type language-text))
                   (let ((cur-lang (get-language-name (-> *pc-settings* text-language))))
-                    (dotimes (i (-> *text-languages* length))
-                      (if (= (-> *text-languages* i) cur-lang) (set! (-> *progress-carousell* int-backup) i))))))
+                      (dotimes (i (-> *text-languages* length))
+                        (if (= (-> *text-languages* i) cur-lang)
+                            (set! (-> *progress-carousell* int-backup) i)))))
+                 (((game-option-type rng-lib))
+                  (case (-> *randomizer-settings* rng-lib)
+                    (('rand-vu) (set! (-> *progress-carousell* int-backup) 0))
+                    (('knuth) (set! (-> *progress-carousell* int-backup) 1))))
+                 (((game-option-type checkpoint-logic))
+                  (case (-> *randomizer-settings* checkpoint-logic)
+                    (('logic-random-checkpoint) (set! (-> *progress-carousell* int-backup) 0))
+                    (('logic-random-level) (set! (-> *progress-carousell* int-backup) 1)))))
                (sound-play "select-option")
                (cpad-clear! 0 x)
                (cpad-clear! 0 circle)
@@ -2852,19 +3059,21 @@
                   (set! (-> obj language-transition) #f)
                   (set! (-> obj language-x-offset) 0))
                  (else
-                  (set! (-> *progress-carousell* selection) (-> *progress-carousell* int-backup))
-                  (set! (-> *progress-carousell* direction) #t)
-                  (set! (-> *progress-carousell* transition) #f)
-                  (set! (-> *progress-carousell* x-offset) 0)
-                  (case (-> options (-> obj option-index) option-type)
-                    (((game-option-type display-mode)) (set! (-> *progress-carousell* current-carousell) *carousell-display-mode*))
-                    (((game-option-type msaa)) (set! (-> *progress-carousell* current-carousell) *carousell-msaa*))
-                    (((game-option-type lod-bg)) (set! (-> *progress-carousell* current-carousell) *carousell-lod-bg*))
-                    (((game-option-type lod-fg)) (set! (-> *progress-carousell* current-carousell) *carousell-lod-bg*))
-                    (((game-option-type speaker)) (set! (-> *progress-carousell* current-carousell) *carousell-speaker*))
-                    (((game-option-type frame-rate)) (set! (-> *progress-carousell* current-carousell) *carousell-frame-rate*))
-                    (((game-option-type language-subtitles)) (set! (-> *progress-carousell* current-carousell) *subtitle-languages*))
-                    (((game-option-type language-text)) (set! (-> *progress-carousell* current-carousell) *text-languages*))))))))
+                   (set! (-> *progress-carousell* selection) (-> *progress-carousell* int-backup))
+                   (set! (-> *progress-carousell* direction) #t)
+                   (set! (-> *progress-carousell* transition) #f)
+                   (set! (-> *progress-carousell* x-offset) 0)
+                   (case (-> options (-> obj option-index) option-type)
+                     (((game-option-type display-mode)) (set! (-> *progress-carousell* current-carousell) *carousell-display-mode*))
+                     (((game-option-type msaa)) (set! (-> *progress-carousell* current-carousell) *carousell-msaa*))
+                     (((game-option-type lod-bg)) (set! (-> *progress-carousell* current-carousell) *carousell-lod-bg*))
+                     (((game-option-type lod-fg)) (set! (-> *progress-carousell* current-carousell) *carousell-lod-bg*))
+                     (((game-option-type speaker)) (set! (-> *progress-carousell* current-carousell) *carousell-speaker*))
+                     (((game-option-type frame-rate)) (set! (-> *progress-carousell* current-carousell) *carousell-frame-rate*))
+                     (((game-option-type language-subtitles)) (set! (-> *progress-carousell* current-carousell) *subtitle-languages*))
+                     (((game-option-type language-text)) (set! (-> *progress-carousell* current-carousell) *text-languages*))
+                     (((game-option-type rng-lib)) (set! (-> *progress-carousell* current-carousell) *carousell-rng-lib*))
+                     (((game-option-type checkpoint-logic)) (set! (-> *progress-carousell* current-carousell) *carousell-checkpoint-logic*))))))))
            (else
             ;; an option was selected. write stuff!
             (if (= (-> options (-> obj option-index) option-type) (game-option-type confirmation))
@@ -2900,9 +3109,9 @@
               (((game-option-type display-mode))
                ;; same thing.
                (case (-> *progress-carousell* int-backup)
-                 ((0) (pc-set-display-mode! 'windowed))
-                 ((1) (pc-set-display-mode! 'fullscreen))
-                 ((2) (pc-set-display-mode! 'borderless))))
+                 ((0) (pc-set-display-mode! 'windowed (-> *pc-settings* window-width) (-> *pc-settings* window-height)))
+                 ((1) (pc-set-display-mode! 'fullscreen 0 0))
+                 ((2) (pc-set-display-mode! 'borderless 0 0))))
               (((game-option-type msaa))
                (case (-> *progress-carousell* int-backup)
                  ((0) (set! (-> *pc-settings* gfx-msaa) 1))
@@ -2937,7 +3146,22 @@
                  ((0) (set-frame-rate! *pc-settings* 60 #t))
                  ((1) (set-frame-rate! *pc-settings* 100 #t))
                  ((2) (set-frame-rate! *pc-settings* 150 #t)))
-               (set-video-mode (-> *setting-control* default video-mode))))
+               (set-video-mode (-> *setting-control* default video-mode)))
+              (((game-option-type rng-lib))
+                ;; same thing.
+                (case (-> *progress-carousell* int-backup)
+                  ((0) (set! (-> *randomizer-settings* rng-lib) 'rand-vu))
+                  ((1) (set! (-> *randomizer-settings* rng-lib) 'knuth))
+                  )
+                )
+              (((game-option-type checkpoint-logic))
+                ;; same thing.
+                (case (-> *progress-carousell* int-backup)
+                  ((0) (set! (-> *randomizer-settings* checkpoint-logic) 'logic-random-checkpoint))
+                  ((1) (set! (-> *randomizer-settings* checkpoint-logic) 'logic-random-level))
+                  )
+                )
+               )
             ;; if the option has a `on-confirm` function, run it
             (when (nonzero? (-> options (-> obj option-index) on-confirm))
               ((-> options (-> obj option-index) on-confirm)))
@@ -2952,6 +3176,15 @@
         (cpad-clear! 0 x)
         (cpad-clear! 0 circle)
         (case (-> obj display-state)
+          (((progress-screen save-and-load-game))
+           (cond
+             ((< (-> obj option-index) 4)
+              (set! (-> *progress-state* which) (-> obj option-index))
+              ;; save slot selected
+              (if (zero? (-> s5-0 file (-> obj option-index) present))
+                (set! (-> obj next-display-state) (progress-screen memcard-saving-and-loading))
+                (set! (-> obj next-display-state) (progress-screen memcard-data-exists-save-and-load))))
+             (else (sound-play "cursor-options") (set! (-> obj next-display-state) (progress-screen invalid)))))
           (((progress-screen load-game))
            (cond
              ((< (-> obj option-index) 4)
@@ -2994,6 +3227,14 @@
               (if (= (-> obj display-state-stack 0) (progress-screen title))
                 (set! (-> obj next-display-state) (progress-screen save-game-title))
                 (set! (-> obj next-display-state) (progress-screen save-game))))))
+          (((progress-screen memcard-data-exists-save-and-load))
+           (cond
+             ((-> *progress-state* yes-no-choice)
+              (sound-play "start-options")
+              (set! (-> obj next-display-state) (progress-screen memcard-saving-and-loading)))
+             (else
+              (sound-play "cursor-options")
+              (set! (-> obj next-display-state) (progress-screen save-and-load-game)))))
           (((progress-screen memcard-no-data))
            (cond
              ((-> *progress-state* yes-no-choice)
@@ -3263,10 +3504,7 @@
                      ;; this ugliness is just decompiler stuff. all it does is fade the alpha according to value.
                      (let* ((v1-82 (the-as uint #x8000ffff))
                             ;; calculate the percentage of the bar based on the actual range, instead of assuming 0-100
-                            ;; low = param1 / high = param2
-                            ;; (actual + abs(low)) / (high + abs(low)) = percentage
-                            (percentage (/ (+ (-> (the-as (pointer float) (-> options index value-to-modify))) (fabs (-> options index param1)))
-                                           (+ (-> options index param2) (fabs (-> options index param1)))))
+                            (percentage (lerp-scale 0.0 1.0 (-> (the-as (pointer float) (-> options index value-to-modify))) (-> options index param1) (-> options index param2)))
                             (a0-34 (logior (logand v1-82 -256) (shr (shl (the int (+ 64.0 (* 191.0 percentage))) 56) 56)))
                             (color (logior (logand a0-34 -65281) (shr (shl (shr (shl a0-34 56) 56) 56) 48))))
                        (draw-percent-bar (- 75 (-> obj left-x-offset)) (+ y-off 8) percentage (the-as rgba color))
@@ -3274,14 +3512,16 @@
                      (if (= (-> options index slider-show-decimal?) #t)
                        (set! option-str (string-format "~,,1f" (-> (the-as (pointer float) (-> options index value-to-modify)))))
                        (set! option-str (string-format "~D" (the int (-> (the-as (pointer float) (-> options index value-to-modify))))))))
-                    (((game-option-type on-off) (game-option-type normal-inverted) (game-option-type aspect-native))
+                    (((game-option-type on-off) (game-option-type normal-inverted) (game-option-type aspect-native) (game-option-type use-random-seed?))
                      ;; on-off option or some other toggle. same logic as yes-no. changed to cut down code duping.
                      (let ((on-str (case (-> options index option-type)
                                      (((game-option-type on-off) (game-option-type aspect-native)) (lookup-text! *common-text* (text-id on) #f))
-                                     (((game-option-type normal-inverted)) (lookup-text! *common-text* (text-id inverted) #f))))
+                                     (((game-option-type normal-inverted)) (lookup-text! *common-text* (text-id inverted) #f))
+                                     (((game-option-type use-random-seed?)) (lookup-text! *common-text* (text-id randomizer-random-seed) #f))))
                            (off-str (case (-> options index option-type)
                                       (((game-option-type on-off) (game-option-type aspect-native)) (lookup-text! *common-text* (text-id off) #f))
-                                      (((game-option-type normal-inverted)) (lookup-text! *common-text* (text-id normal) #f)))))
+                                      (((game-option-type normal-inverted)) (lookup-text! *common-text* (text-id normal) #f))
+                                      (((game-option-type use-random-seed?)) (lookup-text! *common-text* (text-id randomizer-set-seed) #f)))))
                        (if (-> (the-as (pointer symbol) (-> options index value-to-modify)))
                          (set! option-str (string-format "~30L~S~0L ~S" on-str off-str))
                          (set! option-str (string-format "~0L~S ~30L~S" on-str off-str)))))
@@ -3320,7 +3560,10 @@
                       (game-option-type speaker)
                       (game-option-type frame-rate)
                       (game-option-type language-subtitles)
-                      (game-option-type language-text))
+                      (game-option-type language-text)
+                      (game-option-type normal-inverted)
+                      (game-option-type rng-lib)
+                      (game-option-type checkpoint-logic))
                      ;; crunched down to one generic function.
                      (progress-draw-carousell-from-string-list (-> *progress-carousell* current-carousell)
                                                                font
@@ -3386,7 +3629,10 @@
                       (game-option-type speaker)
                       (game-option-type frame-rate)
                       (game-option-type normal-inverted)
-                      (game-option-type confirmation))
+                      (game-option-type confirmation)
+                      (game-option-type use-random-seed?)
+                      (game-option-type rng-lib)
+                      (game-option-type checkpoint-logic))
                      ;; slider and aspect ratio options just show their text
                      (set! option-str (lookup-text! *common-text* (-> options index name) #f)))
                     ;; TFL note: added
@@ -3561,6 +3807,8 @@
                           128)
   0)
 
+(define-extern update-additional-continue-flags (function game-info none))
+
 (defmethod draw-notice-screen ((obj progress))
   (hide-progress-icons)
   (when *common-text*
@@ -3576,15 +3824,16 @@
         (((progress-screen memcard-format)) (draw-memcard-format obj a1-1))
         (((progress-screen memcard-no-space) (progress-screen memcard-not-inserted) (progress-screen memcard-not-formatted))
          (draw-memcard-storage-error obj a1-1))
-        (((progress-screen memcard-data-exists)) (draw-memcard-data-exists obj a1-1))
+        (((progress-screen memcard-data-exists) (progress-screen memcard-data-exists-save-and-load)) (draw-memcard-data-exists obj a1-1))
         (((progress-screen memcard-no-data)) (draw-memcard-no-data obj a1-1))
         (((progress-screen memcard-loading)
           (progress-screen memcard-saving)
+          (progress-screen memcard-saving-and-loading)
           (progress-screen memcard-formatting)
           (progress-screen memcard-creating))
          (draw-memcard-accessing obj a1-1))
         (((progress-screen memcard-insert)) (draw-memcard-insert obj a1-1))
-        (((progress-screen load-game) (progress-screen save-game) (progress-screen save-game-title))
+        (((progress-screen load-game) (progress-screen save-game) (progress-screen save-and-load-game) (progress-screen save-game-title))
          (draw-memcard-file-select obj a1-1))
         (((progress-screen memcard-auto-save-error)) (draw-memcard-auto-save-error obj a1-1))
         (((progress-screen memcard-removed)) (draw-memcard-removed obj a1-1))
@@ -3649,7 +3898,20 @@
              ;; camera options lines are a bit too big
              (hide-progress-icons)
              (draw-options self 115 25 0.65))
-            (((progress-screen input-options)
+            (((progress-screen randomizer-main-options))
+             (hide-progress-icons)
+             (draw-options self 115 25 0.75))
+            (((progress-screen randomizer-warp-options))
+             (hide-progress-icons)
+             (draw-options self 115 25 0.75))
+            (((progress-screen additional-checkpoint-options))
+             (hide-progress-icons)
+             (draw-options self 115 25 0.75))
+            (((progress-screen challenges-options))
+             (hide-progress-icons)
+             (draw-options self 115 25 0.65))
+            (((progress-screen mod-options)
+              (progress-screen input-options)
               (progress-screen select-controller)
               (progress-screen controller-binds)
               (progress-screen keyboard-binds)
@@ -3678,7 +3940,9 @@
               (progress-screen memcard-auto-save-error)
               (progress-screen auto-save)
               (progress-screen load-game)
-              (progress-screen save-game))
+              (progress-screen save-game)
+              (progress-screen save-and-load-game)
+              )
              (draw-notice-screen self)
              (draw-options self 190 0 0.82))
             (((progress-screen no-disc) (progress-screen bad-disc))
@@ -3688,9 +3952,10 @@
              (draw-notice-screen self)
              (draw-options self 110 0 0.82))
             (((progress-screen memcard-insert)) (draw-notice-screen self) (draw-options self 165 0 0.82))
-            (((progress-screen memcard-data-exists)) (draw-notice-screen self) (draw-options self 168 0 0.82))
+            (((progress-screen memcard-data-exists) (progress-screen memcard-data-exists-save-and-load)) (draw-notice-screen self) (draw-options self 168 0 0.82))
             (((progress-screen memcard-loading)
               (progress-screen memcard-saving)
+              (progress-screen memcard-saving-and-loading)
               (progress-screen memcard-formatting)
               (progress-screen memcard-creating))
              (draw-notice-screen self))
@@ -3728,13 +3993,14 @@
         (remove-setting! 'music)
         (apply-settings *setting-control*)
         (progress-reset-music-parms)
-        (commit-to-file *pc-settings*)
+        (commit-all-files)
+        (update-additional-continue-flags *game-info*)
         (set! (-> self particles 3 init-pos x) -320.0)
         (set! (-> self particles 4 init-pos x) -320.0)
         (set! (-> self particles 32 init-pos x) -320.0)
         (set! (-> self particles 33 init-pos x) -320.0)
         (case (-> self display-state)
-          (((progress-screen load-game) (progress-screen save-game) (progress-screen save-game-title))
+          (((progress-screen load-game) (progress-screen save-game) (progress-screen save-and-load-game) (progress-screen save-game-title))
            (set! (-> self transition-speed) 30.0)))
         (none)))
 
@@ -3808,9 +4074,11 @@
               ((or (= v1-74 (progress-screen memcard-no-space))
                    (= v1-74 (progress-screen memcard-format))
                    (= v1-74 (progress-screen memcard-data-exists))
+                   (= v1-74 (progress-screen memcard-data-exists-save-and-load))
                    (= v1-74 (progress-screen memcard-insert))
                    (= v1-74 (progress-screen load-game))
                    (= v1-74 (progress-screen save-game))
+                   (= v1-74 (progress-screen save-and-load-game))
                    (= v1-74 (progress-screen save-game-title))
                    (= v1-74 (progress-screen memcard-error-loading))
                    (= v1-74 (progress-screen memcard-error-saving))

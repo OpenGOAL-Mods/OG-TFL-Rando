@@ -254,7 +254,7 @@
     (set! (-> info money-total) (&-> *game-info* money-total))
     (set! (-> info buzzer-total) (&-> *game-info* buzzer-total))
     (set! (-> info deaths) (&-> *game-info* total-deaths))
-    (set! (-> info status) "Playing Jak and Daxter: The Forgotten Lands")
+    (set! (-> info status) "Playing Jak and Daxter: TFL Checkpoint Randomizer")
     (set! (-> info level) (symbol->string (-> (level-get-target-inside *level*) name))) ;; grab the name of level we're in
     (set! (-> info cutscene?) (real-movie?))
     (set! (-> info ogreboss?)
@@ -561,8 +561,20 @@
 ;;;; PC settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; This is the settings object, all new settings types must be initalized here.
+(define-once *randomizer-settings* (new 'global 'randomizer-settings))
+(define-once *challenges-settings* (new 'global 'challenges-settings))
+(define-once *mods-settings* (new 'global 'mods-settings))
 (define-once *pc-settings* (new 'global 'pc-settings-jak1))
 
+;; This function updates all settings files, if a new settings type is added it needs to be added to this function.
+(defun commit-all-files ()
+  (commit-to-file *pc-settings*)
+  (commit-to-file *randomizer-settings*)
+  (commit-to-file *challenges-settings*)
+  (commit-to-file *mods-settings*)
+)
+  
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; other
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

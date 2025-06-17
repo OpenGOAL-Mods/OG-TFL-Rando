@@ -1415,6 +1415,9 @@
   :virtual #t
   :code
     (behavior ()
+      (if (-> *challenges-settings* challenges-pacifist?)
+        (reset-all)
+        )
       (ja-channel-push! 1 (seconds 0.075))
       (clear-collide-with-as (-> self collide-info))
       (nav-enemy-fall-and-play-death-anim (the-as art-joint-anim (-> self draw art-group data (-> self nav-info die-anim)))

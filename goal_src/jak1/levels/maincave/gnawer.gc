@@ -785,6 +785,9 @@
       (spool-push *art-control* "maincavecam-gnawer-fuel-cell" 0 self -1.0))
   :code
     (behavior ()
+      (if (-> *challenges-settings* challenges-pacifist?)
+        (reset-all)
+        )
       (logclear! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (ja-channel-push! 1 (seconds 0.1))

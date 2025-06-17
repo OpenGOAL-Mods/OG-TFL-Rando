@@ -27,7 +27,7 @@ Gives a random FLOAT or INT between the provided ranges when called
 (rand-vu-float-range 0.0 2.0)
 (rand-vu-int-range 0 10)
 
-if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't dance
+if the result of mod-rand-int-range is 1, then DANCE! if it is not 1, then Don't dance
 (if (= (rand-vu-int-range 0 10) 1) (DANCE!) (Don't dance))
 |#
 

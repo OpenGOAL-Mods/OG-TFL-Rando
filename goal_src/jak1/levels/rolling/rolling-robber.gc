@@ -64,16 +64,18 @@
         (ja :num! (loop! 0.5)))))
 
 (defbehavior fuel-cell-init-as-spline-slider fuel-cell ((arg0 handle) (arg1 float) (arg2 float) (arg3 int))
-  (initialize self)
-  (set! (-> self fact pickup-type) (pickup-type fuel-cell))
-  (set! (-> self fact pickup-amount) (the float arg3))
-  (initialize-params self 0 1024.0)
-  (logclear! (-> self mask) (process-mask actor-pause))
-  (set! (-> self actor-pause) #f)
-  (set! (-> self entity) (-> arg0 process 0 entity))
-  (set! (-> self path) (new 'process 'curve-control self 'path -1000000000.0))
-  (set! (-> self movie-pos-index) -1)
-  (go fuel-cell-spline-slider arg0 arg1 arg2)
+  (when (not (task-closed? (game-task rolling-robbers)(task-status need-resolution)))
+    (initialize self)
+    (set! (-> self fact pickup-type) (pickup-type fuel-cell))
+    (set! (-> self fact pickup-amount) (the float arg3))
+    (initialize-params self 0 1024.0)
+    (logclear! (-> self mask) (process-mask actor-pause))
+    (set! (-> self actor-pause) #f)
+    (set! (-> self entity) (-> arg0 process 0 entity))
+    (set! (-> self path) (new 'process 'curve-control self 'path -1000000000.0))
+    (set! (-> self movie-pos-index) -1)
+    (go fuel-cell-spline-slider arg0 arg1 arg2)
+    )
   (none))
 
 (deftype robber (process-drawable)
@@ -245,6 +247,9 @@
   :event process-drawable-death-event-handler
   :code
     (behavior ()
+      (if (-> *challenges-settings* challenges-pacifist?)
+        (reset-all)
+        )
       (let ((gp-0 #t))
         (when (robber-task-complete?)
           (let ((v1-3 (-> self entity extra perm)))
@@ -269,12 +274,13 @@
                (let ((s5-1 (new 'stack-no-clear 'vector)))
                  (eval-path-curve! (-> self path) s5-1 (the-as float (-> v1-3 user-object 0)) 'interp)
                  (+! (-> s5-1 y) 8192.0)
-                 (birth-pickup-at-point s5-1
-                                        (pickup-type fuel-cell)
-                                        (the float (-> self entity extra perm task))
-                                        #f
-                                        self
-                                        (the-as fact-info #f)))))))
+                 (when (not (task-closed? (game-task rolling-robbers) (task-status need-resolution)))
+                  (birth-pickup-at-point s5-1
+                                          (pickup-type fuel-cell)
+                                          (the float (-> self entity extra perm task))
+                                          #f
+                                          self
+                                        (the-as fact-info #f))))))))
         (when gp-0
           (ja-no-eval :group! robber-death-ja :num! (seek!) :frame-num 0.0)
           (until (ja-done? 0)

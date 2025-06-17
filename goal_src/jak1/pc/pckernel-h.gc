@@ -19,8 +19,12 @@
   - whatever else.
 
   If you do not want to include these PC things, you should exclude it from the build system.
-|#
 
+ |#
+
+(defmacro file-stream-valid? (fs)
+  `(>= (the-as int (-> ,fs file)) 0)
+  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; constants
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -48,6 +52,16 @@
 (defconstant PC_KERNEL_VER_BUILD (-> PC_KERNEL_VERSION build))
 
 (defun-extern get-pckernel-version pckernel-version)
+
+
+;; should only need to change this if we make backwards-incompatible 
+;;  changes to reading/writing randomizer-settings or challenges-settings
+(defglobalconstant RANDO_SETTINGS_VERSION_MINOR #x0006)
+(defglobalconstant RANDO_SETTINGS_VERSION_MAJOR #x0001)
+(defglobalconstant RANDO_SETTINGS_VERSION (logior
+                                        (ash RANDO_SETTINGS_VERSION_MAJOR 48)
+                                        (ash RANDO_SETTINGS_VERSION_MINOR 32)
+                                        ))
 
 (defconstant PS2_VOICE_AMOUNT 48)
 
@@ -144,7 +158,9 @@
    (controller-led-max-brightness    float)
    (controller-led-color             rgbaf :inline)
    (stick-deadzone                   float) ;; analog stick deadzone. 0-1
+   (stick-sensitivity                float) ;; NOTE - this is here solely to satisfy jak 1's menu design, the setting has been moved into `input-settings.json`
    (keyboard-enabled?                symbol) ;; NOTE - this is here solely to satisfy jak 1's menu design, the setting has been moved into `input-settings.json`
+   (pressure-sensitivity-enabled?    symbol) ;; NOTE - this is here solely to satisfy jak 1's menu design, the setting has been moved into `input-settings.json`
    (mouse-enabled?                   symbol)
    (mouse-camera?                    symbol)
    (mouse-xsens                      float)
@@ -281,6 +297,154 @@
 ;;;; resets
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(deftype randomizer-settings (basic)
+    (
+      (version uint64) ;; version of this settings
+      (checkpoint-randomizer? symbol) ;; enable Zed's checkpoint randomizer
+      (use-random-seed? symbol) ;; boolean (#t = random seed / #f = set seed)
+      (current-seed uint) ;; seed used to generate random checkpoint.
+      (backup-next-idx int) ;; backup in case of game crash
+      (warp-on-cell? symbol) ;; warp on cell
+      (warp-on-orb? symbol) ;; warp on orb
+      (warp-on-buzzer? symbol) ;; Warp on scoutfly
+      (warp-on-green-eco? symbol) ;; Warp on green eco
+      (warp-on-blue-eco? symbol) ;; Warp on blue eco
+      (warp-on-red-eco? symbol) ;; Warp on red eco
+      (warp-on-yellow-eco? symbol) ;; Warp on yellow eco
+      (warp-on-eco-vents? symbol) ;; Controls whether eco vents count towards above eco warps
+      (warp-on-death? symbol) ;; Warp on death
+      (collectables-needed-to-warp float);; number of cells/orbs/flies needed to trigger a random checkpoint warp
+      (show-warp-counter? symbol) ;; boolean controlling if warp collectable count displayed
+      (rng-lib symbol) ;; the RNG library to use in main game (randomizer itself always uses knuth)
+      (checkpoint-logic symbol) ;; the logic used when generating checkpoint lists
+    )
+
+    (:methods
+      (new (symbol type) _type_)
+      (reset (_type_) none)
+      (read-from-file (_type_ string) symbol)
+      (commit-to-file (_type_) none)
+      (write-to-file (_type_ string) symbol)
+      (load-settings (_type_) int)
+      )
+    )
+
+(defmethod reset ((obj randomizer-settings))
+  "Set the default settings for non-vanilla randomizer settings"
+
+  (format 0 "resetting randomizer settings~%")
+
+  (set! (-> obj version) RANDO_SETTINGS_VERSION)
+  (set! (-> obj checkpoint-randomizer?) #t)
+  (set! (-> obj collectables-needed-to-warp) 1.0)
+  (set! (-> obj show-warp-counter?) #f)
+  (set! (-> obj use-random-seed?) #t)
+  (set! (-> obj current-seed) 42069)
+  (set! (-> obj backup-next-idx) 0)
+  (set! (-> obj warp-on-cell?) #t)
+  (set! (-> obj warp-on-orb?) #f)
+  (set! (-> obj warp-on-buzzer?) #f)
+  (set! (-> obj warp-on-green-eco?) #f)
+  (set! (-> obj warp-on-blue-eco?) #f)
+  (set! (-> obj warp-on-red-eco?) #f)
+  (set! (-> obj warp-on-yellow-eco?) #f)
+  (set! (-> obj warp-on-eco-vents?) #f)
+  (set! (-> obj warp-on-death?) #f)
+  (set! (-> obj rng-lib) 'mod-rand)
+  (set! (-> obj checkpoint-logic) 'logic-random-level)
+
+  (none))
+
+ (deftype challenges-settings (basic)
+    ((version uint64) ;; version of this settings
+    (challenges-hardcore? symbol)
+    (challenges-orbless? symbol)
+    (challenges-damageless? symbol)
+    (challenges-pacifist? symbol)
+    (challenges-bonkless? symbol)
+    (challenges-casual? symbol)
+    (challenges-mirrormode? symbol)
+    (challenges-smalljak? symbol)
+    (challenges-bigjak? symbol)
+    (challenges-flatjak? symbol)
+    (challenges-paperjak? symbol)
+    )
+
+    (:methods
+    (new (symbol type) _type_)
+    (reset (_type_) none)
+    (read-from-file (_type_ string) symbol)
+    (commit-to-file (_type_) none)
+    (write-to-file (_type_ string) symbol)
+    (load-settings (_type_) int)
+    )
+  )
+ 
+
+(defmethod reset ((obj challenges-settings))
+  "Set the default settings for non-vanilla challenges settings"
+
+  (format 0 "resetting challenges settings~%")
+  (set! (-> obj version) RANDO_SETTINGS_VERSION)
+  (set! (-> obj challenges-orbless?) #f)   
+  (set! (-> obj challenges-hardcore?) #f)  
+  (set! (-> obj challenges-damageless?) #f)
+  (set! (-> obj challenges-bonkless?) #f)  
+  (set! (-> obj challenges-casual?) #f)    
+  (set! (-> obj challenges-mirrormode?) #f)
+  (set! (-> obj challenges-pacifist?) #f)
+  (set! (-> obj challenges-smalljak?) #f)
+  (set! (-> obj challenges-bigjak?) #f)
+  (set! (-> obj challenges-flatjak?) #f)
+  (set! (-> obj challenges-paperjak?) #f)
+  (none)
+  )
+ 
+(deftype mods-settings (basic)
+    (
+      (version uint64) ;; version of this settings
+      (mod-powercellcutscenes? symbol) ;; enable or disable powercell cutscenes.
+      ;; additional checkpoints on/off
+      (checkpoint-training-far symbol)
+      (checkpoint-village1-far symbol)
+      (checkpoint-beach-pelican symbol)
+      (checkpoint-beach-far symbol)
+      (checkpoint-jungle-far symbol)
+      (checkpoint-swamp-flutflut symbol)
+      (checkpoint-village3-cart symbol)
+
+    )
+
+    (:methods
+      (new (symbol type) _type_)
+      (reset (_type_) none)
+      (read-from-file (_type_ string) symbol)
+      (commit-to-file (_type_) none)
+      (write-to-file (_type_ string) symbol)
+      (load-settings (_type_) int)
+      )
+    )
+
+(defmethod reset ((obj mods-settings))
+  "Set the default settings for non-vanilla randomizer settings"
+
+  (format 0 "resetting mods settings~%")
+
+  (set! (-> obj version) RANDO_SETTINGS_VERSION)
+  (set! (-> obj mod-powercellcutscenes?) #t)
+
+  (set! (-> obj checkpoint-training-far) #t)
+  (set! (-> obj checkpoint-village1-far) #t)
+  (set! (-> obj checkpoint-beach-pelican) #t)
+  (set! (-> obj checkpoint-beach-far) #t)
+  (set! (-> obj checkpoint-jungle-far) #t)
+  (set! (-> obj checkpoint-swamp-flutflut) #t)
+  (set! (-> obj checkpoint-village3-cart) #t)
+
+  (none))
+
+;; This is the end of defining settings type in pckernal-h.gc, the rest need to be added in pc-kernal.gc
+
 (defmethod reset ((obj pc-settings) (call-handlers symbol))
   "Reset everything back to default settings
 
@@ -358,11 +522,13 @@
     (set! (-> obj controller-led-eco?) #t)
     (set! (-> obj controller-led-heat?) #t)
     (set! (-> obj stick-deadzone) 0.3)
+    (set! (-> obj stick-sensitivity) 133.0)
     (set! (-> obj controller-led-brightness) 1.0)
     (set! (-> obj controller-led-min-brightness) 0.25)
     (set! (-> obj controller-led-max-brightness) 1.0))
   (when (or (= device 'all) (= device 'input))
     (set! (-> obj keyboard-enabled?) #f)
+    (set! (-> obj pressure-sensitivity-enabled?) #f)
     (set! (-> obj mouse-enabled?) #f)
     (set! (-> obj auto-hide-cursor?) #t))
   (when (or (= device 'all) (= device 'mouse))
